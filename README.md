@@ -1,6 +1,6 @@
 # LRASGen — LLM-based RESTful API Specification Generation
 
-LRASGen is a pipeline that automatically generates OpenAPI Specifications (OAS) directly from RESTful API source code using Large Language Models. It requires no compilation, no runtime environment, and works across six programming languages and twelve frameworks.
+LRASGen is a pipeline that automatically generates OpenAPI Specifications (OAS) directly from RESTful API source code using Large Language Models. It requires no compilation, no runtime environment, and works across six programming languages and twelve frameworks. [LRASGen: LLM-based RESTful API Specification Generation (TOSEM 2026).](https://dl.acm.org/doi/10.1145/3810241)
 
 ## Repository Structure
 
