@@ -1,0 +1,1168 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "gestaohospital API",
+    "description": "LRASGen-generated specification for gestaohospital (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/v1/hospitais/{hospital_id}": {
+      "get": {
+        "operationId": "getHospitais",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the hospital to retrieve",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the hospital to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hospital found and returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "HospitalDTO": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'address': 'string', 'beds': 'integer', 'availableBeds': 'integer', 'longitude': 'string', 'latitude': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Hospital not found or an error occurred while retrieving the hospital"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteHospitais",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the hospital to delete",
+            "schema": {
+              "type": "string",
+              "description": "ID of the hospital to delete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hospital successfully deleted. Returns a plain string message: 'Hospital apagado id: {hospital_id}'.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Hospital not found. Returned when the hospital with the given ID does not exist."
+          },
+          "400": {
+            "description": "Bad request. Returned when an exception occurs during the deletion process."
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateHospitais",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the hospital to update",
+            "schema": {
+              "type": "string",
+              "description": "ID of the hospital to update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hospital updated successfully. Returns the updated hospital data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "HospitalDTO": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'address': 'string', 'beds': 'integer', 'availableBeds': 'integer', 'longitude': 'string', 'latitude': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when an exception occurs during update, such as validation failure (empty name or address, negative beds or availableBeds) or other errors."
+          },
+          "404": {
+            "description": "Not found. Returned if the updated hospital DTO is null (though unlikely in practice)."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Hospital data to update"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Hospital data to update"
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "Hospital data to update"
+                  },
+                  "beds": {
+                    "type": "integer",
+                    "description": "Hospital data to update"
+                  },
+                  "availableBeds": {
+                    "type": "integer",
+                    "description": "Hospital data to update"
+                  },
+                  "longitude": {
+                    "type": "string",
+                    "description": "Hospital data to update"
+                  },
+                  "latitude": {
+                    "type": "string",
+                    "description": "Hospital data to update"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/hospitais": {
+      "post": {
+        "operationId": "createHospitais",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Hospital successfully inserted and returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "HospitalDTO": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'address': 'string', 'beds': 'integer', 'availableBeds': 'integer', 'longitude': 'string', 'latitude': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request due to validation failure or exception during insertion"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Hospital data to insert, including name, address, beds, availableBeds, longitude and latitude"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Hospital data to insert, including name, address, beds, availableBeds, longitude and latitude"
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "Hospital data to insert, including name, address, beds, availableBeds, longitude and latitude"
+                  },
+                  "beds": {
+                    "type": "integer",
+                    "description": "Hospital data to insert, including name, address, beds, availableBeds, longitude and latitude"
+                  },
+                  "availableBeds": {
+                    "type": "integer",
+                    "description": "Hospital data to insert, including name, address, beds, availableBeds, longitude and latitude"
+                  },
+                  "longitude": {
+                    "type": "string",
+                    "description": "Hospital data to insert, including name, address, beds, availableBeds, longitude and latitude"
+                  },
+                  "latitude": {
+                    "type": "string",
+                    "description": "Hospital data to insert, including name, address, beds, availableBeds, longitude and latitude"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getHospitais",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved list of hospitals",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<HospitalDTO>": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'address': 'string', 'beds': 'integer', 'availableBeds': 'integer', 'longitude': 'string', 'latitude': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - error occurred while retrieving hospitals"
+          }
+        }
+      }
+    },
+    "/v1/hospitais/{id}/leitos": {
+      "get": {
+        "operationId": "getLeitos",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Hospital identifier used to look up the hospital and return its available beds",
+            "schema": {
+              "type": "string",
+              "description": "Hospital identifier used to look up the hospital and return its available beds"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a map with the number of available beds for the hospital with the given id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "LeitosDisponiveis": {
+                      "type": "string",
+                      "description": "{'leitos': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when the hospital with the given id is not found, because the service throws ObjectNotFoundException which is annotated with @ResponseStatus(HttpStatus.BAD_REQUEST)."
+          }
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/hospitaisProximos": {
+      "get": {
+        "operationId": "getHospitaisproximos",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "description": "Hospital identifier from the path variable",
+            "schema": {
+              "type": "string",
+              "description": "Hospital identifier from the path variable"
+            }
+          },
+          {
+            "name": "raio",
+            "in": "query",
+            "required": false,
+            "description": "Radius for the proximity search",
+            "schema": {
+              "type": "number",
+              "description": "Radius for the proximity search"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returns a list of nearby hospitals within the specified radius.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<HospitalDTO>": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'address': 'string', 'beds': 'integer', 'availableBeds': 'integer', 'longitude': 'string', 'latitude': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the list of nearby hospitals is null, which occurs if the service returns null."
+          },
+          "400": {
+            "description": "Returned when an exception occurs during processing, such as when the hospital ID is invalid or the service throws an exception."
+          }
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/proximidades": {
+      "get": {
+        "operationId": "getProximidades",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "description": "Hospital identifier from the path",
+            "schema": {
+              "type": "string",
+              "description": "Hospital identifier from the path"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of locations near the hospital returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "LocationDTO": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'referenceId': 'string', 'category': 'string', 'longitude': 'string', 'latitude': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No locations found near the hospital."
+          },
+          "400": {
+            "description": "Bad request due to an error while processing the request."
+          }
+        }
+      }
+    },
+    "/v1/hospitais/{id}/transferencia/{productId}": {
+      "post": {
+        "operationId": "createTransferencia",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Hospital identifier from the path",
+            "schema": {
+              "type": "string",
+              "description": "Hospital identifier from the path"
+            }
+          },
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "description": "Product identifier from the path",
+            "schema": {
+              "type": "string",
+              "description": "Product identifier from the path"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transferência realizada com sucesso. Retorna a string 'transferencia realizada!'.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Produto não encontrado ou hospital de origem não encontrado. Lança ObjectNotFoundException ou ResourceNotFoundException, que são anotadas com @ResponseStatus(HttpStatus.BAD_REQUEST)."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "quantidade": {
+                    "type": "integer",
+                    "description": "Quantity to transfer, sent as the request body"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/hospitais/maisProximo": {
+      "get": {
+        "operationId": "getMaisproximo",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "required": false,
+            "description": "Latitude used to find the nearest hospital with available beds",
+            "schema": {
+              "type": "number",
+              "description": "Latitude used to find the nearest hospital with available beds"
+            }
+          },
+          {
+            "name": "lon",
+            "in": "query",
+            "required": false,
+            "description": "Longitude used to find the nearest hospital with available beds",
+            "schema": {
+              "type": "number",
+              "description": "Longitude used to find the nearest hospital with available beds"
+            }
+          },
+          {
+            "name": "raioMaximo",
+            "in": "query",
+            "required": false,
+            "description": "Maximum search radius used to find the nearest hospital with available beds",
+            "schema": {
+              "type": "number",
+              "description": "Maximum search radius used to find the nearest hospital with available beds"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hospital mais próximo com vagas encontrado, retornando os dados do hospital.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "HospitalDTO": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'address': 'string', 'beds': 'integer', 'availableBeds': 'integer', 'longitude': 'string', 'latitude': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Nenhum hospital próximo com vagas encontrado. Lançada ResourceNotFoundException com a mensagem 'Nenhum hospital próximo com vagas encontrado!'."
+          }
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/pacientes/{patientId}": {
+      "get": {
+        "operationId": "getPacientes",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "description": "Hospital identifier from the request path",
+            "schema": {
+              "type": "string",
+              "description": "Hospital identifier from the request path"
+            }
+          },
+          {
+            "name": "patientId",
+            "in": "path",
+            "required": true,
+            "description": "Patient identifier from the request path",
+            "schema": {
+              "type": "string",
+              "description": "Patient identifier from the request path"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Patient found and returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Patient": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'cpf': 'string', 'birthDate': 'date', 'gender': 'string', 'entryDate': 'date', 'exitDate': 'date', 'active': 'boolean', 'location': 'Location'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Patient not found or an error occurred while retrieving the patient."
+          }
+        }
+      },
+      "put": {
+        "operationId": "updatePacientes",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "description": "Hospital identifier from the request path",
+            "schema": {
+              "type": "string",
+              "description": "Hospital identifier from the request path"
+            }
+          },
+          {
+            "name": "patientId",
+            "in": "path",
+            "required": true,
+            "description": "Patient identifier from the request path",
+            "schema": {
+              "type": "string",
+              "description": "Patient identifier from the request path"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Patient updated successfully. Returns the updated Patient object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Patient": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'cpf': 'string', 'birthDate': 'date', 'gender': 'string', 'entryDate': 'date', 'exitDate': 'date', 'active': 'boolean', 'location': 'Location'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Patient not found or error during update. Returned when service.findById throws ObjectNotFoundException or any other exception occurs."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Patient data to update"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Patient data to update"
+                  },
+                  "cpf": {
+                    "type": "string",
+                    "description": "Patient data to update"
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "Patient data to update"
+                  },
+                  "gender": {
+                    "type": "string",
+                    "description": "Patient data to update"
+                  },
+                  "entryDate": {
+                    "type": "string",
+                    "description": "Patient data to update"
+                  },
+                  "exitDate": {
+                    "type": "string",
+                    "description": "Patient data to update"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Patient data to update"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/pacientes/checkin": {
+      "post": {
+        "operationId": "createCheckin",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "description": "Hospital identifier from the path",
+            "schema": {
+              "type": "string",
+              "description": "Hospital identifier from the path"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Check-in realizado com sucesso. Retorna o paciente com os dados de entrada atualizados.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Patient": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'cpf': 'string', 'birthDate': 'date', 'gender': 'string', 'entryDate': 'date', 'exitDate': 'date', 'active': 'boolean', 'location': 'Location'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Hospital sem vagas para check-in (HospitalCheioException)."
+          },
+          "404": {
+            "description": "Hospital não encontrado (ObjectNotFoundException) ou erro genérico capturado no bloco catch."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Patient object to check in"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Patient object to check in"
+                  },
+                  "cpf": {
+                    "type": "string",
+                    "description": "Patient object to check in"
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "Patient object to check in"
+                  },
+                  "gender": {
+                    "type": "string",
+                    "description": "Patient object to check in"
+                  },
+                  "entryDate": {
+                    "type": "string",
+                    "description": "Patient object to check in"
+                  },
+                  "exitDate": {
+                    "type": "string",
+                    "description": "Patient object to check in"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Patient object to check in"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/pacientes": {
+      "get": {
+        "operationId": "getPacientes",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "description": "Hospital identifier from the request path",
+            "schema": {
+              "type": "string",
+              "description": "Hospital identifier from the request path"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the list of patients of the hospital when the hospital has a non-null patient list.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Patient": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'cpf': 'string', 'birthDate': 'date', 'gender': 'string', 'entryDate': 'date', 'exitDate': 'date', 'active': 'boolean', 'location': 'Location'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the hospital is not found, when the hospital has no patients (ResourceNotFoundException), or when any exception occurs during processing."
+          }
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/estoque/{produto_id}": {
+      "get": {
+        "operationId": "getEstoque",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "description": "Hospital identifier from the path",
+            "schema": {
+              "type": "string",
+              "description": "Hospital identifier from the path"
+            }
+          },
+          {
+            "name": "produto_id",
+            "in": "path",
+            "required": true,
+            "description": "Product identifier from the path",
+            "schema": {
+              "type": "string",
+              "description": "Product identifier from the path"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product found and returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProductDTO": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'description': 'string', 'quantity': 'integer', 'productType': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product not found. Returned when the service returns null or throws an exception."
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateEstoque",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "description": "Hospital identifier",
+            "schema": {
+              "type": "string",
+              "description": "Hospital identifier"
+            }
+          },
+          {
+            "name": "produto_id",
+            "in": "path",
+            "required": true,
+            "description": "Product identifier",
+            "schema": {
+              "type": "string",
+              "description": "Product identifier"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProductDTO": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'description': 'string', 'quantity': 'integer', 'productType': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product not found"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Product data to update"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Product data to update"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Product data to update"
+                  },
+                  "quantity": {
+                    "type": "integer",
+                    "description": "Product data to update"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "description",
+                  "quantity"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteEstoque",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "description": "Hospital identifier from the path",
+            "schema": {
+              "type": "string",
+              "description": "Hospital identifier from the path"
+            }
+          },
+          {
+            "name": "produto_id",
+            "in": "path",
+            "required": true,
+            "description": "Product identifier from the path",
+            "schema": {
+              "type": "string",
+              "description": "Product identifier from the path"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Produto apagado id: {produto_id}",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Produto não encontrado"
+          },
+          "400": {
+            "description": "Erro ao processar a requisição"
+          }
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/estoque": {
+      "get": {
+        "operationId": "getEstoque",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "description": "Hospital identifier from the path",
+            "schema": {
+              "type": "string",
+              "description": "Hospital identifier from the path"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returns the list of products for the given hospital.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<ProductDTO>": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'description': 'string', 'quantity': 'integer', 'productType': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the service returns null for the product list."
+          },
+          "400": {
+            "description": "Returned when an exception occurs during processing."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createEstoque",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "description": "Hospital identifier from the path",
+            "schema": {
+              "type": "string",
+              "description": "Hospital identifier from the path"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product successfully inserted and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProductDTO": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'description': 'string', 'quantity': 'integer', 'productType': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product not found after insertion (service returned null)."
+          },
+          "400": {
+            "description": "Bad request due to an exception during insertion (e.g., hospital not found, validation error)."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Product data to insert"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Product data to insert"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Product data to insert"
+                  },
+                  "quantity": {
+                    "type": "integer",
+                    "description": "Product data to insert"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "description",
+                  "quantity"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/pacientes/checkout": {
+      "post": {
+        "operationId": "createCheckout",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "description": "Hospital identifier from the path",
+            "schema": {
+              "type": "string",
+              "description": "Hospital identifier from the path"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paciente realizou checkout com sucesso, retornando os dados do paciente atualizado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Patient": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'cpf': 'string', 'birthDate': 'date', 'gender': 'string', 'entryDate': 'date', 'exitDate': 'date', 'active': 'boolean', 'location': 'Location'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Hospital não encontrado ou paciente não encontrado no hospital."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "idPatient": {
+                    "type": "string",
+                    "description": "Patient identifier sent in the request body"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

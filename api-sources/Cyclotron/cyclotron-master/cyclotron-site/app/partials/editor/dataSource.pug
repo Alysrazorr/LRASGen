@@ -1,0 +1,20 @@
+.editor-view-header
+    h3 {{ getDataSourceName(dataSource) }}
+
+    .editor-view-header-buttons
+        button#editor-dataSource-remove.btn.btn-default(type='button', ng-click='removeDataSource(dataSourceIndex); goToSubState("edit.dataSources", editor.dashboard.dataSources)', title='Remove') 
+            i.fa.fa-times
+            span  Remove Data Source
+
+        
+.form-group
+    label(title='{{ dashboardProperties.dataSources.properties.type.description }}') Type
+    select.form-control(ng-model='dataSource.type', title='{{ dashboardProperties.dataSources.properties.type.description }}',
+        ng-options='optionKey as (optionValue.label || optionKey) for (optionKey, optionValue) in dashboardProperties.dataSources.options')
+
+.bg-info(ng-if='dataSourceMessage()', ng-bind-html='dataSourceMessage()')
+
+.bg-danger(ng-if='isDuplicateDataSourceName(dataSource)')
+    | The Data Source name must be unique to the Dashboard.
+
+.editor-property-set(model='dataSource', definition='combinedDataSourceProperties(dataSource)', ng-if='dataSource.type')

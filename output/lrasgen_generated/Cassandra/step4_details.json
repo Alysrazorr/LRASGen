@@ -1,0 +1,2557 @@
+{
+  "task_id": "management-api-for-apache-cassandra",
+  "api_name": "management-api-for-apache-cassandra",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/v0/ops/seeds/reload",
+      "http_method": "POST",
+      "method_name": "seedReload",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\K8OperatorResources.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List of new seeds after reload",
+          "data_schema": [
+            {
+              "name": "List<String>",
+              "schema": {
+                "seeds": "array of string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/probes/readiness",
+      "http_method": "GET",
+      "method_name": "checkReadiness",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\K8OperatorResources.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Service is ready to handle requests",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Service is not ready to handle requests",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/probes/liveness",
+      "http_method": "GET",
+      "method_name": "checkLiveness",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\K8OperatorResources.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Service is running",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/keyspace/cleanup",
+      "http_method": "POST",
+      "method_name": "cleanup",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\KeyspaceOpsResources.java",
+      "parameters": [
+        {
+          "name": "jobs",
+          "type": "int",
+          "_class_name": "KeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace cleanup request containing jobs, keyspace_name, and tables"
+        },
+        {
+          "name": "keyspaceName",
+          "type": "String",
+          "_class_name": "KeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace cleanup request containing jobs, keyspace_name, and tables"
+        },
+        {
+          "name": "tables",
+          "type": "List",
+          "_class_name": "KeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace cleanup request containing jobs, keyspace_name, and tables"
+        },
+        {
+          "name": "jobs",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "Number of jobs to use for the cleanup operation; defaults to 1 when 0 is provided",
+          "_depth": 0
+        },
+        {
+          "name": "keyspace_name",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Name of the keyspace to clean up; defaults to NON_LOCAL_STRATEGY when blank",
+          "_depth": 0
+        },
+        {
+          "name": "tables",
+          "type": "array",
+          "require": "false",
+          "position": "body",
+          "description": "List of tables to clean up; defaults to an empty list when empty",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Job ID for keyspace cleanup process",
+          "data_schema": [
+            {
+              "name": "JobId",
+              "schema": {
+                "job_id": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed or error when executing request",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/keyspace/refresh",
+      "http_method": "POST",
+      "method_name": "refresh",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\KeyspaceOpsResources.java",
+      "parameters": [
+        {
+          "name": "keyspaceName",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Keyspace name",
+          "_depth": 0
+        },
+        {
+          "name": "table",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Table name",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "SSTables loaded successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Keyspace name or Table name not provided",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/auth/role",
+      "http_method": "POST",
+      "method_name": "createRole",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\AuthResources.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Username for the new role",
+          "_depth": 0
+        },
+        {
+          "name": "is_superuser",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether the role is a superuser",
+          "_depth": 0
+        },
+        {
+          "name": "can_login",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether the role can login",
+          "_depth": 0
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Password for the new role",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Role created",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Username and/or password is empty",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/probes/cluster",
+      "http_method": "GET",
+      "method_name": "checkClusterConsistency",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\K8OperatorResources.java",
+      "parameters": [
+        {
+          "name": "consistency_level",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The consistency level to check. Defaults to LOCAL_QUORUM if not provided.",
+          "_depth": 0
+        },
+        {
+          "name": "rf_per_dc",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The replication factor per data center. Defaults to 3 if not provided.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cassandra is able to achieve the specified consistency",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Cassandra is unable to achieve the specified consistency",
+          "data_schema": [
+            {
+              "name": "Map",
+              "schema": {
+                "key": "string",
+                "value": "array of strings"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/keyspace/create",
+      "http_method": "POST",
+      "method_name": "create",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\KeyspaceOpsResources.java",
+      "parameters": [
+        {
+          "name": "keyspaceName",
+          "type": "String",
+          "_class_name": "CreateOrAlterKeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace creation request containing keyspace name and replication settings"
+        },
+        {
+          "name": "replicationSettings",
+          "type": "List",
+          "_class_name": "CreateOrAlterKeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace creation request containing keyspace name and replication settings"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Keyspace created successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Keyspace name or Replication Settings not provided",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/keyspace/alter",
+      "http_method": "POST",
+      "method_name": "alter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\KeyspaceOpsResources.java",
+      "parameters": [
+        {
+          "name": "keyspaceName",
+          "type": "String",
+          "_class_name": "CreateOrAlterKeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace alter request containing keyspace_name and replication_settings"
+        },
+        {
+          "name": "replicationSettings",
+          "type": "List",
+          "_class_name": "CreateOrAlterKeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace alter request containing keyspace_name and replication_settings"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Keyspace Replication Settings altered successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Keyspace name or Replication Settings not provided",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/executor/job",
+      "http_method": "GET",
+      "method_name": "getJobStatus",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\K8OperatorResources.java",
+      "parameters": [
+        {
+          "name": "job_id",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The Job ID for which to retrieve job details",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Map of job details",
+          "data_schema": [
+            {
+              "name": "Job",
+              "schema": {
+                "id": "string",
+                "type": "string",
+                "status": "string",
+                "submit_time": "long",
+                "end_time": "long",
+                "error": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Job not found",
+          "data_schema": [
+            {
+              "name": "Job",
+              "schema": {
+                "id": "string",
+                "type": "string",
+                "status": "string",
+                "submit_time": "long",
+                "end_time": "long",
+                "error": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/keyspace",
+      "http_method": "GET",
+      "method_name": "list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\KeyspaceOpsResources.java",
+      "parameters": [
+        {
+          "name": "keyspaceName",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Filter the list of keyspaces by name. If blank, all keyspaces are returned.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List of Keyspaces",
+          "data_schema": [
+            {
+              "name": "keyspaces",
+              "schema": {
+                "keyspaces": "array of string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/lifecycle/stop",
+      "http_method": "POST",
+      "method_name": "stopNode",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\LifecycleResources.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cassandra stopped successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Cassandra not stopped successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/metadata/versions/release",
+      "http_method": "GET",
+      "method_name": "getReleaseVersion",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\MetadataResources.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cassandra version",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/metadata/endpoints",
+      "http_method": "GET",
+      "method_name": "getEndpointStates",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\MetadataResources.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Endpoint states",
+          "data_schema": [
+            {
+              "name": "EndpointStates",
+              "schema": {
+                "entity": "array",
+                "variant": "object",
+                "annotations": "array",
+                "mediaType": "object",
+                "language": "string",
+                "encoding": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/lifecycle/pid",
+      "http_method": "GET",
+      "method_name": "getPID",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\LifecycleResources.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cassandra Process ID",
+          "data_schema": [
+            {
+              "name": "pid",
+              "schema": {
+                "pid": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 204,
+          "description": "No Cassandra Process running",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Error finding Cassandra Process",
+          "data_schema": [
+            {
+              "name": "error",
+              "schema": {
+                "error": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/lifecycle/configure",
+      "http_method": "POST",
+      "method_name": "configureNodeJson",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\LifecycleResources.java",
+      "parameters": [
+        {
+          "name": "profile",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Profile name used to configure Cassandra/DSE",
+          "_depth": 0
+        },
+        {
+          "name": "config",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "JSON configuration for Cassandra/DSE",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 406,
+          "description": "Invalid JSON",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/metadata/versions/features",
+      "http_method": "GET",
+      "method_name": "getFeatureSet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\MetadataResources.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Local datacenter'",
+          "data_schema": [
+            {
+              "name": "FeatureSet",
+              "schema": {
+                "cassandra_version": "string",
+                "mgmt_version": "string",
+                "features": "array of string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/metadata/localdc",
+      "http_method": "GET",
+      "method_name": "getLocalDataCenter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\MetadataResources.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Local datacenter",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/keyspace/replication",
+      "http_method": "GET",
+      "method_name": "getReplication",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\KeyspaceOpsResources.java",
+      "parameters": [
+        {
+          "name": "keyspaceName",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Name of the keyspace to get replication settings for. Must be non-empty; otherwise a 400 response is returned.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Keyspace Replication Settings",
+          "data_schema": [
+            {
+              "name": "ReplicationSettings",
+              "schema": {
+                "class": "string",
+                "replication_factor": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Keyspace name not provided",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Keyspace name not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/lifecycle/start",
+      "http_method": "POST",
+      "method_name": "startNode",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\LifecycleResources.java",
+      "parameters": [
+        {
+          "name": "profile",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Profile name used to locate the cassandra.yaml and node-topology.properties under /tmp/<profile>",
+          "min_length": "1",
+          "max_length": "128",
+          "_depth": 0
+        },
+        {
+          "name": "replace_ip",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "IPv4 address to replace on first boot; must match the IPv4 pattern",
+          "format": "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Cassandra started successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 202,
+          "description": "Cassandra already running and can connect",
+          "data_schema": null
+        },
+        {
+          "status_code": 204,
+          "description": "Cassandra already running but can't connect",
+          "data_schema": null
+        },
+        {
+          "status_code": 206,
+          "description": "Cassandra process not found but can connect",
+          "data_schema": null
+        },
+        {
+          "status_code": 420,
+          "description": "Cassandra could not start successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Error trying to start Cassandra",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/decommission",
+      "http_method": "POST",
+      "method_name": "decommission",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [
+        {
+          "name": "force",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Force decommission",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cassandra node decommissioned successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/schema/reset",
+      "http_method": "POST",
+      "method_name": "resetLocalSchema",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cassandra node schema reset successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/streaminfo",
+      "http_method": "GET",
+      "method_name": "getStreamInfo",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cassandra streaming status info",
+          "data_schema": [
+            {
+              "name": "StreamingInfo",
+              "schema": {
+                "entity": "array",
+                "variant": "object",
+                "annotations": "array",
+                "mediaType": "object",
+                "language": "string",
+                "encoding": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/schema/reload",
+      "http_method": "POST",
+      "method_name": "reloadLocalSchema",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cassandra node schema reloaded successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/compaction",
+      "http_method": "POST",
+      "method_name": "setCompactionThroughput",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Set the MB/s throughput cap for compaction in the system, or 0 to disable throttling",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cassandra compaction throughput set successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/logging",
+      "http_method": "POST",
+      "method_name": "setLoggingLevel",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [
+        {
+          "name": "target",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The component or class to set the log level for. If not provided, resets to the initial configuration.",
+          "_depth": 0
+        },
+        {
+          "name": "rawLevel",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The log level to set (e.g., DEBUG, INFO, WARN, ERROR). If not provided, resets to the initial configuration.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cassandra logging level set successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/assassinate",
+      "http_method": "POST",
+      "method_name": "assassinate",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [
+        {
+          "name": "address",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Address of the node to assassinate",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cassandra node assasinated successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Cassandra node assasination request missing address",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/drain",
+      "http_method": "POST",
+      "method_name": "drain",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cassandra node drained successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/hints/truncate",
+      "http_method": "POST",
+      "method_name": "truncateHints",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [
+        {
+          "name": "host",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Truncate hints for the endpoint(s) specified. If not provided, truncates all hints on the local node.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cassandra node hints truncated successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/snapshots",
+      "http_method": "DELETE",
+      "method_name": "clearSnapshots",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [
+        {
+          "name": "snapshotNames",
+          "type": "List<String>",
+          "require": "false",
+          "position": "query",
+          "description": "List of snapshot names to clear",
+          "_depth": 0
+        },
+        {
+          "name": "keyspaces",
+          "type": "List<String>",
+          "require": "false",
+          "position": "query",
+          "description": "List of keyspaces to clear snapshots for",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Snapshots cleared successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/snapshots",
+      "http_method": "GET",
+      "method_name": "getSnapshotDetails",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [
+        {
+          "name": "snapshotNames",
+          "type": "List<String>",
+          "require": "false",
+          "position": "query",
+          "description": "List of snapshot names to retrieve details for",
+          "_depth": 0
+        },
+        {
+          "name": "keyspaces",
+          "type": "List<String>",
+          "require": "false",
+          "position": "query",
+          "description": "List of keyspaces to retrieve snapshot details for",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cassandra snapshot details",
+          "data_schema": [
+            {
+              "name": "SnapshotDetails",
+              "schema": {
+                "entity": "array",
+                "variant": "object",
+                "annotations": "array",
+                "mediaType": "object",
+                "language": "string",
+                "encoding": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/snapshots",
+      "http_method": "POST",
+      "method_name": "takeSnapshot",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [
+        {
+          "name": "snapshotName",
+          "type": "String",
+          "_class_name": "TakeSnapshotRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Snapshot creation request containing snapshot name, keyspaces, table name, skip flush flag, and keyspace tables"
+        },
+        {
+          "name": "keyspaces",
+          "type": "List",
+          "_class_name": "TakeSnapshotRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Snapshot creation request containing snapshot name, keyspaces, table name, skip flush flag, and keyspace tables"
+        },
+        {
+          "name": "tableName",
+          "type": "String",
+          "_class_name": "TakeSnapshotRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Snapshot creation request containing snapshot name, keyspaces, table name, skip flush flag, and keyspace tables"
+        },
+        {
+          "name": "skipFlush",
+          "type": "Boolean",
+          "_class_name": "TakeSnapshotRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Snapshot creation request containing snapshot name, keyspaces, table name, skip flush flag, and keyspace tables"
+        },
+        {
+          "name": "keyspaceTables",
+          "type": "List",
+          "_class_name": "TakeSnapshotRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Snapshot creation request containing snapshot name, keyspaces, table name, skip flush flag, and keyspace tables"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Snapshot created successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid snapshot request",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v1/ops/tables/scrub",
+      "http_method": "POST",
+      "method_name": "scrub",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\TableOpsResources.java",
+      "parameters": [
+        {
+          "name": "disableSnapshot",
+          "type": "boolean",
+          "_class_name": "ScrubRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Scrub request containing tables, keyspace name, and scrub options"
+        },
+        {
+          "name": "skipCorrupted",
+          "type": "boolean",
+          "_class_name": "ScrubRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Scrub request containing tables, keyspace name, and scrub options"
+        },
+        {
+          "name": "checkData",
+          "type": "boolean",
+          "_class_name": "ScrubRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Scrub request containing tables, keyspace name, and scrub options"
+        },
+        {
+          "name": "reinsertOverflowedTTL",
+          "type": "boolean",
+          "_class_name": "ScrubRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Scrub request containing tables, keyspace name, and scrub options"
+        },
+        {
+          "name": "jobs",
+          "type": "int",
+          "_class_name": "ScrubRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Scrub request containing tables, keyspace name, and scrub options"
+        },
+        {
+          "name": "keyspaceName",
+          "type": "String",
+          "_class_name": "ScrubRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Scrub request containing tables, keyspace name, and scrub options"
+        },
+        {
+          "name": "tables",
+          "type": "List",
+          "_class_name": "ScrubRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Scrub request containing tables, keyspace name, and scrub options"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Table scrub successful",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/fullquerylogging",
+      "http_method": "GET",
+      "method_name": "isFullQueryLogEnabled",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Full Query enabled",
+          "data_schema": [
+            {
+              "name": "FullQueryLoggingStatus",
+              "schema": {
+                "entity": "boolean",
+                "variant": "object",
+                "annotations": "array",
+                "mediaType": "object",
+                "language": "string",
+                "encoding": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/fullquerylogging",
+      "http_method": "POST",
+      "method_name": "setFullQuerylog",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [
+        {
+          "name": "enabled",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Enable or disable full query logging facility.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Full Query Logging set successfully",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/repair",
+      "http_method": "POST",
+      "method_name": "repair",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [
+        {
+          "name": "keyspaceName",
+          "type": "String",
+          "_class_name": "RepairRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Repair request containing keyspace name, tables, and full flag"
+        },
+        {
+          "name": "tables",
+          "type": "List",
+          "_class_name": "RepairRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Repair request containing keyspace name, tables, and full flag"
+        },
+        {
+          "name": "full",
+          "type": "Boolean",
+          "_class_name": "RepairRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Repair request containing keyspace name, tables, and full flag"
+        },
+        {
+          "name": "keyspace_name",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Name of the keyspace to repair",
+          "_depth": 0
+        },
+        {
+          "name": "tables",
+          "type": "array",
+          "require": "false",
+          "position": "body",
+          "description": "List of tables to repair",
+          "_depth": 0
+        },
+        {
+          "name": "full",
+          "type": "boolean",
+          "require": "false",
+          "position": "body",
+          "description": "Whether to perform a full repair",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Nodetool repair executed successfully",
+          "data_schema": [
+            {
+              "name": "response",
+              "schema": {
+                "result": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Repair request missing Keyspace name",
+          "data_schema": [
+            {
+              "name": "error",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "error",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/move",
+      "http_method": "POST",
+      "method_name": "move",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java",
+      "parameters": [
+        {
+          "name": "newToken",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The new token to move the node to on the token ring",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 202,
+          "description": "Job ID for successfully scheduled Cassandra node move request",
+          "data_schema": [
+            {
+              "name": "JobId",
+              "schema": {
+                "job_id": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Missing required newToken parameter",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "error": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "error": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v1/ops/tables/sstables/upgrade",
+      "http_method": "POST",
+      "method_name": "upgradeSSTables",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\TableOpsResources.java",
+      "parameters": [
+        {
+          "name": "excludeCurrentVersion",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether to exclude the current version when upgrading SSTables",
+          "_depth": 0
+        },
+        {
+          "name": "jobs",
+          "type": "int",
+          "_class_name": "KeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace request containing keyspace name, tables, and jobs"
+        },
+        {
+          "name": "keyspaceName",
+          "type": "String",
+          "_class_name": "KeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace request containing keyspace name, tables, and jobs"
+        },
+        {
+          "name": "tables",
+          "type": "List",
+          "_class_name": "KeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace request containing keyspace name, tables, and jobs"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "SSTable upgrade successful",
+          "data_schema": [
+            {
+              "name": "response",
+              "schema": {
+                "body": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v1/ops/tables/compact",
+      "http_method": "POST",
+      "method_name": "compact",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\TableOpsResources.java",
+      "parameters": [
+        {
+          "name": "splitOutput",
+          "type": "boolean",
+          "_class_name": "CompactRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing compaction options: split_output, user_defined, start_token, end_token, keyspace_name, user_defined_files, tables"
+        },
+        {
+          "name": "userDefined",
+          "type": "boolean",
+          "_class_name": "CompactRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing compaction options: split_output, user_defined, start_token, end_token, keyspace_name, user_defined_files, tables"
+        },
+        {
+          "name": "startToken",
+          "type": "String",
+          "_class_name": "CompactRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing compaction options: split_output, user_defined, start_token, end_token, keyspace_name, user_defined_files, tables"
+        },
+        {
+          "name": "endToken",
+          "type": "String",
+          "_class_name": "CompactRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing compaction options: split_output, user_defined, start_token, end_token, keyspace_name, user_defined_files, tables"
+        },
+        {
+          "name": "keyspaceName",
+          "type": "String",
+          "_class_name": "CompactRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing compaction options: split_output, user_defined, start_token, end_token, keyspace_name, user_defined_files, tables"
+        },
+        {
+          "name": "userDefinedFiles",
+          "type": "List",
+          "_class_name": "CompactRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing compaction options: split_output, user_defined, start_token, end_token, keyspace_name, user_defined_files, tables"
+        },
+        {
+          "name": "tables",
+          "type": "List",
+          "_class_name": "CompactRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing compaction options: split_output, user_defined, start_token, end_token, keyspace_name, user_defined_files, tables"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Table compaction successful",
+          "data_schema": [
+            {
+              "name": "response",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid table compaction request",
+          "data_schema": [
+            {
+              "name": "error",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "error",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v1/ops/tables/flush",
+      "http_method": "POST",
+      "method_name": "flush",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\TableOpsResources.java",
+      "parameters": [
+        {
+          "name": "jobs",
+          "type": "int",
+          "_class_name": "KeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing keyspace name, tables, and jobs for the flush operation"
+        },
+        {
+          "name": "keyspaceName",
+          "type": "String",
+          "_class_name": "KeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing keyspace name, tables, and jobs for the flush operation"
+        },
+        {
+          "name": "tables",
+          "type": "List",
+          "_class_name": "KeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing keyspace name, tables, and jobs for the flush operation"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Table flush successful",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v1/ops/tables/create",
+      "http_method": "POST",
+      "method_name": "create",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\TableOpsResources.java",
+      "parameters": [
+        {
+          "name": "keyspaceName",
+          "type": "String",
+          "_class_name": "CreateTableRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Table creation request containing keyspace name, table name, columns, and options"
+        },
+        {
+          "name": "tableName",
+          "type": "String",
+          "_class_name": "CreateTableRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Table creation request containing keyspace name, table name, columns, and options"
+        },
+        {
+          "name": "columns",
+          "type": "List",
+          "_class_name": "CreateTableRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Table creation request containing keyspace name, table name, columns, and options"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "_class_name": "CreateTableRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Table creation request containing keyspace name, table name, columns, and options"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "CreateTableRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Table creation request containing keyspace name, table name, columns, and options"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "_class_name": "CreateTableRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Table creation request containing keyspace name, table name, columns, and options"
+        },
+        {
+          "name": "kind",
+          "type": "ColumnKind",
+          "_class_name": "CreateTableRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Table creation request containing keyspace name, table name, columns, and options"
+        },
+        {
+          "name": "position",
+          "type": "int",
+          "_class_name": "CreateTableRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Table creation request containing keyspace name, table name, columns, and options"
+        },
+        {
+          "name": "order",
+          "type": "ClusteringOrder",
+          "_class_name": "CreateTableRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Table creation request containing keyspace name, table name, columns, and options"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Table creation successful",
+          "data_schema": [
+            {
+              "name": "response",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Table creation failed",
+          "data_schema": [
+            {
+              "name": "response",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "response",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v1/ops/node/decommission",
+      "http_method": "POST",
+      "method_name": "decommission",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\v1\\NodeOpsResources.java",
+      "parameters": [
+        {
+          "name": "force",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether to force the decommission operation",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 202,
+          "description": "Job ID for successfully scheduled Cassandra node decommission request",
+          "data_schema": [
+            {
+              "name": "JobId",
+              "schema": {
+                "job_id": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v1/ops/tables",
+      "http_method": "GET",
+      "method_name": "list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\TableOpsResources.java",
+      "parameters": [
+        {
+          "name": "keyspaceName",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "List the table names in the given keyspace",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Table list",
+          "data_schema": [
+            {
+              "name": "tables",
+              "schema": {
+                "tables": "array of string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Keyspace name not provided",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v1/ops/tables/garbagecollect",
+      "http_method": "POST",
+      "method_name": "garbageCollect",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\TableOpsResources.java",
+      "parameters": [
+        {
+          "name": "tombstoneOption",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Tombstone option, must be either ROW or CELL",
+          "enum": [
+            "ROW",
+            "CELL"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "jobs",
+          "type": "int",
+          "_class_name": "KeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace request containing jobs, keyspace_name, and tables"
+        },
+        {
+          "name": "keyspaceName",
+          "type": "String",
+          "_class_name": "KeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace request containing jobs, keyspace_name, and tables"
+        },
+        {
+          "name": "tables",
+          "type": "List",
+          "_class_name": "KeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace request containing jobs, keyspace_name, and tables"
+        },
+        {
+          "name": "jobs",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "Number of jobs",
+          "_depth": 0
+        },
+        {
+          "name": "keyspace_name",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Keyspace name",
+          "_depth": 0
+        },
+        {
+          "name": "tables",
+          "type": "array",
+          "require": "false",
+          "position": "body",
+          "description": "List of tables",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Table garbage collection successful",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid table garbage collection request",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v1/ops/node/rebuild",
+      "http_method": "POST",
+      "method_name": "rebuild",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\v1\\NodeOpsResources.java",
+      "parameters": [
+        {
+          "name": "src_dc",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Source datacenter to rebuild data from",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 202,
+          "description": "Job ID for successfully scheduled Cassandra node rebuild request",
+          "data_schema": [
+            {
+              "name": "jobId",
+              "schema": {
+                "jobId": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v1/ops/node/schema/versions",
+      "http_method": "GET",
+      "method_name": "schemaVersions",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\v1\\NodeOpsResources.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Gets the schema versions for each node. Useful for checking schema agreement",
+          "data_schema": [
+            {
+              "name": "schemaVersions",
+              "schema": {
+                "schema_version_uuid": "array of strings"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v1/ops/keyspace/cleanup",
+      "http_method": "POST",
+      "method_name": "cleanup",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\v1\\KeyspaceOpsResources.java",
+      "parameters": [
+        {
+          "name": "jobs",
+          "type": "int",
+          "_class_name": "KeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace cleanup request containing jobs, keyspace_name, and tables"
+        },
+        {
+          "name": "keyspaceName",
+          "type": "String",
+          "_class_name": "KeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace cleanup request containing jobs, keyspace_name, and tables"
+        },
+        {
+          "name": "tables",
+          "type": "List",
+          "_class_name": "KeyspaceRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Keyspace cleanup request containing jobs, keyspace_name, and tables"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cleanup not needed for tables 'system' or 'system_schema'",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 202,
+          "description": "Job ID for keyspace cleanup process",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal connection to Cassandra closed",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 10510,
+  "tokens": {
+    "prompt_tokens": 9325879,
+    "completion_tokens": 75464,
+    "total_tokens": 9401343,
+    "calls": 282,
+    "elapsed_s": 1041.123,
+    "prompt_cost_usd": 1.199396,
+    "completion_cost_usd": 0.049485,
+    "total_cost_usd": 1.24888,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 3040717,
+        "completion_tokens": 11236,
+        "total_tokens": 3051953,
+        "calls": 94,
+        "elapsed_s": 97.14142,
+        "prompt_cost_usd": 0.060814,
+        "completion_cost_usd": 0.006742,
+        "total_cost_usd": 0.067556
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 2884728,
+        "completion_tokens": 53599,
+        "total_tokens": 2938327,
+        "calls": 94,
+        "elapsed_s": 689.996,
+        "prompt_cost_usd": 0.288473,
+        "completion_cost_usd": 0.0268,
+        "total_cost_usd": 0.315272
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 3400434,
+        "completion_tokens": 10629,
+        "total_tokens": 3411063,
+        "calls": 94,
+        "elapsed_s": 253.986,
+        "prompt_cost_usd": 0.850109,
+        "completion_cost_usd": 0.015943,
+        "total_cost_usd": 0.866052
+      }
+    ]
+  }
+}

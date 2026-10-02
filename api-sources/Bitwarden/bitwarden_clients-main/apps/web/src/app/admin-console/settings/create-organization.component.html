@@ -1,0 +1,11 @@
+<app-header></app-header>
+
+<bit-container>
+  <p>{{ "newOrganizationDesc" | i18n }}</p>
+  <app-organization-plans
+    [enableSecretsManagerByDefault]="secretsManager"
+    [initialPlan]="plan"
+    [initialProductTier]="productTier"
+    [trialLength]="trialLength"
+  ></app-organization-plans>
+</bit-container>

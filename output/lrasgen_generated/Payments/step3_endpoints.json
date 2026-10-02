@@ -1,0 +1,285 @@
+{
+  "task_id": "pay-publicapi",
+  "api_name": "pay-publicapi",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/v1/agreements",
+      "http_method": "POST",
+      "method_name": "createAgreement",
+      "summary": "Create an agreement for recurring payments",
+      "description": "You can use this endpoint to create a new agreement.",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\agreement\\resource\\AgreementsApiResource.java"
+    },
+    {
+      "endpoint_path": "/v1/agreements/{agreementId}",
+      "http_method": "GET",
+      "method_name": "getAgreement",
+      "summary": "Get information about a single agreement for recurring payments",
+      "description": "You can use this endpoint to get information about a single recurring payments agreement.",
+      "line_number": 89,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\agreement\\resource\\AgreementsApiResource.java"
+    },
+    {
+      "endpoint_path": "/v1/agreements",
+      "http_method": "GET",
+      "method_name": "getAgreements",
+      "summary": "Search agreements for recurring payments",
+      "description": "You can use this endpoint to search for recurring payments agreements. The agreements are sorted by date, with the most recently-created agreements appearing first.",
+      "line_number": 118,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\agreement\\resource\\AgreementsApiResource.java"
+    },
+    {
+      "endpoint_path": "/v1/agreements/{agreementId}/cancel",
+      "http_method": "POST",
+      "method_name": "cancelAgreement",
+      "summary": "Cancel an agreement for recurring payments",
+      "description": "You can use this endpoint to cancel a recurring payments agreement in the `active` status.",
+      "line_number": 143,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\agreement\\resource\\AgreementsApiResource.java"
+    },
+    {
+      "endpoint_path": "/v1/transactions",
+      "http_method": "GET",
+      "method_name": "getTransactions",
+      "summary": "Search transactions",
+      "description": "Search transactions for the authenticated account using the provided search parameters. Returns a paginated list of payment search results.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\ledger\\resource\\TransactionsResource.java"
+    },
+    {
+      "endpoint_path": "/v1/auth",
+      "http_method": "POST",
+      "method_name": "authorisePayment",
+      "summary": "Send card details to authorise a MOTO payment",
+      "description": "You can use this endpoint to [authorise payments](https://docs.payments.service.gov.uk/moto_payments/moto_send_card_details_api/) you have created with `authorisation_mode` set to `moto_api`.",
+      "line_number": 63,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\AuthorisationResource.java"
+    },
+    {
+      "endpoint_path": "/healthcheck",
+      "http_method": "GET",
+      "method_name": "healthCheck",
+      "summary": "Health check endpoint",
+      "description": "Runs all registered health checks and returns a JSON response indicating the health status of each check. Returns HTTP 200 if all checks are healthy, or HTTP 503 if any check is unhealthy.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\HealthCheckResource.java"
+    },
+    {
+      "endpoint_path": "/v1/payments/{paymentId}/refunds",
+      "http_method": "GET",
+      "method_name": "getRefunds",
+      "summary": "Get information about a payment’s refunds",
+      "description": "You can use this endpoint to [get a list of refunds for a payment](https://docs.payments.service.gov.uk/refunding_payments/#get-all-refunds-for-a-single-payment).",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentRefundsResource.java"
+    },
+    {
+      "endpoint_path": "/v1/payments/{paymentId}/refunds/{refundId}",
+      "http_method": "GET",
+      "method_name": "getRefundById",
+      "summary": "Check the status of a refund",
+      "description": "You can use this endpoint to [get details about an individual refund](https://docs.payments.service.gov.uk/refunding_payments/#checking-the-status-of-a-refund).",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentRefundsResource.java"
+    },
+    {
+      "endpoint_path": "/v1/payments/{paymentId}/refunds",
+      "http_method": "POST",
+      "method_name": "submitRefund",
+      "summary": "Refund a payment",
+      "description": "You can use this endpoint to [fully or partially refund a payment](https://docs.payments.service.gov.uk/refunding_payments).",
+      "line_number": 118,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentRefundsResource.java"
+    },
+    {
+      "endpoint_path": "/v1/payments/{paymentId}",
+      "http_method": "GET",
+      "method_name": "getPayment",
+      "summary": "Get information about a single payment",
+      "description": "You can use this endpoint to [get details about a single payment you’ve previously created](https://docs.payments.service.gov.uk/reporting/#get-information-about-a-single-payment).",
+      "line_number": 76,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentsResource.java"
+    },
+    {
+      "endpoint_path": "/v1/payments/{paymentId}/events",
+      "http_method": "GET",
+      "method_name": "getPaymentEvents",
+      "summary": "Get a payment's events",
+      "description": "You can use this endpoint to [get a list of a payment’s events](https://docs.payments.service.gov.uk/reporting/#get-a-payment-s-events). A payment event is when a payment’s `state` changes, such as when the payment is created, or when the paying user submits their details.",
+      "line_number": 113,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentsResource.java"
+    },
+    {
+      "endpoint_path": "/v1/payments",
+      "http_method": "GET",
+      "method_name": "searchPayments",
+      "summary": "Search payments",
+      "description": "You can use this endpoint to [search for payments you’ve previously created](https://docs.payments.service.gov.uk/reporting/#search-payments/). Payments are sorted by date, with the most recently-created payment appearing first.",
+      "line_number": 150,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentsResource.java"
+    },
+    {
+      "endpoint_path": "/v1/payments",
+      "http_method": "POST",
+      "method_name": "createNewPayment",
+      "summary": "Create a payment",
+      "description": "You can use this endpoint to [create a new payment](https://docs.payments.service.gov.uk/making_payments/).",
+      "line_number": 231,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentsResource.java"
+    },
+    {
+      "endpoint_path": "/v1/payments/{paymentId}/cancel",
+      "http_method": "POST",
+      "method_name": "cancelPayment",
+      "summary": "Cancel payment",
+      "description": "You can use this endpoint [to cancel an unfinished payment](https://docs.payments.service.gov.uk/making_payments/#cancel-a-payment-that-s-in-progress).",
+      "line_number": 282,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentsResource.java"
+    },
+    {
+      "endpoint_path": "/v1/payments/{paymentId}/capture",
+      "http_method": "POST",
+      "method_name": "capturePayment",
+      "summary": "Take a delayed payment",
+      "description": "You can use this endpoint to [take (‘capture’) a delayed payment from the paying user’s bank account](https://docs.payments.service.gov.uk/delayed_capture/).",
+      "line_number": 318,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentsResource.java"
+    },
+    {
+      "endpoint_path": "/request-denied",
+      "http_method": "GET",
+      "method_name": "requestDeniedGet",
+      "summary": "Handle GET request for denied requests",
+      "description": "Returns a 400 Bad Request error with REQUEST_DENIED_ERROR when a request is denied by Naxsi rules. Logs the violated rules from the x-naxsi_sig header.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\RequestDeniedResource.java"
+    },
+    {
+      "endpoint_path": "/request-denied",
+      "http_method": "POST",
+      "method_name": "requestDeniedPost",
+      "summary": "Handle POST request for denied requests",
+      "description": "Returns a 400 Bad Request error with REQUEST_DENIED_ERROR when a request is denied by Naxsi rules. Logs the violated rules from the x-naxsi_sig header.",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\RequestDeniedResource.java"
+    },
+    {
+      "endpoint_path": "/request-denied",
+      "http_method": "PUT",
+      "method_name": "requestDeniedPut",
+      "summary": "Handle PUT request for denied requests",
+      "description": "Returns a 400 Bad Request error with REQUEST_DENIED_ERROR when a request is denied by Naxsi rules. Logs the violated rules from the x-naxsi_sig header.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\RequestDeniedResource.java"
+    },
+    {
+      "endpoint_path": "/request-denied",
+      "http_method": "DELETE",
+      "method_name": "requestDeniedDelete",
+      "summary": "Handle DELETE request for denied requests",
+      "description": "Returns a 400 Bad Request error with REQUEST_DENIED_ERROR when a request is denied by Naxsi rules. Logs the violated rules from the x-naxsi_sig header.",
+      "line_number": 42,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\RequestDeniedResource.java"
+    },
+    {
+      "endpoint_path": "/v1/disputes",
+      "http_method": "GET",
+      "method_name": "searchDisputes",
+      "summary": "Search disputes",
+      "description": "You can use this endpoint to search disputes. A dispute is when [a paying user challenges a completed payment through their bank](https://docs.payments.service.gov.uk/disputes/).",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\SearchDisputesResource.java"
+    },
+    {
+      "endpoint_path": "/v1/refunds",
+      "http_method": "GET",
+      "method_name": "searchRefunds",
+      "summary": "Search refunds",
+      "description": "You can use this endpoint to [search refunds you’ve previously created](https://docs.payments.service.gov.uk/refunding_payments/#searching-refunds). The refunds are sorted by date, with the most recently created refunds appearing first.",
+      "line_number": 45,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\SearchRefundsResource.java"
+    },
+    {
+      "endpoint_path": "/.well-known/security.txt",
+      "http_method": "GET",
+      "method_name": "redirectFromWellKnownSecuritytxt",
+      "summary": "Redirect to Cabinet Office security.txt",
+      "description": "Redirects requests for /.well-known/security.txt to the Cabinet Office vulnerability disclosure security.txt file with a 302 FOUND response and no-cache headers.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\SecuritytxtResource.java"
+    },
+    {
+      "endpoint_path": "/security.txt",
+      "http_method": "GET",
+      "method_name": "redirectFromSecuritytxt",
+      "summary": "Redirect to Cabinet Office security.txt",
+      "description": "Redirects requests for /security.txt to the Cabinet Office vulnerability disclosure security.txt file with a 302 FOUND response and no-cache headers.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\SecuritytxtResource.java"
+    },
+    {
+      "endpoint_path": "/v1/payment_notification",
+      "http_method": "POST",
+      "method_name": "newPayment",
+      "summary": "Create a telephone payment notification",
+      "description": "Accepts a CreateTelephonePaymentRequest and creates a telephone payment via the connector service. Returns a TelephonePaymentResponse with the appropriate HTTP status code.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\telephone\\TelephonePaymentNotificationResource.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 21954,
+  "tokens": {
+    "prompt_tokens": 776994,
+    "completion_tokens": 11778,
+    "total_tokens": 788772,
+    "calls": 33,
+    "elapsed_s": 200.93,
+    "prompt_cost_usd": 0.099959,
+    "completion_cost_usd": 0.00851,
+    "total_cost_usd": 0.108469,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 253903,
+        "completion_tokens": 2400,
+        "total_tokens": 256303,
+        "calls": 11,
+        "elapsed_s": 21.879693999999997,
+        "prompt_cost_usd": 0.005078,
+        "completion_cost_usd": 0.00144,
+        "total_cost_usd": 0.006518
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 239278,
+        "completion_tokens": 6997,
+        "total_tokens": 246275,
+        "calls": 11,
+        "elapsed_s": 127.401,
+        "prompt_cost_usd": 0.023928,
+        "completion_cost_usd": 0.003498,
+        "total_cost_usd": 0.027426
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 283813,
+        "completion_tokens": 2381,
+        "total_tokens": 286194,
+        "calls": 11,
+        "elapsed_s": 51.649,
+        "prompt_cost_usd": 0.070953,
+        "completion_cost_usd": 0.003572,
+        "total_cost_usd": 0.074525
+      }
+    ]
+  }
+}

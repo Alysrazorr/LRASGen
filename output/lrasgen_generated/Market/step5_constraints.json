@@ -1,0 +1,3059 @@
+{
+  "task_id": "market",
+  "api_name": "market",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/customer/contacts",
+      "http_method": "GET",
+      "method_name": "getContacts",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\ContactsRestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Contacts of the authenticated user returned successfully.",
+          "data_schema": [
+            {
+              "name": "ContactsDTO",
+              "schema": {
+                "phone": "string",
+                "address": "string",
+                "links": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication is required to access this endpoint.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error - an unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/customer/cart",
+      "http_method": "DELETE",
+      "method_name": "clearCart",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\CartRestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cart cleared successfully; returns the cleared cart.",
+          "data_schema": [
+            {
+              "name": "CartDTO",
+              "schema": {
+                "user": "string",
+                "totalItems": "integer",
+                "productsCost": "double",
+                "deliveryCost": "integer",
+                "deliveryIncluded": "boolean",
+                "totalCost": "double",
+                "cartItems": "array of CartItemDTO"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized: authentication is required (endpoint is secured with @Secured({\"ROLE_USER\"})).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error: an unexpected exception occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/customer",
+      "http_method": "GET",
+      "method_name": "getCustomer",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\CustomerRestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the authenticated customer's account information.",
+          "data_schema": [
+            {
+              "name": "UserDTO",
+              "schema": {
+                "email": "string",
+                "password": "string",
+                "name": "string",
+                "phone": "string",
+                "address": "string",
+                "links": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication is required or the provided credentials are invalid.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error - an unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/customer/cart",
+      "http_method": "GET",
+      "method_name": "getCart",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\CartRestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cart retrieved successfully",
+          "data_schema": [
+            {
+              "name": "CartDTO",
+              "schema": {
+                "user": "string",
+                "totalItems": "integer",
+                "productsCost": "double",
+                "deliveryCost": "integer",
+                "deliveryIncluded": "boolean",
+                "totalCost": "double",
+                "cartItems": "array of CartItemDTO",
+                "links": "array of Link"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication required",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/customer/orders",
+      "http_method": "GET",
+      "method_name": "getOrders",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\OrdersRestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List of orders for the authenticated customer",
+          "data_schema": [
+            {
+              "name": "OrderDTO",
+              "schema": {
+                "userAccount": "string",
+                "id": "long",
+                "billNumber": "integer",
+                "dateCreated": "date",
+                "productsCost": "double",
+                "deliveryCost": "integer",
+                "deliveryIncluded": "boolean",
+                "totalCost": "double",
+                "payed": "boolean",
+                "executed": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication is required",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/customer/cart/pay",
+      "http_method": "POST",
+      "method_name": "payByCard",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\CartRestController.java",
+      "parameters": [
+        {
+          "name": "ccNumber",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Credit card data used to pay for the order",
+          "format": "\\b(?:\\d[ -]*?){13,16}\\b"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Order created successfully",
+          "data_schema": [
+            {
+              "name": "OrderDTO",
+              "schema": {
+                "userAccount": "string",
+                "id": "long",
+                "billNumber": "integer",
+                "dateCreated": "date",
+                "productsCost": "double",
+                "deliveryCost": "integer",
+                "deliveryIncluded": "boolean",
+                "totalCost": "double",
+                "payed": "boolean",
+                "executed": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 406,
+          "description": "Cart is empty",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/customer/cart/delivery",
+      "http_method": "PUT",
+      "method_name": "setDelivery",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\CartRestController.java",
+      "parameters": [
+        {
+          "name": "included",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether delivery is included in the cart",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Updated cart returned after setting the delivery option.",
+          "data_schema": [
+            {
+              "name": "CartDTO",
+              "schema": {
+                "user": "string",
+                "totalItems": "integer",
+                "productsCost": "double",
+                "deliveryCost": "integer",
+                "deliveryIncluded": "boolean",
+                "totalCost": "double",
+                "cartItems": "array of CartItemDTO"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication is required (secured with ROLE_USER).",
+          "data_schema": null
+        },
+        {
+          "status_code": 406,
+          "description": "Not Acceptable - validation error or custom not valid exception.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - unexpected exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/register",
+      "http_method": "POST",
+      "method_name": "createCustomer",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\CustomerRestController.java",
+      "parameters": [
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "New customer registration data",
+          "format": "^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]+$",
+          "max_length": "50"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "New customer registration data",
+          "min_length": "6",
+          "format": "^[a-zA-Z0-9]+$",
+          "max_length": "50"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "New customer registration data",
+          "format": "^[\\pL '-]+$",
+          "max_length": "50"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "New customer registration data",
+          "format": "^\\+[1-9][0-9]?[\\s]*\\(?\\d{3}\\)?[-\\s]?\\d{3}[-\\s]?\\d{2}[-\\s]?\\d{2}$",
+          "max_length": "20"
+        },
+        {
+          "name": "address",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "New customer registration data",
+          "format": "^[^#$%^*()']*$",
+          "max_length": "100"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Newly created customer account, already authenticated. Returns the UserDTO representation of the created account with links to the shopping cart and contact management.",
+          "data_schema": [
+            {
+              "name": "UserDTO",
+              "schema": {
+                "email": "string",
+                "password": "string",
+                "name": "string",
+                "phone": "string",
+                "address": "string",
+                "links": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 406,
+          "description": "Validation error or email already exists. Returned when the request body fails validation (e.g., invalid email, password, name, phone, address) or when an account with the specified email already exists.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an unexpected exception occurs during processing.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/customer/cart",
+      "http_method": "PUT",
+      "method_name": "addItem",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\CartRestController.java",
+      "parameters": [
+        {
+          "name": "productId",
+          "type": "long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The cart item to add, containing productId and quantity.",
+          "min": 1
+        },
+        {
+          "name": "quantity",
+          "type": "int",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The cart item to add, containing productId and quantity.",
+          "min": 1
+        },
+        {
+          "name": "productId",
+          "type": "long",
+          "require": "false",
+          "position": "body",
+          "description": "The ID of the product to add.",
+          "min": 1,
+          "_depth": 0
+        },
+        {
+          "name": "quantity",
+          "type": "int",
+          "require": "false",
+          "position": "body",
+          "description": "The quantity of the product to add.",
+          "min": 1,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Updated cart returned after adding the product.",
+          "data_schema": [
+            {
+              "name": "CartDTO",
+              "schema": {
+                "user": "string",
+                "totalItems": "integer",
+                "productsCost": "double",
+                "deliveryCost": "integer",
+                "deliveryIncluded": "boolean",
+                "totalCost": "double",
+                "cartItems": "array of CartItemDTO",
+                "links": "array of Link"
+              }
+            },
+            {
+              "name": "CartItemDTO",
+              "schema": {
+                "productId": "long",
+                "quantity": "integer",
+                "links": "array of Link"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The specified product does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 406,
+          "description": "Request body validation failed (e.g., productId or quantity not positive).",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Authentication is required or the user is not authorized (missing ROLE_USER).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/customer/contacts",
+      "http_method": "PUT",
+      "method_name": "updateContacts",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\ContactsRestController.java",
+      "parameters": [
+        {
+          "name": "phone",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated contacts data.",
+          "format": "UserDTO.USER_PHONE_REGEX",
+          "max_length": "20"
+        },
+        {
+          "name": "address",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated contacts data.",
+          "format": "UserDTO.USER_ADDRESS_REGEX",
+          "max_length": "100"
+        },
+        {
+          "name": "phone",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Contact phone number.",
+          "min_length": "1",
+          "max_length": "20",
+          "_depth": 0
+        },
+        {
+          "name": "address",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Contact address.",
+          "min_length": "1",
+          "max_length": "100",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Contacts updated successfully. Returns the updated contacts with a link to the shopping cart.",
+          "data_schema": [
+            {
+              "name": "ContactsDTO",
+              "schema": {
+                "phone": "string",
+                "address": "string",
+                "links": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 406,
+          "description": "Validation error: the request body ContactsDTO failed validation (e.g., phone or address is empty, exceeds size limits, or does not match the required pattern).",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized: the user is not authenticated or lacks the required ROLE_USER authority.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error: an unexpected exception occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin",
+      "http_method": "GET",
+      "method_name": "index",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\BackendController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the admin index view (admin/index).",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productId}",
+      "http_method": "GET",
+      "method_name": "getProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\ProductsRestController.java",
+      "parameters": [
+        {
+          "name": "productId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "product with the specified id",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Product found and returned as ProductDTO with a self link.",
+          "data_schema": [
+            {
+              "name": "ProductDTO",
+              "schema": {
+                "productId": "long",
+                "distillery": "string",
+                "name": "string",
+                "price": "double",
+                "age": "integer",
+                "volume": "integer",
+                "alcohol": "float",
+                "description": "string",
+                "available": "boolean",
+                "links": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Product with the specified id does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/index",
+      "http_method": "GET",
+      "method_name": "index",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\BackendController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the admin index view (admin/index).",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/customer/orders/{orderId}",
+      "http_method": "GET",
+      "method_name": "getOrder",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\OrdersRestController.java",
+      "parameters": [
+        {
+          "name": "orderId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the order to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Order of the specified customer",
+          "data_schema": [
+            {
+              "name": "OrderDTO",
+              "schema": {
+                "userAccount": "string",
+                "id": "long",
+                "billNumber": "integer",
+                "dateCreated": "date",
+                "productsCost": "double",
+                "deliveryCost": "integer",
+                "deliveryIncluded": "boolean",
+                "totalCost": "double",
+                "payed": "boolean",
+                "executed": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Order with the specified id doesn't exist",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized access",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products",
+      "http_method": "GET",
+      "method_name": "getProducts",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\ProductsRestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a collection of all existing products, sorted by id, each with a self link.",
+          "data_schema": [
+            {
+              "name": "Collection<ProductDTO>",
+              "schema": {
+                "productId": "long",
+                "distillery": "string",
+                "name": "string",
+                "price": "double",
+                "age": "integer",
+                "volume": "integer",
+                "alcohol": "float",
+                "description": "string",
+                "available": "boolean",
+                "links": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the product service call fails and the exception is not handled by the controller.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/distilleries",
+      "http_method": "GET",
+      "method_name": "allDistilleries",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\DistilleryController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the admin/distilleries view with a model attribute 'distilleries' containing a list of DistilleryDTO objects.",
+          "data_schema": [
+            {
+              "name": "distilleries",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "region": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - returned when the user is not authenticated or lacks the required roles (ROLE_STAFF or ROLE_ADMIN) as enforced by @Secured.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - returned when the user is authenticated but does not have the required roles (ROLE_STAFF or ROLE_ADMIN) as enforced by @Secured.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - returned if an unexpected exception occurs during processing, such as a failure in the service layer.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/distilleries/new",
+      "http_method": "GET",
+      "method_name": "newDistillery",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\DistilleryController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the new distillery form view with the list of regions and an empty Distillery object.",
+          "data_schema": [
+            {
+              "name": "regions",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "subtitle": "string",
+                "description": "string",
+                "color": "string"
+              }
+            },
+            {
+              "name": "distillery",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "region": "Region",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/distilleries/new",
+      "http_method": "POST",
+      "method_name": "postDistillery",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\DistilleryController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /admin/distilleries after successfully creating a new distillery.",
+          "data_schema": null
+        },
+        {
+          "status_code": 200,
+          "description": "Return the new distillery form page with validation errors when the submitted DistilleryDTO fails validation.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/distilleries/{distilleryId}/edit",
+      "http_method": "POST",
+      "method_name": "putDistillery",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\DistilleryController.java",
+      "parameters": [
+        {
+          "name": "distilleryId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the distillery to edit",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "Long",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Distillery data to update"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Distillery data to update"
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Distillery data to update"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Distillery data to update"
+        },
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "false",
+          "position": "body",
+          "description": "Distillery ID (not used in update)",
+          "_depth": 0
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Distillery title",
+          "min_length": "1",
+          "max_length": "255",
+          "_depth": 0
+        },
+        {
+          "name": "region",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Region name",
+          "_depth": 0
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Distillery description",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /admin/distilleries after successfully updating the distillery.",
+          "data_schema": null
+        },
+        {
+          "status_code": 200,
+          "description": "Returns the edit distillery view (admin/distilleries/edit) when the submitted DistilleryDTO fails validation (bindingResult.hasErrors()).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/distilleries/{distilleryId}/edit",
+      "http_method": "GET",
+      "method_name": "editDistillery",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\DistilleryController.java",
+      "parameters": [
+        {
+          "name": "distilleryId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the distillery to edit",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the edit distillery page (view 'admin/distilleries/edit') with the model attributes 'regions' (list of RegionDTO) and 'distillery' (DistilleryDTO).",
+          "data_schema": [
+            {
+              "name": "RegionDTO",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "subtitle": "string",
+                "description": "string",
+                "color": "string"
+              }
+            },
+            {
+              "name": "DistilleryDTO",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "region": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Returned when the distillery with the specified id does not exist. The service call distilleryService.findById(distilleryId) throws UnknownEntityException, which is handled by SpringExceptionHandler returning the exception message.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Returned when an unexpected error occurs during processing, such as a failure in the service layer or data access. The exception is handled by SpringExceptionHandler's generic Exception handler.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/products/new",
+      "http_method": "GET",
+      "method_name": "newProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\ProductController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Renders the new product creation page with the list of distilleries and an empty product DTO.",
+          "data_schema": [
+            {
+              "name": "Model",
+              "schema": {
+                "distilleries": "array<DistilleryDTO>",
+                "product": "ProductDTO"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/orders/{orderId}",
+      "http_method": "POST",
+      "method_name": "setExecutionStatus",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\OrdersController.java",
+      "parameters": [
+        {
+          "name": "orderId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the order whose execution status is being updated",
+          "_depth": 0
+        },
+        {
+          "name": "executed",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "New execution status for the order",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /admin/orders after successfully updating the order execution status.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if the order service fails to update the status (e.g., order not found or database error).",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/products/new",
+      "http_method": "POST",
+      "method_name": "postProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\ProductController.java",
+      "parameters": [
+        {
+          "name": "productId",
+          "type": "Long",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to create, validated with @Valid"
+        },
+        {
+          "name": "distillery",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to create, validated with @Valid"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to create, validated with @Valid",
+          "format": "^[^#$%^&*()']*$"
+        },
+        {
+          "name": "price",
+          "type": "Double",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to create, validated with @Valid"
+        },
+        {
+          "name": "age",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to create, validated with @Valid",
+          "max": 2000
+        },
+        {
+          "name": "volume",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to create, validated with @Valid"
+        },
+        {
+          "name": "alcohol",
+          "type": "Float",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to create, validated with @Valid",
+          "max": 96,
+          "min": 1
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to create, validated with @Valid"
+        },
+        {
+          "name": "available",
+          "type": "boolean",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to create, validated with @Valid"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /admin/products/new when the submitted ProductDTO fails validation (bindingResult.hasErrors()).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/products/{productId}/edit",
+      "http_method": "GET",
+      "method_name": "editProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\ProductController.java",
+      "parameters": [
+        {
+          "name": "productId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the product to edit",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the product edit page (admin/products/edit) with the product and distilleries data when the product exists.",
+          "data_schema": [
+            {
+              "name": "ProductDTO",
+              "schema": {
+                "productId": "long",
+                "distillery": "string",
+                "name": "string",
+                "price": "double",
+                "age": "integer",
+                "volume": "integer",
+                "alcohol": "float",
+                "description": "string",
+                "available": "boolean"
+              }
+            },
+            {
+              "name": "DistilleryDTO",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "region": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 302,
+          "description": "Redirects to /admin/products when the product with the given productId does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/orders",
+      "http_method": "GET",
+      "method_name": "getOrders",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\OrdersController.java",
+      "parameters": [
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination (bound from SortingValuesDTO)",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page size for pagination (bound from SortingValuesDTO)",
+          "_depth": 0
+        },
+        {
+          "name": "sort",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Field to sort by (bound from SortingValuesDTO)",
+          "_depth": 0
+        },
+        {
+          "name": "direct",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Sort direction (bound from SortingValuesDTO)",
+          "_depth": 0
+        },
+        {
+          "name": "executed",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Filter orders by execution status",
+          "enum": [
+            "all",
+            "true",
+            "false"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "created",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Filter orders by creation date range",
+          "enum": [
+            "all",
+            "1",
+            "7",
+            "30"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the admin orders page (view name 'admin/orders') with model attributes containing the paginated and sorted orders, ordered products by order id, products by id, contacts by account email, bills by order id, and current filter values.",
+          "data_schema": [
+            {
+              "name": "Model",
+              "schema": {
+                "page": "Page<OrderDTO>",
+                "beginIndex": "integer",
+                "endIndex": "integer",
+                "currentIndex": "integer",
+                "indexesList": "array<integer>",
+                "pageSizeOptions": "map<integer,string>",
+                "sortOptions": "map<string,string>",
+                "directOptions": "map<string,string>",
+                "currentPageSize": "integer",
+                "currentSort": "string",
+                "currentDirection": "string",
+                "executedOptions": "map<string,string>",
+                "createdOptions": "map<string,string>",
+                "orderedProductsByOrderId": "map<long,array<OrderedProductDTO>>",
+                "productsById": "map<long,ProductDTO>",
+                "contactsByAccount": "map<string,ContactsDTO>",
+                "billsByOrderId": "map<long,BillDTO>",
+                "currentExecuted": "string",
+                "currentCreated": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to OrderService.fetchFiltered and does not catch any exception it may throw.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/products",
+      "http_method": "GET",
+      "method_name": "getProducts",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\ProductController.java",
+      "parameters": [
+        {
+          "name": "page",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Sorting and pagination values bound from query string fields (page, size, sort, direct)"
+        },
+        {
+          "name": "size",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Sorting and pagination values bound from query string fields (page, size, sort, direct)"
+        },
+        {
+          "name": "sort",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Sorting and pagination values bound from query string fields (page, size, sort, direct)"
+        },
+        {
+          "name": "direct",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Sorting and pagination values bound from query string fields (page, size, sort, direct)"
+        },
+        {
+          "name": "dist",
+          "type": "long",
+          "require": "false",
+          "position": "query",
+          "description": "Distillery id filter; 0 means all distilleries",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the admin products page (view name 'admin/products') with the paged and sorted product list, the list of distilleries, and a mapping from distillery title to region name. If a distillery filter is provided, the products are limited to that distillery and the current distillery title is added to the model.",
+          "data_schema": [
+            {
+              "name": "ProductDTO",
+              "schema": {
+                "productId": "long",
+                "distillery": "string",
+                "name": "string",
+                "price": "double",
+                "age": "integer",
+                "volume": "integer",
+                "alcohol": "float",
+                "description": "string",
+                "available": "boolean"
+              }
+            },
+            {
+              "name": "DistilleryDTO",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "region": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if an unexpected exception occurs while processing the request (e.g., during product or distillery lookup).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/products/{productId}/edit",
+      "http_method": "POST",
+      "method_name": "putProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\ProductController.java",
+      "parameters": [
+        {
+          "name": "productId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the product to update",
+          "_depth": 0
+        },
+        {
+          "name": "productId",
+          "type": "Long",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to update"
+        },
+        {
+          "name": "distillery",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to update"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to update",
+          "format": "^[^#$%^&*()']*$"
+        },
+        {
+          "name": "price",
+          "type": "Double",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to update"
+        },
+        {
+          "name": "age",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to update",
+          "max": 2000
+        },
+        {
+          "name": "volume",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to update"
+        },
+        {
+          "name": "alcohol",
+          "type": "Float",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to update",
+          "max": 96,
+          "min": 1
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to update"
+        },
+        {
+          "name": "available",
+          "type": "boolean",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to update"
+        },
+        {
+          "name": "productId",
+          "type": "Long",
+          "require": "true",
+          "position": "body",
+          "description": "Product ID (not used in update)",
+          "_depth": 0
+        },
+        {
+          "name": "distillery",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Distillery title",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Product name",
+          "min_length": "1",
+          "max_length": "255",
+          "_depth": 0
+        },
+        {
+          "name": "price",
+          "type": "Double",
+          "require": "false",
+          "position": "body",
+          "description": "Product price",
+          "_depth": 0
+        },
+        {
+          "name": "age",
+          "type": "Integer",
+          "require": "false",
+          "position": "body",
+          "description": "Product age",
+          "max": 2000,
+          "_depth": 0
+        },
+        {
+          "name": "volume",
+          "type": "Integer",
+          "require": "false",
+          "position": "body",
+          "description": "Product volume",
+          "_depth": 0
+        },
+        {
+          "name": "alcohol",
+          "type": "Float",
+          "require": "false",
+          "position": "body",
+          "description": "Alcohol content",
+          "min": 1,
+          "max": 96,
+          "_depth": 0
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Product description",
+          "_depth": 0
+        },
+        {
+          "name": "available",
+          "type": "boolean",
+          "require": "false",
+          "position": "body",
+          "description": "Availability status",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /admin/products on successful update",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/regions/new",
+      "http_method": "GET",
+      "method_name": "newRegion",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\RegionController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the HTML view 'admin/regions/new' with a new RegionDTO model attribute.",
+          "data_schema": [
+            {
+              "name": "RegionDTO",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "subtitle": "string",
+                "description": "string",
+                "color": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/products/{productId}/delete",
+      "http_method": "POST",
+      "method_name": "deleteProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\ProductController.java",
+      "parameters": [
+        {
+          "name": "productId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the product to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /admin/products after successful deletion.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/regions",
+      "http_method": "GET",
+      "method_name": "allRegions",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\RegionController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the admin/regions view with a list of all regions sorted by id.",
+          "data_schema": [
+            {
+              "name": "regions",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "subtitle": "string",
+                "description": "string",
+                "color": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - returned when the user is not authenticated.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - returned when the user is authenticated but lacks ROLE_STAFF or ROLE_ADMIN.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error - returned when an unexpected exception occurs.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/regions/{regionId}/edit",
+      "http_method": "GET",
+      "method_name": "editRegion",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\RegionController.java",
+      "parameters": [
+        {
+          "name": "regionId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the region to edit",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the edit region page with the region data for the specified regionId.",
+          "data_schema": [
+            {
+              "name": "RegionDTO",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "subtitle": "string",
+                "description": "string",
+                "color": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Region with the specified regionId does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/regions/new",
+      "http_method": "POST",
+      "method_name": "postRegion",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\RegionController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Region data transfer object bound from the request body and validated with @Valid"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Region data transfer object bound from the request body and validated with @Valid"
+        },
+        {
+          "name": "subtitle",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Region data transfer object bound from the request body and validated with @Valid"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Region data transfer object bound from the request body and validated with @Valid"
+        },
+        {
+          "name": "color",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Region data transfer object bound from the request body and validated with @Valid"
+        },
+        {
+          "name": "id",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "Region identifier",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Region name; must not be empty and must match the pattern excluding #$%^&*()'",
+          "min_length": "1",
+          "max_length": "255",
+          "_depth": 0
+        },
+        {
+          "name": "subtitle",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Region subtitle; must match the pattern excluding #$%^*()'",
+          "max_length": "255",
+          "_depth": 0
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Region description",
+          "_depth": 0
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Region color; must match the pattern allowing letters, digits, hyphens and excluding #$%^&*()'",
+          "max_length": "255",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /admin/regions after successfully creating a new region.",
+          "data_schema": []
+        },
+        {
+          "status_code": 200,
+          "description": "Return the new region form page (admin/regions/new) when validation errors occur.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/regions/{regionId}/delete",
+      "http_method": "POST",
+      "method_name": "deleteRegion",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\RegionController.java",
+      "parameters": [
+        {
+          "name": "regionId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the region to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /admin/regions after successfully deleting the region.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Region with the specified ID does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if regionService.delete throws an unexpected exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/distilleries/{distilleryId}/delete",
+      "http_method": "POST",
+      "method_name": "deleteDistillery",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\DistilleryController.java",
+      "parameters": [
+        {
+          "name": "distilleryId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the distillery to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /admin/distilleries after successfully deleting the distillery.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/storage",
+      "http_method": "POST",
+      "method_name": "postStorage",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\StorageController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /admin/storage after processing the availability update (or immediately if the required parameters are missing).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/regions/{regionId}/edit",
+      "http_method": "POST",
+      "method_name": "putRegion",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\RegionController.java",
+      "parameters": [
+        {
+          "name": "regionId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the region to update",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "Long",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Region data to update"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Region data to update"
+        },
+        {
+          "name": "subtitle",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Region data to update"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Region data to update"
+        },
+        {
+          "name": "color",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Region data to update"
+        },
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "false",
+          "position": "body",
+          "description": "Region ID",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Region name",
+          "min_length": "1",
+          "max_length": "255",
+          "_depth": 0
+        },
+        {
+          "name": "subtitle",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Region subtitle",
+          "max_length": "255",
+          "_depth": 0
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Region description",
+          "max_length": "255",
+          "_depth": 0
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Region color",
+          "max_length": "255",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /admin/regions after successfully updating the region.",
+          "data_schema": null
+        },
+        {
+          "status_code": 200,
+          "description": "Return the edit region form page (admin/regions/edit) when the submitted RegionDTO has validation errors.",
+          "data_schema": [
+            {
+              "name": "RegionDTO",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "subtitle": "string",
+                "description": "string",
+                "color": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Region with the specified regionId does not exist. Thrown by regionService.update when the region is not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when regionService.update fails unexpectedly.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/storage",
+      "http_method": "GET",
+      "method_name": "getStorageUnits",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\StorageController.java",
+      "parameters": [
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination (from SortingValuesDTO)",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page size for pagination (from SortingValuesDTO)",
+          "_depth": 0
+        },
+        {
+          "name": "sort",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Field to sort by (from SortingValuesDTO)",
+          "_depth": 0
+        },
+        {
+          "name": "direct",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Sort direction (from SortingValuesDTO)",
+          "_depth": 0
+        },
+        {
+          "name": "available",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Filter products by availability",
+          "enum": [
+            "all",
+            "true",
+            "false"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the storage view page with the paged and sorted list of products, along with pagination, sorting, and availability filter data.",
+          "data_schema": [
+            {
+              "name": "StoragePageModel",
+              "schema": {
+                "page": "Page<ProductDTO>",
+                "beginIndex": "integer",
+                "endIndex": "integer",
+                "currentIndex": "integer",
+                "indexesList": "array<integer>",
+                "pageSizeOptions": "map<integer,string>",
+                "sortOptions": "map<string,string>",
+                "directOptions": "map<string,string>",
+                "currentPageSize": "integer",
+                "currentSort": "string",
+                "currentDirection": "string",
+                "availableOptions": "map<string,string>",
+                "currentlyAvailable": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/cart",
+      "http_method": "GET",
+      "method_name": "getCart",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CartController.java",
+      "parameters": [
+        {
+          "name": "user",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "query",
+          "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute."
+        },
+        {
+          "name": "totalItems",
+          "type": "int",
+          "_depth": 0,
+          "require": "false",
+          "position": "query",
+          "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute."
+        },
+        {
+          "name": "productsCost",
+          "type": "double",
+          "_depth": 0,
+          "require": "false",
+          "position": "query",
+          "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute."
+        },
+        {
+          "name": "deliveryCost",
+          "type": "int",
+          "_depth": 0,
+          "require": "false",
+          "position": "query",
+          "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute."
+        },
+        {
+          "name": "deliveryIncluded",
+          "type": "boolean",
+          "_depth": 0,
+          "require": "false",
+          "position": "query",
+          "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute."
+        },
+        {
+          "name": "totalCost",
+          "type": "double",
+          "_depth": 0,
+          "require": "false",
+          "position": "query",
+          "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute."
+        },
+        {
+          "name": "cartItems",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "query",
+          "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the cart view page with the cart model, products map, and delivery cost.",
+          "data_schema": [
+            {
+              "name": "CartDTO",
+              "schema": {
+                "user": "string",
+                "totalItems": "integer",
+                "productsCost": "double",
+                "deliveryCost": "integer",
+                "deliveryIncluded": "boolean",
+                "totalCost": "double",
+                "cartItems": "array of CartItemDTO"
+              }
+            },
+            {
+              "name": "CartItemDTO",
+              "schema": {
+                "productId": "long",
+                "quantity": "integer"
+              }
+            },
+            {
+              "name": "ProductDTO",
+              "schema": {
+                "productId": "long",
+                "distillery": "string",
+                "name": "string",
+                "price": "double",
+                "age": "integer",
+                "volume": "integer",
+                "alcohol": "float",
+                "description": "string",
+                "available": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/cart/clear",
+      "http_method": "POST",
+      "method_name": "clearCart",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CartController.java",
+      "parameters": [
+        {
+          "name": "user",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The session cart DTO bound from the session attribute 'cart' via @ModelAttribute."
+        },
+        {
+          "name": "totalItems",
+          "type": "int",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The session cart DTO bound from the session attribute 'cart' via @ModelAttribute."
+        },
+        {
+          "name": "productsCost",
+          "type": "double",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The session cart DTO bound from the session attribute 'cart' via @ModelAttribute."
+        },
+        {
+          "name": "deliveryCost",
+          "type": "int",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The session cart DTO bound from the session attribute 'cart' via @ModelAttribute."
+        },
+        {
+          "name": "deliveryIncluded",
+          "type": "boolean",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The session cart DTO bound from the session attribute 'cart' via @ModelAttribute."
+        },
+        {
+          "name": "totalCost",
+          "type": "double",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The session cart DTO bound from the session attribute 'cart' via @ModelAttribute."
+        },
+        {
+          "name": "cartItems",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The session cart DTO bound from the session attribute 'cart' via @ModelAttribute."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /cart after clearing the cart. For authorized users, the cart is cleared via cartService.clearCart and the session cart attribute is updated. For anonymous users, the session cart is cleared and updated. No response body is returned.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/cart",
+      "http_method": "POST",
+      "method_name": "updateCartByForm",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CartController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the cart view page when validation errors occur or when an unknown entity is encountered while adding to an authorized cart.",
+          "data_schema": [
+            {
+              "name": "CartDTO",
+              "schema": {
+                "user": "string",
+                "totalItems": "integer",
+                "productsCost": "double",
+                "deliveryCost": "integer",
+                "deliveryIncluded": "boolean",
+                "totalCost": "double",
+                "cartItems": "array"
+              }
+            },
+            {
+              "name": "ProductDTO",
+              "schema": {
+                "productId": "long",
+                "distillery": "string",
+                "name": "string",
+                "price": "double",
+                "age": "integer",
+                "volume": "integer",
+                "alcohol": "float",
+                "description": "string",
+                "available": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 302,
+          "description": "Redirects to /cart after successfully updating the cart (for both authorized and guest users).",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/cart",
+      "http_method": "PUT",
+      "method_name": "updateCartByAjax",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CartController.java",
+      "parameters": [
+        {
+          "name": "productId",
+          "type": "long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Cart item to add or update, sent as JSON request body",
+          "min": 1
+        },
+        {
+          "name": "quantity",
+          "type": "int",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Cart item to add or update, sent as JSON request body",
+          "min": 1
+        },
+        {
+          "name": "productId",
+          "type": "long",
+          "require": "true",
+          "position": "body",
+          "description": "Product identifier",
+          "min": 1,
+          "_depth": 0
+        },
+        {
+          "name": "quantity",
+          "type": "int",
+          "require": "true",
+          "position": "body",
+          "description": "Quantity of the product",
+          "min": 1,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the updated cart as JSON. If the request body has validation errors, the current cart is returned. If the user is not authorized, the guest cart is updated and returned. If the user is authorized, the item is added to the user's cart and the updated cart is returned. If an UnknownEntityException occurs, the current cart is returned.",
+          "data_schema": [
+            {
+              "name": "CartDTO",
+              "schema": {
+                "user": "string",
+                "totalItems": "integer",
+                "productsCost": "double",
+                "deliveryCost": "integer",
+                "deliveryIncluded": "boolean",
+                "totalCost": "double",
+                "cartItems": "array of CartItemDTO"
+              }
+            },
+            {
+              "name": "CartItemDTO",
+              "schema": {
+                "productId": "long",
+                "quantity": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/cart/delivery/{delivery}",
+      "http_method": "PUT",
+      "method_name": "setDelivery",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CartController.java",
+      "parameters": [
+        {
+          "name": "delivery",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Delivery option flag parsed with Boolean.parseBoolean; true means delivery included, any other value means not included",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cart updated with the new delivery option. Returns the updated cart as JSON.",
+          "data_schema": [
+            {
+              "name": "CartDTO",
+              "schema": {
+                "user": "string",
+                "totalItems": "integer",
+                "productsCost": "double",
+                "deliveryCost": "integer",
+                "deliveryIncluded": "boolean",
+                "totalCost": "double",
+                "cartItems": "array of CartItemDTO"
+              }
+            },
+            {
+              "name": "CartItemDTO",
+              "schema": {
+                "productId": "long",
+                "quantity": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if an unexpected exception occurs while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/checkout/details",
+      "http_method": "GET",
+      "method_name": "details",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CheckoutController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /checkout/payment when the cart does not include delivery.",
+          "data_schema": null
+        },
+        {
+          "status_code": 200,
+          "description": "Render the checkout details page with the user's contacts.",
+          "data_schema": [
+            {
+              "name": "ContactsDTO",
+              "schema": {
+                "phone": "string",
+                "address": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/checkout/details",
+      "http_method": "POST",
+      "method_name": "changeContacts",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CheckoutController.java",
+      "parameters": [
+        {
+          "name": "changeContacts",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating whether contacts change was requested; value 'changeRequested' triggers update",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /checkout/payment when changeContacts is not 'changeRequested' or after successfully updating contacts.",
+          "data_schema": null
+        },
+        {
+          "status_code": 200,
+          "description": "Return the checkout/details view when validation errors occur (bindingResult.hasErrors()).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if an unexpected exception occurs during contacts update or retrieval.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/checkout/payment",
+      "http_method": "GET",
+      "method_name": "getPayment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CheckoutController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the checkout payment page with the user's account name, contacts, delivery cost, products in the cart, and an empty credit card form.",
+          "data_schema": [
+            {
+              "name": "PaymentViewModel",
+              "schema": {
+                "productsById": "map<long, ProductDTO>",
+                "userName": "string",
+                "userContacts": "ContactsDTO",
+                "deliveryCost": "integer",
+                "creditCard": "CreditCardDTO"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 302,
+          "description": "Redirects to the checkout details page when the authenticated user account cannot be found.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/checkout/confirmation",
+      "http_method": "GET",
+      "method_name": "getGratitude",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CheckoutController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the checkout confirmation view (checkout/confirmation) with the user account and contacts model attributes.",
+          "data_schema": [
+            {
+              "name": "UserDTO",
+              "schema": {
+                "email": "string",
+                "password": "string",
+                "name": "string",
+                "phone": "string",
+                "address": "string"
+              }
+            },
+            {
+              "name": "ContactsDTO",
+              "schema": {
+                "phone": "string",
+                "address": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 302,
+          "description": "Redirects to /checkout/details when the authenticated user account cannot be found.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/checkout/payment",
+      "http_method": "POST",
+      "method_name": "postPayment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CheckoutController.java",
+      "parameters": [
+        {
+          "name": "ccNumber",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Credit card details used to pay for the order",
+          "format": "\\b(?:\\d[ -]*?){13,16}\\b"
+        },
+        {
+          "name": "ccNumber",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Credit card number",
+          "min_length": "13",
+          "max_length": "16",
+          "format": "\\b(?:\\d[ -]*?){13,16}\\b",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /checkout/confirmation after successfully creating the order and updating the cart attributes.",
+          "data_schema": null
+        },
+        {
+          "status_code": 200,
+          "description": "Return the checkout/payment view when the credit card validation fails (bindingResult has errors).",
+          "data_schema": [
+            {
+              "name": "CreditCardDTO",
+              "schema": {
+                "ccNumber": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/customer/new",
+      "http_method": "GET",
+      "method_name": "getRegistrationPage",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CustomerController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the registration page view (customer/new) with an empty UserDTO model attribute.",
+          "data_schema": [
+            {
+              "name": "UserDTO",
+              "schema": {
+                "email": "string",
+                "password": "string",
+                "name": "string",
+                "phone": "string",
+                "address": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "index",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\FrontendController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Renders the index view with the list of all regions and a null selected region.",
+          "data_schema": [
+            {
+              "name": "Model",
+              "schema": {
+                "regions": "array<RegionDTO>",
+                "selectedRegion": "Region"
+              }
+            },
+            {
+              "name": "RegionDTO",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "subtitle": "string",
+                "description": "string",
+                "color": "string"
+              }
+            },
+            {
+              "name": "Region",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "subtitle": "string",
+                "description": "string",
+                "color": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/login",
+      "http_method": "GET",
+      "method_name": "login",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\FrontendController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the login page view (login.html).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/index",
+      "http_method": "GET",
+      "method_name": "index",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\FrontendController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the index view with the list of all regions and a null selected region.",
+          "data_schema": [
+            {
+              "name": "Model",
+              "schema": {
+                "regions": "array<RegionDTO>",
+                "selectedRegion": "Region"
+              }
+            },
+            {
+              "name": "RegionDTO",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "subtitle": "string",
+                "description": "string",
+                "color": "string"
+              }
+            },
+            {
+              "name": "Region",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "subtitle": "string",
+                "description": "string",
+                "color": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/rest-api",
+      "http_method": "GET",
+      "method_name": "restApi",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\FrontendController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the REST description page (view name 'rest').",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/inside",
+      "http_method": "GET",
+      "method_name": "whatsInside",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\FrontendController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the 'inside' view (implementation description page).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/customer/new",
+      "http_method": "POST",
+      "method_name": "postRegistrationForm",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CustomerController.java",
+      "parameters": [
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration data bound from the form/query fields; validated with @Valid",
+          "format": "^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]+$",
+          "max_length": "50"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration data bound from the form/query fields; validated with @Valid",
+          "min_length": "6",
+          "format": "^[a-zA-Z0-9]+$",
+          "max_length": "50"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration data bound from the form/query fields; validated with @Valid",
+          "format": "^[\\pL '-]+$",
+          "max_length": "50"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration data bound from the form/query fields; validated with @Valid",
+          "format": "^\\+[1-9][0-9]?[\\s]*\\(?\\d{3}\\)?[-\\s]?\\d{3}[-\\s]?\\d{2}[-\\s]?\\d{2}$",
+          "max_length": "20"
+        },
+        {
+          "name": "address",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration data bound from the form/query fields; validated with @Valid",
+          "format": "^[^#$%^*()']*$",
+          "max_length": "100"
+        },
+        {
+          "name": "user",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Cart data bound from the session attribute 'cart' via @ModelAttribute"
+        },
+        {
+          "name": "totalItems",
+          "type": "int",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Cart data bound from the session attribute 'cart' via @ModelAttribute"
+        },
+        {
+          "name": "productsCost",
+          "type": "double",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Cart data bound from the session attribute 'cart' via @ModelAttribute"
+        },
+        {
+          "name": "deliveryCost",
+          "type": "int",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Cart data bound from the session attribute 'cart' via @ModelAttribute"
+        },
+        {
+          "name": "deliveryIncluded",
+          "type": "boolean",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Cart data bound from the session attribute 'cart' via @ModelAttribute"
+        },
+        {
+          "name": "totalCost",
+          "type": "double",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Cart data bound from the session attribute 'cart' via @ModelAttribute"
+        },
+        {
+          "name": "cartItems",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Cart data bound from the session attribute 'cart' via @ModelAttribute"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to the root path '/' after successful registration, authentication, and cart merge.",
+          "data_schema": []
+        },
+        {
+          "status_code": 200,
+          "description": "Return the registration page (customer/new) when validation errors occur, email already exists, or authentication fails after account creation.",
+          "data_schema": []
+        },
+        {
+          "status_code": 406,
+          "description": "Returned by SpringExceptionHandler when EmailExistsException is thrown (email already exists).",
+          "data_schema": [
+            {
+              "name": "ValidationErrorDTO",
+              "schema": {
+                "fieldErrors": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/regions/{regionId}",
+      "http_method": "GET",
+      "method_name": "getRegionProducts",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\ShowcaseController.java",
+      "parameters": [
+        {
+          "name": "regionId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the region whose products are displayed",
+          "_depth": 0
+        },
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of products per page",
+          "_depth": 0
+        },
+        {
+          "name": "sort",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Field to sort products by",
+          "enum": [
+            "price",
+            "distillery.title",
+            "age"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "direct",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Sort direction",
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "dist",
+          "type": "long",
+          "require": "false",
+          "position": "query",
+          "description": "Distillery ID to filter products by; 0 means no distillery filter",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the region products page (view name 'regions') with model attributes: page (paged products), beginIndex, endIndex, currentIndex, indexesList, pageSizeOptions, sortOptions, directOptions, currentPageSize, currentSort, currentDirection, distilleries, regions, selectedRegion, and optionally currentDistilleryTitle.",
+          "data_schema": [
+            {
+              "name": "Model",
+              "schema": {
+                "page": "Page<ProductDTO>",
+                "beginIndex": "integer",
+                "endIndex": "integer",
+                "currentIndex": "integer",
+                "indexesList": "List<integer>",
+                "pageSizeOptions": "Map<integer,string>",
+                "sortOptions": "Map<string,string>",
+                "directOptions": "Map<string,string>",
+                "currentPageSize": "integer",
+                "currentSort": "string",
+                "currentDirection": "string",
+                "distilleries": "List<DistilleryDTO>",
+                "regions": "List<RegionDTO>",
+                "selectedRegion": "RegionDTO",
+                "currentDistilleryTitle": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Region not found. Thrown by regionService.findOne(regionId) when the region does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when an unexpected exception occurs during processing.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 9218,
+  "tokens": {
+    "prompt_tokens": 22410,
+    "completion_tokens": 6211,
+    "total_tokens": 28621,
+    "calls": 18,
+    "elapsed_s": 92.016,
+    "prompt_cost_usd": 0.002904,
+    "completion_cost_usd": 0.004299,
+    "total_cost_usd": 0.007203,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 7237,
+        "completion_tokens": 1162,
+        "total_tokens": 8399,
+        "calls": 6,
+        "elapsed_s": 9.212743,
+        "prompt_cost_usd": 0.000145,
+        "completion_cost_usd": 0.000697,
+        "total_cost_usd": 0.000842
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 6896,
+        "completion_tokens": 3971,
+        "total_tokens": 10867,
+        "calls": 6,
+        "elapsed_s": 60.984,
+        "prompt_cost_usd": 0.00069,
+        "completion_cost_usd": 0.001985,
+        "total_cost_usd": 0.002675
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 8277,
+        "completion_tokens": 1078,
+        "total_tokens": 9355,
+        "calls": 6,
+        "elapsed_s": 21.819,
+        "prompt_cost_usd": 0.002069,
+        "completion_cost_usd": 0.001617,
+        "total_cost_usd": 0.003686
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 12,
+    "step2_ms": 294,
+    "step3_ms": 30204,
+    "step4_ms": 27428,
+    "step5_ms": 9218,
+    "total_ms": 67163
+  }
+}

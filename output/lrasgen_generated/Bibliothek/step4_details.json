@@ -1,0 +1,551 @@
+{
+  "task_id": "bibliothek",
+  "api_name": "bibliothek",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "redirectToDocs",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\RootController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirects to the docs/ path.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/projects",
+      "http_method": "GET",
+      "method_name": "projects",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\ProjectsController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Gets a list of all available projects.",
+          "data_schema": [
+            {
+              "name": "ProjectsResponse",
+              "schema": {
+                "projects": "array<string>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/docs",
+      "http_method": "GET",
+      "method_name": "redirectToDocs",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\RootController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirects to the docs/ path.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/projects/{project:[a-z]+}/versions/{version:[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?}/builds",
+      "http_method": "GET",
+      "method_name": "builds",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\VersionBuildsController.java",
+      "parameters": [
+        {
+          "name": "project",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The project identifier.",
+          "min_length": "1",
+          "max_length": "",
+          "format": "",
+          "enum": [],
+          "dictionary": [],
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "A version of the project.",
+          "min_length": "1",
+          "max_length": "",
+          "format": "",
+          "enum": [],
+          "dictionary": [],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Gets all available builds for a project's version.",
+          "data_schema": [
+            {
+              "name": "BuildsResponse",
+              "schema": {
+                "project_id": "string",
+                "project_name": "string",
+                "version": "string",
+                "builds": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/projects/{project}",
+      "http_method": "GET",
+      "method_name": "project",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\ProjectController.java",
+      "parameters": [
+        {
+          "name": "project",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The project identifier.",
+          "min_length": "1",
+          "max_length": "",
+          "format": "[a-z]+",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns information about the project, including its identifier, friendly name, version groups, and versions.",
+          "data_schema": [
+            {
+              "name": "ProjectResponse",
+              "schema": {
+                "project_id": "string",
+                "project_name": "string",
+                "version_groups": "array<string>",
+                "versions": "array<string>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/projects/{project:[a-z]+}/versions/{version:[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?}/builds/{build:\\d+}/downloads/{download:[a-zA-Z0-9._-]+}",
+      "http_method": "GET",
+      "method_name": "download",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\DownloadController.java",
+      "parameters": [
+        {
+          "name": "project",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The project identifier.",
+          "min_length": "1",
+          "max_length": "",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "A version of the project.",
+          "min_length": "1",
+          "max_length": "",
+          "_depth": 0
+        },
+        {
+          "name": "build",
+          "type": "integer",
+          "require": "false",
+          "position": "path",
+          "description": "A build of the version.",
+          "min": 0,
+          "max": "",
+          "_depth": 0
+        },
+        {
+          "name": "download",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "A download of the build.",
+          "min_length": "1",
+          "max_length": "",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The requested file is returned as an attachment with caching headers.",
+          "data_schema": [
+            {
+              "name": "FileSystemResource",
+              "schema": {
+                "file": "binary"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An internal error occurred while serving your download.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/projects/{project}/version_group/{family}",
+      "http_method": "GET",
+      "method_name": "family",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\VersionFamilyController.java",
+      "parameters": [
+        {
+          "name": "project",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The project identifier.",
+          "min_length": "1",
+          "max_length": "",
+          "format": "",
+          "enum": [],
+          "dictionary": [],
+          "_depth": 0
+        },
+        {
+          "name": "family",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version group name.",
+          "min_length": "1",
+          "max_length": "",
+          "format": "",
+          "enum": [],
+          "dictionary": [],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns information about a project's version group, including the project ID, project name, version group name, and a sorted list of version names.",
+          "data_schema": [
+            {
+              "name": "VersionFamilyResponse",
+              "schema": {
+                "project_id": "string",
+                "project_name": "string",
+                "version_group": "string",
+                "versions": "array<string>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/projects/{project}/versions/{version}",
+      "http_method": "GET",
+      "method_name": "version",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\VersionController.java",
+      "parameters": [
+        {
+          "name": "project",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The project identifier.",
+          "min_length": "1",
+          "max_length": "",
+          "format": "",
+          "enum": [],
+          "dictionary": [],
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "A version of the project.",
+          "min_length": "1",
+          "max_length": "",
+          "format": "",
+          "enum": [],
+          "dictionary": [],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns information about a version, including the project id, project name, version name, and list of build numbers.",
+          "data_schema": [
+            {
+              "name": "VersionResponse",
+              "schema": {
+                "project_id": "string",
+                "project_name": "string",
+                "version": "string",
+                "builds": "array<integer>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/projects/{project}/version_group/{family}/builds",
+      "http_method": "GET",
+      "method_name": "familyBuilds",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\VersionFamilyBuildsController.java",
+      "parameters": [
+        {
+          "name": "project",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The project identifier.",
+          "min_length": "1",
+          "max_length": "",
+          "format": "",
+          "enum": [],
+          "dictionary": [],
+          "_depth": 0
+        },
+        {
+          "name": "family",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version group name.",
+          "min_length": "1",
+          "max_length": "",
+          "format": "",
+          "enum": [],
+          "dictionary": [],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns all available builds for a project's version group.",
+          "data_schema": [
+            {
+              "name": "VersionFamilyBuildsResponse",
+              "schema": {
+                "project_id": "string",
+                "project_name": "string",
+                "version_group": "string",
+                "versions": "array<string>",
+                "builds": "array<VersionFamilyBuild>"
+              }
+            },
+            {
+              "name": "VersionFamilyBuild",
+              "schema": {
+                "version": "string",
+                "build": "integer",
+                "time": "string",
+                "channel": "string",
+                "promoted": "boolean",
+                "changes": "array<Build.Change>",
+                "downloads": "object<string, Build.Download>"
+              }
+            },
+            {
+              "name": "Build.Change",
+              "schema": {
+                "commit": "string",
+                "summary": "string",
+                "message": "string"
+              }
+            },
+            {
+              "name": "Build.Download",
+              "schema": {
+                "name": "string",
+                "sha256": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/projects/{project:[a-z]+}/versions/{version:[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?}/builds/{build:\\d+}",
+      "http_method": "GET",
+      "method_name": "build",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\VersionBuildController.java",
+      "parameters": [
+        {
+          "name": "project",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The project identifier.",
+          "min_length": "1",
+          "max_length": "",
+          "format": "[a-z]+",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "A version of the project.",
+          "min_length": "1",
+          "max_length": "",
+          "format": "[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?",
+          "_depth": 0
+        },
+        {
+          "name": "build",
+          "type": "integer",
+          "require": "false",
+          "position": "path",
+          "description": "A build of the version.",
+          "min": 0,
+          "max": 2147483647,
+          "format": "\\d+",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Gets information related to a specific build.",
+          "data_schema": [
+            {
+              "name": "BuildResponse",
+              "schema": {
+                "project_id": "string",
+                "project_name": "string",
+                "version": "string",
+                "build": "integer",
+                "time": "date",
+                "channel": "string",
+                "promoted": "boolean",
+                "changes": "array",
+                "downloads": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 3802,
+  "tokens": {
+    "prompt_tokens": 234746,
+    "completion_tokens": 17612,
+    "total_tokens": 252358,
+    "calls": 60,
+    "elapsed_s": 280.947,
+    "prompt_cost_usd": 0.029833,
+    "completion_cost_usd": 0.011971,
+    "total_cost_usd": 0.041803,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 76732,
+        "completion_tokens": 2773,
+        "total_tokens": 79505,
+        "calls": 20,
+        "elapsed_s": 29.473496999999995,
+        "prompt_cost_usd": 0.001535,
+        "completion_cost_usd": 0.001664,
+        "total_cost_usd": 0.003198
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 74706,
+        "completion_tokens": 11951,
+        "total_tokens": 86657,
+        "calls": 20,
+        "elapsed_s": 180.136,
+        "prompt_cost_usd": 0.007471,
+        "completion_cost_usd": 0.005975,
+        "total_cost_usd": 0.013446
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 83308,
+        "completion_tokens": 2888,
+        "total_tokens": 86196,
+        "calls": 20,
+        "elapsed_s": 71.338,
+        "prompt_cost_usd": 0.020827,
+        "completion_cost_usd": 0.004332,
+        "total_cost_usd": 0.025159
+      }
+    ]
+  }
+}

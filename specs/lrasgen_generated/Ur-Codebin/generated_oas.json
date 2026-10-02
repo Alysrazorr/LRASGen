@@ -1,0 +1,342 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "Ur-Codebin-API API",
+    "description": "LRASGen-generated specification for Ur-Codebin-API (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/account/{account_id}": {
+      "get": {
+        "operationId": "getAccount",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the user account to retrieve.",
+            "schema": {
+              "type": "integer",
+              "description": "The unique identifier of the user account to retrieve."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User account found and returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserAccountDTO": {
+                      "type": "string",
+                      "description": "{'account_id': 'long', 'account_username': 'string', 'account_email': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User account with the given id was not found."
+          }
+        }
+      }
+    },
+    "/api/paste/{paste_id}": {
+      "delete": {
+        "operationId": "deletePaste",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "paste_id",
+            "in": "path",
+            "required": true,
+            "description": "The UUID of the code paste to delete. Must be a valid UUID format.",
+            "schema": {
+              "type": "string",
+              "description": "The UUID of the code paste to delete. Must be a valid UUID format.",
+              "format": "UUID"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The CodePaste was successfully deleted. No response body is returned."
+          },
+          "400": {
+            "description": "The provided paste_id is not a valid UUID format."
+          },
+          "404": {
+            "description": "No CodePaste exists with the given paste_id."
+          }
+        }
+      },
+      "get": {
+        "operationId": "getPaste",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "paste_id",
+            "in": "path",
+            "required": true,
+            "description": "The UUID of the code paste to retrieve.",
+            "schema": {
+              "type": "string",
+              "description": "The UUID of the code paste to retrieve."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the code paste with the given paste_id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CodePasteDTO": {
+                      "type": "string",
+                      "description": "{'paste_id': 'string (UUID)', 'source_code': 'string', 'paste_title': 'string', 'paste_syntax': 'string (enum: NONE, JAVA, CSHARP, Python, JAVASCRIPT, GO, CLANG, CPLUSPLUS, PHP, SWIFT, LUA, RUBY, MYSQL, POSTGRESQL)', 'paste_expiration_date': 'string (format: yyyy-MM-dd HH:mm:ss)', 'paste_visibility': 'string (enum: PUBLIC, PRIVATE)'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid UUID format provided for paste_id."
+          },
+          "404": {
+            "description": "No code paste found with the given paste_id."
+          }
+        }
+      }
+    },
+    "/api/account/signup": {
+      "post": {
+        "operationId": "createSignup",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully signed up a new user account. Returns the created user account details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserAccountDTO": {
+                      "type": "string",
+                      "description": "{'account_id': 'long', 'account_username': 'string', 'account_email': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. The email provided is not in the correct format."
+          },
+          "409": {
+            "description": "Conflict. The username or email provided is already in use."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "Request body containing the new account's username, email, and password."
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Request body containing the new account's username, email, and password."
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Request body containing the new account's username, email, and password."
+                  },
+                  "account_username": {
+                    "type": "string",
+                    "description": "The username for the new account."
+                  },
+                  "account_email": {
+                    "type": "string",
+                    "description": "The email address for the new account."
+                  },
+                  "account_password": {
+                    "type": "string",
+                    "description": "The password for the new account."
+                  }
+                },
+                "required": [
+                  "username",
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/paste/public": {
+      "get": {
+        "operationId": "getPublic",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "paste_title",
+            "in": "query",
+            "required": false,
+            "description": "Title of the paste to search for",
+            "schema": {
+              "type": "string",
+              "description": "Title of the paste to search for"
+            }
+          },
+          {
+            "name": "paste_syntax",
+            "in": "query",
+            "required": false,
+            "description": "Syntax of the paste to filter by",
+            "schema": {
+              "type": "string",
+              "description": "Syntax of the paste to filter by",
+              "enum": [
+                "NONE",
+                "JAVA",
+                "CSHARP",
+                "Python",
+                "JAVASCRIPT",
+                "GO",
+                "CLANG",
+                "CPLUSPLUS",
+                "PHP",
+                "SWIFT",
+                "LUA",
+                "RUBY",
+                "MYSQL",
+                "POSTGRESQL"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of pastes to return",
+            "schema": {
+              "type": "integer",
+              "description": "Maximum number of pastes to return",
+              "minimum": 1.0,
+              "maximum": 20.0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of public code pastes matching the search criteria.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CodePasteDTO": {
+                      "type": "string",
+                      "description": "{'paste_id': 'string', 'source_code': 'string', 'paste_title': 'string', 'paste_syntax': 'string', 'paste_expiration_date': 'string', 'paste_visibility': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when the limit parameter is outside the range 1-20, or when the paste_syntax parameter is not a valid enum value."
+          }
+        }
+      }
+    },
+    "/api/paste": {
+      "post": {
+        "operationId": "createPaste",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully created a new code paste. Returns the created paste's details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CodePasteDTO": {
+                      "type": "string",
+                      "description": "{'paste_id': 'string (UUID)', 'source_code': 'string', 'paste_title': 'string', 'paste_syntax': 'string (enum: NONE, JAVA, CSHARP, Python, JAVASCRIPT, GO, CLANG, CPLUSPLUS, PHP, SWIFT, LUA, RUBY, MYSQL, POSTGRESQL)', 'paste_expiration_date': 'string (format: yyyy-MM-dd HH:mm:ss)', 'paste_visibility': 'string (enum: PUBLIC, PRIVATE)'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Thrown when the source code is missing or the paste title length is invalid."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pasteTitle": {
+                    "type": "string",
+                    "description": "Request body containing the new paste details."
+                  },
+                  "sourceCode": {
+                    "type": "string",
+                    "description": "Request body containing the new paste details."
+                  },
+                  "paste_title": {
+                    "type": "string",
+                    "description": "Title of the paste. Defaults to 'Untitled Paste' if not provided."
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Expiration duration for the paste. Defaults to ONEHOUR."
+                  },
+                  "offsetMin": {
+                    "type": "integer",
+                    "description": "Expiration duration for the paste. Defaults to ONEHOUR."
+                  },
+                  "source_code": {
+                    "type": "string",
+                    "description": "The source code content of the paste. Must not be empty."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

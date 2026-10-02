@@ -1,0 +1,3001 @@
+{
+  "task_id": "pay-publicapi",
+  "api_name": "pay-publicapi",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/healthcheck",
+      "http_method": "GET",
+      "method_name": "healthCheck",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\HealthCheckResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "All health checks passed; returns a map of health check names to their healthy status.",
+          "data_schema": [
+            {
+              "name": "HealthCheckResults",
+              "schema": {
+                "additionalProperties": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 503,
+          "description": "One or more health checks failed; returns a map of health check names to their healthy status.",
+          "data_schema": [
+            {
+              "name": "HealthCheckResults",
+              "schema": {
+                "additionalProperties": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/agreements/{agreementId}/cancel",
+      "http_method": "POST",
+      "method_name": "cancelAgreement",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\agreement\\resource\\AgreementsApiResource.java",
+      "parameters": [
+        {
+          "name": "agreementId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The `agreement_id` of the agreement you are cancelling",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Cancellation of agreement failed",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Credentials are required to access this resource",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 429,
+          "description": "Too many requests",
+          "data_schema": [
+            {
+              "name": "ApiErrorResponse",
+              "schema": {
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Downstream system error",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/payments/{paymentId}/refunds",
+      "http_method": "POST",
+      "method_name": "submitRefund",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentRefundsResource.java",
+      "parameters": [
+        {
+          "name": "paymentId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique `payment_id` of the payment you want to refund.",
+          "_depth": 0
+        },
+        {
+          "name": "amount",
+          "type": "int",
+          "_class_name": "CreatePaymentRefundRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        },
+        {
+          "name": "refundAmountAvailable",
+          "type": "Integer",
+          "_class_name": "CreatePaymentRefundRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 202,
+          "description": "Accepted. The refund request has been accepted and a refund response is returned.",
+          "data_schema": [
+            {
+              "name": "RefundResponse",
+              "schema": {
+                "refund_id": "string",
+                "created_date": "string",
+                "amount": "long",
+                "_links": "RefundLinksForSearch",
+                "status": "string",
+                "settlement_summary": "RefundSettlementSummary"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to CreateRefundService.createRefund, which may throw an uncaught exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/payments/{paymentId}/refunds",
+      "http_method": "GET",
+      "method_name": "getRefunds",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentRefundsResource.java",
+      "parameters": [
+        {
+          "name": "paymentId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique `payment_id` of the payment you want a list of refunds for.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "successful operation",
+          "data_schema": [
+            {
+              "name": "RefundForSearchResult",
+              "schema": {
+                "payment_id": "string",
+                "_links": "RefundLinksForSearch",
+                "_embedded": "Embedded"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Credentials are required to access this resource",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 429,
+          "description": "Too many requests",
+          "data_schema": [
+            {
+              "name": "ApiErrorResponse",
+              "schema": {
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Downstream system error",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/payments/{paymentId}/refunds/{refundId}",
+      "http_method": "GET",
+      "method_name": "getRefundById",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentRefundsResource.java",
+      "parameters": [
+        {
+          "name": "paymentId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique `payment_id` of the payment you want to view a refund of.",
+          "_depth": 0
+        },
+        {
+          "name": "refundId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique `refund_id` of the refund you want to view. If one payment has multiple refunds, each refund has a different `refund_id`.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "successful operation",
+          "data_schema": [
+            {
+              "name": "Refund",
+              "schema": {
+                "refund_id": "string",
+                "created_date": "string",
+                "amount": "long",
+                "_links": "RefundLinksForSearch",
+                "status": "string",
+                "settlement_summary": "RefundSettlementSummary"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Credentials are required to access this resource",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 429,
+          "description": "Too many requests",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Downstream system error",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/agreements",
+      "http_method": "POST",
+      "method_name": "createAgreement",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\agreement\\resource\\AgreementsApiResource.java",
+      "parameters": [
+        {
+          "name": "reference",
+          "type": "String",
+          "_class_name": "CreateAgreementRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_class_name": "CreateAgreementRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        },
+        {
+          "name": "userIdentifier",
+          "type": "String",
+          "_class_name": "CreateAgreementRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Created - Agreement created successfully",
+          "data_schema": [
+            {
+              "name": "Agreement",
+              "schema": {
+                "agreement_id": "string",
+                "reference": "string",
+                "description": "string",
+                "status": "string",
+                "created_date": "string",
+                "payment_instrument": {
+                  "card_details": {
+                    "last_digits_card_number": "string",
+                    "first_digits_card_number": "string",
+                    "cardholder_name": "string",
+                    "expiry_date": "string",
+                    "billing_address": {
+                      "line1": "string",
+                      "line2": "string",
+                      "postcode": "string",
+                      "city": "string",
+                      "country": "string"
+                    },
+                    "card_brand": "string",
+                    "card_type": "string"
+                  },
+                  "created_date": "string",
+                  "type": "string"
+                },
+                "user_identifier": "string",
+                "cancelled_date": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - Invalid request payload",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - Authentication failed",
+          "data_schema": null
+        },
+        {
+          "status_code": 422,
+          "description": "Unprocessable Entity - Validation error",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 429,
+          "description": "Too Many Requests - Rate limit exceeded",
+          "data_schema": [
+            {
+              "name": "ApiErrorResponse",
+              "schema": {
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - Downstream system error",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/agreements/{agreementId}",
+      "http_method": "GET",
+      "method_name": "getAgreement",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\agreement\\resource\\AgreementsApiResource.java",
+      "parameters": [
+        {
+          "name": "agreementId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Returns the agreement with the matching `agreement_id`. GOV.UK Pay generated an `agreement_id` when you created the agreement.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK",
+          "data_schema": [
+            {
+              "name": "Agreement",
+              "schema": {
+                "agreement_id": "string",
+                "reference": "string",
+                "description": "string",
+                "status": "string",
+                "created_date": "string",
+                "payment_instrument": "PaymentInstrument",
+                "user_identifier": "string",
+                "cancelled_date": "string"
+              }
+            },
+            {
+              "name": "PaymentInstrument",
+              "schema": {
+                "card_details": "CardDetails",
+                "created_date": "string",
+                "type": "string"
+              }
+            },
+            {
+              "name": "CardDetails",
+              "schema": {
+                "last_digits_card_number": "string",
+                "first_digits_card_number": "string",
+                "cardholder_name": "string",
+                "expiry_date": "string",
+                "billing_address": "Address",
+                "card_brand": "string",
+                "card_type": "string"
+              }
+            },
+            {
+              "name": "Address",
+              "schema": {
+                "line1": "string",
+                "line2": "string",
+                "postcode": "string",
+                "city": "string",
+                "country": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Credentials are required to access this resource.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 429,
+          "description": "Too many requests",
+          "data_schema": [
+            {
+              "name": "ApiErrorResponse",
+              "schema": {
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Downstream system error",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/agreements",
+      "http_method": "GET",
+      "method_name": "getAgreements",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\agreement\\resource\\AgreementsApiResource.java",
+      "parameters": [
+        {
+          "name": "reference",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns agreements with a `reference` that exactly matches the value you sent. This parameter is not case sensitive. A `reference` was associated with the agreement when that agreement was created.",
+          "max_length": "255",
+          "_depth": 0
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns agreements in a matching `status`. `status` reflects where an agreement is in its lifecycle. You can [read more about the meanings of the different agreement status values](https://docs.payments.service.gov.uk/recurring_payments/#understanding-agreement-status).",
+          "enum": [
+            "created",
+            "active",
+            "cancelled",
+            "inactive"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "page",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns a specific page of results. Defaults to `1`. You can [read about search pagination](https://docs.payments.service.gov.uk/api_reference/#pagination)",
+          "_depth": 0
+        },
+        {
+          "name": "display_size",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The number of agreements returned per results page. Defaults to `500`. Maximum value is `500`. You can [read about search pagination](https://docs.payments.service.gov.uk/api_reference/#pagination)",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK",
+          "data_schema": [
+            {
+              "name": "AgreementSearchResults",
+              "schema": {
+                "total": "integer",
+                "count": "integer",
+                "page": "integer",
+                "results": "array of Agreement",
+                "_links": "SearchNavigationLinks"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Credentials are required to access this resource.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 422,
+          "description": "Invalid parameters: %s. See Public API documentation for the correct data formats",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 429,
+          "description": "Too many requests",
+          "data_schema": [
+            {
+              "name": "ApiErrorResponse",
+              "schema": {
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Downstream system error",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/auth",
+      "http_method": "POST",
+      "method_name": "authorisePayment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\AuthorisationResource.java",
+      "parameters": [
+        {
+          "name": "oneTimeToken",
+          "type": "String",
+          "_class_name": "AuthorisationRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contains the user's payment information. This information will be sent to the payment service provider to authorise the payment."
+        },
+        {
+          "name": "cardNumber",
+          "type": "String",
+          "_class_name": "AuthorisationRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contains the user's payment information. This information will be sent to the payment service provider to authorise the payment."
+        },
+        {
+          "name": "cvc",
+          "type": "String",
+          "_class_name": "AuthorisationRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contains the user's payment information. This information will be sent to the payment service provider to authorise the payment."
+        },
+        {
+          "name": "expiryDate",
+          "type": "String",
+          "_class_name": "AuthorisationRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contains the user's payment information. This information will be sent to the payment service provider to authorise the payment."
+        },
+        {
+          "name": "cardholderName",
+          "type": "String",
+          "_class_name": "AuthorisationRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contains the user's payment information. This information will be sent to the payment service provider to authorise the payment."
+        },
+        {
+          "name": "one_time_token",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "This single use token authorises your request and matches it to a payment. GOV.UK Pay generated the `one_time_token` when the payment was created.",
+          "_depth": 0
+        },
+        {
+          "name": "card_number",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The full card number from the paying user's card.",
+          "min_length": "12",
+          "max_length": "19",
+          "_depth": 0
+        },
+        {
+          "name": "cvc",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The card verification code (CVC) or card verification value (CVV) on the paying user's card.",
+          "min_length": "3",
+          "max_length": "4",
+          "_depth": 0
+        },
+        {
+          "name": "expiry_date",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The expiry date of the paying user's card. This value must be in `MM/YY` format.",
+          "min_length": "5",
+          "max_length": "5",
+          "format": "MM/YY",
+          "_depth": 0
+        },
+        {
+          "name": "cardholder_name",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The name on the paying user's card.",
+          "max_length": "255",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Your authorisation request was successful.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Your request is invalid. Check the `code` and `description` in the response to find out why your request failed.",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 402,
+          "description": "The `card_number` you sent is not a valid card number or you chose not to accept this card type. Check the `code` and `description` fields in the response to find out why your request failed.",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 422,
+          "description": "A value you sent is invalid or missing. Check the `code` and `description` in the response to find out why your request failed.",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "There is something wrong with GOV.UK Pay. If there are no issues on our status page (https://payments.statuspage.io), you can contact us with your error code and we'll investigate.",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/payments/{paymentId}/events",
+      "http_method": "GET",
+      "method_name": "getPaymentEvents",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentsResource.java",
+      "parameters": [
+        {
+          "name": "paymentId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Payment identifier",
+          "min_length": "",
+          "max_length": "",
+          "format": "",
+          "enum": [],
+          "dictionary": [],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK",
+          "data_schema": [
+            {
+              "name": "PaymentEventsResponse",
+              "schema": {
+                "payment_id": "string",
+                "events": "array",
+                "links": "PaymentLinksForEvents"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 429,
+          "description": "Too many requests",
+          "data_schema": [
+            {
+              "name": "ApiErrorResponse",
+              "schema": {
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/payments/{paymentId}",
+      "http_method": "GET",
+      "method_name": "getPayment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentsResource.java",
+      "parameters": [
+        {
+          "name": "paymentId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Returns the payment with the matching `payment_id`.",
+          "min_length": "",
+          "max_length": "",
+          "format": "",
+          "enum": [],
+          "dictionary": [],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK",
+          "data_schema": [
+            {
+              "name": "PaymentWithAllLinks",
+              "schema": {
+                "payment_id": "string",
+                "payment_provider": "string",
+                "amount": "long",
+                "description": "string",
+                "reference": "string",
+                "created_date": "string",
+                "refund_summary": "RefundSummary",
+                "settlement_summary": "PaymentSettlementSummary",
+                "card_details": "CardDetails",
+                "language": "SupportedLanguage",
+                "delayed_capture": "boolean",
+                "moto": "boolean",
+                "corporate_card_surcharge": "long",
+                "total_amount": "long",
+                "fee": "long",
+                "net_amount": "long",
+                "provider_id": "string",
+                "metadata": "ExternalMetadata",
+                "return_url": "string",
+                "email": "string",
+                "state": "PaymentState",
+                "authorisation_summary": "AuthorisationSummary",
+                "agreement_id": "string",
+                "authorisation_mode": "AuthorisationMode",
+                "card_brand": "string",
+                "_links": "PaymentLinks"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 429,
+          "description": "Too many requests",
+          "data_schema": [
+            {
+              "name": "ApiErrorResponse",
+              "schema": {
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/request-denied",
+      "http_method": "PUT",
+      "method_name": "requestDeniedPut",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\RequestDeniedResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "Bad Request - The request was denied due to Naxsi rules violation. Returns a REQUEST_DENIED_ERROR error entity.",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "error": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/request-denied",
+      "http_method": "GET",
+      "method_name": "requestDeniedGet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\RequestDeniedResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "Bad Request. The request was denied by Naxsi due to violated rules. Returns a request error entity with the error code REQUEST_DENIED_ERROR.",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "error_code": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/request-denied",
+      "http_method": "POST",
+      "method_name": "requestDeniedPost",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\RequestDeniedResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "Bad Request - Request denied due to Naxsi rules violation. Returns a request error entity.",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "error": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/transactions",
+      "http_method": "GET",
+      "method_name": "getTransactions",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\ledger\\resource\\TransactionsResource.java",
+      "parameters": [
+        {
+          "name": "accountId",
+          "type": "String",
+          "_class_name": "TransactionSearchParams",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+        },
+        {
+          "name": "reference",
+          "type": "String",
+          "_class_name": "TransactionSearchParams",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_class_name": "TransactionSearchParams",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+        },
+        {
+          "name": "state",
+          "type": "String",
+          "_class_name": "TransactionSearchParams",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+        },
+        {
+          "name": "cardBrand",
+          "type": "String",
+          "_class_name": "TransactionSearchParams",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+        },
+        {
+          "name": "fromDate",
+          "type": "String",
+          "_class_name": "TransactionSearchParams",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+        },
+        {
+          "name": "toDate",
+          "type": "String",
+          "_class_name": "TransactionSearchParams",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+        },
+        {
+          "name": "pageNumber",
+          "type": "String",
+          "_class_name": "TransactionSearchParams",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+        },
+        {
+          "name": "displaySize",
+          "type": "String",
+          "_class_name": "TransactionSearchParams",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+        },
+        {
+          "name": "cardHolderName",
+          "type": "String",
+          "_class_name": "TransactionSearchParams",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+        },
+        {
+          "name": "firstDigitsCardNumber",
+          "type": "String",
+          "_class_name": "TransactionSearchParams",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+        },
+        {
+          "name": "lastDigitsCardNumber",
+          "type": "String",
+          "_class_name": "TransactionSearchParams",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+        },
+        {
+          "name": "fromSettledDate",
+          "type": "String",
+          "_class_name": "TransactionSearchParams",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+        },
+        {
+          "name": "toSettledDate",
+          "type": "String",
+          "_class_name": "TransactionSearchParams",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+        },
+        {
+          "name": "card_brand",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Brand of the card used for the payment.",
+          "_depth": 0
+        },
+        {
+          "name": "from_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Start date for the search range.",
+          "_depth": 0
+        },
+        {
+          "name": "to_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "End date for the search range.",
+          "_depth": 0
+        },
+        {
+          "name": "page",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Page number of the results.",
+          "_depth": 0
+        },
+        {
+          "name": "display_size",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to display per page.",
+          "_depth": 0
+        },
+        {
+          "name": "cardholder_name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Name of the cardholder.",
+          "_depth": 0
+        },
+        {
+          "name": "first_digits_card_number",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "First digits of the card number.",
+          "_depth": 0
+        },
+        {
+          "name": "last_digits_card_number",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Last digits of the card number.",
+          "_depth": 0
+        },
+        {
+          "name": "from_settled_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Start settled date for the search range.",
+          "_depth": 0
+        },
+        {
+          "name": "to_settled_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "End settled date for the search range.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Search results for transactions",
+          "data_schema": [
+            {
+              "name": "SearchResults",
+              "schema": {
+                "total": "integer",
+                "count": "integer",
+                "page": "integer",
+                "results": "array",
+                "links": "SearchNavigationLinks"
+              }
+            },
+            {
+              "name": "SearchNavigationLinks",
+              "schema": {
+                "self": "Link",
+                "first_page": "Link",
+                "last_page": "Link",
+                "prev_page": "Link",
+                "next_page": "Link"
+              }
+            },
+            {
+              "name": "Link",
+              "schema": {
+                "href": "string",
+                "method": "string"
+              }
+            },
+            {
+              "name": "PaymentForSearchResult",
+              "schema": {
+                "payment_id": "string",
+                "payment_provider": "string",
+                "amount": "long",
+                "description": "string",
+                "reference": "string",
+                "created_date": "string",
+                "refund_summary": "RefundSummary",
+                "settlement_summary": "PaymentSettlementSummary",
+                "card_details": "CardDetails",
+                "language": "SupportedLanguage",
+                "delayed_capture": "boolean",
+                "moto": "boolean",
+                "corporate_card_surcharge": "long",
+                "total_amount": "long",
+                "fee": "long",
+                "net_amount": "long",
+                "provider_id": "string",
+                "metadata": "ExternalMetadata",
+                "return_url": "string",
+                "email": "string",
+                "state": "PaymentState",
+                "authorisation_summary": "AuthorisationSummary",
+                "agreement_id": "string",
+                "authorisation_mode": "AuthorisationMode",
+                "card_brand": "string",
+                "_links": "PaymentLinksForSearch"
+              }
+            },
+            {
+              "name": "RefundSummary",
+              "schema": {
+                "status": "string",
+                "amount_available": "long",
+                "amount_submitted": "long"
+              }
+            },
+            {
+              "name": "PaymentSettlementSummary",
+              "schema": {
+                "capture_submit_time": "string",
+                "captured_date": "string",
+                "settled_date": "string"
+              }
+            },
+            {
+              "name": "CardDetails",
+              "schema": {
+                "last_digits_card_number": "string",
+                "first_digits_card_number": "string",
+                "cardholder_name": "string",
+                "expiry_date": "string",
+                "billing_address": "Address",
+                "card_brand": "string",
+                "card_type": "string",
+                "wallet_type": "string"
+              }
+            },
+            {
+              "name": "Address",
+              "schema": {
+                "line1": "string",
+                "line2": "string",
+                "postcode": "string",
+                "city": "string",
+                "country": "string"
+              }
+            },
+            {
+              "name": "PaymentState",
+              "schema": {
+                "status": "string",
+                "finished": "boolean",
+                "message": "string",
+                "code": "string",
+                "can_retry": "boolean"
+              }
+            },
+            {
+              "name": "AuthorisationSummary",
+              "schema": {
+                "three_d_secure": "ThreeDSecure"
+              }
+            },
+            {
+              "name": "ThreeDSecure",
+              "schema": {
+                "required": "boolean"
+              }
+            },
+            {
+              "name": "PaymentLinksForSearch",
+              "schema": {
+                "self": "Link",
+                "cancel": "PostLink",
+                "events": "Link",
+                "refunds": "Link",
+                "capture": "PostLink"
+              }
+            },
+            {
+              "name": "PostLink",
+              "schema": {
+                "href": "string",
+                "method": "string",
+                "type": "string",
+                "params": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - Invalid search parameters",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - Downstream system error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/payments/{paymentId}/capture",
+      "http_method": "POST",
+      "method_name": "capturePayment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentsResource.java",
+      "parameters": [
+        {
+          "name": "paymentId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The `payment_id` of the payment you’re capturing.",
+          "min_length": "26",
+          "max_length": "26",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Capture of payment failed",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not found",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 409,
+          "description": "Conflict",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 429,
+          "description": "Too many requests",
+          "data_schema": [
+            {
+              "name": "ApiErrorResponse",
+              "schema": {
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Downstream system error",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/payments/{paymentId}/cancel",
+      "http_method": "POST",
+      "method_name": "cancelPayment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentsResource.java",
+      "parameters": [
+        {
+          "name": "paymentId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The `payment_id` of the payment you’re cancelling.",
+          "min_length": "",
+          "max_length": "",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Cancellation of payment failed",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Credentials are required to access this resource",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 409,
+          "description": "Conflict",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 429,
+          "description": "Too many requests",
+          "data_schema": [
+            {
+              "name": "ApiErrorResponse",
+              "schema": {
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Downstream system error",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/payments",
+      "http_method": "POST",
+      "method_name": "createNewPayment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentsResource.java",
+      "parameters": [
+        {
+          "name": "accountId",
+          "type": "String",
+          "_class_name": "Account",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Authenticated account injected via @Auth"
+        },
+        {
+          "name": "tokenLink",
+          "type": "String",
+          "_class_name": "Account",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Authenticated account injected via @Auth"
+        },
+        {
+          "name": "amount",
+          "type": "int",
+          "_class_name": "CreateCardPaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        },
+        {
+          "name": "reference",
+          "type": "String",
+          "_class_name": "CreateCardPaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_class_name": "CreateCardPaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        },
+        {
+          "name": "language",
+          "type": "SupportedLanguage",
+          "_class_name": "CreateCardPaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_class_name": "CreateCardPaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        },
+        {
+          "name": "returnUrl",
+          "type": "String",
+          "_class_name": "CreateCardPaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        },
+        {
+          "name": "delayedCapture",
+          "type": "Boolean",
+          "_class_name": "CreateCardPaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        },
+        {
+          "name": "moto",
+          "type": "Boolean",
+          "_class_name": "CreateCardPaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        },
+        {
+          "name": "metadata",
+          "type": "ExternalMetadata",
+          "_class_name": "CreateCardPaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        },
+        {
+          "name": "setUpAgreement",
+          "type": "String",
+          "_class_name": "CreateCardPaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        },
+        {
+          "name": "agreementId",
+          "type": "String",
+          "_class_name": "CreateCardPaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        },
+        {
+          "name": "authorisationMode",
+          "type": "AuthorisationMode",
+          "_class_name": "CreateCardPaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "requestPayload"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Created",
+          "data_schema": [
+            {
+              "name": "CreatePaymentResult",
+              "schema": {
+                "amount": "long",
+                "state": "PaymentState",
+                "description": "string",
+                "reference": "string",
+                "language": "SupportedLanguage",
+                "payment_id": "string",
+                "payment_provider": "string",
+                "return_url": "string",
+                "created_date": "string",
+                "delayed_capture": "boolean",
+                "moto": "boolean",
+                "refund_summary": "RefundSummary",
+                "settlement_summary": "PaymentSettlementSummary",
+                "_links": "PaymentLinks",
+                "provider_id": "string",
+                "metadata": "ExternalMetadata",
+                "email": "string",
+                "card_details": "CardDetailsFromResponse"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 200,
+          "description": "OK",
+          "data_schema": [
+            {
+              "name": "PaymentWithAllLinks",
+              "schema": {
+                "payment_id": "string",
+                "payment_provider": "string",
+                "amount": "long",
+                "description": "string",
+                "reference": "string",
+                "created_date": "string",
+                "refund_summary": "RefundSummary",
+                "settlement_summary": "PaymentSettlementSummary",
+                "card_details": "CardDetails",
+                "language": "SupportedLanguage",
+                "delayed_capture": "boolean",
+                "moto": "boolean",
+                "corporate_card_surcharge": "Long",
+                "total_amount": "Long",
+                "fee": "Long",
+                "net_amount": "Long",
+                "provider_id": "string",
+                "metadata": "ExternalMetadata",
+                "return_url": "string",
+                "email": "string",
+                "state": "PaymentState",
+                "authorisation_summary": "AuthorisationSummary",
+                "agreement_id": "string",
+                "authorisation_mode": "AuthorisationMode",
+                "_links": "PaymentLinks"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized",
+          "data_schema": null
+        },
+        {
+          "status_code": 422,
+          "description": "Unprocessable Entity",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 429,
+          "description": "Too many requests",
+          "data_schema": [
+            {
+              "name": "ApiErrorResponse",
+              "schema": {
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/.well-known/security.txt",
+      "http_method": "GET",
+      "method_name": "redirectFromWellKnownSecuritytxt",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\SecuritytxtResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirects to the Cabinet Office security.txt URL (https://vdp.cabinetoffice.gov.uk/.well-known/security.txt) with a Location header, Cache-Control: no-cache, and an Expires header set to the current date.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/security.txt",
+      "http_method": "GET",
+      "method_name": "redirectFromSecuritytxt",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\SecuritytxtResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to the Cabinet Office security.txt URL. The response includes a Location header pointing to https://vdp.cabinetoffice.gov.uk/.well-known/security.txt, a Cache-Control header set to no-cache, and an Expires header set to the current date.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/request-denied",
+      "http_method": "DELETE",
+      "method_name": "requestDeniedDelete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\RequestDeniedResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "Bad Request. The request was denied by Naxsi (a web application firewall). The response body contains a request error object with the error code REQUEST_DENIED_ERROR.",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "error_code": "string",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/payments",
+      "http_method": "GET",
+      "method_name": "searchPayments",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\PaymentsResource.java",
+      "parameters": [
+        {
+          "name": "paymentId",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "Returns the payment with the matching `payment_id`.",
+          "format": "hu20sqlact5260q2nanm0q8u93",
+          "_depth": 0
+        },
+        {
+          "name": "reference",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns payments with `reference` values exactly matching your specified value.",
+          "_depth": 0
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns payments with matching `email` values. You can send full or partial email addresses. `email` is the paying user’s email address.",
+          "_depth": 0
+        },
+        {
+          "name": "state",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns payments in a matching `state`. `state` reflects where a payment is in the [payment status lifecycle](https://docs.payments.service.gov.uk/api_reference/#payment-status-lifecycle).",
+          "enum": [
+            "created",
+            "started",
+            "submitted",
+            "success",
+            "failed",
+            "cancelled",
+            "error"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "card_brand",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns payments paid with a particular card brand.",
+          "_depth": 0
+        },
+        {
+          "name": "from_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns payments created on or after the `from_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+          "format": "YYYY-MM-DDThh:mm:ssZ",
+          "_depth": 0
+        },
+        {
+          "name": "to_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns payments created before the `to_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+          "format": "YYYY-MM-DDThh:mm:ssZ",
+          "_depth": 0
+        },
+        {
+          "name": "page",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns a [specific page of results](https://docs.payments.service.gov.uk/api_reference/#pagination). Defaults to `1`.",
+          "_depth": 0
+        },
+        {
+          "name": "display_size",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The number of payments returned [per results page](https://docs.payments.service.gov.uk/api_reference/#pagination). Defaults to `500`. Maximum value is `500`.",
+          "max": 500,
+          "_depth": 0
+        },
+        {
+          "name": "cardholder_name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns payments paid with cards under this cardholder name.",
+          "_depth": 0
+        },
+        {
+          "name": "first_digits_card_number",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns payments paid by cards beginning with the `first_digits_card_number` value. `first_digits_card_number` value must be 6 digits.",
+          "min_length": "6",
+          "max_length": "6",
+          "_depth": 0
+        },
+        {
+          "name": "last_digits_card_number",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns payments paid by cards ending with the `last_digits_card_number` value. `last_digits_card_number` value must be 4 digits.",
+          "min_length": "4",
+          "max_length": "4",
+          "_depth": 0
+        },
+        {
+          "name": "from_settled_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns payments settled on or after the `from_settled_date` value. You can only search by settled date if your payment service provider is Stripe. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Payments are settled when your payment service provider sends funds to your bank account.",
+          "format": "YYYY-MM-DD",
+          "_depth": 0
+        },
+        {
+          "name": "to_settled_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns payments settled before the `to_settled_date` value. You can only search by settled date if your payment service provider is Stripe. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Payments are settled when your payment service provider sends funds to your bank account.",
+          "format": "YYYY-MM-DD",
+          "_depth": 0
+        },
+        {
+          "name": "agreement_id",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns payments that were authorised using the agreement with this `agreement_id`. Must be an exact match.",
+          "format": "abcefghjklmnopqr1234567890",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK - Payments search results",
+          "data_schema": [
+            {
+              "name": "PaymentSearchResults",
+              "schema": {
+                "total": "integer",
+                "count": "integer",
+                "page": "integer",
+                "results": "array of PaymentForSearchResult",
+                "_links": "SearchNavigationLinks"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized",
+          "data_schema": null
+        },
+        {
+          "status_code": 422,
+          "description": "Invalid parameters: from_date, to_date, status, display_size. See Public API documentation for the correct data formats",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 429,
+          "description": "Too many requests",
+          "data_schema": [
+            {
+              "name": "ApiErrorResponse",
+              "schema": {
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Downstream system error",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/refunds",
+      "http_method": "GET",
+      "method_name": "searchRefunds",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\SearchRefundsResource.java",
+      "parameters": [
+        {
+          "name": "from_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns refunds created on or after the `from_date`. Date and time must use Coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+          "format": "YYYY-MM-DDThh:mm:ssZ",
+          "_depth": 0
+        },
+        {
+          "name": "to_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns refunds created before the `to_date`. Date and time must use Coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+          "format": "YYYY-MM-DDThh:mm:ssZ",
+          "_depth": 0
+        },
+        {
+          "name": "from_settled_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns refunds settled on or after the `from_settled_date` value. You can only use `from_settled_date` if your payment service provider is Stripe. Date must use ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Refunds are settled when Stripe takes the refund from your account balance.",
+          "format": "YYYY-MM-DD",
+          "_depth": 0
+        },
+        {
+          "name": "to_settled_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns refunds settled before the `to_settled_date` value. You can only use `to_settled_date` if your payment service provider is Stripe. Date must use ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Refunds are settled when Stripe takes the refund from your account balance.",
+          "format": "YYYY-MM-DD",
+          "_depth": 0
+        },
+        {
+          "name": "page",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns a specific page of results. Defaults to `1`.",
+          "_depth": 0
+        },
+        {
+          "name": "display_size",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The number of refunds returned per results page. Defaults to `500`. Maximum value is `500`.",
+          "max": 500,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Search refunds",
+          "data_schema": [
+            {
+              "name": "SearchRefundsResults",
+              "schema": {
+                "total": "integer",
+                "count": "integer",
+                "page": "integer",
+                "results": "array",
+                "links": "SearchNavigationLinks"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Credentials are required to access this resource",
+          "data_schema": null
+        },
+        {
+          "status_code": 422,
+          "description": "Invalid parameters. See Public API documentation for the correct data formats",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Downstream system error",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/disputes",
+      "http_method": "GET",
+      "method_name": "searchDisputes",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\SearchDisputesResource.java",
+      "parameters": [
+        {
+          "name": "from_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns disputes raised on or after the `from_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+          "format": "YYYY-MM-DDThh:mm:ssZ",
+          "_depth": 0
+        },
+        {
+          "name": "to_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns disputes raised before the `to_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+          "format": "YYYY-MM-DDThh:mm:ssZ",
+          "_depth": 0
+        },
+        {
+          "name": "from_settled_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns disputes settled on or after the `from_settled_date`. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Disputes are settled when your payment service provider takes the disputed amount from a payout to your bank account.",
+          "format": "YYYY-MM-DD",
+          "_depth": 0
+        },
+        {
+          "name": "to_settled_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns disputes settled before the `to_settled_date`. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Disputes are settled when your payment service provider takes the disputed amount from a payout to your bank account.",
+          "format": "YYYY-MM-DD",
+          "_depth": 0
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns disputes with a matching `status`. `status` reflects what stage of the dispute process a dispute is at. You can [read more about the meanings of the different status values](https://docs.payments.service.gov.uk/disputes/#dispute-status)",
+          "enum": [
+            "needs_response",
+            "under_review",
+            "lost",
+            "won"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "page",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returns a specific page of results. Defaults to `1`.",
+          "_depth": 0
+        },
+        {
+          "name": "display_size",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The number of disputes returned per results page. Defaults to `500`. Maximum value is `500`.",
+          "max": 500,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK - Disputes search results",
+          "data_schema": [
+            {
+              "name": "DisputesSearchResults",
+              "schema": {
+                "total": "integer",
+                "count": "integer",
+                "page": "integer",
+                "results": "array<DisputeForSearchResult>",
+                "links": "SearchNavigationLinks"
+              }
+            },
+            {
+              "name": "DisputeForSearchResult",
+              "schema": {
+                "amount": "long",
+                "created_date": "string",
+                "dispute_id": "string",
+                "evidence_due_date": "string",
+                "fee": "long",
+                "net_amount": "long",
+                "payment_id": "string",
+                "reason": "string",
+                "settlement_summary": "DisputeSettlementSummary",
+                "status": "string",
+                "links": "DisputeLinksForSearch"
+              }
+            },
+            {
+              "name": "DisputeSettlementSummary",
+              "schema": {
+                "settled_date": "string"
+              }
+            },
+            {
+              "name": "DisputeLinksForSearch",
+              "schema": {
+                "payment": "Link"
+              }
+            },
+            {
+              "name": "Link",
+              "schema": {
+                "href": "string",
+                "method": "string"
+              }
+            },
+            {
+              "name": "SearchNavigationLinks",
+              "schema": {
+                "self": "Link",
+                "first_page": "Link",
+                "last_page": "Link",
+                "prev_page": "Link",
+                "next_page": "Link"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - Authentication failed",
+          "data_schema": null
+        },
+        {
+          "status_code": 422,
+          "description": "Invalid parameters: from_date, to_date, from_settled_date, to_settled_date, status, display_size. See Public API documentation for the correct data formats",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 429,
+          "description": "Too many requests",
+          "data_schema": [
+            {
+              "name": "ApiErrorResponse",
+              "schema": {
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Downstream system error",
+          "data_schema": [
+            {
+              "name": "RequestError",
+              "schema": {
+                "field": "string",
+                "header": "string",
+                "code": "string",
+                "description": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/payment_notification",
+      "http_method": "POST",
+      "method_name": "newPayment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Payments\\pay-publicapi\\src\\main\\java\\uk\\gov\\pay\\api\\resources\\telephone\\TelephonePaymentNotificationResource.java",
+      "parameters": [
+        {
+          "name": "amount",
+          "type": "int",
+          "_class_name": "CreateTelephonePaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Telephone payment creation payload validated with @Valid."
+        },
+        {
+          "name": "reference",
+          "type": "String",
+          "_class_name": "CreateTelephonePaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Telephone payment creation payload validated with @Valid."
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_class_name": "CreateTelephonePaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Telephone payment creation payload validated with @Valid."
+        },
+        {
+          "name": "createdDate",
+          "type": "String",
+          "_class_name": "CreateTelephonePaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Telephone payment creation payload validated with @Valid."
+        },
+        {
+          "name": "authorisedDate",
+          "type": "String",
+          "_class_name": "CreateTelephonePaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Telephone payment creation payload validated with @Valid."
+        },
+        {
+          "name": "processorId",
+          "type": "String",
+          "_class_name": "CreateTelephonePaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Telephone payment creation payload validated with @Valid."
+        },
+        {
+          "name": "providerId",
+          "type": "String",
+          "_class_name": "CreateTelephonePaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Telephone payment creation payload validated with @Valid."
+        },
+        {
+          "name": "authCode",
+          "type": "String",
+          "_class_name": "CreateTelephonePaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Telephone payment creation payload validated with @Valid."
+        },
+        {
+          "name": "cardType",
+          "type": "String",
+          "_class_name": "CreateTelephonePaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Telephone payment creation payload validated with @Valid."
+        },
+        {
+          "name": "nameOnCard",
+          "type": "String",
+          "_class_name": "CreateTelephonePaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Telephone payment creation payload validated with @Valid."
+        },
+        {
+          "name": "emailAddress",
+          "type": "String",
+          "_class_name": "CreateTelephonePaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Telephone payment creation payload validated with @Valid."
+        },
+        {
+          "name": "cardExpiry",
+          "type": "String",
+          "_class_name": "CreateTelephonePaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Telephone payment creation payload validated with @Valid."
+        },
+        {
+          "name": "lastFourDigits",
+          "type": "String",
+          "_class_name": "CreateTelephonePaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Telephone payment creation payload validated with @Valid."
+        },
+        {
+          "name": "firstSixDigits",
+          "type": "String",
+          "_class_name": "CreateTelephonePaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Telephone payment creation payload validated with @Valid."
+        },
+        {
+          "name": "telephoneNumber",
+          "type": "String",
+          "_class_name": "CreateTelephonePaymentRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Telephone payment creation payload validated with @Valid."
+        },
+        {
+          "name": "amount",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "Payment amount in pence.",
+          "min": 0,
+          "max": 10000000,
+          "_depth": 0
+        },
+        {
+          "name": "reference",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Payment reference.",
+          "max_length": "255",
+          "_depth": 0
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Payment description.",
+          "max_length": "255",
+          "_depth": 0
+        },
+        {
+          "name": "created_date",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "ISO-8601 date and time the payment was created.",
+          "format": "ISO-8601 zoned date-time (ZonedDateTime.parse)",
+          "_depth": 0
+        },
+        {
+          "name": "authorised_date",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "ISO-8601 date and time the payment was authorised.",
+          "format": "ISO-8601 zoned date-time (ZonedDateTime.parse)",
+          "_depth": 0
+        },
+        {
+          "name": "processor_id",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Identifier of the payment processor.",
+          "_depth": 0
+        },
+        {
+          "name": "provider_id",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Identifier of the payment provider.",
+          "_depth": 0
+        },
+        {
+          "name": "auth_code",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Authorisation code returned by the provider.",
+          "_depth": 0
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "_class_name": "PaymentOutcome",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Outcome of the payment attempt; must include a valid status and error code."
+        },
+        {
+          "name": "code",
+          "type": "String",
+          "_class_name": "PaymentOutcome",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Outcome of the payment attempt; must include a valid status and error code."
+        },
+        {
+          "name": "card_type",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Card brand.",
+          "enum": [
+            "master-card",
+            "visa",
+            "maestro",
+            "diners-club",
+            "american-express",
+            "jcb"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "name_on_card",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Name on the card.",
+          "_depth": 0
+        },
+        {
+          "name": "email_address",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Email address of the payer.",
+          "_depth": 0
+        },
+        {
+          "name": "card_expiry",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Card expiry date.",
+          "format": "MM/YY",
+          "_depth": 0
+        },
+        {
+          "name": "last_four_digits",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Last four digits of the card number.",
+          "min_length": "4",
+          "max_length": "4",
+          "_depth": 0
+        },
+        {
+          "name": "first_six_digits",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "First six digits of the card number.",
+          "min_length": "6",
+          "max_length": "6",
+          "_depth": 0
+        },
+        {
+          "name": "telephone_number",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Telephone number associated with the payment.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Payment notification created successfully. The response body contains the telephone payment details.",
+          "data_schema": [
+            {
+              "name": "TelephonePaymentResponse",
+              "schema": {
+                "amount": "long",
+                "reference": "string",
+                "description": "string",
+                "created_date": "string",
+                "authorised_date": "string",
+                "processorId": "string",
+                "providerId": "string",
+                "auth_code": "string",
+                "paymentOutcome": "PaymentOutcome",
+                "cardType": "string",
+                "name_on_card": "string",
+                "email_address": "string",
+                "cardExpiry": "string",
+                "lastFourDigits": "string",
+                "firstSixDigits": "string",
+                "telephone_number": "string",
+                "paymentId": "string",
+                "state": "PaymentState"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 201,
+          "description": "Payment notification created successfully. The response body contains the telephone payment details.",
+          "data_schema": [
+            {
+              "name": "TelephonePaymentResponse",
+              "schema": {
+                "amount": "long",
+                "reference": "string",
+                "description": "string",
+                "created_date": "string",
+                "authorised_date": "string",
+                "processorId": "string",
+                "providerId": "string",
+                "auth_code": "string",
+                "paymentOutcome": "PaymentOutcome",
+                "cardType": "string",
+                "name_on_card": "string",
+                "email_address": "string",
+                "cardExpiry": "string",
+                "lastFourDigits": "string",
+                "firstSixDigits": "string",
+                "telephone_number": "string",
+                "paymentId": "string",
+                "state": "PaymentState"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The connector returned an error response or an unexpected error occurred.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 11707,
+  "tokens": {
+    "prompt_tokens": 4655356,
+    "completion_tokens": 82594,
+    "total_tokens": 4737950,
+    "calls": 150,
+    "elapsed_s": 740.709,
+    "prompt_cost_usd": 0.598904,
+    "completion_cost_usd": 0.059674,
+    "total_cost_usd": 0.658578,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 1521259,
+        "completion_tokens": 16830,
+        "total_tokens": 1538089,
+        "calls": 50,
+        "elapsed_s": 80.65741799999999,
+        "prompt_cost_usd": 0.030425,
+        "completion_cost_usd": 0.010098,
+        "total_cost_usd": 0.040523
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 1433634,
+        "completion_tokens": 49070,
+        "total_tokens": 1482704,
+        "calls": 50,
+        "elapsed_s": 469.652,
+        "prompt_cost_usd": 0.143363,
+        "completion_cost_usd": 0.024535,
+        "total_cost_usd": 0.167898
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 1700463,
+        "completion_tokens": 16694,
+        "total_tokens": 1717157,
+        "calls": 50,
+        "elapsed_s": 190.4,
+        "prompt_cost_usd": 0.425116,
+        "completion_cost_usd": 0.025041,
+        "total_cost_usd": 0.450157
+      }
+    ]
+  }
+}

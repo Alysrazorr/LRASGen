@@ -1,0 +1,303 @@
+{
+  "task_id": "restcountries",
+  "api_name": "restcountries",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/v2/v1/all",
+      "http_method": "GET",
+      "method_name": "getAllCountries",
+      "summary": "Get all countries",
+      "description": "Returns a list of all countries. Delegates to getCountries().",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/v1",
+      "http_method": "GET",
+      "method_name": "getCountries",
+      "summary": "Get all countries",
+      "description": "Returns a list of all countries from CountryService.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/v1/alpha/{alphacode}",
+      "http_method": "GET",
+      "method_name": "getByAlpha",
+      "summary": "Get country by alpha code",
+      "description": "Returns a single country by its 2-letter or 3-letter alpha code. Returns 400 if the code is empty or not 2-3 characters, 404 if not found.",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/v1/alpha",
+      "http_method": "GET",
+      "method_name": "getByAlphaList",
+      "summary": "Get countries by alpha code list",
+      "description": "Returns a list of countries matching a semicolon-separated list of alpha codes provided via the 'codes' query parameter. Returns 400 for invalid input, 404 if none found, 500 on error.",
+      "line_number": 51,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/v1/currency/{currency}",
+      "http_method": "GET",
+      "method_name": "getByCurrency",
+      "summary": "Get countries by currency",
+      "description": "Returns a list of countries that use the given 3-letter currency code. Returns 400 if the currency is empty or not 3 characters, 404 if none found, 500 on error.",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/v1/name/{name}",
+      "http_method": "GET",
+      "method_name": "getByName",
+      "summary": "Get countries by name",
+      "description": "Returns a list of countries matching the given name. The 'fullText' query parameter controls whether to perform a full-text match or a substring match. Returns 404 if none found, 500 on error.",
+      "line_number": 84,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/v1/callingcode/{callingcode}",
+      "http_method": "GET",
+      "method_name": "getByCallingCode",
+      "summary": "Get countries by calling code",
+      "description": "Returns a list of countries with the given calling code. Returns 404 if none found, 500 on error.",
+      "line_number": 98,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/v1/capital/{capital}",
+      "http_method": "GET",
+      "method_name": "getByCapital",
+      "summary": "Get countries by capital",
+      "description": "Returns a list of countries whose capital contains the given string. Returns 404 if none found, 500 on error.",
+      "line_number": 112,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/v1/region/{region}",
+      "http_method": "GET",
+      "method_name": "getByRegion",
+      "summary": "Get countries by region",
+      "description": "Returns a list of countries in the given region. Returns 404 if none found, 500 on error.",
+      "line_number": 126,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/v1/subregion/{subregion}",
+      "http_method": "GET",
+      "method_name": "getBySubregion",
+      "summary": "Get countries by subregion",
+      "description": "Returns a list of countries in the given subregion. Returns 404 if none found, 500 on error.",
+      "line_number": 140,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/v1/lang/{lang}",
+      "http_method": "GET",
+      "method_name": "getByLanguage",
+      "summary": "Get countries by language",
+      "description": "Returns a list of countries that use the given language. Returns 404 if none found, 500 on error.",
+      "line_number": 154,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/v1",
+      "http_method": "POST",
+      "method_name": "doPOST",
+      "summary": "Handle POST request",
+      "description": "Returns 405 Method Not Allowed for POST requests to the base path.",
+      "line_number": 168,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/all",
+      "http_method": "GET",
+      "method_name": "getAllCountries",
+      "summary": "Get all countries",
+      "description": "Returns a list of all countries. Optional 'fields' query parameter to filter fields.",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2",
+      "http_method": "GET",
+      "method_name": "getCountries",
+      "summary": "Get all countries",
+      "description": "Returns a list of all countries. Optional 'fields' query parameter to filter fields.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/alpha/{alphacode}",
+      "http_method": "GET",
+      "method_name": "getByAlpha",
+      "summary": "Get country by alpha code",
+      "description": "Returns a single country by its 2-letter or 3-letter alpha code. Optional 'fields' query parameter to filter fields.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/alpha",
+      "http_method": "GET",
+      "method_name": "getByAlphaList",
+      "summary": "Get countries by list of alpha codes",
+      "description": "Returns a list of countries by a semicolon-separated list of alpha codes. Optional 'fields' query parameter to filter fields.",
+      "line_number": 42,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/currency/{currency}",
+      "http_method": "GET",
+      "method_name": "getByCurrency",
+      "summary": "Get countries by currency",
+      "description": "Returns a list of countries that use the given currency code. Optional 'fields' query parameter to filter fields.",
+      "line_number": 58,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/name/{name}",
+      "http_method": "GET",
+      "method_name": "getByName",
+      "summary": "Get countries by name",
+      "description": "Returns a list of countries matching the given name. Optional 'fullText' query parameter for exact match, and 'fields' to filter fields.",
+      "line_number": 74,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/callingcode/{callingcode}",
+      "http_method": "GET",
+      "method_name": "getByCallingCode",
+      "summary": "Get countries by calling code",
+      "description": "Returns a list of countries with the given calling code. Optional 'fields' query parameter to filter fields.",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/capital/{capital}",
+      "http_method": "GET",
+      "method_name": "getByCapital",
+      "summary": "Get countries by capital",
+      "description": "Returns a list of countries whose capital matches the given string. Optional 'fields' query parameter to filter fields.",
+      "line_number": 102,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/region/{region}",
+      "http_method": "GET",
+      "method_name": "getByRegion",
+      "summary": "Get countries by region",
+      "description": "Returns a list of countries in the given region. Optional 'fields' query parameter to filter fields.",
+      "line_number": 116,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/subregion/{subregion}",
+      "http_method": "GET",
+      "method_name": "getBySubRegion",
+      "summary": "Get countries by subregion",
+      "description": "Returns a list of countries in the given subregion. Optional 'fields' query parameter to filter fields.",
+      "line_number": 130,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/lang/{lang}",
+      "http_method": "GET",
+      "method_name": "getByLanguage",
+      "summary": "Get countries by language",
+      "description": "Returns a list of countries that use the given language (ISO 639-1 or ISO 639-2). Optional 'fields' query parameter to filter fields.",
+      "line_number": 144,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/demonym/{demonym}",
+      "http_method": "GET",
+      "method_name": "getByDemonym",
+      "summary": "Get countries by demonym",
+      "description": "Returns a list of countries with the given demonym. Optional 'fields' query parameter to filter fields.",
+      "line_number": 158,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2/regionalbloc/{regionalbloc}",
+      "http_method": "GET",
+      "method_name": "getByRegionalBloc",
+      "summary": "Get countries by regional bloc",
+      "description": "Returns a list of countries belonging to the given regional bloc. Optional 'fields' query parameter to filter fields.",
+      "line_number": 172,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/v2",
+      "http_method": "POST",
+      "method_name": "doPOST",
+      "summary": "Handle POST request",
+      "description": "Returns 405 Method Not Allowed for POST requests to the base path.",
+      "line_number": 186,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java"
+    },
+    {
+      "endpoint_path": "/contribute",
+      "http_method": "POST",
+      "method_name": "contribute",
+      "summary": "Contribute to REST Countries",
+      "description": "Accepts a Contribution object containing an amount and a Stripe token, validates the token, creates a Stripe charge in EUR, and returns an HTTP response indicating success (202 Accepted) or failure (400 Bad Request).",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\StripeRest.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 8814,
+  "tokens": {
+    "prompt_tokens": 43721,
+    "completion_tokens": 10605,
+    "total_tokens": 54326,
+    "calls": 9,
+    "elapsed_s": 83.431,
+    "prompt_cost_usd": 0.005525,
+    "completion_cost_usd": 0.007328,
+    "total_cost_usd": 0.012854,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 14410,
+        "completion_tokens": 2210,
+        "total_tokens": 16620,
+        "calls": 3,
+        "elapsed_s": 8.807765,
+        "prompt_cost_usd": 0.000288,
+        "completion_cost_usd": 0.001326,
+        "total_cost_usd": 0.001614
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 13933,
+        "completion_tokens": 6590,
+        "total_tokens": 20523,
+        "calls": 3,
+        "elapsed_s": 56.078,
+        "prompt_cost_usd": 0.001393,
+        "completion_cost_usd": 0.003295,
+        "total_cost_usd": 0.004688
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 15378,
+        "completion_tokens": 1805,
+        "total_tokens": 17183,
+        "calls": 3,
+        "elapsed_s": 18.545,
+        "prompt_cost_usd": 0.003844,
+        "completion_cost_usd": 0.002707,
+        "total_cost_usd": 0.006552
+      }
+    ]
+  }
+}

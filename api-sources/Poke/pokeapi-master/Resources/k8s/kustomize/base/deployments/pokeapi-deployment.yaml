@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pokeapi
+  labels:
+    component: pokeapi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: pokeapi
+  template:
+    metadata:
+      labels:
+        component: pokeapi
+    spec:
+      initContainers:
+        - name: postgres-connection-checker
+          image: postgres:17.2-alpine3.21
+          command: ['sh', '-c']
+          args:
+            - until pg_isready -h postgresql -p 5432; do
+              echo waiting for database;
+              sleep 2;
+              done;
+        - name: data-download
+          image: alpine:3.21.2
+          command: ['sh', '-c']
+          args:
+            - apk add --update git &&
+              git clone --depth=1 --single-branch --branch=master --recurse-submodules --shallow-submodules https://github.com/PokeAPI/pokeapi.git &&
+              mv /code/pokeapi/data/v2/cries/* /tmp/cries/ &&
+              mv /code/pokeapi/data/v2/csv/* /tmp/csv/ &&
+              mv /code/pokeapi/data/v2/sprites/* /tmp/sprites/
+          workingDir: /code
+          volumeMounts:
+            - mountPath: /tmp/cries
+              name: cries-data-share
+            - mountPath: /tmp/csv
+              name: csv-data-share
+            - mountPath: /tmp/sprites
+              name: sprites-data-share
+      containers:
+        - name: pokeapi
+          image: pokeapi/pokeapi:master
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          securityContext:  # CI: Github Actions kills this container if not run with root. Otherwise, it's safe to use the default pokeapi/pokeapi user and remove these lines.
+            allowPrivilegeEscalation: false
+            runAsUser: 0
+          env:
+            - name: SERVER_PORT
+              value: "8080"
+            - name: POSTGRES_HOST
+              value: postgresql
+            - name: POSTGRES_USER
+              value: ash
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-env-secret
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              value: pokeapi
+            - name: REDIS_CONNECTION_STRING
+              value: redis://redis:6379/1
+          envFrom:
+            - configMapRef:
+                name: pokeapi-configmap
+          volumeMounts:
+            - mountPath: /code/data/v2/cries
+              name: cries-data-share
+            - mountPath: /code/data/v2/csv
+              name: csv-data-share
+            - mountPath: /code/data/v2/sprites
+              name: sprites-data-share
+          resources: {}
+          readinessProbe:
+            periodSeconds: 5
+            initialDelaySeconds: 5
+            httpGet:
+              path: /api/v2/
+              port: 8080
+          livenessProbe:
+            periodSeconds: 5
+            initialDelaySeconds: 5
+            httpGet:
+              path: /api/v2/
+              port: 8080
+      volumes:
+        - name: cries-data-share
+          emptyDir: {}
+        - name: csv-data-share
+          emptyDir: {}
+        - name: sprites-data-share
+          emptyDir: {}

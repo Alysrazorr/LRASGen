@@ -1,0 +1,1334 @@
+{
+  "task_id": "gestaohospital",
+  "api_name": "gestaohospital",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}",
+      "http_method": "GET",
+      "method_name": "findById",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java",
+      "parameters": [
+        {
+          "name": "hospital_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the hospital to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Hospital found and returned successfully",
+          "data_schema": [
+            {
+              "name": "HospitalDTO",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "address": "string",
+                "beds": "integer",
+                "availableBeds": "integer",
+                "longitude": "string",
+                "latitude": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Hospital not found or an error occurred while retrieving the hospital",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais",
+      "http_method": "POST",
+      "method_name": "insert",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "String",
+          "_class_name": "HospitalDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Hospital data to insert, including name, address, beds, availableBeds, longitude and latitude"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "HospitalDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Hospital data to insert, including name, address, beds, availableBeds, longitude and latitude"
+        },
+        {
+          "name": "address",
+          "type": "String",
+          "_class_name": "HospitalDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Hospital data to insert, including name, address, beds, availableBeds, longitude and latitude"
+        },
+        {
+          "name": "beds",
+          "type": "int",
+          "_class_name": "HospitalDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Hospital data to insert, including name, address, beds, availableBeds, longitude and latitude"
+        },
+        {
+          "name": "availableBeds",
+          "type": "int",
+          "_class_name": "HospitalDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Hospital data to insert, including name, address, beds, availableBeds, longitude and latitude"
+        },
+        {
+          "name": "longitude",
+          "type": "String",
+          "_class_name": "HospitalDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Hospital data to insert, including name, address, beds, availableBeds, longitude and latitude"
+        },
+        {
+          "name": "latitude",
+          "type": "String",
+          "_class_name": "HospitalDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Hospital data to insert, including name, address, beds, availableBeds, longitude and latitude"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Hospital successfully inserted and returned",
+          "data_schema": [
+            {
+              "name": "HospitalDTO",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "address": "string",
+                "beds": "integer",
+                "availableBeds": "integer",
+                "longitude": "string",
+                "latitude": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request due to validation failure or exception during insertion",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{id}/leitos",
+      "http_method": "GET",
+      "method_name": "verificaLeitosDisponiveis",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Hospital identifier used to look up the hospital and return its available beds",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a map with the number of available beds for the hospital with the given id.",
+          "data_schema": [
+            {
+              "name": "LeitosDisponiveis",
+              "schema": {
+                "leitos": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the hospital with the given id is not found, because the service throws ObjectNotFoundException which is annotated with @ResponseStatus(HttpStatus.BAD_REQUEST).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}",
+      "http_method": "DELETE",
+      "method_name": "deleteById",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java",
+      "parameters": [
+        {
+          "name": "hospital_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the hospital to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Hospital successfully deleted. Returns a plain string message: 'Hospital apagado id: {hospital_id}'.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Hospital not found. Returned when the hospital with the given ID does not exist.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when an exception occurs during the deletion process.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais",
+      "http_method": "GET",
+      "method_name": "findAll",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved list of hospitals",
+          "data_schema": [
+            {
+              "name": "List<HospitalDTO>",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "address": "string",
+                "beds": "integer",
+                "availableBeds": "integer",
+                "longitude": "string",
+                "latitude": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request - error occurred while retrieving hospitals",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/hospitaisProximos",
+      "http_method": "GET",
+      "method_name": "findHospitalNearHospitalBy",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\LocationResource.java",
+      "parameters": [
+        {
+          "name": "hospital_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Hospital identifier from the path variable",
+          "_depth": 0
+        },
+        {
+          "name": "raio",
+          "type": "double",
+          "require": "false",
+          "position": "query",
+          "description": "Radius for the proximity search",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns a list of nearby hospitals within the specified radius.",
+          "data_schema": [
+            {
+              "name": "List<HospitalDTO>",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "address": "string",
+                "beds": "integer",
+                "availableBeds": "integer",
+                "longitude": "string",
+                "latitude": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Returned when the list of nearby hospitals is null, which occurs if the service returns null.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Returned when an exception occurs during processing, such as when the hospital ID is invalid or the service throws an exception.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/proximidades",
+      "http_method": "GET",
+      "method_name": "findLocationNearHospitalBy",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\LocationResource.java",
+      "parameters": [
+        {
+          "name": "hospital_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Hospital identifier from the path",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List of locations near the hospital returned successfully.",
+          "data_schema": [
+            {
+              "name": "LocationDTO",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "referenceId": "string",
+                "category": "string",
+                "longitude": "string",
+                "latitude": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No locations found near the hospital.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request due to an error while processing the request.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{id}/transferencia/{productId}",
+      "http_method": "POST",
+      "method_name": "transferenciaProduto",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Hospital identifier from the path",
+          "_depth": 0
+        },
+        {
+          "name": "productId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Product identifier from the path",
+          "_depth": 0
+        },
+        {
+          "name": "quantidade",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "Quantity to transfer, sent as the request body",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Transferência realizada com sucesso. Retorna a string 'transferencia realizada!'.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Produto não encontrado ou hospital de origem não encontrado. Lança ObjectNotFoundException ou ResourceNotFoundException, que são anotadas com @ResponseStatus(HttpStatus.BAD_REQUEST).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}",
+      "http_method": "PUT",
+      "method_name": "update",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "String",
+          "_class_name": "HospitalDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Hospital data to update"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "HospitalDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Hospital data to update"
+        },
+        {
+          "name": "address",
+          "type": "String",
+          "_class_name": "HospitalDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Hospital data to update"
+        },
+        {
+          "name": "beds",
+          "type": "int",
+          "_class_name": "HospitalDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Hospital data to update"
+        },
+        {
+          "name": "availableBeds",
+          "type": "int",
+          "_class_name": "HospitalDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Hospital data to update"
+        },
+        {
+          "name": "longitude",
+          "type": "String",
+          "_class_name": "HospitalDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Hospital data to update"
+        },
+        {
+          "name": "latitude",
+          "type": "String",
+          "_class_name": "HospitalDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Hospital data to update"
+        },
+        {
+          "name": "hospital_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the hospital to update",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Hospital updated successfully. Returns the updated hospital data.",
+          "data_schema": [
+            {
+              "name": "HospitalDTO",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "address": "string",
+                "beds": "integer",
+                "availableBeds": "integer",
+                "longitude": "string",
+                "latitude": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when an exception occurs during update, such as validation failure (empty name or address, negative beds or availableBeds) or other errors.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned if the updated hospital DTO is null (though unlikely in practice).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/maisProximo",
+      "http_method": "GET",
+      "method_name": "hospitalMaisProximo",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java",
+      "parameters": [
+        {
+          "name": "lat",
+          "type": "number",
+          "require": "false",
+          "position": "query",
+          "description": "Latitude used to find the nearest hospital with available beds",
+          "_depth": 0
+        },
+        {
+          "name": "lon",
+          "type": "number",
+          "require": "false",
+          "position": "query",
+          "description": "Longitude used to find the nearest hospital with available beds",
+          "_depth": 0
+        },
+        {
+          "name": "raioMaximo",
+          "type": "number",
+          "require": "false",
+          "position": "query",
+          "description": "Maximum search radius used to find the nearest hospital with available beds",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Hospital mais próximo com vagas encontrado, retornando os dados do hospital.",
+          "data_schema": [
+            {
+              "name": "HospitalDTO",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "address": "string",
+                "beds": "integer",
+                "availableBeds": "integer",
+                "longitude": "string",
+                "latitude": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Nenhum hospital próximo com vagas encontrado. Lançada ResourceNotFoundException com a mensagem 'Nenhum hospital próximo com vagas encontrado!'.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/pacientes/{patientId}",
+      "http_method": "GET",
+      "method_name": "findPatientById",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\PatientResource.java",
+      "parameters": [
+        {
+          "name": "hospital_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Hospital identifier from the request path",
+          "_depth": 0
+        },
+        {
+          "name": "patientId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Patient identifier from the request path",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Patient found and returned successfully.",
+          "data_schema": [
+            {
+              "name": "Patient",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "cpf": "string",
+                "birthDate": "date",
+                "gender": "string",
+                "entryDate": "date",
+                "exitDate": "date",
+                "active": "boolean",
+                "location": "Location"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Patient not found or an error occurred while retrieving the patient.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/pacientes/checkin",
+      "http_method": "POST",
+      "method_name": "checkinPacient",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\PatientResource.java",
+      "parameters": [
+        {
+          "name": "hospital_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Hospital identifier from the path",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient object to check in"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient object to check in"
+        },
+        {
+          "name": "cpf",
+          "type": "String",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient object to check in"
+        },
+        {
+          "name": "birthDate",
+          "type": "Date",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient object to check in"
+        },
+        {
+          "name": "gender",
+          "type": "String",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient object to check in"
+        },
+        {
+          "name": "entryDate",
+          "type": "Date",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient object to check in"
+        },
+        {
+          "name": "exitDate",
+          "type": "Date",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient object to check in"
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient object to check in"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Check-in realizado com sucesso. Retorna o paciente com os dados de entrada atualizados.",
+          "data_schema": [
+            {
+              "name": "Patient",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "cpf": "string",
+                "birthDate": "date",
+                "gender": "string",
+                "entryDate": "date",
+                "exitDate": "date",
+                "active": "boolean",
+                "location": "Location"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Hospital sem vagas para check-in (HospitalCheioException).",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Hospital não encontrado (ObjectNotFoundException) ou erro genérico capturado no bloco catch.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/pacientes",
+      "http_method": "GET",
+      "method_name": "findPatients",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\PatientResource.java",
+      "parameters": [
+        {
+          "name": "hospital_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Hospital identifier from the request path",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the list of patients of the hospital when the hospital has a non-null patient list.",
+          "data_schema": [
+            {
+              "name": "Patient",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "cpf": "string",
+                "birthDate": "date",
+                "gender": "string",
+                "entryDate": "date",
+                "exitDate": "date",
+                "active": "boolean",
+                "location": "Location"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Returned when the hospital is not found, when the hospital has no patients (ResourceNotFoundException), or when any exception occurs during processing.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/estoque/{produto_id}",
+      "http_method": "GET",
+      "method_name": "findProductBy",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\ProductResource.java",
+      "parameters": [
+        {
+          "name": "hospital_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Hospital identifier from the path",
+          "_depth": 0
+        },
+        {
+          "name": "produto_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Product identifier from the path",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Product found and returned successfully.",
+          "data_schema": [
+            {
+              "name": "ProductDTO",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "description": "string",
+                "quantity": "integer",
+                "productType": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Product not found. Returned when the service returns null or throws an exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/estoque",
+      "http_method": "GET",
+      "method_name": "findAllProductBy",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\ProductResource.java",
+      "parameters": [
+        {
+          "name": "hospital_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Hospital identifier from the path",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns the list of products for the given hospital.",
+          "data_schema": [
+            {
+              "name": "List<ProductDTO>",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "description": "string",
+                "quantity": "integer",
+                "productType": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Returned when the service returns null for the product list.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Returned when an exception occurs during processing.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/pacientes/{patientId}",
+      "http_method": "PUT",
+      "method_name": "updatePatient",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\PatientResource.java",
+      "parameters": [
+        {
+          "name": "hospital_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Hospital identifier from the request path",
+          "_depth": 0
+        },
+        {
+          "name": "patientId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Patient identifier from the request path",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient data to update"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient data to update"
+        },
+        {
+          "name": "cpf",
+          "type": "String",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient data to update"
+        },
+        {
+          "name": "birthDate",
+          "type": "Date",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient data to update"
+        },
+        {
+          "name": "gender",
+          "type": "String",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient data to update"
+        },
+        {
+          "name": "entryDate",
+          "type": "Date",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient data to update"
+        },
+        {
+          "name": "exitDate",
+          "type": "Date",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient data to update"
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "_class_name": "Patient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Patient data to update"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Patient updated successfully. Returns the updated Patient object.",
+          "data_schema": [
+            {
+              "name": "Patient",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "cpf": "string",
+                "birthDate": "date",
+                "gender": "string",
+                "entryDate": "date",
+                "exitDate": "date",
+                "active": "boolean",
+                "location": "Location"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Patient not found or error during update. Returned when service.findById throws ObjectNotFoundException or any other exception occurs.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/pacientes/checkout",
+      "http_method": "POST",
+      "method_name": "checkoutPacient",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\PatientResource.java",
+      "parameters": [
+        {
+          "name": "hospital_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Hospital identifier from the path",
+          "_depth": 0
+        },
+        {
+          "name": "idPatient",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Patient identifier sent in the request body",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Paciente realizou checkout com sucesso, retornando os dados do paciente atualizado.",
+          "data_schema": [
+            {
+              "name": "Patient",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "cpf": "string",
+                "birthDate": "date",
+                "gender": "string",
+                "entryDate": "date",
+                "exitDate": "date",
+                "active": "boolean",
+                "location": "Location"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Hospital não encontrado ou paciente não encontrado no hospital.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/estoque",
+      "http_method": "POST",
+      "method_name": "insert",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\ProductResource.java",
+      "parameters": [
+        {
+          "name": "hospital_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Hospital identifier from the path",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "_class_name": "ProductDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to insert"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "ProductDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to insert"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_class_name": "ProductDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to insert"
+        },
+        {
+          "name": "quantity",
+          "type": "int",
+          "_class_name": "ProductDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to insert"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Product successfully inserted and returned.",
+          "data_schema": [
+            {
+              "name": "ProductDTO",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "description": "string",
+                "quantity": "integer",
+                "productType": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Product not found after insertion (service returned null).",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request due to an exception during insertion (e.g., hospital not found, validation error).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/estoque/{produto_id}",
+      "http_method": "PUT",
+      "method_name": "update",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\ProductResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "String",
+          "_class_name": "ProductDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to update"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "ProductDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to update"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_class_name": "ProductDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to update"
+        },
+        {
+          "name": "quantity",
+          "type": "int",
+          "_class_name": "ProductDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product data to update"
+        },
+        {
+          "name": "hospital_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Hospital identifier",
+          "_depth": 0
+        },
+        {
+          "name": "produto_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Product identifier",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Product updated successfully",
+          "data_schema": [
+            {
+              "name": "ProductDTO",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "description": "string",
+                "quantity": "integer",
+                "productType": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Product not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/estoque/{produto_id}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\ProductResource.java",
+      "parameters": [
+        {
+          "name": "hospital_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Hospital identifier from the path",
+          "_depth": 0
+        },
+        {
+          "name": "produto_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Product identifier from the path",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Produto apagado id: {produto_id}",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Produto não encontrado",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Erro ao processar a requisição",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 5264,
+  "tokens": {
+    "prompt_tokens": 1828802,
+    "completion_tokens": 25743,
+    "total_tokens": 1854545,
+    "calls": 120,
+    "elapsed_s": 368.874,
+    "prompt_cost_usd": 0.238601,
+    "completion_cost_usd": 0.017914,
+    "total_cost_usd": 0.256515,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 582180,
+        "completion_tokens": 5432,
+        "total_tokens": 587612,
+        "calls": 40,
+        "elapsed_s": 44.72284499999999,
+        "prompt_cost_usd": 0.011644,
+        "completion_cost_usd": 0.003259,
+        "total_cost_usd": 0.014903
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 564656,
+        "completion_tokens": 15811,
+        "total_tokens": 580467,
+        "calls": 40,
+        "elapsed_s": 242.899,
+        "prompt_cost_usd": 0.056466,
+        "completion_cost_usd": 0.007905,
+        "total_cost_usd": 0.064371
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 681966,
+        "completion_tokens": 4500,
+        "total_tokens": 686466,
+        "calls": 40,
+        "elapsed_s": 81.252,
+        "prompt_cost_usd": 0.170491,
+        "completion_cost_usd": 0.00675,
+        "total_cost_usd": 0.177241
+      }
+    ]
+  }
+}

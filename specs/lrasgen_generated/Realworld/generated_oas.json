@@ -1,0 +1,894 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "nestjs-realworld-example-app-master API",
+    "description": "LRASGen-generated specification for nestjs-realworld-example-app-master (nestjs).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "get",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the string 'Hello World!'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "string": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/articles/{slug}/comments": {
+      "post": {
+        "operationId": "createComments",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "The slug of the article to add a comment to",
+            "schema": {
+              "type": "string",
+              "description": "The slug of the article to add a comment to"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The comment has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ArticleRO": {
+                      "type": "string",
+                      "description": "{'article': 'ArticleEntity'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "comment": {
+                    "type": "string",
+                    "description": "The comment data"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getComments",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "Slug of the article whose comments are to be retrieved",
+            "schema": {
+              "type": "string",
+              "description": "Slug of the article whose comments are to be retrieved"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return comments of the article.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CommentsRO": {
+                      "type": "string",
+                      "description": "{'comments': 'Comment[]'}"
+                    },
+                    "Comment": {
+                      "type": "string",
+                      "description": "{'id': 'integer', 'body': 'string', 'article': 'ArticleEntity'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/articles/feed": {
+      "get": {
+        "operationId": "getFeed",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "User ID extracted from the authenticated user via @User('id') decorator",
+            "schema": {
+              "type": "integer",
+              "description": "User ID extracted from the authenticated user via @User('id') decorator"
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "description": "Query parameters for filtering and pagination (e.g., limit, offset)",
+            "schema": {
+              "type": "object",
+              "description": "Query parameters for filtering and pagination (e.g., limit, offset)"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return article feed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ArticlesRO": {
+                      "type": "string",
+                      "description": "{'articles': 'ArticleEntity[]', 'articlesCount': 'number'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden."
+          }
+        }
+      }
+    },
+    "/articles/{slug}/comments/{id}": {
+      "delete": {
+        "operationId": "deleteComments",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "Slug of the article whose comment is to be deleted",
+            "schema": {
+              "type": "string",
+              "description": "Slug of the article whose comment is to be deleted"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the comment to delete",
+            "schema": {
+              "type": "string",
+              "description": "ID of the comment to delete"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The article has been successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ArticleRO": {
+                      "type": "string",
+                      "description": "{'article': 'ArticleEntity'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/articles/{slug}": {
+      "put": {
+        "operationId": "updateArticles",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "Article slug from the path parameter",
+            "schema": {
+              "type": "string",
+              "description": "Article slug from the path parameter"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The article has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ArticleRO": {
+                      "type": "string",
+                      "description": "{'article': 'ArticleEntity'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "article": {
+                    "type": "string",
+                    "description": "Article data to update"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getArticles",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "The slug of the article to retrieve",
+            "schema": {
+              "type": "string",
+              "description": "The slug of the article to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the article with the given slug.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ArticleRO": {
+                      "type": "string",
+                      "description": "{'article': 'ArticleEntity'}"
+                    },
+                    "ArticleEntity": {
+                      "type": "string",
+                      "description": "{'id': 'number', 'slug': 'string', 'title': 'string', 'description': 'string', 'body': 'string', 'created': 'Date', 'updated': 'Date', 'tagList': 'string[]', 'author': 'UserEntity', 'comments': 'Comment[]', 'favoriteCount': 'number'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteArticles",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "Slug of the article to delete",
+            "schema": {
+              "type": "string",
+              "description": "Slug of the article to delete"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The article has been successfully deleted."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/articles": {
+      "post": {
+        "operationId": "createArticles",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "The article has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ArticleEntity": {
+                      "type": "string",
+                      "description": "{'id': 'number', 'slug': 'string', 'title': 'string', 'description': 'string', 'body': 'string', 'created': 'Date', 'updated': 'Date', 'tagList': 'string[]', 'author': 'UserEntity', 'comments': 'Comment[]', 'favoriteCount': 'number'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "integer",
+                    "description": "ID of the user creating the article, extracted from the authenticated user via @User('id')"
+                  },
+                  "article": {
+                    "type": "string",
+                    "description": "Article data to create"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getArticles",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "description": "Query parameters for filtering articles. The service checks for 'tag', 'author', 'favorited', 'limit', and 'offset' keys.",
+            "schema": {
+              "type": "object",
+              "description": "Query parameters for filtering articles. The service checks for 'tag', 'author', 'favorited', 'limit', and 'offset' keys."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all articles.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ArticlesRO": {
+                      "type": "string",
+                      "description": "{'articles': 'ArticleEntity[]', 'articlesCount': 'number'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/articles/{slug}/favorite": {
+      "post": {
+        "operationId": "createFavorite",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "Article slug",
+            "schema": {
+              "type": "string",
+              "description": "Article slug"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The article has been successfully favorited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ArticleRO": {
+                      "type": "string",
+                      "description": "{'article': 'ArticleEntity'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteFavorite",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "Slug of the article to unfavorite",
+            "schema": {
+              "type": "string",
+              "description": "Slug of the article to unfavorite"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The article has been successfully unfavorited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ArticleRO": {
+                      "type": "string",
+                      "description": "{'article': 'ArticleEntity'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/profiles/{username}/follow": {
+      "post": {
+        "operationId": "createFollow",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "Username of the profile to follow, taken from the path parameter.",
+            "schema": {
+              "type": "string",
+              "description": "Username of the profile to follow, taken from the path parameter."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile followed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProfileRO": {
+                      "type": "string",
+                      "description": "{'profile': {'username': 'string', 'bio': 'string', 'image': 'string', 'following': 'boolean'}}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Follower email and username not provided."
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteFollow",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "Username of the profile to unfollow",
+            "schema": {
+              "type": "string",
+              "description": "Username of the profile to unfollow"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully unfollowed the user. Returns the profile of the unfollowed user with following set to false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProfileRO": {
+                      "type": "string",
+                      "description": "{'profile': {'username': 'string', 'bio': 'string', 'image': 'string', 'following': 'boolean'}}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. FollowerId or username not provided, or FollowerId and FollowingId cannot be equal."
+          },
+          "500": {
+            "description": "Internal Server Error. An error occurred while processing the request, such as a database error."
+          }
+        }
+      }
+    },
+    "/tags": {
+      "get": {
+        "operationId": "getTags",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns an array of all tags.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "TagEntity[]": {
+                      "type": "string",
+                      "description": "{'id': 'number', 'tag': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profiles/{username}": {
+      "get": {
+        "operationId": "getProfiles",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "Username of the profile to retrieve",
+            "schema": {
+              "type": "string",
+              "description": "Username of the profile to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProfileRO": {
+                      "type": "string",
+                      "description": "{'profile': {'username': 'string', 'bio': 'string', 'image': 'string', 'following': 'boolean'}}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "operationId": "createUsers",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserRO": {
+                      "type": "string",
+                      "description": "{'user': {'id': 'number', 'username': 'string', 'email': 'string', 'bio': 'string', 'token': 'string', 'image': 'string'}}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input data validation failed"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "type": "string",
+                    "description": "User data for creating a new user"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "operationId": "getUser",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the authenticated user's profile information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserRO": {
+                      "type": "string",
+                      "description": "{'user': {'id': 'number', 'username': 'string', 'email': 'string', 'bio': 'string', 'token': 'string', 'image': 'string'}}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateUser",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "User updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserEntity": {
+                      "type": "string",
+                      "description": "{'id': 'number', 'username': 'string', 'email': 'string', 'bio': 'string', 'image': 'string', 'password': 'string', 'favorites': 'ArticleEntity[]', 'articles': 'ArticleEntity[]'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "User ID extracted from the authenticated user via @User('id') decorator"
+                  },
+                  "user": {
+                    "type": "string",
+                    "description": "User update data from request body"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{slug}": {
+      "delete": {
+        "operationId": "deleteUsers",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "The slug parameter extracted from the path via @Param() and passed to userService.delete(params.slug).",
+            "schema": {
+              "type": "string",
+              "description": "The slug parameter extracted from the path via @Param() and passed to userService.delete(params.slug)."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletes the user with the given email (passed as slug) and returns the result of the delete operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DeleteResult": {
+                      "type": "string",
+                      "description": "{'raw': 'object', 'affected': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "operationId": "createLogin",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "User login successful, returns user data with JWT token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserRO": {
+                      "type": "string",
+                      "description": "{'user': {'email': 'string', 'token': 'string', 'username': 'string', 'bio': 'string', 'image': 'string'}}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User not found"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "type": "string",
+                    "description": "Login credentials containing email and password"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

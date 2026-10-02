@@ -1,0 +1,1176 @@
+{
+  "task_id": "swagger-petstore",
+  "api_name": "swagger-petstore",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/store/inventory",
+      "http_method": "GET",
+      "method_name": "getInventory",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\OrderController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a map of status codes to quantities",
+          "data_schema": [
+            {
+              "name": "Map",
+              "schema": {
+                "additionalProperties": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/pet/{petId}",
+      "http_method": "GET",
+      "method_name": "getPetById",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\PetController.java",
+      "parameters": [
+        {
+          "name": "petId",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of pet to return",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Pet found and returned",
+          "data_schema": [
+            {
+              "name": "Pet",
+              "schema": {
+                "id": "long",
+                "category": "Category",
+                "name": "string",
+                "photoUrls": "array of string",
+                "tags": "array of Tag",
+                "status": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "No petId provided. Try again?",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Pet not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/store/order",
+      "http_method": "POST",
+      "method_name": "placeOrder",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\OrderController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "_class_name": "Order",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Order object to be placed"
+        },
+        {
+          "name": "petId",
+          "type": "long",
+          "_class_name": "Order",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Order object to be placed"
+        },
+        {
+          "name": "quantity",
+          "type": "int",
+          "_class_name": "Order",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Order object to be placed"
+        },
+        {
+          "name": "shipDate",
+          "type": "Date",
+          "_class_name": "Order",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Order object to be placed"
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "_class_name": "Order",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Order object to be placed"
+        },
+        {
+          "name": "complete",
+          "type": "boolean",
+          "_class_name": "Order",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Order object to be placed"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Order placed successfully",
+          "data_schema": [
+            {
+              "name": "Order",
+              "schema": {
+                "id": "long",
+                "petId": "long",
+                "quantity": "integer",
+                "shipDate": "date",
+                "status": "string",
+                "complete": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "No Order provided. Try again?",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/pet/{petId}",
+      "http_method": "DELETE",
+      "method_name": "deletePet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\PetController.java",
+      "parameters": [
+        {
+          "name": "petId",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of pet to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "No petId provided. Try again?",
+          "data_schema": null
+        },
+        {
+          "status_code": 200,
+          "description": "Pet deleted",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 304,
+          "description": "Pet couldn't be deleted.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/store/order/{orderId}",
+      "http_method": "DELETE",
+      "method_name": "deleteOrder",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\OrderController.java",
+      "parameters": [
+        {
+          "name": "orderId",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the order to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "No orderId provided. Try again?",
+          "data_schema": []
+        },
+        {
+          "status_code": 200,
+          "description": "Order deleted successfully",
+          "data_schema": [
+            {
+              "name": "Order",
+              "schema": {
+                "id": "long",
+                "petId": "long",
+                "quantity": "integer",
+                "shipDate": "date",
+                "status": "string",
+                "complete": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 304,
+          "description": "Order couldn't be deleted.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/pet",
+      "http_method": "POST",
+      "method_name": "addPet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\PetController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "_class_name": "Pet",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Pet object to add to the store"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "Pet",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Pet object to add to the store"
+        },
+        {
+          "name": "photoUrls",
+          "type": "List",
+          "_class_name": "Pet",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Pet object to add to the store"
+        },
+        {
+          "name": "tags",
+          "type": "List",
+          "_class_name": "Pet",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Pet object to add to the store"
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "_class_name": "Pet",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Pet object to add to the store"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Pet added successfully",
+          "data_schema": [
+            {
+              "name": "Pet",
+              "schema": {
+                "id": "long",
+                "category": "Category",
+                "name": "string",
+                "photoUrls": "array of string",
+                "tags": "array of Tag",
+                "status": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "No Pet provided. Try again?",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/store/order/{orderId}",
+      "http_method": "GET",
+      "method_name": "getOrderById",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\OrderController.java",
+      "parameters": [
+        {
+          "name": "orderId",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the order to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Order found and returned",
+          "data_schema": [
+            {
+              "name": "Order",
+              "schema": {
+                "id": "long",
+                "petId": "long",
+                "quantity": "integer",
+                "shipDate": "date",
+                "status": "string",
+                "complete": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "No orderId provided. Try again?",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Order not found",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/pet/findByStatus",
+      "http_method": "GET",
+      "method_name": "findPetsByStatus",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\PetController.java",
+      "parameters": [
+        {
+          "name": "status",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Status values that need to be considered for filter",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Pets found by status",
+          "data_schema": [
+            {
+              "name": "List<Pet>",
+              "schema": {
+                "id": "long",
+                "category": "Category",
+                "name": "string",
+                "photoUrls": "List<string>",
+                "tags": "List<Tag>",
+                "status": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "No status provided. Try again?",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Pets not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/pet/{petId}",
+      "http_method": "POST",
+      "method_name": "updatePetWithForm",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\PetController.java",
+      "parameters": [
+        {
+          "name": "petId",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of pet that needs to be updated",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "No petId provided. Try again?",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Pet not found",
+          "data_schema": []
+        },
+        {
+          "status_code": 200,
+          "description": "successful operation",
+          "data_schema": [
+            {
+              "name": "Pet",
+              "schema": {
+                "id": "long",
+                "category": "Category",
+                "name": "string",
+                "photoUrls": "array",
+                "tags": "array",
+                "status": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/pet/{petId}/uploadImage",
+      "http_method": "POST",
+      "method_name": "uploadFile",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\PetController.java",
+      "parameters": [
+        {
+          "name": "petId",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of pet to update",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Pet updated successfully",
+          "data_schema": [
+            {
+              "name": "Pet",
+              "schema": {
+                "id": "long",
+                "category": "Category",
+                "name": "string",
+                "photoUrls": "array",
+                "tags": "array",
+                "status": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "No petId provided. Try again?",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Pet not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 304,
+          "description": "Pet couldn't be updated.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/user/logout",
+      "http_method": "GET",
+      "method_name": "logoutUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\UserController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "User logged out",
+          "data_schema": [
+            {
+              "name": "string",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/pet",
+      "http_method": "PUT",
+      "method_name": "updatePet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\PetController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "_class_name": "Pet",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Pet object that needs to be updated in the store"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "Pet",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Pet object that needs to be updated in the store"
+        },
+        {
+          "name": "photoUrls",
+          "type": "List",
+          "_class_name": "Pet",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Pet object that needs to be updated in the store"
+        },
+        {
+          "name": "tags",
+          "type": "List",
+          "_class_name": "Pet",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Pet object that needs to be updated in the store"
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "_class_name": "Pet",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Pet object that needs to be updated in the store"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Pet updated successfully",
+          "data_schema": [
+            {
+              "name": "Pet",
+              "schema": {
+                "id": "long",
+                "category": "Category",
+                "name": "string",
+                "photoUrls": "array of string",
+                "tags": "array of Tag",
+                "status": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "No Pet provided. Try again?",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Pet not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/user/createWithArray",
+      "http_method": "POST",
+      "method_name": "createUsersWithArrayInput",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "users",
+          "type": "User[]",
+          "require": "false",
+          "position": "body",
+          "description": "Array of user objects to create",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Users created successfully",
+          "data_schema": [
+            {
+              "name": "User",
+              "schema": {
+                "id": "long",
+                "username": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "email": "string",
+                "password": "string",
+                "phone": "string",
+                "userStatus": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "No User provided. Try again?",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/user",
+      "http_method": "POST",
+      "method_name": "createUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object to be created"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object to be created"
+        },
+        {
+          "name": "firstName",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object to be created"
+        },
+        {
+          "name": "lastName",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object to be created"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object to be created"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object to be created"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object to be created"
+        },
+        {
+          "name": "userStatus",
+          "type": "int",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object to be created"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "No User provided. Try again?",
+          "data_schema": []
+        },
+        {
+          "status_code": 200,
+          "description": "User created successfully",
+          "data_schema": [
+            {
+              "name": "User",
+              "schema": {
+                "id": "long",
+                "username": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "email": "string",
+                "password": "string",
+                "phone": "string",
+                "userStatus": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/pet/findByTags",
+      "http_method": "GET",
+      "method_name": "findPetsByTags",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\PetController.java",
+      "parameters": [
+        {
+          "name": "tags",
+          "type": "List<String>",
+          "require": "false",
+          "position": "query",
+          "description": "Tags to filter pets by",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List of pets found by tags",
+          "data_schema": [
+            {
+              "name": "List<Pet>",
+              "schema": {
+                "id": "long",
+                "category": "Category",
+                "name": "string",
+                "photoUrls": "List<String>",
+                "tags": "List<Tag>",
+                "status": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "No tags provided. Try again?",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/user/createWithList",
+      "http_method": "POST",
+      "method_name": "createUsersWithListInput",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "users",
+          "type": "User[]",
+          "require": "false",
+          "position": "body",
+          "description": "Array of user objects to create",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Users created successfully",
+          "data_schema": [
+            {
+              "name": "User",
+              "schema": {
+                "id": "long",
+                "username": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "email": "string",
+                "password": "string",
+                "phone": "string",
+                "userStatus": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "No User provided. Try again?",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/user/login",
+      "http_method": "GET",
+      "method_name": "loginUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The user name for login",
+          "_depth": 0
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The password for login in clear text",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful login. Returns a message with a generated session token, along with X-Rate-Limit and X-Expires-After headers.",
+          "data_schema": [
+            {
+              "name": "LoginResponse",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/user/{username}",
+      "http_method": "GET",
+      "method_name": "getUserByName",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the user to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "User found and returned",
+          "data_schema": [
+            {
+              "name": "User",
+              "schema": {
+                "id": "long",
+                "username": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "email": "string",
+                "password": "string",
+                "phone": "string",
+                "userStatus": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "No username provided. Try again?",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "User not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/user/{username}",
+      "http_method": "DELETE",
+      "method_name": "deleteUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The username of the user to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "User deleted successfully",
+          "data_schema": [
+            {
+              "name": "User",
+              "schema": {
+                "id": "long",
+                "username": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "email": "string",
+                "password": "string",
+                "phone": "string",
+                "userStatus": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "No username provided. Try again?",
+          "data_schema": null
+        },
+        {
+          "status_code": 304,
+          "description": "User couldn't be deleted.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/user/{username}",
+      "http_method": "PUT",
+      "method_name": "updateUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Petstore\\swagger-petstore\\src\\main\\java\\io\\swagger\\petstore\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Username of the user to update",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "long",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated user object"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated user object"
+        },
+        {
+          "name": "firstName",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated user object"
+        },
+        {
+          "name": "lastName",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated user object"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated user object"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated user object"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated user object"
+        },
+        {
+          "name": "userStatus",
+          "type": "int",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated user object"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "User updated successfully",
+          "data_schema": [
+            {
+              "name": "User",
+              "schema": {
+                "id": "long",
+                "username": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "email": "string",
+                "password": "string",
+                "phone": "string",
+                "userStatus": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "No Username provided or No User provided",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "User not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 7073,
+  "tokens": {
+    "prompt_tokens": 575747,
+    "completion_tokens": 31049,
+    "total_tokens": 606796,
+    "calls": 120,
+    "elapsed_s": 715.227,
+    "prompt_cost_usd": 0.074173,
+    "completion_cost_usd": 0.02079,
+    "total_cost_usd": 0.094962,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 186356,
+        "completion_tokens": 4475,
+        "total_tokens": 190831,
+        "calls": 40,
+        "elapsed_s": 58.232832000000016,
+        "prompt_cost_usd": 0.003727,
+        "completion_cost_usd": 0.002685,
+        "total_cost_usd": 0.006412
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 179349,
+        "completion_tokens": 21756,
+        "total_tokens": 201105,
+        "calls": 40,
+        "elapsed_s": 512.268,
+        "prompt_cost_usd": 0.017935,
+        "completion_cost_usd": 0.010878,
+        "total_cost_usd": 0.028813
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 210042,
+        "completion_tokens": 4818,
+        "total_tokens": 214860,
+        "calls": 40,
+        "elapsed_s": 144.726,
+        "prompt_cost_usd": 0.052511,
+        "completion_cost_usd": 0.007227,
+        "total_cost_usd": 0.059737
+      }
+    ]
+  }
+}

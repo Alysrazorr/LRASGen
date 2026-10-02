@@ -1,0 +1,1401 @@
+{
+  "task_id": "gramps-web-api-master",
+  "api_name": "gramps-web-api-master",
+  "framework": "flask",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/objects",
+      "http_method": "POST",
+      "method_name": "CreateObjectsResource.post",
+      "summary": "Create multiple objects",
+      "description": "Post the objects.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/objects/delete",
+      "http_method": "POST",
+      "method_name": "DeleteObjectsResource.post",
+      "summary": "Delete multiple objects",
+      "description": "Delete the objects.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/transactions",
+      "http_method": "POST",
+      "method_name": "TransactionsResource.post",
+      "summary": "Post raw database transactions",
+      "description": "Post the transaction.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/transactions/history",
+      "http_method": "GET",
+      "method_name": "TransactionsHistoryResource.get",
+      "summary": "Get transaction history",
+      "description": "Return a list of transactions.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/transactions/history/{transaction_id}",
+      "http_method": "GET",
+      "method_name": "TransactionHistoryResource.get",
+      "summary": "Get a single transaction",
+      "description": "Return a list of transactions.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/token",
+      "http_method": "POST",
+      "method_name": "TokenResource.post",
+      "summary": "Obtain a JWT",
+      "description": "Post username and password to fetch a token.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/token/refresh",
+      "http_method": "POST",
+      "method_name": "TokenRefreshResource.post",
+      "summary": "Refresh a JWT",
+      "description": "Fetch a new token.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/token/create_owner",
+      "http_method": "GET",
+      "method_name": "TokenCreateOwnerResource.get",
+      "summary": "Get a token to create an owner",
+      "description": "Get a token.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/token/create_owner",
+      "http_method": "POST",
+      "method_name": "TokenCreateOwnerResource.post",
+      "summary": "Get a token to create an owner",
+      "description": "Get a token.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/people/{handle}/timeline",
+      "http_method": "GET",
+      "method_name": "PersonTimelineResource.get",
+      "summary": "Get person timeline",
+      "description": "Get list of events in timeline for a person.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/people/{handle}",
+      "http_method": "GET",
+      "method_name": "PersonResource.get",
+      "summary": "Get a person",
+      "description": "Get the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/people/{handle}",
+      "http_method": "DELETE",
+      "method_name": "PersonResource.delete",
+      "summary": "Delete a person",
+      "description": "Delete the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/people/{handle}",
+      "http_method": "PUT",
+      "method_name": "PersonResource.put",
+      "summary": "Update a person",
+      "description": "Modify an existing object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/people/{handle}/dna/matches",
+      "http_method": "GET",
+      "method_name": "PersonDnaMatchesResource.get",
+      "summary": "Get DNA matches for a person",
+      "description": "Get the DNA match data.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/people",
+      "http_method": "GET",
+      "method_name": "PeopleResource.get",
+      "summary": "Get all people",
+      "description": "Get all objects.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/people",
+      "http_method": "POST",
+      "method_name": "PeopleResource.post",
+      "summary": "Create a person",
+      "description": "Post a new object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/families/{handle}/timeline",
+      "http_method": "GET",
+      "method_name": "FamilyTimelineResource.get",
+      "summary": "Get family timeline",
+      "description": "Get list of events in timeline for a family.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/families/{handle}",
+      "http_method": "GET",
+      "method_name": "FamilyResource.get",
+      "summary": "Get a family",
+      "description": "Get the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/families/{handle}",
+      "http_method": "DELETE",
+      "method_name": "FamilyResource.delete",
+      "summary": "Delete a family",
+      "description": "Delete the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/families/{handle}",
+      "http_method": "PUT",
+      "method_name": "FamilyResource.put",
+      "summary": "Update a family",
+      "description": "Modify an existing object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/families",
+      "http_method": "GET",
+      "method_name": "FamiliesResource.get",
+      "summary": "Get all families",
+      "description": "Get all objects.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/families",
+      "http_method": "POST",
+      "method_name": "FamiliesResource.post",
+      "summary": "Create a family",
+      "description": "Post a new object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/events/{handle1}/span/{handle2}",
+      "http_method": "GET",
+      "method_name": "EventSpanResource.get",
+      "summary": "Get event date span",
+      "description": "Get the time span between two event dates.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/events/{handle}",
+      "http_method": "GET",
+      "method_name": "EventResource.get",
+      "summary": "Get an event",
+      "description": "Get the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/events/{handle}",
+      "http_method": "DELETE",
+      "method_name": "EventResource.delete",
+      "summary": "Delete an event",
+      "description": "Delete the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/events/{handle}",
+      "http_method": "PUT",
+      "method_name": "EventResource.put",
+      "summary": "Update an event",
+      "description": "Modify an existing object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/events",
+      "http_method": "GET",
+      "method_name": "EventsResource.get",
+      "summary": "Get all events",
+      "description": "Get all objects.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/events",
+      "http_method": "POST",
+      "method_name": "EventsResource.post",
+      "summary": "Create an event",
+      "description": "Post a new object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/timelines/people",
+      "http_method": "GET",
+      "method_name": "TimelinePeopleResource.get",
+      "summary": "Get people timeline",
+      "description": "Get consolidated list of events in timeline for a list of people.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/timelines/families",
+      "http_method": "GET",
+      "method_name": "TimelineFamiliesResource.get",
+      "summary": "Get families timeline",
+      "description": "Get consolidated list of events in timeline for a list of families.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/places/{handle}",
+      "http_method": "GET",
+      "method_name": "PlaceResource.get",
+      "summary": "Get a place",
+      "description": "Get the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/places/{handle}",
+      "http_method": "DELETE",
+      "method_name": "PlaceResource.delete",
+      "summary": "Delete a place",
+      "description": "Delete the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/places/{handle}",
+      "http_method": "PUT",
+      "method_name": "PlaceResource.put",
+      "summary": "Update a place",
+      "description": "Modify an existing object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/places",
+      "http_method": "GET",
+      "method_name": "PlacesResource.get",
+      "summary": "Get all places",
+      "description": "Get all objects.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/places",
+      "http_method": "POST",
+      "method_name": "PlacesResource.post",
+      "summary": "Create a place",
+      "description": "Post a new object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/citations/{handle}",
+      "http_method": "GET",
+      "method_name": "CitationResource.get",
+      "summary": "Get a citation",
+      "description": "Get the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/citations/{handle}",
+      "http_method": "DELETE",
+      "method_name": "CitationResource.delete",
+      "summary": "Delete a citation",
+      "description": "Delete the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/citations/{handle}",
+      "http_method": "PUT",
+      "method_name": "CitationResource.put",
+      "summary": "Update a citation",
+      "description": "Modify an existing object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/citations",
+      "http_method": "GET",
+      "method_name": "CitationsResource.get",
+      "summary": "Get all citations",
+      "description": "Get all objects.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/citations",
+      "http_method": "POST",
+      "method_name": "CitationsResource.post",
+      "summary": "Create a citation",
+      "description": "Post a new object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/sources/{handle}",
+      "http_method": "GET",
+      "method_name": "SourceResource.get",
+      "summary": "Get a source",
+      "description": "Get the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/sources/{handle}",
+      "http_method": "DELETE",
+      "method_name": "SourceResource.delete",
+      "summary": "Delete a source",
+      "description": "Delete the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/sources/{handle}",
+      "http_method": "PUT",
+      "method_name": "SourceResource.put",
+      "summary": "Update a source",
+      "description": "Modify an existing object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/sources",
+      "http_method": "GET",
+      "method_name": "SourcesResource.get",
+      "summary": "Get all sources",
+      "description": "Get all objects.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/sources",
+      "http_method": "POST",
+      "method_name": "SourcesResource.post",
+      "summary": "Create a source",
+      "description": "Post a new object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/repositories/{handle}",
+      "http_method": "GET",
+      "method_name": "RepositoryResource.get",
+      "summary": "Get a repository",
+      "description": "Get the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/repositories/{handle}",
+      "http_method": "DELETE",
+      "method_name": "RepositoryResource.delete",
+      "summary": "Delete a repository",
+      "description": "Delete the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/repositories/{handle}",
+      "http_method": "PUT",
+      "method_name": "RepositoryResource.put",
+      "summary": "Update a repository",
+      "description": "Modify an existing object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/repositories",
+      "http_method": "GET",
+      "method_name": "RepositoriesResource.get",
+      "summary": "Get all repositories",
+      "description": "Get all objects.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/repositories",
+      "http_method": "POST",
+      "method_name": "RepositoriesResource.post",
+      "summary": "Create a repository",
+      "description": "Post a new object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/media/{handle}",
+      "http_method": "GET",
+      "method_name": "MediaObjectResource.get",
+      "summary": "Get a media object",
+      "description": "Get the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/media/{handle}",
+      "http_method": "DELETE",
+      "method_name": "MediaObjectResource.delete",
+      "summary": "Delete a media object",
+      "description": "Delete the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/media/{handle}",
+      "http_method": "PUT",
+      "method_name": "MediaObjectResource.put",
+      "summary": "Update a media object",
+      "description": "Modify an existing object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/media",
+      "http_method": "GET",
+      "method_name": "MediaObjectsResource.get",
+      "summary": "Get all media objects",
+      "description": "Get all objects.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/media",
+      "http_method": "POST",
+      "method_name": "MediaObjectsResource.post",
+      "summary": "Create a media object",
+      "description": "Post a new object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/notes/{handle}",
+      "http_method": "GET",
+      "method_name": "NoteResource.get",
+      "summary": "Get a note",
+      "description": "Get the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/notes/{handle}",
+      "http_method": "DELETE",
+      "method_name": "NoteResource.delete",
+      "summary": "Delete a note",
+      "description": "Delete the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/notes/{handle}",
+      "http_method": "PUT",
+      "method_name": "NoteResource.put",
+      "summary": "Update a note",
+      "description": "Modify an existing object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/notes",
+      "http_method": "GET",
+      "method_name": "NotesResource.get",
+      "summary": "Get all notes",
+      "description": "Get all objects.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/notes",
+      "http_method": "POST",
+      "method_name": "NotesResource.post",
+      "summary": "Create a note",
+      "description": "Post a new object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/tags/{handle}",
+      "http_method": "GET",
+      "method_name": "TagResource.get",
+      "summary": "Get a tag",
+      "description": "Get the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/tags/{handle}",
+      "http_method": "DELETE",
+      "method_name": "TagResource.delete",
+      "summary": "Delete a tag",
+      "description": "Delete the object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/tags/{handle}",
+      "http_method": "PUT",
+      "method_name": "TagResource.put",
+      "summary": "Update a tag",
+      "description": "Modify an existing object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/tags",
+      "http_method": "GET",
+      "method_name": "TagsResource.get",
+      "summary": "Get all tags",
+      "description": "Get all objects.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/tags",
+      "http_method": "POST",
+      "method_name": "TagsResource.post",
+      "summary": "Create a tag",
+      "description": "Post a new object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/trees/{tree_id}",
+      "http_method": "GET",
+      "method_name": "TreeResource.get",
+      "summary": "Get tree info",
+      "description": "Get info about a tree.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/trees/{tree_id}",
+      "http_method": "PUT",
+      "method_name": "TreeResource.put",
+      "summary": "Modify a tree",
+      "description": "Modify a tree.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/trees",
+      "http_method": "GET",
+      "method_name": "TreesResource.get",
+      "summary": "Get all trees",
+      "description": "Get info about all trees.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/trees",
+      "http_method": "POST",
+      "method_name": "TreesResource.post",
+      "summary": "Create a tree",
+      "description": "Create a new tree.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/trees/{tree_id}/disable",
+      "http_method": "POST",
+      "method_name": "DisableTreeResource.post",
+      "summary": "Disable a tree",
+      "description": "Disable a tree.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/trees/{tree_id}/enable",
+      "http_method": "POST",
+      "method_name": "EnableTreeResource.post",
+      "summary": "Enable a tree",
+      "description": "Disable a tree.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/trees/{tree_id}/repair",
+      "http_method": "POST",
+      "method_name": "CheckTreeResource.post",
+      "summary": "Check and repair a tree",
+      "description": "Check & repair a Gramps database (tree).",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/trees/{tree_id}/migrate",
+      "http_method": "POST",
+      "method_name": "UpgradeTreeSchemaResource.post",
+      "summary": "Upgrade tree schema",
+      "description": "Upgrade the schema of a Gramps database (tree).",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/types/custom/{datatype}",
+      "http_method": "GET",
+      "method_name": "CustomTypeResource.get",
+      "summary": "Get custom type values",
+      "description": "Return list of values for the custom type.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/types/custom",
+      "http_method": "GET",
+      "method_name": "CustomTypesResource.get",
+      "summary": "Get all custom types",
+      "description": "Return a list of available custom types.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/types/default/{datatype}/map",
+      "http_method": "GET",
+      "method_name": "DefaultTypeMapResource.get",
+      "summary": "Get default type map",
+      "description": "Return the map for a default type.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/types/default/{datatype}",
+      "http_method": "GET",
+      "method_name": "DefaultTypeResource.get",
+      "summary": "Get default type values",
+      "description": "Return a list of values for a default type.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/types/default",
+      "http_method": "GET",
+      "method_name": "DefaultTypesResource.get",
+      "summary": "Get all default types",
+      "description": "Return a list of available default types.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/types",
+      "http_method": "GET",
+      "method_name": "TypesResource.get",
+      "summary": "Get all types",
+      "description": "Return list of values for the custom type.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/name-formats",
+      "http_method": "GET",
+      "method_name": "NameFormatsResource.get",
+      "summary": "Get name formats",
+      "description": "Get list of name formats.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/name-groups/{surname}/{group}",
+      "http_method": "POST",
+      "method_name": "NameGroupsResource.post",
+      "summary": "Set name group mapping",
+      "description": "Set a name group mapping.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/name-groups/{surname}",
+      "http_method": "GET",
+      "method_name": "NameGroupsResource.get",
+      "summary": "Get name group mapping",
+      "description": "Get list of name group mappings.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/name-groups",
+      "http_method": "GET",
+      "method_name": "NameGroupsResource.get",
+      "summary": "Get all name group mappings",
+      "description": "Get list of name group mappings.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/bookmarks/{namespace}",
+      "http_method": "GET",
+      "method_name": "BookmarkResource.get",
+      "summary": "Get bookmarks by namespace",
+      "description": "Get list of bookmarks by namespace.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/bookmarks",
+      "http_method": "GET",
+      "method_name": "BookmarksResource.get",
+      "summary": "Get all bookmarks",
+      "description": "Get the list of bookmark types.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/bookmarks/{namespace}/{handle}",
+      "http_method": "PUT",
+      "method_name": "BookmarkEditResource.put",
+      "summary": "Create a bookmark",
+      "description": "Create a bookmark.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/bookmarks/{namespace}/{handle}",
+      "http_method": "DELETE",
+      "method_name": "BookmarkEditResource.delete",
+      "summary": "Delete a bookmark",
+      "description": "Delete a bookmark.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/filters/{namespace}/{name}",
+      "http_method": "GET",
+      "method_name": "FilterResource.get",
+      "summary": "Get a custom filter",
+      "description": "Get a custom filter.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/filters/{namespace}/{name}",
+      "http_method": "DELETE",
+      "method_name": "FilterResource.delete",
+      "summary": "Delete a custom filter",
+      "description": "Delete a custom filter.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/filters/{namespace}",
+      "http_method": "GET",
+      "method_name": "FiltersResource.get",
+      "summary": "Get filters for a namespace",
+      "description": "Get available custom filters and rules.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/filters/{namespace}",
+      "http_method": "POST",
+      "method_name": "FiltersResource.post",
+      "summary": "Create a custom filter",
+      "description": "Create a custom filter.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/filters/{namespace}",
+      "http_method": "PUT",
+      "method_name": "FiltersResource.put",
+      "summary": "Update a custom filter",
+      "description": "Update a custom filter.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/filters",
+      "http_method": "GET",
+      "method_name": "FiltersResources.get",
+      "summary": "Get all filters",
+      "description": "Get available custom filters and rules.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/translations/{language}",
+      "http_method": "GET",
+      "method_name": "TranslationResource.get",
+      "summary": "Get translation",
+      "description": "Get translation.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/translations/{language}",
+      "http_method": "POST",
+      "method_name": "TranslationResource.post",
+      "summary": "Get translation for posted strings",
+      "description": "Get translation for posted strings.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/translations",
+      "http_method": "GET",
+      "method_name": "TranslationsResource.get",
+      "summary": "Get available translations",
+      "description": "Get available translations.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/parsers/dna-match",
+      "http_method": "POST",
+      "method_name": "DnaMatchParserResource.post",
+      "summary": "Parse DNA match string",
+      "description": "Parse DNA match string.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/relations/{handle1}/{handle2}",
+      "http_method": "GET",
+      "method_name": "RelationResource.get",
+      "summary": "Get relationship between two people",
+      "description": "Get the most direct relationship between two people.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/relations/{handle1}/{handle2}/all",
+      "http_method": "GET",
+      "method_name": "RelationsResource.get",
+      "summary": "Get all relationships between two people",
+      "description": "Get all possible relationships between two people.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/living/{handle}/dates",
+      "http_method": "GET",
+      "method_name": "LivingDatesResource.get",
+      "summary": "Get estimated living dates",
+      "description": "Determine estimated birth and death dates.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/living/{handle}",
+      "http_method": "GET",
+      "method_name": "LivingResource.get",
+      "summary": "Determine if person is alive",
+      "description": "Determine if person alive.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/reports/{report_id}/file",
+      "http_method": "GET",
+      "method_name": "ReportFileResource.get",
+      "summary": "Get report file",
+      "description": "Get specific report attributes.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/reports/{report_id}/file",
+      "http_method": "POST",
+      "method_name": "ReportFileResource.post",
+      "summary": "Create report",
+      "description": "Create the report.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/reports/{report_id}",
+      "http_method": "GET",
+      "method_name": "ReportResource.get",
+      "summary": "Get report attributes",
+      "description": "Get specific report attributes.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/reports",
+      "http_method": "GET",
+      "method_name": "ReportsResource.get",
+      "summary": "Get all reports",
+      "description": "Get all available report attributes.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/reports/{report_id}/file/processed/{filename}",
+      "http_method": "GET",
+      "method_name": "ReportFileResultResource.get",
+      "summary": "Get processed report file",
+      "description": "Get the processed file.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/facts",
+      "http_method": "GET",
+      "method_name": "FactsResource.get",
+      "summary": "Get statistics from records",
+      "description": "Get statistics from records.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/exporters/{extension}/file",
+      "http_method": "POST",
+      "method_name": "ExporterFileResource.post",
+      "summary": "Create export",
+      "description": "Create the export.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/exporters/{extension}/file",
+      "http_method": "GET",
+      "method_name": "ExporterFileResource.get",
+      "summary": "Get export file",
+      "description": "Get export file.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/exporters/{extension}/file/processed/{filename}",
+      "http_method": "GET",
+      "method_name": "ExporterFileResultResource.get",
+      "summary": "Get processed export file",
+      "description": "Get the processed file.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/exporters/{extension}",
+      "http_method": "GET",
+      "method_name": "ExporterResource.get",
+      "summary": "Get exporter attributes",
+      "description": "Get specific report attributes.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/exporters",
+      "http_method": "GET",
+      "method_name": "ExportersResource.get",
+      "summary": "Get all exporters",
+      "description": "Get all available exporter attributes.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/importers/{extension}/file",
+      "http_method": "POST",
+      "method_name": "ImporterFileResource.post",
+      "summary": "Import file",
+      "description": "Import file.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/importers/{extension}",
+      "http_method": "GET",
+      "method_name": "ImporterResource.get",
+      "summary": "Get importer attributes",
+      "description": "Get specific report attributes.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/importers",
+      "http_method": "GET",
+      "method_name": "ImportersResource.get",
+      "summary": "Get all importers",
+      "description": "Get all available importer attributes.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/holidays/{country}/{year}/{month}/{day}",
+      "http_method": "GET",
+      "method_name": "HolidayResource.get",
+      "summary": "Get holiday name",
+      "description": "If the given day is a holiday return the name or names.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/holidays",
+      "http_method": "GET",
+      "method_name": "HolidaysResource.get",
+      "summary": "Get holiday countries",
+      "description": "Get list of countries that have holiday calendars.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/metadata",
+      "http_method": "GET",
+      "method_name": "MetadataResource.get",
+      "summary": "Get metadata",
+      "description": "Get active database and application related metadata information.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/users",
+      "http_method": "GET",
+      "method_name": "UsersResource.get",
+      "summary": "Get users",
+      "description": "Get users' details.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/users",
+      "http_method": "POST",
+      "method_name": "UsersResource.post",
+      "summary": "Add users",
+      "description": "Add one or more users.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/users/{user_name}",
+      "http_method": "GET",
+      "method_name": "UserResource.get",
+      "summary": "Get user details",
+      "description": "Get a user's details.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/users/{user_name}",
+      "http_method": "PUT",
+      "method_name": "UserResource.put",
+      "summary": "Update user details",
+      "description": "Update a user's details.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/users/{user_name}",
+      "http_method": "POST",
+      "method_name": "UserResource.post",
+      "summary": "Add a new user",
+      "description": "Add a new user.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/users/{user_name}",
+      "http_method": "DELETE",
+      "method_name": "UserResource.delete",
+      "summary": "Delete a user",
+      "description": "Delete a user.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/users/{user_name}/register",
+      "http_method": "POST",
+      "method_name": "UserRegisterResource.post",
+      "summary": "Register a new user",
+      "description": "Register a new user.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/users/{user_name}/create_owner",
+      "http_method": "POST",
+      "method_name": "UserCreateOwnerResource.post",
+      "summary": "Create a user with admin permissions",
+      "description": "Create a user with admin permissions.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/users/-/email/confirm",
+      "http_method": "GET",
+      "method_name": "UserConfirmEmailResource.get",
+      "summary": "Confirm email address",
+      "description": "Show email confirmation dialog.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/users/{user_name}/password/change",
+      "http_method": "POST",
+      "method_name": "UserChangePasswordResource.post",
+      "summary": "Change user password",
+      "description": "Post new password.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/users/-/password/reset",
+      "http_method": "POST",
+      "method_name": "UserResetPasswordResource.post",
+      "summary": "Reset user password",
+      "description": "Post new password.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/users/-/password/reset",
+      "http_method": "GET",
+      "method_name": "UserResetPasswordResource.get",
+      "summary": "Reset password form",
+      "description": "Reset password form.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/users/{user_name}/password/reset/trigger",
+      "http_method": "POST",
+      "method_name": "UserTriggerResetPasswordResource.post",
+      "summary": "Trigger password reset",
+      "description": "Post username to initiate the password reset.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/search",
+      "http_method": "GET",
+      "method_name": "SearchResource.get",
+      "summary": "Search",
+      "description": "Get search result.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/search/index",
+      "http_method": "POST",
+      "method_name": "SearchIndexResource.post",
+      "summary": "Trigger search reindex",
+      "description": "Trigger a reindex.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/chat",
+      "http_method": "POST",
+      "method_name": "ChatResource.post",
+      "summary": "Create a chat response",
+      "description": "Create a chat response.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/config",
+      "http_method": "GET",
+      "method_name": "ConfigsResource.get",
+      "summary": "Get all config settings",
+      "description": "Get all config settings.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/config/{key}",
+      "http_method": "GET",
+      "method_name": "ConfigResource.get",
+      "summary": "Get a config setting",
+      "description": "Get a config setting.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/config/{key}",
+      "http_method": "PUT",
+      "method_name": "ConfigResource.put",
+      "summary": "Update a config setting",
+      "description": "Update a config setting.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/config/{key}",
+      "http_method": "DELETE",
+      "method_name": "ConfigResource.delete",
+      "summary": "Delete a config setting",
+      "description": "Delete a config setting.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/tasks/{task_id}",
+      "http_method": "GET",
+      "method_name": "TaskResource.get",
+      "summary": "Get task info",
+      "description": "Get info about a task.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/media/{handle}/file",
+      "http_method": "GET",
+      "method_name": "MediaFileResource.get",
+      "summary": "Download a media file",
+      "description": "Download a file.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/media/{handle}/file",
+      "http_method": "PUT",
+      "method_name": "MediaFileResource.put",
+      "summary": "Upload a media file",
+      "description": "Upload a file and update the media object.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/media/{handle}/face_detection",
+      "http_method": "GET",
+      "method_name": "MediaFaceDetectionResource.get",
+      "summary": "Get detected face regions",
+      "description": "Get detected face regions.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/media/{handle}/ocr",
+      "http_method": "POST",
+      "method_name": "MediaOcrResource.post",
+      "summary": "Execute OCR on a file",
+      "description": "Execute OCR on a file.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/media/archive",
+      "http_method": "POST",
+      "method_name": "MediaArchiveResource.post",
+      "summary": "Create an archive of media files",
+      "description": "Create an archive of media files.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/media/archive/{filename}",
+      "http_method": "GET",
+      "method_name": "MediaArchiveFileResource.get",
+      "summary": "Download an archive of media files",
+      "description": "Download an archive of media files.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/media/archive/upload/zip",
+      "http_method": "POST",
+      "method_name": "MediaUploadZipResource.post",
+      "summary": "Upload an archive of media files",
+      "description": "Upload an archive of media files.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/media/{handle}/thumbnail/{size}",
+      "http_method": "GET",
+      "method_name": "get_thumbnail",
+      "summary": "Get a file's thumbnail",
+      "description": "Get a file's thumbnail.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/media/{handle}/cropped/{x1}/{y1}/{x2}/{y2}",
+      "http_method": "GET",
+      "method_name": "get_cropped",
+      "summary": "Get the thumbnail of a cropped file",
+      "description": "Get the thumbnail of a cropped file.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    },
+    {
+      "endpoint_path": "/api/media/{handle}/cropped/{x1}/{y1}/{x2}/{y2}/thumbnail/{size}",
+      "http_method": "GET",
+      "method_name": "get_thumbnail_cropped",
+      "summary": "Get the thumbnail of a cropped file",
+      "description": "Get the thumbnail of a cropped file.",
+      "line_number": 0,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gramps\\gramps-web-api-master\\gramps_webapi\\api\\__init__.py"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 25657,
+  "tokens": {
+    "prompt_tokens": 444388,
+    "completion_tokens": 51817,
+    "total_tokens": 496205,
+    "calls": 3,
+    "elapsed_s": 204.466,
+    "prompt_cost_usd": 0.05806,
+    "completion_cost_usd": 0.036634,
+    "total_cost_usd": 0.094692,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 143922,
+        "completion_tokens": 9793,
+        "total_tokens": 153715,
+        "calls": 1,
+        "elapsed_s": 25.653817,
+        "prompt_cost_usd": 0.002878,
+        "completion_cost_usd": 0.005876,
+        "total_cost_usd": 0.008754
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 132898,
+        "completion_tokens": 32279,
+        "total_tokens": 165177,
+        "calls": 1,
+        "elapsed_s": 123.631,
+        "prompt_cost_usd": 0.01329,
+        "completion_cost_usd": 0.01614,
+        "total_cost_usd": 0.029429
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 167568,
+        "completion_tokens": 9745,
+        "total_tokens": 177313,
+        "calls": 1,
+        "elapsed_s": 55.181,
+        "prompt_cost_usd": 0.041892,
+        "completion_cost_usd": 0.014618,
+        "total_cost_usd": 0.056509
+      }
+    ]
+  }
+}

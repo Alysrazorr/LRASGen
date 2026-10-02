@@ -1,0 +1,195 @@
+{
+  "task_id": "spring-ecommerce",
+  "api_name": "spring-ecommerce",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/auth/login",
+      "http_method": "POST",
+      "method_name": "login",
+      "summary": "Authenticate user and return JWT token",
+      "description": "Authenticates the user using the provided username and password, then returns an AuthenticationResponse containing the access token and username.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\AuthController.java"
+    },
+    {
+      "endpoint_path": "/api/auth/register",
+      "http_method": "POST",
+      "method_name": "register",
+      "summary": "Register a new user",
+      "description": "Registers a new user with the provided details. Checks if the username already exists; if so, returns a 400 error. Otherwise, creates the user and returns a success message.",
+      "line_number": 23,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\AuthController.java"
+    },
+    {
+      "endpoint_path": "/api/auth/accountVerification/{token}",
+      "http_method": "GET",
+      "method_name": "verifyAccount",
+      "summary": "Verify user account via token",
+      "description": "Verifies the user account using the provided verification token. If the token is valid, enables the user and returns a success response; otherwise, returns an error response.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\AuthController.java"
+    },
+    {
+      "endpoint_path": "/api/cart/add/{sku}",
+      "http_method": "POST",
+      "method_name": "addToCart",
+      "summary": "Add a product to the shopping cart",
+      "description": "Adds a product identified by its SKU to the current user's shopping cart.",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CartController.java"
+    },
+    {
+      "endpoint_path": "/api/store/catalog/categories",
+      "http_method": "GET",
+      "method_name": "readAllCategories",
+      "summary": "Read all categories",
+      "description": "Returns a list of all categories.",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CatalogController.java"
+    },
+    {
+      "endpoint_path": "/api/store/catalog/products",
+      "http_method": "GET",
+      "method_name": "readAllProducts",
+      "summary": "Read all products",
+      "description": "Returns a list of all products.",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CatalogController.java"
+    },
+    {
+      "endpoint_path": "/api/store/catalog/products/featured",
+      "http_method": "GET",
+      "method_name": "readFeaturedProducts",
+      "summary": "Read featured products",
+      "description": "Returns a list of featured products.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CatalogController.java"
+    },
+    {
+      "endpoint_path": "/api/store/catalog/products/{sku}",
+      "http_method": "GET",
+      "method_name": "readOneProduct",
+      "summary": "Read one product",
+      "description": "Returns a single product by SKU.",
+      "line_number": 32,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CatalogController.java"
+    },
+    {
+      "endpoint_path": "/api/store/catalog/products/category/{categoryName}",
+      "http_method": "GET",
+      "method_name": "readProductByCategory",
+      "summary": "Read products by category",
+      "description": "Returns a list of products belonging to the specified category.",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CatalogController.java"
+    },
+    {
+      "endpoint_path": "/api/store/catalog/{categoryName}/facets/filter",
+      "http_method": "POST",
+      "method_name": "filterForFacets",
+      "summary": "Filter for facets",
+      "description": "Performs a search with filters for a specific category and returns facets.",
+      "line_number": 42,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CatalogController.java"
+    },
+    {
+      "endpoint_path": "/api/store/catalog/search",
+      "http_method": "POST",
+      "method_name": "search",
+      "summary": "Search products",
+      "description": "Performs a full-text search across products.",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CatalogController.java"
+    },
+    {
+      "endpoint_path": "/api/products/ratings/submit",
+      "http_method": "POST",
+      "method_name": "postRating",
+      "summary": "Submit a product rating",
+      "description": "Submits a new product rating for the product identified by the SKU in the request body.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\ProductRatingController.java"
+    },
+    {
+      "endpoint_path": "/api/products/ratings/edit",
+      "http_method": "PUT",
+      "method_name": "editRating",
+      "summary": "Edit a product rating",
+      "description": "Edits an existing product rating identified by the rating ID in the request body.",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\ProductRatingController.java"
+    },
+    {
+      "endpoint_path": "/api/products/ratings/delete/{ratingId}",
+      "http_method": "DELETE",
+      "method_name": "deleteRating",
+      "summary": "Delete a product rating",
+      "description": "Deletes a product rating identified by the rating ID path variable and the product SKU in the request body.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\ProductRatingController.java"
+    },
+    {
+      "endpoint_path": "/api/products/ratings/get/{sku}",
+      "http_method": "GET",
+      "method_name": "getRating",
+      "summary": "Get product ratings",
+      "description": "Retrieves all ratings for the product identified by the SKU path variable.",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\ProductRatingController.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 6302,
+  "tokens": {
+    "prompt_tokens": 66069,
+    "completion_tokens": 6160,
+    "total_tokens": 72229,
+    "calls": 12,
+    "elapsed_s": 59.548,
+    "prompt_cost_usd": 0.008409,
+    "completion_cost_usd": 0.004221,
+    "total_cost_usd": 0.012629,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 21787,
+        "completion_tokens": 1184,
+        "total_tokens": 22971,
+        "calls": 4,
+        "elapsed_s": 6.296749999999999,
+        "prompt_cost_usd": 0.000436,
+        "completion_cost_usd": 0.00071,
+        "total_cost_usd": 0.001146
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 20656,
+        "completion_tokens": 3953,
+        "total_tokens": 24609,
+        "calls": 4,
+        "elapsed_s": 39.056,
+        "prompt_cost_usd": 0.002066,
+        "completion_cost_usd": 0.001976,
+        "total_cost_usd": 0.004042
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 23626,
+        "completion_tokens": 1023,
+        "total_tokens": 24649,
+        "calls": 4,
+        "elapsed_s": 14.195,
+        "prompt_cost_usd": 0.005907,
+        "completion_cost_usd": 0.001535,
+        "total_cost_usd": 0.007441
+      }
+    ]
+  }
+}

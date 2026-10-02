@@ -1,0 +1,338 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "ncs API",
+    "description": "LRASGen-generated specification for ncs (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/bessj/{n}/{x}": {
+      "get": {
+        "operationId": "getBessj",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "n",
+            "in": "path",
+            "required": true,
+            "description": "First edge",
+            "schema": {
+              "type": "integer",
+              "description": "First edge"
+            }
+          },
+          {
+            "name": "x",
+            "in": "path",
+            "required": true,
+            "description": "Second edge",
+            "schema": {
+              "type": "number",
+              "description": "Second edge"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the Bessel function result as a double.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Dto": {
+                      "type": "string",
+                      "description": "{'resultAsInt': 'integer', 'resultAsDouble': 'double'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request when n is less than or equal to 2 or greater than 1000."
+          }
+        }
+      }
+    },
+    "/api/expint/{n}/{x}": {
+      "get": {
+        "operationId": "getExpint",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "n",
+            "in": "path",
+            "required": true,
+            "description": "The order of the Bessel function",
+            "schema": {
+              "type": "integer",
+              "description": "The order of the Bessel function"
+            }
+          },
+          {
+            "name": "x",
+            "in": "path",
+            "required": true,
+            "description": "The argument of the Bessel function",
+            "schema": {
+              "type": "number",
+              "description": "The argument of the Bessel function"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the result of the expint calculation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Dto": {
+                      "type": "string",
+                      "description": "{'resultAsInt': 'integer', 'resultAsDouble': 'double'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when a RuntimeException is thrown during the expint calculation."
+          }
+        }
+      }
+    },
+    "/api/remainder/{a}/{b}": {
+      "get": {
+        "operationId": "getRemainder",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "a",
+            "in": "path",
+            "required": true,
+            "description": "First operand of the remainder operation",
+            "schema": {
+              "type": "integer",
+              "description": "First operand of the remainder operation",
+              "minimum": -10000.0,
+              "maximum": 10000.0
+            }
+          },
+          {
+            "name": "b",
+            "in": "path",
+            "required": true,
+            "description": "Second operand of the remainder operation",
+            "schema": {
+              "type": "integer",
+              "description": "Second operand of the remainder operation",
+              "minimum": -10000.0,
+              "maximum": 10000.0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully computed the remainder of a divided by b. Returns a DTO containing the integer result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Dto": {
+                      "type": "string",
+                      "description": "{'resultAsInt': 'integer', 'resultAsDouble': 'double'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when either a or b is outside the range [-10000, 10000]."
+          }
+        }
+      }
+    },
+    "/api/triangle/{a}/{b}/{c}": {
+      "get": {
+        "operationId": "getTriangle",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "a",
+            "in": "path",
+            "required": true,
+            "description": "First edge",
+            "schema": {
+              "type": "integer",
+              "description": "First edge"
+            }
+          },
+          {
+            "name": "b",
+            "in": "path",
+            "required": true,
+            "description": "Second edge",
+            "schema": {
+              "type": "integer",
+              "description": "Second edge"
+            }
+          },
+          {
+            "name": "c",
+            "in": "path",
+            "required": true,
+            "description": "Third edge",
+            "schema": {
+              "type": "integer",
+              "description": "Third edge"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully classified the triangle type and returned the result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Dto": {
+                      "type": "string",
+                      "description": "{'resultAsInt': 'integer', 'resultAsDouble': 'double'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/gammq/{a}/{x}": {
+      "get": {
+        "operationId": "getGammq",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "a",
+            "in": "path",
+            "required": true,
+            "description": "First parameter",
+            "schema": {
+              "type": "number",
+              "description": "First parameter"
+            }
+          },
+          {
+            "name": "x",
+            "in": "path",
+            "required": true,
+            "description": "Second parameter",
+            "schema": {
+              "type": "number",
+              "description": "Second parameter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the result of the gammq computation as a double.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Dto": {
+                      "type": "string",
+                      "description": "{'resultAsInt': 'integer', 'resultAsDouble': 'double'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when a RuntimeException is thrown during the gammq computation."
+          }
+        }
+      }
+    },
+    "/api/fisher/{m}/{n}/{x}": {
+      "get": {
+        "operationId": "getFisher",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "m",
+            "in": "path",
+            "required": true,
+            "description": "First parameter of the Fisher distribution",
+            "schema": {
+              "type": "integer",
+              "description": "First parameter of the Fisher distribution",
+              "maximum": 1000.0
+            }
+          },
+          {
+            "name": "n",
+            "in": "path",
+            "required": true,
+            "description": "Second parameter of the Fisher distribution",
+            "schema": {
+              "type": "integer",
+              "description": "Second parameter of the Fisher distribution",
+              "maximum": 1000.0
+            }
+          },
+          {
+            "name": "x",
+            "in": "path",
+            "required": true,
+            "description": "Value at which to evaluate the Fisher distribution",
+            "schema": {
+              "type": "number",
+              "description": "Value at which to evaluate the Fisher distribution"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with the computed Fisher distribution result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Dto": {
+                      "type": "string",
+                      "description": "{'resultAsInt': 'integer', 'resultAsDouble': 'double'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request when m > 1000 or n > 1000, or when Fisher.exe throws a RuntimeException"
+          }
+        }
+      }
+    }
+  }
+}

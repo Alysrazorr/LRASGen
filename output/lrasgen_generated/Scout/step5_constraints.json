@@ -1,0 +1,3162 @@
+{
+  "task_id": "scout-api",
+  "api_name": "scout-api",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/v2/activities/{id}",
+      "http_method": "GET",
+      "method_name": "get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\ActivityResourceV2.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the activity to read.",
+          "_depth": 0
+        },
+        {
+          "name": "attrs",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The attributes to include in the response. Comma-separated list.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Read a specific activity. Returns the activity as JSON.",
+          "data_schema": [
+            {
+              "name": "Activity",
+              "schema": {
+                "id": "long",
+                "properties": "ActivityProperties",
+                "derived": "ActivityDerived",
+                "related": "array<long>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/activities/{id}/rating",
+      "http_method": "DELETE",
+      "method_name": "deleteRating",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\ActivityResourceV2.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "Identifier of the activity whose rating should be removed",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content - The end-user's rating was successfully removed.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - The authenticated user does not have the required permission (rating_set_own) to remove the rating.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/system_messages",
+      "http_method": "GET",
+      "method_name": "all",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\SystemMessageResource.java",
+      "parameters": [
+        {
+          "name": "key",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Filter system messages by key prefix. Comma-separated list of key prefixes.",
+          "_depth": 0
+        },
+        {
+          "name": "valid",
+          "type": "ValidityInterval",
+          "require": "false",
+          "position": "query",
+          "description": "Filter system messages by validity interval.",
+          "enum": [
+            "now",
+            "now_and_future"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "attrs",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The attributes to include in the response. Comma-separated list.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A JSON array of system messages, optionally filtered by key prefix and validity interval, and optionally limited to specified attributes.",
+          "data_schema": [
+            {
+              "name": "SystemMessage",
+              "schema": {
+                "id": "long",
+                "key": "string",
+                "value": "string",
+                "valid_to": "date",
+                "valid_from": "date"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/activities/{id}/rating",
+      "http_method": "GET",
+      "method_name": "getRating",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\ActivityResourceV2.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the activity whose rating to retrieve.",
+          "_depth": 0
+        },
+        {
+          "name": "attrs",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The attributes to include in the response. Comma-separated list.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK. Returns the end-user's rating for the activity, serialized as JSON.",
+          "data_schema": [
+            {
+              "name": "ActivityRating",
+              "schema": {
+                "rating": "integer",
+                "favourite": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required permission (rating_set_own).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/activities/{id}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\ActivityResourceV2.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the activity to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Activity deleted successfully. No content returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required permission (activity_edit) to delete the activity.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected error occurred while deleting the activity.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/activities/{id}",
+      "http_method": "PUT",
+      "method_name": "update",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\ActivityResourceV2.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The id of the activity to update",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared.",
+          "max_length": "100"
+        },
+        {
+          "name": "datePublished",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "dateCreated",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "dateUpdated",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "descriptionMaterial",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionIntroduction",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionPrepare",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionMain",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionSafety",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionNotes",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared.",
+          "max_length": "20000"
+        },
+        {
+          "name": "ageMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared.",
+          "max": 100
+        },
+        {
+          "name": "ageMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared.",
+          "max": 100
+        },
+        {
+          "name": "participantsMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "participantsMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "timeMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "timeMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "featured",
+          "type": "Boolean",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "source",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "tags",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "mediaFiles",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "New activity properties. Activity properties not specified in the request will be cleared."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Activity updated successfully. Returns the updated Activity object.",
+          "data_schema": [
+            {
+              "name": "Activity",
+              "schema": {
+                "id": "long",
+                "properties": "ActivityProperties",
+                "derived": "ActivityDerived",
+                "related": "array of long",
+                "ratings_count": "long",
+                "ratings_sum": "long",
+                "favourites_count": "long",
+                "ratings_average": "double"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have permission to edit activities.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected error occurred while updating the activity.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/activities/{id}/rating",
+      "http_method": "POST",
+      "method_name": "postRating",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\ActivityResourceV2.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "Identifier of the activity to rate.",
+          "_depth": 0
+        },
+        {
+          "name": "rating",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Rating attributes containing the rating value and favourite flag."
+        },
+        {
+          "name": "favourite",
+          "type": "Boolean",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Rating attributes containing the rating value and favourite flag."
+        },
+        {
+          "name": "rating",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "The rating value to set for the activity.",
+          "_depth": 0
+        },
+        {
+          "name": "favourite",
+          "type": "boolean",
+          "require": "false",
+          "position": "body",
+          "description": "Whether the activity is marked as a favourite.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. The rating was successfully set or updated.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required permission (rating_set_own).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/activities/{id}",
+      "http_method": "PATCH",
+      "method_name": "patch",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\ActivityResourceV2.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the activity to patch.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated.",
+          "max_length": "100"
+        },
+        {
+          "name": "datePublished",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "dateCreated",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "dateUpdated",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "descriptionMaterial",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionIntroduction",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionPrepare",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionMain",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionSafety",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionNotes",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated.",
+          "max_length": "20000"
+        },
+        {
+          "name": "ageMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated.",
+          "max": 100
+        },
+        {
+          "name": "ageMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated.",
+          "max": 100
+        },
+        {
+          "name": "participantsMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "participantsMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "timeMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "timeMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "featured",
+          "type": "Boolean",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "source",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "tags",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "mediaFiles",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The activity properties to update. Only the properties specified in the request will be updated."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully updated the activity with new information. Only the properties specified in the request will be updated.",
+          "data_schema": [
+            {
+              "name": "Activity",
+              "schema": {
+                "id": "long",
+                "properties": "ActivityProperties",
+                "propertiesRevisions": "array",
+                "derived": "ActivityDerived",
+                "related": "array",
+                "ratingsCount": "long",
+                "ratingsSum": "long",
+                "favouritesCount": "long",
+                "ratingsAverage": "double"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required permission (activity_edit) to update the activity.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/activities",
+      "http_method": "POST",
+      "method_name": "create",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\ActivityResourceV2.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max_length": "100"
+        },
+        {
+          "name": "datePublished",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "dateCreated",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "dateUpdated",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "descriptionMaterial",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionIntroduction",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionPrepare",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionMain",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionSafety",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionNotes",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max_length": "20000"
+        },
+        {
+          "name": "ageMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max": 100
+        },
+        {
+          "name": "ageMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max": 100
+        },
+        {
+          "name": "participantsMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "participantsMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "timeMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "timeMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "featured",
+          "type": "Boolean",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "source",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "tags",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "mediaFiles",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Activity created successfully. Returns the created Activity object.",
+          "data_schema": [
+            {
+              "name": "Activity",
+              "schema": {
+                "id": "long",
+                "properties": "ActivityProperties",
+                "propertiesRevisions": "array",
+                "derived": "ActivityDerived",
+                "related": "array",
+                "ratingsCount": "long",
+                "ratingsSum": "long",
+                "favouritesCount": "long",
+                "ratingsAverage": "double"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required permission (activity_create) to create an activity.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected error occurred while creating the activity.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/system_messages/{id}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\SystemMessageResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The id of the system message to delete.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "System message deleted successfully. No content is returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required permission (system_message_manage).",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/system_messages",
+      "http_method": "POST",
+      "method_name": "create",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\SystemMessageResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The system message to create"
+        },
+        {
+          "name": "key",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The system message to create"
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The system message to create"
+        },
+        {
+          "name": "validTo",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The system message to create"
+        },
+        {
+          "name": "validFrom",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The system message to create"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "System message created successfully. Returns the created SystemMessage object.",
+          "data_schema": [
+            {
+              "name": "SystemMessage",
+              "schema": {
+                "id": "long",
+                "key": "string",
+                "value": "string",
+                "valid_to": "date",
+                "valid_from": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required permission (system_message_manage).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/system/ping",
+      "http_method": "GET",
+      "method_name": "ping",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\SystemResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. The ping endpoint returns an empty response with HTTP status 204.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/system_messages/{id}",
+      "http_method": "GET",
+      "method_name": "get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\SystemMessageResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the system message to retrieve.",
+          "_depth": 0
+        },
+        {
+          "name": "attrs",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The attributes to include in the response. Comma-separated list.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK. Returns the system message with the specified id, serialized as JSON. The response body is a JSON string produced by okResponse, which serializes the SystemMessage object (optionally filtered by the attrs query parameter).",
+          "data_schema": [
+            {
+              "name": "SystemMessage",
+              "schema": {
+                "id": "long",
+                "key": "string",
+                "value": "string",
+                "valid_to": "date",
+                "valid_from": "date"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/system_messages/{id}",
+      "http_method": "PUT",
+      "method_name": "update",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\SystemMessageResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "Identifier of the system message to update.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated system message payload."
+        },
+        {
+          "name": "key",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The updated system message payload."
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The updated system message payload."
+        },
+        {
+          "name": "validTo",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated system message payload."
+        },
+        {
+          "name": "validFrom",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated system message payload."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully updated the system message. Returns the updated SystemMessage object.",
+          "data_schema": [
+            {
+              "name": "SystemMessage",
+              "schema": {
+                "id": "long",
+                "key": "string",
+                "value": "string",
+                "valid_to": "date",
+                "valid_from": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required permission (system_message_manage).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/activities",
+      "http_method": "GET",
+      "method_name": "all",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\ActivityResourceV2.java",
+      "parameters": [
+        {
+          "name": "attrs",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The attributes to include in the response. Comma-separated list.",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Words to look for in activity names. Prefix word with minus character to exclude activities with that word.",
+          "_depth": 0
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Words to look for in any text field. Prefix word with minus character to exclude activities with that word.",
+          "_depth": 0
+        },
+        {
+          "name": "featured",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Show featured (hand-picked by editor) activities",
+          "_depth": 0
+        },
+        {
+          "name": "categories",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Show activites with at least one of the specified tags. Comma-separated list of tag ids.",
+          "_depth": 0
+        },
+        {
+          "name": "ages",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Find activities suited for certain ages. Comma-separated list of ages.",
+          "_depth": 0
+        },
+        {
+          "name": "participants",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Find activities suited for certain number of participants.",
+          "_depth": 0
+        },
+        {
+          "name": "durations",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Find activities which can be completed in a certain amount of time. Unit: minutes.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Find specific activites based on their internal identifiers. It is not expected that end-users know these number. Comma-separated list.",
+          "_depth": 0
+        },
+        {
+          "name": "my_favourites",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Limit result to activities which the current user (as determined by API key) has marked as favourites.",
+          "_depth": 0
+        },
+        {
+          "name": "ratings_count_min",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Show activities which have been rated by at least this many users",
+          "_depth": 0
+        },
+        {
+          "name": "ratings_average_min",
+          "type": "number",
+          "require": "false",
+          "position": "query",
+          "description": "Show activities whose average rating is at this amount.",
+          "_depth": 0
+        },
+        {
+          "name": "random",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Limit result to a number of random activities matching the other conditions.",
+          "_depth": 0
+        },
+        {
+          "name": "favourites",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Limit result to the overall favourite activities. This means a list of activities sorted by the number of users who have marked them as their favourites. This parameter cannot be used together with any other filtering parameters (meaning that it is not possible to use it to, for example, show favourites for a particular category or age group).",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns a list of activities matching the search criteria. The response is a JSON array of activity objects.",
+          "data_schema": [
+            {
+              "name": "ActivityList",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "source": "string",
+                "author": "User",
+                "date_created": "date",
+                "date_published": "date",
+                "date_updated": "date",
+                "description_material": "string",
+                "description_introduction": "string",
+                "description_prepare": "string",
+                "description_main": "string",
+                "description_safety": "string",
+                "description_notes": "string",
+                "age_min": "integer",
+                "age_max": "integer",
+                "participants_min": "integer",
+                "participants_max": "integer",
+                "time_min": "integer",
+                "time_max": "integer",
+                "featured": "boolean",
+                "tags": "array of Tag",
+                "media_files": "array of MediaFile",
+                "ratings_count": "long",
+                "ratings_sum": "long",
+                "ratings_average": "double",
+                "favourites_count": "long",
+                "related": "array of long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the request contains invalid parameters, such as non-numeric values for numeric fields (e.g., ages, participants, durations, id). The exception message is: 'Could not understand the request. Perhaps you sent text instead of integers?'",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when an unexpected error occurs during processing, such as a database failure or other runtime exception not caught by the handler.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/system/roles",
+      "http_method": "GET",
+      "method_name": "roles",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\SystemResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the permission levels and role levels as a JSON object.",
+          "data_schema": [
+            {
+              "name": "RolesView",
+              "schema": {
+                "permission_levels": "object",
+                "role_levels": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/tags",
+      "http_method": "GET",
+      "method_name": "all",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\TagResource.java",
+      "parameters": [
+        {
+          "name": "group",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returned tags must have this text in their group names.",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returned tags must have this text in their names.",
+          "_depth": 0
+        },
+        {
+          "name": "min_activities_count",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Returned tags must have this text in their names.",
+          "_depth": 0
+        },
+        {
+          "name": "attrs",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The attributes to include in the response. Comma-separated list.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing a JSON array of Tag objects. The response body is a JSON string produced by serializing the list of tags returned by TagDao.find(group, name, minActivitiesCount).",
+          "data_schema": [
+            {
+              "name": "Tag",
+              "schema": {
+                "id": "long",
+                "group": "string",
+                "name": "string",
+                "activities_count": "long",
+                "media_file": "MediaFile"
+              }
+            },
+            {
+              "name": "MediaFile",
+              "schema": {
+                "id": "long",
+                "mime_type": "string",
+                "uri": "string",
+                "name": "string",
+                "capture_date": "date",
+                "copy_right": "string",
+                "author": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/tags/{id}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\TagResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The id of the tag to delete.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Tag deleted successfully. The handler returns void, so the response has no body.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required permission (category_edit).",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/tags/{id}",
+      "http_method": "GET",
+      "method_name": "get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\TagResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the tag to retrieve.",
+          "_depth": 0
+        },
+        {
+          "name": "attrs",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The attributes to include in the response. Comma-separated list.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK. Returns the tag with the specified id, serialized as JSON. The response body is a JSON object whose fields depend on the optional 'attrs' query parameter.",
+          "data_schema": [
+            {
+              "name": "Tag",
+              "schema": {
+                "id": "long",
+                "group": "string",
+                "name": "string",
+                "activities_count": "long",
+                "media_file": "MediaFile"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Thrown when the JSON serialization of the tag fails (JsonProcessingException) inside AbstractResource.toJson.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/tags",
+      "http_method": "POST",
+      "method_name": "create",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\TagResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Tag object to create"
+        },
+        {
+          "name": "group",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Tag object to create"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Tag object to create"
+        },
+        {
+          "name": "activities",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Tag object to create"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Tag created successfully. Returns the created Tag object as JSON.",
+          "data_schema": [
+            {
+              "name": "Tag",
+              "schema": {
+                "id": "long",
+                "group": "string",
+                "name": "string",
+                "activities_count": "long",
+                "media_file": "MediaFile"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required permission (category_create) to create a tag.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/tags/{id}",
+      "http_method": "PUT",
+      "method_name": "update",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\TagResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the tag to update",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Updated tag data"
+        },
+        {
+          "name": "group",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated tag data"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated tag data"
+        },
+        {
+          "name": "activities",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Updated tag data"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The tag was updated successfully. Returns the updated Tag object.",
+          "data_schema": [
+            {
+              "name": "Tag",
+              "schema": {
+                "id": "long",
+                "group": "string",
+                "name": "string",
+                "activities_count": "long",
+                "media_file": "MediaFile"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required permission (category_edit).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/activities",
+      "http_method": "POST",
+      "method_name": "create",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\ActivityResourceV1.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max_length": "100"
+        },
+        {
+          "name": "datePublished",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "dateCreated",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "dateUpdated",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "descriptionMaterial",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionIntroduction",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionPrepare",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionMain",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionSafety",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionNotes",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max_length": "20000"
+        },
+        {
+          "name": "ageMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max": 100
+        },
+        {
+          "name": "ageMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity",
+          "max": 100
+        },
+        {
+          "name": "participantsMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "participantsMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "timeMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "timeMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "featured",
+          "type": "Boolean",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "source",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "tags",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        },
+        {
+          "name": "mediaFiles",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties for the new activity"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Activity created successfully",
+          "data_schema": [
+            {
+              "name": "Activity",
+              "schema": {
+                "id": "long",
+                "properties": "ActivityProperties",
+                "derived": "ActivityDerived",
+                "relations": "List<ActivityRelation>",
+                "relatedIds": "Long[]",
+                "ratingsCount": "long",
+                "ratingsSum": "long",
+                "ratingsAverage": "double",
+                "favouritesCount": "long"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/activities/{id}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\ActivityResourceV1.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the activity to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. The activity was successfully deleted.",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. Authentication is required to delete an activity.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have permission to delete the activity.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The activity with the specified id does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/activities/{id}",
+      "http_method": "GET",
+      "method_name": "get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\ActivityResourceV1.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the activity to read.",
+          "_depth": 0
+        },
+        {
+          "name": "attrs",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The activity attributes to include in the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Read a specific activity",
+          "data_schema": [
+            {
+              "name": "ActivityApiV1View",
+              "schema": {
+                "_related": "array",
+                "_ratings_average": "double",
+                "ratingsSum": "long",
+                "ratingsCount": "long",
+                "name": "string",
+                "updated_at": "date",
+                "created_at": "date",
+                "descr_material": "string",
+                "descr_introduction": "string",
+                "descr_prepare": "string",
+                "descr_main": "string",
+                "descr_safety": "string",
+                "descriptionNotes": "string",
+                "ageMin": "integer",
+                "ageMax": "integer",
+                "participantsMin": "integer",
+                "participantsMax": "integer",
+                "timeMin": "integer",
+                "timeMax": "integer",
+                "featured": "boolean",
+                "categories": "array",
+                "media_files": "array",
+                "revision_id": "long",
+                "id": "long"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/activities/{id}/rating",
+      "http_method": "GET",
+      "method_name": "getRating",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\ActivityResourceV1.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The activity id",
+          "_depth": 0
+        },
+        {
+          "name": "attrs",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The activity attributes to include in the response",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the end-user's rating for the specified activity. The response body is an ActivityRatingAttrs object containing the rating and favourite flag.",
+          "data_schema": [
+            {
+              "name": "ActivityRatingAttrs",
+              "schema": {
+                "rating": "integer",
+                "favourite": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. Returned when the request lacks valid authentication credentials.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned when the specified activity does not exist or no rating exists for the current user.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when an unexpected error occurs while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/activities/{id}/rating",
+      "http_method": "POST",
+      "method_name": "postRating",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\ActivityResourceV1.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The activity id",
+          "_depth": 0
+        },
+        {
+          "name": "rating",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The end-user's rating attributes for the activity"
+        },
+        {
+          "name": "favourite",
+          "type": "Boolean",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The end-user's rating attributes for the activity"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. The rating was successfully set or updated.",
+          "data_schema": []
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. Authentication is required.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The activity with the specified id does not exist.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/activities/{id}/rating",
+      "http_method": "DELETE",
+      "method_name": "deleteRating",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\ActivityResourceV1.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The activity id",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. The end-user's rating was successfully removed from the activity.",
+          "data_schema": []
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. The request requires authentication via API key.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The activity with the specified id does not exist.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/activities",
+      "http_method": "GET",
+      "method_name": "all",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\ActivityResourceV1.java",
+      "parameters": [
+        {
+          "name": "attrs",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The activity attributes to include in the response",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "",
+          "_depth": 0
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Words to look for in any text field. Prefix word with minus character to exclude activities with that word.",
+          "_depth": 0
+        },
+        {
+          "name": "featured",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Show featured (hand-picked by editor) activities",
+          "_depth": 0
+        },
+        {
+          "name": "categories",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Show activites with at least one of the specified tags. Comma-separated list of category ids.",
+          "_depth": 0
+        },
+        {
+          "name": "age_1",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "",
+          "_depth": 0
+        },
+        {
+          "name": "age_2",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "",
+          "_depth": 0
+        },
+        {
+          "name": "participants",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Find activities suited for certain number of participants.",
+          "_depth": 0
+        },
+        {
+          "name": "time_1",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "",
+          "_depth": 0
+        },
+        {
+          "name": "time_2",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "",
+          "_depth": 0
+        },
+        {
+          "name": "my_favourites",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Limit result to activities which the current user (as determined by API key) has marked as favourites.",
+          "_depth": 0
+        },
+        {
+          "name": "ratings_count_min",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Show activities which have been rated by at least this many users",
+          "_depth": 0
+        },
+        {
+          "name": "ratings_average_min",
+          "type": "number",
+          "require": "false",
+          "position": "query",
+          "description": "Show activities whose average rating is at this amount.",
+          "_depth": 0
+        },
+        {
+          "name": "random",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Limit result to a number of random activities matching the other conditions.",
+          "_depth": 0
+        },
+        {
+          "name": "favourites",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Limit result to the overall favourite activities. This means a list of activities sorted by the number of users who have marked them as their favourites. This parameter cannot be used together with any other filtering parameters (meaning that it is not possible to use it to, for example, show favourites for a particular category or age group).",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of activities matching the search criteria.",
+          "data_schema": [
+            {
+              "name": "ActivityApiV1View",
+              "schema": {
+                "_related": "array",
+                "_ratings_average": "double",
+                "ratingsSum": "long",
+                "ratingsCount": "long",
+                "name": "string",
+                "updated_at": "date",
+                "created_at": "date",
+                "descr_material": "string",
+                "descr_introduction": "string",
+                "descr_prepare": "string",
+                "descr_main": "string",
+                "descr_safety": "string",
+                "descriptionNotes": "string",
+                "ageMin": "integer",
+                "ageMax": "integer",
+                "participantsMin": "integer",
+                "participantsMax": "integer",
+                "timeMin": "integer",
+                "timeMax": "integer",
+                "featured": "boolean",
+                "categories": "array",
+                "media_files": "array",
+                "revision_id": "long",
+                "id": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to getActivities, which may throw an exception that is not caught.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/activities/{id}",
+      "http_method": "PATCH",
+      "method_name": "patch",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\ActivityResourceV1.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The id of the activity to patch",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated.",
+          "max_length": "100"
+        },
+        {
+          "name": "datePublished",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "dateCreated",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "dateUpdated",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "descriptionMaterial",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionIntroduction",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionPrepare",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionMain",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionSafety",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionNotes",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated.",
+          "max_length": "20000"
+        },
+        {
+          "name": "ageMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated.",
+          "max": 100
+        },
+        {
+          "name": "ageMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated.",
+          "max": 100
+        },
+        {
+          "name": "participantsMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "participantsMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "timeMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "timeMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "featured",
+          "type": "Boolean",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "source",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "tags",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated."
+        },
+        {
+          "name": "mediaFiles",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Activity properties to update. Only the properties specified in the request will be updated."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Activity updated successfully. Returns the updated Activity object.",
+          "data_schema": [
+            {
+              "name": "Activity",
+              "schema": {
+                "id": "long",
+                "properties": "ActivityProperties",
+                "derived": "ActivityDerived",
+                "related": "array of long",
+                "ratingsCount": "long",
+                "ratingsSum": "long",
+                "ratingsAverage": "double",
+                "favouritesCount": "long"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/categories",
+      "http_method": "GET",
+      "method_name": "all",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\CategoryResource.java",
+      "parameters": [
+        {
+          "name": "group",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returned tags must have this text in their group names.",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Returned tags must have this text in their names.",
+          "_depth": 0
+        },
+        {
+          "name": "min_activities_count",
+          "type": "long",
+          "require": "false",
+          "position": "query",
+          "description": "Returned tags must have this text in their names.",
+          "_depth": 0
+        },
+        {
+          "name": "attrs",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The attributes to include in the response. Comma-separated list.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON array of tags (categories) matching the optional group, name, and min_activities_count filters, with optional attribute filtering via the attrs query parameter.",
+          "data_schema": [
+            {
+              "name": "TagList",
+              "schema": {
+                "id": "long",
+                "group": "string",
+                "name": "string",
+                "activities_count": "long",
+                "media_file": "MediaFile"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/activities/{id}",
+      "http_method": "PUT",
+      "method_name": "update",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\ActivityResourceV1.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the activity to update",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared.",
+          "max_length": "100"
+        },
+        {
+          "name": "datePublished",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "dateCreated",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "dateUpdated",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "descriptionMaterial",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionIntroduction",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionPrepare",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionMain",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionSafety",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared.",
+          "max_length": "20000"
+        },
+        {
+          "name": "descriptionNotes",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared.",
+          "max_length": "20000"
+        },
+        {
+          "name": "ageMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared.",
+          "max": 100
+        },
+        {
+          "name": "ageMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared.",
+          "max": 100
+        },
+        {
+          "name": "participantsMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "participantsMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "timeMin",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "timeMax",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "featured",
+          "type": "Boolean",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "source",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "tags",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+        },
+        {
+          "name": "mediaFiles",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Activity updated successfully. Returns the updated activity.",
+          "data_schema": [
+            {
+              "name": "Activity",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "datePublished": "date",
+                "dateCreated": "date",
+                "dateUpdated": "date",
+                "descriptionMaterial": "string",
+                "descriptionIntroduction": "string",
+                "descriptionPrepare": "string",
+                "descriptionMain": "string",
+                "descriptionSafety": "string",
+                "descriptionNotes": "string",
+                "ageMin": "integer",
+                "ageMax": "integer",
+                "participantsMin": "integer",
+                "participantsMax": "integer",
+                "timeMin": "integer",
+                "timeMax": "integer",
+                "featured": "boolean",
+                "source": "string",
+                "tags": "array",
+                "mediaFiles": "array",
+                "author": "User",
+                "propertiesRevisions": "array",
+                "publishedProperties": "ActivityProperties",
+                "derived": "ActivityDerived",
+                "relations": "array",
+                "relatedIds": "array",
+                "ratingsCount": "long",
+                "ratingsSum": "long",
+                "ratingsAverage": "double",
+                "favouritesCount": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Activity not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/categories/{id}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\CategoryResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the category to delete.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Category deleted successfully. The delete operation returns no content.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required permission (category_edit) to delete the category.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/categories",
+      "http_method": "POST",
+      "method_name": "create",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\CategoryResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Tag object to create"
+        },
+        {
+          "name": "group",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Tag object to create"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Tag object to create"
+        },
+        {
+          "name": "activities",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Tag object to create"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The category was created successfully. Returns the created Tag object.",
+          "data_schema": [
+            {
+              "name": "Tag",
+              "schema": {
+                "id": "long",
+                "group": "string",
+                "name": "string",
+                "activities_count": "long",
+                "media_file": "MediaFile"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required permission (category_create) to create a category.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/categories/{id}",
+      "http_method": "PUT",
+      "method_name": "update",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\CategoryResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the category to update",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Updated tag data"
+        },
+        {
+          "name": "group",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated tag data"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated tag data"
+        },
+        {
+          "name": "activities",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Updated tag data"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The category was successfully updated and the updated Tag object is returned.",
+          "data_schema": [
+            {
+              "name": "Tag",
+              "schema": {
+                "id": "long",
+                "group": "string",
+                "name": "string",
+                "activities_count": "long",
+                "media_file": "MediaFile"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "The authenticated user does not have the required permission (category_edit) to update the category.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/categories/{id}",
+      "http_method": "GET",
+      "method_name": "get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\CategoryResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the category to retrieve.",
+          "_depth": 0
+        },
+        {
+          "name": "attrs",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The attributes to include in the response. Comma-separated list.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK. Returns the category (tag) with the specified id, serialized as JSON. The response body is a JSON string produced by okResponse, containing the tag data filtered by the optional attrs query parameter.",
+          "data_schema": [
+            {
+              "name": "Tag",
+              "schema": {
+                "id": "long",
+                "group": "string",
+                "name": "string",
+                "activities_count": "long",
+                "media_file": "MediaFile"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/favourites",
+      "http_method": "GET",
+      "method_name": "get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\FavouritesResourceV1.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "false",
+          "position": "path",
+          "description": "Path parameter id.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of activity IDs that the authenticated user has marked as favourites.",
+          "data_schema": [
+            {
+              "name": "List<Long>",
+              "schema": {
+                "activity_id": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required permission (rating_set_own).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v1/favourites",
+      "http_method": "POST",
+      "method_name": "put",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Scout\\scout-api\\api\\src\\main\\java\\se\\devscout\\scoutapi\\resource\\v1\\FavouritesResourceV1.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "false",
+          "position": "path",
+          "description": "The ID of the resource, injected via @PathParam(\"id\").",
+          "_depth": 0
+        },
+        {
+          "name": "properties",
+          "type": "PutFavouritesEntity",
+          "require": "false",
+          "position": "body",
+          "description": "The request body containing the list of activity IDs to mark as favourites.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "List<Long>",
+          "require": "false",
+          "position": "body",
+          "description": "List of activity IDs to be set as favourites.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Favourites updated successfully. The method returns void, so the response has no body.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required permission (rating_set_own).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 6812,
+  "tokens": {
+    "prompt_tokens": 25305,
+    "completion_tokens": 4818,
+    "total_tokens": 30123,
+    "calls": 12,
+    "elapsed_s": 56.127,
+    "prompt_cost_usd": 0.00326,
+    "completion_cost_usd": 0.003098,
+    "total_cost_usd": 0.006357,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 8228,
+        "completion_tokens": 1531,
+        "total_tokens": 9759,
+        "calls": 4,
+        "elapsed_s": 6.808899,
+        "prompt_cost_usd": 0.000165,
+        "completion_cost_usd": 0.000919,
+        "total_cost_usd": 0.001083
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 7824,
+        "completion_tokens": 2752,
+        "total_tokens": 10576,
+        "calls": 4,
+        "elapsed_s": 39.288,
+        "prompt_cost_usd": 0.000782,
+        "completion_cost_usd": 0.001376,
+        "total_cost_usd": 0.002158
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 9253,
+        "completion_tokens": 535,
+        "total_tokens": 9788,
+        "calls": 4,
+        "elapsed_s": 10.03,
+        "prompt_cost_usd": 0.002313,
+        "completion_cost_usd": 0.000803,
+        "total_cost_usd": 0.003116
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 9,
+    "step2_ms": 315,
+    "step3_ms": 18519,
+    "step4_ms": 10172,
+    "step5_ms": 6812,
+    "total_ms": 35836
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "task_id": "ncs",
+  "api_name": "ncs",
+  "framework": "spring-boot",
+  "entry_to_deps": {
+    "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\NCS\\ncs\\src\\main\\java\\org\\restncs\\NcsRest.java": {
+      "entry_code_file": "@RestController\n@RequestMapping(path = \"/api\")\npublic class NcsRest {\n\n    @ApiOperation(\"Check the triangle type of the given three edges\")\n    @GetMapping(\n            value = \"/triangle/{a}/{b}/{c}\",\n            produces = MediaType.APPLICATION_JSON_VALUE\n    )\n    public ResponseEntity<Dto> checkTriangle(\n            @ApiParam(\"First edge\")\n            @PathVariable(\"a\") Integer a,\n            @ApiParam(\"Second edge\")\n            @PathVariable(\"b\") Integer b,\n            @ApiParam(\"Third edge\")\n            @PathVariable(\"c\") Integer c\n    ){\n\n        Dto dto = new Dto();\n        dto.resultAsInt = TriangleClassification.classify(a,b,c);\n\n        return ResponseEntity.ok(dto);\n    }\n\n\n    @GetMapping(\n            value = \"/bessj/{n}/{x}\",\n            produces = MediaType.APPLICATION_JSON_VALUE\n    )\n    public ResponseEntity<Dto> bessj(\n            @PathVariable(\"n\") Integer n,\n            @PathVariable(\"x\") Double x\n    ){\n        if(n <= 2 || n > 1000){\n            return ResponseEntity.status(400).build();\n        }\n\n        Dto dto = new Dto();\n        Bessj bessj = new Bessj();\n        dto.resultAsDouble = bessj.bessj(n, x);\n\n        return ResponseEntity.ok(dto);\n    }\n\n\n    @GetMapping(\n            value = \"/expint/{n}/{x}\",\n            produces = MediaType.APPLICATION_JSON_VALUE\n    )\n    public ResponseEntity<Dto> expint(\n            @PathVariable(\"n\") Integer n,\n            @PathVariable(\"x\") Double x\n    ){\n\n        try{\n            Dto dto = new Dto();\n            dto.resultAsDouble = Expint.exe(n,x);\n            return ResponseEntity.ok(dto);\n        }catch (RuntimeException e){\n            return ResponseEntity.status(400).build();\n        }\n    }\n\n\n    @GetMapping(\n            value = \"/fisher/{m}/{n}/{x}\",\n            produces = MediaType.APPLICATION_JSON_VALUE\n    )\n    public ResponseEntity<Dto> fisher(\n            @PathVariable(\"m\") Integer m,\n            @PathVariable(\"n\") Integer n,\n            @PathVariable(\"x\") Double x\n    ){\n\n        if(m > 1000 || n > 1000){\n            return ResponseEntity.status(400).build();\n        }\n\n        try{\n            Dto dto = new Dto();\n            dto.resultAsDouble = Fisher.exe(m, n, x);\n            return ResponseEntity.ok(dto);\n        }catch (RuntimeException e){\n            return ResponseEntity.status(400).build();\n        }\n    }\n\n\n    @GetMapping(\n            value = \"/gammq/{a}/{x}\",\n            produces = MediaType.APPLICATION_JSON_VALUE\n    )\n    public ResponseEntity<Dto> gammq(\n            @PathVariable(\"a\") Double a,\n            @PathVariable(\"x\") Double x\n    ){\n\n        try{\n            Dto dto = new Dto();\n            Gammq gammq = new Gammq();\n            dto.resultAsDouble = gammq.exe(a, x);\n            return ResponseEntity.ok(dto);\n        }catch (RuntimeException e){\n            return ResponseEntity.status(400).build();\n        }\n    }\n\n\n    @GetMapping(\n            value = \"/remainder/{a}/{b}\",\n            produces = MediaType.APPLICATION_JSON_VALUE\n    )\n    public ResponseEntity<Dto> remainder(\n            @PathVariable(\"a\") Integer a,\n            @PathVariable(\"b\") Integer b\n    ){\n        int lim = 10_000;\n        if(a > lim || a < -lim || b > lim || b < -lim){\n            return ResponseEntity.status(400).build();\n        }\n\n        Dto dto = new Dto();\n        dto.resultAsInt = Remainder.exe(a,b);\n\n        return ResponseEntity.ok(dto);\n    }\n}\n",
+      "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\NCS\\ncs\\src\\main\\java\\org\\restncs\\Dto.java": "public class Dto {\n\n    public Integer resultAsInt;\n\n    public Double resultAsDouble;\n}\n"
+    }
+  },
+  "duration_ms": 2,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  }
+}

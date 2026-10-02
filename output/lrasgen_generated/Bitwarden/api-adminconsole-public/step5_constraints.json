@@ -1,0 +1,1354 @@
+{
+  "task_id": "public",
+  "api_name": "Public",
+  "framework": "aspnetcore",
+  "endpoints": [
+    {
+      "endpoint_path": "/public/groups",
+      "http_method": "GET",
+      "method_name": "List",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of your organization's groups. Group objects listed in this call include information about their associated collections.",
+          "data_schema": [
+            {
+              "name": "ListResponseModel<GroupResponseModel>",
+              "schema": {
+                "data": "array",
+                "continuationToken": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/events",
+      "http_method": "GET",
+      "method_name": "List",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\EventsController.cs",
+      "parameters": [
+        {
+          "name": "request",
+          "type": "EventFilterRequestModel",
+          "require": "false",
+          "position": "query",
+          "description": "Filter and pagination options for listing organization events, bound from the query string.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a filtered list of the organization's event logs, paged by a continuation token.",
+          "data_schema": [
+            {
+              "name": "PagedListResponseModel<EventResponseModel>",
+              "schema": {
+                "data": "array",
+                "continuationToken": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. The request lacks valid authentication credentials for the 'Organization' authorization policy.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user is not authorized under the 'Organization' policy.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unhandled exception occurs while the handler delegates to the event or cipher repository.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/groups/{id}",
+      "http_method": "DELETE",
+      "method_name": "Delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Guid",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the group to be deleted.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. The group was deleted.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The group does not exist or does not belong to the organization.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/members/{id}/group-ids",
+      "http_method": "GET",
+      "method_name": "GetGroupIds",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the member to be retrieved.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. Returns a JSON array of group IDs (GUIDs) associated with the member.",
+          "data_schema": [
+            {
+              "name": "HashSet<Guid>",
+              "schema": {
+                "items": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The member with the specified ID does not exist or does not belong to the current organization.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/groups/{id}/member-ids",
+      "http_method": "GET",
+      "method_name": "GetMemberIds",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Guid",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the group to be retrieved.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the unique identifiers of all members associated with the group.",
+          "data_schema": [
+            {
+              "name": "HashSet<Guid>",
+              "schema": {
+                "member_ids": "array of GUID"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The group was not found or does not belong to the current organization.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/groups/{id}/member-ids",
+      "http_method": "PUT",
+      "method_name": "PutMemberIds",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the group to be updated.",
+          "_depth": 0
+        },
+        {
+          "name": "UpdateMemberIdsRequestModel",
+          "type": "class",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The request model."
+        },
+        {
+          "name": "MemberIds",
+          "type": "IEnumerable<Guid>",
+          "require": "false",
+          "position": "body",
+          "description": "The associated member ids that have access to this object.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK. The group's member associations were updated successfully.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The request model is invalid.",
+          "data_schema": [
+            {
+              "name": "ErrorResponseModel",
+              "schema": {
+                "message": "string",
+                "validationErrors": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The group does not exist or does not belong to the organization.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/groups/{id}",
+      "http_method": "GET",
+      "method_name": "Get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. Returns the group details with associated collections.",
+          "data_schema": [
+            {
+              "name": "GroupResponseModel",
+              "schema": {
+                "Object": "string",
+                "Id": "Guid",
+                "Name": "string",
+                "ExternalId": "string",
+                "Collections": "AssociationWithPermissionsResponseModel[]"
+              }
+            },
+            {
+              "name": "AssociationWithPermissionsResponseModel",
+              "schema": {
+                "Id": "Guid",
+                "ReadOnly": "boolean",
+                "HidePasswords": "boolean",
+                "Manage": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The group does not exist or does not belong to the organization.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/members/{id}",
+      "http_method": "GET",
+      "method_name": "Get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the member to be retrieved.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the details of the specified member.",
+          "data_schema": [
+            {
+              "name": "MemberResponseModel",
+              "schema": {
+                "Object": "string",
+                "Id": "Guid",
+                "UserId": "Guid?",
+                "Name": "string",
+                "Email": "string",
+                "TwoFactorEnabled": "boolean",
+                "Status": "OrganizationUserStatusType",
+                "Collections": "AssociationWithPermissionsResponseModel[]",
+                "ResetPasswordEnrolled": "boolean",
+                "SsoExternalId": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The member was not found or does not belong to the organization.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/groups",
+      "http_method": "POST",
+      "method_name": "Post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs",
+      "parameters": [
+        {
+          "name": "Collections",
+          "type": "IEnumerable",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The request model."
+        },
+        {
+          "name": "Name",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The name of the group.",
+          "max_length": "100",
+          "_depth": 0
+        },
+        {
+          "name": "ExternalId",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "External identifier for reference or linking this group to another system, such as a user directory.",
+          "max_length": "300",
+          "_depth": 0
+        },
+        {
+          "name": "Collections",
+          "type": "AssociationWithPermissionsRequestModel",
+          "require": "false",
+          "position": "body",
+          "description": "The associated collections that this group can access.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. Returns the created group.",
+          "data_schema": [
+            {
+              "name": "GroupResponseModel",
+              "schema": {
+                "Object": "string",
+                "Id": "Guid",
+                "Name": "string",
+                "ExternalId": "string",
+                "Collections": "AssociationWithPermissionsResponseModel[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The request model is invalid.",
+          "data_schema": [
+            {
+              "name": "ErrorResponseModel",
+              "schema": {
+                "Object": "string",
+                "Message": "string",
+                "ValidationErrors": "Dictionary<string, string[]>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. The request lacks valid authentication credentials.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have permission to access this resource.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unhandled exception occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/groups/{id}",
+      "http_method": "PUT",
+      "method_name": "Put",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Guid",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the group to be updated.",
+          "_depth": 0
+        },
+        {
+          "name": "Collections",
+          "type": "IEnumerable",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The request model."
+        },
+        {
+          "name": "Name",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The name of the group.",
+          "min_length": "0",
+          "max_length": "100",
+          "_depth": 0
+        },
+        {
+          "name": "ExternalId",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "External identifier for reference or linking this group to another system, such as a user directory.",
+          "min_length": "0",
+          "max_length": "300",
+          "_depth": 0
+        },
+        {
+          "name": "Collections",
+          "type": "AssociationWithPermissionsRequestModel",
+          "require": "false",
+          "position": "body",
+          "description": "The associated collections that this group can access.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. Returns the updated group.",
+          "data_schema": [
+            {
+              "name": "GroupResponseModel",
+              "schema": {
+                "Object": "string",
+                "Id": "Guid",
+                "Name": "string",
+                "ExternalId": "string",
+                "Collections": "IEnumerable<AssociationWithPermissionsResponseModel>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The request model is invalid.",
+          "data_schema": [
+            {
+              "name": "ErrorResponseModel",
+              "schema": {}
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The group does not exist or does not belong to the organization.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/members/{id}",
+      "http_method": "DELETE",
+      "method_name": "Remove",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the member to be removed.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The member was successfully removed from the organization.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "The member was not found or does not belong to the current organization.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/members",
+      "http_method": "GET",
+      "method_name": "List",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of your organization's members. Member objects listed in this call do not include information about their associated collections.",
+          "data_schema": [
+            {
+              "name": "ListResponseModel<MemberResponseModel>",
+              "schema": {
+                "data": "array",
+                "continuationToken": "string"
+              }
+            },
+            {
+              "name": "MemberResponseModel",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "userId": "string",
+                "name": "string",
+                "email": "string",
+                "twoFactorEnabled": "boolean",
+                "status": "integer",
+                "collections": "array",
+                "resetPasswordEnrolled": "boolean",
+                "ssoExternalId": "string",
+                "type": "integer",
+                "externalId": "string",
+                "permissions": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/organization/import",
+      "http_method": "POST",
+      "method_name": "Import",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\OrganizationController.cs",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request",
+          "data_schema": [
+            {
+              "name": "ErrorResponseModel",
+              "schema": {
+                "message": "string",
+                "validationErrors": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/policies/{type}",
+      "http_method": "GET",
+      "method_name": "Get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\PoliciesController.cs",
+      "parameters": [
+        {
+          "name": "type",
+          "type": "PolicyType",
+          "require": "true",
+          "position": "path",
+          "description": "The type of policy to be retrieved.",
+          "enum": [
+            "TwoFactorAuthentication",
+            "MasterPassword",
+            "PasswordGenerator",
+            "RequireSso",
+            "PersonalOwnership",
+            "DisableSend",
+            "SendOptions",
+            "ResetPassword",
+            "MaximumVaultTimeout",
+            "DisablePersonalVaultExport",
+            "ActivateAutofill",
+            "AutomaticAppLogIn",
+            "FreeFamiliesSponsorshipPolicy",
+            "RemoveUnlockWithPin",
+            "RestrictItemTypes",
+            "BlockClaimedDomainAccountCreation"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The policy was retrieved successfully.",
+          "data_schema": [
+            {
+              "name": "PolicyResponseModel",
+              "schema": {
+                "Object": "string",
+                "Id": "Guid",
+                "Type": "PolicyType",
+                "Enabled": "boolean",
+                "Data": "Dictionary<string, object>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The policy was not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/members/{id}/group-ids",
+      "http_method": "PUT",
+      "method_name": "PutGroupIds",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Guid",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the member to be updated.",
+          "_depth": 0
+        },
+        {
+          "name": "UpdateGroupIdsRequestModel",
+          "type": "class",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The request model."
+        },
+        {
+          "name": "GroupIds",
+          "type": "IEnumerable<Guid>",
+          "require": "false",
+          "position": "body",
+          "description": "The associated group ids that this object can access.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. The member's group associations were updated.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The request model is invalid.",
+          "data_schema": [
+            {
+              "name": "ErrorResponseModel",
+              "schema": {
+                "message": "string",
+                "validationErrors": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The member does not exist or does not belong to the organization.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/members/{id}/reinvite",
+      "http_method": "POST",
+      "method_name": "PostReinvite",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Guid",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the member to re-invite.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request",
+          "data_schema": [
+            {
+              "name": "ErrorResponseModel",
+              "schema": {
+                "message": "string",
+                "validationErrors": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/policies",
+      "http_method": "GET",
+      "method_name": "List",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\PoliciesController.cs",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of your organization's policies.",
+          "data_schema": [
+            {
+              "name": "ListResponseModel<PolicyResponseModel>",
+              "schema": {
+                "data": "array",
+                "continuationToken": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/policies/{type}",
+      "http_method": "PUT",
+      "method_name": "Put",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\PoliciesController.cs",
+      "parameters": [
+        {
+          "name": "type",
+          "type": "PolicyType",
+          "require": "true",
+          "position": "path",
+          "description": "The type of policy to be updated.",
+          "enum": [
+            "TwoFactorAuthentication",
+            "MasterPassword",
+            "PasswordGenerator",
+            "SingleOrg",
+            "RequireSso",
+            "PersonalOwnership",
+            "DisableSend",
+            "SendOptions",
+            "ResetPassword",
+            "MaximumVaultTimeout",
+            "DisablePersonalVaultExport",
+            "AutomaticAppLogIn",
+            "FreeFamiliesSponsorshipPolicy",
+            "RemoveUnlockWithPin",
+            "OrganizationDataOwnership",
+            "ActivateAutofill"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "model",
+          "type": "PolicyUpdateRequestModel",
+          "require": "false",
+          "position": "body",
+          "description": "The request model.",
+          "_depth": 0
+        },
+        {
+          "name": "Enabled",
+          "type": "boolean",
+          "require": "false",
+          "position": "body",
+          "description": "Determines if this policy is enabled and enforced.",
+          "_depth": 0
+        },
+        {
+          "name": "Data",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "Data for the policy.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the updated policy.",
+          "data_schema": [
+            {
+              "name": "PolicyResponseModel",
+              "schema": {
+                "Object": "string",
+                "Id": "Guid",
+                "Type": "PolicyType?",
+                "Enabled": "boolean?",
+                "Data": "Dictionary<string, object>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The request model is invalid.",
+          "data_schema": [
+            {
+              "name": "ErrorResponseModel",
+              "schema": {
+                "Message": "string",
+                "ValidationErrors": "Dictionary<string, string[]>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The policy does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/members",
+      "http_method": "POST",
+      "method_name": "Post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs",
+      "parameters": [
+        {
+          "name": "Email",
+          "type": "string",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The request model."
+        },
+        {
+          "name": "Email",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The member's email address.",
+          "min_length": "0",
+          "max_length": "256",
+          "_depth": 0
+        },
+        {
+          "name": "Collections",
+          "type": "AssociationWithPermissionsRequestModel",
+          "require": "false",
+          "position": "body",
+          "description": "The associated collections that this member can access.",
+          "_depth": 0
+        },
+        {
+          "name": "Groups",
+          "type": "UUID",
+          "require": "false",
+          "position": "body",
+          "description": "Ids of the associated groups that this member will belong to",
+          "_depth": 0
+        },
+        {
+          "name": "Type",
+          "type": "OrganizationUserType",
+          "require": "false",
+          "position": "body",
+          "description": "The member's type (or role) within the organization.",
+          "enum": [
+            "Owner",
+            "Admin",
+            "User",
+            "Manager",
+            "Custom"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "ExternalId",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "External identifier for reference or linking this member to another system, such as a user directory.",
+          "min_length": "0",
+          "max_length": "300",
+          "_depth": 0
+        },
+        {
+          "name": "AccessEventLogs",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role."
+        },
+        {
+          "name": "AccessImportExport",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role."
+        },
+        {
+          "name": "AccessReports",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role."
+        },
+        {
+          "name": "CreateNewCollections",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role."
+        },
+        {
+          "name": "EditAnyCollection",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role."
+        },
+        {
+          "name": "DeleteAnyCollection",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role."
+        },
+        {
+          "name": "ManageGroups",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role."
+        },
+        {
+          "name": "ManagePolicies",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role."
+        },
+        {
+          "name": "ManageSso",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role."
+        },
+        {
+          "name": "ManageUsers",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role."
+        },
+        {
+          "name": "ManageResetPassword",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role."
+        },
+        {
+          "name": "ManageScim",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. Returns the created member.",
+          "data_schema": [
+            {
+              "name": "MemberResponseModel",
+              "schema": {
+                "Object": "string",
+                "Id": "Guid",
+                "UserId": "Guid?",
+                "Name": "string",
+                "Email": "string",
+                "TwoFactorEnabled": "boolean",
+                "Status": "OrganizationUserStatusType",
+                "Collections": "AssociationWithPermissionsResponseModel[]",
+                "ResetPasswordEnrolled": "boolean",
+                "SsoExternalId": "string",
+                "Type": "OrganizationUserType",
+                "ExternalId": "string",
+                "Permissions": "PermissionsModel"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The request model is invalid.",
+          "data_schema": [
+            {
+              "name": "ErrorResponseModel",
+              "schema": {
+                "Object": "string",
+                "Message": "string",
+                "ValidationErrors": "Dictionary<string, string[]>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unhandled exception occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/members/{id}",
+      "http_method": "PUT",
+      "method_name": "Put",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the member to be updated.",
+          "_depth": 0
+        },
+        {
+          "name": "Collections",
+          "type": "IEnumerable",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The request model."
+        },
+        {
+          "name": "Groups",
+          "type": "IEnumerable",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The request model."
+        },
+        {
+          "name": "Type",
+          "type": "OrganizationUserType",
+          "require": "false",
+          "position": "body",
+          "description": "The member's type (or role) within the organization.",
+          "enum": [
+            "Owner",
+            "Admin",
+            "User",
+            "Manager",
+            "Custom"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "ExternalId",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "External identifier for reference or linking this member to another system, such as a user directory.",
+          "max_length": "300",
+          "_depth": 0
+        },
+        {
+          "name": "AccessEventLogs",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role. If not supplied, all custom permissions will default to false."
+        },
+        {
+          "name": "AccessImportExport",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role. If not supplied, all custom permissions will default to false."
+        },
+        {
+          "name": "AccessReports",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role. If not supplied, all custom permissions will default to false."
+        },
+        {
+          "name": "CreateNewCollections",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role. If not supplied, all custom permissions will default to false."
+        },
+        {
+          "name": "EditAnyCollection",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role. If not supplied, all custom permissions will default to false."
+        },
+        {
+          "name": "DeleteAnyCollection",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role. If not supplied, all custom permissions will default to false."
+        },
+        {
+          "name": "ManageGroups",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role. If not supplied, all custom permissions will default to false."
+        },
+        {
+          "name": "ManagePolicies",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role. If not supplied, all custom permissions will default to false."
+        },
+        {
+          "name": "ManageSso",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role. If not supplied, all custom permissions will default to false."
+        },
+        {
+          "name": "ManageUsers",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role. If not supplied, all custom permissions will default to false."
+        },
+        {
+          "name": "ManageResetPassword",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role. If not supplied, all custom permissions will default to false."
+        },
+        {
+          "name": "ManageScim",
+          "type": "bool",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The member's custom permissions if the member has a Custom role. If not supplied, all custom permissions will default to false."
+        },
+        {
+          "name": "Collections",
+          "type": "AssociationWithPermissionsRequestModel[]",
+          "require": "false",
+          "position": "body",
+          "description": "The associated collections that this member can access.",
+          "_depth": 0
+        },
+        {
+          "name": "Groups",
+          "type": "UUID[]",
+          "require": "false",
+          "position": "body",
+          "description": "Ids of the associated groups that this member will belong to",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. Returns the updated member.",
+          "data_schema": [
+            {
+              "name": "MemberResponseModel",
+              "schema": {
+                "Object": "string",
+                "Id": "string",
+                "UserId": "string",
+                "Name": "string",
+                "Email": "string",
+                "TwoFactorEnabled": "boolean",
+                "Status": "integer",
+                "Collections": "array",
+                "ResetPasswordEnrolled": "boolean",
+                "SsoExternalId": "string",
+                "Type": "integer",
+                "ExternalId": "string",
+                "Permissions": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The request model is invalid.",
+          "data_schema": [
+            {
+              "name": "ErrorResponseModel",
+              "schema": {
+                "Object": "string",
+                "Message": "string",
+                "ValidationErrors": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The member does not exist or does not belong to the organization.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 2,
+    "step2_ms": 9,
+    "step3_ms": 10611,
+    "step4_ms": 9480,
+    "step5_ms": 0,
+    "total_ms": 20105
+  }
+}

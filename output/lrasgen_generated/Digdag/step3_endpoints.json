@@ -1,0 +1,434 @@
+{
+  "task_id": "digdag-server",
+  "api_name": "digdag-server",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/admin/attempts/{id}/userinfo",
+      "http_method": "GET",
+      "method_name": "getUserInfo",
+      "summary": "(deprecated)",
+      "description": "(deprecated)",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\AdminResource.java"
+    },
+    {
+      "endpoint_path": "/api/attempts",
+      "http_method": "GET",
+      "method_name": "getAttempts",
+      "summary": "List attempts with filters",
+      "description": "List attempts with filters",
+      "line_number": 73,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\AttemptResource.java"
+    },
+    {
+      "endpoint_path": "/api/attempts/{id}",
+      "http_method": "GET",
+      "method_name": "getAttempt",
+      "summary": "Get an attempt",
+      "description": "Get an attempt",
+      "line_number": 130,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\AttemptResource.java"
+    },
+    {
+      "endpoint_path": "/api/attempts/{id}/retries",
+      "http_method": "GET",
+      "method_name": "getAttemptRetries",
+      "summary": "List attempts of a session of a given attempt",
+      "description": "List attempts of a session of a given attempt",
+      "line_number": 151,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\AttemptResource.java"
+    },
+    {
+      "endpoint_path": "/api/attempts/{id}/tasks",
+      "http_method": "GET",
+      "method_name": "getTasks",
+      "summary": "List tasks of an attempt",
+      "description": "List tasks of an attempt",
+      "line_number": 177,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\AttemptResource.java"
+    },
+    {
+      "endpoint_path": "/api/attempts",
+      "http_method": "PUT",
+      "method_name": "startAttempt",
+      "summary": "Start a workflow execution as a new session or a new attempt of an existing session",
+      "description": "Start a workflow execution as a new session or a new attempt of an existing session",
+      "line_number": 202,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\AttemptResource.java"
+    },
+    {
+      "endpoint_path": "/api/attempts/{id}/kill",
+      "http_method": "POST",
+      "method_name": "killAttempt",
+      "summary": "Set a cancel-requested flag on a running attempt",
+      "description": "Set a cancel-requested flag on a running attempt",
+      "line_number": 303,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\AttemptResource.java"
+    },
+    {
+      "endpoint_path": "/api/logs/{attempt_id}/files",
+      "http_method": "GET",
+      "method_name": "getFileHandles",
+      "summary": "List log files of an attempt with filters",
+      "description": "List log files of an attempt with filters",
+      "line_number": 45,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\LogResource.java"
+    },
+    {
+      "endpoint_path": "/api/logs/{attempt_id}/files/{file_name}",
+      "http_method": "GET",
+      "method_name": "getFile",
+      "summary": "Download a log file",
+      "description": "Download a log file",
+      "line_number": 67,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\LogResource.java"
+    },
+    {
+      "endpoint_path": "/api/project",
+      "http_method": "GET",
+      "method_name": "getProject",
+      "summary": "(deprecated)",
+      "description": "(deprecated) lookup a project by name",
+      "line_number": 108,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java"
+    },
+    {
+      "endpoint_path": "/api/projects",
+      "http_method": "GET",
+      "method_name": "getProjects",
+      "summary": "List projects with filters",
+      "description": "List projects with filters",
+      "line_number": 128,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java"
+    },
+    {
+      "endpoint_path": "/api/projects/{id}",
+      "http_method": "GET",
+      "method_name": "getProject",
+      "summary": "Get a project",
+      "description": "Get a project",
+      "line_number": 187,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java"
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/revisions",
+      "http_method": "GET",
+      "method_name": "getRevisions",
+      "summary": "List revisions of a project",
+      "description": "List revisions of a project",
+      "line_number": 208,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java"
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/workflow",
+      "http_method": "GET",
+      "method_name": "getWorkflow",
+      "summary": "(deprecated)",
+      "description": "(deprecated) lookup a workflow of a project by name",
+      "line_number": 243,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java"
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/workflows/{name}",
+      "http_method": "GET",
+      "method_name": "getWorkflowByName",
+      "summary": "lookup a workflow of a project by name",
+      "description": "lookup a workflow of a project by name",
+      "line_number": 271,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java"
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/workflows",
+      "http_method": "GET",
+      "method_name": "getWorkflows",
+      "summary": "List workflows of a project with filters",
+      "description": "List workflows of a project with filters",
+      "line_number": 280,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java"
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/schedules",
+      "http_method": "GET",
+      "method_name": "getSchedules",
+      "summary": "List schedules of a project with filters",
+      "description": "List schedules of a project with filters",
+      "line_number": 340,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java"
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/sessions",
+      "http_method": "GET",
+      "method_name": "getSessions",
+      "summary": "List sessions of a project with filters",
+      "description": "List sessions of a project with filters",
+      "line_number": 389,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java"
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/archive",
+      "http_method": "GET",
+      "method_name": "getArchive",
+      "summary": "Download a project archive file",
+      "description": "Download a project archive file",
+      "line_number": 447,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java"
+    },
+    {
+      "endpoint_path": "/api/projects/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteProject",
+      "summary": "Delete a project",
+      "description": "Delete a project",
+      "line_number": 517,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java"
+    },
+    {
+      "endpoint_path": "/api/projects",
+      "http_method": "PUT",
+      "method_name": "putProject",
+      "summary": "Upload a project archive as a new project or a new revision of an existing project",
+      "description": "Upload a project archive as a new project or a new revision of an existing project",
+      "line_number": 536,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java"
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/secrets/{key}",
+      "http_method": "PUT",
+      "method_name": "putProjectSecret",
+      "summary": "Set a secret to a project",
+      "description": "Set a secret to a project",
+      "line_number": 679,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java"
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/secrets/{key}",
+      "http_method": "DELETE",
+      "method_name": "deleteProjectSecret",
+      "summary": "Delete a secret from a project",
+      "description": "Delete a secret from a project",
+      "line_number": 711,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java"
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/secrets",
+      "http_method": "GET",
+      "method_name": "getProjectSecrets",
+      "summary": "List secret keys of a project",
+      "description": "List secret keys of a project",
+      "line_number": 741,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java"
+    },
+    {
+      "endpoint_path": "/api/schedules",
+      "http_method": "GET",
+      "method_name": "getSchedules",
+      "summary": "List schedules",
+      "description": "List schedules of the latest revision of all projects",
+      "line_number": 57,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ScheduleResource.java"
+    },
+    {
+      "endpoint_path": "/api/schedules/{id}",
+      "http_method": "GET",
+      "method_name": "getSchedules",
+      "summary": "Get a schedule",
+      "description": "Show a particular schedule (which belongs to a workflow)",
+      "line_number": 78,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ScheduleResource.java"
+    },
+    {
+      "endpoint_path": "/api/schedules/{id}/skip",
+      "http_method": "POST",
+      "method_name": "skipSchedule",
+      "summary": "Skip future sessions by count or time",
+      "description": "Skips schedules forward to a future time",
+      "line_number": 104,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ScheduleResource.java"
+    },
+    {
+      "endpoint_path": "/api/schedules/{id}/backfill",
+      "http_method": "POST",
+      "method_name": "backfillSchedule",
+      "summary": "Re-schedule past sessions by count or duration",
+      "description": "Run or re-run past schedules",
+      "line_number": 156,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ScheduleResource.java"
+    },
+    {
+      "endpoint_path": "/api/schedules/{id}/disable",
+      "http_method": "POST",
+      "method_name": "disableSchedule",
+      "summary": "Disable scheduling of new sessions",
+      "description": "Disable a schedule",
+      "line_number": 189,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ScheduleResource.java"
+    },
+    {
+      "endpoint_path": "/api/schedules/{id}/enable",
+      "http_method": "POST",
+      "method_name": "enableSchedule",
+      "summary": "Re-enable disabled scheduling",
+      "description": "Enable a schedule",
+      "line_number": 220,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ScheduleResource.java"
+    },
+    {
+      "endpoint_path": "/api/sessions",
+      "http_method": "GET",
+      "method_name": "getSessions",
+      "summary": "List sessions",
+      "description": "List sessions from recent to old",
+      "line_number": 57,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\SessionResource.java"
+    },
+    {
+      "endpoint_path": "/api/sessions/{id}",
+      "http_method": "GET",
+      "method_name": "getSession",
+      "summary": "Get a session",
+      "description": "Get a session by id",
+      "line_number": 84,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\SessionResource.java"
+    },
+    {
+      "endpoint_path": "/api/sessions/{id}/attempts",
+      "http_method": "GET",
+      "method_name": "getSessionAttempts",
+      "summary": "List attempts of a session",
+      "description": "List attempts of a session",
+      "line_number": 105,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\SessionResource.java"
+    },
+    {
+      "endpoint_path": "/assets/{path}",
+      "http_method": "GET",
+      "method_name": "getAssets",
+      "summary": "Get static asset",
+      "description": "Returns the static asset located at public/assets/{path} if it exists, otherwise returns 404 Not Found.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\UiResource.java"
+    },
+    {
+      "endpoint_path": "/{path:.*}",
+      "http_method": "GET",
+      "method_name": "getApplication",
+      "summary": "Get application resource or index",
+      "description": "Returns the resource at public/{path} if it exists; if path is empty or the resource is not found, returns the index page (public/index.html).",
+      "line_number": 39,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\UiResource.java"
+    },
+    {
+      "endpoint_path": "/api/version",
+      "http_method": "GET",
+      "method_name": "getVersion",
+      "summary": "Get server version",
+      "description": "Get server version",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\VersionResource.java"
+    },
+    {
+      "endpoint_path": "/api/version/check",
+      "http_method": "GET",
+      "method_name": "checkClientVersion",
+      "summary": "Check client version compatibility",
+      "description": "Check client version compatibility",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\VersionResource.java"
+    },
+    {
+      "endpoint_path": "/api/workflow",
+      "http_method": "GET",
+      "method_name": "getWorkflowDefinition",
+      "summary": "(deprecated)",
+      "description": "Deprecated: lookup a workflow of the latest revision of a project by name, or a past revision by name.",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\WorkflowResource.java"
+    },
+    {
+      "endpoint_path": "/api/workflows",
+      "http_method": "GET",
+      "method_name": "getWorkflowDefinitions",
+      "summary": "List workflows",
+      "description": "List workflows of the latest revisions of active projects.",
+      "line_number": 92,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\WorkflowResource.java"
+    },
+    {
+      "endpoint_path": "/api/workflows/{id}",
+      "http_method": "GET",
+      "method_name": "getWorkflowDefinition",
+      "summary": "Get a workflow",
+      "description": "Get a workflow by its id.",
+      "line_number": 136,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\WorkflowResource.java"
+    },
+    {
+      "endpoint_path": "/api/workflows/{id}/truncated_session_time",
+      "http_method": "GET",
+      "method_name": "getWorkflowDefinition",
+      "summary": "Get truncated local time based on the time zone of a workflow",
+      "description": "Truncate a session time based on the timezone of the workflow.",
+      "line_number": 157,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\WorkflowResource.java"
+    }
+  ],
+  "errors": [
+    {
+      "entry_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\ServerModule.java",
+      "error": "the model returned an empty endpoint list"
+    }
+  ],
+  "duration_ms": 13906,
+  "tokens": {
+    "prompt_tokens": 281099,
+    "completion_tokens": 18700,
+    "total_tokens": 299799,
+    "calls": 30,
+    "elapsed_s": 156.843,
+    "prompt_cost_usd": 0.035905,
+    "completion_cost_usd": 0.01266,
+    "total_cost_usd": 0.048566,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 92046,
+        "completion_tokens": 2697,
+        "total_tokens": 94743,
+        "calls": 10,
+        "elapsed_s": 13.880975000000001,
+        "prompt_cost_usd": 0.001841,
+        "completion_cost_usd": 0.001618,
+        "total_cost_usd": 0.003459
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 87996,
+        "completion_tokens": 12962,
+        "total_tokens": 100958,
+        "calls": 10,
+        "elapsed_s": 108.04,
+        "prompt_cost_usd": 0.0088,
+        "completion_cost_usd": 0.006481,
+        "total_cost_usd": 0.015281
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 101057,
+        "completion_tokens": 3041,
+        "total_tokens": 104098,
+        "calls": 10,
+        "elapsed_s": 34.922,
+        "prompt_cost_usd": 0.025264,
+        "completion_cost_usd": 0.004561,
+        "total_cost_usd": 0.029826
+      }
+    ]
+  }
+}

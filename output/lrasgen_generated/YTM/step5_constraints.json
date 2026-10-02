@@ -1,0 +1,545 @@
+{
+  "task_id": "youtube-mock",
+  "api_name": "youtube-mock",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/search",
+      "http_method": "GET",
+      "method_name": "list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\YTM\\youtube-mock\\src\\main\\java\\youtube\\api\\resources\\YouTubeResource.java",
+      "parameters": [
+        {
+          "name": "part",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The part parameter specifies a comma-separated list of one or more search resource properties that the API response will include. Set the parameter value to snippet.",
+          "enum": [
+            "snippet",
+            "id"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "forContentOwner",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "The forContentOwner parameter restricts the search to only retrieve resources owned by the content owner specified by the onBehalfOfContentOwner parameter.",
+          "_depth": 0
+        },
+        {
+          "name": "forDeveloper",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "The forDeveloper parameter restricts the search to only retrieve videos uploaded via the developer's application or website.",
+          "_depth": 0
+        },
+        {
+          "name": "forMine",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "The forMine parameter restricts the search to only retrieve videos owned by the authenticated user.",
+          "_depth": 0
+        },
+        {
+          "name": "relatedToVideoId",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The relatedToVideoId parameter retrieves a list of videos that are related to the video that the parameter value identifies.",
+          "_depth": 0
+        },
+        {
+          "name": "channelId",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The channelId parameter indicates that the API response should only contain resources created by the channel.",
+          "_depth": 0
+        },
+        {
+          "name": "channelType",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The channelType parameter lets you restrict a search to a particular type of channel.",
+          "enum": [
+            "any",
+            "show"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "eventType",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The eventType parameter restricts a search to broadcast events.",
+          "enum": [
+            "completed",
+            "live",
+            "upcoming"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "location",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The location parameter, in conjunction with the locationRadius parameter, defines a circular geographic area and also restricts a search to videos that specify, in their metadata, a geographic location that falls within that area.",
+          "_depth": 0
+        },
+        {
+          "name": "locationRadius",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The locationRadius parameter, in conjunction with the location parameter, defines a circular geographic area.",
+          "_depth": 0
+        },
+        {
+          "name": "maxResults",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The maxResults parameter specifies the maximum number of items that should be returned in the result set.",
+          "min": 0,
+          "max": 50,
+          "_depth": 0
+        },
+        {
+          "name": "onBehalfOfContentOwner",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value.",
+          "_depth": 0
+        },
+        {
+          "name": "order",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The order parameter specifies the method that will be used to order resources in the API response.",
+          "enum": [
+            "date",
+            "rating",
+            "relevance",
+            "title",
+            "videoCount",
+            "viewCount"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "pageToken",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The pageToken parameter identifies a specific page in the result set that should be returned.",
+          "_depth": 0
+        },
+        {
+          "name": "publishedAfter",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The publishedAfter parameter indicates that the API response should not include resources created before the specified date and time.",
+          "format": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+          "_depth": 0
+        },
+        {
+          "name": "publishedBefore",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The publishedBefore parameter indicates that the API response should not include resources created after the specified date and time.",
+          "format": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The q parameter specifies the query term to search for.",
+          "_depth": 0
+        },
+        {
+          "name": "relevanceLanguage",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The relevanceLanguage parameter instructs the API to return search results that are most relevant to the specified language.",
+          "_depth": 0
+        },
+        {
+          "name": "regionCode",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The regionCode parameter instructs the API to return search results for the specified country.",
+          "_depth": 0
+        },
+        {
+          "name": "safeSearch",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The safeSearch parameter indicates whether the search results should include restricted content as well as standard content.",
+          "enum": [
+            "moderate",
+            "strict",
+            "none"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "topicId",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The topicId parameter indicates that the API response should only contain resources associated with the specified topic.",
+          "_depth": 0
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The type parameter restricts a search query to only retrieve a particular type of resource.",
+          "enum": [
+            "channel",
+            "playlist",
+            "video"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "videoCaption",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The videoCaption parameter indicates whether the API should filter video search results based on whether they have captions.",
+          "enum": [
+            "any",
+            "closedCaption",
+            "none"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "videoCategoryId",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The videoCategoryId parameter filters video search results based on their category.",
+          "_depth": 0
+        },
+        {
+          "name": "videoDefinition",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The videoDefinition parameter lets you restrict a search to only include either high definition (HD) or standard definition (SD) videos.",
+          "enum": [
+            "any",
+            "high",
+            "standard"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "videoDimension",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The videoDimension parameter lets you restrict a search to only retrieve 2D or 3D videos.",
+          "enum": [
+            "2d",
+            "3d",
+            "any"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "videoDuration",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The videoDuration parameter filters video search results based on their duration.",
+          "enum": [
+            "any",
+            "long",
+            "medium",
+            "short"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "videoEmbeddable",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The videoEmbeddable parameter lets you to restrict a search to only videos that can be embedded into a webpage.",
+          "enum": [
+            "any",
+            "true"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "videoLicense",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The videoLicense parameter filters search results to only include videos with a particular license.",
+          "enum": [
+            "any",
+            "creativeCommon",
+            "youtube"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "videoSyndicated",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The videoSyndicated parameter lets you to restrict a search to only videos that can be played outside youtube.com.",
+          "enum": [
+            "any",
+            "true"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "videoType",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The videoType parameter lets you restrict a search to a particular type of videos.",
+          "enum": [
+            "any",
+            "episode",
+            "movie"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful search response containing a list of search results.",
+          "data_schema": [
+            {
+              "name": "SearchListResponse",
+              "schema": {
+                "kind": "string",
+                "etag": "string",
+                "nextPageToken": "string",
+                "prevPageToken": "string",
+                "regionCode": "string",
+                "pageInfo": "PageInfo",
+                "items": "array<SearchResult>",
+                "eventId": "string",
+                "tokenPagination": "TokenPagination",
+                "visitorId": "string"
+              }
+            },
+            {
+              "name": "PageInfo",
+              "schema": {
+                "totalResults": "integer",
+                "resultsPerPage": "integer"
+              }
+            },
+            {
+              "name": "SearchResult",
+              "schema": {
+                "kind": "string",
+                "etag": "string",
+                "id": "ResourceId",
+                "snippet": "SearchResultSnippet"
+              }
+            },
+            {
+              "name": "ResourceId",
+              "schema": {
+                "kind": "string",
+                "channelId": "string",
+                "playlistId": "string",
+                "videoId": "string"
+              }
+            },
+            {
+              "name": "SearchResultSnippet",
+              "schema": {
+                "publishedAt": "date",
+                "channelId": "string",
+                "title": "string",
+                "description": "string",
+                "thumbnails": "ThumbnailDetails",
+                "channelTitle": "string",
+                "liveBroadcastContent": "string"
+              }
+            },
+            {
+              "name": "ThumbnailDetails",
+              "schema": {
+                "default": "Thumbnail",
+                "standard": "Thumbnail",
+                "medium": "Thumbnail",
+                "high": "Thumbnail",
+                "maxres": "Thumbnail"
+              }
+            },
+            {
+              "name": "Thumbnail",
+              "schema": {
+                "url": "string",
+                "width": "integer",
+                "height": "integer"
+              }
+            },
+            {
+              "name": "TokenPagination",
+              "schema": {}
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request due to missing required parameter 'part'.",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "error": "ErrorResponseWrapper"
+              }
+            },
+            {
+              "name": "ErrorResponseWrapper",
+              "schema": {
+                "errors": "array<ErrorDescription>",
+                "status": "integer",
+                "message": "string"
+              }
+            },
+            {
+              "name": "ErrorDescription",
+              "schema": {
+                "domain": "string",
+                "reason": "string",
+                "message": "string",
+                "locationType": "string",
+                "location": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found due to invalid content owner account.",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "error": "ErrorResponseWrapper"
+              }
+            },
+            {
+              "name": "ErrorResponseWrapper",
+              "schema": {
+                "errors": "array<ErrorDescription>",
+                "status": "integer",
+                "message": "string"
+              }
+            },
+            {
+              "name": "ErrorDescription",
+              "schema": {
+                "domain": "string",
+                "reason": "string",
+                "message": "string",
+                "locationType": "string",
+                "location": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error due to unexpected failure in repository.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 4,
+    "step2_ms": 16,
+    "step3_ms": 2544,
+    "step4_ms": 16396,
+    "step5_ms": 0,
+    "total_ms": 18962
+  }
+}

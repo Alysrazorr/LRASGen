@@ -1,0 +1,261 @@
+# Complete API configuration — all 53 real-world RESTful APIs from the LRASGen study.
+#
+# All paths are RELATIVE to --root-path.
+# At runtime the tool resolves them to full paths, normalised for the host platform.
+#
+# Usage (single API, framework auto-detected):
+#   python main.py --root-path assets/datasets --api-path CatWatch/catwatch --output-name catwatch
+#
+# APIs marked with (*) were used to verify the validity of the approach.
+
+apis:
+  # ===== Jersey (Java) =====
+  - name: Digdag
+    path: Digdag/digdag/digdag-server
+    framework: jersey
+
+  - name: enviroCar
+    path: enviroCar/enviroCar-server
+    framework: jersey
+
+  - name: Features-Service
+    path: Features-Service/features-service
+    framework: jersey
+
+  - name: Gravitee
+    path: Gravitee/gravitee-api-management
+    framework: jersey
+
+  - name: Kafka
+    path: Kafka/kafka-rest
+    framework: jersey
+
+  - name: Cassandra
+    path: Cassandra/management-api-for-apache-cassandra
+    framework: jersey
+
+  - name: RESTCountries
+    path: RESTcountries/restcountries
+    framework: jersey
+
+  - name: Senzing
+    path: Senzing/senzing-api-server
+    framework: jersey
+
+  - name: Petstore
+    path: Petstore/swagger-petstore
+    framework: jersey
+
+  - name: Payments (*)
+    path: Payments/pay-publicapi
+    framework: jersey
+
+  - name: Scout (*)
+    path: Scout/scout-api
+    framework: jersey
+
+  # ===== JDK (Java) =====
+  - name: Languagetool
+    path: Languagetool/languagetool
+    framework: jdk
+
+  # ===== Spring Boot (Java) =====
+  - name: CatWatch
+    path: CatWatch/catwatch
+    framework: spring-boot
+
+  - name: CWA
+    path: CWA/cwa-verification-server
+    framework: spring-boot
+    exclude_dirs:
+      - src/main/java/app/coronawarn/verification/client
+
+  - name: OCVN
+    path: OCVN/ocvn
+    framework: spring-boot
+
+  - name: Ohsome
+    path: Ohsome/ohsome-api
+    framework: spring-boot
+
+  - name: ProxyPrint
+    path: ProxyPrint/proxyprint-kitchen
+    framework: spring-boot
+
+  - name: Quartz
+    path: Quartz/quartz-manager
+    framework: spring-boot
+
+  - name: Ur-Codebin
+    path: Ur-Codebin/Ur-Codebin-API
+    framework: spring-boot
+
+  - name: SCS
+    path: SCS/scs
+    framework: spring-boot
+
+  - name: Session
+    path: Session/session-service
+    framework: spring-boot
+
+  - name: Actuator
+    path: Actuator/spring-actuator-demo
+    framework: spring-boot
+
+  - name: Batch
+    path: Batch/spring-batch-rest
+    framework: spring-boot
+
+  - name: SBRAE
+    path: SBRAE/spring-rest-example
+    framework: spring-boot
+
+  - name: ECommerce
+    path: ECommerce/spring-ecommerce
+    framework: spring-boot
+
+  - name: Tiltak
+    path: Tiltak/tiltaksgjennomforing
+    framework: spring-boot
+
+  - name: UM
+    path: UM/user-management
+    framework: spring-boot
+
+  - name: WebGoat
+    path: WebGoat/webgoat
+    framework: spring-boot
+
+  - name: YTM
+    path: YTM/youtube-mock
+    framework: spring-boot
+
+  - name: PetClinic
+    path: PetClinic/spring-petclinic-rest-master
+    framework: spring-boot
+
+  - name: Piggy
+    path: Piggy/piggymetrics-master
+    framework: spring-boot
+
+  - name: Faults
+    path: Faults/rest-faults-master
+    framework: spring-boot
+
+  - name: Bibliothek
+    path: Bibliothek/bibliothek
+    framework: spring-boot
+
+  - name: Blog
+    path: Blog/blogapi
+    framework: spring-boot
+
+  - name: ERC20
+    path: ERC20/erc20-rest-service
+    framework: spring-boot
+
+  - name: Genome
+    path: Genome/genome-nexus
+    framework: spring-boot
+
+  - name: Gestao
+    path: Gestao/gestaohospital
+    framework: spring-boot
+
+  - name: HTTPPatch
+    path: HTTPPatch/http-patch-spring
+    framework: spring-boot
+
+  - name: Market
+    path: Market/market
+    framework: spring-boot
+
+  - name: Microcks
+    path: Microcks/microcks
+    framework: spring-boot
+
+  - name: NCS
+    path: NCS/ncs
+    framework: spring-boot
+
+  - name: Person
+    path: Person/person-controller
+    framework: spring-boot
+
+  - name: PTS (*)
+    path: PTS/tracking-system
+    framework: spring-boot
+
+  - name: Reservations (*)
+    path: Reservations/reservations-api
+    framework: spring-boot
+
+  # ===== Spring Boot (Kotlin) =====
+  - name: News
+    path: News/news
+    framework: spring-boot-kotlin
+
+  - name: Familie (*)
+    path: Familie/familie-ba-sak
+    framework: spring-boot-kotlin
+
+  # ===== Django (Python) =====
+  - name: Poke
+    path: Poke/pokeapi-master
+    framework: django
+    config_file: pokeapi-master/pokemon_v2/urls.py
+
+  # ===== Flask (Python) =====
+  - name: Gramps
+    path: Gramps/gramps-web-api-master
+    framework: flask
+    config_file: gramps-web-api-master/gramps_webapi/api/__init__.py
+
+  # ===== Tornado (Python) =====
+  - name: Jupyter
+    path: Jupyter/jupyter_server-main
+    framework: tornado
+    keyword: "default_handlers = ["
+
+  # ===== Web.py (Python) =====
+  - name: Mlmmj
+    path: Mlmmj/mlmmjadmin-master
+    framework: webpy
+    config_file: mlmmjadmin-master/controllers/urls.py
+    urls:
+      - "/api/(%s)$"
+      - "controllers.profile.Profile"
+      - "/api/(%s)/owners"
+      - "controllers.profile.Owners"
+      - "/api/(%s)/moderators"
+      - "controllers.profile.Moderators"
+      - "/api/(%s)/subscribers"
+      - "controllers.subscriber.Subscribers"
+      - "/api/(%s)/has_subscriber/(%s)"
+      - "controllers.subscriber.HasSubscriber"
+      - "/api/subscriber/(%s)/subscribed"
+      - "controllers.subscriber.SubscribedLists"
+      - "/api/subscriber/(%s)/subscribe"
+      - "controllers.subscriber.Subscribe"
+
+  # ===== Bitwarden — one subject API spanning two upstream repositories =====
+  # The pipeline runs each source separately; the two runs are merged into the
+  # single Bitwarden row (No. 51) of Table 1.
+  - name: Bitwarden
+    sources:
+      - path: Bitwarden/bitwarden-server-main/src/Api/Public
+        framework: aspnetcore
+        output_name: bitwarden-api
+      - path: Bitwarden/bitwarden_clients-main/apps/cli/src
+        framework: koa
+        output_name: bitwarden-vault
+
+  # ===== Express (JavaScript) =====
+  - name: Cyclotron
+    path: Cyclotron/cyclotron-master
+    framework: express
+
+  # ===== NestJS (TypeScript) =====
+  - name: Realworld (*)
+    path: Realworld/nestjs-realworld-example-app-master
+    framework: nestjs

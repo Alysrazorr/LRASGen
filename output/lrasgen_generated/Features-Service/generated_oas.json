@@ -1,0 +1,710 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "features-service API",
+    "description": "LRASGen-generated specification for features-service (jersey).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/products/{productName}/configurations/{configurationName}": {
+      "delete": {
+        "operationId": "deleteConfigurations",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product"
+            }
+          },
+          {
+            "name": "configurationName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the configuration",
+            "schema": {
+              "type": "string",
+              "description": "Name of the configuration"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content - configuration deleted successfully"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getConfigurations",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product"
+            }
+          },
+          {
+            "name": "configurationName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the configuration",
+            "schema": {
+              "type": "string",
+              "description": "Name of the configuration"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the ProductConfiguration with the given configurationName for the given productName.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProductConfiguration": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'valid': 'boolean', 'activedFeatures': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the configuration lookup fails or the service call throws an unexpected exception."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createConfigurations",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product, extracted from the URL path.",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product, extracted from the URL path."
+            }
+          },
+          {
+            "name": "configurationName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the configuration, extracted from the URL path.",
+            "schema": {
+              "type": "string",
+              "description": "Name of the configuration, extracted from the URL path."
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Configuration created successfully. The Location header contains the URI of the newly created configuration."
+          },
+          "500": {
+            "description": "Internal server error. Thrown when the product does not exist (ObjectNotFoundException) or when a configuration with the same name already exists (DuplicatedObjectException) during the service call."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/products/{productName}/configurations": {
+      "get": {
+        "operationId": "getConfigurations",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product whose configurations are retrieved",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product whose configurations are retrieved"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of configuration names for the specified product.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<String>": {
+                      "type": "string",
+                      "description": "{'configurationNames': 'array of string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if an exception occurs during the retrieval of configurations, such as when the product is not found."
+          }
+        }
+      }
+    },
+    "/products/{productName}/configurations/{configurationName}/features/{featureName}": {
+      "post": {
+        "operationId": "createFeatures",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product"
+            }
+          },
+          {
+            "name": "configurationName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the configuration",
+            "schema": {
+              "type": "string",
+              "description": "Name of the configuration"
+            }
+          },
+          {
+            "name": "featureName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the feature to add",
+            "schema": {
+              "type": "string",
+              "description": "Name of the feature to add"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created. The feature was successfully added to the configuration. The Location header contains the URI of the newly added feature."
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred while processing the request."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteFeatures",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product"
+            }
+          },
+          {
+            "name": "configurationName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the configuration",
+            "schema": {
+              "type": "string",
+              "description": "Name of the configuration"
+            }
+          },
+          {
+            "name": "featureName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the feature to delete",
+            "schema": {
+              "type": "string",
+              "description": "Name of the feature to delete"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content - the feature was successfully removed from the configuration."
+          },
+          "500": {
+            "description": "Internal Server Error - an unexpected error occurred while processing the request."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/products/{productName}/constraints/excludes": {
+      "post": {
+        "operationId": "createExcludes",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product to which the excludes constraint is added",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product to which the excludes constraint is added"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created. The excludes constraint was successfully added to the product. The Location header contains the URI of the newly created constraint."
+          },
+          "500": {
+            "description": "Internal Server Error. Returned when the product with the given name does not exist (ObjectNotFoundException) or when another failure occurs during constraint creation."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/products/{productName}/constraints/{constraintId}": {
+      "delete": {
+        "operationId": "deleteConstraints",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product whose constraint is to be deleted",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product whose constraint is to be deleted"
+            }
+          },
+          {
+            "name": "constraintId",
+            "in": "path",
+            "required": true,
+            "description": "Identifier of the constraint to delete",
+            "schema": {
+              "type": "integer",
+              "description": "Identifier of the constraint to delete"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content - the constraint was successfully deleted from the product."
+          },
+          "500": {
+            "description": "Internal Server Error - an unexpected error occurred while processing the request."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/products/{productName}/configurations/{configurationName}/features": {
+      "get": {
+        "operationId": "getFeatures",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product"
+            }
+          },
+          {
+            "name": "configurationName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the configuration",
+            "schema": {
+              "type": "string",
+              "description": "Name of the configuration"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of active feature names for the specified configuration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<String>": {
+                      "type": "string",
+                      "description": "{'items': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Thrown when the service call fails, e.g., if the product or configuration is not found (ObjectNotFoundException) or another runtime exception occurs."
+          }
+        }
+      }
+    },
+    "/products/{productName}/constraints/requires": {
+      "post": {
+        "operationId": "createRequires",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product to which the requires constraint is added",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product to which the requires constraint is added"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created. The requires constraint was successfully added to the product. The Location header contains the URI of the new constraint."
+          },
+          "500": {
+            "description": "Internal Server Error. An error occurred while processing the request, such as when the product is not found or a database error occurs."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/products/{productName}/features": {
+      "get": {
+        "operationId": "getFeatures",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product whose features are to be retrieved",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product whose features are to be retrieved"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the set of features for the specified product.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Set<Feature>": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Thrown when the product is not found (ObjectNotFoundException) or another runtime exception occurs."
+          }
+        }
+      }
+    },
+    "/products/{productName}/features/{featureName}": {
+      "delete": {
+        "operationId": "deleteFeatures",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product whose feature is to be deleted",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product whose feature is to be deleted"
+            }
+          },
+          {
+            "name": "featureName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the feature to delete from the product",
+            "schema": {
+              "type": "string",
+              "description": "Name of the feature to delete from the product"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content. The feature was successfully deleted from the product."
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred while processing the request."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createFeatures",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product to which the feature is added",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product to which the feature is added"
+            }
+          },
+          {
+            "name": "featureName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the feature to add to the product",
+            "schema": {
+              "type": "string",
+              "description": "Name of the feature to add to the product"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Feature added to product successfully. The Location header contains the URI of the newly created feature."
+          },
+          "500": {
+            "description": "Internal server error. Thrown when the product is not found (ObjectNotFoundException) or when the feature already exists (DuplicatedObjectException)."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateFeatures",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product whose feature is to be updated",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product whose feature is to be updated"
+            }
+          },
+          {
+            "name": "featureName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the feature to update",
+            "schema": {
+              "type": "string",
+              "description": "Name of the feature to update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the updated Feature object with the new description.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Feature": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product or feature not found. Thrown by ProductsDAO.findByName or Product.findProductFeatureByName when the product or feature does not exist."
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates to ProductsService.updateFeatureOfProduct, which may throw an uncaught exception."
+          }
+        }
+      }
+    },
+    "/products/{productName}": {
+      "delete": {
+        "operationId": "deleteProducts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product to delete",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product to delete"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Product deleted successfully. No content returned."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getProducts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product to retrieve",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the product with the given name.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Product": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'features': 'Set<Feature>', 'constraints': 'Set<FeatureConstraint>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if the product is not found or if an unexpected error occurs."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProducts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the product to add",
+            "schema": {
+              "type": "string",
+              "description": "Name of the product to add"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Product created successfully. The Location header contains the URI of the newly created product."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "operationId": "getProducts",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a list of all product names.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<String>": {
+                      "type": "string",
+                      "description": "{'items': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

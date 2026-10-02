@@ -1,0 +1,406 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "quartz-manager API",
+    "description": "LRASGen-generated specification for quartz-manager (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/scheduler/stop": {
+      "get": {
+        "operationId": "getStop",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "204": {
+            "description": "Got stopped successfully"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/scheduler/pause": {
+      "get": {
+        "operationId": "getPause",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "204": {
+            "description": "Got paused successfully"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/scheduler": {
+      "get": {
+        "operationId": "getScheduler",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Return the scheduler config",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SchedulerDTO": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'instanceId': 'string', 'status': 'SchedulerStatus', 'triggerKeys': 'Set<TriggerKey>'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quartz-manager/jobs": {
+      "get": {
+        "operationId": "getJobs",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Return a list of qualified java classes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<String>": {
+                      "type": "string",
+                      "description": "{'items': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scheduler/run": {
+      "get": {
+        "operationId": "getRun",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "204": {
+            "description": "Got started successfully"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/scheduler/resume": {
+      "get": {
+        "operationId": "getResume",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "204": {
+            "description": "Got resumed successfully"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/quartz-manager/triggers": {
+      "get": {
+        "operationId": "getTriggers",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Got the trigger list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "TriggerKeyDTO": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'group': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/quartz-manager/simple-triggers/{name}": {
+      "get": {
+        "operationId": "getSimpleTriggers",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "The name of the simple trigger to retrieve",
+            "schema": {
+              "type": "string",
+              "description": "The name of the simple trigger to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Got the trigger by its name",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SimpleTriggerDTO": {
+                      "type": "string",
+                      "description": "{'triggerKeyDTO': 'TriggerKeyDTO', 'priority': 'integer', 'startTime': 'date', 'description': 'string', 'endTime': 'date', 'finalFireTime': 'date', 'misfireInstruction': 'integer', 'nextFireTime': 'date', 'jobKeyDTO': 'JobKeyDTO', 'jobDetailDTO': 'JobDetailDTO', 'mayFireAgain': 'boolean', 'repeatCount': 'integer', 'repeatInterval': 'long', 'timesTriggered': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Trigger not found"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createSimpleTriggers",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "The name of the simple trigger",
+            "schema": {
+              "type": "string",
+              "description": "The name of the simple trigger"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Scheduled a new simple trigger",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SimpleTriggerDTO": {
+                      "type": "string",
+                      "description": "{'triggerKeyDTO': 'TriggerKeyDTO', 'priority': 'integer', 'startTime': 'date', 'description': 'string', 'endTime': 'date', 'finalFireTime': 'date', 'misfireInstruction': 'integer', 'nextFireTime': 'date', 'jobKeyDTO': 'JobKeyDTO', 'jobDetailDTO': 'JobDetailDTO', 'mayFireAgain': 'boolean', 'repeatCount': 'integer', 'repeatInterval': 'long', 'timesTriggered': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid trigger configuration"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "repeatCount": {
+                    "type": "integer",
+                    "description": "The simple trigger configuration"
+                  },
+                  "repeatInterval": {
+                    "type": "integer",
+                    "description": "The simple trigger configuration"
+                  }
+                },
+                "required": [
+                  "repeatCount",
+                  "repeatInterval"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateSimpleTriggers",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "The name of the simple trigger to reschedule",
+            "schema": {
+              "type": "string",
+              "description": "The name of the simple trigger to reschedule"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Rescheduled a simple trigger",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "TriggerDTO": {
+                      "type": "string",
+                      "description": "{'triggerKeyDTO': 'TriggerKeyDTO', 'priority': 'integer', 'startTime': 'date', 'description': 'string', 'endTime': 'date', 'finalFireTime': 'date', 'misfireInstruction': 'integer', 'nextFireTime': 'date', 'jobKeyDTO': 'JobKeyDTO', 'jobDetailDTO': 'JobDetailDTO', 'mayFireAgain': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid trigger configuration"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "repeatCount": {
+                    "type": "integer",
+                    "description": "The new configuration for the simple trigger"
+                  },
+                  "repeatInterval": {
+                    "type": "integer",
+                    "description": "The new configuration for the simple trigger"
+                  }
+                },
+                "required": [
+                  "repeatCount",
+                  "repeatInterval"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/session/invalidate": {
+      "get": {
+        "operationId": "getInvalidate",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "204": {
+            "description": "No Content - the current session is invalidated successfully."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "operationId": "get",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Health check successful, returns the string 'OK'.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/whoami": {
+      "get": {
+        "operationId": "getWhoami",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the authenticated principal object when a security context and authentication are present.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Object": {
+                      "type": "string",
+                      "description": "{'principal': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the security context is null or no authentication is present."
+          }
+        }
+      }
+    },
+    "/session/refresh": {
+      "get": {
+        "operationId": "getRefresh",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Session refreshed successfully. The response has no body."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,355 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "news API",
+    "description": "LRASGen-generated specification for news (spring-boot-kotlin).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/countries": {
+      "get": {
+        "operationId": "getCountries",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of country names.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<String>": {
+                      "type": "string",
+                      "description": "{'items': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/news/{id}": {
+      "get": {
+        "operationId": "getNews",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The numeric id of the news",
+            "schema": {
+              "type": "string",
+              "description": "The numeric id of the news"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The news with the specified id was found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "NewsDto": {
+                      "type": "string",
+                      "description": "{'newsId': 'string', 'authorId': 'string', 'text': 'string', 'country': 'string', 'creationTime': 'ZonedDateTime', 'id': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The provided id is not a valid number, or no news exists with the given id."
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateNews",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The numeric id of the news",
+            "schema": {
+              "type": "string",
+              "description": "The numeric id of the news"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "News updated successfully"
+          },
+          "404": {
+            "description": "Invalid id format or news not found"
+          },
+          "409": {
+            "description": "Conflict: id in request body does not match path id"
+          },
+          "400": {
+            "description": "Bad request: missing required fields or constraint violation"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "newsId": {
+                    "type": "string",
+                    "description": "The news that will replace the old one. Cannot change its id though."
+                  },
+                  "authorId": {
+                    "type": "string",
+                    "description": "The news that will replace the old one. Cannot change its id though."
+                  },
+                  "text": {
+                    "type": "string",
+                    "description": "The news that will replace the old one. Cannot change its id though."
+                  },
+                  "country": {
+                    "type": "string",
+                    "description": "The news that will replace the old one. Cannot change its id though."
+                  },
+                  "creationTime": {
+                    "type": "string",
+                    "description": "The news that will replace the old one. Cannot change its id though."
+                  }
+                },
+                "required": [
+                  "newsId",
+                  "authorId",
+                  "text",
+                  "country",
+                  "creationTime"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteNews",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The numeric id of the news",
+            "schema": {
+              "type": "string",
+              "description": "The numeric id of the news"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request. Returned when the path id cannot be parsed as a Long."
+          },
+          "404": {
+            "description": "Not Found. Returned when no news exists with the given id."
+          },
+          "204": {
+            "description": "No Content. Returned when the news was successfully deleted."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/news": {
+      "post": {
+        "operationId": "createNews",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "The id of newly created news",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Long": {
+                      "type": "string",
+                      "description": "{'id': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request: id or newsId specified, creationTime specified, missing required fields (authorId, text, country), or constraint violation"
+          },
+          "500": {
+            "description": "Internal server error: failed to create news"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "newsId": {
+                    "type": "string",
+                    "description": "Text of news, plus author id and country. Should not specify id or creation time"
+                  },
+                  "authorId": {
+                    "type": "string",
+                    "description": "Text of news, plus author id and country. Should not specify id or creation time"
+                  },
+                  "text": {
+                    "type": "string",
+                    "description": "Text of news, plus author id and country. Should not specify id or creation time"
+                  },
+                  "country": {
+                    "type": "string",
+                    "description": "Text of news, plus author id and country. Should not specify id or creation time"
+                  },
+                  "creationTime": {
+                    "type": "string",
+                    "description": "Text of news, plus author id and country. Should not specify id or creation time"
+                  }
+                },
+                "required": [
+                  "newsId",
+                  "authorId",
+                  "text",
+                  "country",
+                  "creationTime"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getNews",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "country",
+            "in": "query",
+            "required": false,
+            "description": "The country name",
+            "schema": {
+              "type": "string",
+              "description": "The country name"
+            }
+          },
+          {
+            "name": "authorId",
+            "in": "query",
+            "required": false,
+            "description": "The id of the author who wrote the news",
+            "schema": {
+              "type": "string",
+              "description": "The id of the author who wrote the news"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of news. The list may be filtered by country and/or authorId if provided as query parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<NewsDto>": {
+                      "type": "string",
+                      "description": "{'newsId': 'string', 'authorId': 'string', 'text': 'string', 'country': 'string', 'creationTime': 'ZonedDateTime', 'id': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when a ConstraintViolationException occurs during the retrieval or transformation of news data, typically due to invalid input parameters or data integrity issues."
+          }
+        }
+      }
+    },
+    "/news/{id}/text": {
+      "put": {
+        "operationId": "updateText",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The numeric id of the news",
+            "schema": {
+              "type": "integer",
+              "description": "The numeric id of the news"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The text was successfully updated. No content is returned."
+          },
+          "400": {
+            "description": "Bad request. Returned when the id is null, or when a ConstraintViolationException occurs during the update."
+          },
+          "404": {
+            "description": "Not found. Returned when no news exists with the given id."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "The new text which will replace the old one"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

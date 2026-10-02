@@ -1,0 +1,366 @@
+{
+  "task_id": "senzing-api-server",
+  "api_name": "senzing-api-server",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "root",
+      "summary": "Generates a root-level response -- similar to heartbeat.",
+      "description": "Generates a root-level response -- similar to heartbeat.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\AdminServices.java"
+    },
+    {
+      "endpoint_path": "/heartbeat",
+      "http_method": "GET",
+      "method_name": "heartbeat",
+      "summary": "Generates a heartbeat response to affirm the provider is running.",
+      "description": "Generates a heartbeat response to affirm the provider is running.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\AdminServices.java"
+    },
+    {
+      "endpoint_path": "/specifications/open-api",
+      "http_method": "GET",
+      "method_name": "openApiSpecification",
+      "summary": "Obtains the Open API specification for the running server.",
+      "description": "Obtains the Open API specification for the running server.",
+      "line_number": 55,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\AdminServices.java"
+    },
+    {
+      "endpoint_path": "/license",
+      "http_method": "GET",
+      "method_name": "license",
+      "summary": "Provides license information, optionally with raw data.",
+      "description": "Provides license information, optionally with raw data.",
+      "line_number": 168,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\AdminServices.java"
+    },
+    {
+      "endpoint_path": "/version",
+      "http_method": "GET",
+      "method_name": "version",
+      "summary": "Provides license information, optionally with raw data.",
+      "description": "Provides license information, optionally with raw data.",
+      "line_number": 233,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\AdminServices.java"
+    },
+    {
+      "endpoint_path": "/server-info",
+      "http_method": "GET",
+      "method_name": "getServerInfo",
+      "summary": "Provides version information, optionally with raw data.",
+      "description": "Provides version information, optionally with raw data.",
+      "line_number": 297,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\AdminServices.java"
+    },
+    {
+      "endpoint_path": "/bulk-data/analyze",
+      "http_method": "POST",
+      "method_name": "analyzeBulkRecordsViaForm",
+      "summary": "Analyzes the bulk data records.",
+      "description": "Analyzes the bulk data records via form data upload.",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\BulkDataServices.java"
+    },
+    {
+      "endpoint_path": "/bulk-data/load",
+      "http_method": "POST",
+      "method_name": "loadBulkRecordsViaForm",
+      "summary": "Loads the bulk data records via form.",
+      "description": "Loads the bulk data records via form.",
+      "line_number": 232,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\BulkDataServices.java"
+    },
+    {
+      "endpoint_path": "/data-sources",
+      "http_method": "GET",
+      "method_name": "getDataSources",
+      "summary": "Get the list of configured data sources",
+      "description": "Provides the implementation of GET /data-sources. Returns an SzDataSourcesResponse describing the configured data sources, optionally including the raw native Senzing JSON.",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\ConfigServices.java"
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}",
+      "http_method": "GET",
+      "method_name": "getDataSource",
+      "summary": "Get a single configured data source",
+      "description": "Provides the implementation of GET /data-sources/{dataSourceCode}. Returns an SzDataSourceResponse for the specified data source code, optionally including the raw native Senzing JSON.",
+      "line_number": 79,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\ConfigServices.java"
+    },
+    {
+      "endpoint_path": "/data-sources",
+      "http_method": "POST",
+      "method_name": "addDataSources",
+      "summary": "Add one or more data sources",
+      "description": "Provides the implementation of POST /data-sources. Adds data sources specified via query parameters and/or request body and returns an SzDataSourcesResponse with all configured data sources.",
+      "line_number": 434,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\ConfigServices.java"
+    },
+    {
+      "endpoint_path": "/attribute-types",
+      "http_method": "GET",
+      "method_name": "getAttributeTypes",
+      "summary": "Get the list of attribute types",
+      "description": "Provides the implementation of GET /attribute-types. Returns an SzAttributeTypesResponse describing attribute types, optionally filtered by attribute class and feature type and optionally including internal attribute types and raw native Senzing JSON.",
+      "line_number": 741,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\ConfigServices.java"
+    },
+    {
+      "endpoint_path": "/attribute-types/{attributeCode}",
+      "http_method": "GET",
+      "method_name": "getAttributeType",
+      "summary": "Get a single attribute type",
+      "description": "Provides the implementation of GET /attribute-types/{attributeTypeCode}. Returns an SzAttributeTypeResponse for the specified attribute code, optionally including the raw native Senzing JSON.",
+      "line_number": 900,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\ConfigServices.java"
+    },
+    {
+      "endpoint_path": "/configs/active",
+      "http_method": "GET",
+      "method_name": "getActiveConfig",
+      "summary": "Get the active configuration",
+      "description": "Provides the implementation of GET /configs/active. Returns an SzConfigResponse containing the currently active configuration exported from the engine.",
+      "line_number": 1006,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\ConfigServices.java"
+    },
+    {
+      "endpoint_path": "/configs/template",
+      "http_method": "GET",
+      "method_name": "getTemplateConfig",
+      "summary": "Get the template configuration",
+      "description": "Provides the implementation of GET /configs/template. Returns an SzConfigResponse containing a newly created default template configuration.",
+      "line_number": 1073,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\ConfigServices.java"
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records",
+      "http_method": "POST",
+      "method_name": "loadRecord",
+      "summary": "Load a record",
+      "description": "Provides the implementation for POST /data-sources/{dataSourceCode}/records. Loads a record with the specified data source code and optional load ID, with options to include resolution info and raw JSON.",
+      "line_number": 63,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java"
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records/{recordId}",
+      "http_method": "PUT",
+      "method_name": "loadRecord",
+      "summary": "Load a record with a specific record ID",
+      "description": "Provides the implementation for PUT /data-sources/{dataSourceCode}/records/{recordId}. Loads a record with the specified data source code and record ID, with options to include resolution info and raw JSON.",
+      "line_number": 212,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java"
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records/{recordId}",
+      "http_method": "DELETE",
+      "method_name": "deleteRecord",
+      "summary": "Delete a record",
+      "description": "Provides the implementation for DELETE /data-sources/{dataSourceCode}/records/{recordId}. Deletes the record with the specified data source code and record ID, with options to include resolution info and raw JSON.",
+      "line_number": 344,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java"
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records/{recordId}/reevaluate",
+      "http_method": "POST",
+      "method_name": "reevaluateRecord",
+      "summary": "Reevaluate a record",
+      "description": "Provides the implementation for POST /data-sources/{dataSourceCode}/records/{recordId}/reevaluate. Reevaluates the record with the specified data source code and record ID, with options to include resolution info and raw JSON.",
+      "line_number": 487,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java"
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records/{recordId}",
+      "http_method": "GET",
+      "method_name": "getRecord",
+      "summary": "Get a record",
+      "description": "Provides the implementation for GET /data-sources/{dataSourceCode}/records/{recordId}. Retrieves the record with the specified data source code and record ID, with an option to include raw JSON.",
+      "line_number": 610,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java"
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records/{recordId}/entity",
+      "http_method": "GET",
+      "method_name": "getEntityByRecordId",
+      "summary": "Get entity by record ID",
+      "description": "Provides the implementation for GET /data-sources/{dataSourceCode}/records/{recordId}/entity. Retrieves the entity associated with the specified record, with options for related entities, detail level, feature mode, and raw JSON.",
+      "line_number": 731,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java"
+    },
+    {
+      "endpoint_path": "/entities/{entityId}",
+      "http_method": "GET",
+      "method_name": "getEntityByEntityId",
+      "summary": "Get entity by entity ID",
+      "description": "Provides the implementation for GET /entities/{entityId}. Retrieves the entity with the specified entity ID, with options for related entities, detail level, feature mode, and raw JSON.",
+      "line_number": 1006,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java"
+    },
+    {
+      "endpoint_path": "/entities",
+      "http_method": "GET",
+      "method_name": "searchEntitiesByGet",
+      "summary": "Search entities by attributes (GET)",
+      "description": "Provides the implementation for GET /entities. Searches for entities based on attributes provided via query parameters, with options for filtering, detail level, feature mode, and raw JSON.",
+      "line_number": 1163,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java"
+    },
+    {
+      "endpoint_path": "/search-entities",
+      "http_method": "POST",
+      "method_name": "searchEntitiesByPost",
+      "summary": "Search entities by attributes (POST)",
+      "description": "Provides the implementation for POST /search-entities. Searches for entities based on attributes provided in the request body, with options for filtering, detail level, feature mode, and raw JSON.",
+      "line_number": 1300,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java"
+    },
+    {
+      "endpoint_path": "/reevaluate-entity",
+      "http_method": "POST",
+      "method_name": "reevaluateEntity",
+      "summary": "Reevaluate an entity",
+      "description": "Provides the implementation for POST /reevaluate-entity. Reevaluates the entity with the specified entity ID, with options to include resolution info and raw JSON.",
+      "line_number": 1530,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java"
+    },
+    {
+      "endpoint_path": "/entity-paths",
+      "http_method": "GET",
+      "method_name": "getEntityPath",
+      "summary": "Implements the GET /entity-paths operation.",
+      "description": "Implements the GET /entity-paths operation. Finds the path between two entities identified by the 'from' and 'to' parameters, with optional avoided entities, data source restrictions, and detail/feature options.",
+      "line_number": 75,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityGraphServices.java"
+    },
+    {
+      "endpoint_path": "/entity-networks",
+      "http_method": "GET",
+      "method_name": "getEntityNetwork",
+      "summary": "Implements the GET /entity-networks operation.",
+      "description": "Implements the GET /entity-networks operation. Builds an entity network from one or more entities specified via 'e' or 'entities' parameters, with options for max degrees, build-out, max entities, and detail/feature options.",
+      "line_number": 340,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityGraphServices.java"
+    },
+    {
+      "endpoint_path": "/virtual-entities",
+      "http_method": "GET",
+      "method_name": "getVirtualEntity",
+      "summary": "Get virtual entity by record IDs",
+      "description": "Implements the GET /virtual-entities operation. Retrieves the virtual entity formed by resolving the specified records. At least one record must be specified via the \"r\" or \"records\" query parameters.",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\HowRelatedServices.java"
+    },
+    {
+      "endpoint_path": "/entities/{entityId}/how",
+      "http_method": "GET",
+      "method_name": "howEntityByEntityId",
+      "summary": "How entity resolved by entity ID",
+      "description": "Implements the GET /entities/{entityId}/how operation. Describes how the entity with the specified entity ID resolved.",
+      "line_number": 208,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\HowRelatedServices.java"
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records/{recordId}/entity/how",
+      "http_method": "GET",
+      "method_name": "howEntityByRecordId",
+      "summary": "How entity resolved by record ID",
+      "description": "Implements the GET /data-sources/{dataSourceCode}/records/{recordId}/entity/how operation. Describes how the entity associated with the specified record resolved.",
+      "line_number": 269,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\HowRelatedServices.java"
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records/{recordId}/entity/why",
+      "http_method": "GET",
+      "method_name": "whyEntityByRecordId",
+      "summary": "Implements the GET /data-sources/{dataSourceCode}/records/{recordId}/entity/why operation.",
+      "description": "Implements the GET /data-sources/{dataSourceCode}/records/{recordId}/entity/why operation. Returns an SzWhyEntityResponse describing why the record belongs to its entity.",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\WhyServices.java"
+    },
+    {
+      "endpoint_path": "/entities/{entityId}/why",
+      "http_method": "GET",
+      "method_name": "whyEntityByEntityId",
+      "summary": "Implements the GET /entities/{entityId}/why operation.",
+      "description": "Implements the GET /entities/{entityId}/why operation. Returns an SzWhyEntityResponse describing why the entity is resolved as it is.",
+      "line_number": 148,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\WhyServices.java"
+    },
+    {
+      "endpoint_path": "/why/records",
+      "http_method": "GET",
+      "method_name": "whyRecords",
+      "summary": "Implements the GET /why/records operation.",
+      "description": "Implements the GET /why/records operation. Returns an SzWhyRecordsResponse describing why two records resolve to the same entity.",
+      "line_number": 232,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\WhyServices.java"
+    },
+    {
+      "endpoint_path": "/why/entities",
+      "http_method": "GET",
+      "method_name": "whyEntities",
+      "summary": "Implements the GET /why/entities operation.",
+      "description": "Implements the GET /why/entities operation. Returns an SzWhyEntitiesResponse describing why two entities are related.",
+      "line_number": 424,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\WhyServices.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 20498,
+  "tokens": {
+    "prompt_tokens": 830022,
+    "completion_tokens": 20003,
+    "total_tokens": 850025,
+    "calls": 21,
+    "elapsed_s": 249.744,
+    "prompt_cost_usd": 0.105875,
+    "completion_cost_usd": 0.013595,
+    "total_cost_usd": 0.11947,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 270242,
+        "completion_tokens": 3399,
+        "total_tokens": 273641,
+        "calls": 7,
+        "elapsed_s": 20.391862999999997,
+        "prompt_cost_usd": 0.005405,
+        "completion_cost_usd": 0.002039,
+        "total_cost_usd": 0.007444
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 263162,
+        "completion_tokens": 13350,
+        "total_tokens": 276512,
+        "calls": 7,
+        "elapsed_s": 174.365,
+        "prompt_cost_usd": 0.026316,
+        "completion_cost_usd": 0.006675,
+        "total_cost_usd": 0.032991
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 296618,
+        "completion_tokens": 3254,
+        "total_tokens": 299872,
+        "calls": 7,
+        "elapsed_s": 54.987,
+        "prompt_cost_usd": 0.074154,
+        "completion_cost_usd": 0.004881,
+        "total_cost_usd": 0.079035
+      }
+    ]
+  }
+}

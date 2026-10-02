@@ -1,0 +1,186 @@
+{
+  "task_id": "piggymetrics-master",
+  "api_name": "piggymetrics-master",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/uaa/users",
+      "http_method": "POST",
+      "method_name": "createUser",
+      "summary": "Create a new user in the auth-service",
+      "description": "Feign client method that sends a POST request to the auth-service at /uaa/users with a JSON body containing the User object to create a new user.",
+      "line_number": 4,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\account-service\\src\\main\\java\\com\\piggymetrics\\account\\client\\AuthServiceClient.java"
+    },
+    {
+      "endpoint_path": "/statistics/{accountName}",
+      "http_method": "PUT",
+      "method_name": "updateStatistics",
+      "summary": "Update statistics for an account",
+      "description": "Feign client method that sends a PUT request to the statistics-service to update statistics for the specified account. Consumes JSON UTF-8 content. Falls back to StatisticsServiceClientFallback on failure.",
+      "line_number": 4,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\account-service\\src\\main\\java\\com\\piggymetrics\\account\\client\\StatisticsServiceClient.java"
+    },
+    {
+      "endpoint_path": "/{name}",
+      "http_method": "GET",
+      "method_name": "getAccountByName",
+      "summary": "Get account by name",
+      "description": "Retrieves the account associated with the given name. Requires OAuth2 scope 'server' or the name must be 'demo'.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\account-service\\src\\main\\java\\com\\piggymetrics\\account\\controller\\AccountController.java"
+    },
+    {
+      "endpoint_path": "/current",
+      "http_method": "GET",
+      "method_name": "getCurrentAccount",
+      "summary": "Get current account",
+      "description": "Retrieves the account of the currently authenticated user.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\account-service\\src\\main\\java\\com\\piggymetrics\\account\\controller\\AccountController.java"
+    },
+    {
+      "endpoint_path": "/current",
+      "http_method": "PUT",
+      "method_name": "saveCurrentAccount",
+      "summary": "Save current account",
+      "description": "Updates the account of the currently authenticated user with the provided account data.",
+      "line_number": 21,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\account-service\\src\\main\\java\\com\\piggymetrics\\account\\controller\\AccountController.java"
+    },
+    {
+      "endpoint_path": "/",
+      "http_method": "POST",
+      "method_name": "createNewAccount",
+      "summary": "Create new account",
+      "description": "Creates a new account for the provided user.",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\account-service\\src\\main\\java\\com\\piggymetrics\\account\\controller\\AccountController.java"
+    },
+    {
+      "endpoint_path": "/users/current",
+      "http_method": "GET",
+      "method_name": "getUser",
+      "summary": "Get current user",
+      "description": "Returns the Principal of the currently authenticated user.",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\auth-service\\src\\main\\java\\com\\piggymetrics\\auth\\controller\\UserController.java"
+    },
+    {
+      "endpoint_path": "/users",
+      "http_method": "POST",
+      "method_name": "createUser",
+      "summary": "Create a new user",
+      "description": "Creates a new user. Requires OAuth2 scope 'server'.",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\auth-service\\src\\main\\java\\com\\piggymetrics\\auth\\controller\\UserController.java"
+    },
+    {
+      "endpoint_path": "/accounts/{accountName}",
+      "http_method": "GET",
+      "method_name": "getAccount",
+      "summary": "Get account by account name",
+      "description": "Feign client method that retrieves an account by its name from the account-service. Consumes application/json;charset=UTF-8.",
+      "line_number": 6,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\notification-service\\src\\main\\java\\com\\piggymetrics\\notification\\client\\AccountServiceClient.java"
+    },
+    {
+      "endpoint_path": "/recipients/current",
+      "http_method": "GET",
+      "method_name": "getCurrentNotificationsSettings",
+      "summary": "Get current notifications settings",
+      "description": "Returns the notification settings for the currently authenticated user.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\notification-service\\src\\main\\java\\com\\piggymetrics\\notification\\controller\\RecipientController.java"
+    },
+    {
+      "endpoint_path": "/recipients/current",
+      "http_method": "PUT",
+      "method_name": "saveCurrentNotificationsSettings",
+      "summary": "Save current notifications settings",
+      "description": "Creates or updates the notification settings for the currently authenticated user.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\notification-service\\src\\main\\java\\com\\piggymetrics\\notification\\controller\\RecipientController.java"
+    },
+    {
+      "endpoint_path": "/latest",
+      "http_method": "GET",
+      "method_name": "getRates",
+      "summary": "Get latest exchange rates",
+      "description": "Retrieves the latest exchange rates for the specified base currency.",
+      "line_number": 5,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\statistics-service\\src\\main\\java\\com\\piggymetrics\\statistics\\client\\ExchangeRatesClient.java"
+    },
+    {
+      "endpoint_path": "/{accountName}",
+      "http_method": "GET",
+      "method_name": "getStatisticsByAccountName",
+      "summary": "Get statistics by account name",
+      "description": "Returns statistics for the specified account name. Requires OAuth2 scope 'server' or account name 'demo'.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\statistics-service\\src\\main\\java\\com\\piggymetrics\\statistics\\controller\\StatisticsController.java"
+    },
+    {
+      "endpoint_path": "/{accountName}",
+      "http_method": "PUT",
+      "method_name": "saveAccountStatistics",
+      "summary": "Save account statistics",
+      "description": "Saves statistics for the specified account name. Requires OAuth2 scope 'server'.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\statistics-service\\src\\main\\java\\com\\piggymetrics\\statistics\\controller\\StatisticsController.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 9167,
+  "tokens": {
+    "prompt_tokens": 49966,
+    "completion_tokens": 5028,
+    "total_tokens": 54994,
+    "calls": 24,
+    "elapsed_s": 83.317,
+    "prompt_cost_usd": 0.006408,
+    "completion_cost_usd": 0.003459,
+    "total_cost_usd": 0.009865,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 16265,
+        "completion_tokens": 1146,
+        "total_tokens": 17411,
+        "calls": 8,
+        "elapsed_s": 9.1625,
+        "prompt_cost_usd": 0.000325,
+        "completion_cost_usd": 0.000688,
+        "total_cost_usd": 0.001013
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 15618,
+        "completion_tokens": 3053,
+        "total_tokens": 18671,
+        "calls": 8,
+        "elapsed_s": 54.439,
+        "prompt_cost_usd": 0.001562,
+        "completion_cost_usd": 0.001527,
+        "total_cost_usd": 0.003088
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 18083,
+        "completion_tokens": 829,
+        "total_tokens": 18912,
+        "calls": 8,
+        "elapsed_s": 19.716,
+        "prompt_cost_usd": 0.004521,
+        "completion_cost_usd": 0.001244,
+        "total_cost_usd": 0.005764
+      }
+    ]
+  }
+}

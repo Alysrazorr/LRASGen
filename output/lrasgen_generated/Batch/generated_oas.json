@@ -1,0 +1,413 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "spring-batch-rest API",
+    "description": "LRASGen-generated specification for spring-batch-rest (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/jobs": {
+      "get": {
+        "operationId": "getJobs",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a collection of all Spring Batch jobs as HAL representation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CollectionModel<JobResource>": {
+                      "type": "string",
+                      "description": "{'_embedded': 'object', '_links': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when an unexpected exception occurs while retrieving jobs."
+          }
+        }
+      }
+    },
+    "/jobs/{jobName}": {
+      "get": {
+        "operationId": "getJobs",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "jobName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the Spring Batch job to retrieve",
+            "schema": {
+              "type": "string",
+              "description": "Name of the Spring Batch job to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the Spring Batch job with the given name as a HAL representation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JobResource": {
+                      "type": "string",
+                      "description": "{'job': 'Job', '_links': 'object'}"
+                    },
+                    "Job": {
+                      "type": "string",
+                      "description": "{'name': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error returned when the delegated job lookup fails and the exception is handled by the controller advice."
+          }
+        }
+      }
+    },
+    "/jobDetails": {
+      "get": {
+        "operationId": "getJobdetails",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "enabled",
+            "in": "query",
+            "required": false,
+            "description": "Filter job details by enabled status",
+            "schema": {
+              "type": "boolean",
+              "description": "Filter job details by enabled status"
+            }
+          },
+          {
+            "name": "springBatchJobName",
+            "in": "query",
+            "required": false,
+            "description": "Filter job details by Spring Batch job name",
+            "schema": {
+              "type": "string",
+              "description": "Filter job details by Spring Batch job name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a collection of Quartz job details, optionally filtered by enabled status and Spring Batch job name.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CollectionModel<JobDetailResource>": {
+                      "type": "string",
+                      "description": "{'_embedded': 'object', '_links': 'object'}"
+                    },
+                    "JobDetailResource": {
+                      "type": "string",
+                      "description": "{'jobDetail': 'JobDetail', '_links': 'object'}"
+                    },
+                    "JobDetail": {
+                      "type": "string",
+                      "description": "{'quartzJobName': 'string', 'quartzGroupName': 'string', 'springBatchJobName': 'Optional<string>', 'description': 'string', 'cronExpression': 'Optional<string>', 'nextFireTime': 'LocalDateTime', 'previousFireTime': 'LocalDateTime'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the service fails to retrieve job details."
+          }
+        }
+      }
+    },
+    "/jobExecutions": {
+      "get": {
+        "operationId": "getJobexecutions",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "jobName",
+            "in": "query",
+            "required": false,
+            "description": "Find Spring batch job executions by job name",
+            "schema": {
+              "type": "string",
+              "description": "Find Spring batch job executions by job name"
+            }
+          },
+          {
+            "name": "exitCode",
+            "in": "query",
+            "required": false,
+            "description": "Find Spring batch job executions by exit code",
+            "schema": {
+              "type": "string",
+              "description": "Find Spring batch job executions by exit code"
+            }
+          },
+          {
+            "name": "limitPerJob",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of executions per job",
+            "schema": {
+              "type": "integer",
+              "description": "Maximum number of executions per job"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a collection of job execution resources matching the optional jobName and exitCode filters, limited per job.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CollectionModel<JobExecutionResource>": {
+                      "type": "string",
+                      "description": "{'_embedded': 'object', '_links': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the job execution service fails to retrieve job executions."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createJobexecutions",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Job execution started successfully. Returns the created JobExecutionResource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JobExecutionResource": {
+                      "type": "string",
+                      "description": "{'jobExecution': 'JobExecution'}"
+                    },
+                    "JobExecution": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'jobId': 'long', 'jobName': 'string', 'startTime': 'LocalDateTime', 'endTime': 'LocalDateTime', 'exitCode': 'string', 'exitDescription': 'string', 'status': 'BatchStatus', 'exceptions': 'Collection<string>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Job execution failed. The exit code of the job execution is FAILED.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JobExecutionResource": {
+                      "type": "string",
+                      "description": "{'jobExecution': 'JobExecution'}"
+                    },
+                    "JobExecution": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'jobId': 'long', 'jobName': 'string', 'startTime': 'LocalDateTime', 'endTime': 'LocalDateTime', 'exitCode': 'string', 'exitDescription': 'string', 'status': 'BatchStatus', 'exceptions': 'Collection<string>'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Spring Batch job configuration to launch"
+                  },
+                  "properties": {
+                    "type": "string",
+                    "description": "Spring Batch job configuration to launch"
+                  },
+                  "asynchronous": {
+                    "type": "boolean",
+                    "description": "Spring Batch job configuration to launch"
+                  }
+                },
+                "required": [
+                  "name",
+                  "properties",
+                  "asynchronous"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobDetails/{quartzGroupName}/{quartzJobName}": {
+      "get": {
+        "operationId": "getJobdetails",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "quartzGroupName",
+            "in": "path",
+            "required": true,
+            "description": "Quartz group name",
+            "schema": {
+              "type": "string",
+              "description": "Quartz group name"
+            }
+          },
+          {
+            "name": "quartzJobName",
+            "in": "path",
+            "required": true,
+            "description": "Quartz job name",
+            "schema": {
+              "type": "string",
+              "description": "Quartz job name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the Quartz job detail for the given group and job name, wrapped in a JobDetailResource with a self link.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JobDetailResource": {
+                      "type": "string",
+                      "description": "{'jobDetail': {'quartzJobName': 'string', 'quartzGroupName': 'string', 'springBatchJobName': 'Optional<string>', 'description': 'string', 'cronExpression': 'Optional<string>', 'nextFireTime': 'LocalDateTime', 'previousFireTime': 'LocalDateTime'}, '_links': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the job detail cannot be retrieved, such as when the job does not exist or the scheduler fails.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiError": {
+                      "type": "string",
+                      "description": "{'status': 'string', 'message': 'string', 'exception': 'string', 'detail': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobExecutions/{id}": {
+      "get": {
+        "operationId": "getJobexecutions",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the Spring Batch job execution to retrieve",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the Spring Batch job execution to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the job execution by ID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JobExecutionResource": {
+                      "type": "string",
+                      "description": "{'jobExecution': {'id': 'long', 'jobId': 'long', 'jobName': 'string', 'startTime': 'date', 'endTime': 'date', 'exitCode': 'string', 'exitDescription': 'string', 'status': 'string', 'exceptions': 'array'}, '_links': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Job execution not found. Thrown when the job execution with the specified ID does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiError": {
+                      "type": "string",
+                      "description": "{'status': 'string', 'message': 'string', 'exception': 'string', 'detail': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Thrown when an unexpected error occurs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiError": {
+                      "type": "string",
+                      "description": "{'status': 'string', 'message': 'string', 'exception': 'string', 'detail': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

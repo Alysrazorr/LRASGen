@@ -1,0 +1,5782 @@
+{
+  "task_id": "microcks",
+  "api_name": "microcks",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/keycloak/config",
+      "http_method": "GET",
+      "method_name": "getKeycloakConfig",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\minions\\async\\src\\main\\java\\io\\github\\microcks\\minion\\async\\client\\MicrocksAPIConnector.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The Keycloak server configuration for the Microcks instance.",
+          "data_schema": [
+            {
+              "name": "KeycloakConfig",
+              "schema": {
+                "enabled": "boolean",
+                "realm": "string",
+                "auth-server-url": "string",
+                "ssl-required": "string",
+                "public-client": "boolean",
+                "resource": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/resources/service/{id}",
+      "http_method": "GET",
+      "method_name": "getResources",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\minions\\async\\src\\main\\java\\io\\github\\microcks\\minion\\async\\client\\MicrocksAPIConnector.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of Service to get resources for",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of Resources associated to Service",
+          "data_schema": [
+            {
+              "name": "List<Resource>",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "path": "string",
+                "content": "string",
+                "type": "ResourceType",
+                "serviceId": "string",
+                "sourceArtifact": "string",
+                "mainArtifact": "boolean",
+                "operations": "Set<string>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/services",
+      "http_method": "GET",
+      "method_name": "listServices",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\minions\\async\\src\\main\\java\\io\\github\\microcks\\minion\\async\\client\\MicrocksAPIConnector.java",
+      "parameters": [
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The page of service list to request",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The size of the page to fetch",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of Service objects is returned.",
+          "data_schema": [
+            {
+              "name": "List<Service>",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "version": "string",
+                "xmlNS": "string",
+                "type": "ServiceType",
+                "metadata": "Metadata",
+                "sourceArtifact": "string",
+                "operations": "List<Operation>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/tests",
+      "http_method": "POST",
+      "method_name": "launchTestCandidate",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\minions\\async\\src\\main\\java\\io\\github\\microcks\\minion\\async\\TestResource.java",
+      "parameters": [
+        {
+          "name": "testResultId",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The Async test specification to launch, consumed as application/json."
+        },
+        {
+          "name": "serviceId",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The Async test specification to launch, consumed as application/json."
+        },
+        {
+          "name": "operationName",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The Async test specification to launch, consumed as application/json."
+        },
+        {
+          "name": "endpointUrl",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The Async test specification to launch, consumed as application/json."
+        },
+        {
+          "name": "asyncAPISpec",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The Async test specification to launch, consumed as application/json."
+        },
+        {
+          "name": "timeoutMS",
+          "type": "Long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The Async test specification to launch, consumed as application/json."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 202,
+          "description": "Accepted. The test is launched asynchronously when the runner type is ASYNC_API_SCHEMA.",
+          "data_schema": []
+        },
+        {
+          "status_code": 204,
+          "description": "No Content. Returned when no suitable test runner is found for the given runner type.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/copilot/samples/{id}/cleanup",
+      "http_method": "POST",
+      "method_name": "removeExchanges",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\AICopilotController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the service to remove AI samples from",
+          "_depth": 0
+        },
+        {
+          "name": "serviceId",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The selection of exchanges to remove"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "The current user information to check if authorized to do the update"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "The current user information to check if authorized to do the update"
+        },
+        {
+          "name": "givenName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "The current user information to check if authorized to do the update"
+        },
+        {
+          "name": "familyName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "The current user information to check if authorized to do the update"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "The current user information to check if authorized to do the update"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content - the AI samples were successfully removed from the service.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - the user is not authorized to remove exchanges from the service.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/copilot/samples/{id}",
+      "http_method": "POST",
+      "method_name": "addSamplesSuggestions",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\AICopilotController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The service identifier, which may be a technical id or a functional identifier of the form <service_name>:<service_version>.",
+          "_depth": 0
+        },
+        {
+          "name": "operation",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The name of the operation to add the AI-generated sample exchanges to.",
+          "_depth": 0
+        },
+        {
+          "name": "exchanges",
+          "type": "Exchange",
+          "require": "false",
+          "position": "body",
+          "description": "A list of Exchange objects (RequestResponsePair or UnidirectionalEvent) representing the AI-generated samples to add.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Samples suggestions added successfully.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The user is not authorized to add samples to the service operation.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/tests/{id}/testCaseResult",
+      "http_method": "POST",
+      "method_name": "reportTestCaseResult",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\minions\\async\\src\\main\\java\\io\\github\\microcks\\minion\\async\\client\\MicrocksAPIConnector.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of TestResult we want to report a result for",
+          "_depth": 0
+        },
+        {
+          "name": "operationName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "A Test Case return data object for this TestResult"
+        },
+        {
+          "name": "testReturns",
+          "type": "List",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "A Test Case return data object for this TestResult"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The created TestCaseResult following reporting",
+          "data_schema": [
+            {
+              "name": "TestCaseResult",
+              "schema": {
+                "success": "boolean",
+                "elapsedTime": "long",
+                "operationName": "string",
+                "testStepResults": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/copilot/samples/task/{id}/status",
+      "http_method": "GET",
+      "method_name": "getGenerationTaskStatus",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\AICopilotController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the generation task to retrieve status for",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 404,
+          "description": "Task not found",
+          "data_schema": [
+            {
+              "name": "TaskStatusResponse",
+              "schema": {
+                "status": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 202,
+          "description": "Task is pending",
+          "data_schema": [
+            {
+              "name": "TaskStatusResponse",
+              "schema": {
+                "status": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 201,
+          "description": "Task succeeded",
+          "data_schema": [
+            {
+              "name": "TaskStatusResponse",
+              "schema": {
+                "status": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Task failed",
+          "data_schema": [
+            {
+              "name": "TaskStatusResponse",
+              "schema": {
+                "status": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/copilot/samples/{id}",
+      "http_method": "GET",
+      "method_name": "getSamplesSuggestions",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\AICopilotController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The service identifier. May be a technical id or a functional identifier of the form <service_name>:<service_version>.",
+          "_depth": 0
+        },
+        {
+          "name": "operation",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The name of the operation to generate sample suggestions for. When omitted, an asynchronous generation for all operations is launched.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully generated sample exchanges for the specified operation.",
+          "data_schema": [
+            {
+              "name": "Exchange",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 201,
+          "description": "Asynchronous sample generation task created. Returns a task ID.",
+          "data_schema": [
+            {
+              "name": "TaskId",
+              "schema": {
+                "taskId": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Missing mandatory parameters (serviceId, operationName, or contract) or service not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An exception occurred while generating samples.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/services/{id}",
+      "http_method": "GET",
+      "method_name": "getService",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\minions\\async\\src\\main\\java\\io\\github\\microcks\\minion\\async\\client\\MicrocksAPIConnector.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of Service to get the view for",
+          "_depth": 0
+        },
+        {
+          "name": "messages",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether to include full descriptions of operations messages",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The complete ServiceView for Service",
+          "data_schema": [
+            {
+              "name": "ServiceView",
+              "schema": {
+                "service": "Service",
+                "messagesMap": "Map<String, List<Exchange>>"
+              }
+            },
+            {
+              "name": "Service",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "version": "string",
+                "xmlNS": "string",
+                "type": "ServiceType",
+                "metadata": "Metadata",
+                "sourceArtifact": "string",
+                "operations": "List<Operation>"
+              }
+            },
+            {
+              "name": "Metadata",
+              "schema": {
+                "createdOn": "Date",
+                "lastUpdate": "Date",
+                "annotations": "Map<String, String>",
+                "labels": "Map<String, String>"
+              }
+            },
+            {
+              "name": "Operation",
+              "schema": {
+                "name": "string",
+                "method": "string",
+                "action": "string",
+                "inputName": "string",
+                "outputName": "string",
+                "bindings": "Map<String, Binding>",
+                "override": "boolean",
+                "dispatcher": "string",
+                "dispatcherRules": "string",
+                "defaultDelay": "Long",
+                "resourcePaths": "Set<String>",
+                "parameterConstraints": "Set<ParameterConstraint>"
+              }
+            },
+            {
+              "name": "Binding",
+              "schema": {
+                "type": "BindingType",
+                "keyType": "string",
+                "destinationType": "string",
+                "destinationName": "string",
+                "method": "string",
+                "qoS": "string",
+                "persistent": "boolean"
+              }
+            },
+            {
+              "name": "ParameterConstraint",
+              "schema": {
+                "name": "string",
+                "in": "ParameterLocation",
+                "required": "boolean",
+                "recopy": "boolean",
+                "mustMatchRegexp": "string"
+              }
+            },
+            {
+              "name": "Exchange",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "RequestResponsePair",
+              "schema": {
+                "request": "Request",
+                "response": "Response"
+              }
+            },
+            {
+              "name": "UnidirectionalEvent",
+              "schema": {
+                "eventMessage": "EventMessage"
+              }
+            },
+            {
+              "name": "Request",
+              "schema": {
+                "id": "string",
+                "responseId": "string",
+                "queryParameters": "List<Parameter>",
+                "name": "string",
+                "content": "string",
+                "operationId": "string",
+                "testCaseId": "string",
+                "sourceArtifact": "string",
+                "headers": "Set<Header>"
+              }
+            },
+            {
+              "name": "Response",
+              "schema": {
+                "id": "string",
+                "status": "string",
+                "mediaType": "string",
+                "dispatchCriteria": "string",
+                "isFault": "boolean",
+                "name": "string",
+                "content": "string",
+                "operationId": "string",
+                "testCaseId": "string",
+                "sourceArtifact": "string",
+                "headers": "Set<Header>"
+              }
+            },
+            {
+              "name": "EventMessage",
+              "schema": {
+                "id": "string",
+                "mediaType": "string",
+                "dispatchCriteria": "string",
+                "name": "string",
+                "content": "string",
+                "operationId": "string",
+                "testCaseId": "string",
+                "sourceArtifact": "string",
+                "headers": "Set<Header>"
+              }
+            },
+            {
+              "name": "Header",
+              "schema": {
+                "name": "string",
+                "values": "Set<String>"
+              }
+            },
+            {
+              "name": "Parameter",
+              "schema": {
+                "name": "string",
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/documentation/{name}/{resourceType}",
+      "http_method": "GET",
+      "method_name": "getDocumentationByResourceName",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\DocumentationController.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the resource to get documentation for",
+          "_depth": 0
+        },
+        {
+          "name": "resourceType",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The type of the resource (e.g., OPEN_API_SPEC, SWAGGER, ASYNC_API_SPEC)",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the documentation HTML page for the requested resource, with the resource URL substituted into the template. The response body is the rendered HTML template (redoc.html for OpenAPI/Swagger, asyncapi.html or asyncapi-v3.html for AsyncAPI).",
+          "data_schema": [
+            {
+              "name": "DocumentationHtml",
+              "schema": {
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the resourceType is ASYNC_API_SPEC and no resource with the given name exists, or when no main artifact is found among the resources with that name. Also returned when the resourceType is ASYNC_API_SPEC and no resource with the given id exists. Also returned when the resourceType is not one of OPEN_API_SPEC, SWAGGER, or ASYNC_API_SPEC (template is null).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/copilot/samples/{id}/export",
+      "http_method": "POST",
+      "method_name": "exportExchanges",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\AICopilotController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the service to export exchanges for",
+          "_depth": 0
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The export format for the exchange selection",
+          "_depth": 0
+        },
+        {
+          "name": "serviceId",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The selection of exchanges to export"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "The current user information"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "The current user information"
+        },
+        {
+          "name": "givenName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "The current user information"
+        },
+        {
+          "name": "familyName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "The current user information"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "The current user information"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Export successful. Returns the exported exchange selection as a JSON attachment.",
+          "data_schema": [
+            {
+              "name": "byte[]",
+              "schema": {
+                "body": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Exception while exporting the Exchanges selection. Check server logs.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/documentation/id/{id}/{resourceType}",
+      "http_method": "GET",
+      "method_name": "getDocumentationByResourceId",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\DocumentationController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the resource to get documentation for",
+          "_depth": 0
+        },
+        {
+          "name": "resourceType",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The type of documentation resource to retrieve (e.g. OPEN_API_SPEC, SWAGGER, ASYNC_API_SPEC)",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Documentation HTML page returned successfully. The response body contains the rendered template with the resource URL replaced.",
+          "data_schema": [
+            {
+              "name": "DocumentationPage",
+              "schema": {
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the resource type is ASYNC_API_SPEC and no resource with the given id exists, or when the resource type is not recognized (template is null).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dynarest/{service}/{version}/{resource}",
+      "http_method": "POST",
+      "method_name": "createResource",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\DynamicMockRestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to create the resource for",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service",
+          "_depth": 0
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The resource name",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The JSON payload for the new resource",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Resource created successfully. Returns the created resource as JSON with an appended 'id' field.",
+          "data_schema": [
+            {
+              "name": "GenericResource",
+              "schema": {
+                "id": "string",
+                "serviceId": "string",
+                "payload": "object",
+                "reference": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 422,
+          "description": "Unprocessable Entity. The request body could not be parsed as JSON.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The service or operation was not found, or the service type is not GENERIC_REST.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dynarest/{service}/{version}/{resource}/{resourceId}",
+      "http_method": "DELETE",
+      "method_name": "deleteResource",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\DynamicMockRestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service",
+          "_depth": 0
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The resource name",
+          "_depth": 0
+        },
+        {
+          "name": "resourceId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the resource to delete",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The delay in milliseconds before returning the response",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. The resource was deleted successfully.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The service or operation was not found or is not a valid GENERIC_REST service.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dynarest/{service}/{version}/{resource}",
+      "http_method": "GET",
+      "method_name": "findResources",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\DynamicMockRestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to find resources for",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service",
+          "_depth": 0
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The resource name to find",
+          "_depth": 0
+        },
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The number of resources per page",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The delay in milliseconds before returning the response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The JSON query body to filter resources",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK - a JSON array of resources matching the query, each rendered with templating support",
+          "data_schema": [
+            {
+              "name": "resources",
+              "schema": {
+                "resources": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - no matching service/operation found for the given service name, version and resource",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dynarest/{service}/{version}/{resource}/{resourceId}",
+      "http_method": "GET",
+      "method_name": "getResource",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\DynamicMockRestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service",
+          "_depth": 0
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The resource name",
+          "_depth": 0
+        },
+        {
+          "name": "resourceId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the resource",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The delay in milliseconds before returning the response",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The resource was found and its JSON representation is returned.",
+          "data_schema": [
+            {
+              "name": "GenericResource",
+              "schema": {
+                "id": "string",
+                "serviceId": "string",
+                "payload": "object",
+                "reference": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The requested resource was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request: the service, version, or operation could not be resolved.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dynarest/{service}/{version}/{resource}/{resourceId}",
+      "http_method": "PUT",
+      "method_name": "updateResource",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\DynamicMockRestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service",
+          "_depth": 0
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The resource name",
+          "_depth": 0
+        },
+        {
+          "name": "resourceId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the resource to update",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Delay in milliseconds before returning the response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The JSON payload for the resource",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Resource updated successfully. Returns the updated resource as JSON with the id field appended.",
+          "data_schema": [
+            {
+              "name": "GenericResource",
+              "schema": {
+                "id": "string",
+                "serviceId": "string",
+                "payload": "object",
+                "reference": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when no matching mock context is found for the service, version, and operation.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the resource with the given resourceId does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 422,
+          "description": "Unprocessable entity. Returned when the request body cannot be parsed as JSON.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/features/config",
+      "http_method": "GET",
+      "method_name": "getConfig",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\FeaturesConfigController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the feature configuration map.",
+          "data_schema": [
+            {
+              "name": "feature",
+              "schema": {
+                "feature": "Map<String, Map<String, String>>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/export",
+      "http_method": "GET",
+      "method_name": "exportRepository",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ExportController.java",
+      "parameters": [
+        {
+          "name": "serviceIds",
+          "type": "List<String>",
+          "require": "false",
+          "position": "query",
+          "description": "The list of service ids to export",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful export of repository data as a JSON file attachment.",
+          "data_schema": [
+            {
+              "name": "ExportRepositoryResponse",
+              "schema": {
+                "services": "array",
+                "resources": "array",
+                "requests": "array",
+                "responses": "array",
+                "eventMessages": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/genericresources/service/{serviceId}/count",
+      "http_method": "GET",
+      "method_name": "countResources",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\GenericResourceController.java",
+      "parameters": [
+        {
+          "name": "serviceId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the service to count generic resources for",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns a map containing the count of generic resources for the specified service ID.",
+          "data_schema": [
+            {
+              "name": "Map<String, Long>",
+              "schema": {
+                "counter": "long"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/genericresources/service/{serviceId}",
+      "http_method": "GET",
+      "method_name": "listResources",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\GenericResourceController.java",
+      "parameters": [
+        {
+          "name": "serviceId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the service to list generic resources for",
+          "_depth": 0
+        },
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The page number to retrieve (zero-based)",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The number of resources per page",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns a list of GenericResource objects for the specified service. Each resource has its payload augmented with an 'id' field.",
+          "data_schema": [
+            {
+              "name": "List<GenericResource>",
+              "schema": {
+                "id": "string",
+                "serviceId": "string",
+                "payload": "object",
+                "reference": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/health",
+      "http_method": "GET",
+      "method_name": "health",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\HealthController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Health check is OK. The MongoDB connection is verified by executing a query against the ImportJob repository.",
+          "data_schema": []
+        },
+        {
+          "status_code": 503,
+          "description": "Service Unavailable. The health check caught an exception while querying the ImportJob repository, indicating a problem with the MongoDB connection.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/import",
+      "http_method": "POST",
+      "method_name": "importRepository",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ImportController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Created. The import operation completed (regardless of whether the file was empty, non-JSON, or an exception occurred during import).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/jobs",
+      "http_method": "POST",
+      "method_name": "createJob",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to create, provided in the request body."
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to create, provided in the request body."
+        },
+        {
+          "name": "repositoryUrl",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to create, provided in the request body."
+        },
+        {
+          "name": "mainArtifact",
+          "type": "boolean",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to create, provided in the request body."
+        },
+        {
+          "name": "repositoryDisableSSLValidation",
+          "type": "boolean",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to create, provided in the request body."
+        },
+        {
+          "name": "frequency",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to create, provided in the request body."
+        },
+        {
+          "name": "createdDate",
+          "type": "Date",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to create, provided in the request body."
+        },
+        {
+          "name": "lastImportDate",
+          "type": "Date",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to create, provided in the request body."
+        },
+        {
+          "name": "lastImportError",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to create, provided in the request body."
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to create, provided in the request body."
+        },
+        {
+          "name": "etag",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to create, provided in the request body."
+        },
+        {
+          "name": "serviceRefs",
+          "type": "Set",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to create, provided in the request body."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Job created successfully. Returns the created ImportJob object.",
+          "data_schema": [
+            {
+              "name": "ImportJob",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "repositoryUrl": "string",
+                "mainArtifact": "boolean",
+                "repositoryDisableSSLValidation": "boolean",
+                "frequency": "string",
+                "createdDate": "date",
+                "lastImportDate": "date",
+                "lastImportError": "string",
+                "active": "boolean",
+                "etag": "string",
+                "metadata": "Metadata",
+                "secretRef": "SecretRef",
+                "serviceRefs": "Set<ServiceRef>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/graphql/{service}/{version}/**",
+      "http_method": "POST",
+      "method_name": "execute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\GraphQLController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The GraphQL request body (JSON containing query, operationName, variables)",
+          "_depth": 0
+        },
+        {
+          "name": "method",
+          "type": "HttpMethod",
+          "require": "false",
+          "position": "query",
+          "description": "The HTTP method of the request",
+          "_depth": 0
+        },
+        {
+          "name": "operationName",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The name of the GraphQL operation (for GET requests)",
+          "_depth": 0
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The GraphQL query string (for GET requests)",
+          "_depth": 0
+        },
+        {
+          "name": "variables",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "JSON string of variables for the GraphQL query (for GET requests)",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful GraphQL response. For introspection queries, returns the GraphQL schema introspection result serialized as JSON. For regular queries, returns an aggregated JSON object with a 'data' field containing each operation's response keyed by alias or operation name.",
+          "data_schema": [
+            {
+              "name": "GraphQLResponse",
+              "schema": {
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the GraphQL request body cannot be parsed (error parsing GraphQL request), when a parameter constraint is violated, or when no matching response is found for a GraphQL operation.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the service with the given name and version does not exist, or when no operation matching the requested GraphQL field name is found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when a JSON processing exception occurs while serializing the GraphQL execution result or the aggregated response, or when an exception occurs while filtering the response according to the GraphQL field selection.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/jobs/search",
+      "http_method": "GET",
+      "method_name": "searchJobs",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java",
+      "parameters": [
+        {
+          "name": "queryMap",
+          "type": "Map<String, String>",
+          "require": "false",
+          "position": "query",
+          "description": "Map of all query parameters; the handler parses 'name' and any 'labels.*' entries from it.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing a list of ImportJob objects matching the search criteria.",
+          "data_schema": [
+            {
+              "name": "List<ImportJob>",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "repositoryUrl": "string",
+                "mainArtifact": "boolean",
+                "repositoryDisableSSLValidation": "boolean",
+                "frequency": "string",
+                "createdDate": "date",
+                "lastImportDate": "date",
+                "lastImportError": "string",
+                "active": "boolean",
+                "etag": "string",
+                "metadata": "Metadata",
+                "secretRef": "SecretRef",
+                "serviceRefs": "Set<ServiceRef>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/graphql/{service}/{version}/**",
+      "http_method": "GET",
+      "method_name": "execute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\GraphQLController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The GraphQL request body (for POST requests)",
+          "_depth": 0
+        },
+        {
+          "name": "method",
+          "type": "HttpMethod",
+          "require": "false",
+          "position": "query",
+          "description": "The HTTP method of the request",
+          "_depth": 0
+        },
+        {
+          "name": "operationName",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The name of the GraphQL operation (for GET requests)",
+          "_depth": 0
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The GraphQL query string (for GET requests)",
+          "_depth": 0
+        },
+        {
+          "name": "variables",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The GraphQL variables as a JSON string (for GET requests)",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful GraphQL response. For introspection queries, returns the GraphQL schema introspection result as JSON. For regular queries, returns an aggregated JSON object with a 'data' field containing the results of each selected field, keyed by alias or operation name.",
+          "data_schema": [
+            {
+              "name": "GraphQLResponse",
+              "schema": {
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the GraphQL request body cannot be parsed, when a parameter constraint is violated, or when no matching response is found for a GraphQL operation.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned when the requested service with the given name and version does not exist, or when no operation matching the GraphQL field name is found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when an error occurs while serializing the GraphQL response to JSON, or when an exception occurs while filtering the response according to the GraphQL field selection.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/jobs/count",
+      "http_method": "GET",
+      "method_name": "countJobs",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a map containing the total count of jobs under the key 'counter'.",
+          "data_schema": [
+            {
+              "name": "Map<String, Long>",
+              "schema": {
+                "counter": "long"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/jobs",
+      "http_method": "GET",
+      "method_name": "listJobs",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java",
+      "parameters": [
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of items per page",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Name filter for jobs",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of ImportJob objects. If the 'name' query parameter is provided, returns jobs whose name matches the given pattern (case-insensitive regex). Otherwise, returns a paginated list of jobs sorted by name in ascending order.",
+          "data_schema": [
+            {
+              "name": "List<ImportJob>",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "repositoryUrl": "string",
+                "mainArtifact": "boolean",
+                "repositoryDisableSSLValidation": "boolean",
+                "frequency": "string",
+                "createdDate": "date",
+                "lastImportDate": "date",
+                "lastImportError": "string",
+                "active": "boolean",
+                "etag": "string",
+                "metadata": "Metadata",
+                "secretRef": "SecretRef",
+                "serviceRefs": "Set<ServiceRef>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/jobs/{id}",
+      "http_method": "GET",
+      "method_name": "getJob",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the job to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK. Returns the ImportJob with the specified id, or null if not found.",
+          "data_schema": [
+            {
+              "name": "ImportJob",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "repositoryUrl": "string",
+                "mainArtifact": "boolean",
+                "repositoryDisableSSLValidation": "boolean",
+                "frequency": "string",
+                "createdDate": "date",
+                "lastImportDate": "date",
+                "lastImportError": "string",
+                "active": "boolean",
+                "etag": "string",
+                "metadata": "Metadata",
+                "secretRef": "SecretRef",
+                "serviceRefs": "Set<ServiceRef>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/jobs/{id}",
+      "http_method": "POST",
+      "method_name": "saveJob",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the job to save",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to save"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to save"
+        },
+        {
+          "name": "repositoryUrl",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to save"
+        },
+        {
+          "name": "mainArtifact",
+          "type": "boolean",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to save"
+        },
+        {
+          "name": "repositoryDisableSSLValidation",
+          "type": "boolean",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to save"
+        },
+        {
+          "name": "frequency",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to save"
+        },
+        {
+          "name": "createdDate",
+          "type": "Date",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to save"
+        },
+        {
+          "name": "lastImportDate",
+          "type": "Date",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to save"
+        },
+        {
+          "name": "lastImportError",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to save"
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to save"
+        },
+        {
+          "name": "etag",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to save"
+        },
+        {
+          "name": "serviceRefs",
+          "type": "Set",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ImportJob object to save"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "The user information for authorization"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "The user information for authorization"
+        },
+        {
+          "name": "givenName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "The user information for authorization"
+        },
+        {
+          "name": "familyName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "The user information for authorization"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "The user information for authorization"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Job saved successfully",
+          "data_schema": [
+            {
+              "name": "ImportJob",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "repositoryUrl": "string",
+                "mainArtifact": "boolean",
+                "repositoryDisableSSLValidation": "boolean",
+                "frequency": "string",
+                "createdDate": "date",
+                "lastImportDate": "date",
+                "lastImportError": "string",
+                "active": "boolean",
+                "etag": "string",
+                "metadata": "Metadata",
+                "secretRef": "SecretRef",
+                "serviceRefs": "Set<ServiceRef>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have required role (admin or manager for this job)",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/jobs/{id}/activate",
+      "http_method": "PUT",
+      "method_name": "activateJob",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the job to activate",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information used for authorization checks"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information used for authorization checks"
+        },
+        {
+          "name": "givenName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information used for authorization checks"
+        },
+        {
+          "name": "familyName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information used for authorization checks"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information used for authorization checks"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Job activated successfully. Returns the updated ImportJob object.",
+          "data_schema": [
+            {
+              "name": "ImportJob",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "repositoryUrl": "string",
+                "mainArtifact": "boolean",
+                "repositoryDisableSSLValidation": "boolean",
+                "frequency": "string",
+                "createdDate": "date",
+                "lastImportDate": "date",
+                "lastImportError": "string",
+                "active": "boolean",
+                "etag": "string",
+                "metadata": "Metadata",
+                "secretRef": "SecretRef",
+                "serviceRefs": "Set<ServiceRef>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The user does not have the required role (admin or manager for the import job) to activate the job.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/jobs/{id}/start",
+      "http_method": "PUT",
+      "method_name": "startJob",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the job to start",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information used for authorization checks"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information used for authorization checks"
+        },
+        {
+          "name": "givenName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information used for authorization checks"
+        },
+        {
+          "name": "familyName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information used for authorization checks"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information used for authorization checks"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Job started successfully. Returns the ImportJob object with active set to true, metadata updated, and the import job executed.",
+          "data_schema": [
+            {
+              "name": "ImportJob",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "repositoryUrl": "string",
+                "mainArtifact": "boolean",
+                "repositoryDisableSSLValidation": "boolean",
+                "frequency": "string",
+                "createdDate": "date",
+                "lastImportDate": "date",
+                "lastImportError": "string",
+                "active": "boolean",
+                "etag": "string",
+                "metadata": "Metadata",
+                "secretRef": "SecretRef",
+                "serviceRefs": "Set<ServiceRef>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The user does not have the required role (admin or manager for the import job) to start the job.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/mcp/{service}/{version}/sse",
+      "http_method": "GET",
+      "method_name": "handleSSE",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\McpController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to connect to.",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to connect to.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "SSE stream established. The server sends an initial 'endpoint' event containing the message endpoint URL with the session ID, then keeps the connection open for further MCP messages.",
+          "data_schema": [
+            {
+              "name": "SseEmitter",
+              "schema": {
+                "event": "string",
+                "id": "string",
+                "data": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/jobs/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteJob",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the job to delete",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to delete"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to delete"
+        },
+        {
+          "name": "givenName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to delete"
+        },
+        {
+          "name": "familyName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to delete"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to delete"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Job successfully deleted. Returns an empty body.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The user is not authorized to delete the job (neither admin role nor manager role for the import job).",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/jobs/{id}/stop",
+      "http_method": "PUT",
+      "method_name": "stopJob",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the job to stop",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information used for authorization checking"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information used for authorization checking"
+        },
+        {
+          "name": "givenName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information used for authorization checking"
+        },
+        {
+          "name": "familyName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information used for authorization checking"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information used for authorization checking"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Job successfully stopped and saved. Returns the updated ImportJob object.",
+          "data_schema": [
+            {
+              "name": "ImportJob",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "repositoryUrl": "string",
+                "mainArtifact": "boolean",
+                "repositoryDisableSSLValidation": "boolean",
+                "frequency": "string",
+                "createdDate": "date",
+                "lastImportDate": "date",
+                "lastImportError": "string",
+                "active": "boolean",
+                "etag": "string",
+                "metadata": "Metadata",
+                "secretRef": "SecretRef",
+                "serviceRefs": "Set<ServiceRef>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when the user is not authorized (neither ROLE_ADMIN nor ROLE_MANAGER for the import job).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/metrics/invocations/global",
+      "http_method": "GET",
+      "method_name": "getInvocationStatGlobal",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\MetricsController.java",
+      "parameters": [
+        {
+          "name": "day",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The day to get invocation statistics for, in yyyyMMdd format. Defaults to today's date if not provided.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the aggregated daily statistics for the specified day (or today if not specified).",
+          "data_schema": [
+            {
+              "name": "DailyStatistic",
+              "schema": {
+                "id": "string",
+                "day": "string",
+                "serviceName": "string",
+                "serviceVersion": "string",
+                "dailyCount": "long",
+                "hourlyCount": "map<string, integer>",
+                "minuteCount": "map<string, integer>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/metrics/invocations/top",
+      "http_method": "GET",
+      "method_name": "getInvocationTopStats",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\MetricsController.java",
+      "parameters": [
+        {
+          "name": "day",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The day to get top invocation statistics for, in yyyyMMdd format. Defaults to today's date if not provided.",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The maximum number of top statistics to return.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of top invocation statistics for the specified day (or today if not provided), limited by the limit parameter.",
+          "data_schema": [
+            {
+              "name": "DailyStatistic",
+              "schema": {
+                "id": "string",
+                "day": "string",
+                "serviceName": "string",
+                "serviceVersion": "string",
+                "dailyCount": "long",
+                "hourlyCount": "map<string, integer>",
+                "minuteCount": "map<string, integer>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/mcp/{service}/{version}",
+      "http_method": "POST",
+      "method_name": "handleHttpStreamable",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\McpController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to connect to.",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to connect to.",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "McpSchema.JSONRPCRequest",
+          "require": "false",
+          "position": "body",
+          "description": "The MCP request to handle.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful MCP request handling. Returns the JSONRPCResponse object produced by handleMcpRequest, which may contain a result (e.g. InitializeResult, ListToolsResult, CallToolResult) or a JSONRPCError with code METHOD_NOT_FOUND when the method is unsupported.",
+          "data_schema": [
+            {
+              "name": "JSONRPCResponse",
+              "schema": {
+                "jsonrpc": "string",
+                "id": "object",
+                "result": "object",
+                "error": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when handleMcpRequest throws an McpError, for example when the service name or version is invalid (service not found) or when the initialize request specifies an unsupported protocol version.",
+          "data_schema": [
+            {
+              "name": "McpError",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/mcp/{service}/{version}/message",
+      "http_method": "POST",
+      "method_name": "handleMessage",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\McpController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to connect to.",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to connect to.",
+          "_depth": 0
+        },
+        {
+          "name": "sessionId",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The MCP session ID of the connection.",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "McpSchema.JSONRPCRequest",
+          "require": "false",
+          "position": "body",
+          "description": "The MCP request to handle.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The MCP request was successfully handled and the JSON-RPC response was sent as an SSE message. Returns an empty body with HTTP 200 OK.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Returned when the session ID is not found in the active SSE channels, or when handling the MCP request throws an McpError (e.g., invalid service name/version, unsupported protocol version, unknown tool name). The body contains the McpError object.",
+          "data_schema": [
+            {
+              "name": "McpError",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/metrics/invocations/global/latest",
+      "http_method": "GET",
+      "method_name": "getLatestInvocationStatGlobal",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\MetricsController.java",
+      "parameters": [
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of last days to aggregate invocation statistics for",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A map of day strings to invocation counts for the last `limit` days (default 20).",
+          "data_schema": [
+            {
+              "name": "Map<String, Long>",
+              "schema": {
+                "day": "string",
+                "count": "long"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/metrics/invocations/{service}/{version}",
+      "http_method": "GET",
+      "method_name": "getInvocationStatForService",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\MetricsController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to get invocation statistics for",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to get invocation statistics for",
+          "_depth": 0
+        },
+        {
+          "name": "day",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The day to get invocation statistics for, in yyyyMMdd format. Defaults to today's date if not provided.",
+          "format": "yyyyMMdd",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the daily invocation statistics for the specified service and version on the given day. Returns a DailyStatistic object if statistics exist, or null if no statistics are found.",
+          "data_schema": [
+            {
+              "name": "DailyStatistic",
+              "schema": {
+                "id": "string",
+                "day": "string",
+                "serviceName": "string",
+                "serviceVersion": "string",
+                "dailyCount": "long",
+                "hourlyCount": "map<string, integer>",
+                "minuteCount": "map<string, integer>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/metrics/conformance/aggregate",
+      "http_method": "GET",
+      "method_name": "getAggregatedTestCoverageMetrics",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\MetricsController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully computed and returned the aggregated test conformance metrics.",
+          "data_schema": [
+            {
+              "name": "List<WeightedMetricValue>",
+              "schema": {
+                "name": "string",
+                "weight": "integer",
+                "value": "double"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/metrics/tests/latest",
+      "http_method": "GET",
+      "method_name": "getLatestTestResults",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\MetricsController.java",
+      "parameters": [
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of days back to retrieve test results for",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns a list of test result summaries for tests that occurred after the calculated past date.",
+          "data_schema": [
+            {
+              "name": "TestResultSummary",
+              "schema": {
+                "id": "string",
+                "testDate": "date",
+                "serviceId": "string",
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/resources/id/{id}",
+      "http_method": "GET",
+      "method_name": "getResourceById",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ResourceController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the resource to retrieve.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Resource found and returned. The response body is the resource content (resource.getContent()), with Content-Type headers set based on the resource file extension: application/json for .json and .avsc, text/yaml for .yaml and .yml (with inline Content-Disposition), text/xml for .wsdl and .xsd.",
+          "data_schema": [
+            {
+              "name": "Resource",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "path": "string",
+                "content": "string",
+                "type": "ResourceType",
+                "serviceId": "string",
+                "sourceArtifact": "string",
+                "mainArtifact": "boolean",
+                "operations": "Set<string>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Resource not found. Returned when resourceRepository.findById(id) returns an empty Optional.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/metrics/conformance/service/{serviceId}",
+      "http_method": "GET",
+      "method_name": "getTestConformanceMetric",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\MetricsController.java",
+      "parameters": [
+        {
+          "name": "serviceId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the service to retrieve the TestConformanceMetric for",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the TestConformanceMetric for the specified service ID. The response body contains the TestConformanceMetric object, which may be null if no metric exists for the service.",
+          "data_schema": [
+            {
+              "name": "TestConformanceMetric",
+              "schema": {
+                "id": "string",
+                "serviceId": "string",
+                "aggregationLabelValue": "string",
+                "maxPossibleScore": "double",
+                "currentScore": "double",
+                "lastUpdateDay": "string",
+                "latestTrend": "Trend",
+                "latestScores": "Map<String, Double>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/resources/service/{serviceId}",
+      "http_method": "GET",
+      "method_name": "getServiceResources",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ResourceController.java",
+      "parameters": [
+        {
+          "name": "serviceId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the service whose resources are requested",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of Resource objects associated with the given serviceId. Each Resource contains fields: id, name, path, content, type, serviceId, sourceArtifact, mainArtifact, operations.",
+          "data_schema": [
+            {
+              "name": "Resource",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "path": "string",
+                "content": "string",
+                "type": "string",
+                "serviceId": "string",
+                "sourceArtifact": "string",
+                "mainArtifact": "boolean",
+                "operations": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/resources/{name}",
+      "http_method": "GET",
+      "method_name": "getResourceByName",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ResourceController.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the resource to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Resource found and returned. The response body contains the resource content, with Content-Type and Content-Disposition headers set based on the resource file extension.",
+          "data_schema": [
+            {
+              "name": "Resource",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "path": "string",
+                "content": "string",
+                "type": "string",
+                "serviceId": "string",
+                "sourceArtifact": "string",
+                "mainArtifact": "boolean",
+                "operations": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No resource found with the given name, or no main artifact resource found among the resources with that name.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/resources/{serviceId}/{resourceType}",
+      "http_method": "GET",
+      "method_name": "getServiceResource",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ResourceController.java",
+      "parameters": [
+        {
+          "name": "serviceId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the service for which to retrieve the resource.",
+          "_depth": 0
+        },
+        {
+          "name": "resourceType",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The type of resource to generate. Supported values are 'swagger_20' and 'openapi_30'.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the generated OpenAPI/Swagger specification as YAML for the service, with Content-Type text/yaml.",
+          "data_schema": [
+            {
+              "name": "OpenAPISpecification",
+              "schema": {
+                "content": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Returned when the service is not found, is not of type GENERIC_REST, or the resourceType is not 'swagger_20' or 'openapi_30' (templatePath is null), or the template stream cannot be read.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/rest/{service}/{version}/**",
+      "http_method": "HEAD",
+      "method_name": "execute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The request body payload",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Mock response successfully processed and returned. The response body, headers, and status are determined by the matched operation's dispatcher and response definitions.",
+          "data_schema": [
+            {
+              "name": "ResponseResult",
+              "schema": {
+                "status": "HttpStatusCode",
+                "headers": "HttpHeaders",
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The service with the given name and version does not exist, or no matching operation was found and CORS policy is not enabled for OPTIONS requests.",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 204,
+          "description": "CORS preflight request handled successfully when no matching operation is found but CORS policy is enabled. Returns no content with CORS headers.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request due to parameter constraint violation or dispatcher unable to find a matching response.",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/rest/{service}/{version}/**",
+      "http_method": "GET",
+      "method_name": "execute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the mock response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The request body payload",
+          "_depth": 0
+        },
+        {
+          "name": "method",
+          "type": "HttpMethod",
+          "require": "false",
+          "position": "query",
+          "description": "The HTTP method of the request",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Mock response successfully returned from the invocation processor.",
+          "data_schema": [
+            {
+              "name": "ResponseResult",
+              "schema": {
+                "status": "HttpStatusCode",
+                "headers": "HttpHeaders",
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The service with the given name and version does not exist, or no matching operation was found and CORS policy is not enabled.",
+          "data_schema": []
+        },
+        {
+          "status_code": 204,
+          "description": "CORS preflight response when no operation matches and CORS policy is enabled.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Parameter constraint violation or dispatcher returned no response.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/rest/{service}/{version}/**",
+      "http_method": "OPTIONS",
+      "method_name": "execute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The request body payload",
+          "_depth": 0
+        },
+        {
+          "name": "method",
+          "type": "HttpMethod",
+          "require": "false",
+          "position": "query",
+          "description": "The HTTP method of the request",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful mock response returned by the invocation processor for the matched operation. The response body is the mock response content (byte array) and headers are the response headers computed by the invocation processor.",
+          "data_schema": [
+            {
+              "name": "ResponseResult",
+              "schema": {
+                "status": "HttpStatusCode",
+                "headers": "HttpHeaders",
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 204,
+          "description": "No content. Returned for an OPTIONS request when CORS policy is enabled and no matching operation is found. The response includes CORS headers (Access-Control-Allow-Origin, Access-Control-Allow-Methods, Access-Control-Allow-Headers, Access-Control-Expose-Headers, Access-Allow-Credentials, Access-Control-Max-Age, Vary).",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Returned when the service with the given name and version does not exist, or when no matching operation is found and CORS policy is not enabled (or the request method is not OPTIONS).",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Returned when a parameter constraint is violated (e.g., required parameter missing or value does not match the required regexp). The response body contains the violation message followed by '. Check parameter constraints.'.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/rest/{service}/{version}/**",
+      "http_method": "POST",
+      "method_name": "execute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the mock response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The request body payload",
+          "_depth": 0
+        },
+        {
+          "name": "method",
+          "type": "HttpMethod",
+          "require": "false",
+          "position": "query",
+          "description": "The HTTP method of the request",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful mock invocation response. The response body and headers are determined by the matched operation's response definition and dispatcher logic.",
+          "data_schema": [
+            {
+              "name": "ResponseResult",
+              "schema": {
+                "status": "HttpStatusCode",
+                "headers": "HttpHeaders",
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 204,
+          "description": "No content response for CORS preflight OPTIONS requests when CORS policy is enabled and no matching operation is found.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when parameter constraints are violated, when the dispatcher finds no matching response, or when the response does not exist.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the service with the given name and version does not exist, or when no matching operation is found and CORS policy is not applicable.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/rest/{service}/{version}/**",
+      "http_method": "PUT",
+      "method_name": "execute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the mock response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The request body payload",
+          "_depth": 0
+        },
+        {
+          "name": "method",
+          "type": "HttpMethod",
+          "require": "false",
+          "position": "query",
+          "description": "The HTTP method of the request",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Mock response returned by the invocation processor. The response content, headers and status are determined by the matched operation's dispatcher and response definitions.",
+          "data_schema": [
+            {
+              "name": "ResponseResult",
+              "schema": {
+                "status": "HttpStatusCode",
+                "headers": "HttpHeaders",
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The service with the given name and version does not exist, or no matching operation was found and CORS policy is not enabled.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "A parameter constraint was violated, or the dispatcher found no matching response for the computed dispatch criteria.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 204,
+          "description": "CORS preflight response returned when an OPTIONS request has no matching operation but CORS policy is enabled.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/rest/{service}/{version}/**",
+      "http_method": "PATCH",
+      "method_name": "execute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The request body payload",
+          "_depth": 0
+        },
+        {
+          "name": "method",
+          "type": "HttpMethod",
+          "require": "false",
+          "position": "query",
+          "description": "The HTTP method of the request",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Mock response returned by the invocation processor. The response body is the rendered mock response content, and headers are the response headers computed by the invocation processor.",
+          "data_schema": [
+            {
+              "name": "ResponseResult",
+              "schema": {
+                "status": "HttpStatusCode",
+                "headers": "HttpHeaders",
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Returned when the service with the given name and version does not exist, or when no matching operation is found and CORS policy is not enabled for OPTIONS requests.",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 204,
+          "description": "Returned for OPTIONS requests when CORS policy is enabled and no matching operation is found. The response includes CORS headers and no body.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Returned when parameter constraints are violated, or when the invocation processor cannot find a matching response for a dispatcher.",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/rest/{service}/{version}/**",
+      "http_method": "DELETE",
+      "method_name": "execute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "long",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The request body payload",
+          "_depth": 0
+        },
+        {
+          "name": "method",
+          "type": "HttpMethod",
+          "require": "false",
+          "position": "query",
+          "description": "The HTTP method of the request",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Mock response returned by the invocation processor. The response body is the rendered response content, with headers and status determined by the matched Response definition (defaults to 200 OK if no status is specified).",
+          "data_schema": [
+            {
+              "name": "ResponseResult",
+              "schema": {
+                "status": "HttpStatusCode",
+                "headers": "HttpHeaders",
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Returned when the service with the given name and version does not exist, or when no matching operation is found and CORS policy is not enabled.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Returned when a parameter constraint is violated (message: '<violation>. Check parameter constraints.'), or when a dispatcher is configured but no matching response is found (message: 'The response <dispatchCriteria> does not exist!'), or as a fallback when no response can be produced.",
+          "data_schema": []
+        },
+        {
+          "status_code": 204,
+          "description": "Returned for an OPTIONS request when CORS policy is enabled and no matching operation is found. Contains CORS headers (Access-Control-Allow-Origin, Access-Control-Allow-Methods, Access-Control-Allow-Headers, Access-Control-Expose-Headers, Access-Allow-Credentials, Access-Control-Max-Age, Vary).",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/rest-valid/{service}/{version}/**",
+      "http_method": "GET",
+      "method_name": "validateAndExecute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The request body payload",
+          "_depth": 0
+        },
+        {
+          "name": "method",
+          "type": "HttpMethod",
+          "require": "false",
+          "position": "query",
+          "description": "The HTTP method of the request",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful mock invocation response. The response body and headers are produced by the invocation processor based on the matched operation and dispatched response.",
+          "data_schema": [
+            {
+              "name": "ResponseResult",
+              "schema": {
+                "status": "HttpStatusCode",
+                "headers": "HttpHeaders",
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the request body fails OpenAPI/Swagger schema validation, or when a parameter constraint is violated.",
+          "data_schema": [
+            {
+              "name": "ValidationErrors",
+              "schema": {
+                "errors": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the service with the given name and version does not exist, or when no matching operation is found and CORS is not enabled.",
+          "data_schema": []
+        },
+        {
+          "status_code": 412,
+          "description": "Precondition failed. Returned when the request body is JSON and requires validation, but the service does not have an OpenAPI/Swagger schema resource.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/rest-valid/{service}/{version}/**",
+      "http_method": "OPTIONS",
+      "method_name": "validateAndExecute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "long",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The request body payload",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Mock response successfully dispatched and returned. The response body is the mock response content, and headers are the response headers computed by the invocation processor.",
+          "data_schema": [
+            {
+              "name": "ResponseResult",
+              "schema": {
+                "status": "HttpStatusCode",
+                "headers": "HttpHeaders",
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The service with the given name and version does not exist, or no matching operation was found and CORS policy is not enabled for OPTIONS requests.",
+          "data_schema": []
+        },
+        {
+          "status_code": 204,
+          "description": "CORS preflight response returned when no matching operation is found, CORS policy is enabled, and the request method is OPTIONS. Contains CORS headers and no body.",
+          "data_schema": []
+        },
+        {
+          "status_code": 412,
+          "description": "The service does not have an OpenAPI/Swagger schema resource available for request body validation.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Request body validation against the OpenAPI/Swagger schema failed, or a parameter constraint was violated, or the dispatcher found no matching response.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/rest-valid/{service}/{version}/**",
+      "http_method": "HEAD",
+      "method_name": "validateAndExecute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the mock response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The request body payload",
+          "_depth": 0
+        },
+        {
+          "name": "method",
+          "type": "HttpMethod",
+          "require": "false",
+          "position": "query",
+          "description": "The HTTP method of the request",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful mock invocation response. The response body and headers are determined by the matched operation's dispatcher and response definitions.",
+          "data_schema": [
+            {
+              "name": "ResponseResult",
+              "schema": {
+                "status": "HttpStatusCode",
+                "headers": "HttpHeaders",
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when request body validation against OpenAPI/Swagger schema fails, or when a parameter constraint is violated.",
+          "data_schema": [
+            {
+              "name": "ValidationErrors",
+              "schema": {
+                "errors": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned when the service with the given name and version does not exist, or when no matching operation is found and CORS is not enabled.",
+          "data_schema": []
+        },
+        {
+          "status_code": 412,
+          "description": "Precondition Failed. Returned when the service does not have an OpenAPI/Swagger schema resource for request body validation.",
+          "data_schema": []
+        },
+        {
+          "status_code": 204,
+          "description": "No Content. Returned for OPTIONS requests when CORS policy is enabled and no matching operation is found. Includes CORS headers.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/secrets",
+      "http_method": "GET",
+      "method_name": "listSecrets",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SecretController.java",
+      "parameters": [
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of items per page",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "User information for authorization check"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "User information for authorization check"
+        },
+        {
+          "name": "givenName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "User information for authorization check"
+        },
+        {
+          "name": "familyName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "User information for authorization check"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "User information for authorization check"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved list of secrets. For non-admin users, sensitive data (username, password, token, caCertPem) is filtered out. For admin users, all data is returned.",
+          "data_schema": [
+            {
+              "name": "Secret",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "description": "string",
+                "username": "string",
+                "password": "string",
+                "token": "string",
+                "tokenHeader": "string",
+                "caCertPem": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/secrets/search",
+      "http_method": "GET",
+      "method_name": "searchSecrets",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SecretController.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Name pattern to search secrets by (used as a case-insensitive regex in the repository query).",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of secrets whose names match the provided name pattern (case-insensitive regex search).",
+          "data_schema": [
+            {
+              "name": "List<Secret>",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "description": "string",
+                "username": "string",
+                "password": "string",
+                "token": "string",
+                "tokenHeader": "string",
+                "caCertPem": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/rest-valid/{service}/{version}/**",
+      "http_method": "PUT",
+      "method_name": "validateAndExecute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The request body payload",
+          "_depth": 0
+        },
+        {
+          "name": "method",
+          "type": "HttpMethod",
+          "require": "false",
+          "position": "query",
+          "description": "The HTTP method of the request",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Mock response returned successfully. The response body is the mock response content as bytes, with headers and status determined by the matched response definition.",
+          "data_schema": [
+            {
+              "name": "ResponseResult",
+              "schema": {
+                "status": "HttpStatusCode",
+                "headers": "HttpHeaders",
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The service with the given name and version does not exist, or no matching operation was found and CORS policy is not enabled for OPTIONS requests.",
+          "data_schema": []
+        },
+        {
+          "status_code": 412,
+          "description": "The service does not have an OpenAPI/Swagger schema resource required for request body validation.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Request body validation against the OpenAPI/Swagger schema failed, or a parameter constraint violation occurred, or the dispatcher could not find a matching response.",
+          "data_schema": []
+        },
+        {
+          "status_code": 204,
+          "description": "CORS preflight response for OPTIONS requests when CORS policy is enabled and no matching operation was found.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/secrets/count",
+      "http_method": "GET",
+      "method_name": "countSecrets",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SecretController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response returning a map with a single key 'counter' and the total number of secrets as a long value.",
+          "data_schema": [
+            {
+              "name": "Map<String, Long>",
+              "schema": {
+                "counter": "long"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/secrets/{id}",
+      "http_method": "GET",
+      "method_name": "getSecret",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SecretController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the secret to retrieve.",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "User information used to check authorization."
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "User information used to check authorization."
+        },
+        {
+          "name": "givenName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "User information used to check authorization."
+        },
+        {
+          "name": "familyName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "User information used to check authorization."
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "query",
+          "description": "User information used to check authorization."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the secret with the given id. If the user is not an admin, sensitive data (username, password, token, caCertPem) is filtered out. If the secret is not found, returns 200 with a null body.",
+          "data_schema": [
+            {
+              "name": "Secret",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "description": "string",
+                "username": "string",
+                "password": "string",
+                "token": "string",
+                "tokenHeader": "string",
+                "caCertPem": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/rest-valid/{service}/{version}/**",
+      "http_method": "POST",
+      "method_name": "validateAndExecute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the mock response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The request body payload to validate against the OpenAPI/Swagger schema",
+          "_depth": 0
+        },
+        {
+          "name": "method",
+          "type": "HttpMethod",
+          "require": "false",
+          "position": "query",
+          "description": "The HTTP method of the request",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Mock response successfully processed and returned. The response body and headers are determined by the matched operation's dispatcher and response definitions.",
+          "data_schema": [
+            {
+              "name": "ResponseResult",
+              "schema": {
+                "status": "HttpStatusCode",
+                "headers": "HttpHeaders",
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The service with the given name and version does not exist, or no matching operation was found and CORS policy is not enabled for OPTIONS requests.",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Request payload validation against the OpenAPI/Swagger schema failed, or a parameter constraint was violated, or the dispatcher could not find a matching response.",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "errors": "string[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 412,
+          "description": "The service does not have an OpenAPI/Swagger schema resource required for request payload validation.",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 204,
+          "description": "CORS preflight request handled successfully when no matching operation was found but CORS policy is enabled.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/secrets",
+      "http_method": "POST",
+      "method_name": "createSecret",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SecretController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The Secret object to create, provided in the request body."
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The Secret object to create, provided in the request body."
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The Secret object to create, provided in the request body."
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The Secret object to create, provided in the request body."
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The Secret object to create, provided in the request body."
+        },
+        {
+          "name": "token",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The Secret object to create, provided in the request body."
+        },
+        {
+          "name": "tokenHeader",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The Secret object to create, provided in the request body."
+        },
+        {
+          "name": "caCertPem",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The Secret object to create, provided in the request body."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Secret created successfully",
+          "data_schema": [
+            {
+              "name": "Secret",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "description": "string",
+                "username": "string",
+                "password": "string",
+                "token": "string",
+                "tokenHeader": "string",
+                "caCertPem": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/secrets/{id}",
+      "http_method": "PUT",
+      "method_name": "saveSecret",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SecretController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the secret to save.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The secret object containing the updated data."
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The secret object containing the updated data."
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The secret object containing the updated data."
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The secret object containing the updated data."
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The secret object containing the updated data."
+        },
+        {
+          "name": "token",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The secret object containing the updated data."
+        },
+        {
+          "name": "tokenHeader",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The secret object containing the updated data."
+        },
+        {
+          "name": "caCertPem",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The secret object containing the updated data."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Secret saved successfully. Returns the saved Secret object.",
+          "data_schema": [
+            {
+              "name": "Secret",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "description": "string",
+                "username": "string",
+                "password": "string",
+                "token": "string",
+                "tokenHeader": "string",
+                "caCertPem": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/rest-valid/{service}/{version}/**",
+      "http_method": "PATCH",
+      "method_name": "validateAndExecute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The request body payload",
+          "_depth": 0
+        },
+        {
+          "name": "method",
+          "type": "HttpMethod",
+          "require": "false",
+          "position": "query",
+          "description": "The HTTP method of the request",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful mock invocation response. The response body and headers are determined by the matched operation's response definition and may include rendered content, custom headers, and the status code defined in the response (defaults to 200 if not specified).",
+          "data_schema": [
+            {
+              "name": "ResponseResult",
+              "schema": {
+                "status": "HttpStatusCode",
+                "headers": "HttpHeaders",
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when request body validation against the OpenAPI/Swagger schema fails (errors list is returned as body), or when a parameter constraint is violated (message with '. Check parameter constraints.' is returned), or when the dispatcher finds no matching response (message 'The response <criteria> does not exist!' is returned).",
+          "data_schema": [
+            {
+              "name": "ValidationErrors",
+              "schema": {
+                "errors": "array of string"
+              }
+            },
+            {
+              "name": "ConstraintViolation",
+              "schema": {
+                "message": "string"
+              }
+            },
+            {
+              "name": "DispatchError",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the service with the given name and version does not exist (message 'The service <serviceName> with version <version> does not exist!' is returned), or when no matching operation is found and CORS policy is not enabled or the request method is not OPTIONS.",
+          "data_schema": [
+            {
+              "name": "ServiceNotFound",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 412,
+          "description": "Precondition failed. Returned when the request body is JSON and non-empty, but the service does not have an OpenAPI/Swagger schema resource for validation (message 'The service <serviceName> with version <version> does not have an OpenAPI/Swagger schema!' is returned).",
+          "data_schema": [
+            {
+              "name": "SchemaMissing",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 204,
+          "description": "No content. Returned for OPTIONS requests when CORS policy is enabled and no matching operation is found. Includes CORS headers such as Access-Control-Allow-Origin, Access-Control-Allow-Methods, Access-Control-Allow-Headers, Access-Control-Expose-Headers, Access-Allow-Credentials, Access-Control-Max-Age, and Vary.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/rest-valid/{service}/{version}/**",
+      "http_method": "DELETE",
+      "method_name": "validateAndExecute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The version of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional delay in milliseconds before returning the response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The request body payload",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Mock response successfully processed and returned. The response body and headers are determined by the matched operation's dispatcher and response definitions.",
+          "data_schema": [
+            {
+              "name": "ResponseResult",
+              "schema": {
+                "status": "HttpStatusCode",
+                "headers": "HttpHeaders",
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when request body validation against OpenAPI/Swagger schema fails (errors list is returned in body), or when a parameter constraint is violated (violation message is returned in body), or when the dispatcher finds no matching response (message 'The response <criteria> does not exist!' is returned).",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "errors": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned when the service with the given name and version does not exist (message 'The service <name> with version <version> does not exist!' is returned), or when no matching operation is found and CORS is not enabled or the request method is not OPTIONS.",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 412,
+          "description": "Precondition Failed. Returned when the request body is JSON and non-empty, but the service does not have an OpenAPI/Swagger schema resource for validation (message 'The service <name> with version <version> does not have an OpenAPI/Swagger schema!' is returned).",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 204,
+          "description": "No Content. Returned for OPTIONS requests when CORS policy is enabled and no matching operation is found. The response includes CORS headers.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/secrets/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteService",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SecretController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the secret to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Secret deleted successfully. The response body is empty.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/services/count",
+      "http_method": "GET",
+      "method_name": "countServices",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a map with a single key 'counter' and the total number of services as a long value.",
+          "data_schema": [
+            {
+              "name": "Map<String, Long>",
+              "schema": {
+                "counter": "long"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/services/map",
+      "http_method": "GET",
+      "method_name": "getServicesMap",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns a map of service counts by type. The keys are service type names and the values are the number of services of that type.",
+          "data_schema": [
+            {
+              "name": "Map<String, Integer>",
+              "schema": {
+                "key": "string",
+                "value": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/services/search",
+      "http_method": "GET",
+      "method_name": "searchServices",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java",
+      "parameters": [
+        {
+          "name": "queryMap",
+          "type": "Map<String, String>",
+          "require": "false",
+          "position": "query",
+          "description": "Map of all query parameters. The handler parses 'name' and any 'labels.*' keys from it.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the list of services matching the search criteria (name and/or labels).",
+          "data_schema": [
+            {
+              "name": "List<Service>",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "version": "string",
+                "xmlNS": "string",
+                "type": "ServiceType",
+                "metadata": "Metadata",
+                "sourceArtifact": "string",
+                "operations": "List<Operation>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/services/labels",
+      "http_method": "GET",
+      "method_name": "getServicesLabels",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved available services labels. Returns a map where keys are label names and values are arrays of label values.",
+          "data_schema": [
+            {
+              "name": "Map<String, String[]>",
+              "schema": {
+                "key": "string",
+                "value": "array of string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/services/generic/event",
+      "http_method": "POST",
+      "method_name": "createGenericEventService",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Generic resource service DTO containing name, version, resource and referencePayload"
+        },
+        {
+          "name": "version",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Generic resource service DTO containing name, version, resource and referencePayload"
+        },
+        {
+          "name": "resource",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Generic resource service DTO containing name, version, resource and referencePayload"
+        },
+        {
+          "name": "referencePayload",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Generic resource service DTO containing name, version, resource and referencePayload"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Service created successfully. Returns the newly created Service object.",
+          "data_schema": [
+            {
+              "name": "Service",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "version": "string",
+                "xmlNS": "string",
+                "type": "string",
+                "metadata": "Metadata",
+                "sourceArtifact": "string",
+                "operations": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 409,
+          "description": "Conflict. A Service with the same name and version already exists.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/services/generic",
+      "http_method": "POST",
+      "method_name": "createGenericResourceService",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The generic resource service definition to create, containing name, version, resource and optional reference payload."
+        },
+        {
+          "name": "version",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The generic resource service definition to create, containing name, version, resource and optional reference payload."
+        },
+        {
+          "name": "resource",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The generic resource service definition to create, containing name, version, resource and optional reference payload."
+        },
+        {
+          "name": "referencePayload",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The generic resource service definition to create, containing name, version, resource and optional reference payload."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Service created successfully",
+          "data_schema": [
+            {
+              "name": "Service",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "version": "string",
+                "xmlNS": "string",
+                "type": "ServiceType",
+                "metadata": "Metadata",
+                "sourceArtifact": "string",
+                "operations": "List<Operation>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 409,
+          "description": "Service already exists",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/services/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteService",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the service to delete",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to delete"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to delete"
+        },
+        {
+          "name": "givenName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to delete"
+        },
+        {
+          "name": "familyName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to delete"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to delete"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Service successfully deleted",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user is not authorized to delete the service",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/services/{id}/operation",
+      "http_method": "PUT",
+      "method_name": "overrideServiceOperation",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the service to update operation for",
+          "_depth": 0
+        },
+        {
+          "name": "operationName",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The name of the operation to override",
+          "_depth": 0
+        },
+        {
+          "name": "dispatcher",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The operation override details including dispatcher, dispatcherRules, defaultDelay, and parameterConstraints"
+        },
+        {
+          "name": "dispatcherRules",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The operation override details including dispatcher, dispatcherRules, defaultDelay, and parameterConstraints"
+        },
+        {
+          "name": "defaultDelay",
+          "type": "Long",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The operation override details including dispatcher, dispatcherRules, defaultDelay, and parameterConstraints"
+        },
+        {
+          "name": "parameterConstraints",
+          "type": "Set",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The operation override details including dispatcher, dispatcherRules, defaultDelay, and parameterConstraints"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to do the update"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to do the update"
+        },
+        {
+          "name": "givenName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to do the update"
+        },
+        {
+          "name": "familyName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to do the update"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to do the update"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Operation updated successfully. The service operation has been found and updated.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The service was not found, or the user is not authorized to update the operation.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/services/{id}/metadata",
+      "http_method": "PUT",
+      "method_name": "updateMetadata",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The technical or functional identifier of the service to update metadata for",
+          "_depth": 0
+        },
+        {
+          "name": "createdOn",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new metadata (annotations and labels) for this Service"
+        },
+        {
+          "name": "lastUpdate",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new metadata (annotations and labels) for this Service"
+        },
+        {
+          "name": "annotations",
+          "type": "Map",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new metadata (annotations and labels) for this Service"
+        },
+        {
+          "name": "labels",
+          "type": "Map",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The new metadata (annotations and labels) for this Service"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to do the update"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to do the update"
+        },
+        {
+          "name": "givenName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to do the update"
+        },
+        {
+          "name": "familyName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to do the update"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The current user information to check if authorized to do the update"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Metadata updated successfully. The serviceService.updateMetadata method returned true, indicating the metadata was updated.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The serviceService.updateMetadata method returned false, indicating the user is not authorized to update the metadata for this service.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/tests/service/{serviceId}",
+      "http_method": "GET",
+      "method_name": "listTestsByService",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\TestController.java",
+      "parameters": [
+        {
+          "name": "serviceId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the service to list tests for",
+          "_depth": 0
+        },
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The page number to retrieve",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The number of items per page",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the list of test results for the specified service.",
+          "data_schema": [
+            {
+              "name": "List<TestResult>",
+              "schema": {
+                "id": "string",
+                "version": "long",
+                "testNumber": "long",
+                "testDate": "date",
+                "testedEndpoint": "string",
+                "serviceId": "string",
+                "secretRef": "SecretRef",
+                "timeout": "long",
+                "elapsedTime": "long",
+                "success": "boolean",
+                "inProgress": "boolean",
+                "runnerType": "TestRunnerType",
+                "operationsHeaders": "OperationsHeaders",
+                "authorizedClient": "OAuth2AuthorizedClient",
+                "testCaseResults": "List<TestCaseResult>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/version/info",
+      "http_method": "GET",
+      "method_name": "getConfig",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\VersionInfoController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns version information including versionId and buildTimestamp.",
+          "data_schema": [
+            {
+              "name": "VersionInfo",
+              "schema": {
+                "versionId": "string",
+                "buildTimestamp": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/tests/{id}",
+      "http_method": "GET",
+      "method_name": "getTestResult",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\TestController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the TestResult to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the TestResult with the given id, or null if not found.",
+          "data_schema": [
+            {
+              "name": "TestResult",
+              "schema": {
+                "id": "string",
+                "version": "long",
+                "testNumber": "long",
+                "testDate": "date",
+                "testedEndpoint": "string",
+                "serviceId": "string",
+                "secretRef": "SecretRef",
+                "timeout": "long",
+                "elapsedTime": "long",
+                "success": "boolean",
+                "inProgress": "boolean",
+                "runnerType": "TestRunnerType",
+                "operationsHeaders": "OperationsHeaders",
+                "authorizedClient": "OAuth2AuthorizedClient",
+                "testCaseResults": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/tests/{id}/messages/{testCaseId}",
+      "http_method": "GET",
+      "method_name": "getMessagesForTestCase",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\TestController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the test result",
+          "_depth": 0
+        },
+        {
+          "name": "testCaseId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the test case; URL-encoded with '/' replaced by '!'",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the list of request/response pairs for the specified test case.",
+          "data_schema": [
+            {
+              "name": "RequestResponsePair",
+              "schema": {
+                "request": "Request",
+                "response": "Response"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/artifact/download",
+      "http_method": "POST",
+      "method_name": "importArtifact",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\UploadArtifactController.java",
+      "parameters": [
+        {
+          "name": "url",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The remote URL to download and import as an artifact.",
+          "_depth": 0
+        },
+        {
+          "name": "mainArtifact",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether this artifact is the main artifact for the service definition.",
+          "_depth": 0
+        },
+        {
+          "name": "secretName",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The name of the secret to use for authentication when downloading the artifact.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Artifact imported successfully; returns a JSON string containing the service name and version.",
+          "data_schema": [
+            {
+              "name": "ImportResult",
+              "schema": {
+                "name": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 204,
+          "description": "No content; returned when the URL is empty or no services were imported.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request; returned when a MockRepositoryImportException occurs while reading the remote item.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error; returned when an IOException occurs while retrieving the remote item.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/artifact/upload",
+      "http_method": "POST",
+      "method_name": "importArtifact",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\UploadArtifactController.java",
+      "parameters": [
+        {
+          "name": "mainArtifact",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether this artifact is the main artifact for the service definition",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Artifact imported successfully. Returns the name and version of the first imported service in the format 'name:version'.",
+          "data_schema": [
+            {
+              "name": "ServiceIdentifier",
+              "schema": {
+                "name": "string",
+                "version": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 204,
+          "description": "No content. Returned when the uploaded file is empty or no services were imported.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when a MockRepositoryImportException occurs while reading the uploaded item.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an IOException occurs while writing the uploaded item.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/tests/service/{serviceId}/count",
+      "http_method": "GET",
+      "method_name": "countTestsByService",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\TestController.java",
+      "parameters": [
+        {
+          "name": "serviceId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the service to count tests for",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a map containing the count of tests for the specified service.",
+          "data_schema": [
+            {
+              "name": "Map<String, Long>",
+              "schema": {
+                "counter": "long"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/tests/{id}/events/{testCaseId}",
+      "http_method": "GET",
+      "method_name": "getEventMessagesForTestCase",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\TestController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the test result to get event messages for.",
+          "_depth": 0
+        },
+        {
+          "name": "testCaseId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the test case to get event messages for. It may be URL-encoded with '/' replaced by '!'.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the list of unidirectional event messages for the specified test case.",
+          "data_schema": [
+            {
+              "name": "List<UnidirectionalEvent>",
+              "schema": {
+                "eventMessage": "EventMessage"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/soap/{service}/{version}/**",
+      "http_method": "POST",
+      "method_name": "execute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SoapController.java",
+      "parameters": [
+        {
+          "name": "service",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Version of the service to mock",
+          "_depth": 0
+        },
+        {
+          "name": "validate",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether to validate the SOAP message against the WSDL",
+          "_depth": 0
+        },
+        {
+          "name": "delay",
+          "type": "long",
+          "require": "false",
+          "position": "query",
+          "description": "Delay in milliseconds before returning the response",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "SOAP request payload",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful mock response. The response body is the rendered response content. The Content-Type header is set to 'application/soap+xml;charset=UTF-8' if the request Content-Type is null or starts with 'application/soap+xml', otherwise 'text/xml;charset=UTF-8'.",
+          "data_schema": [
+            {
+              "name": "responseContent",
+              "schema": {
+                "responseContent": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Returned in several cases: (1) SOAP message validation is turned on and validation errors are found; the response body is a list of error strings. (2) The response does not exist for the computed dispatch criteria; the response body is a string message 'The response %s does not exist!'.",
+          "data_schema": [
+            {
+              "name": "validationErrors",
+              "schema": {
+                "errors": "array of string"
+              }
+            },
+            {
+              "name": "errorMessage",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Returned in several cases: (1) The service with the given name and version does not exist; the response body is a string message 'The service %s with version %s does not exist!'. (2) The dispatcher is not supported; the response body is a string message 'The dispatch %s is not supported!'. (3) The operation does not exist; the response body is a string message 'The operation %s does not exist!'.",
+          "data_schema": [
+            {
+              "name": "errorMessage",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 412,
+          "description": "Returned when SOAP message validation is turned on but the service does not have a WSDL resource; the response body is a string message 'The service %s with version %s does not have a wsdl!'.",
+          "data_schema": [
+            {
+              "name": "errorMessage",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Returned when the response is marked as a fault; the response body is the rendered response content.",
+          "data_schema": [
+            {
+              "name": "responseContent",
+              "schema": {
+                "responseContent": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 3626,
+  "tokens": {
+    "prompt_tokens": 14073,
+    "completion_tokens": 3446,
+    "total_tokens": 17519,
+    "calls": 12,
+    "elapsed_s": 32.275,
+    "prompt_cost_usd": 0.001798,
+    "completion_cost_usd": 0.002337,
+    "total_cost_usd": 0.004135,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 4600,
+        "completion_tokens": 671,
+        "total_tokens": 5271,
+        "calls": 4,
+        "elapsed_s": 3.6215329999999994,
+        "prompt_cost_usd": 9.2e-05,
+        "completion_cost_usd": 0.000403,
+        "total_cost_usd": 0.000495
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 4417,
+        "completion_tokens": 2228,
+        "total_tokens": 6645,
+        "calls": 4,
+        "elapsed_s": 20.423,
+        "prompt_cost_usd": 0.000442,
+        "completion_cost_usd": 0.001114,
+        "total_cost_usd": 0.001556
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 5056,
+        "completion_tokens": 547,
+        "total_tokens": 5603,
+        "calls": 4,
+        "elapsed_s": 8.23,
+        "prompt_cost_usd": 0.001264,
+        "completion_cost_usd": 0.00082,
+        "total_cost_usd": 0.002084
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 43,
+    "step2_ms": 7767,
+    "step3_ms": 40831,
+    "step4_ms": 26589,
+    "step5_ms": 3626,
+    "total_ms": 78880
+  }
+}

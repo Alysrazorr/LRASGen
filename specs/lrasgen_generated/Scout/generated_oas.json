@@ -1,0 +1,2544 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "scout-api API",
+    "description": "LRASGen-generated specification for scout-api (jersey).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/v2/activities/{id}": {
+      "get": {
+        "operationId": "getActivities",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the activity to read.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the activity to read."
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "description": "The attributes to include in the response. Comma-separated list.",
+            "schema": {
+              "type": "string",
+              "description": "The attributes to include in the response. Comma-separated list."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Read a specific activity. Returns the activity as JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Activity": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'properties': 'ActivityProperties', 'derived': 'ActivityDerived', 'related': 'array<long>'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteActivities",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the activity to delete",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the activity to delete"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Activity deleted successfully. No content returned."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required permission (activity_edit) to delete the activity."
+          },
+          "500": {
+            "description": "Internal server error. An unexpected error occurred while deleting the activity."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateActivities",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the activity to update",
+            "schema": {
+              "type": "integer",
+              "description": "The id of the activity to update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity updated successfully. Returns the updated Activity object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Activity": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'properties': 'ActivityProperties', 'derived': 'ActivityDerived', 'related': 'array of long', 'ratings_count': 'long', 'ratings_sum': 'long', 'favourites_count': 'long', 'ratings_average': 'double'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to edit activities."
+          },
+          "500": {
+            "description": "Internal server error. An unexpected error occurred while updating the activity."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "datePublished": {
+                    "type": "string",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "dateCreated": {
+                    "type": "string",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "dateUpdated": {
+                    "type": "string",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "descriptionMaterial": {
+                    "type": "string",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "descriptionIntroduction": {
+                    "type": "string",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "descriptionPrepare": {
+                    "type": "string",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "descriptionMain": {
+                    "type": "string",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "descriptionSafety": {
+                    "type": "string",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "descriptionNotes": {
+                    "type": "string",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "ageMin": {
+                    "type": "integer",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "ageMax": {
+                    "type": "integer",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "participantsMin": {
+                    "type": "integer",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "participantsMax": {
+                    "type": "integer",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "timeMin": {
+                    "type": "integer",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "timeMax": {
+                    "type": "integer",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "featured": {
+                    "type": "boolean",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "source": {
+                    "type": "string",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "tags": {
+                    "type": "string",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "mediaFiles": {
+                    "type": "string",
+                    "description": "New activity properties. Activity properties not specified in the request will be cleared."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "patchActivities",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the activity to patch.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the activity to patch."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully updated the activity with new information. Only the properties specified in the request will be updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Activity": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'properties': 'ActivityProperties', 'propertiesRevisions': 'array', 'derived': 'ActivityDerived', 'related': 'array', 'ratingsCount': 'long', 'ratingsSum': 'long', 'favouritesCount': 'long', 'ratingsAverage': 'double'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required permission (activity_edit) to update the activity."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "datePublished": {
+                    "type": "string",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "dateCreated": {
+                    "type": "string",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "dateUpdated": {
+                    "type": "string",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "descriptionMaterial": {
+                    "type": "string",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "descriptionIntroduction": {
+                    "type": "string",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "descriptionPrepare": {
+                    "type": "string",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "descriptionMain": {
+                    "type": "string",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "descriptionSafety": {
+                    "type": "string",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "descriptionNotes": {
+                    "type": "string",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "ageMin": {
+                    "type": "integer",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "ageMax": {
+                    "type": "integer",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "participantsMin": {
+                    "type": "integer",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "participantsMax": {
+                    "type": "integer",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "timeMin": {
+                    "type": "integer",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "timeMax": {
+                    "type": "integer",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "featured": {
+                    "type": "boolean",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "source": {
+                    "type": "string",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "tags": {
+                    "type": "string",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "mediaFiles": {
+                    "type": "string",
+                    "description": "The activity properties to update. Only the properties specified in the request will be updated."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/activities/{id}/rating": {
+      "delete": {
+        "operationId": "deleteRating",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identifier of the activity whose rating should be removed",
+            "schema": {
+              "type": "integer",
+              "description": "Identifier of the activity whose rating should be removed"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content - The end-user's rating was successfully removed."
+          },
+          "403": {
+            "description": "Forbidden - The authenticated user does not have the required permission (rating_set_own) to remove the rating."
+          },
+          "500": {
+            "description": "Internal Server Error - An unexpected error occurred while processing the request."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getRating",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the activity whose rating to retrieve.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the activity whose rating to retrieve."
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "description": "The attributes to include in the response. Comma-separated list.",
+            "schema": {
+              "type": "string",
+              "description": "The attributes to include in the response. Comma-separated list."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Returns the end-user's rating for the activity, serialized as JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ActivityRating": {
+                      "type": "string",
+                      "description": "{'rating': 'integer', 'favourite': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required permission (rating_set_own)."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createRating",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identifier of the activity to rate.",
+            "schema": {
+              "type": "integer",
+              "description": "Identifier of the activity to rate."
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content. The rating was successfully set or updated."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required permission (rating_set_own)."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rating": {
+                    "type": "integer",
+                    "description": "The rating value to set for the activity."
+                  },
+                  "favourite": {
+                    "type": "boolean",
+                    "description": "Whether the activity is marked as a favourite."
+                  }
+                },
+                "required": [
+                  "favourite"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/system_messages": {
+      "get": {
+        "operationId": "getSystemMessages",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "required": false,
+            "description": "Filter system messages by key prefix. Comma-separated list of key prefixes.",
+            "schema": {
+              "type": "string",
+              "description": "Filter system messages by key prefix. Comma-separated list of key prefixes."
+            }
+          },
+          {
+            "name": "valid",
+            "in": "query",
+            "required": false,
+            "description": "Filter system messages by validity interval.",
+            "schema": {
+              "type": "string",
+              "description": "Filter system messages by validity interval.",
+              "enum": [
+                "now",
+                "now_and_future"
+              ]
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "description": "The attributes to include in the response. Comma-separated list.",
+            "schema": {
+              "type": "string",
+              "description": "The attributes to include in the response. Comma-separated list."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON array of system messages, optionally filtered by key prefix and validity interval, and optionally limited to specified attributes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SystemMessage": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'key': 'string', 'value': 'string', 'valid_to': 'date', 'valid_from': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createSystemMessages",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "System message created successfully. Returns the created SystemMessage object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SystemMessage": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'key': 'string', 'value': 'string', 'valid_to': 'date', 'valid_from': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required permission (system_message_manage)."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "The system message to create"
+                  },
+                  "key": {
+                    "type": "string",
+                    "description": "The system message to create"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "The system message to create"
+                  },
+                  "validTo": {
+                    "type": "string",
+                    "description": "The system message to create"
+                  },
+                  "validFrom": {
+                    "type": "string",
+                    "description": "The system message to create"
+                  }
+                },
+                "required": [
+                  "key",
+                  "value"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/activities": {
+      "post": {
+        "operationId": "createActivities",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Activity created successfully. Returns the created Activity object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Activity": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'properties': 'ActivityProperties', 'propertiesRevisions': 'array', 'derived': 'ActivityDerived', 'related': 'array', 'ratingsCount': 'long', 'ratingsSum': 'long', 'favouritesCount': 'long', 'ratingsAverage': 'double'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required permission (activity_create) to create an activity."
+          },
+          "500": {
+            "description": "Internal server error. An unexpected error occurred while creating the activity."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "datePublished": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "dateCreated": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "dateUpdated": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "descriptionMaterial": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "descriptionIntroduction": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "descriptionPrepare": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "descriptionMain": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "descriptionSafety": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "descriptionNotes": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "ageMin": {
+                    "type": "integer",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "ageMax": {
+                    "type": "integer",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "participantsMin": {
+                    "type": "integer",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "participantsMax": {
+                    "type": "integer",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "timeMin": {
+                    "type": "integer",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "timeMax": {
+                    "type": "integer",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "featured": {
+                    "type": "boolean",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "source": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "tags": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "mediaFiles": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getActivities",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "description": "The attributes to include in the response. Comma-separated list.",
+            "schema": {
+              "type": "string",
+              "description": "The attributes to include in the response. Comma-separated list."
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "Words to look for in activity names. Prefix word with minus character to exclude activities with that word.",
+            "schema": {
+              "type": "string",
+              "description": "Words to look for in activity names. Prefix word with minus character to exclude activities with that word."
+            }
+          },
+          {
+            "name": "text",
+            "in": "query",
+            "required": false,
+            "description": "Words to look for in any text field. Prefix word with minus character to exclude activities with that word.",
+            "schema": {
+              "type": "string",
+              "description": "Words to look for in any text field. Prefix word with minus character to exclude activities with that word."
+            }
+          },
+          {
+            "name": "featured",
+            "in": "query",
+            "required": false,
+            "description": "Show featured (hand-picked by editor) activities",
+            "schema": {
+              "type": "boolean",
+              "description": "Show featured (hand-picked by editor) activities"
+            }
+          },
+          {
+            "name": "categories",
+            "in": "query",
+            "required": false,
+            "description": "Show activites with at least one of the specified tags. Comma-separated list of tag ids.",
+            "schema": {
+              "type": "string",
+              "description": "Show activites with at least one of the specified tags. Comma-separated list of tag ids."
+            }
+          },
+          {
+            "name": "ages",
+            "in": "query",
+            "required": false,
+            "description": "Find activities suited for certain ages. Comma-separated list of ages.",
+            "schema": {
+              "type": "string",
+              "description": "Find activities suited for certain ages. Comma-separated list of ages."
+            }
+          },
+          {
+            "name": "participants",
+            "in": "query",
+            "required": false,
+            "description": "Find activities suited for certain number of participants.",
+            "schema": {
+              "type": "string",
+              "description": "Find activities suited for certain number of participants."
+            }
+          },
+          {
+            "name": "durations",
+            "in": "query",
+            "required": false,
+            "description": "Find activities which can be completed in a certain amount of time. Unit: minutes.",
+            "schema": {
+              "type": "string",
+              "description": "Find activities which can be completed in a certain amount of time. Unit: minutes."
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "Find specific activites based on their internal identifiers. It is not expected that end-users know these number. Comma-separated list.",
+            "schema": {
+              "type": "string",
+              "description": "Find specific activites based on their internal identifiers. It is not expected that end-users know these number. Comma-separated list."
+            }
+          },
+          {
+            "name": "my_favourites",
+            "in": "query",
+            "required": false,
+            "description": "Limit result to activities which the current user (as determined by API key) has marked as favourites.",
+            "schema": {
+              "type": "boolean",
+              "description": "Limit result to activities which the current user (as determined by API key) has marked as favourites."
+            }
+          },
+          {
+            "name": "ratings_count_min",
+            "in": "query",
+            "required": false,
+            "description": "Show activities which have been rated by at least this many users",
+            "schema": {
+              "type": "integer",
+              "description": "Show activities which have been rated by at least this many users"
+            }
+          },
+          {
+            "name": "ratings_average_min",
+            "in": "query",
+            "required": false,
+            "description": "Show activities whose average rating is at this amount.",
+            "schema": {
+              "type": "number",
+              "description": "Show activities whose average rating is at this amount."
+            }
+          },
+          {
+            "name": "random",
+            "in": "query",
+            "required": false,
+            "description": "Limit result to a number of random activities matching the other conditions.",
+            "schema": {
+              "type": "integer",
+              "description": "Limit result to a number of random activities matching the other conditions."
+            }
+          },
+          {
+            "name": "favourites",
+            "in": "query",
+            "required": false,
+            "description": "Limit result to the overall favourite activities. This means a list of activities sorted by the number of users who have marked them as their favourites. This parameter cannot be used together with any other filtering parameters (meaning that it is not possible to use it to, for example, show favourites for a particular category or age group).",
+            "schema": {
+              "type": "integer",
+              "description": "Limit result to the overall favourite activities. This means a list of activities sorted by the number of users who have marked them as their favourites. This parameter cannot be used together with any other filtering parameters (meaning that it is not possible to use it to, for example, show favourites for a particular category or age group)."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returns a list of activities matching the search criteria. The response is a JSON array of activity objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ActivityList": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'source': 'string', 'author': 'User', 'date_created': 'date', 'date_published': 'date', 'date_updated': 'date', 'description_material': 'string', 'description_introduction': 'string', 'description_prepare': 'string', 'description_main': 'string', 'description_safety': 'string', 'description_notes': 'string', 'age_min': 'integer', 'age_max': 'integer', 'participants_min': 'integer', 'participants_max': 'integer', 'time_min': 'integer', 'time_max': 'integer', 'featured': 'boolean', 'tags': 'array of Tag', 'media_files': 'array of MediaFile', 'ratings_count': 'long', 'ratings_sum': 'long', 'ratings_average': 'double', 'favourites_count': 'long', 'related': 'array of long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when the request contains invalid parameters, such as non-numeric values for numeric fields (e.g., ages, participants, durations, id). The exception message is: 'Could not understand the request. Perhaps you sent text instead of integers?'"
+          },
+          "500": {
+            "description": "Internal Server Error. Returned when an unexpected error occurs during processing, such as a database failure or other runtime exception not caught by the handler."
+          }
+        }
+      }
+    },
+    "/v1/system_messages/{id}": {
+      "delete": {
+        "operationId": "deleteSystemMessages",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the system message to delete.",
+            "schema": {
+              "type": "integer",
+              "description": "The id of the system message to delete."
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "System message deleted successfully. No content is returned."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required permission (system_message_manage)."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getSystemMessages",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the system message to retrieve.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the system message to retrieve."
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "description": "The attributes to include in the response. Comma-separated list.",
+            "schema": {
+              "type": "string",
+              "description": "The attributes to include in the response. Comma-separated list."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Returns the system message with the specified id, serialized as JSON. The response body is a JSON string produced by okResponse, which serializes the SystemMessage object (optionally filtered by the attrs query parameter).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SystemMessage": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'key': 'string', 'value': 'string', 'valid_to': 'date', 'valid_from': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateSystemMessages",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identifier of the system message to update.",
+            "schema": {
+              "type": "integer",
+              "description": "Identifier of the system message to update."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully updated the system message. Returns the updated SystemMessage object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SystemMessage": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'key': 'string', 'value': 'string', 'valid_to': 'date', 'valid_from': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required permission (system_message_manage)."
+          },
+          "500": {
+            "description": "Internal server error. An unexpected error occurred while processing the request."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "The updated system message payload."
+                  },
+                  "key": {
+                    "type": "string",
+                    "description": "The updated system message payload."
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "The updated system message payload."
+                  },
+                  "validTo": {
+                    "type": "string",
+                    "description": "The updated system message payload."
+                  },
+                  "validFrom": {
+                    "type": "string",
+                    "description": "The updated system message payload."
+                  }
+                },
+                "required": [
+                  "key",
+                  "value"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/system/ping": {
+      "get": {
+        "operationId": "getPing",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "204": {
+            "description": "No Content. The ping endpoint returns an empty response with HTTP status 204."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/v1/system/roles": {
+      "get": {
+        "operationId": "getRoles",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the permission levels and role levels as a JSON object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RolesView": {
+                      "type": "string",
+                      "description": "{'permission_levels': 'object', 'role_levels': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/tags": {
+      "get": {
+        "operationId": "getTags",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "required": false,
+            "description": "Returned tags must have this text in their group names.",
+            "schema": {
+              "type": "string",
+              "description": "Returned tags must have this text in their group names."
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "Returned tags must have this text in their names.",
+            "schema": {
+              "type": "string",
+              "description": "Returned tags must have this text in their names."
+            }
+          },
+          {
+            "name": "min_activities_count",
+            "in": "query",
+            "required": false,
+            "description": "Returned tags must have this text in their names.",
+            "schema": {
+              "type": "integer",
+              "description": "Returned tags must have this text in their names."
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "description": "The attributes to include in the response. Comma-separated list.",
+            "schema": {
+              "type": "string",
+              "description": "The attributes to include in the response. Comma-separated list."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing a JSON array of Tag objects. The response body is a JSON string produced by serializing the list of tags returned by TagDao.find(group, name, minActivitiesCount).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Tag": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'group': 'string', 'name': 'string', 'activities_count': 'long', 'media_file': 'MediaFile'}"
+                    },
+                    "MediaFile": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'mime_type': 'string', 'uri': 'string', 'name': 'string', 'capture_date': 'date', 'copy_right': 'string', 'author': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTags",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Tag created successfully. Returns the created Tag object as JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Tag": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'group': 'string', 'name': 'string', 'activities_count': 'long', 'media_file': 'MediaFile'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required permission (category_create) to create a tag."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Tag object to create"
+                  },
+                  "group": {
+                    "type": "string",
+                    "description": "Tag object to create"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Tag object to create"
+                  },
+                  "activities": {
+                    "type": "string",
+                    "description": "Tag object to create"
+                  }
+                },
+                "required": [
+                  "group",
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/tags/{id}": {
+      "delete": {
+        "operationId": "deleteTags",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the tag to delete.",
+            "schema": {
+              "type": "integer",
+              "description": "The id of the tag to delete."
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Tag deleted successfully. The handler returns void, so the response has no body."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required permission (category_edit)."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTags",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the tag to retrieve.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the tag to retrieve."
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "description": "The attributes to include in the response. Comma-separated list.",
+            "schema": {
+              "type": "string",
+              "description": "The attributes to include in the response. Comma-separated list."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Returns the tag with the specified id, serialized as JSON. The response body is a JSON object whose fields depend on the optional 'attrs' query parameter.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Tag": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'group': 'string', 'name': 'string', 'activities_count': 'long', 'media_file': 'MediaFile'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. Thrown when the JSON serialization of the tag fails (JsonProcessingException) inside AbstractResource.toJson."
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateTags",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the tag to update",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the tag to update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The tag was updated successfully. Returns the updated Tag object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Tag": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'group': 'string', 'name': 'string', 'activities_count': 'long', 'media_file': 'MediaFile'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required permission (category_edit)."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Updated tag data"
+                  },
+                  "group": {
+                    "type": "string",
+                    "description": "Updated tag data"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Updated tag data"
+                  },
+                  "activities": {
+                    "type": "string",
+                    "description": "Updated tag data"
+                  }
+                },
+                "required": [
+                  "group",
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/activities": {
+      "post": {
+        "operationId": "createActivities",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Activity created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Activity": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'properties': 'ActivityProperties', 'derived': 'ActivityDerived', 'relations': 'List<ActivityRelation>', 'relatedIds': 'Long[]', 'ratingsCount': 'long', 'ratingsSum': 'long', 'ratingsAverage': 'double', 'favouritesCount': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "datePublished": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "dateCreated": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "dateUpdated": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "descriptionMaterial": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "descriptionIntroduction": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "descriptionPrepare": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "descriptionMain": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "descriptionSafety": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "descriptionNotes": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "ageMin": {
+                    "type": "integer",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "ageMax": {
+                    "type": "integer",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "participantsMin": {
+                    "type": "integer",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "participantsMax": {
+                    "type": "integer",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "timeMin": {
+                    "type": "integer",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "timeMax": {
+                    "type": "integer",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "featured": {
+                    "type": "boolean",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "source": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "tags": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  },
+                  "mediaFiles": {
+                    "type": "string",
+                    "description": "Activity properties for the new activity"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getActivities",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "description": "The activity attributes to include in the response",
+            "schema": {
+              "type": "string",
+              "description": "The activity attributes to include in the response"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "text",
+            "in": "query",
+            "required": false,
+            "description": "Words to look for in any text field. Prefix word with minus character to exclude activities with that word.",
+            "schema": {
+              "type": "string",
+              "description": "Words to look for in any text field. Prefix word with minus character to exclude activities with that word."
+            }
+          },
+          {
+            "name": "featured",
+            "in": "query",
+            "required": false,
+            "description": "Show featured (hand-picked by editor) activities",
+            "schema": {
+              "type": "boolean",
+              "description": "Show featured (hand-picked by editor) activities"
+            }
+          },
+          {
+            "name": "categories",
+            "in": "query",
+            "required": false,
+            "description": "Show activites with at least one of the specified tags. Comma-separated list of category ids.",
+            "schema": {
+              "type": "string",
+              "description": "Show activites with at least one of the specified tags. Comma-separated list of category ids."
+            }
+          },
+          {
+            "name": "age_1",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "age_2",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "participants",
+            "in": "query",
+            "required": false,
+            "description": "Find activities suited for certain number of participants.",
+            "schema": {
+              "type": "string",
+              "description": "Find activities suited for certain number of participants."
+            }
+          },
+          {
+            "name": "time_1",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_2",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "my_favourites",
+            "in": "query",
+            "required": false,
+            "description": "Limit result to activities which the current user (as determined by API key) has marked as favourites.",
+            "schema": {
+              "type": "boolean",
+              "description": "Limit result to activities which the current user (as determined by API key) has marked as favourites."
+            }
+          },
+          {
+            "name": "ratings_count_min",
+            "in": "query",
+            "required": false,
+            "description": "Show activities which have been rated by at least this many users",
+            "schema": {
+              "type": "integer",
+              "description": "Show activities which have been rated by at least this many users"
+            }
+          },
+          {
+            "name": "ratings_average_min",
+            "in": "query",
+            "required": false,
+            "description": "Show activities whose average rating is at this amount.",
+            "schema": {
+              "type": "number",
+              "description": "Show activities whose average rating is at this amount."
+            }
+          },
+          {
+            "name": "random",
+            "in": "query",
+            "required": false,
+            "description": "Limit result to a number of random activities matching the other conditions.",
+            "schema": {
+              "type": "integer",
+              "description": "Limit result to a number of random activities matching the other conditions."
+            }
+          },
+          {
+            "name": "favourites",
+            "in": "query",
+            "required": false,
+            "description": "Limit result to the overall favourite activities. This means a list of activities sorted by the number of users who have marked them as their favourites. This parameter cannot be used together with any other filtering parameters (meaning that it is not possible to use it to, for example, show favourites for a particular category or age group).",
+            "schema": {
+              "type": "integer",
+              "description": "Limit result to the overall favourite activities. This means a list of activities sorted by the number of users who have marked them as their favourites. This parameter cannot be used together with any other filtering parameters (meaning that it is not possible to use it to, for example, show favourites for a particular category or age group)."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of activities matching the search criteria.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ActivityApiV1View": {
+                      "type": "string",
+                      "description": "{'_related': 'array', '_ratings_average': 'double', 'ratingsSum': 'long', 'ratingsCount': 'long', 'name': 'string', 'updated_at': 'date', 'created_at': 'date', 'descr_material': 'string', 'descr_introduction': 'string', 'descr_prepare': 'string', 'descr_main': 'string', 'descr_safety': 'string', 'descriptionNotes': 'string', 'ageMin': 'integer', 'ageMax': 'integer', 'participantsMin': 'integer', 'participantsMax': 'integer', 'timeMin': 'integer', 'timeMax': 'integer', 'featured': 'boolean', 'categories': 'array', 'media_files': 'array', 'revision_id': 'long', 'id': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates to getActivities, which may throw an exception that is not caught."
+          }
+        }
+      }
+    },
+    "/v1/activities/{id}": {
+      "delete": {
+        "operationId": "deleteActivities",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the activity to delete",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the activity to delete"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content. The activity was successfully deleted."
+          },
+          "401": {
+            "description": "Unauthorized. Authentication is required to delete an activity."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to delete the activity."
+          },
+          "404": {
+            "description": "Not Found. The activity with the specified id does not exist."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getActivities",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the activity to read.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the activity to read."
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "description": "The activity attributes to include in the response.",
+            "schema": {
+              "type": "string",
+              "description": "The activity attributes to include in the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Read a specific activity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ActivityApiV1View": {
+                      "type": "string",
+                      "description": "{'_related': 'array', '_ratings_average': 'double', 'ratingsSum': 'long', 'ratingsCount': 'long', 'name': 'string', 'updated_at': 'date', 'created_at': 'date', 'descr_material': 'string', 'descr_introduction': 'string', 'descr_prepare': 'string', 'descr_main': 'string', 'descr_safety': 'string', 'descriptionNotes': 'string', 'ageMin': 'integer', 'ageMax': 'integer', 'participantsMin': 'integer', 'participantsMax': 'integer', 'timeMin': 'integer', 'timeMax': 'integer', 'featured': 'boolean', 'categories': 'array', 'media_files': 'array', 'revision_id': 'long', 'id': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "patchActivities",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the activity to patch",
+            "schema": {
+              "type": "integer",
+              "description": "The id of the activity to patch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity updated successfully. Returns the updated Activity object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Activity": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'properties': 'ActivityProperties', 'derived': 'ActivityDerived', 'related': 'array of long', 'ratingsCount': 'long', 'ratingsSum': 'long', 'ratingsAverage': 'double', 'favouritesCount': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "datePublished": {
+                    "type": "string",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "dateCreated": {
+                    "type": "string",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "dateUpdated": {
+                    "type": "string",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "descriptionMaterial": {
+                    "type": "string",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "descriptionIntroduction": {
+                    "type": "string",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "descriptionPrepare": {
+                    "type": "string",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "descriptionMain": {
+                    "type": "string",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "descriptionSafety": {
+                    "type": "string",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "descriptionNotes": {
+                    "type": "string",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "ageMin": {
+                    "type": "integer",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "ageMax": {
+                    "type": "integer",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "participantsMin": {
+                    "type": "integer",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "participantsMax": {
+                    "type": "integer",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "timeMin": {
+                    "type": "integer",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "timeMax": {
+                    "type": "integer",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "featured": {
+                    "type": "boolean",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "source": {
+                    "type": "string",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "tags": {
+                    "type": "string",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  },
+                  "mediaFiles": {
+                    "type": "string",
+                    "description": "Activity properties to update. Only the properties specified in the request will be updated."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateActivities",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the activity to update",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the activity to update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity updated successfully. Returns the updated activity.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Activity": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'datePublished': 'date', 'dateCreated': 'date', 'dateUpdated': 'date', 'descriptionMaterial': 'string', 'descriptionIntroduction': 'string', 'descriptionPrepare': 'string', 'descriptionMain': 'string', 'descriptionSafety': 'string', 'descriptionNotes': 'string', 'ageMin': 'integer', 'ageMax': 'integer', 'participantsMin': 'integer', 'participantsMax': 'integer', 'timeMin': 'integer', 'timeMax': 'integer', 'featured': 'boolean', 'source': 'string', 'tags': 'array', 'mediaFiles': 'array', 'author': 'User', 'propertiesRevisions': 'array', 'publishedProperties': 'ActivityProperties', 'derived': 'ActivityDerived', 'relations': 'array', 'relatedIds': 'array', 'ratingsCount': 'long', 'ratingsSum': 'long', 'ratingsAverage': 'double', 'favouritesCount': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Activity not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "datePublished": {
+                    "type": "string",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "dateCreated": {
+                    "type": "string",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "dateUpdated": {
+                    "type": "string",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "descriptionMaterial": {
+                    "type": "string",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "descriptionIntroduction": {
+                    "type": "string",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "descriptionPrepare": {
+                    "type": "string",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "descriptionMain": {
+                    "type": "string",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "descriptionSafety": {
+                    "type": "string",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "descriptionNotes": {
+                    "type": "string",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "ageMin": {
+                    "type": "integer",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "ageMax": {
+                    "type": "integer",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "participantsMin": {
+                    "type": "integer",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "participantsMax": {
+                    "type": "integer",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "timeMin": {
+                    "type": "integer",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "timeMax": {
+                    "type": "integer",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "featured": {
+                    "type": "boolean",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "source": {
+                    "type": "string",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "tags": {
+                    "type": "string",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  },
+                  "mediaFiles": {
+                    "type": "string",
+                    "description": "The new activity properties. Activity properties not specified in the request will be cleared."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/activities/{id}/rating": {
+      "get": {
+        "operationId": "getRating",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The activity id",
+            "schema": {
+              "type": "integer",
+              "description": "The activity id"
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "description": "The activity attributes to include in the response",
+            "schema": {
+              "type": "string",
+              "description": "The activity attributes to include in the response"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the end-user's rating for the specified activity. The response body is an ActivityRatingAttrs object containing the rating and favourite flag.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ActivityRatingAttrs": {
+                      "type": "string",
+                      "description": "{'rating': 'integer', 'favourite': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Returned when the request lacks valid authentication credentials."
+          },
+          "404": {
+            "description": "Not Found. Returned when the specified activity does not exist or no rating exists for the current user."
+          },
+          "500": {
+            "description": "Internal Server Error. Returned when an unexpected error occurs while processing the request."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createRating",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The activity id",
+            "schema": {
+              "type": "integer",
+              "description": "The activity id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content. The rating was successfully set or updated."
+          },
+          "401": {
+            "description": "Unauthorized. Authentication is required."
+          },
+          "404": {
+            "description": "Not Found. The activity with the specified id does not exist."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rating": {
+                    "type": "integer",
+                    "description": "The end-user's rating attributes for the activity"
+                  },
+                  "favourite": {
+                    "type": "boolean",
+                    "description": "The end-user's rating attributes for the activity"
+                  }
+                },
+                "required": [
+                  "favourite"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteRating",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The activity id",
+            "schema": {
+              "type": "integer",
+              "description": "The activity id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content. The end-user's rating was successfully removed from the activity."
+          },
+          "401": {
+            "description": "Unauthorized. The request requires authentication via API key."
+          },
+          "404": {
+            "description": "Not Found. The activity with the specified id does not exist."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/v1/categories": {
+      "get": {
+        "operationId": "getCategories",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "required": false,
+            "description": "Returned tags must have this text in their group names.",
+            "schema": {
+              "type": "string",
+              "description": "Returned tags must have this text in their group names."
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "Returned tags must have this text in their names.",
+            "schema": {
+              "type": "string",
+              "description": "Returned tags must have this text in their names."
+            }
+          },
+          {
+            "name": "min_activities_count",
+            "in": "query",
+            "required": false,
+            "description": "Returned tags must have this text in their names.",
+            "schema": {
+              "type": "integer",
+              "description": "Returned tags must have this text in their names."
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "description": "The attributes to include in the response. Comma-separated list.",
+            "schema": {
+              "type": "string",
+              "description": "The attributes to include in the response. Comma-separated list."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON array of tags (categories) matching the optional group, name, and min_activities_count filters, with optional attribute filtering via the attrs query parameter.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "TagList": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'group': 'string', 'name': 'string', 'activities_count': 'long', 'media_file': 'MediaFile'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCategories",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "The category was created successfully. Returns the created Tag object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Tag": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'group': 'string', 'name': 'string', 'activities_count': 'long', 'media_file': 'MediaFile'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required permission (category_create) to create a category."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Tag object to create"
+                  },
+                  "group": {
+                    "type": "string",
+                    "description": "Tag object to create"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Tag object to create"
+                  },
+                  "activities": {
+                    "type": "string",
+                    "description": "Tag object to create"
+                  }
+                },
+                "required": [
+                  "group",
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/categories/{id}": {
+      "delete": {
+        "operationId": "deleteCategories",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the category to delete.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the category to delete."
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Category deleted successfully. The delete operation returns no content."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required permission (category_edit) to delete the category."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateCategories",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the category to update",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the category to update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The category was successfully updated and the updated Tag object is returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Tag": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'group': 'string', 'name': 'string', 'activities_count': 'long', 'media_file': 'MediaFile'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user does not have the required permission (category_edit) to update the category."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Updated tag data"
+                  },
+                  "group": {
+                    "type": "string",
+                    "description": "Updated tag data"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Updated tag data"
+                  },
+                  "activities": {
+                    "type": "string",
+                    "description": "Updated tag data"
+                  }
+                },
+                "required": [
+                  "group",
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getCategories",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the category to retrieve.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the category to retrieve."
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "description": "The attributes to include in the response. Comma-separated list.",
+            "schema": {
+              "type": "string",
+              "description": "The attributes to include in the response. Comma-separated list."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Returns the category (tag) with the specified id, serialized as JSON. The response body is a JSON string produced by okResponse, containing the tag data filtered by the optional attrs query parameter.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Tag": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'group': 'string', 'name': 'string', 'activities_count': 'long', 'media_file': 'MediaFile'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/favourites": {
+      "get": {
+        "operationId": "getFavourites",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false,
+            "description": "Path parameter id.",
+            "schema": {
+              "type": "integer",
+              "description": "Path parameter id."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of activity IDs that the authenticated user has marked as favourites.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<Long>": {
+                      "type": "string",
+                      "description": "{'activity_id': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required permission (rating_set_own)."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createFavourites",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false,
+            "description": "The ID of the resource, injected via @PathParam(\"id\").",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the resource, injected via @PathParam(\"id\")."
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Favourites updated successfully. The method returns void, so the response has no body."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required permission (rating_set_own)."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "properties": {
+                    "type": "string",
+                    "description": "The request body containing the list of activity IDs to mark as favourites."
+                  },
+                  "id": {
+                    "type": "string",
+                    "description": "List of activity IDs to be set as favourites."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

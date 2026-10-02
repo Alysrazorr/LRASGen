@@ -1,0 +1,672 @@
+{
+  "task_id": "proxyprint-kitchen",
+  "api_name": "proxyprint-kitchen",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/*",
+      "http_method": "OPTIONS",
+      "method_name": "handleOptions",
+      "summary": "Handle OPTIONS requests",
+      "description": "Returns 204 No Content for any OPTIONS request.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\DefaultController.java"
+    },
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "index",
+      "summary": "Index endpoint",
+      "description": "Returns a JSON message 'Olá Mundo!'.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\DefaultController.java"
+    },
+    {
+      "endpoint_path": "/api/secured",
+      "http_method": "GET",
+      "method_name": "secured",
+      "summary": "Secured endpoint",
+      "description": "Returns a JSON message if the user is authenticated.",
+      "line_number": 46,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\DefaultController.java"
+    },
+    {
+      "endpoint_path": "/login",
+      "http_method": "POST",
+      "method_name": "login",
+      "summary": "Returns success/insuccess.",
+      "description": "This method validates the login data from a user.",
+      "line_number": 54,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\DefaultController.java"
+    },
+    {
+      "endpoint_path": "/admin/printshops",
+      "http_method": "GET",
+      "method_name": "getPrinShopsList",
+      "summary": "Returns the list of all printshops.",
+      "description": "This method allows the admin entity to access all printshop's information registered in the platform.",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\admin\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/admin/register",
+      "http_method": "POST",
+      "method_name": "newAdmin",
+      "summary": "Returns success/insuccess.",
+      "description": "This method allows the register of an admin entity.",
+      "line_number": 42,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\admin\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/admin/seed",
+      "http_method": "POST",
+      "method_name": "seed",
+      "summary": "Returns nothing.",
+      "description": "This method allows developers to fill in the database with fake but consistent data.",
+      "line_number": 50,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\admin\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/admin/useed",
+      "http_method": "POST",
+      "method_name": "useed",
+      "summary": "Returns nothing.",
+      "description": "This method allows developers to fill in the database with fake consumer accounts.",
+      "line_number": 400,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\admin\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/consumer/register",
+      "http_method": "POST",
+      "method_name": "addUser",
+      "summary": "Returns success/insuccess",
+      "description": "This method allows consumer registration.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java"
+    },
+    {
+      "endpoint_path": "/consumer/info",
+      "http_method": "GET",
+      "method_name": "getConsumerInfo",
+      "summary": "Returns all the user information",
+      "description": "This method allows consumers to get their personal information.",
+      "line_number": 57,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java"
+    },
+    {
+      "endpoint_path": "/consumer/info/update",
+      "http_method": "PUT",
+      "method_name": "updateConsumerInfo",
+      "summary": "Updates the consumer information",
+      "description": "This method allows consumers to update their personal information.",
+      "line_number": 75,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java"
+    },
+    {
+      "endpoint_path": "/consumer/{username}/notifications",
+      "http_method": "DELETE",
+      "method_name": "deleteAllNotifications",
+      "summary": "Returns success/insuccess.",
+      "description": "This method allows consumers to remove all notifications.",
+      "line_number": 155,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java"
+    },
+    {
+      "endpoint_path": "/consumer/{username}/notifications",
+      "http_method": "PUT",
+      "method_name": "readAllNotifications",
+      "summary": "Returns success/insuccess.",
+      "description": "This method allows consumers to mark as read all notifications.",
+      "line_number": 168,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java"
+    },
+    {
+      "endpoint_path": "/consumer/requests",
+      "http_method": "GET",
+      "method_name": "getRequests",
+      "summary": "Returns pending requests.",
+      "description": "This method retrieves to the consumer his pending requests.",
+      "line_number": 181,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java"
+    },
+    {
+      "endpoint_path": "/consumer/requests/cancel/{id}",
+      "http_method": "DELETE",
+      "method_name": "cancelRequests",
+      "summary": "Returns success/insuccess.",
+      "description": "This method allows consumers to cancel a pending request.",
+      "line_number": 204,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java"
+    },
+    {
+      "endpoint_path": "/consumer/satisfied",
+      "http_method": "GET",
+      "method_name": "getPrintShopSatisfiedRequests",
+      "summary": "Returns satisfied requests.",
+      "description": "This method retrieves the history of satisfied requests from a consumer.",
+      "line_number": 243,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java"
+    },
+    {
+      "endpoint_path": "/consumer/balance",
+      "http_method": "GET",
+      "method_name": "getConsumerBalance",
+      "summary": "Returns a certain consumer's balance.",
+      "description": "Returns the consumer's balance, normaly used for update purposes.",
+      "line_number": 271,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java"
+    },
+    {
+      "endpoint_path": "/paypal/ipn/{printRequestID}",
+      "http_method": "POST",
+      "method_name": "someRequestPaymentConfirmationFromPaylPal",
+      "summary": "Returns nothing",
+      "description": "This method implements the payment check mechanism given by PayPal. This method acts as callback, it reacts to the change of status of a transaction to Completed (eCheck - complete).",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PayPalController.java"
+    },
+    {
+      "endpoint_path": "/paypal/ipn/consumer/{consumerID}",
+      "http_method": "POST",
+      "method_name": "consumerLoadUpConfirmation",
+      "summary": "It confirms that a certain consumer has pay its load up on ProxyPrint.",
+      "description": "Its a route for being remotely called by PayPal servers.",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PayPalController.java"
+    },
+    {
+      "endpoint_path": "/consumer/{consumerID}/printingschemas",
+      "http_method": "GET",
+      "method_name": "getConsumerPrintingSchemas",
+      "summary": "Returns a set of the printing schemas.",
+      "description": "This method allows consumers to get his PrintingSchemas.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintingSchemaController.java"
+    },
+    {
+      "endpoint_path": "/consumer/{consumerID}/printingschemas",
+      "http_method": "POST",
+      "method_name": "addNewConsumerPrintingSchema",
+      "summary": "Returns success/insuccess.",
+      "description": "This method allows consumers to add a new printing schema to his printing schemas collection.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintingSchemaController.java"
+    },
+    {
+      "endpoint_path": "/consumer/{consumerID}/printingschemas/{printingSchemaID}",
+      "http_method": "DELETE",
+      "method_name": "deleteConsumerPrintingSchema",
+      "summary": "Returns success/insuccess.",
+      "description": "This method allows consumers to delete a printing schema from his printing schemas collection.",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintingSchemaController.java"
+    },
+    {
+      "endpoint_path": "/consumer/{consumerID}/printingschemas/{printingSchemaID}",
+      "http_method": "PUT",
+      "method_name": "editConsumerPrintingSchema",
+      "summary": "Returns success/insuccess.",
+      "description": "This method allows consumers to edit a printing schema from his printing schemas collection.",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintingSchemaController.java"
+    },
+    {
+      "endpoint_path": "/consumer/budget",
+      "http_method": "POST",
+      "method_name": "calcBudgetForPrintRequest",
+      "summary": "Returns a set of budgets",
+      "description": "This method calculates budgets for a given and already specified print request. The budgets are calculated for specific printshops also passed along as parameters.",
+      "line_number": 41,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintRequestController.java"
+    },
+    {
+      "endpoint_path": "/consumer/printrequest/{printRequestID}/submit",
+      "http_method": "POST",
+      "method_name": "finishAndSubmitPrintRequest",
+      "summary": "Returns success/insuccess",
+      "description": "This method allow clients to POST a print request and associate it to a given printshop with a given budget, the payment may or not occur according to the payment method.",
+      "line_number": 139,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintRequestController.java"
+    },
+    {
+      "endpoint_path": "/printdocument",
+      "http_method": "POST",
+      "method_name": "printDocument",
+      "summary": "Returns a Print Request ID",
+      "description": "This method allows other platforms to print a document using ProxyPrint",
+      "line_number": 206,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintRequestController.java"
+    },
+    {
+      "endpoint_path": "/printdocument/{id}",
+      "http_method": "GET",
+      "method_name": "getDocument",
+      "summary": "Returns a document",
+      "description": "This method returns the document from a print request ",
+      "line_number": 243,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintRequestController.java"
+    },
+    {
+      "endpoint_path": "/printdocument/{id}/budget",
+      "http_method": "POST",
+      "method_name": "calcBudgetForPrintRecipe",
+      "summary": "Returns a set of budgets",
+      "description": "This method calculates budgets for a given and already specified print request. The budgets are calculated for specific printshops also passed along as parameters.",
+      "line_number": 261,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintRequestController.java"
+    },
+    {
+      "endpoint_path": "/consumer/{id}/notify",
+      "http_method": "POST",
+      "method_name": "greeting",
+      "summary": "Returns nothing",
+      "description": "This method sends a notification to a consumer.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\notifications\\NotificationsController.java"
+    },
+    {
+      "endpoint_path": "/consumer/subscribe",
+      "http_method": "GET",
+      "method_name": "subscribe",
+      "summary": "Returns success/insuccess.",
+      "description": "This method allows a consumer to subscribe the SSE.",
+      "line_number": 23,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\notifications\\NotificationsController.java"
+    },
+    {
+      "endpoint_path": "/consumer/notifications",
+      "http_method": "GET",
+      "method_name": "getConsumerNotifications",
+      "summary": "Returns list of notifications.",
+      "description": "This method retrieves to consumer his list of notifications.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\notifications\\NotificationsController.java"
+    },
+    {
+      "endpoint_path": "/notifications/{notificationId}",
+      "http_method": "DELETE",
+      "method_name": "deleteNotification",
+      "summary": "Returns success.",
+      "description": "This method allows consumers to delete a notification.",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\notifications\\NotificationsController.java"
+    },
+    {
+      "endpoint_path": "/notifications/{notificationId}",
+      "http_method": "PUT",
+      "method_name": "readNotification",
+      "summary": "Returns success.",
+      "description": "This method allows consumers to mark a notification as read.",
+      "line_number": 57,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\notifications\\NotificationsController.java"
+    },
+    {
+      "endpoint_path": "/documents/{id}",
+      "http_method": "GET",
+      "method_name": "getEmployees",
+      "summary": "Returns a document",
+      "description": "This method allows employees to get a document by a given id.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\EmployeeController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{printShopID}/employees",
+      "http_method": "GET",
+      "method_name": "getEmployees",
+      "summary": "Returns list of employees.",
+      "description": "This method allows a manager to get the list of employees from his printshop.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ManagerController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{printShopID}/employees",
+      "http_method": "POST",
+      "method_name": "addEmployee",
+      "summary": "Returns success/insuccess.",
+      "description": "This method allows a manager to add a employee to his printshop.",
+      "line_number": 42,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ManagerController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{printShopID}/employees",
+      "http_method": "PUT",
+      "method_name": "editEmployee",
+      "summary": "Returns success/insuccess.",
+      "description": "This method allows a manager to edit a employee from his printshop.",
+      "line_number": 78,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ManagerController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{printShopID}/employees/{employeeID}",
+      "http_method": "DELETE",
+      "method_name": "deleteEmployee",
+      "summary": "Returns success/insuccess.",
+      "description": "This method allows a manager to delete a employee from his printshop.",
+      "line_number": 114,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ManagerController.java"
+    },
+    {
+      "endpoint_path": "/printshops/stats",
+      "http_method": "GET",
+      "method_name": "getPrintShopStatistics",
+      "summary": "Returns success/insuccess.",
+      "description": "This method allows a manager to get the statistics info from his printshop.",
+      "line_number": 130,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ManagerController.java"
+    },
+    {
+      "endpoint_path": "/printshop",
+      "http_method": "GET",
+      "method_name": "getManagerPrintShop",
+      "summary": "Returns a printshop",
+      "description": "This method allows manager to get his printshop info",
+      "line_number": 168,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ManagerController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/papers",
+      "http_method": "POST",
+      "method_name": "addNewPaperItem",
+      "summary": "Returns success/insuccess",
+      "description": "Addition of a new Paper Item to a price table of a certain print shop.",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/papers",
+      "http_method": "PUT",
+      "method_name": "editPaperItem",
+      "summary": "Returns success/insuccess",
+      "description": "Edition of a new Paper Item from a price table of a certain print shop.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/deletepaper",
+      "http_method": "POST",
+      "method_name": "deletePaperItem",
+      "summary": "Returns success/insuccess",
+      "description": "Delete a new Paper Item from a price table of a certain print shop.",
+      "line_number": 51,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/rings",
+      "http_method": "POST",
+      "method_name": "addNewRingsItem",
+      "summary": "Returns success/insuccess",
+      "description": "Addition of a new Rings Item to a price table of a certain print shop.",
+      "line_number": 76,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/rings",
+      "http_method": "PUT",
+      "method_name": "editRingsItem",
+      "summary": "Returns success/insuccess",
+      "description": "Edition of an existing Rings Item to a price table of a certain print shop.",
+      "line_number": 94,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/deletering",
+      "http_method": "POST",
+      "method_name": "deleteRingItem",
+      "summary": "Returns success/insuccess",
+      "description": "Delete an existing Rings Item to a price table of a certain print shop.",
+      "line_number": 112,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/covers",
+      "http_method": "POST",
+      "method_name": "addNewCoverItem",
+      "summary": "Returns success/insuccess",
+      "description": "Add a new Cover Item to a price table of a certain print shop.",
+      "line_number": 134,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/covers",
+      "http_method": "PUT",
+      "method_name": "editCoverItem",
+      "summary": "Returns success/insuccess",
+      "description": "Edit an existent Cover Item to a price table of a certain print shop.",
+      "line_number": 156,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/deletecover",
+      "http_method": "POST",
+      "method_name": "deleteCoverItem",
+      "summary": "Returns success/insuccess",
+      "description": "Delete an existent Cover Item to a price table of a certain print shop.",
+      "line_number": 178,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{printShopID}/pricetable/editstapling",
+      "http_method": "PUT",
+      "method_name": "editStaplingPrice",
+      "summary": "Returns success/insuccess",
+      "description": "Edit the stapling price property table of a certain print shop.",
+      "line_number": 200,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java"
+    },
+    {
+      "endpoint_path": "/printshops/nearest",
+      "http_method": "GET",
+      "method_name": "getNearestPrintShops",
+      "summary": "Returns a list of printshops.",
+      "description": "This method returns a list of the nearest printshops.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable",
+      "http_method": "GET",
+      "method_name": "getPrintShopPriceTable",
+      "summary": "Returns a pricetable",
+      "description": "This method returns a pricetable of a specific printshop.",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java"
+    },
+    {
+      "endpoint_path": "/printshops/requests/{id}",
+      "http_method": "POST",
+      "method_name": "changeStatusPrintShopRequests",
+      "summary": "Returns the new status.",
+      "description": "Returns the new status of the corresponding print request.",
+      "line_number": 99,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java"
+    },
+    {
+      "endpoint_path": "/printshops/requests/{id}",
+      "http_method": "GET",
+      "method_name": "getPrintShopRequest",
+      "summary": "Returns a request.",
+      "description": "Returns the corresponding request from a printshop.",
+      "line_number": 164,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java"
+    },
+    {
+      "endpoint_path": "/printshops/requests",
+      "http_method": "GET",
+      "method_name": "getPrintShopRequests",
+      "summary": "Returns pending requests.",
+      "description": "Returns the pending and in progress requests from a printshop.",
+      "line_number": 190,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java"
+    },
+    {
+      "endpoint_path": "/printshops/history",
+      "http_method": "GET",
+      "method_name": "getPrintShopHistoryRequests",
+      "summary": "Returns the history of requests.",
+      "description": "Returns the history of requests from a printshop.",
+      "line_number": 215,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java"
+    },
+    {
+      "endpoint_path": "/printshops/satisfied",
+      "http_method": "GET",
+      "method_name": "getPrintShopSatisfiedRequests",
+      "summary": "Returns satisfied requests.",
+      "description": "Returns the satisfied requests from a printshop.",
+      "line_number": 240,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java"
+    },
+    {
+      "endpoint_path": "/printshops/requests/cancel/{id}",
+      "http_method": "POST",
+      "method_name": "cancelPrintShopRequests",
+      "summary": "Returns success/insuccess.",
+      "description": "This method allows a employee to cancel a print resquest.",
+      "line_number": 265,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{id}",
+      "http_method": "GET",
+      "method_name": "getPrintShop",
+      "summary": "Returns a printshop",
+      "description": "This method returns the printshop info",
+      "line_number": 312,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java"
+    },
+    {
+      "endpoint_path": "/printshops",
+      "http_method": "GET",
+      "method_name": "getPrintShops",
+      "summary": "Returns a printshop",
+      "description": "This method returns a list of printshop with info from each one.",
+      "line_number": 323,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java"
+    },
+    {
+      "endpoint_path": "/request/register",
+      "http_method": "POST",
+      "method_name": "registerRequest",
+      "summary": "Returns success.",
+      "description": "This method allows to add a register request to a new printshop.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\RegisterRequestController.java"
+    },
+    {
+      "endpoint_path": "/request/accept/{id}",
+      "http_method": "POST",
+      "method_name": "acceptRequest",
+      "summary": "Returns success/insuccess.",
+      "description": "This method allows the admin to accept a register request from a printshop.",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\RegisterRequestController.java"
+    },
+    {
+      "endpoint_path": "/request/reject/{printRequestID}",
+      "http_method": "POST",
+      "method_name": "rejectRequest",
+      "summary": "Returns success/insuccess.",
+      "description": "This method allows the admin to reject a register request from a printshop.",
+      "line_number": 71,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\RegisterRequestController.java"
+    },
+    {
+      "endpoint_path": "/requests/pending",
+      "http_method": "GET",
+      "method_name": "acceptRequest",
+      "summary": "Returns a list of pending register requests.",
+      "description": "This method allows the admin to get a list of pending register requests.",
+      "line_number": 92,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\RegisterRequestController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{id}/reviews",
+      "http_method": "GET",
+      "method_name": "getPrintShopReviews",
+      "summary": "Returns all printshop reviews",
+      "description": "404 if the printshop doesn't exist.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ReviewController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{id}/reviews",
+      "http_method": "POST",
+      "method_name": "addPrintShopReview",
+      "summary": "Add a review to a printshop with the given ID",
+      "description": "404 if the printshop doesn't exist.",
+      "line_number": 43,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ReviewController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{printShopId}/reviews/{reviewId}",
+      "http_method": "PUT",
+      "method_name": "editPrintShopReview",
+      "summary": "Edit an existing printshop review",
+      "description": "404 if the printshop or the review doesn't exist.",
+      "line_number": 62,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ReviewController.java"
+    },
+    {
+      "endpoint_path": "/printshops/{printShopId}/reviews/{reviewId}",
+      "http_method": "DELETE",
+      "method_name": "deletePrintShopReview",
+      "summary": "Delete an existing printshop review",
+      "description": "404 if the printshop or the review doesn't exist.",
+      "line_number": 89,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ReviewController.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 28482,
+  "tokens": {
+    "prompt_tokens": 863331,
+    "completion_tokens": 26971,
+    "total_tokens": 890302,
+    "calls": 39,
+    "elapsed_s": 306.427,
+    "prompt_cost_usd": 0.110616,
+    "completion_cost_usd": 0.018447,
+    "total_cost_usd": 0.129063,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 281665,
+        "completion_tokens": 5216,
+        "total_tokens": 286881,
+        "calls": 13,
+        "elapsed_s": 28.446969000000003,
+        "prompt_cost_usd": 0.005633,
+        "completion_cost_usd": 0.00313,
+        "total_cost_usd": 0.008763
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 269553,
+        "completion_tokens": 17316,
+        "total_tokens": 286869,
+        "calls": 13,
+        "elapsed_s": 207.853,
+        "prompt_cost_usd": 0.026955,
+        "completion_cost_usd": 0.008658,
+        "total_cost_usd": 0.035613
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 312113,
+        "completion_tokens": 4439,
+        "total_tokens": 316552,
+        "calls": 13,
+        "elapsed_s": 70.127,
+        "prompt_cost_usd": 0.078028,
+        "completion_cost_usd": 0.006659,
+        "total_cost_usd": 0.084687
+      }
+    ]
+  }
+}

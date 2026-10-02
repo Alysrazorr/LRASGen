@@ -1,0 +1,463 @@
+{
+  "task_id": "ur-codebin-api",
+  "api_name": "Ur-Codebin-API",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/account/{account_id}",
+      "http_method": "GET",
+      "method_name": "getUserAccountById",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Ur-Codebin\\Ur-Codebin-API\\src\\main\\java\\com\\urcodebin\\api\\controllers\\UserAccountController.java",
+      "parameters": [
+        {
+          "name": "account_id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the user account to retrieve.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "User account found and returned successfully.",
+          "data_schema": [
+            {
+              "name": "UserAccountDTO",
+              "schema": {
+                "account_id": "long",
+                "account_username": "string",
+                "account_email": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "User account with the given id was not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/paste/{paste_id}",
+      "http_method": "DELETE",
+      "method_name": "deleteCodePasteWithId",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Ur-Codebin\\Ur-Codebin-API\\src\\main\\java\\com\\urcodebin\\api\\controllers\\CodePasteController.java",
+      "parameters": [
+        {
+          "name": "paste_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The UUID of the code paste to delete. Must be a valid UUID format.",
+          "format": "UUID",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The CodePaste was successfully deleted. No response body is returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "The provided paste_id is not a valid UUID format.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "No CodePaste exists with the given paste_id.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/account/signup",
+      "http_method": "POST",
+      "method_name": "signupForNewAccount",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Ur-Codebin\\Ur-Codebin-API\\src\\main\\java\\com\\urcodebin\\api\\controllers\\UserAccountController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the new account's username, email, and password."
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the new account's username, email, and password."
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the new account's username, email, and password."
+        },
+        {
+          "name": "account_username",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The username for the new account.",
+          "_depth": 0
+        },
+        {
+          "name": "account_email",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The email address for the new account.",
+          "_depth": 0
+        },
+        {
+          "name": "account_password",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The password for the new account.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully signed up a new user account. Returns the created user account details.",
+          "data_schema": [
+            {
+              "name": "UserAccountDTO",
+              "schema": {
+                "account_id": "long",
+                "account_username": "string",
+                "account_email": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The email provided is not in the correct format.",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Conflict. The username or email provided is already in use.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/paste/{paste_id}",
+      "http_method": "GET",
+      "method_name": "getCodePasteFromId",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Ur-Codebin\\Ur-Codebin-API\\src\\main\\java\\com\\urcodebin\\api\\controllers\\CodePasteController.java",
+      "parameters": [
+        {
+          "name": "paste_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The UUID of the code paste to retrieve.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the code paste with the given paste_id.",
+          "data_schema": [
+            {
+              "name": "CodePasteDTO",
+              "schema": {
+                "paste_id": "string (UUID)",
+                "source_code": "string",
+                "paste_title": "string",
+                "paste_syntax": "string (enum: NONE, JAVA, CSHARP, Python, JAVASCRIPT, GO, CLANG, CPLUSPLUS, PHP, SWIFT, LUA, RUBY, MYSQL, POSTGRESQL)",
+                "paste_expiration_date": "string (format: yyyy-MM-dd HH:mm:ss)",
+                "paste_visibility": "string (enum: PUBLIC, PRIVATE)"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid UUID format provided for paste_id.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "No code paste found with the given paste_id.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/paste/public",
+      "http_method": "GET",
+      "method_name": "getListOfPublicPastesWith",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Ur-Codebin\\Ur-Codebin-API\\src\\main\\java\\com\\urcodebin\\api\\controllers\\CodePasteController.java",
+      "parameters": [
+        {
+          "name": "paste_title",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Title of the paste to search for",
+          "_depth": 0
+        },
+        {
+          "name": "paste_syntax",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Syntax of the paste to filter by",
+          "enum": [
+            "NONE",
+            "JAVA",
+            "CSHARP",
+            "Python",
+            "JAVASCRIPT",
+            "GO",
+            "CLANG",
+            "CPLUSPLUS",
+            "PHP",
+            "SWIFT",
+            "LUA",
+            "RUBY",
+            "MYSQL",
+            "POSTGRESQL"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Maximum number of pastes to return",
+          "min": 1,
+          "max": 20,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of public code pastes matching the search criteria.",
+          "data_schema": [
+            {
+              "name": "CodePasteDTO",
+              "schema": {
+                "paste_id": "string",
+                "source_code": "string",
+                "paste_title": "string",
+                "paste_syntax": "string",
+                "paste_expiration_date": "string",
+                "paste_visibility": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the limit parameter is outside the range 1-20, or when the paste_syntax parameter is not a valid enum value.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/paste",
+      "http_method": "POST",
+      "method_name": "postNewCodePasteWith",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Ur-Codebin\\Ur-Codebin-API\\src\\main\\java\\com\\urcodebin\\api\\controllers\\CodePasteController.java",
+      "parameters": [
+        {
+          "name": "pasteTitle",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Request body containing the new paste details."
+        },
+        {
+          "name": "sourceCode",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Request body containing the new paste details."
+        },
+        {
+          "name": "paste_title",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Title of the paste. Defaults to 'Untitled Paste' if not provided.",
+          "min_length": "1",
+          "max_length": "50",
+          "_depth": 0
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Syntax highlighting language for the paste. Defaults to NONE.",
+          "enum": [
+            "None",
+            "Java",
+            "C#",
+            "Python",
+            "JavaScript",
+            "Go",
+            "C",
+            "C++",
+            "PHP",
+            "Swift",
+            "Lua",
+            "Ruby",
+            "MySQL",
+            "PostgreSQL"
+          ]
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Visibility of the paste. Defaults to PRIVATE.",
+          "enum": [
+            "Public",
+            "Private"
+          ]
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Expiration duration for the paste. Defaults to ONEHOUR."
+        },
+        {
+          "name": "offsetMin",
+          "type": "int",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Expiration duration for the paste. Defaults to ONEHOUR."
+        },
+        {
+          "name": "source_code",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The source code content of the paste. Must not be empty.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully created a new code paste. Returns the created paste's details.",
+          "data_schema": [
+            {
+              "name": "CodePasteDTO",
+              "schema": {
+                "paste_id": "string (UUID)",
+                "source_code": "string",
+                "paste_title": "string",
+                "paste_syntax": "string (enum: NONE, JAVA, CSHARP, Python, JAVASCRIPT, GO, CLANG, CPLUSPLUS, PHP, SWIFT, LUA, RUBY, MYSQL, POSTGRESQL)",
+                "paste_expiration_date": "string (format: yyyy-MM-dd HH:mm:ss)",
+                "paste_visibility": "string (enum: PUBLIC, PRIVATE)"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Thrown when the source code is missing or the paste title length is invalid.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 5665,
+  "tokens": {
+    "prompt_tokens": 11423,
+    "completion_tokens": 3226,
+    "total_tokens": 14649,
+    "calls": 12,
+    "elapsed_s": 60.035,
+    "prompt_cost_usd": 0.001458,
+    "completion_cost_usd": 0.002149,
+    "total_cost_usd": 0.003607,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 3738,
+        "completion_tokens": 535,
+        "total_tokens": 4273,
+        "calls": 4,
+        "elapsed_s": 5.663814,
+        "prompt_cost_usd": 7.5e-05,
+        "completion_cost_usd": 0.000321,
+        "total_cost_usd": 0.000396
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 3591,
+        "completion_tokens": 2209,
+        "total_tokens": 5800,
+        "calls": 4,
+        "elapsed_s": 43.191,
+        "prompt_cost_usd": 0.000359,
+        "completion_cost_usd": 0.001105,
+        "total_cost_usd": 0.001464
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 4094,
+        "completion_tokens": 482,
+        "total_tokens": 4576,
+        "calls": 4,
+        "elapsed_s": 11.18,
+        "prompt_cost_usd": 0.001024,
+        "completion_cost_usd": 0.000723,
+        "total_cost_usd": 0.001747
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 4,
+    "step2_ms": 12,
+    "step3_ms": 4772,
+    "step4_ms": 4840,
+    "step5_ms": 5665,
+    "total_ms": 15296
+  }
+}

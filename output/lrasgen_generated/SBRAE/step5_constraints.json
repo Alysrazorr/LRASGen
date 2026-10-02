@@ -1,0 +1,593 @@
+{
+  "task_id": "spring-rest-example",
+  "api_name": "spring-rest-example",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/project/{code}",
+      "http_method": "DELETE",
+      "method_name": "deleteProject",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProjectController.java",
+      "parameters": [
+        {
+          "name": "code",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "code로 프로젝트 삭제, code는 6자리 영문과 숫자조합",
+          "min_length": "6",
+          "max_length": "6",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Project deleted successfully",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid code format (code length less than 6 or empty)",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found with the given code",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/problem/{code}",
+      "http_method": "DELETE",
+      "method_name": "deleteProblem",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProblemController.java",
+      "parameters": [
+        {
+          "name": "code",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "code는 6자리 영문과 숫자조합",
+          "min_length": "6",
+          "max_length": "6",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Problems deleted successfully. Returns an empty response body.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid code format. The code must be at least 6 characters long and not empty.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/project/{code}",
+      "http_method": "GET",
+      "method_name": "getProject",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProjectController.java",
+      "parameters": [
+        {
+          "name": "code",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "code로 프로젝트 조회 (6자리 영문과 숫자조합)",
+          "min_length": "6",
+          "max_length": "6",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Project found and returned successfully",
+          "data_schema": [
+            {
+              "name": "Project",
+              "schema": {
+                "idx": "long",
+                "code": "string",
+                "title": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request due to invalid code format (code length less than 6 or empty)",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found for the given code",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/problem/{code}",
+      "http_method": "GET",
+      "method_name": "getProblemByCode",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProblemController.java",
+      "parameters": [
+        {
+          "name": "code",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "code는 6자리 영문과 숫자조합 (6-character alphanumeric code)",
+          "min_length": "6",
+          "max_length": "6",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved problems matching the given code. Returns a collection of Problem objects.",
+          "data_schema": [
+            {
+              "name": "Collection<Problem>",
+              "schema": {
+                "idx": "long",
+                "title": "string",
+                "project": "Project",
+                "subProblems": "Set<subProblem>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The provided code is invalid (length less than 6 or empty).",
+          "data_schema": null
+        },
+        {
+          "status_code": 501,
+          "description": "Not Implemented. No problems found for the given code.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/project",
+      "http_method": "POST",
+      "method_name": "createProject",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProjectController.java",
+      "parameters": [
+        {
+          "name": "idx",
+          "type": "Long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Project object containing the title for the new project; code is auto-generated"
+        },
+        {
+          "name": "code",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Project object containing the title for the new project; code is auto-generated",
+          "max_length": "6",
+          "min_length": "0"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Project object containing the title for the new project; code is auto-generated",
+          "max_length": "200",
+          "min_length": "0"
+        },
+        {
+          "name": "createdAt",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Project object containing the title for the new project; code is auto-generated"
+        },
+        {
+          "name": "last_update_time",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Project object containing the title for the new project; code is auto-generated"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Project created successfully. The Location header contains the URI of the created project.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the title length is less than 5 characters (DataFormatException) or when the project service returns a result other than '1'.",
+          "data_schema": [
+            {
+              "name": "result",
+              "schema": {
+                "result": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/problem/{code}/all",
+      "http_method": "DELETE",
+      "method_name": "deleteAllProblem",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProblemController.java",
+      "parameters": [
+        {
+          "name": "code",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "code는 6자리 영문과 숫자조합",
+          "min_length": "6",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "All problems and subproblems with the given code were successfully deleted.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The provided code is invalid (length less than 6 or empty).",
+          "data_schema": [
+            {
+              "name": "CustomizeErrorDetail",
+              "schema": {
+                "timestamp": "date",
+                "message": "string",
+                "details": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. No problem exists with the given code.",
+          "data_schema": [
+            {
+              "name": "CustomizeErrorDetail",
+              "schema": {
+                "timestamp": "date",
+                "message": "string",
+                "details": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/project/{code}",
+      "http_method": "PUT",
+      "method_name": "updateProject",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProjectController.java",
+      "parameters": [
+        {
+          "name": "code",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "code로 project 변경, code는 6자리 영문과 숫자조합",
+          "min_length": "6",
+          "max_length": "6",
+          "_depth": 0
+        },
+        {
+          "name": "idx",
+          "type": "Long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "project 업데이트, title 필요"
+        },
+        {
+          "name": "code",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "project 업데이트, title 필요",
+          "max_length": "6",
+          "min_length": "0"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "project 업데이트, title 필요",
+          "max_length": "200",
+          "min_length": "0"
+        },
+        {
+          "name": "createdAt",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "project 업데이트, title 필요"
+        },
+        {
+          "name": "last_update_time",
+          "type": "Date",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "project 업데이트, title 필요"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Project updated successfully",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request: code length is less than 6 or empty",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found with the given code",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error: project update failed",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/problem/{code}",
+      "http_method": "POST",
+      "method_name": "saveProblem",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProblemController.java",
+      "parameters": [
+        {
+          "name": "code",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "code는 6자리 영문과 숫자조합",
+          "min_length": "6",
+          "_depth": 0
+        },
+        {
+          "name": "idx",
+          "type": "Long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "문제 생성, problem parameter는 사용 X"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "문제 생성, problem parameter는 사용 X"
+        },
+        {
+          "name": "subProblems",
+          "type": "Set",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "문제 생성, problem parameter는 사용 X"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Problem created successfully. Location header contains the URI of the created problem.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the code is invalid (length < 6 or empty) or when problemService.saveProblem returns false (e.g., invalid title).",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "result": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned when no project exists with the provided code.",
+          "data_schema": [
+            {
+              "name": "CustomizeErrorDetail",
+              "schema": {
+                "timestamp": "date",
+                "message": "string",
+                "details": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/subproblem",
+      "http_method": "POST",
+      "method_name": "saveSubProblem",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\subProblemController.java",
+      "parameters": [
+        {
+          "name": "pro_idx",
+          "type": "Long",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the sub-problem content and the parent problem index"
+        },
+        {
+          "name": "content",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the sub-problem content and the parent problem index"
+        },
+        {
+          "name": "pro_idx",
+          "type": "Long",
+          "require": "false",
+          "position": "body",
+          "description": "Index of the parent problem to which the sub-problem belongs",
+          "_depth": 0
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Content of the sub-problem; must be longer than 10 characters",
+          "min_length": "11",
+          "max_length": "200",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Subproblem created successfully. The Location header contains the URI of the newly created subproblem.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The content is empty or its length is less than 10 characters.",
+          "data_schema": [
+            {
+              "name": "CustomizeErrorDetail",
+              "schema": {
+                "timestamp": "date",
+                "message": "string",
+                "details": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. No problem exists with the provided pro_idx.",
+          "data_schema": [
+            {
+              "name": "CustomizeErrorDetail",
+              "schema": {
+                "timestamp": "date",
+                "message": "string",
+                "details": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. The subproblem could not be saved.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 3435,
+  "tokens": {
+    "prompt_tokens": 7474,
+    "completion_tokens": 3191,
+    "total_tokens": 10665,
+    "calls": 6,
+    "elapsed_s": 37.499,
+    "prompt_cost_usd": 0.000965,
+    "completion_cost_usd": 0.002086,
+    "total_cost_usd": 0.003052,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 2417,
+        "completion_tokens": 486,
+        "total_tokens": 2903,
+        "calls": 2,
+        "elapsed_s": 3.433801,
+        "prompt_cost_usd": 4.8e-05,
+        "completion_cost_usd": 0.000292,
+        "total_cost_usd": 0.00034
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 2314,
+        "completion_tokens": 2263,
+        "total_tokens": 4577,
+        "calls": 2,
+        "elapsed_s": 26.588,
+        "prompt_cost_usd": 0.000231,
+        "completion_cost_usd": 0.001131,
+        "total_cost_usd": 0.001363
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 2743,
+        "completion_tokens": 442,
+        "total_tokens": 3185,
+        "calls": 2,
+        "elapsed_s": 7.477,
+        "prompt_cost_usd": 0.000686,
+        "completion_cost_usd": 0.000663,
+        "total_cost_usd": 0.001349
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 4,
+    "step2_ms": 19,
+    "step3_ms": 5528,
+    "step4_ms": 3696,
+    "step5_ms": 3435,
+    "total_ms": 12684
+  }
+}

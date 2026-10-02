@@ -1,0 +1,630 @@
+{
+  "task_id": "erc20-rest-service",
+  "api_name": "erc20-rest-service",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/{contractAddress}/decimals",
+      "http_method": "GET",
+      "method_name": "decimals",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ERC20\\erc20-rest-service\\src\\main\\java\\io\\blk\\erc20\\Controller.java",
+      "parameters": [
+        {
+          "name": "contractAddress",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Contract address of the ERC-20 token",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the decimal precision of the token as a string.",
+          "data_schema": [
+            {
+              "name": "decimals",
+              "schema": {
+                "decimals": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when the underlying contract call fails (e.g., InterruptedException or ExecutionException), wrapped in a RuntimeException.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/{contractAddress}/symbol",
+      "http_method": "GET",
+      "method_name": "symbol",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ERC20\\erc20-rest-service\\src\\main\\java\\io\\blk\\erc20\\Controller.java",
+      "parameters": [
+        {
+          "name": "contractAddress",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The address of the ERC-20 contract",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the token symbol as a plain string.",
+          "data_schema": [
+            {
+              "name": "symbol",
+              "schema": {
+                "symbol": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when the underlying contract call fails (e.g., InterruptedException or ExecutionException), wrapped in a RuntimeException by the service.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/{contractAddress}/balanceOf/{ownerAddress}",
+      "http_method": "GET",
+      "method_name": "balanceOf",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ERC20\\erc20-rest-service\\src\\main\\java\\io\\blk\\erc20\\Controller.java",
+      "parameters": [
+        {
+          "name": "contractAddress",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Contract address",
+          "_depth": 0
+        },
+        {
+          "name": "ownerAddress",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Owner address",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Token balance for the given owner address, returned as a string.",
+          "data_schema": [
+            {
+              "name": "balance",
+              "schema": {
+                "balance": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the balance lookup fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/{contractAddress}/version",
+      "http_method": "GET",
+      "method_name": "version",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ERC20\\erc20-rest-service\\src\\main\\java\\io\\blk\\erc20\\Controller.java",
+      "parameters": [
+        {
+          "name": "contractAddress",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The address of the ERC-20 contract",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the contract version as a string.",
+          "data_schema": [
+            {
+              "name": "version",
+              "schema": {
+                "version": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the contract call fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/{contractAddress}/totalSupply",
+      "http_method": "GET",
+      "method_name": "totalSupply",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ERC20\\erc20-rest-service\\src\\main\\java\\io\\blk\\erc20\\Controller.java",
+      "parameters": [
+        {
+          "name": "contractAddress",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Contract address of the ERC-20 token",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Total supply of tokens as a string",
+          "data_schema": [
+            {
+              "name": "totalSupply",
+              "schema": {
+                "totalSupply": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the contract call fails",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/{contractAddress}/name",
+      "http_method": "GET",
+      "method_name": "name",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ERC20\\erc20-rest-service\\src\\main\\java\\io\\blk\\erc20\\Controller.java",
+      "parameters": [
+        {
+          "name": "contractAddress",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The address of the ERC-20 contract",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the token name as a plain string.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when the underlying contract call fails (e.g., InterruptedException or ExecutionException).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/deploy",
+      "http_method": "POST",
+      "method_name": "deploy",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ERC20\\erc20-rest-service\\src\\main\\java\\io\\blk\\erc20\\Controller.java",
+      "parameters": [
+        {
+          "name": "contractSpecification",
+          "type": "ContractSpecification",
+          "require": "false",
+          "position": "body",
+          "description": "Contract specification for deploying new ERC-20 token",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns hex encoded contract address as a plain string.",
+          "data_schema": [
+            {
+              "name": "ContractAddress",
+              "schema": {
+                "contractAddress": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the contract deployment fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/config",
+      "http_method": "GET",
+      "method_name": "config",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ERC20\\erc20-rest-service\\src\\main\\java\\io\\blk\\erc20\\Controller.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Application configuration returned as JSON",
+          "data_schema": [
+            {
+              "name": "NodeConfiguration",
+              "schema": {
+                "nodeEndpoint": "string",
+                "fromAddress": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/{contractAddress}/transferFrom",
+      "http_method": "POST",
+      "method_name": "transferFrom",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ERC20\\erc20-rest-service\\src\\main\\java\\io\\blk\\erc20\\Controller.java",
+      "parameters": [
+        {
+          "name": "contractAddress",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The address of the ERC-20 contract",
+          "_depth": 0
+        },
+        {
+          "name": "transferFromRequest",
+          "type": "TransferFromRequest",
+          "require": "false",
+          "position": "body",
+          "description": "Transfer request details",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns hex encoded transaction hash, and Transfer event if called",
+          "data_schema": [
+            {
+              "name": "TransactionResponse",
+              "schema": {
+                "transactionHash": "string",
+                "event": "TransferEventResponse"
+              }
+            },
+            {
+              "name": "TransferEventResponse",
+              "schema": {
+                "from": "string",
+                "to": "string",
+                "value": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the underlying contract call fails",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/{contractAddress}/approve",
+      "http_method": "POST",
+      "method_name": "approve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ERC20\\erc20-rest-service\\src\\main\\java\\io\\blk\\erc20\\Controller.java",
+      "parameters": [
+        {
+          "name": "contractAddress",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The address of the ERC-20 contract",
+          "_depth": 0
+        },
+        {
+          "name": "approveRequest",
+          "type": "ApproveRequest",
+          "require": "false",
+          "position": "body",
+          "description": "The approve request body containing spender and value",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns hex encoded transaction hash, and Approval event if called",
+          "data_schema": [
+            {
+              "name": "TransactionResponse<ApprovalEventResponse>",
+              "schema": {
+                "transactionHash": "string",
+                "event": "ApprovalEventResponse"
+              }
+            },
+            {
+              "name": "ApprovalEventResponse",
+              "schema": {
+                "owner": "string",
+                "spender": "string",
+                "value": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the service call fails",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/{contractAddress}/transfer",
+      "http_method": "POST",
+      "method_name": "transfer",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ERC20\\erc20-rest-service\\src\\main\\java\\io\\blk\\erc20\\Controller.java",
+      "parameters": [
+        {
+          "name": "contractAddress",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The address of the ERC-20 contract",
+          "_depth": 0
+        },
+        {
+          "name": "transferRequest",
+          "type": "TransferRequest",
+          "require": "false",
+          "position": "body",
+          "description": "Transfer request containing recipient and amount",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns hex encoded transaction hash, and Transfer event if called",
+          "data_schema": [
+            {
+              "name": "TransactionResponse<TransferEventResponse>",
+              "schema": {
+                "transactionHash": "string",
+                "event": "TransferEventResponse"
+              }
+            },
+            {
+              "name": "TransferEventResponse",
+              "schema": {
+                "from": "string",
+                "to": "string",
+                "value": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the service call fails",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/{contractAddress}/allowance",
+      "http_method": "GET",
+      "method_name": "allowance",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ERC20\\erc20-rest-service\\src\\main\\java\\io\\blk\\erc20\\Controller.java",
+      "parameters": [
+        {
+          "name": "contractAddress",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The address of the ERC-20 contract",
+          "_depth": 0
+        },
+        {
+          "name": "ownerAddress",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The address of the token owner",
+          "_depth": 0
+        },
+        {
+          "name": "spenderAddress",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The address of the spender",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the quantity of tokens that the spender is still allowed to transfer on the owner's behalf, as a string representation of the allowance value.",
+          "data_schema": [
+            {
+              "name": "AllowanceResponse",
+              "schema": {
+                "allowance": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when the underlying contract call fails (e.g., InterruptedException or ExecutionException), wrapped in a RuntimeException.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/{contractAddress}/approveAndCall",
+      "http_method": "POST",
+      "method_name": "approveAndCall",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ERC20\\erc20-rest-service\\src\\main\\java\\io\\blk\\erc20\\Controller.java",
+      "parameters": [
+        {
+          "name": "contractAddress",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The address of the ERC-20 contract",
+          "_depth": 0
+        },
+        {
+          "name": "approveAndCallRequest",
+          "type": "ApproveAndCallRequest",
+          "require": "false",
+          "position": "body",
+          "description": "Request body containing spender, value, and extraData for approveAndCall",
+          "_depth": 0
+        },
+        {
+          "name": "spender",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The address of the spender to approve",
+          "_depth": 0
+        },
+        {
+          "name": "value",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "The amount of tokens to approve",
+          "_depth": 0
+        },
+        {
+          "name": "extraData",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Extra data to pass to the spender contract",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns hex encoded transaction hash, and Approval event if called",
+          "data_schema": [
+            {
+              "name": "TransactionResponse<ApprovalEventResponse>",
+              "schema": {
+                "transactionHash": "string",
+                "event": "ApprovalEventResponse"
+              }
+            },
+            {
+              "name": "ApprovalEventResponse",
+              "schema": {
+                "owner": "string",
+                "spender": "string",
+                "value": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the contract service call fails",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 7447,
+  "tokens": {
+    "prompt_tokens": 1031371,
+    "completion_tokens": 20907,
+    "total_tokens": 1052278,
+    "calls": 78,
+    "elapsed_s": 500.183,
+    "prompt_cost_usd": 0.141455,
+    "completion_cost_usd": 0.014572,
+    "total_cost_usd": 0.156027,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 310252,
+        "completion_tokens": 3267,
+        "total_tokens": 313519,
+        "calls": 26,
+        "elapsed_s": 47.117698999999995,
+        "prompt_cost_usd": 0.006205,
+        "completion_cost_usd": 0.00196,
+        "total_cost_usd": 0.008165
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 300200,
+        "completion_tokens": 13848,
+        "total_tokens": 314048,
+        "calls": 26,
+        "elapsed_s": 333.895,
+        "prompt_cost_usd": 0.03002,
+        "completion_cost_usd": 0.006924,
+        "total_cost_usd": 0.036944
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 420919,
+        "completion_tokens": 3792,
+        "total_tokens": 424711,
+        "calls": 26,
+        "elapsed_s": 119.17,
+        "prompt_cost_usd": 0.10523,
+        "completion_cost_usd": 0.005688,
+        "total_cost_usd": 0.110918
+      }
+    ]
+  }
+}

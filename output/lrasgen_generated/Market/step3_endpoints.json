@@ -1,0 +1,555 @@
+{
+  "task_id": "market",
+  "api_name": "market",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/customer/cart",
+      "http_method": "GET",
+      "method_name": "getCart",
+      "summary": "Viewing the cart.",
+      "description": "Viewing the cart.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\CartRestController.java"
+    },
+    {
+      "endpoint_path": "/customer/cart",
+      "http_method": "PUT",
+      "method_name": "addItem",
+      "summary": "Adding a product.",
+      "description": "Adding a product. Returns updated cart. Throws UnknownEntityException if the specified product does not exist.",
+      "line_number": 49,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\CartRestController.java"
+    },
+    {
+      "endpoint_path": "/customer/cart",
+      "http_method": "DELETE",
+      "method_name": "clearCart",
+      "summary": "Clearing the cart.",
+      "description": "Clearing the cart. Returns cleared cart.",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\CartRestController.java"
+    },
+    {
+      "endpoint_path": "/customer/cart/delivery",
+      "http_method": "PUT",
+      "method_name": "setDelivery",
+      "summary": "Setting delivery option.",
+      "description": "Setting delivery option. Returns updated cart.",
+      "line_number": 71,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\CartRestController.java"
+    },
+    {
+      "endpoint_path": "/customer/cart/pay",
+      "http_method": "POST",
+      "method_name": "payByCard",
+      "summary": "Order registration.",
+      "description": "Order registration. Returns created order. Throws EmptyCartException if the cart is empty.",
+      "line_number": 82,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\CartRestController.java"
+    },
+    {
+      "endpoint_path": "/customer/contacts",
+      "http_method": "GET",
+      "method_name": "getContacts",
+      "summary": "Viewing contacts",
+      "description": "Returns the contacts of the authenticated user.",
+      "line_number": 21,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\ContactsRestController.java"
+    },
+    {
+      "endpoint_path": "/customer/contacts",
+      "http_method": "PUT",
+      "method_name": "updateContacts",
+      "summary": "Updating contacts",
+      "description": "Updates the contacts of the authenticated user and returns the updated contacts.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\ContactsRestController.java"
+    },
+    {
+      "endpoint_path": "/customer",
+      "http_method": "GET",
+      "method_name": "getCustomer",
+      "summary": "Get customer",
+      "description": "Returns the authenticated customer's account information.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\CustomerRestController.java"
+    },
+    {
+      "endpoint_path": "/register",
+      "http_method": "POST",
+      "method_name": "createCustomer",
+      "summary": "Register new customer",
+      "description": "Creates a new customer account and authenticates the user. Throws EmailExistsException if the email is already registered.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\CustomerRestController.java"
+    },
+    {
+      "endpoint_path": "/customer/orders",
+      "http_method": "GET",
+      "method_name": "getOrders",
+      "summary": "View orders",
+      "description": "Returns a list of orders for the specified customer.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\OrdersRestController.java"
+    },
+    {
+      "endpoint_path": "/customer/orders/{orderId}",
+      "http_method": "GET",
+      "method_name": "getOrder",
+      "summary": "View a single order",
+      "description": "Returns the order with the specified id for the specified customer. Throws UnknownEntityException if the order doesn't exist.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\OrdersRestController.java"
+    },
+    {
+      "endpoint_path": "/products",
+      "http_method": "GET",
+      "method_name": "getProducts",
+      "summary": "All the existing products, sorted by id.",
+      "description": "All the existing products, sorted by id.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\ProductsRestController.java"
+    },
+    {
+      "endpoint_path": "/products/{productId}",
+      "http_method": "GET",
+      "method_name": "getProduct",
+      "summary": "Viewing a single product.",
+      "description": "Viewing a single product. Returns product with the specified id. Throws UnknownEntityException if the product with the specified id doesn't exist.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-rest\\src\\main\\java\\market\\rest\\ProductsRestController.java"
+    },
+    {
+      "endpoint_path": "/admin",
+      "http_method": "GET",
+      "method_name": "index",
+      "summary": "Backend title page.",
+      "description": "Backend title page.",
+      "line_number": 9,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\BackendController.java"
+    },
+    {
+      "endpoint_path": "/admin/index",
+      "http_method": "GET",
+      "method_name": "index",
+      "summary": "Backend title page.",
+      "description": "Backend title page.",
+      "line_number": 9,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\BackendController.java"
+    },
+    {
+      "endpoint_path": "/admin/distilleries",
+      "http_method": "GET",
+      "method_name": "allDistilleries",
+      "summary": "List all distilleries",
+      "description": "Retrieves all distilleries and adds them to the model for rendering the distilleries list page.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\DistilleryController.java"
+    },
+    {
+      "endpoint_path": "/admin/distilleries/new",
+      "http_method": "GET",
+      "method_name": "newDistillery",
+      "summary": "Show form for creating a new distillery",
+      "description": "Prepares the model with a list of regions and a new Distillery object for the creation form.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\DistilleryController.java"
+    },
+    {
+      "endpoint_path": "/admin/distilleries/new",
+      "http_method": "POST",
+      "method_name": "postDistillery",
+      "summary": "Create a new distillery",
+      "description": "Validates the submitted DistilleryDTO, creates a new distillery, and redirects to the list page.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\DistilleryController.java"
+    },
+    {
+      "endpoint_path": "/admin/distilleries/{distilleryId}/edit",
+      "http_method": "GET",
+      "method_name": "editDistillery",
+      "summary": "Show form for editing an existing distillery",
+      "description": "Prepares the model with a list of regions and the distillery data for the edit form.",
+      "line_number": 56,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\DistilleryController.java"
+    },
+    {
+      "endpoint_path": "/admin/distilleries/{distilleryId}/edit",
+      "http_method": "POST",
+      "method_name": "putDistillery",
+      "summary": "Update an existing distillery",
+      "description": "Validates the submitted DistilleryDTO, updates the distillery, and redirects to the list page.",
+      "line_number": 70,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\DistilleryController.java"
+    },
+    {
+      "endpoint_path": "/admin/distilleries/{distilleryId}/delete",
+      "http_method": "POST",
+      "method_name": "deleteDistillery",
+      "summary": "Delete a distillery",
+      "description": "Deletes the distillery with the given ID and redirects to the list page.",
+      "line_number": 83,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\DistilleryController.java"
+    },
+    {
+      "endpoint_path": "/admin/orders",
+      "http_method": "GET",
+      "method_name": "getOrders",
+      "summary": "Get filtered and sorted orders",
+      "description": "Retrieves a paginated list of orders filtered by execution status and creation date, with sorting options. Populates the model with ordered products, products, contacts, and bills associated with the orders.",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\OrdersController.java"
+    },
+    {
+      "endpoint_path": "/admin/orders/{orderId}",
+      "http_method": "POST",
+      "method_name": "setExecutionStatus",
+      "summary": "Update order execution status",
+      "description": "Updates the execution status of the order with the specified ID to the provided boolean value.",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\OrdersController.java"
+    },
+    {
+      "endpoint_path": "/admin/products",
+      "http_method": "GET",
+      "method_name": "getProducts",
+      "summary": "List products",
+      "description": "Returns a paginated list of products, optionally filtered by distillery. Adds distilleries and region mapping to the model.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\ProductController.java"
+    },
+    {
+      "endpoint_path": "/admin/products/new",
+      "http_method": "GET",
+      "method_name": "newProduct",
+      "summary": "Show new product form",
+      "description": "Displays the form for creating a new product, providing the list of distilleries and an empty product DTO.",
+      "line_number": 63,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\ProductController.java"
+    },
+    {
+      "endpoint_path": "/admin/products/new",
+      "http_method": "POST",
+      "method_name": "postProduct",
+      "summary": "Create product",
+      "description": "Validates and creates a new product. Redirects to the product list on success or back to the form on validation errors.",
+      "line_number": 72,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\ProductController.java"
+    },
+    {
+      "endpoint_path": "/admin/products/{productId}/edit",
+      "http_method": "GET",
+      "method_name": "editProduct",
+      "summary": "Show edit product form",
+      "description": "Displays the edit form for the product with the given ID, providing the list of distilleries and the product DTO. Redirects to the product list if the product does not exist.",
+      "line_number": 84,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\ProductController.java"
+    },
+    {
+      "endpoint_path": "/admin/products/{productId}/edit",
+      "http_method": "POST",
+      "method_name": "putProduct",
+      "summary": "Update product",
+      "description": "Validates and updates the product with the given ID. Redirects to the product list on success, or back to the edit form on validation errors or if the product does not exist.",
+      "line_number": 98,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\ProductController.java"
+    },
+    {
+      "endpoint_path": "/admin/products/{productId}/delete",
+      "http_method": "POST",
+      "method_name": "deleteProduct",
+      "summary": "Delete product",
+      "description": "Deletes the product with the given ID and redirects to the product list.",
+      "line_number": 114,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\ProductController.java"
+    },
+    {
+      "endpoint_path": "/admin/regions",
+      "http_method": "GET",
+      "method_name": "allRegions",
+      "summary": "List all regions",
+      "description": "Retrieves all regions sorted by ID and adds them to the model for rendering the regions list view.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\RegionController.java"
+    },
+    {
+      "endpoint_path": "/admin/regions/new",
+      "http_method": "GET",
+      "method_name": "newRegion",
+      "summary": "Show new region form",
+      "description": "Displays the form for creating a new region.",
+      "line_number": 32,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\RegionController.java"
+    },
+    {
+      "endpoint_path": "/admin/regions/new",
+      "http_method": "POST",
+      "method_name": "postRegion",
+      "summary": "Create a new region",
+      "description": "Validates and creates a new region from the submitted form data, then redirects to the regions list.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\RegionController.java"
+    },
+    {
+      "endpoint_path": "/admin/regions/{regionId}/edit",
+      "http_method": "GET",
+      "method_name": "editRegion",
+      "summary": "Show edit region form",
+      "description": "Displays the form for editing an existing region identified by regionId.",
+      "line_number": 51,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\RegionController.java"
+    },
+    {
+      "endpoint_path": "/admin/regions/{regionId}/edit",
+      "http_method": "POST",
+      "method_name": "putRegion",
+      "summary": "Update an existing region",
+      "description": "Validates and updates the region identified by regionId with the submitted form data, then redirects to the regions list.",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\RegionController.java"
+    },
+    {
+      "endpoint_path": "/admin/regions/{regionId}/delete",
+      "http_method": "POST",
+      "method_name": "deleteRegion",
+      "summary": "Delete a region",
+      "description": "Deletes the region identified by regionId and redirects to the regions list.",
+      "line_number": 73,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\RegionController.java"
+    },
+    {
+      "endpoint_path": "/admin/storage",
+      "http_method": "GET",
+      "method_name": "getStorageUnits",
+      "summary": "Get storage units",
+      "description": "Retrieves a paginated list of products filtered by availability and sorted according to sorting values, then prepares the model for the storage view.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\StorageController.java"
+    },
+    {
+      "endpoint_path": "/admin/storage",
+      "http_method": "POST",
+      "method_name": "postStorage",
+      "summary": "Update product availability",
+      "description": "Updates the availability status of products based on the provided product IDs and available product IDs, then redirects to the storage page.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\backend\\StorageController.java"
+    },
+    {
+      "endpoint_path": "/cart",
+      "http_method": "GET",
+      "method_name": "getCart",
+      "summary": "Get cart",
+      "description": "Returns the cart page. For authorized users, retrieves or creates the user's cart and populates the model with cart details and product map. For guests, builds product map from session cart.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CartController.java"
+    },
+    {
+      "endpoint_path": "/cart/clear",
+      "http_method": "POST",
+      "method_name": "clearCart",
+      "summary": "Clear cart",
+      "description": "Clears the cart. For authorized users, clears the persisted cart. For guests, clears the session cart. Redirects to /cart.",
+      "line_number": 56,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CartController.java"
+    },
+    {
+      "endpoint_path": "/cart",
+      "http_method": "POST",
+      "method_name": "updateCartByForm",
+      "summary": "Add item to cart via form",
+      "description": "Adds or updates an item in the cart using form submission. Handles both authorized and guest users. Redirects to /cart on success or returns cart view on validation errors.",
+      "line_number": 72,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CartController.java"
+    },
+    {
+      "endpoint_path": "/cart",
+      "http_method": "PUT",
+      "method_name": "updateCartByAjax",
+      "summary": "Add item to cart via AJAX",
+      "description": "Adds or updates an item in the cart via AJAX with JSON payload. Returns the updated cart as JSON. Handles both authorized and guest users.",
+      "line_number": 97,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CartController.java"
+    },
+    {
+      "endpoint_path": "/cart/delivery/{delivery}",
+      "http_method": "PUT",
+      "method_name": "setDelivery",
+      "summary": "Set delivery option",
+      "description": "Sets the delivery option for the cart via AJAX. The {delivery} path variable is parsed as boolean. Returns the updated cart as JSON.",
+      "line_number": 128,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CartController.java"
+    },
+    {
+      "endpoint_path": "/checkout/details",
+      "http_method": "GET",
+      "method_name": "details",
+      "summary": "Show checkout details page",
+      "description": "Displays the checkout details page. If the cart does not include delivery, redirects to the payment page. Otherwise, adds the user's contacts to the model and returns the checkout details view.",
+      "line_number": 42,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CheckoutController.java"
+    },
+    {
+      "endpoint_path": "/checkout/details",
+      "http_method": "POST",
+      "method_name": "changeContacts",
+      "summary": "Change user contacts",
+      "description": "Handles contact changes during checkout. If the 'changeContacts' parameter is not 'changeRequested', redirects to payment. If validation errors exist, returns the details view. Otherwise, updates the user's contacts and redirects to payment.",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CheckoutController.java"
+    },
+    {
+      "endpoint_path": "/checkout/payment",
+      "http_method": "GET",
+      "method_name": "getPayment",
+      "summary": "Show payment page",
+      "description": "Displays the payment page. If the user account is not found, returns the details view. Otherwise, populates the model with products, user name, contacts, delivery cost, and a new credit card DTO, then returns the payment view.",
+      "line_number": 76,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CheckoutController.java"
+    },
+    {
+      "endpoint_path": "/checkout/payment",
+      "http_method": "POST",
+      "method_name": "postPayment",
+      "summary": "Process payment",
+      "description": "Processes the payment. If validation errors exist, returns the payment view. Otherwise, creates a user order, adds the created order to the model, updates the cart attributes, and redirects to the confirmation page. If the cart is empty, adds an error and returns the payment view.",
+      "line_number": 94,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CheckoutController.java"
+    },
+    {
+      "endpoint_path": "/checkout/confirmation",
+      "http_method": "GET",
+      "method_name": "getGratitude",
+      "summary": "Show order confirmation page",
+      "description": "Displays the order confirmation page. If the user account is not found, returns the details view. Otherwise, adds the user account and contacts to the model and returns the confirmation view.",
+      "line_number": 119,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CheckoutController.java"
+    },
+    {
+      "endpoint_path": "/customer/new",
+      "http_method": "GET",
+      "method_name": "getRegistrationPage",
+      "summary": "Show registration page",
+      "description": "Displays the registration form for creating a new user account.",
+      "line_number": 77,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CustomerController.java"
+    },
+    {
+      "endpoint_path": "/customer/new",
+      "http_method": "POST",
+      "method_name": "postRegistrationForm",
+      "summary": "Register new user",
+      "description": "Processes the registration form submission, validates input, creates a new user account, authenticates the user, merges any anonymous cart items into the user's cart, and redirects to the home page.",
+      "line_number": 82,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\CustomerController.java"
+    },
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "index",
+      "summary": "Title page",
+      "description": "Displays the title page with a list of regions and a selected region.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\FrontendController.java"
+    },
+    {
+      "endpoint_path": "/index",
+      "http_method": "GET",
+      "method_name": "index",
+      "summary": "Title page",
+      "description": "Displays the title page with a list of regions and a selected region.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\FrontendController.java"
+    },
+    {
+      "endpoint_path": "/login",
+      "http_method": "GET",
+      "method_name": "login",
+      "summary": "Login page",
+      "description": "Displays the login page.",
+      "line_number": 25,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\FrontendController.java"
+    },
+    {
+      "endpoint_path": "/inside",
+      "http_method": "GET",
+      "method_name": "whatsInside",
+      "summary": "Implementation description page",
+      "description": "Displays the implementation description page.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\FrontendController.java"
+    },
+    {
+      "endpoint_path": "/rest-api",
+      "http_method": "GET",
+      "method_name": "restApi",
+      "summary": "REST description page",
+      "description": "Displays the REST description page.",
+      "line_number": 41,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\FrontendController.java"
+    },
+    {
+      "endpoint_path": "/regions/{regionId}",
+      "http_method": "GET",
+      "method_name": "getRegionProducts",
+      "summary": "Region products page. Filtering by distillery and sorting.",
+      "description": "Region products page. Filtering by distillery and sorting.",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Market\\market\\market-web\\src\\main\\java\\market\\controller\\frontend\\ShowcaseController.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 30204,
+  "tokens": {
+    "prompt_tokens": 630453,
+    "completion_tokens": 24232,
+    "total_tokens": 654685,
+    "calls": 48,
+    "elapsed_s": 301.439,
+    "prompt_cost_usd": 0.081686,
+    "completion_cost_usd": 0.016773,
+    "total_cost_usd": 0.098459,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 203595,
+        "completion_tokens": 4534,
+        "total_tokens": 208129,
+        "calls": 16,
+        "elapsed_s": 30.180609999999998,
+        "prompt_cost_usd": 0.004072,
+        "completion_cost_usd": 0.00272,
+        "total_cost_usd": 0.006792
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 194006,
+        "completion_tokens": 15494,
+        "total_tokens": 209500,
+        "calls": 16,
+        "elapsed_s": 199.781,
+        "prompt_cost_usd": 0.019401,
+        "completion_cost_usd": 0.007747,
+        "total_cost_usd": 0.027148
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 232852,
+        "completion_tokens": 4204,
+        "total_tokens": 237056,
+        "calls": 16,
+        "elapsed_s": 71.477,
+        "prompt_cost_usd": 0.058213,
+        "completion_cost_usd": 0.006306,
+        "total_cost_usd": 0.064519
+      }
+    ]
+  }
+}

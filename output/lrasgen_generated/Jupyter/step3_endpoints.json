@@ -1,0 +1,438 @@
+{
+  "task_id": "jupyter_server-main",
+  "api_name": "jupyter_server-main",
+  "framework": "tornado",
+  "endpoints": [
+    {
+      "endpoint_path": "/api",
+      "http_method": "GET",
+      "method_name": "APIVersionHandler.get",
+      "summary": "Get the server version info.",
+      "description": "Returns the Jupyter Server version as JSON. This endpoint is unauthenticated and does not track activity.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\base\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/kernels/{kernel_id}/channels",
+      "http_method": "GET",
+      "method_name": "WebSocketChannelsHandler.get",
+      "summary": "Get the socket.",
+      "description": "Get the socket.",
+      "line_number": 63,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\gateway\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/shutdown",
+      "http_method": "POST",
+      "method_name": "ShutdownHandler.post",
+      "summary": "Shut down the server",
+      "description": "Shut down the server on /api/shutdown request. Cleans up the server application and stops the IOLoop.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\shutdown.py"
+    },
+    {
+      "endpoint_path": "/api/spec.yaml",
+      "http_method": "HEAD",
+      "method_name": "APISpecHandler.head",
+      "summary": "Get the API spec (head)",
+      "description": "A spec handler for the REST API. Returns the API spec without body.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\api\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/spec.yaml",
+      "http_method": "GET",
+      "method_name": "APISpecHandler.get",
+      "summary": "Get the API spec",
+      "description": "Get the API spec. Logs a warning that the API spec is experimental and incomplete.",
+      "line_number": 23,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\api\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/status",
+      "http_method": "GET",
+      "method_name": "APIStatusHandler.get",
+      "summary": "Get the API status",
+      "description": "Get the API status including started time, last activity, number of kernels, and total connections.",
+      "line_number": 41,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\api\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/me",
+      "http_method": "GET",
+      "method_name": "IdentityHandler.get",
+      "summary": "Get the identity model",
+      "description": "Get the current user's identity model and permissions.",
+      "line_number": 61,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\api\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/config/{section_name}",
+      "http_method": "GET",
+      "method_name": "ConfigHandler.get",
+      "summary": "Get config by section name.",
+      "description": "Get config by section name.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\config\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/config/{section_name}",
+      "http_method": "PUT",
+      "method_name": "ConfigHandler.put",
+      "summary": "Set a config section by name.",
+      "description": "Set a config section by name.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\config\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/config/{section_name}",
+      "http_method": "PATCH",
+      "method_name": "ConfigHandler.patch",
+      "summary": "Update a config section by name.",
+      "description": "Update a config section by name.",
+      "line_number": 29,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\config\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/contents/{path}",
+      "http_method": "GET",
+      "method_name": "ContentsHandler.get",
+      "summary": "Return a model for a file or directory.",
+      "description": "A directory model contains a list of models (without content) of the files and directories it contains.",
+      "line_number": 108,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/contents/{path}",
+      "http_method": "PATCH",
+      "method_name": "ContentsHandler.patch",
+      "summary": "PATCH renames a file or directory without re-uploading content.",
+      "description": "PATCH renames a file or directory without re-uploading content.",
+      "line_number": 168,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/contents/{path}",
+      "http_method": "POST",
+      "method_name": "ContentsHandler.post",
+      "summary": "Create a new file in the specified path.",
+      "description": "POST creates new files. The server always decides on the name. POST /api/contents/path New untitled, empty file or directory. POST /api/contents/path with body {\"copy_from\" : \"/path/to/OtherNotebook.ipynb\"} New copy of OtherNotebook in path",
+      "line_number": 217,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/contents/{path}",
+      "http_method": "PUT",
+      "method_name": "ContentsHandler.put",
+      "summary": "Saves the file in the location specified by name and path.",
+      "description": "PUT is very similar to POST, but the requester specifies the name, whereas with POST, the server picks the name. PUT /api/contents/path/Name.ipynb Save notebook at ``path/Name.ipynb``. Notebook structure is specified in `content` key of JSON request body. If content is not specified, create a new empty notebook.",
+      "line_number": 251,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/contents/{path}",
+      "http_method": "DELETE",
+      "method_name": "ContentsHandler.delete",
+      "summary": "delete a file in the given path",
+      "description": "delete a file in the given path",
+      "line_number": 280,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/contents/{path}/checkpoints",
+      "http_method": "GET",
+      "method_name": "CheckpointsHandler.get",
+      "summary": "get lists checkpoints for a file",
+      "description": "get lists checkpoints for a file",
+      "line_number": 294,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/contents/{path}/checkpoints",
+      "http_method": "POST",
+      "method_name": "CheckpointsHandler.post",
+      "summary": "post creates a new checkpoint",
+      "description": "post creates a new checkpoint",
+      "line_number": 302,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/contents/{path}/checkpoints/{checkpoint_id}",
+      "http_method": "POST",
+      "method_name": "ModifyCheckpointsHandler.post",
+      "summary": "post restores a file from a checkpoint",
+      "description": "post restores a file from a checkpoint",
+      "line_number": 322,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/contents/{path}/checkpoints/{checkpoint_id}",
+      "http_method": "DELETE",
+      "method_name": "ModifyCheckpointsHandler.delete",
+      "summary": "delete clears a checkpoint for a given file",
+      "description": "delete clears a checkpoint for a given file",
+      "line_number": 329,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/notebooks/{path}",
+      "http_method": "GET",
+      "method_name": "NotebooksRedirectHandler.get",
+      "summary": "Handle a notebooks redirect.",
+      "description": "Redirect /api/notebooks to /api/contents",
+      "line_number": 348,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/notebooks/{path}",
+      "http_method": "PUT",
+      "method_name": "NotebooksRedirectHandler.put",
+      "summary": "Handle a notebooks redirect.",
+      "description": "Redirect /api/notebooks to /api/contents",
+      "line_number": 348,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/notebooks/{path}",
+      "http_method": "PATCH",
+      "method_name": "NotebooksRedirectHandler.patch",
+      "summary": "Handle a notebooks redirect.",
+      "description": "Redirect /api/notebooks to /api/contents",
+      "line_number": 348,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/notebooks/{path}",
+      "http_method": "POST",
+      "method_name": "NotebooksRedirectHandler.post",
+      "summary": "Handle a notebooks redirect.",
+      "description": "Redirect /api/notebooks to /api/contents",
+      "line_number": 348,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/notebooks/{path}",
+      "http_method": "DELETE",
+      "method_name": "NotebooksRedirectHandler.delete",
+      "summary": "Handle a notebooks redirect.",
+      "description": "Redirect /api/notebooks to /api/contents",
+      "line_number": 348,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/contents/{path}/trust",
+      "http_method": "POST",
+      "method_name": "TrustNotebooksHandler.post",
+      "summary": "Trust a notebook by path.",
+      "description": "Trust a notebook by path.",
+      "line_number": 358,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/events",
+      "http_method": "POST",
+      "method_name": "EventHandler.post",
+      "summary": "Emit an event.",
+      "description": "REST api handler for events. Emit an event.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\events\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/events/subscribe",
+      "http_method": "GET",
+      "method_name": "SubscribeWebsocket.get",
+      "summary": "Get an event socket.",
+      "description": "Websocket handler for subscribing to events. Get an event socket.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\events\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/kernels",
+      "http_method": "GET",
+      "method_name": "MainKernelHandler.get",
+      "summary": "Get the list of running kernels.",
+      "description": "Get the list of running kernels.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernels\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/kernels",
+      "http_method": "POST",
+      "method_name": "MainKernelHandler.post",
+      "summary": "Start a kernel.",
+      "description": "Start a kernel.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernels\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/kernels/{kernel_id}",
+      "http_method": "GET",
+      "method_name": "KernelHandler.get",
+      "summary": "Get a kernel model.",
+      "description": "Get a kernel model.",
+      "line_number": 53,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernels\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/kernels/{kernel_id}",
+      "http_method": "DELETE",
+      "method_name": "KernelHandler.delete",
+      "summary": "Remove a kernel.",
+      "description": "Remove a kernel.",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernels\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/kernels/{kernel_id}/interrupt",
+      "http_method": "POST",
+      "method_name": "KernelActionHandler.post",
+      "summary": "Interrupt a kernel.",
+      "description": "Interrupt or restart a kernel.",
+      "line_number": 70,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernels\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/kernels/{kernel_id}/restart",
+      "http_method": "POST",
+      "method_name": "KernelActionHandler.post",
+      "summary": "Restart a kernel.",
+      "description": "Interrupt or restart a kernel.",
+      "line_number": 70,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernels\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/kernelspecs",
+      "http_method": "GET",
+      "method_name": "MainKernelSpecHandler.get",
+      "summary": "Get the list of kernel specs.",
+      "description": "Get the list of kernel specs.",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernelspecs\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/kernelspecs/{kernel_name}",
+      "http_method": "GET",
+      "method_name": "KernelSpecHandler.get",
+      "summary": "Get a kernel spec model.",
+      "description": "Get a kernel spec model.",
+      "line_number": 76,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernelspecs\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/nbconvert",
+      "http_method": "GET",
+      "method_name": "NbconvertRootHandler.get",
+      "summary": "Get the list of nbconvert exporters.",
+      "description": "Get the list of nbconvert exporters.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\nbconvert\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/security/csp-report",
+      "http_method": "POST",
+      "method_name": "CSPReportHandler.post",
+      "summary": "Log a content security policy violation report",
+      "description": "Accepts a content security policy violation report and logs it as a warning. The handler skips origin and XSRF checks and does not track activity.",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\security\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/sessions",
+      "http_method": "GET",
+      "method_name": "SessionRootHandler.get",
+      "summary": "Get a list of running sessions.",
+      "description": "Get a list of running sessions.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\sessions\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/sessions",
+      "http_method": "POST",
+      "method_name": "SessionRootHandler.post",
+      "summary": "Create a new session.",
+      "description": "Create a new session.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\sessions\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/sessions/{session_id}",
+      "http_method": "GET",
+      "method_name": "SessionHandler.get",
+      "summary": "Get the JSON model for a single session.",
+      "description": "Get the JSON model for a single session.",
+      "line_number": 100,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\sessions\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/sessions/{session_id}",
+      "http_method": "PATCH",
+      "method_name": "SessionHandler.patch",
+      "summary": "Patch updates sessions.",
+      "description": "Patch updates sessions: path updates session to track renamed paths; kernel.name starts a new kernel with a given kernelspec.",
+      "line_number": 108,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\sessions\\handlers.py"
+    },
+    {
+      "endpoint_path": "/api/sessions/{session_id}",
+      "http_method": "DELETE",
+      "method_name": "SessionHandler.delete",
+      "summary": "Delete the session with given session_id.",
+      "description": "Delete the session with given session_id.",
+      "line_number": 186,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\sessions\\handlers.py"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 41402,
+  "tokens": {
+    "prompt_tokens": 6880466,
+    "completion_tokens": 33640,
+    "total_tokens": 6914106,
+    "calls": 48,
+    "elapsed_s": 310.311,
+    "prompt_cost_usd": 0.894229,
+    "completion_cost_usd": 0.0212,
+    "total_cost_usd": 0.915427,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 2232975,
+        "completion_tokens": 4253,
+        "total_tokens": 2237228,
+        "calls": 16,
+        "elapsed_s": 41.32298899999999,
+        "prompt_cost_usd": 0.04466,
+        "completion_cost_usd": 0.002552,
+        "total_cost_usd": 0.047211
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 2082026,
+        "completion_tokens": 25433,
+        "total_tokens": 2107459,
+        "calls": 16,
+        "elapsed_s": 194.098,
+        "prompt_cost_usd": 0.208203,
+        "completion_cost_usd": 0.012717,
+        "total_cost_usd": 0.220919
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 2565465,
+        "completion_tokens": 3954,
+        "total_tokens": 2569419,
+        "calls": 16,
+        "elapsed_s": 74.89,
+        "prompt_cost_usd": 0.641366,
+        "completion_cost_usd": 0.005931,
+        "total_cost_usd": 0.647297
+      }
+    ]
+  }
+}

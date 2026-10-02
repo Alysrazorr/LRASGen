@@ -1,0 +1,4131 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "tiltaksgjennomforing API",
+    "description": "LRASGen-generated specification for tiltaksgjennomforing (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/utvikler-admin/annuller-tilskuddsperiode/{tilskuddsperiodeId}": {
+      "post": {
+        "operationId": "createAnnullerTilskuddsperiode",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "tilskuddsperiodeId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the tilskuddsperiode to annullere",
+            "schema": {
+              "type": "string",
+              "description": "ID of the tilskuddsperiode to annullere"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tilskuddsperiode annullert successfully. No response body."
+          },
+          "403": {
+            "description": "Forbidden. The user does not have the required AD group access (sjekkTilgang throws HttpClientErrorException with HttpStatus.FORBIDDEN)."
+          },
+          "404": {
+            "description": "Not Found. The tilskuddsperiode with the given ID does not exist (orElseThrow(RessursFinnesIkkeException::new))."
+          }
+        }
+      }
+    },
+    "/be-om-altinn-rettighet-urler": {
+      "get": {
+        "operationId": "getBeOmAltinnRettighetUrler",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "orgNr",
+            "in": "query",
+            "required": false,
+            "description": "Organization number used to build the Altinn authorization request URLs",
+            "schema": {
+              "type": "string",
+              "description": "Organization number used to build the Altinn authorization request URLs"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a map of Tiltakstype to Altinn authorization request URLs for the given organization number.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Map<Tiltakstype, String>": {
+                      "type": "string",
+                      "description": "{'ARBEIDSTRENING': 'string', 'INKLUDERINGSTILSKUDD': 'string', 'MENTOR': 'string', 'MIDLERTIDIG_LONNSTILSKUDD': 'string', 'VARIG_LONNSTILSKUDD': 'string', 'SOMMERJOBB': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/utvikler-admin/reberegn-mangler-dato-for-redusert-prosent-dry-run/{migreringsDato}": {
+      "post": {
+        "operationId": "createReberegnManglerDatoForRedusertProsentDryRun",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "migreringsDato",
+            "in": "path",
+            "required": true,
+            "description": "Migreringsdato brukt for å generere tilskuddsperioder. Formatert som yyyy-MM-dd.",
+            "schema": {
+              "type": "string",
+              "description": "Migreringsdato brukt for å generere tilskuddsperioder. Formatert som yyyy-MM-dd.",
+              "format": "yyyy-MM-dd"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dry-run completed successfully. The method returns void, so the response body is empty."
+          },
+          "403": {
+            "description": "Forbidden. The caller does not have the required AD group (utvikler-tilgang). Thrown by sjekkTilgang() via HttpClientErrorException(HttpStatus.FORBIDDEN)."
+          }
+        }
+      }
+    },
+    "/utvikler-admin/annuller-og-generer-behandlet-i-arena-perioder/{avtaleId}/{dato}": {
+      "post": {
+        "operationId": "createAnnullerOgGenererBehandletIArenaPerioder",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale (agreement) whose tilskuddsperioder will be annulled and regenerated with BEHANDLET_I_ARENA status",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale (agreement) whose tilskuddsperioder will be annulled and regenerated with BEHANDLET_I_ARENA status"
+            }
+          },
+          {
+            "name": "dato",
+            "in": "path",
+            "required": true,
+            "description": "Date used as the cutoff; tilskuddsperioder with sluttDato before this date are annulled and regenerated as BEHANDLET_I_ARENA",
+            "schema": {
+              "type": "string",
+              "description": "Date used as the cutoff; tilskuddsperioder with sluttDato before this date are annulled and regenerated as BEHANDLET_I_ARENA",
+              "format": "yyyy-MM-dd"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tilskuddsperioder med sluttdato før den angitte datoen er annullert og nye perioder med status BEHANDLET_I_ARENA er generert. Ingen responsdata returneres."
+          },
+          "403": {
+            "description": "Brukeren har ikke tilgang til utvikler-admin-funksjonalitet. Kastes av sjekkTilgang() når tokenUtils.harAdGruppe(utviklerTilgangProperties.getGruppeTilgang()) returnerer false."
+          },
+          "404": {
+            "description": "Avtalen med den angitte avtaleId finnes ikke. Kastes av avtaleRepository.findById(avtaleId).orElseThrow(RessursFinnesIkkeException::new)."
+          }
+        }
+      }
+    },
+    "/utvikler-admin/annuller-og-resend-tilskuddsperiode/{tilskuddsperiodeId}": {
+      "post": {
+        "operationId": "createAnnullerOgResendTilskuddsperiode",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "tilskuddsperiodeId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the tilskuddsperiode to annullere and resend as godkjent",
+            "schema": {
+              "type": "string",
+              "description": "ID of the tilskuddsperiode to annullere and resend as godkjent"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tilskuddsperiode annullert og resendt som godkjent. No response body."
+          },
+          "403": {
+            "description": "Forbidden. The caller does not have the required AD group access (sjekkTilgang throws HttpClientErrorException with status FORBIDDEN)."
+          },
+          "404": {
+            "description": "Not Found. The tilskuddsperiode with the given id does not exist (orElseThrow(RessursFinnesIkkeException::new))."
+          },
+          "400": {
+            "description": "Bad Request. A FeilkodeException is thrown, e.g. TILSKUDDSPERIODE_ER_ALLEREDE_BEHANDLET if the periode is not in ANNULLERT status, or KAN_IKKE_ENDRE_ANNULLERT_AVTALE if the avtale is annullert/avbrutt. Handled by FeilkodeExceptionHandler returning 400 with feilkode header."
+          }
+        }
+      }
+    },
+    "/utvikler-admin/reberegn-mangler-dato-for-redusert-prosent/{migreringsDato}": {
+      "post": {
+        "operationId": "createReberegnManglerDatoForRedusertProsent",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "migreringsDato",
+            "in": "path",
+            "required": true,
+            "description": "Migreringsdato brukt ved generering av nye tilskuddsperioder etter migrering fra Arena",
+            "schema": {
+              "type": "string",
+              "description": "Migreringsdato brukt ved generering av nye tilskuddsperioder etter migrering fra Arena",
+              "format": "yyyy-MM-dd"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK - The reberegn jobb for varig lønnstilskudd avtaler som mangler redusert prosent og redusert sum has been executed successfully. The method returns void, so no response body is returned."
+          },
+          "403": {
+            "description": "Forbidden - The user does not have the required AD group access (sjekkTilgang throws HttpClientErrorException with HttpStatus.FORBIDDEN)."
+          },
+          "400": {
+            "description": "Bad Request - A FeilkodeException may be thrown during processing (e.g., from avtale.reUtregnRedusert() or avtale.nyeTilskuddsperioderEtterMigreringFraArena()), which is handled by FeilkodeExceptionHandler returning 400 with a 'feilkode' header."
+          }
+        }
+      }
+    },
+    "/utvikler-admin/lag-tilskuddsperioder-for-en-avtale/{avtaleId}/{migreringsDato}": {
+      "post": {
+        "operationId": "createLagTilskuddsperioderForEnAvtale",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to create tilskuddsperioder for",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to create tilskuddsperioder for"
+            }
+          },
+          {
+            "name": "migreringsDato",
+            "in": "path",
+            "required": true,
+            "description": "Migration date used when creating tilskuddsperioder",
+            "schema": {
+              "type": "string",
+              "description": "Migration date used when creating tilskuddsperioder",
+              "format": "yyyy-MM-dd"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tilskuddsperioder opprettet på avtalen. Metoden returnerer void, så ingen responskropp."
+          },
+          "403": {
+            "description": "Brukeren har ikke tilgang. Kastes av sjekkTilgang() når tokenUtils.harAdGruppe(utviklerTilgangProperties.getGruppeTilgang()) returnerer false, og det kastes HttpClientErrorException med HttpStatus.FORBIDDEN."
+          },
+          "404": {
+            "description": "Avtalen finnes ikke. Kastes av avtaleRepository.findById(id).orElseThrow(RessursFinnesIkkeException::new) når avtalen ikke finnes."
+          }
+        }
+      }
+    },
+    "/utvikler-admin/annuller-og-generer-tilskuddsperiode/{tilskuddsperiodeId}": {
+      "post": {
+        "operationId": "createAnnullerOgGenererTilskuddsperiode",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "tilskuddsperiodeId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the tilskuddsperiode to annuller and generate a new ubehandlet tilskuddsperiode from",
+            "schema": {
+              "type": "string",
+              "description": "ID of the tilskuddsperiode to annuller and generate a new ubehandlet tilskuddsperiode from"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tilskuddsperiode annullert og ny ubehandlet tilskuddsperiode generert. Ingen returverdi."
+          },
+          "403": {
+            "description": "Brukeren har ikke tilgang (mangler AD-gruppe)."
+          },
+          "404": {
+            "description": "Tilskuddsperiode med gitt id finnes ikke."
+          },
+          "400": {
+            "description": "Feilkode fra forretningslogikk, f.eks. TILSKUDDSPERIODE_ER_ALLEREDE_BEHANDLET eller KAN_IKKE_ENDRE_FEIL_TILTAKSTYPE."
+          }
+        }
+      }
+    },
+    "/innlogget-bruker": {
+      "get": {
+        "operationId": "getInnloggetBruker",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returnerer informasjon om innlogget bruker basert på valgt part (cookie 'innlogget-part').",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "InnloggetBruker": {
+                      "type": "string",
+                      "description": "{'identifikator': 'string', 'rolle': 'string', 'erNavAnsatt': 'boolean', 'navEnheter': 'array', 'kanVæreBeslutter': 'boolean', 'altinnOrganisasjoner': 'array', 'tilganger': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ugyldig forespørsel. Returneres når ingen part er valgt (cookie mangler) eller ved andre feilkoder som FeilkodeException."
+          },
+          "403": {
+            "description": "Ingen tilgang. Returneres ved TilgangskontrollException."
+          },
+          "500": {
+            "description": "Intern serverfeil. Returneres når et kall til en ekstern tjeneste feiler uventet (f.eks. Altinn, PDL, Norg2, Axsys, VeilarbArena)."
+          }
+        }
+      }
+    },
+    "/utvikler-admin/reberegn": {
+      "post": {
+        "operationId": "createReberegn",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successful reberegning of lønnstilskudd for the provided avtale IDs. The method returns void, so the response body is empty."
+          },
+          "403": {
+            "description": "Forbidden. The caller does not have the required AD group (utvikler-tilgang). Thrown by sjekkTilgang() when tokenUtils.harAdGruppe returns false."
+          },
+          "500": {
+            "description": "Internal server error. Thrown when an avtale with the given UUID is not found (avtaleRepository.findById(...).orElseThrow() throws NoSuchElementException), or when avtale.reberegnLønnstilskudd() throws a FeilkodeException (e.g., KAN_IKKE_REBEREGNE, KAN_IKKE_ENDRE_ANNULLERT_AVTALE, KAN_IKKE_ENDRE_FEIL_TILTAKSTYPE)."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "avtaleIder": {
+                    "type": "string",
+                    "description": "List of avtale IDs to reberegn lønnstilskudd for"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/utvikler-admin/finn-avtaler-med-tilskuddsperioder-feil-datoer": {
+      "post": {
+        "operationId": "createFinnAvtalerMedTilskuddsperioderFeilDatoer",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "OK - The endpoint executes successfully. It logs warnings for any tilskuddsperioder with incorrect date ordering but returns no response body."
+          },
+          "403": {
+            "description": "Forbidden - The caller does not have the required AD group access. Thrown by sjekkTilgang() when tokenUtils.harAdGruppe() returns false."
+          }
+        }
+      }
+    },
+    "/utvikler-admin/reberegn-ubehandlede-tilskuddsperioder/{avtaleId}": {
+      "post": {
+        "operationId": "createReberegnUbehandledeTilskuddsperioder",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "Identifier of the avtale whose unhandled tilskuddsperioder should be recalculated",
+            "schema": {
+              "type": "string",
+              "description": "Identifier of the avtale whose unhandled tilskuddsperioder should be recalculated"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK - The unhandled tilskuddsperioder for the specified avtale have been recalculated and saved successfully. The method returns void, so no response body is returned."
+          },
+          "403": {
+            "description": "Forbidden - The caller does not have the required AD group access (sjekkTilgang throws HttpClientErrorException with HttpStatus.FORBIDDEN)."
+          },
+          "404": {
+            "description": "Not Found - The avtale with the specified avtaleId does not exist (avtaleRepository.findById(avtaleId).orElseThrow(RessursFinnesIkkeException::new))."
+          },
+          "400": {
+            "description": "Bad Request - A FeilkodeException is thrown if the avtale's tiltakstype is not one of MIDLERTIDIG_LONNSTILSKUDD, VARIG_LONNSTILSKUDD, or SOMMERJOBB (krevEnAvTiltakstyper in reberegnUbehandledeTilskuddsperioder)."
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/vis-salesforce-dialog": {
+      "get": {
+        "operationId": "getVisSalesforceDialog",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale (agreement) to check for Salesforce dialog visibility",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale (agreement) to check for Salesforce dialog visibility"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns true if the avtale's enhetOppfolging is in the configured salesforce kontorer, the tiltakstype is MIDLERTIDIG_LONNSTILSKUDD, and the status is GJENNOMFØRES or AVSLUTTET; otherwise returns false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Boolean": {
+                      "type": "string",
+                      "description": "{'value': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the avtale with the given avtaleId does not exist or the user does not have access to it (RessursFinnesIkkeException or TilgangskontrollException)."
+          },
+          "403": {
+            "description": "Returned when the user does not have access to the avtale (TilgangskontrollException)."
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}": {
+      "get": {
+        "operationId": "getAvtaler",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to retrieve",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the Avtale details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Avtale": {
+                      "type": "string",
+                      "description": "{'deltakerFnr': 'Fnr', 'mentorFnr': 'Fnr', 'bedriftNr': 'BedriftNr', 'veilederNavIdent': 'NavIdent', 'tiltakstype': 'Tiltakstype', 'opprettetTidspunkt': 'LocalDateTime', 'id': 'UUID', 'avtaleNr': 'Integer', 'gjeldendeInnhold': 'AvtaleInnhold', 'sistEndret': 'Instant', 'annullertTidspunkt': 'Instant', 'annullertGrunn': 'String', 'avbrutt': 'boolean', 'slettemerket': 'boolean', 'avbruttDato': 'LocalDate', 'avbruttGrunn': 'String', 'opprettetAvArbeidsgiver': 'boolean', 'enhetGeografisk': 'String', 'enhetsnavnGeografisk': 'String', 'enhetOppfolging': 'String', 'enhetsnavnOppfolging': 'String', 'godkjentForEtterregistrering': 'boolean', 'kvalifiseringsgruppe': 'Kvalifiseringsgruppe', 'formidlingsgruppe': 'Formidlingsgruppe', 'tilskuddPeriode': 'SortedSet<TilskuddPeriode>', 'feilregistrert': 'boolean', 'arenaRyddeAvtale': 'ArenaRyddeAvtale'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The Avtale with the given ID does not exist"
+          },
+          "403": {
+            "description": "The logged-in user does not have access to the Avtale"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateAvtaler",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to modify",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to modify"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Avtalen ble endret og lagret. Returnerer en tom body med Last-Modified header satt til avtalens sistEndret-tidspunkt."
+          },
+          "400": {
+            "description": "FeilkodeException kastes av forretningslogikken (f.eks. samtidige endringer, ugyldige datoer, manglende felter, annullert/avbrutt avtale, manglende tilskuddsberegning, ugyldig tiltakstype, etc.). Feilkoden returneres i headeren 'feilkode'."
+          },
+          "403": {
+            "description": "TilgangskontrollException kastes dersom innlogget part ikke har tilgang til avtalen."
+          },
+          "404": {
+            "description": "RessursFinnesIkkeException kastes dersom avtalen med gitt avtaleId ikke finnes."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deltakerFornavn": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "deltakerEtternavn": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "deltakerTlf": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "bedriftNavn": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "arbeidsgiverFornavn": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "arbeidsgiverEtternavn": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "arbeidsgiverTlf": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "veilederFornavn": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "veilederEtternavn": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "veilederTlf": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "oppfolging": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "tilrettelegging": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "startDato": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "sluttDato": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "stillingprosent": {
+                    "type": "integer",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "arbeidsoppgaver": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "stillingstittel": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "stillingStyrk08": {
+                    "type": "integer",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "stillingKonseptId": {
+                    "type": "integer",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "antallDagerPerUke": {
+                    "type": "integer",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "refusjonKontaktpersonFornavn": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "refusjonKontaktpersonEtternavn": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "refusjonKontaktpersonTlf": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "ønskerVarslingOmRefusjon": {
+                    "type": "boolean",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "maal": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "inkluderingstilskuddsutgift": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "inkluderingstilskuddBegrunnelse": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "arbeidsgiverKontonummer": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "lonnstilskuddProsent": {
+                    "type": "integer",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "manedslonn": {
+                    "type": "integer",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "feriepengesats": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "arbeidsgiveravgift": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "otpSats": {
+                    "type": "number",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "harFamilietilknytning": {
+                    "type": "boolean",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "familietilknytningForklaring": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "mentorFornavn": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "mentorEtternavn": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "mentorOppgaver": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "mentorAntallTimer": {
+                    "type": "number",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "mentorTlf": {
+                    "type": "string",
+                    "description": "Object containing the fields to update on the avtale"
+                  },
+                  "mentorTimelonn": {
+                    "type": "integer",
+                    "description": "Object containing the fields to update on the avtale"
+                  }
+                },
+                "required": [
+                  "deltakerFornavn",
+                  "deltakerEtternavn",
+                  "deltakerTlf",
+                  "bedriftNavn",
+                  "arbeidsgiverFornavn",
+                  "arbeidsgiverEtternavn",
+                  "arbeidsgiverTlf",
+                  "veilederFornavn",
+                  "veilederEtternavn",
+                  "veilederTlf",
+                  "oppfolging",
+                  "tilrettelegging",
+                  "startDato",
+                  "sluttDato",
+                  "stillingprosent",
+                  "arbeidsoppgaver",
+                  "stillingstittel",
+                  "stillingStyrk08",
+                  "stillingKonseptId",
+                  "antallDagerPerUke",
+                  "refusjonKontaktpersonFornavn",
+                  "refusjonKontaktpersonEtternavn",
+                  "refusjonKontaktpersonTlf",
+                  "ønskerVarslingOmRefusjon",
+                  "maal",
+                  "inkluderingstilskuddsutgift",
+                  "inkluderingstilskuddBegrunnelse",
+                  "arbeidsgiverKontonummer",
+                  "lonnstilskuddProsent",
+                  "manedslonn",
+                  "feriepengesats",
+                  "arbeidsgiveravgift",
+                  "otpSats",
+                  "harFamilietilknytning",
+                  "familietilknytningForklaring",
+                  "mentorFornavn",
+                  "mentorEtternavn",
+                  "mentorOppgaver",
+                  "mentorAntallTimer",
+                  "mentorTlf",
+                  "mentorTimelonn"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/avtaleNr/{avtaleNr}": {
+      "get": {
+        "operationId": "getAvtalenr",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleNr",
+            "in": "path",
+            "required": true,
+            "description": "Avtale nummer",
+            "schema": {
+              "type": "integer",
+              "description": "Avtale nummer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Avtale hentet basert på avtaleNr",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Avtale": {
+                      "type": "string",
+                      "description": "{'deltakerFnr': 'string', 'mentorFnr': 'string', 'bedriftNr': 'string', 'veilederNavIdent': 'string', 'tiltakstype': 'string', 'opprettetTidspunkt': 'date-time', 'id': 'string', 'avtaleNr': 'integer', 'gjeldendeInnhold': 'AvtaleInnhold', 'sistEndret': 'date-time', 'annullertTidspunkt': 'date-time', 'annullertGrunn': 'string', 'avbrutt': 'boolean', 'slettemerket': 'boolean', 'avbruttDato': 'date', 'avbruttGrunn': 'string', 'opprettetAvArbeidsgiver': 'boolean', 'enhetGeografisk': 'string', 'enhetsnavnGeografisk': 'string', 'enhetOppfolging': 'string', 'enhetsnavnOppfolging': 'string', 'godkjentForEtterregistrering': 'boolean', 'kvalifiseringsgruppe': 'string', 'formidlingsgruppe': 'string', 'tilskuddPeriode': 'array', 'feilregistrert': 'boolean', 'arenaRyddeAvtale': 'ArenaRyddeAvtale', 'erRyddeAvtale': 'boolean', 'erLaast': 'boolean', 'erGodkjentAvDeltaker': 'boolean', 'erGodkjentTaushetserklæringAvMentor': 'boolean', 'erGodkjentAvArbeidsgiver': 'boolean', 'erGodkjentAvVeileder': 'boolean', 'erAvtaleInngått': 'boolean', 'godkjentAvDeltaker': 'date-time', 'godkjentAvMentor': 'date-time', 'godkjentAvArbeidsgiver': 'date-time', 'godkjentAvVeileder': 'date-time', 'godkjentAvBeslutter': 'date-time', 'avtaleInngått': 'date-time', 'godkjentAvNavIdent': 'string', 'godkjentAvBeslutterNavIdent': 'string', 'godkjentPaVegneGrunn': 'GodkjentPaVegneGrunn', 'godkjentPaVegneAv': 'boolean', 'godkjentPaVegneAvArbeidsgiverGrunn': 'GodkjentPaVegneAvArbeidsgiverGrunn', 'godkjentPaVegneAvArbeidsgiver': 'boolean', 'status': 'string', 'statusSomEnum': 'string', 'kanAvbrytes': 'boolean', 'kanGjenopprettes': 'boolean', 'felterSomIkkeErFyltUt': 'array', 'erUfordelt': 'boolean', 'gjeldendeTilskuddsperiode': 'TilskuddPeriode', 'erAnnullertEllerAvbrutt': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Avtale ikke funnet"
+          },
+          "403": {
+            "description": "Ikke tilgang til avtale"
+          }
+        }
+      }
+    },
+    "/avtaler": {
+      "get": {
+        "operationId": "getAvtaler",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "veilederNavIdent",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for avtaler",
+            "schema": {
+              "type": "string",
+              "description": "Filter criteria for avtaler"
+            }
+          },
+          {
+            "name": "bedriftNr",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for avtaler",
+            "schema": {
+              "type": "string",
+              "description": "Filter criteria for avtaler"
+            }
+          },
+          {
+            "name": "deltakerFnr",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for avtaler",
+            "schema": {
+              "type": "string",
+              "description": "Filter criteria for avtaler"
+            }
+          },
+          {
+            "name": "tiltakstype",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for avtaler",
+            "schema": {
+              "type": "string",
+              "description": "Filter criteria for avtaler"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for avtaler",
+            "schema": {
+              "type": "string",
+              "description": "Filter criteria for avtaler"
+            }
+          },
+          {
+            "name": "erUfordelt",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for avtaler",
+            "schema": {
+              "type": "boolean",
+              "description": "Filter criteria for avtaler"
+            }
+          },
+          {
+            "name": "tilskuddPeriodeStatus",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for avtaler",
+            "schema": {
+              "type": "string",
+              "description": "Filter criteria for avtaler"
+            }
+          },
+          {
+            "name": "navEnhet",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for avtaler",
+            "schema": {
+              "type": "string",
+              "description": "Filter criteria for avtaler"
+            }
+          },
+          {
+            "name": "avtaleNr",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for avtaler",
+            "schema": {
+              "type": "integer",
+              "description": "Filter criteria for avtaler"
+            }
+          },
+          {
+            "name": "sorteringskolonne",
+            "in": "query",
+            "required": false,
+            "description": "Column to sort by",
+            "schema": {
+              "type": "string",
+              "description": "Column to sort by"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number",
+            "schema": {
+              "type": "integer",
+              "description": "Page number"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Page size",
+            "schema": {
+              "type": "integer",
+              "description": "Page size"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returns a map containing a paginated list of avtaler (minimal list view) that the logged-in user has read access to, along with pagination metadata.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AvtaleListeResponse": {
+                      "type": "string",
+                      "description": "{'avtaler': 'array<AvtaleMinimalListevisning>', 'size': 'integer', 'currentPage': 'integer', 'totalItems': 'integer', 'totalPages': 'integer'}"
+                    },
+                    "AvtaleMinimalListevisning": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'deltakerFnr': 'string', 'deltakerFornavn': 'string', 'deltakerEtternavn': 'string', 'bedriftNavn': 'string', 'veilederNavIdent': 'string', 'startDato': 'date', 'sluttDato': 'date', 'status': 'string', 'tiltakstype': 'string', 'erGodkjentTaushetserklæringAvMentor': 'boolean', 'gjeldendeTilskuddsperiodeStatus': 'string', 'sistEndret': 'instant'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when a FeilkodeException is thrown, e.g., due to invalid input or business rule violation."
+          },
+          "403": {
+            "description": "Forbidden. Returned when a TilgangskontrollException is thrown, e.g., if the user does not have access to the requested resource."
+          },
+          "500": {
+            "description": "Internal Server Error. Returned when an unexpected error occurs during processing, such as a failure in a downstream service call."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAvtaler",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "ryddeavtale",
+            "in": "query",
+            "required": false,
+            "description": "Om avtalen skal opprettes som ryddeavtale",
+            "schema": {
+              "type": "boolean",
+              "description": "Om avtalen skal opprettes som ryddeavtale"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Avtale opprettet. Location header inneholder URI til den opprettede avtalen."
+          },
+          "400": {
+            "description": "Ugyldig forespørsel. Returneres av FeilkodeExceptionHandler når en FeilkodeException kastes, for eksempel ved ugyldig tiltakstype, manglende tilgang, eller andre forretningsregelbrudd."
+          },
+          "403": {
+            "description": "Ingen tilgang. Returneres av TilgangskontrollException når brukeren ikke har tilgang til å opprette avtale for deltakeren."
+          },
+          "500": {
+            "description": "Intern serverfeil. Returneres ved uventede feil, for eksempel når EregService ikke finner virksomheten eller andre ukjente feil oppstår."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/avtaler/sok": {
+      "post": {
+        "operationId": "createSok",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "sorteringskolonne",
+            "in": "query",
+            "required": false,
+            "description": "Kolonnen resultatet skal sorteres på",
+            "schema": {
+              "type": "string",
+              "description": "Kolonnen resultatet skal sorteres på"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Sidenummer for paginering",
+            "schema": {
+              "type": "integer",
+              "description": "Sidenummer for paginering"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Antall elementer per side",
+            "schema": {
+              "type": "integer",
+              "description": "Antall elementer per side"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Returns a map containing the list of avtaler (as AvtaleMinimalListevisning), pagination info, the search parameters, sorting column, and a sokId. If the filter search is not found, returns an empty result set with default values.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Map<String, Object>": {
+                      "type": "string",
+                      "description": "{'avtaler': 'array<AvtaleMinimalListevisning>', 'size': 'integer', 'currentPage': 'integer', 'totalItems': 'integer', 'totalPages': 'integer', 'sokeParametere': 'AvtalePredicate', 'sorteringskolonne': 'string', 'sokId': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when a FeilkodeException is thrown, e.g., if the user is not authorized or other validation errors occur. The response includes a 'feilkode' header with the error code."
+          },
+          "403": {
+            "description": "Forbidden. Returned when a TilgangskontrollException is thrown, e.g., if the user does not have access to the requested resource."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "erUfordelt": {
+                    "type": "boolean",
+                    "description": "Søkeparametre for filtrering av avtaler"
+                  },
+                  "navEnhet": {
+                    "type": "string",
+                    "description": "Søkeparametre for filtrering av avtaler"
+                  },
+                  "avtaleNr": {
+                    "type": "integer",
+                    "description": "Søkeparametre for filtrering av avtaler"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getSok",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "sokId",
+            "in": "query",
+            "required": false,
+            "description": "ID of the saved filter search",
+            "schema": {
+              "type": "string",
+              "description": "ID of the saved filter search"
+            }
+          },
+          {
+            "name": "sorteringskolonne",
+            "in": "query",
+            "required": false,
+            "description": "Column to sort by",
+            "schema": {
+              "type": "string",
+              "description": "Column to sort by"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number",
+            "schema": {
+              "type": "integer",
+              "description": "Page number"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Page size",
+            "schema": {
+              "type": "integer",
+              "description": "Page size"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a map containing the list of avtaler (as AvtaleMinimalListevisning) and metadata. If the filter search is found, the map includes keys: avtaler, size, currentPage, totalItems, totalPages, sokeParametere, sokId, sorteringskolonne. If not found, returns a map with empty avtaler list and default values.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Map<String, Object>": {
+                      "type": "string",
+                      "description": "{'avtaler': 'array<AvtaleMinimalListevisning>', 'size': 'integer', 'currentPage': 'integer', 'totalItems': 'integer', 'totalPages': 'integer', 'sokeParametere': 'AvtalePredicate', 'sokId': 'string', 'sorteringskolonne': 'string'}"
+                    },
+                    "AvtaleMinimalListevisning": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'deltakerFnr': 'string', 'deltakerFornavn': 'string', 'deltakerEtternavn': 'string', 'bedriftNavn': 'string', 'veilederNavIdent': 'string', 'startDato': 'date', 'sluttDato': 'date', 'status': 'Status', 'tiltakstype': 'Tiltakstype', 'erGodkjentTaushetserklæringAvMentor': 'boolean', 'gjeldendeTilskuddsperiodeStatus': 'TilskuddPeriodeStatus', 'sistEndret': 'instant'}"
+                    },
+                    "AvtalePredicate": {
+                      "type": "string",
+                      "description": "{'veilederNavIdent': 'NavIdent', 'bedriftNr': 'BedriftNr', 'deltakerFnr': 'Fnr', 'tiltakstype': 'Tiltakstype', 'status': 'Status', 'erUfordelt': 'boolean', 'tilskuddPeriodeStatus': 'TilskuddPeriodeStatus', 'navEnhet': 'string', 'avtaleNr': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when a FeilkodeException is thrown, e.g., invalid input or business rule violation. The response includes a header 'feilkode' with the error code name."
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/versjoner": {
+      "get": {
+        "operationId": "getVersjoner",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to fetch versions for",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to fetch versions for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of AvtaleInnhold versions for the given avtaleId",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<AvtaleInnhold>": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'versjon': 'integer', 'deltakerFornavn': 'string', 'deltakerEtternavn': 'string', 'deltakerTlf': 'string', 'bedriftNavn': 'string', 'arbeidsgiverFornavn': 'string', 'arbeidsgiverEtternavn': 'string', 'arbeidsgiverTlf': 'string', 'veilederFornavn': 'string', 'veilederEtternavn': 'string', 'veilederTlf': 'string', 'oppfolging': 'string', 'tilrettelegging': 'string', 'startDato': 'date', 'sluttDato': 'date', 'stillingprosent': 'integer', 'journalpostId': 'string', 'arbeidsoppgaver': 'string', 'stillingstittel': 'string', 'stillingStyrk08': 'integer', 'stillingKonseptId': 'integer', 'antallDagerPerUke': 'integer', 'refusjonKontaktperson': 'object', 'mentorFornavn': 'string', 'mentorEtternavn': 'string', 'mentorOppgaver': 'string', 'mentorAntallTimer': 'double', 'mentorTimelonn': 'integer', 'mentorTlf': 'string', 'arbeidsgiverKontonummer': 'string', 'lonnstilskuddProsent': 'integer', 'manedslonn': 'integer', 'feriepengesats': 'number', 'arbeidsgiveravgift': 'number', 'harFamilietilknytning': 'boolean', 'familietilknytningForklaring': 'string', 'feriepengerBelop': 'integer', 'otpSats': 'double', 'otpBelop': 'integer', 'arbeidsgiveravgiftBelop': 'integer', 'sumLonnsutgifter': 'integer', 'sumLonnstilskudd': 'integer', 'manedslonn100pst': 'integer', 'sumLønnstilskuddRedusert': 'integer', 'datoForRedusertProsent': 'date', 'stillingstype': 'string', 'maal': 'array', 'inkluderingstilskuddsutgift': 'array', 'inkluderingstilskuddBegrunnelse': 'string', 'godkjentAvDeltaker': 'datetime', 'godkjentTaushetserklæringAvMentor': 'datetime', 'godkjentAvArbeidsgiver': 'datetime', 'godkjentAvVeileder': 'datetime', 'godkjentAvBeslutter': 'datetime', 'avtaleInngått': 'datetime', 'ikrafttredelsestidspunkt': 'datetime', 'godkjentAvNavIdent': 'string', 'godkjentAvBeslutterNavIdent': 'string', 'enhetKostnadssted': 'string', 'enhetsnavnKostnadssted': 'string', 'godkjentPaVegneGrunn': 'object', 'godkjentPaVegneAv': 'boolean', 'godkjentPaVegneAvArbeidsgiverGrunn': 'object', 'godkjentPaVegneAvArbeidsgiver': 'boolean', 'innholdType': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Avtale with the given avtaleId does not exist"
+          },
+          "403": {
+            "description": "User does not have access to the avtale"
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/pdf": {
+      "get": {
+        "operationId": "getPdf",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale (agreement) to fetch the PDF for",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale (agreement) to fetch the PDF for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the PDF file of the agreement as a byte array with content type application/pdf.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "byte[]": {
+                      "type": "string",
+                      "description": "{'data': 'byte[]'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Thrown when the agreement is not approved by a veileder (Feilkode.KAN_IKKE_LASTE_NED_PDF)."
+          },
+          "404": {
+            "description": "Not Found. Thrown when the agreement with the given ID does not exist."
+          },
+          "403": {
+            "description": "Forbidden. Thrown when the logged-in user does not have access to the agreement."
+          },
+          "500": {
+            "description": "Internal Server Error. Thrown when the call to DokgenService fails."
+          }
+        }
+      }
+    },
+    "/avtaler/beslutter-liste": {
+      "get": {
+        "operationId": "getBeslutterListe",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "veilederNavIdent",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for the list of avtaler (bound from query string fields)",
+            "schema": {
+              "type": "string",
+              "description": "Filter criteria for the list of avtaler (bound from query string fields)"
+            }
+          },
+          {
+            "name": "bedriftNr",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for the list of avtaler (bound from query string fields)",
+            "schema": {
+              "type": "string",
+              "description": "Filter criteria for the list of avtaler (bound from query string fields)"
+            }
+          },
+          {
+            "name": "deltakerFnr",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for the list of avtaler (bound from query string fields)",
+            "schema": {
+              "type": "string",
+              "description": "Filter criteria for the list of avtaler (bound from query string fields)"
+            }
+          },
+          {
+            "name": "tiltakstype",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for the list of avtaler (bound from query string fields)",
+            "schema": {
+              "type": "string",
+              "description": "Filter criteria for the list of avtaler (bound from query string fields)"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for the list of avtaler (bound from query string fields)",
+            "schema": {
+              "type": "string",
+              "description": "Filter criteria for the list of avtaler (bound from query string fields)"
+            }
+          },
+          {
+            "name": "erUfordelt",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for the list of avtaler (bound from query string fields)",
+            "schema": {
+              "type": "boolean",
+              "description": "Filter criteria for the list of avtaler (bound from query string fields)"
+            }
+          },
+          {
+            "name": "tilskuddPeriodeStatus",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for the list of avtaler (bound from query string fields)",
+            "schema": {
+              "type": "string",
+              "description": "Filter criteria for the list of avtaler (bound from query string fields)"
+            }
+          },
+          {
+            "name": "navEnhet",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for the list of avtaler (bound from query string fields)",
+            "schema": {
+              "type": "string",
+              "description": "Filter criteria for the list of avtaler (bound from query string fields)"
+            }
+          },
+          {
+            "name": "avtaleNr",
+            "in": "query",
+            "required": false,
+            "description": "Filter criteria for the list of avtaler (bound from query string fields)",
+            "schema": {
+              "type": "integer",
+              "description": "Filter criteria for the list of avtaler (bound from query string fields)"
+            }
+          },
+          {
+            "name": "sorteringskolonne",
+            "in": "query",
+            "required": false,
+            "description": "Column to sort by",
+            "schema": {
+              "type": "string",
+              "description": "Column to sort by"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number",
+            "schema": {
+              "type": "integer",
+              "description": "Page number"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Page size",
+            "schema": {
+              "type": "integer",
+              "description": "Page size"
+            }
+          },
+          {
+            "name": "sorteringOrder",
+            "in": "query",
+            "required": false,
+            "description": "Sort direction",
+            "schema": {
+              "type": "string",
+              "description": "Sort direction"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a paginated list of approved avtaler with tilskuddsperiodestatus and NAV enheter, filtered by beslutter's access to the deltaker's fnr.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Map<String, Object>": {
+                      "type": "string",
+                      "description": "{'avtaler': 'List<BeslutterOversiktDTO>', 'size': 'integer', 'currentPage': 'integer', 'totalItems': 'long', 'totalPages': 'integer'}"
+                    },
+                    "BeslutterOversiktDTO": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'avtaleNr': 'integer', 'tiltakstype': 'Tiltakstype', 'veilederNavIdent': 'NavIdent', 'deltakerFornavn': 'string', 'deltakerEtternavn': 'string', 'deltakerFnr': 'Fnr', 'bedriftNavn': 'string', 'bedriftNr': 'BedriftNr', 'startDato': 'date', 'sluttDato': 'date', 'status': 'string', 'antallUbehandlet': 'string', 'opprettetTidspunkt': 'datetime', 'sistEndret': 'datetime'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when a FeilkodeException is thrown, e.g., if the beslutter lacks the required AD group (Feilkode.MANGLER_AD_GRUPPE_BESLUTTER) or if no NAV enheter are found (NavEnhetIkkeFunnetException). The response includes a 'feilkode' header with the error code."
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/opphev-godkjenninger": {
+      "post": {
+        "operationId": "createOpphevGodkjenninger",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale (agreement) to oppheve godkjenninger for",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale (agreement) to oppheve godkjenninger for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Godkjenninger opphevet. The method returns void, so the response body is empty."
+          },
+          "400": {
+            "description": "Bad Request. Thrown when the avtale is already inngått (Feilkode.KAN_IKKE_OPPHEVE_GODKJENNINGER_VED_INNGAATT_AVTALE), when no party has approved the avtale (KanIkkeOppheveException), or when the user cannot oppheve godkjenninger (KanIkkeOppheveException)."
+          },
+          "403": {
+            "description": "Forbidden. Thrown when the logged-in user does not have access to the avtale (TilgangskontrollException)."
+          },
+          "404": {
+            "description": "Not Found. Thrown when the avtale with the given avtaleId does not exist (RessursFinnesIkkeException)."
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/mentorGodkjennTaushetserklæring": {
+      "post": {
+        "operationId": "createMentorgodkjenntaushetserklæring",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Taushetserklæring godkjent av mentor. The method returns void, so the response body is empty."
+          },
+          "400": {
+            "description": "Bad request. Thrown when the logged-in user is not a mentor (TiltaksgjennomforingException) or when the avtale is not found (RessursFinnesIkkeException is mapped to 404, but FeilkodeException from godkjennAvtale is mapped to 400)."
+          },
+          "404": {
+            "description": "Not found. Thrown when the avtale with the given avtaleId does not exist (RessursFinnesIkkeException)."
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/godkjenn": {
+      "post": {
+        "operationId": "createGodkjenn",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to approve",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to approve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Avtalen ble godkjent. Ingen responsdata returneres."
+          },
+          "400": {
+            "description": "FeilkodeException kastes ved forretningsregelbrudd, f.eks. samtidige endringer, allerede godkjent, manglende felter, ugyldig tilstand eller annen feilkode. Feilkoden returneres i headeren 'feilkode'."
+          },
+          "404": {
+            "description": "Avtalen med angitt avtaleId finnes ikke."
+          },
+          "403": {
+            "description": "Innlogget avtalepart har ikke tilgang til avtalen."
+          }
+        }
+      }
+    },
+    "/avtaler/opprett-som-arbeidsgiver": {
+      "post": {
+        "operationId": "createOpprettSomArbeidsgiver",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Created. The avtale is created and the Location header contains the URI of the new avtale."
+          },
+          "400": {
+            "description": "Bad Request. Thrown if the user does not have access to the bedrift/tiltakstype, or if the deltaker is under 16 or over 30 for sommerjobb, or other validation errors."
+          },
+          "403": {
+            "description": "Forbidden. Thrown if the user is not authorized."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/dry-run": {
+      "put": {
+        "operationId": "updateDryRun",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to test change",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to test change"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful dry-run of avtale modification. Returns the modified Avtale object without persisting changes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Avtale": {
+                      "type": "string",
+                      "description": "{'deltakerFnr': 'Fnr', 'mentorFnr': 'Fnr', 'bedriftNr': 'BedriftNr', 'veilederNavIdent': 'NavIdent', 'tiltakstype': 'Tiltakstype', 'opprettetTidspunkt': 'LocalDateTime', 'id': 'UUID', 'avtaleNr': 'Integer', 'gjeldendeInnhold': 'AvtaleInnhold', 'sistEndret': 'Instant', 'annullertTidspunkt': 'Instant', 'annullertGrunn': 'string', 'avbrutt': 'boolean', 'slettemerket': 'boolean', 'avbruttDato': 'LocalDate', 'avbruttGrunn': 'string', 'opprettetAvArbeidsgiver': 'boolean', 'enhetGeografisk': 'string', 'enhetsnavnGeografisk': 'string', 'enhetOppfolging': 'string', 'enhetsnavnOppfolging': 'string', 'godkjentForEtterregistrering': 'boolean', 'kvalifiseringsgruppe': 'Kvalifiseringsgruppe', 'formidlingsgruppe': 'Formidlingsgruppe', 'tilskuddPeriode': 'SortedSet<TilskuddPeriode>', 'feilregistrert': 'boolean', 'arenaRyddeAvtale': 'ArenaRyddeAvtale', 'status': 'string', 'statusSomEnum': 'Status', 'erRyddeAvtale': 'boolean', 'erLaast': 'boolean', 'erGodkjentAvDeltaker': 'boolean', 'erGodkjentTaushetserklæringAvMentor': 'boolean', 'erGodkjentAvArbeidsgiver': 'boolean', 'erGodkjentAvVeileder': 'boolean', 'erAvtaleInngått': 'boolean', 'godkjentAvDeltaker': 'LocalDateTime', 'godkjentAvMentor': 'LocalDateTime', 'godkjentAvArbeidsgiver': 'LocalDateTime', 'godkjentAvVeileder': 'LocalDateTime', 'godkjentAvBeslutter': 'LocalDateTime', 'avtaleInngått': 'LocalDateTime', 'godkjentAvNavIdent': 'NavIdent', 'godkjentAvBeslutterNavIdent': 'NavIdent', 'godkjentPaVegneGrunn': 'GodkjentPaVegneGrunn', 'godkjentPaVegneAv': 'boolean', 'godkjentPaVegneAvArbeidsgiverGrunn': 'GodkjentPaVegneAvArbeidsgiverGrunn', 'godkjentPaVegneAvArbeidsgiver': 'boolean', 'felterSomIkkeErFyltUt': 'Set<string>', 'erUfordelt': 'boolean', 'gjeldendeTilskuddsperiode': 'TilskuddPeriode', 'erAnnullertEllerAvbrutt': 'boolean', 'kanAvbrytes': 'boolean', 'kanGjenopprettes': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when a FeilkodeException is thrown, e.g., due to invalid input, business rule violation, or access control failure."
+          },
+          "404": {
+            "description": "Not Found. Returned when the avtale with the given avtaleId does not exist."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deltakerFornavn": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "deltakerEtternavn": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "deltakerTlf": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "bedriftNavn": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "arbeidsgiverFornavn": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "arbeidsgiverEtternavn": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "arbeidsgiverTlf": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "veilederFornavn": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "veilederEtternavn": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "veilederTlf": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "oppfolging": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "tilrettelegging": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "startDato": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "sluttDato": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "stillingprosent": {
+                    "type": "integer",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "arbeidsoppgaver": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "stillingstittel": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "stillingStyrk08": {
+                    "type": "integer",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "stillingKonseptId": {
+                    "type": "integer",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "antallDagerPerUke": {
+                    "type": "integer",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "refusjonKontaktpersonFornavn": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "refusjonKontaktpersonEtternavn": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "refusjonKontaktpersonTlf": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "ønskerVarslingOmRefusjon": {
+                    "type": "boolean",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "maal": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "inkluderingstilskuddsutgift": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "inkluderingstilskuddBegrunnelse": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "arbeidsgiverKontonummer": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "lonnstilskuddProsent": {
+                    "type": "integer",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "manedslonn": {
+                    "type": "integer",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "feriepengesats": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "arbeidsgiveravgift": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "otpSats": {
+                    "type": "number",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "harFamilietilknytning": {
+                    "type": "boolean",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "familietilknytningForklaring": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "mentorFornavn": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "mentorEtternavn": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "mentorOppgaver": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "mentorAntallTimer": {
+                    "type": "number",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "mentorTlf": {
+                    "type": "string",
+                    "description": "The changes to apply to the avtale"
+                  },
+                  "mentorTimelonn": {
+                    "type": "integer",
+                    "description": "The changes to apply to the avtale"
+                  }
+                },
+                "required": [
+                  "deltakerFornavn",
+                  "deltakerEtternavn",
+                  "deltakerTlf",
+                  "bedriftNavn",
+                  "arbeidsgiverFornavn",
+                  "arbeidsgiverEtternavn",
+                  "arbeidsgiverTlf",
+                  "veilederFornavn",
+                  "veilederEtternavn",
+                  "veilederTlf",
+                  "oppfolging",
+                  "tilrettelegging",
+                  "startDato",
+                  "sluttDato",
+                  "stillingprosent",
+                  "arbeidsoppgaver",
+                  "stillingstittel",
+                  "stillingStyrk08",
+                  "stillingKonseptId",
+                  "antallDagerPerUke",
+                  "refusjonKontaktpersonFornavn",
+                  "refusjonKontaktpersonEtternavn",
+                  "refusjonKontaktpersonTlf",
+                  "ønskerVarslingOmRefusjon",
+                  "maal",
+                  "inkluderingstilskuddsutgift",
+                  "inkluderingstilskuddBegrunnelse",
+                  "arbeidsgiverKontonummer",
+                  "lonnstilskuddProsent",
+                  "manedslonn",
+                  "feriepengesats",
+                  "arbeidsgiveravgift",
+                  "otpSats",
+                  "harFamilietilknytning",
+                  "familietilknytningForklaring",
+                  "mentorFornavn",
+                  "mentorEtternavn",
+                  "mentorOppgaver",
+                  "mentorAntallTimer",
+                  "mentorTlf",
+                  "mentorTimelonn"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/kontonummer-arbeidsgiver": {
+      "get": {
+        "operationId": "getKontonummerArbeidsgiver",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the account number for the employer's business as a plain string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The avtale with the given avtaleId does not exist or the user does not have access to it. Thrown by hentAvtale via RessursFinnesIkkeException or TilgangskontrollException."
+          },
+          "403": {
+            "description": "The user does not have access to the avtale. Thrown by sjekkTilgang in Avtalepart."
+          },
+          "500": {
+            "description": "Internal server error if the call to kontoregisterService.hentKontonummer fails."
+          }
+        }
+      }
+    },
+    "/avtaler/min-side-arbeidsgiver": {
+      "get": {
+        "operationId": "getMinSideArbeidsgiver",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "bedriftNr",
+            "in": "query",
+            "required": false,
+            "description": "Bedriftsnummer for å hente avtaler for min side arbeidsgiver",
+            "schema": {
+              "type": "string",
+              "description": "Bedriftsnummer for å hente avtaler for min side arbeidsgiver"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of avtaler for the given bedriftNr that the logged-in arbeidsgiver has access to.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<Avtale>": {
+                      "type": "string",
+                      "description": "{'id': 'UUID', 'avtaleNr': 'integer', 'deltakerFnr': 'string', 'mentorFnr': 'string', 'bedriftNr': 'string', 'veilederNavIdent': 'string', 'tiltakstype': 'string', 'opprettetTidspunkt': 'date-time', 'gjeldendeInnhold': 'AvtaleInnhold', 'sistEndret': 'date-time', 'annullertTidspunkt': 'date-time', 'annullertGrunn': 'string', 'avbrutt': 'boolean', 'slettemerket': 'boolean', 'avbruttDato': 'date', 'avbruttGrunn': 'string', 'opprettetAvArbeidsgiver': 'boolean', 'enhetGeografisk': 'string', 'enhetsnavnGeografisk': 'string', 'enhetOppfolging': 'string', 'enhetsnavnOppfolging': 'string', 'godkjentForEtterregistrering': 'boolean', 'kvalifiseringsgruppe': 'string', 'formidlingsgruppe': 'string', 'tilskuddPeriode': 'array', 'feilregistrert': 'boolean', 'arenaRyddeAvtale': 'object', 'status': 'string', 'erRyddeAvtale': 'boolean', 'erLaast': 'boolean', 'erGodkjentAvDeltaker': 'boolean', 'erGodkjentTaushetserklæringAvMentor': 'boolean', 'erGodkjentAvArbeidsgiver': 'boolean', 'erGodkjentAvVeileder': 'boolean', 'erAvtaleInngått': 'boolean', 'godkjentAvDeltaker': 'date-time', 'godkjentAvMentor': 'date-time', 'godkjentAvArbeidsgiver': 'date-time', 'godkjentAvVeileder': 'date-time', 'godkjentAvBeslutter': 'date-time', 'avtaleInngått': 'date-time', 'godkjentAvNavIdent': 'string', 'godkjentAvBeslutterNavIdent': 'string', 'godkjentPaVegneGrunn': 'object', 'godkjentPaVegneAv': 'boolean', 'godkjentPaVegneAvArbeidsgiverGrunn': 'object', 'godkjentPaVegneAvArbeidsgiver': 'boolean', 'felterSomIkkeErFyltUt': 'array', 'erUfordelt': 'boolean', 'gjeldendeTilskuddsperiode': 'object', 'erAnnullertEllerAvbrutt': 'boolean', 'kanAvbrytes': 'boolean', 'kanGjenopprettes': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/opprett-mentor-avtale": {
+      "post": {
+        "operationId": "createOpprettMentorAvtale",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Created. The mentor agreement was successfully created. The Location header contains the URI of the created agreement."
+          },
+          "400": {
+            "description": "Bad Request. Thrown when the participant and mentor have the same national identity number (Feilkode.DELTAGER_OG_MENTOR_KAN_IKKE_HA_SAMME_FØDSELSNUMMER), or when the agreement role is neither VEILEDER nor ARBEIDSGIVER (RuntimeException)."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/avtaler/deltaker-allerede-paa-tiltak": {
+      "get": {
+        "operationId": "getDeltakerAlleredePaaTiltak",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "deltakerFnr",
+            "in": "query",
+            "required": false,
+            "description": "Deltakers fødselsnummer",
+            "schema": {
+              "type": "string",
+              "description": "Deltakers fødselsnummer"
+            }
+          },
+          {
+            "name": "tiltakstype",
+            "in": "query",
+            "required": false,
+            "description": "Tiltakstype",
+            "schema": {
+              "type": "string",
+              "description": "Tiltakstype",
+              "enum": [
+                "ARBEIDSTRENING",
+                "MIDLERTIDIG_LONNSTILSKUDD",
+                "VARIG_LONNSTILSKUDD",
+                "MENTOR",
+                "INKLUDERINGSTILSKUDD",
+                "SOMMERJOBB"
+              ]
+            }
+          },
+          {
+            "name": "startDato",
+            "in": "query",
+            "required": false,
+            "description": "Startdato for avtalen",
+            "schema": {
+              "type": "string",
+              "description": "Startdato for avtalen",
+              "format": "yyyy-MM-dd"
+            }
+          },
+          {
+            "name": "sluttDato",
+            "in": "query",
+            "required": false,
+            "description": "Sluttdato for avtalen",
+            "schema": {
+              "type": "string",
+              "description": "Sluttdato for avtalen",
+              "format": "yyyy-MM-dd"
+            }
+          },
+          {
+            "name": "avtaleId",
+            "in": "query",
+            "required": false,
+            "description": "Avtale-id",
+            "schema": {
+              "type": "string",
+              "description": "Avtale-id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of already registered avtaler for the deltaker, filtered by tiltakstype.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<AlleredeRegistrertAvtale>": {
+                      "type": "string",
+                      "description": "{'id': 'string (UUID)', 'avtaleNr': 'integer', 'tiltakstype': 'string (enum: ARBEIDSTRENING, MIDLERTIDIG_LONNSTILSKUDD, VARIG_LONNSTILSKUDD, MENTOR, INKLUDERINGSTILSKUDD, SOMMERJOBB)', 'deltakerFnr': 'string', 'bedriftNr': 'string', 'veilederNavIdent': 'string', 'status': 'string (enum: ANNULLERT, AVBRUTT, PÅBEGYNT, MANGLER_GODKJENNING, KLAR_FOR_OPPSTART, GJENNOMFØRES, AVSLUTTET)', 'opprettetAvArbeidsgiver': 'boolean', 'startDato': 'date', 'sluttDato': 'date', 'godkjentAvVeileder': 'datetime', 'godkjentAvBeslutter': 'datetime', 'avtaleInngått': 'datetime'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when a FeilkodeException is thrown, e.g., invalid input or business rule violation. The response includes a 'feilkode' header with the error code."
+          },
+          "403": {
+            "description": "Forbidden. Returned when a TilgangskontrollException is thrown, e.g., user does not have access."
+          },
+          "500": {
+            "description": "Internal server error. Returned when an unexpected exception occurs, such as a RuntimeException or other unhandled exception."
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/forkort": {
+      "post": {
+        "operationId": "createForkort",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to shorten",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to shorten"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Avtalen ble forkortet. Ingen responskropp returneres."
+          },
+          "400": {
+            "description": "Feilkode returnert i header 'feilkode'. Mulige feilkoder inkluderer KAN_IKKE_FORKORTE_IKKE_GODKJENT_AVTALE, KAN_IKKE_FORKORTE_ETTER_SLUTTDATO, KAN_IKKE_FORKORTE_FOR_UTBETALT_TILSKUDDSPERIODE, KAN_IKKE_FORKORTE_GRUNN_MANGLER, START_ETTER_SLUTT, FORTIDLIG_STARTDATO, SLUTTDATO_GRENSE_NÅDD, VARIGHET_FOR_LANG_ARBEIDSTRENING, VARIGHET_FOR_LANG_MIDLERTIDIG_LONNSTILSKUDD_12_MND, VARIGHET_FOR_LANG_MIDLERTIDIG_LONNSTILSKUDD_24_MND, VARIGHET_FOR_LANG_INKLUDERINGSTILSKUDD, VARIGHET_FOR_LANG_MENTOR_6_MND, VARIGHET_FOR_LANG_MENTOR_36_MND, SOMMERJOBB_FOR_TIDLIG, SOMMERJOBB_FOR_SENT, SOMMERJOBB_FOR_LANG_VARIGHET, KAN_IKKE_ENDRE_ANNULLERT_AVTALE, KAN_IKKE_LAGE_NYE_TILSKUDDSPRIODER_INNGAATT_AVTALE, SAMTIDIGE_ENDRINGER, VARIGHET_DATO_TILBAKE_I_TID."
+          },
+          "403": {
+            "description": "Tilgangskontroll feilet. Returneres av TilgangskontrollException."
+          },
+          "404": {
+            "description": "Avtalen ble ikke funnet. Returneres av RessursFinnesIkkeException."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "forkortAvtale": {
+                    "type": "string",
+                    "description": "Request body containing the new end date and reason for shortening the avtale"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/endre-maal": {
+      "post": {
+        "operationId": "createEndreMaal",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to update",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with no body. The endpoint returns void after updating the agreement."
+          },
+          "400": {
+            "description": "Bad request. Thrown as FeilkodeException with various error codes when validation fails (e.g., KAN_IKKE_ENDRE_MAAL_IKKE_INNGAATT_AVTALE, KAN_IKKE_ENDRE_MAAL_TOM_LISTE, KAN_IKKE_ENDRE_MAAL_IKKE_BESKRIVELSE_ELLER_KATEGORI, KAN_IKKE_ENDRE_FEIL_TILTAKSTYPE, KAN_IKKE_ENDRE_ANNULLERT_AVTALE)."
+          },
+          "404": {
+            "description": "Not found. Thrown as RessursFinnesIkkeException when the agreement with the given ID does not exist."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endreMål": {
+                    "type": "string",
+                    "description": "Request body containing the new mål"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/forleng": {
+      "post": {
+        "operationId": "createForleng",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the agreement to extend",
+            "schema": {
+              "type": "string",
+              "description": "ID of the agreement to extend"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Avtalen ble forlenget. Ingen responskropp returneres."
+          },
+          "400": {
+            "description": "FeilkodeException kastes hvis avtalen ikke er godkjent av veileder (KAN_IKKE_FORLENGE_IKKE_GODKJENT_AVTALE), hvis ny sluttdato ikke er etter gjeldende sluttdato (KAN_IKKE_FORLENGE_FEIL_SLUTTDATO), eller hvis start- og sluttdato ikke er gyldige (f.eks. START_ETTER_SLUTT, FORTIDLIG_STARTDATO, SLUTTDATO_GRENSE_NÅDD)."
+          },
+          "404": {
+            "description": "RessursFinnesIkkeException kastes hvis avtalen med gitt avtaleId ikke finnes."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "forlengAvtale": {
+                    "type": "string",
+                    "description": "Request body containing the new end date"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/endre-oppfolging-og-tilrettelegging": {
+      "post": {
+        "operationId": "createEndreOppfolgingOgTilrettelegging",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to update",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with no body. The endpoint returns void after updating the agreement."
+          },
+          "400": {
+            "description": "Bad request. Thrown when the agreement cannot be modified due to business rules (e.g., agreement is annulled or cancelled, not approved by veileder, invalid input, etc.). The response includes a 'feilkode' header with the specific error code."
+          },
+          "403": {
+            "description": "Forbidden. Thrown when the logged-in user does not have access to the agreement."
+          },
+          "404": {
+            "description": "Not Found. Thrown when the agreement with the given ID does not exist."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endreOppfølgingOgTilrettelegging": {
+                    "type": "string",
+                    "description": "Request body containing oppfolging and tilrettelegging fields"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/endre-inkluderingstilskudd": {
+      "post": {
+        "operationId": "createEndreInkluderingstilskudd",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the agreement to update inclusion subsidy for",
+            "schema": {
+              "type": "string",
+              "description": "ID of the agreement to update inclusion subsidy for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with no body. The endpoint returns void after updating the avtale."
+          },
+          "400": {
+            "description": "Bad request. Thrown when the avtale is not found (RessursFinnesIkkeException is handled by FeilkodeExceptionHandler? Actually RessursFinnesIkkeException has @ResponseStatus(HttpStatus.NOT_FOUND) so it returns 404. But FeilkodeException returns 400. The endpoint may throw FeilkodeException from various validation checks in the domain logic, e.g., KAN_IKKE_ENDRE_INKLUDERINGSTILSKUDD_IKKE_INNGAATT_AVTALE, KAN_IKKE_ENDRE_INKLUDERINGSTILSKUDD_TOM_LISTE, INKLUDERINGSTILSKUDD_SUM_FOR_HØY, KAN_IKKE_ENDRE_INKLUDERINGSTILSKUDD_IKKE_BELOP_ELLER_TYPE, KAN_IKKE_ENDRE_FEIL_TILTAKSTYPE, KAN_IKKE_ENDRE_ANNULLERT_AVTALE, etc. These are handled by FeilkodeExceptionHandler returning 400 with feilkode header."
+          },
+          "404": {
+            "description": "Not found. Thrown when the avtale with the given ID does not exist (RessursFinnesIkkeException)."
+          },
+          "403": {
+            "description": "Forbidden. Thrown when the user does not have access to the avtale (TilgangskontrollException from sjekkTilgang)."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endreInkluderingstilskudd": {
+                    "type": "string",
+                    "description": "Request body containing the inclusion subsidy expenses to set"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/endre-om-mentor": {
+      "post": {
+        "operationId": "createEndreOmMentor",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to update mentor information for",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to update mentor information for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with no content. The endpoint performs the mentor update and returns nothing."
+          },
+          "400": {
+            "description": "Bad request. Thrown when the mentor update fails validation, e.g., missing required fields or invalid input."
+          },
+          "404": {
+            "description": "Not found. The avtale with the given avtaleId does not exist."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endreOmMentor": {
+                    "type": "string",
+                    "description": "Request body containing mentor information to update"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/endre-stillingbeskrivelse": {
+      "post": {
+        "operationId": "createEndreStillingbeskrivelse",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to update the stillingsbeskrivelse for",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to update the stillingsbeskrivelse for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with no content. The method returns void, so the response body is empty."
+          },
+          "400": {
+            "description": "Bad Request. Thrown when a FeilkodeException occurs, e.g., if the user does not have access to the avtale (TilgangskontrollException is deprecated but still thrown in some cases), or if the avtale is not found (RessursFinnesIkkeException is 404, but other FeilkodeExceptions are 400). Also, if the avtale is not godkjent av veileder, a FeilkodeException with KAN_IKKE_ENDRE_STILLINGSBESKRIVELSE_GRUNN_IKKE_GODKJENT_AVTALE is thrown. If required fields are missing, KAN_IKKE_ENDRE_STILLINGSBESKRIVELSE_GRUNN_MANGLER is thrown. The exception handler returns 400 with header 'feilkode'."
+          },
+          "404": {
+            "description": "Not Found. Thrown when the avtale with the given ID does not exist (RessursFinnesIkkeException)."
+          },
+          "403": {
+            "description": "Forbidden. Thrown when the user does not have access to the avtale (TilgangskontrollException). Note: This exception is deprecated but still used in some places."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endreStillingsbeskrivelse": {
+                    "type": "string",
+                    "description": "Request body containing the new stillingsbeskrivelse fields"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/endre-kontaktinfo": {
+      "post": {
+        "operationId": "createEndreKontaktinfo",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to update contact information for",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to update contact information for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The contact information was successfully updated. The response has no body."
+          },
+          "400": {
+            "description": "Bad request. This occurs when a FeilkodeException is thrown, for example if the avtale is annulled or avbrutt (KAN_IKKE_ENDRE_ANNULLERT_AVTALE), if the avtale is not approved by veileder (KAN_IKKE_ENDRE_KONTAKTINFO_GRUNN_IKKE_GODKJENT_AVTALE), or if required contact information fields are missing (KAN_IKKE_ENDRE_KONTAKTINFO_GRUNN_MANGLER). The response includes a 'feilkode' header with the specific error code."
+          },
+          "404": {
+            "description": "Not found. This occurs when the avtale with the given avtaleId does not exist (RessursFinnesIkkeException)."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endreKontaktInformasjon": {
+                    "type": "string",
+                    "description": "Contact information to update on the avtale"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/forkort-dry-run": {
+      "post": {
+        "operationId": "createForkortDryRun",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to run the dry-run forkortelse on",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to run the dry-run forkortelse on"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the Avtale object after applying the shortening (forkort) dry run.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Avtale": {
+                      "type": "string",
+                      "description": "{'deltakerFnr': 'string', 'mentorFnr': 'string', 'bedriftNr': 'string', 'veilederNavIdent': 'string', 'tiltakstype': 'string', 'opprettetTidspunkt': 'date-time', 'id': 'string', 'avtaleNr': 'integer', 'gjeldendeInnhold': 'AvtaleInnhold', 'sistEndret': 'date-time', 'annullertTidspunkt': 'date-time', 'annullertGrunn': 'string', 'avbrutt': 'boolean', 'slettemerket': 'boolean', 'avbruttDato': 'date', 'avbruttGrunn': 'string', 'opprettetAvArbeidsgiver': 'boolean', 'enhetGeografisk': 'string', 'enhetsnavnGeografisk': 'string', 'enhetOppfolging': 'string', 'enhetsnavnOppfolging': 'string', 'godkjentForEtterregistrering': 'boolean', 'kvalifiseringsgruppe': 'string', 'formidlingsgruppe': 'string', 'tilskuddPeriode': 'array', 'feilregistrert': 'boolean', 'arenaRyddeAvtale': 'object', 'status': 'string', 'statusSomEnum': 'string', 'erRyddeAvtale': 'boolean', 'erLaast': 'boolean', 'erGodkjentAvDeltaker': 'boolean', 'erGodkjentTaushetserklæringAvMentor': 'boolean', 'erGodkjentAvArbeidsgiver': 'boolean', 'erGodkjentAvVeileder': 'boolean', 'erAvtaleInngått': 'boolean', 'godkjentAvDeltaker': 'date-time', 'godkjentAvMentor': 'date-time', 'godkjentAvArbeidsgiver': 'date-time', 'godkjentAvVeileder': 'date-time', 'godkjentAvBeslutter': 'date-time', 'avtaleInngått': 'date-time', 'godkjentAvNavIdent': 'string', 'godkjentAvBeslutterNavIdent': 'string', 'godkjentPaVegneGrunn': 'object', 'godkjentPaVegneAv': 'boolean', 'godkjentPaVegneAvArbeidsgiverGrunn': 'object', 'godkjentPaVegneAvArbeidsgiver': 'boolean', 'felterSomIkkeErFyltUt': 'array', 'erUfordelt': 'boolean', 'kanAvbrytes': 'boolean', 'kanGjenopprettes': 'boolean', 'gjeldendeTilskuddsperiode': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Avtale not found. Thrown by RessursFinnesIkkeException when avtaleRepository.findById returns empty."
+          },
+          "400": {
+            "description": "Bad request. Thrown by FeilkodeException or its subclasses (e.g., VarighetDatoErTilbakeITidException, FeilLonnstilskuddsprosentException, etc.) during validation in forkortAvtale."
+          },
+          "403": {
+            "description": "Forbidden. Thrown by TilgangskontrollException when the user does not have access to the avtale."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "forkortAvtale": {
+                    "type": "string",
+                    "description": "Request body containing the new sluttDato and reason for the forkortelse"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/forleng-dry-run": {
+      "post": {
+        "operationId": "createForlengDryRun",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to forleng (dry run)",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to forleng (dry run)"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the Avtale object after applying the forleng (extension) dry-run logic without persisting changes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Avtale": {
+                      "type": "string",
+                      "description": "{'deltakerFnr': 'Fnr', 'mentorFnr': 'Fnr', 'bedriftNr': 'BedriftNr', 'veilederNavIdent': 'NavIdent', 'tiltakstype': 'Tiltakstype', 'opprettetTidspunkt': 'LocalDateTime', 'id': 'UUID', 'avtaleNr': 'Integer', 'gjeldendeInnhold': 'AvtaleInnhold', 'sistEndret': 'Instant', 'annullertTidspunkt': 'Instant', 'annullertGrunn': 'string', 'avbrutt': 'boolean', 'slettemerket': 'boolean', 'avbruttDato': 'LocalDate', 'avbruttGrunn': 'string', 'opprettetAvArbeidsgiver': 'boolean', 'enhetGeografisk': 'string', 'enhetsnavnGeografisk': 'string', 'enhetOppfolging': 'string', 'enhetsnavnOppfolging': 'string', 'godkjentForEtterregistrering': 'boolean', 'kvalifiseringsgruppe': 'Kvalifiseringsgruppe', 'formidlingsgruppe': 'Formidlingsgruppe', 'tilskuddPeriode': 'SortedSet<TilskuddPeriode>', 'feilregistrert': 'boolean', 'arenaRyddeAvtale': 'ArenaRyddeAvtale', 'status': 'string', 'statusSomEnum': 'Status', 'erRyddeAvtale': 'boolean', 'erLaast': 'boolean', 'erGodkjentAvDeltaker': 'boolean', 'erGodkjentTaushetserklæringAvMentor': 'boolean', 'erGodkjentAvArbeidsgiver': 'boolean', 'erGodkjentAvVeileder': 'boolean', 'erAvtaleInngått': 'boolean', 'godkjentAvDeltaker': 'LocalDateTime', 'godkjentAvMentor': 'LocalDateTime', 'godkjentAvArbeidsgiver': 'LocalDateTime', 'godkjentAvVeileder': 'LocalDateTime', 'godkjentAvBeslutter': 'LocalDateTime', 'avtaleInngått': 'LocalDateTime', 'godkjentAvNavIdent': 'NavIdent', 'godkjentAvBeslutterNavIdent': 'NavIdent', 'godkjentPaVegneGrunn': 'GodkjentPaVegneGrunn', 'godkjentPaVegneAv': 'boolean', 'godkjentPaVegneAvArbeidsgiverGrunn': 'GodkjentPaVegneAvArbeidsgiverGrunn', 'godkjentPaVegneAvArbeidsgiver': 'boolean', 'erAnnullertEllerAvbrutt': 'boolean', 'erUfordelt': 'boolean', 'kanAvbrytes': 'boolean', 'kanGjenopprettes': 'boolean', 'felterSomIkkeErFyltUt': 'Set<string>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If the avtale with the given avtaleId does not exist, RessursFinnesIkkeException is thrown, resulting in a 404 Not Found response."
+          },
+          "403": {
+            "description": "If the logged-in user does not have access to the avtale, TilgangskontrollException is thrown, resulting in a 403 Forbidden response."
+          },
+          "400": {
+            "description": "If a FeilkodeException is thrown (e.g., due to invalid dates or other business rule violations), the FeilkodeExceptionHandler returns a 400 Bad Request with a 'feilkode' header."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "forlengAvtale": {
+                    "type": "string",
+                    "description": "Request body containing the new sluttDato"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/send-tilbake-til-beslutter": {
+      "post": {
+        "operationId": "createSendTilbakeTilBeslutter",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale (agreement) to send back to the beslutter",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale (agreement) to send back to the beslutter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with no body. The endpoint returns void after sending the agreement back to the decision maker."
+          },
+          "400": {
+            "description": "Bad request. Thrown when the agreement is annulled or cancelled (Feilkode.KAN_IKKE_ENDRE_ANNULLERT_AVTALE) or when other FeilkodeException conditions occur during the operation."
+          },
+          "403": {
+            "description": "Forbidden. Thrown when the logged-in user does not have access to the agreement (TilgangskontrollException)."
+          },
+          "404": {
+            "description": "Not found. Thrown when the agreement with the given avtaleId does not exist (RessursFinnesIkkeException)."
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/godkjenn-paa-vegne-av": {
+      "post": {
+        "operationId": "createGodkjennPaaVegneAv",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to approve on behalf of",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to approve on behalf of"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with no body. The endpoint returns void after delegating to the Veileder and saving the Avtale."
+          },
+          "400": {
+            "description": "Bad request. Thrown as FeilkodeException (handled by FeilkodeExceptionHandler) when the Avtale is not found (RessursFinnesIkkeException is a RuntimeException, but the handler only handles FeilkodeException; however, the code path can throw FeilkodeException from avtale.godkjennForVeilederOgDeltaker, e.g., GODKJENT_PAA_VEGNE_GRUNN_MAA_VELGES, KAN_IKKE_GODKJENNE_VEILEDER_HAR_ALLEREDE_GODKJENT, etc.)."
+          },
+          "404": {
+            "description": "Not found. Thrown when the Avtale with the given avtaleId does not exist (RessursFinnesIkkeException)."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ikkeBankId": {
+                    "type": "boolean",
+                    "description": "Reason for approving on behalf of the participant"
+                  },
+                  "reservert": {
+                    "type": "boolean",
+                    "description": "Reason for approving on behalf of the participant"
+                  },
+                  "digitalKompetanse": {
+                    "type": "boolean",
+                    "description": "Reason for approving on behalf of the participant"
+                  },
+                  "arenaMigreringDeltaker": {
+                    "type": "boolean",
+                    "description": "Reason for approving on behalf of the participant"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/endre-tilskuddsberegning": {
+      "post": {
+        "operationId": "createEndreTilskuddsberegning",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to update the tilskuddsberegning for",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to update the tilskuddsberegning for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with no body. The endpoint returns void after saving the updated avtale."
+          },
+          "400": {
+            "description": "Bad request. Thrown as FeilkodeException by the domain logic when the tilskuddsberegning input is invalid or the avtale cannot be changed (e.g. KAN_IKKE_ENDRE_OKONOMI_IKKE_GODKJENT_AVTALE, KAN_IKKE_ENDRE_OKONOMI_UGYLDIG_INPUT, KAN_IKKE_ENDRE_FEIL_TILTAKSTYPE, KAN_IKKE_ENDRE_ANNULLERT_AVTALE). Handled by FeilkodeExceptionHandler returning 400 with a feilkode header."
+          },
+          "404": {
+            "description": "Not found. Thrown when the avtale with the given avtaleId does not exist (RessursFinnesIkkeException)."
+          },
+          "403": {
+            "description": "Forbidden. Thrown when the logged-in user does not have access to the avtale (TilgangskontrollException from sjekkTilgang)."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endreTilskuddsberegning": {
+                    "type": "string",
+                    "description": "Request body containing the new tilskuddsberegning values"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/godkjenn-paa-vegne-av-deltaker": {
+      "post": {
+        "operationId": "createGodkjennPaaVegneAvDeltaker",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale (agreement) to approve on behalf of",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale (agreement) to approve on behalf of"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with no body. The endpoint returns void after approving the agreement on behalf of the participant."
+          },
+          "400": {
+            "description": "Bad request. Thrown as FeilkodeException by the domain logic when validation fails, e.g. when the agreement is annulled or cancelled, when not all fields are filled, when the participant has already approved, when the employer has not approved, when the veileder has already approved, when the participant is over 30 years for a summer job, when the mentor has not signed the confidentiality declaration, or when the participant is over 67/72 years."
+          },
+          "404": {
+            "description": "Not found. Thrown as RessursFinnesIkkeException when the agreement with the given avtaleId does not exist."
+          },
+          "403": {
+            "description": "Forbidden. Thrown as TilgangskontrollException when the logged-in user does not have access to the agreement."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ikkeBankId": {
+                    "type": "boolean",
+                    "description": "Reason(s) for approving on behalf of the participant"
+                  },
+                  "reservert": {
+                    "type": "boolean",
+                    "description": "Reason(s) for approving on behalf of the participant"
+                  },
+                  "digitalKompetanse": {
+                    "type": "boolean",
+                    "description": "Reason(s) for approving on behalf of the participant"
+                  },
+                  "arenaMigreringDeltaker": {
+                    "type": "boolean",
+                    "description": "Reason(s) for approving on behalf of the participant"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/annuller": {
+      "post": {
+        "operationId": "createAnnuller",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to annullere",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to annullere"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Avtalen ble annullert uten å returnere noe innhold."
+          },
+          "400": {
+            "description": "FeilkodeException kastes hvis avtalen inneholder utbetalt tilskuddsperiode, avtalen allerede er annullert eller avbrutt, eller hvis annulleringsgrunn er ugyldig. Feilkoden returneres i headeren 'feilkode'."
+          },
+          "404": {
+            "description": "RessursFinnesIkkeException kastes hvis avtalen med gitt avtaleId ikke finnes."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "annullertInfo": {
+                    "type": "string",
+                    "description": "Information about the annullering, including the reason"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/godkjenn-paa-vegne-av-arbeidsgiver": {
+      "post": {
+        "operationId": "createGodkjennPaaVegneAvArbeidsgiver",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale (agreement) to approve on behalf of the employer",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale (agreement) to approve on behalf of the employer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request. The method returns void, so the response body is empty."
+          },
+          "400": {
+            "description": "Bad Request. Thrown when a FeilkodeException occurs, for example if the avtale is not found (RessursFinnesIkkeException extends RuntimeException, but is handled by the global exception handler? Actually RessursFinnesIkkeException has @ResponseStatus(HttpStatus.NOT_FOUND), so it returns 404. FeilkodeException is handled by FeilkodeExceptionHandler returning 400 with header 'feilkode'. Also, other FeilkodeExceptions can be thrown from within the called methods (e.g., from Avtale.godkjennForVeilederOgArbeidsgiver)."
+          },
+          "404": {
+            "description": "Not Found. Thrown when the avtale with the given ID does not exist (RessursFinnesIkkeException)."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "paVegneAvGrunn": {
+                    "type": "string",
+                    "description": "Reason(s) for approving on behalf of the employer"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/slettemerk": {
+      "post": {
+        "operationId": "createSlettemerk",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to slettemerke",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to slettemerke"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with no content. The endpoint returns void, so the response body is empty."
+          },
+          "400": {
+            "description": "Bad Request. Thrown when the avtale is not found (RessursFinnesIkkeException) or when the user does not have access (TilgangskontrollException) or when the user is not an admin (IkkeAdminTilgangException). The response includes a 'feilkode' header with the error code."
+          },
+          "403": {
+            "description": "Forbidden. Thrown when the user does not have access to the avtale (TilgangskontrollException) or when the user is not an admin (IkkeAdminTilgangException)."
+          },
+          "404": {
+            "description": "Not Found. Thrown when the avtale with the given ID does not exist (RessursFinnesIkkeException)."
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/del-med-avtalepart": {
+      "post": {
+        "operationId": "createDelMedAvtalepart",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to share with an avtalepart",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to share with an avtalepart"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Avtalen ble delt med avtaleparten. Ingen responsdata returneres."
+          },
+          "400": {
+            "description": "FeilkodeException kastes hvis telefonnummeret til avtaleparten er ugyldig (Feilkode.UGYLDIG_TLF), eller hvis avtalen er annullert eller avbrutt (Feilkode.KAN_IKKE_ENDRE_ANNULLERT_AVTALE)."
+          },
+          "404": {
+            "description": "RessursFinnesIkkeException kastes hvis avtalen med gitt avtaleId ikke finnes."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "avtalerolle": {
+                    "type": "string",
+                    "description": "The role to share the avtale with"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/endre-tilskuddsberegning-dry-run": {
+      "post": {
+        "operationId": "createEndreTilskuddsberegningDryRun",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "Avtale id",
+            "schema": {
+              "type": "string",
+              "description": "Avtale id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the Avtale object after applying the dry-run change to the tilskuddsberegning.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Avtale": {
+                      "type": "string",
+                      "description": "{'deltakerFnr': 'Fnr', 'mentorFnr': 'Fnr', 'bedriftNr': 'BedriftNr', 'veilederNavIdent': 'NavIdent', 'tiltakstype': 'Tiltakstype', 'opprettetTidspunkt': 'LocalDateTime', 'id': 'UUID', 'avtaleNr': 'Integer', 'gjeldendeInnhold': 'AvtaleInnhold', 'sistEndret': 'Instant', 'annullertTidspunkt': 'Instant', 'annullertGrunn': 'String', 'avbrutt': 'boolean', 'slettemerket': 'boolean', 'avbruttDato': 'LocalDate', 'avbruttGrunn': 'String', 'opprettetAvArbeidsgiver': 'boolean', 'enhetGeografisk': 'String', 'enhetsnavnGeografisk': 'String', 'enhetOppfolging': 'String', 'enhetsnavnOppfolging': 'String', 'godkjentForEtterregistrering': 'boolean', 'kvalifiseringsgruppe': 'Kvalifiseringsgruppe', 'formidlingsgruppe': 'Formidlingsgruppe', 'tilskuddPeriode': 'SortedSet<TilskuddPeriode>', 'feilregistrert': 'boolean', 'arenaRyddeAvtale': 'ArenaRyddeAvtale', 'erRyddeAvtale': 'boolean', 'erLaast': 'boolean', 'erGodkjentAvDeltaker': 'boolean', 'erGodkjentTaushetserklæringAvMentor': 'boolean', 'erGodkjentAvArbeidsgiver': 'boolean', 'erGodkjentAvVeileder': 'boolean', 'erAvtaleInngått': 'boolean', 'godkjentAvDeltaker': 'LocalDateTime', 'godkjentAvMentor': 'LocalDateTime', 'godkjentAvArbeidsgiver': 'LocalDateTime', 'godkjentAvVeileder': 'LocalDateTime', 'godkjentAvBeslutter': 'LocalDateTime', 'avtaleInngått': 'LocalDateTime', 'godkjentAvNavIdent': 'NavIdent', 'godkjentAvBeslutterNavIdent': 'NavIdent', 'godkjentPaVegneGrunn': 'GodkjentPaVegneGrunn', 'godkjentPaVegneAv': 'boolean', 'godkjentPaVegneAvArbeidsgiverGrunn': 'GodkjentPaVegneAvArbeidsgiverGrunn', 'godkjentPaVegneAvArbeidsgiver': 'boolean', 'status': 'String', 'statusSomEnum': 'Status', 'kanAvbrytes': 'boolean', 'kanGjenopprettes': 'boolean', 'felterSomIkkeErFyltUt': 'Set<String>', 'erUfordelt': 'boolean', 'gjeldendeTilskuddsperiode': 'TilskuddPeriode', 'erAnnullertEllerAvbrutt': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when a FeilkodeException is thrown, e.g., if the avtale is annulled or avbrutt, if the avtale is not godkjent av veileder, if the tiltakstype is not one of MIDLERTIDIG_LONNSTILSKUDD, VARIG_LONNSTILSKUDD, or SOMMERJOBB, or if the input is invalid."
+          },
+          "404": {
+            "description": "Not Found. Returned when the avtale with the given avtaleId does not exist."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endreTilskuddsberegning": {
+                    "type": "string",
+                    "description": "Endring av tilskuddsberegning"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/godkjenn-paa-vegne-av-deltaker-og-arbeidsgiver": {
+      "post": {
+        "operationId": "createGodkjennPaaVegneAvDeltakerOgArbeidsgiver",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with no body. The method returns void and completes without throwing an exception."
+          },
+          "400": {
+            "description": "Bad Request. Thrown by FeilkodeException (e.g., GODKJENN_PAA_VEGNE_AV_FEIL_TILTAKSTYPE, DELTAKER_HAR_GODKJENT, ARBEIDSGIVER_HAR_GODKJENT, KAN_IKKE_GODKJENNE_VEILEDER_HAR_ALLEREDE_GODKJENT, SOMMERJOBB_FOR_GAMMEL_FRA_OPPSTARTDATO, GODKJENT_PAA_VEGNE_GRUNN_MAA_VELGES, ALT_MA_VAERE_FYLT_UT, MANGLER_BEREGNING, MANGLER_VEILEDER_PÅ_AVTALE, KAN_IKKE_ENDRE_ANNULLERT_AVTALE, etc.) or other FeilkodeException subclasses during validation and processing."
+          },
+          "404": {
+            "description": "Not Found. Thrown when the avtale with the given avtaleId does not exist (RessursFinnesIkkeException)."
+          },
+          "403": {
+            "description": "Forbidden. Thrown when the logged-in user does not have access to the avtale (TilgangskontrollException)."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "paVegneAvGrunn": {
+                    "type": "string",
+                    "description": "Reason for approving on behalf of both deltaker and arbeidsgiver"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/overta": {
+      "put": {
+        "operationId": "updateOverta",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to overtake",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to overtake"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with no body. The veileder overtar avtalen and the avtale is saved."
+          },
+          "400": {
+            "description": "Bad Request. Thrown when the avtale is not found (RessursFinnesIkkeException is mapped to 404, but FeilkodeException is mapped to 400). Also thrown by various FeilkodeExceptions from domain logic (e.g., KAN_IKKE_ENDRE_ANNULLERT_AVTALE, ER_ALLEREDE_VEILEDER, etc.)."
+          },
+          "403": {
+            "description": "Forbidden. Thrown when the user does not have access to the avtale (TilgangskontrollException)."
+          },
+          "404": {
+            "description": "Not Found. Thrown when the avtale with the given ID does not exist (RessursFinnesIkkeException)."
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/juster-arena-migreringsdato": {
+      "post": {
+        "operationId": "createJusterArenaMigreringsdato",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to adjust the Arena migration date for",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to adjust the Arena migration date for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with no body. The endpoint performs the migration date adjustment and returns void."
+          },
+          "400": {
+            "description": "Bad Request. Returned when the agreement is already inngått (Feilkode.KAN_IKKE_ENDRE_ARENA_MIGRERINGSDATO_INNGAATT_AVTALE) or when other FeilkodeException conditions occur."
+          },
+          "404": {
+            "description": "Not Found. Returned when the agreement with the given avtaleId does not exist."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "justerArenaMigreringsdato": {
+                    "type": "string",
+                    "description": "Request body containing the new migration date"
+                  },
+                  "migreringsdato": {
+                    "type": "string",
+                    "description": "The new Arena migration date"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/godkjenn-tilskuddsperiode": {
+      "post": {
+        "operationId": "createGodkjennTilskuddsperiode",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale (agreement)",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale (agreement)"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tilskuddsperiode godkjent. No response body."
+          },
+          "400": {
+            "description": "Bad Request. FeilkodeException thrown for various validation errors (e.g., missing enhet, invalid enhet format, already approved, etc.). The response includes a 'feilkode' header with the error code name."
+          },
+          "403": {
+            "description": "Forbidden. TilgangskontrollException thrown if the user does not have access to the avtale."
+          },
+          "404": {
+            "description": "Not Found. RessursFinnesIkkeException thrown if the avtale with the given ID does not exist."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "godkjennTilskuddsperiodeRequest": {
+                    "type": "string",
+                    "description": "Request body containing the enhet (unit) for approving the tilskuddsperiode"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/utvikler-admin/avtale-hendelse/dry-send-melding-alle-avtaler": {
+      "post": {
+        "operationId": "createDrySendMeldingAlleAvtaler",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "OK - DRY run completed successfully. No response body is returned."
+          },
+          "403": {
+            "description": "Forbidden - The caller does not have the required AD group access. Thrown by sjekkTilgang() when tokenUtils.harAdGruppe returns false."
+          }
+        }
+      }
+    },
+    "/utvikler-admin/avtale-hendelse/send-melding-en-avtale/{avtaleId}": {
+      "post": {
+        "operationId": "createSendMeldingEnAvtale",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale (agreement) for which to send a hendelsemelding",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale (agreement) for which to send a hendelsemelding"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Melding sendt for avtalen. Ingen responsdata returneres."
+          },
+          "403": {
+            "description": "Ingen tilgang til utvikler-admin. Kastes av @ProtectedWithClaims(issuer = \"aad\") dersom brukeren ikke er autentisert med Azure AD, eller av sjekkTilgang() dersom brukeren mangler AD-gruppen."
+          },
+          "404": {
+            "description": "Avtalen med gitt avtaleId finnes ikke."
+          }
+        }
+      }
+    },
+    "/utvikler-admin/avtale-hendelse/send-melding-alle-avtaler": {
+      "post": {
+        "operationId": "createSendMeldingAlleAvtaler",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Meldinger sendt for alle avtaler (asynkron prosessering startet)."
+          },
+          "403": {
+            "description": "Forbidden - brukeren har ikke nødvendig AD-gruppe for utvikler-tilgang."
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/avslag-tilskuddsperiode": {
+      "post": {
+        "operationId": "createAvslagTilskuddsperiode",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale (agreement) whose tilskuddsperiode is to be rejected",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale (agreement) whose tilskuddsperiode is to be rejected"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tilskuddsperiode avslått successfully. No response body."
+          },
+          "400": {
+            "description": "Bad Request. FeilkodeException thrown by avtale.avslåTilskuddsperiode or TilskuddPeriode.avslå for invalid input (e.g., missing avslagsforklaring, empty avslagsårsaker, avtale annullert/avbrutt, not godkjent av veileder, or tilskuddsperiode already behandlet)."
+          },
+          "403": {
+            "description": "Forbidden. TilgangskontrollException thrown by sjekkTilgang if the beslutter does not have access to the avtale."
+          },
+          "404": {
+            "description": "Not Found. RessursFinnesIkkeException thrown when the avtale with the given avtaleId does not exist."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "avslagRequest": {
+                    "type": "string",
+                    "description": "Request body containing the rejection reasons and explanation for the tilskuddsperiode"
+                  },
+                  "avslagsårsaker": {
+                    "type": "string",
+                    "description": "Set of reasons for rejecting the tilskuddsperiode"
+                  },
+                  "avslagsforklaring": {
+                    "type": "string",
+                    "description": "Explanation for rejecting the tilskuddsperiode"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/set-om-avtalen-kan-etterregistreres": {
+      "post": {
+        "operationId": "createSetOmAvtalenKanEtterregistreres",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to toggle etterregistrering for",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to toggle etterregistrering for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the updated Avtale object after toggling the etterregistrering flag.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Avtale": {
+                      "type": "string",
+                      "description": "{'deltakerFnr': 'Fnr', 'mentorFnr': 'Fnr', 'bedriftNr': 'BedriftNr', 'veilederNavIdent': 'NavIdent', 'tiltakstype': 'Tiltakstype', 'opprettetTidspunkt': 'LocalDateTime', 'id': 'UUID', 'avtaleNr': 'Integer', 'gjeldendeInnhold': 'AvtaleInnhold', 'sistEndret': 'Instant', 'annullertTidspunkt': 'Instant', 'annullertGrunn': 'string', 'avbrutt': 'boolean', 'slettemerket': 'boolean', 'avbruttDato': 'LocalDate', 'avbruttGrunn': 'string', 'opprettetAvArbeidsgiver': 'boolean', 'enhetGeografisk': 'string', 'enhetsnavnGeografisk': 'string', 'enhetOppfolging': 'string', 'enhetsnavnOppfolging': 'string', 'godkjentForEtterregistrering': 'boolean', 'kvalifiseringsgruppe': 'Kvalifiseringsgruppe', 'formidlingsgruppe': 'Formidlingsgruppe', 'tilskuddPeriode': 'SortedSet<TilskuddPeriode>', 'feilregistrert': 'boolean', 'arenaRyddeAvtale': 'ArenaRyddeAvtale'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Thrown when a FeilkodeException occurs, e.g., if the avtale is already inngått (KAN_IKKE_MERKES_FOR_ETTERREGISTRERING_AVTALE_GODKJENT) or other validation errors."
+          },
+          "404": {
+            "description": "Not Found. Thrown when the avtale with the given ID does not exist."
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/juster-arena-migreringsdato/dry-run": {
+      "post": {
+        "operationId": "createDryRun",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "Avtale identifikator",
+            "schema": {
+              "type": "string",
+              "description": "Avtale identifikator"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the Avtale object after simulating the adjustment of the Arena migration date. The Avtale is returned as JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Avtale": {
+                      "type": "string",
+                      "description": "{'deltakerFnr': 'string', 'mentorFnr': 'string', 'bedriftNr': 'string', 'veilederNavIdent': 'string', 'tiltakstype': 'string', 'opprettetTidspunkt': 'date-time', 'id': 'string', 'avtaleNr': 'integer', 'gjeldendeInnhold': 'AvtaleInnhold', 'sistEndret': 'date-time', 'annullertTidspunkt': 'date-time', 'annullertGrunn': 'string', 'avbrutt': 'boolean', 'slettemerket': 'boolean', 'avbruttDato': 'date', 'avbruttGrunn': 'string', 'opprettetAvArbeidsgiver': 'boolean', 'enhetGeografisk': 'string', 'enhetsnavnGeografisk': 'string', 'enhetOppfolging': 'string', 'enhetsnavnOppfolging': 'string', 'godkjentForEtterregistrering': 'boolean', 'kvalifiseringsgruppe': 'string', 'formidlingsgruppe': 'string', 'tilskuddPeriode': 'array', 'feilregistrert': 'boolean', 'arenaRyddeAvtale': 'object', 'erRyddeAvtale': 'boolean', 'erLaast': 'boolean', 'erGodkjentAvDeltaker': 'boolean', 'erGodkjentTaushetserklæringAvMentor': 'boolean', 'erGodkjentAvArbeidsgiver': 'boolean', 'erGodkjentAvVeileder': 'boolean', 'erAvtaleInngått': 'boolean', 'godkjentAvDeltaker': 'date-time', 'godkjentAvMentor': 'date-time', 'godkjentAvArbeidsgiver': 'date-time', 'godkjentAvVeileder': 'date-time', 'godkjentAvBeslutter': 'date-time', 'avtaleInngått': 'date-time', 'godkjentAvNavIdent': 'string', 'godkjentAvBeslutterNavIdent': 'string', 'godkjentPaVegneGrunn': 'object', 'godkjentPaVegneAv': 'boolean', 'godkjentPaVegneAvArbeidsgiverGrunn': 'object', 'godkjentPaVegneAvArbeidsgiver': 'boolean', 'status': 'string', 'statusSomEnum': 'string', 'kanAvbrytes': 'boolean', 'kanGjenopprettes': 'boolean', 'felterSomIkkeErFyltUt': 'array', 'erUfordelt': 'boolean', 'gjeldendeTilskuddsperiode': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when a FeilkodeException is thrown, e.g., if the user lacks access to the avtale (TilgangskontrollException is deprecated and not used here), or if the avtale is not found (RessursFinnesIkkeException returns 404, not 400). The handler FeilkodeExceptionHandler returns 400 with a 'feilkode' header for FeilkodeException."
+          },
+          "404": {
+            "description": "Not Found. Returned when the avtale with the given ID does not exist, as the code calls avtaleRepository.findById(avtaleId).orElseThrow(RessursFinnesIkkeException::new)."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "justerArenaMigreringsdato": {
+                    "type": "string",
+                    "description": "Objekt med migreringsdato for justering av Arena-migreringsdato"
+                  },
+                  "migreringsdato": {
+                    "type": "string",
+                    "description": "Migreringsdato"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/oppdaterOppfølgingsEnhet": {
+      "post": {
+        "operationId": "createOppdateroppfølgingsenhet",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to update the follow-up unit for",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to update the follow-up unit for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the updated Avtale object after updating the follow-up unit.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Avtale": {
+                      "type": "string",
+                      "description": "{'deltakerFnr': 'string', 'mentorFnr': 'string', 'bedriftNr': 'string', 'veilederNavIdent': 'string', 'tiltakstype': 'string', 'opprettetTidspunkt': 'datetime', 'id': 'string', 'avtaleNr': 'integer', 'gjeldendeInnhold': 'AvtaleInnhold', 'sistEndret': 'datetime', 'annullertTidspunkt': 'datetime', 'annullertGrunn': 'string', 'avbrutt': 'boolean', 'slettemerket': 'boolean', 'avbruttDato': 'date', 'avbruttGrunn': 'string', 'opprettetAvArbeidsgiver': 'boolean', 'enhetGeografisk': 'string', 'enhetsnavnGeografisk': 'string', 'enhetOppfolging': 'string', 'enhetsnavnOppfolging': 'string', 'godkjentForEtterregistrering': 'boolean', 'kvalifiseringsgruppe': 'string', 'formidlingsgruppe': 'string', 'tilskuddPeriode': 'array', 'feilregistrert': 'boolean', 'arenaRyddeAvtale': 'ArenaRyddeAvtale', 'status': 'string', 'erRyddeAvtale': 'boolean', 'erLaast': 'boolean', 'erGodkjentAvDeltaker': 'boolean', 'erGodkjentTaushetserklæringAvMentor': 'boolean', 'erGodkjentAvArbeidsgiver': 'boolean', 'erGodkjentAvVeileder': 'boolean', 'erAvtaleInngått': 'boolean', 'godkjentAvDeltaker': 'datetime', 'godkjentAvMentor': 'datetime', 'godkjentAvArbeidsgiver': 'datetime', 'godkjentAvVeileder': 'datetime', 'godkjentAvBeslutter': 'datetime', 'avtaleInngått': 'datetime', 'godkjentAvNavIdent': 'string', 'godkjentAvBeslutterNavIdent': 'string', 'godkjentPaVegneGrunn': 'GodkjentPaVegneGrunn', 'godkjentPaVegneAv': 'boolean', 'godkjentPaVegneAvArbeidsgiverGrunn': 'GodkjentPaVegneAvArbeidsgiverGrunn', 'godkjentPaVegneAvArbeidsgiver': 'boolean', 'felterSomIkkeErFyltUt': 'array', 'erUfordelt': 'boolean', 'gjeldendeTilskuddsperiode': 'TilskuddPeriode', 'kanAvbrytes': 'boolean', 'kanGjenopprettes': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If the avtale with the given ID does not exist, a RessursFinnesIkkeException is thrown, resulting in a 404 Not Found response."
+          },
+          "403": {
+            "description": "If the user does not have access to the avtale, a TilgangskontrollException is thrown, resulting in a 403 Forbidden response."
+          }
+        }
+      }
+    },
+    "/avtale-hendelse/fnr": {
+      "post": {
+        "operationId": "createFnr",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a list of JSON strings, each representing the latest AvtaleMelding for each Avtale associated with the given fødselsnummer. If the fødselsnummer is invalid or no avtaler exist, an empty list is returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<String>": {
+                      "type": "string",
+                      "description": "{'items': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. Returned when the caller does not have the required AD role 'access_as_application'."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "meldingForFnr": {
+                    "type": "string",
+                    "description": "Request body containing the fødselsnummer (fnr) to look up the latest hendelse for"
+                  },
+                  "fnr": {
+                    "type": "string",
+                    "description": "Fødselsnummer (11 digits) of the deltaker"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtale-hendelse/{avtaleId}": {
+      "get": {
+        "operationId": "getAvtaleHendelse",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the avtale (agreement) whose latest event is to be retrieved.",
+            "schema": {
+              "type": "string",
+              "description": "The unique identifier of the avtale (agreement) whose latest event is to be retrieved."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the JSON string of the latest AvtaleMeldingEntitet for the given avtaleId.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'json': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No AvtaleMeldingEntitet found for the given avtaleId."
+          }
+        }
+      }
+    },
+    "/avtaler/{avtaleId}/endre-kostnadssted": {
+      "post": {
+        "operationId": "createEndreKostnadssted",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the avtale to update kostnadssted for",
+            "schema": {
+              "type": "string",
+              "description": "ID of the avtale to update kostnadssted for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Avtalen ble oppdatert med nytt kostnadssted og returnert.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Avtale": {
+                      "type": "string",
+                      "description": "{'deltakerFnr': 'string', 'mentorFnr': 'string', 'bedriftNr': 'string', 'veilederNavIdent': 'string', 'tiltakstype': 'string', 'opprettetTidspunkt': 'date-time', 'id': 'string', 'avtaleNr': 'integer', 'gjeldendeInnhold': 'object', 'sistEndret': 'date-time', 'annullertTidspunkt': 'date-time', 'annullertGrunn': 'string', 'avbrutt': 'boolean', 'slettemerket': 'boolean', 'avbruttDato': 'date', 'avbruttGrunn': 'string', 'opprettetAvArbeidsgiver': 'boolean', 'enhetGeografisk': 'string', 'enhetsnavnGeografisk': 'string', 'enhetOppfolging': 'string', 'enhetsnavnOppfolging': 'string', 'godkjentForEtterregistrering': 'boolean', 'kvalifiseringsgruppe': 'string', 'formidlingsgruppe': 'string', 'tilskuddPeriode': 'array', 'feilregistrert': 'boolean', 'arenaRyddeAvtale': 'object', 'erRyddeAvtale': 'boolean', 'erLaast': 'boolean', 'erGodkjentAvDeltaker': 'boolean', 'erGodkjentTaushetserklæringAvMentor': 'boolean', 'erGodkjentAvArbeidsgiver': 'boolean', 'erGodkjentAvVeileder': 'boolean', 'erAvtaleInngått': 'boolean', 'godkjentAvDeltaker': 'date-time', 'godkjentAvMentor': 'date-time', 'godkjentAvArbeidsgiver': 'date-time', 'godkjentAvVeileder': 'date-time', 'godkjentAvBeslutter': 'date-time', 'avtaleInngått': 'date-time', 'godkjentAvNavIdent': 'string', 'godkjentAvBeslutterNavIdent': 'string', 'godkjentPaVegneGrunn': 'object', 'godkjentPaVegneAv': 'boolean', 'godkjentPaVegneAvArbeidsgiverGrunn': 'object', 'godkjentPaVegneAvArbeidsgiver': 'boolean', 'status': 'string', 'statusSomEnum': 'string', 'kanAvbrytes': 'boolean', 'kanGjenopprettes': 'boolean', 'felterSomIkkeErFyltUt': 'array', 'erUfordelt': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ugyldig forespørsel. Returneres av FeilkodeExceptionHandler når FeilkodeException kastes, for eksempel hvis enheten ikke finnes eller tilskuddsperioder ikke er satt."
+          },
+          "403": {
+            "description": "Ingen tilgang til avtalen. Returneres av TilgangskontrollException når sjekkTilgang feiler."
+          },
+          "404": {
+            "description": "Avtalen finnes ikke. Returneres av RessursFinnesIkkeException når avtaleRepository.findById ikke finner avtalen."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endreKostnadsstedRequest": {
+                    "type": "string",
+                    "description": "Request body containing the new enhet (kostnadssted)"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avtale-hendelse/skjema": {
+      "get": {
+        "operationId": "getSkjema",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the JSON schema for AvtaleMelding as a pretty-printed string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JsonSchema": {
+                      "type": "string",
+                      "description": "{'type': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/feature": {
+      "get": {
+        "operationId": "getFeature",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "feature",
+            "in": "query",
+            "required": false,
+            "description": "List of feature toggle names to check",
+            "schema": {
+              "type": "string",
+              "description": "List of feature toggle names to check"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A map of feature toggle names to their enabled status (boolean).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Map<String, Boolean>": {
+                      "type": "string",
+                      "description": "{'feature': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if the feature toggle service fails to retrieve feature toggles."
+          }
+        }
+      }
+    },
+    "/utvikler-admin/dvh-melding/patchalleavtaler": {
+      "post": {
+        "operationId": "createPatchalleavtaler",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "OK - The request was successful and all avtaler were patched to DVH asynchronously."
+          },
+          "403": {
+            "description": "Forbidden - The user does not have the required AD group access (sjekkTilgang throws HttpClientErrorException with HttpStatus.FORBIDDEN)."
+          }
+        }
+      }
+    },
+    "/internal/healthcheck": {
+      "get": {
+        "operationId": "getHealthcheck",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the string 'ok' from the database health check query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "healthcheck": {
+                      "type": "string",
+                      "description": "{'result': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates the entire response to JdbcTemplate.queryForObject, and no exception is caught in the handler, so a database failure results in a 500 response."
+          }
+        }
+      }
+    },
+    "/feature/variant": {
+      "get": {
+        "operationId": "getVariant",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "feature",
+            "in": "query",
+            "required": false,
+            "description": "List of feature toggle names to retrieve variants for",
+            "schema": {
+              "type": "string",
+              "description": "List of feature toggle names to retrieve variants for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a map of feature names to their variant information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Map<String, Variant>": {
+                      "type": "string",
+                      "description": "{'featureName': 'Variant'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if the feature toggle service fails to retrieve variants."
+          }
+        }
+      }
+    },
+    "/utvikler-admin/dvh-melding/patch": {
+      "post": {
+        "operationId": "createPatch",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successful patch of avtaler. No response body is returned."
+          },
+          "403": {
+            "description": "Forbidden. Thrown by sjekkTilgang() when the caller does not have the required AD group (dvhMeldingProperties.getGruppeTilgang())."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "request": {
+                    "type": "string",
+                    "description": "Request body containing a list of avtaleIder (UUIDs) to patch to DVH"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/kodeverk": {
+      "get": {
+        "operationId": "getKodeverk",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a map with keys 'tiltakstyper' and 'statuser', each containing a list of objects with 'navn' and 'beskrivelse' (and for tiltakstyper also 'behandlingstema' and optionally 'tiltakskodeArena').",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "KodeverkResponse": {
+                      "type": "string",
+                      "description": "{'tiltakstyper': 'array', 'statuser': 'array'}"
+                    },
+                    "TiltakstypeInfo": {
+                      "type": "string",
+                      "description": "{'navn': 'string', 'beskrivelse': 'string', 'behandlingstema': 'string', 'tiltakskodeArena': 'string'}"
+                    },
+                    "StatusInfo": {
+                      "type": "string",
+                      "description": "{'navn': 'string', 'beskrivelse': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organisasjoner": {
+      "get": {
+        "operationId": "getOrganisasjoner",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "bedriftNr",
+            "in": "query",
+            "required": false,
+            "description": "Organization number of the business to retrieve",
+            "schema": {
+              "type": "string",
+              "description": "Organization number of the business to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the organization (virksomhet) information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Organisasjon": {
+                      "type": "string",
+                      "description": "{'bedriftNr': 'BedriftNr', 'bedriftNavn': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The organization is a juridisk enhet, an organisasjonsledd, or the organization does not exist."
+          }
+        }
+      }
+    },
+    "/internal/avtaler": {
+      "put": {
+        "operationId": "updateAvtaler",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Avtalene ble journalført. Returnerer en tom respons med status 200 OK."
+          },
+          "403": {
+            "description": "Systemet har ikke tilgang til tjenesten. Kastes av innloggingService.validerSystembruker() når brukeren ikke er en gyldig systembruker."
+          },
+          "400": {
+            "description": "Ugyldig forespørsel. Kastes av FeilkodeExceptionHandler når en FeilkodeException inntreffer, for eksempel ved ugyldige data."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "avtaleVersjonerTilJournalfoert": {
+                    "type": "string",
+                    "description": "Map of avtale version IDs (UUID) to journalpost IDs (String) to be set on the corresponding AvtaleInnhold versions."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAvtaler",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a list of AvtaleTilJournalfoering objects representing agreements that have not yet been journalført.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<AvtaleTilJournalfoering>": {
+                      "type": "string",
+                      "description": "{'tiltakstype': 'string', 'avtaleId': 'string', 'avtaleVersjonId': 'string', 'opprettet': 'date', 'deltakerFnr': 'string', 'mentorFnr': 'string', 'bedriftNr': 'string', 'veilederNavIdent': 'string', 'deltakerFornavn': 'string', 'deltakerEtternavn': 'string', 'deltakerTlf': 'string', 'bedriftNavn': 'string', 'arbeidsgiverFornavn': 'string', 'arbeidsgiverEtternavn': 'string', 'arbeidsgiverTlf': 'string', 'veilederFornavn': 'string', 'veilederEtternavn': 'string', 'veilederTlf': 'string', 'versjon': 'integer', 'oppfolging': 'string', 'tilrettelegging': 'string', 'startDato': 'date', 'sluttDato': 'date', 'stillingprosent': 'integer', 'stillingstittel': 'string', 'stillingstype': 'string', 'arbeidsoppgaver': 'string', 'antallDagerPerUke': 'integer', 'enhetOppfolging': 'string', 'refusjonKontaktperson': 'object', 'arbeidsgiverKontonummer': 'string', 'lonnstilskuddProsent': 'integer', 'manedslonn': 'integer', 'feriepengesats': 'number', 'arbeidsgiveravgift': 'number', 'harFamilietilknytning': 'boolean', 'familietilknytningForklaring': 'string', 'feriepengerBelop': 'integer', 'otpSats': 'number', 'otpBelop': 'integer', 'arbeidsgiveravgiftBelop': 'integer', 'sumLonnsutgifter': 'integer', 'sumLonnstilskudd': 'integer', 'manedslonn100pst': 'integer', 'inkluderingstilskuddsutgift': 'array', 'inkluderingstilskuddBegrunnelse': 'string', 'mentorFornavn': 'string', 'mentorEtternavn': 'string', 'mentorOppgaver': 'string', 'mentorAntallTimer': 'number', 'mentorTimelonn': 'integer', 'maal': 'array', 'oppgaver': 'array', 'godkjentPaVegneGrunn': 'object', 'godkjentAvDeltaker': 'date', 'godkjentAvArbeidsgiver': 'date', 'godkjentAvVeileder': 'date', 'godkjentTaushetserklæringAvMentor': 'date', 'tilskuddsPerioder': 'array', 'godkjentPaVegneAv': 'boolean', 'avtalerolle': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. The system user validation failed (validerSystembruker throws TilgangskontrollException)."
+          },
+          "500": {
+            "description": "Internal server error. An unexpected exception occurred while fetching non-journalført agreements."
+          }
+        }
+      }
+    },
+    "/kodeverk/tiltakstyper": {
+      "get": {
+        "operationId": "getTiltakstyper",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a list of tiltakstyper (measures) with their details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "TiltakstypeList": {
+                      "type": "string",
+                      "description": "{'navn': 'string', 'beskrivelse': 'string', 'behandlingstema': 'string', 'tiltakskodeArena': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/kodeverk/statuser": {
+      "get": {
+        "operationId": "getStatuser",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a list of status objects, each containing 'navn' (the enum name) and 'beskrivelse' (the description).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "StatusList": {
+                      "type": "string",
+                      "description": "{'navn': 'string', 'beskrivelse': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/utvikler-admin/tilskuddsperioder/send-tilskuddsperiode-godkjent-melding/{tilskuddsperiodeId}": {
+      "post": {
+        "operationId": "createSendTilskuddsperiodeGodkjentMelding",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "tilskuddsperiodeId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the tilskuddsperiode to generate and send a godkjent-melding for",
+            "schema": {
+              "type": "string",
+              "description": "ID of the tilskuddsperiode to generate and send a godkjent-melding for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. The method returns void, so the response body is empty."
+          },
+          "403": {
+            "description": "Forbidden. Thrown by sjekkTilgang() when the user does not have the required AD group."
+          },
+          "404": {
+            "description": "Not Found. Thrown when the tilskuddsperiode with the given ID does not exist."
+          }
+        }
+      }
+    },
+    "/utvikler-admin/tilskuddsperioder/send-tilskuddsperiode-annullert-melding/{tilskuddsperiodeId}": {
+      "post": {
+        "operationId": "createSendTilskuddsperiodeAnnullertMelding",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "tilskuddsperiodeId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the tilskuddsperiode to send an annullert (cancelled) Kafka message for",
+            "schema": {
+              "type": "string",
+              "description": "ID of the tilskuddsperiode to send an annullert (cancelled) Kafka message for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK - The tilskuddsperiode annullert message was successfully created and published to Kafka. No response body is returned."
+          },
+          "403": {
+            "description": "Forbidden - The user does not have the required AD group access (sjekkTilgang throws HttpClientErrorException with HttpStatus.FORBIDDEN)."
+          },
+          "404": {
+            "description": "Not Found - The tilskuddsperiode with the given ID was not found (tilskuddPeriodeRepository.findById(id).orElseThrow(RessursFinnesIkkeException::new))."
+          }
+        }
+      }
+    },
+    "/varsler/{varselId}/sett-til-lest": {
+      "post": {
+        "operationId": "createSettTilLest",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "varselId",
+            "in": "path",
+            "required": true,
+            "description": "Identifier of the notification to mark as read",
+            "schema": {
+              "type": "string",
+              "description": "Identifier of the notification to mark as read"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Varselet ble satt til lest"
+          },
+          "400": {
+            "description": "FeilkodeException kastes hvis varsel ikke finnes eller brukeren ikke har tilgang til varselet"
+          }
+        }
+      }
+    },
+    "/varsler/oversikt": {
+      "get": {
+        "operationId": "getOversikt",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a list of Varsel objects for the logged-in user that are unread and have bjelle set to true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<Varsel>": {
+                      "type": "string",
+                      "description": "{'id': 'UUID', 'lest': 'boolean', 'identifikator': 'Identifikator', 'utførtAvIdentifikator': 'Identifikator', 'tekst': 'string', 'hendelseType': 'HendelseType', 'bjelle': 'boolean', 'avtaleId': 'UUID', 'tidspunkt': 'LocalDateTime', 'mottaker': 'Avtalerolle', 'utførtAv': 'Avtalerolle'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. Returned when the user is not logged in or does not have access to the requested resource. This can occur if innloggingService.hentAvtalepart throws a TilgangskontrollException or FeilkodeException with UGYLDIG_KOMBINASJON_AV_ISSUER_OG_ROLLE or MANGLER_AD_GRUPPE_BESLUTTER."
+          },
+          "400": {
+            "description": "Bad Request. Returned when a FeilkodeException is thrown, for example if the user is not logged in or has an invalid combination of issuer and role."
+          }
+        }
+      }
+    },
+    "/varsler/avtale-modal": {
+      "get": {
+        "operationId": "getAvtaleModal",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "query",
+            "required": false,
+            "description": "The ID of the avtale (agreement) to fetch notifications for.",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the avtale (agreement) to fetch notifications for."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of Varsel objects that are unread, have bjelle set to true, belong to the specified avtaleId, and have an identifikator matching any of the logged-in user's identifiers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<Varsel>": {
+                      "type": "string",
+                      "description": "{'id': 'UUID', 'lest': 'boolean', 'identifikator': 'Identifikator', 'utførtAvIdentifikator': 'Identifikator', 'tekst': 'string', 'hendelseType': 'HendelseType', 'bjelle': 'boolean', 'avtaleId': 'UUID', 'tidspunkt': 'LocalDateTime', 'mottaker': 'Avtalerolle', 'utførtAv': 'Avtalerolle'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when the innlogget-part cookie contains an invalid role or when the combination of issuer and role is invalid, as thrown by InnloggingService.hentAvtalepart (FeilkodeException with Feilkode.UGYLDIG_KOMBINASJON_AV_ISSUER_OG_ROLLE). Also returned when the user is not logged in (TilgangskontrollException with message 'Bruker er ikke innlogget.')."
+          },
+          "403": {
+            "description": "Forbidden. Returned when the logged-in user does not have the required AD group for the BESLUTTER role (FeilkodeException with Feilkode.MANGLER_AD_GRUPPE_BESLUTTER)."
+          }
+        }
+      }
+    },
+    "/varsler/sett-alle-til-lest": {
+      "post": {
+        "operationId": "createSettAlleTilLest",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "All varsler were successfully marked as read. The response body is empty."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "varselIder": {
+                    "type": "string",
+                    "description": "List of notification IDs to mark as read"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/varsler/avtale-logg": {
+      "get": {
+        "operationId": "getAvtaleLogg",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "avtaleId",
+            "in": "query",
+            "required": false,
+            "description": "The ID of the agreement (avtale) for which to retrieve all notifications.",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the agreement (avtale) for which to retrieve all notifications."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of all Varsel for the given avtaleId and mottaker (innlogget-part).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<Varsel>": {
+                      "type": "string",
+                      "description": "{'id': 'string (UUID)', 'lest': 'boolean', 'identifikator': 'string', 'utførtAvIdentifikator': 'string', 'tekst': 'string', 'hendelseType': 'string (enum HendelseType)', 'bjelle': 'boolean', 'avtaleId': 'string (UUID)', 'tidspunkt': 'string (date-time)', 'mottaker': 'string (enum Avtalerolle)', 'utførtAv': 'string (enum Avtalerolle)'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. Thrown by avtalepart.sjekkTilgang(avtale) when the logged-in part does not have access to the avtale."
+          },
+          "500": {
+            "description": "Internal server error. Thrown by avtaleRepository.findById(avtaleId).orElseThrow() when no avtale exists for the given avtaleId."
+          }
+        }
+      }
+    }
+  }
+}

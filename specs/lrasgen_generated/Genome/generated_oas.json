@@ -1,0 +1,2534 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "genome-nexus API",
+    "description": "LRASGen-generated specification for genome-nexus (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/error": {
+      "get": {
+        "operationId": "getError",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Forwards the request to the root path '/'."
+          }
+        }
+      }
+    },
+    "/annotation/summary": {
+      "post": {
+        "operationId": "createSummary",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "isoformOverrideSource",
+            "in": "query",
+            "required": false,
+            "description": "Isoform override source. For example uniprot",
+            "schema": {
+              "type": "string",
+              "description": "Isoform override source. For example uniprot"
+            }
+          },
+          {
+            "name": "projection",
+            "in": "query",
+            "required": false,
+            "description": "Indicates whether to return summary for all transcripts or only for canonical transcript",
+            "schema": {
+              "type": "string",
+              "description": "Indicates whether to return summary for all transcripts or only for canonical transcript",
+              "enum": [
+                "ALL",
+                "CANONICAL"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved VEP annotation summaries for the provided list of variants.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<VariantAnnotationSummary>": {
+                      "type": "string",
+                      "description": "{'variant': 'string', 'genomicLocation': 'GenomicLocation', 'strandSign': 'string', 'variantType': 'string', 'assemblyName': 'string', 'canonicalTranscriptId': 'string', 'transcriptConsequences': 'List<TranscriptConsequenceSummary>', 'transcriptConsequenceSummaries': 'List<TranscriptConsequenceSummary>', 'transcriptConsequenceSummary': 'TranscriptConsequenceSummary'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "variants": {
+                    "type": "string",
+                    "description": "List of variants. For example [\"X:g.66937331T>A\",\"17:g.41242962_41242963insGA\"] (GRCh37) or [\"1:g.182712A>C\", \"2:g.265023C>T\", \"3:g.319781del\", \"19:g.110753dup\", \"1:g.1385015_1387562del\"] (GRCh38)"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/annotation/genomic": {
+      "post": {
+        "operationId": "createGenomic",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "isoformOverrideSource",
+            "in": "query",
+            "required": false,
+            "description": "Isoform override source. For example uniprot",
+            "schema": {
+              "type": "string",
+              "description": "Isoform override source. For example uniprot"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": false,
+            "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}",
+            "schema": {
+              "type": "string",
+              "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Comma separated list of fields to include (case-sensitive!). For example: hotspots",
+            "schema": {
+              "type": "string",
+              "description": "Comma separated list of fields to include (case-sensitive!). For example: hotspots"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved VEP annotations for the provided list of genomic locations.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<VariantAnnotation>": {
+                      "type": "string",
+                      "description": "{'variant': 'string', 'annotationJSON': 'string', 'variantId': 'string', 'assemblyName': 'string', 'seqRegionName': 'string', 'start': 'integer', 'end': 'integer', 'alleleString': 'string', 'strand': 'integer', 'mostSevereConsequence': 'string', 'colocatedVariants': 'array', 'intergenicConsequences': 'array', 'transcriptConsequences': 'array', 'successfullyAnnotated': 'boolean', 'mutationAssessorAnnotation': 'object', 'nucleotideContextAnnotation': 'object', 'myVariantInfoAnnotation': 'object', 'hotspotAnnotation': 'object', 'ptmAnnotation': 'object', 'oncokbAnnotation': 'object', 'clinvarAnnotation': 'object', 'annotationSummary': 'object', 'signalAnnotation': 'object', 'originalVariantQuery': 'string', 'dynamicProps': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "genomicLocations": {
+                    "type": "string",
+                    "description": "List of Genomic Locations"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/annotation/genomic/{genomicLocation}": {
+      "get": {
+        "operationId": "getGenomic",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "genomicLocation",
+            "in": "path",
+            "required": true,
+            "description": "A genomic location. For example 7,140453136,140453136,A,T",
+            "schema": {
+              "type": "string",
+              "description": "A genomic location. For example 7,140453136,140453136,A,T"
+            }
+          },
+          {
+            "name": "isoformOverrideSource",
+            "in": "query",
+            "required": false,
+            "description": "Isoform override source. For example uniprot",
+            "schema": {
+              "type": "string",
+              "description": "Isoform override source. For example uniprot"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": false,
+            "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}",
+            "schema": {
+              "type": "string",
+              "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Comma separated list of fields to include (case-sensitive!). For example: hotspots",
+            "schema": {
+              "type": "string",
+              "description": "Comma separated list of fields to include (case-sensitive!). For example: hotspots"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved VEP annotation for the provided genomic location.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "VariantAnnotation": {
+                      "type": "string",
+                      "description": "{'variant': 'string', 'annotationJSON': 'string', 'variantId': 'string', 'assemblyName': 'string', 'seqRegionName': 'string', 'start': 'integer', 'end': 'integer', 'alleleString': 'string', 'strand': 'integer', 'mostSevereConsequence': 'string', 'colocatedVariants': 'array', 'intergenicConsequences': 'array', 'transcriptConsequences': 'array', 'successfullyAnnotated': 'boolean', 'mutationAssessorAnnotation': 'object', 'nucleotideContextAnnotation': 'object', 'myVariantInfoAnnotation': 'object', 'hotspotAnnotation': 'object', 'ptmAnnotation': 'object', 'oncokbAnnotation': 'object', 'clinvarAnnotation': 'object', 'annotationSummary': 'object', 'signalAnnotation': 'object', 'originalVariantQuery': 'string', 'dynamicProps': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Variant annotation not found for the provided genomic location."
+          },
+          "503": {
+            "description": "VEP web service error occurred while retrieving annotation."
+          }
+        }
+      }
+    },
+    "/hgvs/{variants}": {
+      "get": {
+        "operationId": "getHgvs",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "variants",
+            "in": "path",
+            "required": true,
+            "description": "Comma separated list of variants. For example X:g.66937331T>A,17:g.41242962_41242963insGA (GRCh37) or 1:g.182712A>C,2:g.265023C>T,3:g.319781del,19:g.110753dup,1:g.1385015_1387562del (GRCh38)",
+            "schema": {
+              "type": "string",
+              "description": "Comma separated list of variants. For example X:g.66937331T>A,17:g.41242962_41242963insGA (GRCh37) or 1:g.182712A>C,2:g.265023C>T,3:g.319781del,19:g.110753dup,1:g.1385015_1387562del (GRCh38)"
+            }
+          },
+          {
+            "name": "isoformOverrideSource",
+            "in": "query",
+            "required": false,
+            "description": "Isoform override source. For example uniprot",
+            "schema": {
+              "type": "string",
+              "description": "Isoform override source. For example uniprot"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": false,
+            "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}",
+            "schema": {
+              "type": "string",
+              "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Comma separated list of fields to include (case-sensitive!). For example: hotspots",
+            "schema": {
+              "type": "string",
+              "description": "Comma separated list of fields to include (case-sensitive!). For example: hotspots"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved VEP annotations for the provided list of variants.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<VariantAnnotation>": {
+                      "type": "string",
+                      "description": "{'variant': 'string', 'annotationJSON': 'string', 'variantId': 'string', 'assemblyName': 'string', 'seqRegionName': 'string', 'start': 'integer', 'end': 'integer', 'alleleString': 'string', 'strand': 'integer', 'mostSevereConsequence': 'string', 'colocatedVariants': 'array', 'intergenicConsequences': 'array', 'transcriptConsequences': 'array', 'successfullyAnnotated': 'boolean', 'mutationAssessorAnnotation': 'object', 'nucleotideContextAnnotation': 'object', 'myVariantInfoAnnotation': 'object', 'hotspotAnnotation': 'object', 'ptmAnnotation': 'object', 'oncokbAnnotation': 'object', 'clinvarAnnotation': 'object', 'annotationSummary': 'object', 'signalAnnotation': 'object', 'originalVariantQuery': 'string', 'dynamicProps': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Variant annotation not found for one or more provided variants."
+          },
+          "503": {
+            "description": "VEP web service error occurred while retrieving annotations."
+          }
+        }
+      }
+    },
+    "/annotation/dbsnp/{variantId}": {
+      "get": {
+        "operationId": "getDbsnp",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "variantId",
+            "in": "path",
+            "required": true,
+            "description": "dbSNP id. For example rs116035550.",
+            "schema": {
+              "type": "string",
+              "description": "dbSNP id. For example rs116035550."
+            }
+          },
+          {
+            "name": "isoformOverrideSource",
+            "in": "query",
+            "required": false,
+            "description": "Isoform override source. For example uniprot",
+            "schema": {
+              "type": "string",
+              "description": "Isoform override source. For example uniprot"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": false,
+            "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}",
+            "schema": {
+              "type": "string",
+              "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Comma separated list of fields to include (case-sensitive!). For example: annotation_summary",
+            "schema": {
+              "type": "string",
+              "description": "Comma separated list of fields to include (case-sensitive!). For example: annotation_summary"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved VEP annotation for the given dbSNP id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "VariantAnnotation": {
+                      "type": "string",
+                      "description": "{'variant': 'string', 'annotationJSON': 'string', 'variantId': 'string', 'assemblyName': 'string', 'seqRegionName': 'string', 'start': 'integer', 'end': 'integer', 'alleleString': 'string', 'strand': 'integer', 'mostSevereConsequence': 'string', 'colocatedVariants': 'array', 'intergenicConsequences': 'array', 'transcriptConsequences': 'array', 'successfullyAnnotated': 'boolean', 'mutationAssessorAnnotation': 'object', 'nucleotideContextAnnotation': 'object', 'myVariantInfoAnnotation': 'object', 'hotspotAnnotation': 'object', 'ptmAnnotation': 'object', 'oncokbAnnotation': 'object', 'clinvarAnnotation': 'object', 'annotationSummary': 'object', 'signalAnnotation': 'object', 'originalVariantQuery': 'string', 'dynamicProps': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Variant annotation not found for the given dbSNP id"
+          },
+          "503": {
+            "description": "VEP web service error while retrieving annotation for the given dbSNP id"
+          }
+        }
+      }
+    },
+    "/annotation/dbsnp": {
+      "post": {
+        "operationId": "createDbsnp",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "isoformOverrideSource",
+            "in": "query",
+            "required": false,
+            "description": "Isoform override source. For example uniprot",
+            "schema": {
+              "type": "string",
+              "description": "Isoform override source. For example uniprot"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": false,
+            "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}",
+            "schema": {
+              "type": "string",
+              "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Comma separated list of fields to include (case-sensitive!). For example: annotation_summary",
+            "schema": {
+              "type": "string",
+              "description": "Comma separated list of fields to include (case-sensitive!). For example: annotation_summary"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved VEP annotations for the provided list of dbSNP ids.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<VariantAnnotation>": {
+                      "type": "string",
+                      "description": "{'variant': 'string', 'annotationJSON': 'string', 'variantId': 'string', 'assemblyName': 'string', 'seqRegionName': 'string', 'start': 'integer', 'end': 'integer', 'alleleString': 'string', 'strand': 'integer', 'mostSevereConsequence': 'string', 'colocatedVariants': 'array', 'intergenicConsequences': 'array', 'transcriptConsequences': 'array', 'successfullyAnnotated': 'boolean', 'mutationAssessorAnnotation': 'object', 'nucleotideContextAnnotation': 'object', 'myVariantInfoAnnotation': 'object', 'hotspotAnnotation': 'object', 'ptmAnnotation': 'object', 'oncokbAnnotation': 'object', 'clinvarAnnotation': 'object', 'annotationSummary': 'object', 'signalAnnotation': 'object', 'originalVariantQuery': 'string', 'dynamicProps': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Variant annotation not found."
+          },
+          "503": {
+            "description": "VEP web service error."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "variantIds": {
+                    "type": "string",
+                    "description": "List of variant IDs. For example [\"rs116035550\"]"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hgvs": {
+      "post": {
+        "operationId": "createHgvs",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "variants",
+            "in": "query",
+            "required": false,
+            "description": "Comma separated list of variants. For example X:g.66937331T>A,17:g.41242962_41242963insGA (GRCh37) or 1:g.182712A>C,2:g.265023C>T,3:g.319781del,19:g.110753dup,1:g.1385015_1387562del (GRCh38)",
+            "schema": {
+              "type": "array",
+              "description": "Comma separated list of variants. For example X:g.66937331T>A,17:g.41242962_41242963insGA (GRCh37) or 1:g.182712A>C,2:g.265023C>T,3:g.319781del,19:g.110753dup,1:g.1385015_1387562del (GRCh38)"
+            }
+          },
+          {
+            "name": "isoformOverrideSource",
+            "in": "query",
+            "required": false,
+            "description": "Isoform override source. For example uniprot",
+            "schema": {
+              "type": "string",
+              "description": "Isoform override source. For example uniprot"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": false,
+            "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}",
+            "schema": {
+              "type": "string",
+              "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Comma separated list of fields to include (case-sensitive!). For example: hotspots",
+            "schema": {
+              "type": "array",
+              "description": "Comma separated list of fields to include (case-sensitive!). For example: hotspots"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved VEP annotations for the provided list of variants.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<VariantAnnotation>": {
+                      "type": "string",
+                      "description": "{'variant': 'string', 'annotationJSON': 'string', 'variantId': 'string', 'assemblyName': 'string', 'seqRegionName': 'string', 'start': 'integer', 'end': 'integer', 'alleleString': 'string', 'strand': 'integer', 'mostSevereConsequence': 'string', 'colocatedVariants': 'List<ColocatedVariant>', 'intergenicConsequences': 'List<IntergenicConsequences>', 'transcriptConsequences': 'List<TranscriptConsequence>', 'successfullyAnnotated': 'boolean', 'mutationAssessorAnnotation': 'MutationAssessorAnnotation', 'nucleotideContextAnnotation': 'NucleotideContextAnnotation', 'myVariantInfoAnnotation': 'MyVariantInfoAnnotation', 'hotspotAnnotation': 'HotspotAnnotation', 'ptmAnnotation': 'PtmAnnotation', 'oncokbAnnotation': 'OncokbAnnotation', 'clinvarAnnotation': 'ClinvarAnnotation', 'annotationSummary': 'VariantAnnotationSummary', 'signalAnnotation': 'SignalAnnotation', 'originalVariantQuery': 'string', 'dynamicProps': 'Map<String, Object>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Variant annotation not found for one or more variants."
+          },
+          "400": {
+            "description": "Mixed format in the variant query."
+          },
+          "503": {
+            "description": "VEP web service error."
+          }
+        }
+      }
+    },
+    "/annotation": {
+      "post": {
+        "operationId": "createAnnotation",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "isoformOverrideSource",
+            "in": "query",
+            "required": false,
+            "description": "Isoform override source. For example uniprot",
+            "schema": {
+              "type": "string",
+              "description": "Isoform override source. For example uniprot"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": false,
+            "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}",
+            "schema": {
+              "type": "string",
+              "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Comma separated list of fields to include (case-sensitive!). For example: hotspots",
+            "schema": {
+              "type": "array",
+              "description": "Comma separated list of fields to include (case-sensitive!). For example: hotspots"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved VEP annotations for the provided list of variants.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<VariantAnnotation>": {
+                      "type": "string",
+                      "description": "{'variant': 'string', 'annotationJSON': 'string', 'variantId': 'string', 'assemblyName': 'string', 'seqRegionName': 'string', 'start': 'integer', 'end': 'integer', 'alleleString': 'string', 'strand': 'integer', 'mostSevereConsequence': 'string', 'colocatedVariants': 'array', 'intergenicConsequences': 'array', 'transcriptConsequences': 'array', 'successfullyAnnotated': 'boolean', 'mutationAssessorAnnotation': 'object', 'nucleotideContextAnnotation': 'object', 'myVariantInfoAnnotation': 'object', 'hotspotAnnotation': 'object', 'ptmAnnotation': 'object', 'oncokbAnnotation': 'object', 'clinvarAnnotation': 'object', 'annotationSummary': 'object', 'signalAnnotation': 'object', 'originalVariantQuery': 'string', 'dynamicProps': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Variant annotation not found for one or more provided variants."
+          },
+          "400": {
+            "description": "The provided list of variants contains mixed formats (e.g., a mix of HGVS and genomic location formats)."
+          },
+          "503": {
+            "description": "Error occurred while communicating with the VEP web service."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "variants": {
+                    "type": "array",
+                    "description": "List of variants. For example [\"X:g.66937331T>A\",\"17:g.41242962_41242963insGA\"] (GRCh37) or [\"1:g.182712A>C\", \"2:g.265023C>T\", \"3:g.319781del\", \"19:g.110753dup\", \"1:g.1385015_1387562del\"] (GRCh38)"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/annotation/{variant}": {
+      "get": {
+        "operationId": "getAnnotation",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "variant",
+            "in": "path",
+            "required": true,
+            "description": "Variant. For example 17:g.41242962_41242963insGA",
+            "schema": {
+              "type": "string",
+              "description": "Variant. For example 17:g.41242962_41242963insGA"
+            }
+          },
+          {
+            "name": "isoformOverrideSource",
+            "in": "query",
+            "required": false,
+            "description": "Isoform override source. For example uniprot",
+            "schema": {
+              "type": "string",
+              "description": "Isoform override source. For example uniprot"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": false,
+            "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}",
+            "schema": {
+              "type": "string",
+              "description": "Map of tokens. For example {\"source1\":\"put-your-token1-here\",\"source2\":\"put-your-token2-here\"}"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Comma separated list of fields to include (case-sensitive!). For example: hotspots",
+            "schema": {
+              "type": "string",
+              "description": "Comma separated list of fields to include (case-sensitive!). For example: hotspots"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved VEP annotation for the provided variant.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "VariantAnnotation": {
+                      "type": "string",
+                      "description": "{'variant': 'string', 'annotationJSON': 'string', 'variantId': 'string', 'assemblyName': 'string', 'seqRegionName': 'string', 'start': 'integer', 'end': 'integer', 'alleleString': 'string', 'strand': 'integer', 'mostSevereConsequence': 'string', 'colocatedVariants': 'array', 'intergenicConsequences': 'array', 'transcriptConsequences': 'array', 'successfullyAnnotated': 'boolean', 'mutationAssessorAnnotation': 'object', 'nucleotideContextAnnotation': 'object', 'myVariantInfoAnnotation': 'object', 'hotspotAnnotation': 'object', 'ptmAnnotation': 'object', 'oncokbAnnotation': 'object', 'clinvarAnnotation': 'object', 'annotationSummary': 'object', 'signalAnnotation': 'object', 'originalVariantQuery': 'string', 'dynamicProps': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Variant annotation not found."
+          },
+          "503": {
+            "description": "VEP web service error."
+          }
+        }
+      }
+    },
+    "/cancer_hotspots/hgvs": {
+      "post": {
+        "operationId": "createHgvs",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved hotspot annotations for the provided list of variants.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AggregatedHotspots": {
+                      "type": "string",
+                      "description": "{'genomicLocation': 'GenomicLocation', 'variant': 'string', 'transcriptId': 'string', 'proteinLocation': 'ProteinLocation', 'hotspots': 'List<Hotspot>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Cancer Hotspots web service error."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "variants": {
+                    "type": "array",
+                    "description": "List of variants. For example [\"7:g.140453136A>T\",\"12:g.25398285C>A\"]"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/annotation/summary/{variant:.+}": {
+      "get": {
+        "operationId": "getSummary",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "variant",
+            "in": "path",
+            "required": false,
+            "description": "Variant. For example 17:g.41242962_41242963insGA",
+            "schema": {
+              "type": "string",
+              "description": "Variant. For example 17:g.41242962_41242963insGA"
+            }
+          },
+          {
+            "name": "isoformOverrideSource",
+            "in": "query",
+            "required": false,
+            "description": "Isoform override source. For example uniprot",
+            "schema": {
+              "type": "string",
+              "description": "Isoform override source. For example uniprot"
+            }
+          },
+          {
+            "name": "projection",
+            "in": "query",
+            "required": false,
+            "description": "Indicates whether to return summary for all transcripts or only for canonical transcript",
+            "schema": {
+              "type": "string",
+              "description": "Indicates whether to return summary for all transcripts or only for canonical transcript",
+              "enum": [
+                "ALL",
+                "CANONICAL"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved VEP annotation summary for the provided variant.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "VariantAnnotationSummary": {
+                      "type": "string",
+                      "description": "{'variant': 'string', 'genomicLocation': 'GenomicLocation', 'strandSign': 'string', 'variantType': 'string', 'assemblyName': 'string', 'canonicalTranscriptId': 'string', 'transcriptConsequences': 'array<TranscriptConsequenceSummary>', 'transcriptConsequenceSummaries': 'array<TranscriptConsequenceSummary>', 'transcriptConsequenceSummary': 'TranscriptConsequenceSummary'}"
+                    },
+                    "GenomicLocation": {
+                      "type": "string",
+                      "description": "{'chromosome': 'string', 'start': 'integer', 'end': 'integer', 'referenceAllele': 'string', 'variantAllele': 'string'}"
+                    },
+                    "TranscriptConsequenceSummary": {
+                      "type": "string",
+                      "description": "{'transcriptId': 'string', 'codonChange': 'string', 'aminoAcids': 'string', 'aminoAcidRef': 'string', 'aminoAcidAlt': 'string', 'entrezGeneId': 'string', 'consequenceTerms': 'string', 'hugoGeneSymbol': 'string', 'hgvspShort': 'string', 'hgvsp': 'string', 'hgvsc': 'string', 'proteinPosition': 'IntegerRange', 'refSeq': 'string', 'variantClassification': 'string', 'exon': 'string', 'polyphenScore': 'double', 'polyphenPrediction': 'string', 'siftScore': 'double', 'siftPrediction': 'string', 'uniprotId': 'string'}"
+                    },
+                    "IntegerRange": {
+                      "type": "string",
+                      "description": "{'start': 'integer', 'end': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Variant annotation not found."
+          },
+          "503": {
+            "description": "VEP web service error."
+          }
+        }
+      }
+    },
+    "/cancer_hotspots/genomic": {
+      "post": {
+        "operationId": "createGenomic",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved hotspot annotations for the provided list of genomic locations.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AggregatedHotspots": {
+                      "type": "string",
+                      "description": "{'genomicLocation': 'GenomicLocation', 'variant': 'string', 'transcriptId': 'string', 'proteinLocation': 'ProteinLocation', 'hotspots': 'List<Hotspot>'}"
+                    },
+                    "GenomicLocation": {
+                      "type": "string",
+                      "description": "{'chromosome': 'string', 'start': 'integer', 'end': 'integer', 'referenceAllele': 'string', 'variantAllele': 'string'}"
+                    },
+                    "ProteinLocation": {
+                      "type": "string",
+                      "description": "{'transcriptId': 'string', 'start': 'integer', 'end': 'integer', 'mutationType': 'string'}"
+                    },
+                    "Hotspot": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'hugoSymbol': 'string', 'transcriptId': 'string', 'residue': 'string', 'tumorCount': 'integer', 'type': 'string', 'missenseCount': 'integer', 'truncatingCount': 'integer', 'inframeCount': 'integer', 'spliceCount': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Cancer Hotspots web service error."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "chromosome": {
+                    "type": "string",
+                    "description": "List of genomic locations."
+                  },
+                  "start": {
+                    "type": "integer",
+                    "description": "List of genomic locations."
+                  },
+                  "end": {
+                    "type": "integer",
+                    "description": "List of genomic locations."
+                  },
+                  "referenceAllele": {
+                    "type": "string",
+                    "description": "List of genomic locations."
+                  },
+                  "variantAllele": {
+                    "type": "string",
+                    "description": "List of genomic locations."
+                  },
+                  "originalInput": {
+                    "type": "string",
+                    "description": "List of genomic locations."
+                  }
+                },
+                "required": [
+                  "chromosome",
+                  "start",
+                  "end",
+                  "referenceAllele",
+                  "variantAllele",
+                  "originalInput"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cancer_hotspots/hgvs/{variant}": {
+      "get": {
+        "operationId": "getHgvs",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "variant",
+            "in": "path",
+            "required": true,
+            "description": "A variant. For example 7:g.140453136A>T",
+            "schema": {
+              "type": "string",
+              "description": "A variant. For example 7:g.140453136A>T"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved hotspot annotations for the specified variant.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Hotspot": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'hugoSymbol': 'string', 'transcriptId': 'string', 'residue': 'string', 'tumorCount': 'integer', 'type': 'string', 'missenseCount': 'integer', 'truncatingCount': 'integer', 'inframeCount': 'integer', 'spliceCount': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Variant annotation not found for the specified variant."
+          },
+          "503": {
+            "description": "VEP web service error for the specified variant."
+          }
+        }
+      }
+    },
+    "/cancer_hotspots/transcript/{transcriptId}": {
+      "get": {
+        "operationId": "getTranscript",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "transcriptId",
+            "in": "path",
+            "required": true,
+            "description": "A Transcript Id. For example ENST00000288602",
+            "schema": {
+              "type": "string",
+              "description": "A Transcript Id. For example ENST00000288602"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved hotspot annotations for the provided transcript ID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<Hotspot>": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'hugoSymbol': 'string', 'transcriptId': 'string', 'residue': 'string', 'tumorCount': 'integer', 'type': 'string', 'missenseCount': 'integer', 'truncatingCount': 'integer', 'inframeCount': 'integer', 'spliceCount': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Variant annotation not found."
+          },
+          "503": {
+            "description": "VEP web service error."
+          }
+        }
+      }
+    },
+    "/cancer_hotspots/genomic/{genomicLocation}": {
+      "get": {
+        "operationId": "getGenomic",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "genomicLocation",
+            "in": "path",
+            "required": true,
+            "description": "A genomic location. For example 7,140453136,140453136,A,T",
+            "schema": {
+              "type": "string",
+              "description": "A genomic location. For example 7,140453136,140453136,A,T"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved hotspot annotations for the specified genomic location.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<Hotspot>": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'hugoSymbol': 'string', 'transcriptId': 'string', 'residue': 'string', 'tumorCount': 'integer', 'type': 'string', 'missenseCount': 'integer', 'truncatingCount': 'integer', 'inframeCount': 'integer', 'spliceCount': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Variant annotation not found for the provided genomic location."
+          },
+          "503": {
+            "description": "VEP web service error while retrieving variant annotation."
+          }
+        }
+      }
+    },
+    "/xrefs/{accession}": {
+      "get": {
+        "operationId": "getXrefs",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "accession",
+            "in": "path",
+            "required": true,
+            "description": "Ensembl gene accession. For example ENSG00000169083",
+            "schema": {
+              "type": "string",
+              "description": "Ensembl gene accession. For example ENSG00000169083"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of GeneXref objects representing external references for the given Ensembl gene accession.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "GeneXref": {
+                      "type": "string",
+                      "description": "{'ensemblGeneId': 'string', 'displayId': 'string', 'primaryId': 'string', 'version': 'string', 'description': 'string', 'dbName': 'string', 'synonyms': 'array of string', 'infoText': 'string', 'infoType': 'string', 'dbDisplayName': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Ensembl web service exception. The response body contains the error details."
+          }
+        }
+      }
+    },
+    "/curious_cases/{genomicLocation}": {
+      "get": {
+        "operationId": "getCuriousCases",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "genomicLocation",
+            "in": "path",
+            "required": true,
+            "description": "Genomic location, for example: 7,116411883,116411905,TTCTTTCTCTCTGTTTTAAGATC,-",
+            "schema": {
+              "type": "string",
+              "description": "Genomic location, for example: 7,116411883,116411905,TTCTTTCTCTCTGTTTTAAGATC,-"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Curious cases info retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CuriousCases": {
+                      "type": "string",
+                      "description": "{'genomicLocation': 'string', 'comment': 'string', 'pubmedIds': 'array<integer>', 'hugoGeneSymbol': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Curious cases comment not found"
+          },
+          "503": {
+            "description": "Curious cases web service error"
+          }
+        }
+      }
+    },
+    "/cancer_hotspots/transcript": {
+      "post": {
+        "operationId": "createTranscript",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved hotspot annotations for the provided list of transcript IDs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AggregatedHotspots": {
+                      "type": "string",
+                      "description": "{'genomicLocation': 'GenomicLocation', 'variant': 'string', 'transcriptId': 'string', 'proteinLocation': 'ProteinLocation', 'hotspots': 'List<Hotspot>'}"
+                    },
+                    "GenomicLocation": {
+                      "type": "string",
+                      "description": "{'chromosome': 'string', 'start': 'integer', 'end': 'integer', 'referenceAllele': 'string', 'variantAllele': 'string'}"
+                    },
+                    "ProteinLocation": {
+                      "type": "string",
+                      "description": "{'transcriptId': 'string', 'start': 'integer', 'end': 'integer', 'mutationType': 'string'}"
+                    },
+                    "Hotspot": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'hugoSymbol': 'string', 'transcriptId': 'string', 'residue': 'string', 'tumorCount': 'integer', 'type': 'string', 'missenseCount': 'integer', 'truncatingCount': 'integer', 'inframeCount': 'integer', 'spliceCount': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Cancer Hotspots web service error."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "transcriptIds": {
+                    "type": "string",
+                    "description": "List of transcript Id. For example [\"ENST00000288602\",\"ENST00000256078\"]"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cancer_hotspots/proteinLocations": {
+      "post": {
+        "operationId": "createProteinlocations",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved hotspot annotations for the provided list of protein locations.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AggregatedHotspots": {
+                      "type": "string",
+                      "description": "{'genomicLocation': 'GenomicLocation', 'variant': 'string', 'transcriptId': 'string', 'proteinLocation': 'ProteinLocation', 'hotspots': 'List<Hotspot>'}"
+                    },
+                    "GenomicLocation": {
+                      "type": "string",
+                      "description": "{'chromosome': 'string', 'start': 'integer', 'end': 'integer', 'referenceAllele': 'string', 'variantAllele': 'string'}"
+                    },
+                    "ProteinLocation": {
+                      "type": "string",
+                      "description": "{'transcriptId': 'string', 'start': 'integer', 'end': 'integer', 'mutationType': 'string'}"
+                    },
+                    "Hotspot": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'hugoSymbol': 'string', 'transcriptId': 'string', 'residue': 'string', 'tumorCount': 'integer', 'type': 'string', 'missenseCount': 'integer', 'truncatingCount': 'integer', 'inframeCount': 'integer', 'spliceCount': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Cancer Hotspots web service error."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "proteinLocations": {
+                    "type": "string",
+                    "description": "List of transcript id, protein start location, protein end location, mutation type. The mutation types are limited to 'Missense_Mutation', 'In_Frame_Ins', 'In_Frame_Del', 'Splice_Site', and 'Splice_Region'"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ensembl/canonical-gene/hgnc": {
+      "post": {
+        "operationId": "createHgnc",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved canonical Ensembl Gene IDs for the provided Hugo Symbols.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<EnsemblGene>": {
+                      "type": "string",
+                      "description": "{'geneId': 'string', 'hugoSymbol': 'string', 'synonyms': 'array of string', 'previousSymbols': 'array of string', 'entrezGeneId': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the request."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "hugoSymbols": {
+                    "type": "string",
+                    "description": "List of Hugo Symbols. For example [\"TP53\",\"PIK3CA\",\"BRCA1\"]"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ensembl/canonical-gene/hgnc/{hugoSymbol}": {
+      "get": {
+        "operationId": "getHgnc",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hugoSymbol",
+            "in": "path",
+            "required": true,
+            "description": "A Hugo Symbol. For example TP53",
+            "schema": {
+              "type": "string",
+              "description": "A Hugo Symbol. For example TP53"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the canonical Ensembl gene for the given Hugo Symbol.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "EnsemblGene": {
+                      "type": "string",
+                      "description": "{'geneId': 'string', 'hugoSymbol': 'string', 'synonyms': 'array[string]', 'previousSymbols': 'array[string]', 'entrezGeneId': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Hugo Symbol not found: {hugoSymbol}"
+          }
+        }
+      }
+    },
+    "/ensembl/canonical-gene/entrez": {
+      "post": {
+        "operationId": "createEntrez",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved canonical Ensembl Gene IDs for the provided Entrez Gene IDs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<EnsemblGene>": {
+                      "type": "string",
+                      "description": "{'geneId': 'string', 'hugoSymbol': 'string', 'synonyms': 'array of string', 'previousSymbols': 'array of string', 'entrezGeneId': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the Ensembl service fails to process the request."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "entrezGeneIds": {
+                    "type": "string",
+                    "description": "List of Entrez Gene Ids. For example [\"23140\",\"26009\",\"100131879\"]"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ensembl/canonical-gene/entrez/{entrezGeneId}": {
+      "get": {
+        "operationId": "getEntrez",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "entrezGeneId",
+            "in": "path",
+            "required": true,
+            "description": "An Entrez Gene Id. For example 23140",
+            "schema": {
+              "type": "string",
+              "description": "An Entrez Gene Id. For example 23140"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the canonical Ensembl gene for the given Entrez Gene Id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "EnsemblGene": {
+                      "type": "string",
+                      "description": "{'geneId': 'string', 'hugoSymbol': 'string', 'synonyms': 'array[string]', 'previousSymbols': 'array[string]', 'entrezGeneId': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No Ensembl gene ID found for the provided Entrez Gene Id."
+          }
+        }
+      }
+    },
+    "/ensembl/transcript/{transcriptId}": {
+      "get": {
+        "operationId": "getTranscript",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "transcriptId",
+            "in": "path",
+            "required": true,
+            "description": "An Ensembl transcript ID. For example ENST00000361390",
+            "schema": {
+              "type": "string",
+              "description": "An Ensembl transcript ID. For example ENST00000361390"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the Ensembl transcript by its transcript ID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "EnsemblTranscript": {
+                      "type": "string",
+                      "description": "{'transcriptId': 'string', 'geneId': 'string', 'refseqMrnaId': 'string', 'ccdsId': 'string', 'hugoSymbols': 'array of string', 'proteinId': 'string', 'proteinLength': 'integer', 'pfamDomains': 'array of PfamDomainRange', 'exons': 'array of Exon', 'utrs': 'array of UntranslatedRegion', 'uniprotId': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Ensembl transcript not found for the given transcript ID."
+          }
+        }
+      }
+    },
+    "/ensembl/transcript": {
+      "get": {
+        "operationId": "getTranscript",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "geneId",
+            "in": "query",
+            "required": false,
+            "description": "An Ensembl gene ID. For example ENSG00000136999",
+            "schema": {
+              "type": "string",
+              "description": "An Ensembl gene ID. For example ENSG00000136999"
+            }
+          },
+          {
+            "name": "proteinId",
+            "in": "query",
+            "required": false,
+            "description": "An Ensembl protein ID. For example ENSP00000439985",
+            "schema": {
+              "type": "string",
+              "description": "An Ensembl protein ID. For example ENSP00000439985"
+            }
+          },
+          {
+            "name": "hugoSymbol",
+            "in": "query",
+            "required": false,
+            "description": "A Hugo Symbol For example ARF5",
+            "schema": {
+              "type": "string",
+              "description": "A Hugo Symbol For example ARF5"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of Ensembl transcripts matching the provided gene ID, protein ID, or Hugo symbol. If no query parameters are provided, all transcripts are returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "EnsemblTranscript": {
+                      "type": "string",
+                      "description": "{'transcriptId': 'string', 'geneId': 'string', 'refseqMrnaId': 'string', 'ccdsId': 'string', 'hugoSymbols': 'array of string', 'proteinId': 'string', 'proteinLength': 'integer', 'pfamDomains': 'array of PfamDomainRange', 'exons': 'array of Exon', 'utrs': 'array of UntranslatedRegion', 'uniprotId': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTranscript",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved a list of Ensembl transcripts matching the provided filter criteria.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "EnsemblTranscript": {
+                      "type": "string",
+                      "description": "{'transcriptId': 'string', 'geneId': 'string', 'refseqMrnaId': 'string', 'ccdsId': 'string', 'hugoSymbols': 'array of string', 'proteinId': 'string', 'proteinLength': 'integer', 'pfamDomains': 'array of PfamDomainRange', 'exons': 'array of Exon', 'utrs': 'array of UntranslatedRegion', 'uniprotId': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "transcriptIds": {
+                    "type": "array",
+                    "description": "List of Ensembl transcript IDs. For example [\"ENST00000361390\", \"ENST00000361453\", \"ENST00000361624\"]"
+                  },
+                  "proteinIds": {
+                    "type": "array",
+                    "description": "List of Ensembl protein IDs. For example [\"ENSP00000439985\", \"ENSP00000478460\", \"ENSP00000346196\"]"
+                  },
+                  "geneIds": {
+                    "type": "array",
+                    "description": "List of Ensembl gene IDs. For example [\"ENSG00000136999\", \"ENSG00000272398\", \"ENSG00000198695\"]"
+                  },
+                  "hugoSymbols": {
+                    "type": "array",
+                    "description": "List of Hugo Symbols. For example [\"TP53\", \"PIK3CA\", \"BRCA1\"]"
+                  }
+                },
+                "required": [
+                  "transcriptIds",
+                  "proteinIds",
+                  "geneIds",
+                  "hugoSymbols"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ensembl/xrefs": {
+      "get": {
+        "operationId": "getXrefs",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "accession",
+            "in": "query",
+            "required": false,
+            "description": "Ensembl gene accession. For example ENSG00000169083",
+            "schema": {
+              "type": "string",
+              "description": "Ensembl gene accession. For example ENSG00000169083"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved external references for the given Ensembl gene accession.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "GeneXref": {
+                      "type": "string",
+                      "description": "{'ensemblGeneId': 'string', 'displayId': 'string', 'primaryId': 'string', 'version': 'string', 'description': 'string', 'dbName': 'string', 'synonyms': 'array of string', 'infoText': 'string', 'infoType': 'string', 'dbDisplayName': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Ensembl web service exception. The external Ensembl service returned an error or is unavailable."
+          }
+        }
+      }
+    },
+    "/ensembl/canonical-transcript/hgnc/{hugoSymbol}": {
+      "get": {
+        "operationId": "getHgnc",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hugoSymbol",
+            "in": "path",
+            "required": true,
+            "description": "A Hugo Symbol. For example TP53",
+            "schema": {
+              "type": "string",
+              "description": "A Hugo Symbol. For example TP53"
+            }
+          },
+          {
+            "name": "isoformOverrideSource",
+            "in": "query",
+            "required": false,
+            "description": "Isoform override source. For example uniprot",
+            "schema": {
+              "type": "string",
+              "description": "Isoform override source. For example uniprot"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the canonical Ensembl transcript for the given Hugo Symbol.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "EnsemblTranscript": {
+                      "type": "string",
+                      "description": "{'transcriptId': 'string', 'geneId': 'string', 'refseqMrnaId': 'string', 'ccdsId': 'string', 'hugoSymbols': 'array of string', 'proteinId': 'string', 'proteinLength': 'integer', 'pfamDomains': 'array of PfamDomainRange', 'exons': 'array of Exon', 'utrs': 'array of UntranslatedRegion', 'uniprotId': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Ensembl transcript not found for the given Hugo Symbol."
+          }
+        }
+      }
+    },
+    "/ensembl/canonical-transcript/hgnc": {
+      "post": {
+        "operationId": "createHgnc",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "isoformOverrideSource",
+            "in": "query",
+            "required": false,
+            "description": "Isoform override source. For example uniprot",
+            "schema": {
+              "type": "string",
+              "description": "Isoform override source. For example uniprot"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved canonical Ensembl transcripts for the provided Hugo Symbols.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "EnsemblTranscript": {
+                      "type": "string",
+                      "description": "{'transcriptId': 'string', 'geneId': 'string', 'refseqMrnaId': 'string', 'ccdsId': 'string', 'hugoSymbols': 'array of string', 'proteinId': 'string', 'proteinLength': 'integer', 'pfamDomains': 'array of PfamDomainRange', 'exons': 'array of Exon', 'utrs': 'array of UntranslatedRegion', 'uniprotId': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. The service call to retrieve canonical Ensembl transcripts failed."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "hugoSymbols": {
+                    "type": "string",
+                    "description": "List of Hugo Symbols. For example [\"TP53\",\"PIK3CA\",\"BRCA1\"]"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/version": {
+      "get": {
+        "operationId": "getVersion",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the aggregate source info containing Genome Nexus and VEP version information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AggregateSourceInfo": {
+                      "type": "string",
+                      "description": "{'genomeNexus': 'GenomeNexusInfo', 'vep': 'VEPInfo'}"
+                    },
+                    "GenomeNexusInfo": {
+                      "type": "string",
+                      "description": "{'server': 'Version', 'database': 'Version'}"
+                    },
+                    "VEPInfo": {
+                      "type": "string",
+                      "description": "{'server': 'Version', 'cache': 'Version', 'comment': 'string'}"
+                    },
+                    "Version": {
+                      "type": "string",
+                      "description": "{'version': 'string', 'isStatic': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if the service call fails."
+          }
+        }
+      }
+    },
+    "/mutation_assessor/{variant}": {
+      "get": {
+        "operationId": "getMutationAssessor",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "variant",
+            "in": "path",
+            "required": true,
+            "description": "A variant. For example 7:g.140453136A>T",
+            "schema": {
+              "type": "string",
+              "description": "A variant. For example 7:g.140453136A>T"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved mutation assessor information for the provided variant.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "MutationAssessor": {
+                      "type": "string",
+                      "description": "{'input': 'string', 'hgvs': 'string', 'hugoSymbol': 'string', 'referenceGenomeVariant': 'string', 'referenceGenomeVariantType': 'string', 'functionalImpact': 'string', 'functionalImpactScore': 'double', 'msaLink': 'string', 'pdbLink': 'string', 'variantConservationScore': 'double', 'variantSpecificityScore': 'double', 'mappingIssue': 'string', 'variant': 'string', 'uniprotId': 'string', 'refseqId': 'string', 'msaGaps': 'double', 'msaHeight': 'integer', 'codonStartPosition': 'string', 'uniprotPosition': 'integer', 'uniprotResidue': 'string', 'refseqPosition': 'integer', 'refseqResidue': 'string', 'cosmicCount': 'integer', 'snpCount': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Mutation assessor annotation not found for variant."
+          },
+          "503": {
+            "description": "Mutation Assessor web service error."
+          }
+        }
+      }
+    },
+    "/mutation_assessor": {
+      "post": {
+        "operationId": "createMutationAssessor",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved mutation assessor information for the provided list of variants.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<MutationAssessor>": {
+                      "type": "string",
+                      "description": "{'input': 'string', 'hgvs': 'string', 'hugoSymbol': 'string', 'referenceGenomeVariant': 'string', 'referenceGenomeVariantType': 'string', 'functionalImpact': 'string', 'functionalImpactScore': 'double', 'msaLink': 'string', 'pdbLink': 'string', 'variantConservationScore': 'double', 'variantSpecificityScore': 'double', 'mappingIssue': 'string', 'variant': 'string', 'uniprotId': 'string', 'refseqId': 'string', 'msaGaps': 'double', 'msaHeight': 'integer', 'codonStartPosition': 'string', 'uniprotPosition': 'integer', 'uniprotResidue': 'string', 'refseqPosition': 'integer', 'refseqResidue': 'string', 'cosmicCount': 'integer', 'snpCount': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Mutation Assessor annotation not found for variant."
+          },
+          "503": {
+            "description": "Mutation Assessor web service error."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "variants": {
+                    "type": "string",
+                    "description": "List of variants. For example [\"7:g.140453136A>T\",\"12:g.25398285C>A\"]"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nucleotide_context": {
+      "post": {
+        "operationId": "createNucleotideContext",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a list of NucleotideContext objects for the provided list of variants.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<NucleotideContext>": {
+                      "type": "string",
+                      "description": "{'query': 'string', 'molecule': 'string', 'id': 'string', 'seq': 'string', 'hgvs': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the NucleotideContextService fails to process the request."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "variants": {
+                    "type": "string",
+                    "description": "List of variants. For example [\"7:g.140453136A>T\",\"12:g.25398285C>A\"]"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/my_variant_info/variant": {
+      "post": {
+        "operationId": "createVariant",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved myvariant information for the provided list of variants",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<MyVariantInfo>": {
+                      "type": "string",
+                      "description": "{'variant': 'string', 'query': 'string', 'hgvs': 'string', 'version': 'integer', 'snpeff': 'Snpeff', 'vcf': 'Vcf', 'dbsnp': 'Dbsnp', 'cosmic': 'Cosmic', 'clinVar': 'ClinVar', 'mutdb': 'Mutdb', 'gnomadExome': 'Gnomad', 'gnomadGenome': 'Gnomad'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the myvariant.info web service call fails or an unexpected error occurs"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "variants": {
+                    "type": "string",
+                    "description": "List of variants. For example [\"7:g.140453136A>T\",\"12:g.25398285C>A\"]"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/my_variant_info/variant/{variant}": {
+      "get": {
+        "operationId": "getVariant",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "variant",
+            "in": "path",
+            "required": true,
+            "description": ". For example 7:g.140453136A>T",
+            "schema": {
+              "type": "string",
+              "description": ". For example 7:g.140453136A>T"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved myvariant information for the provided variant.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "MyVariantInfo": {
+                      "type": "string",
+                      "description": "{'variant': 'string', 'query': 'string', 'hgvs': 'string', 'version': 'integer', 'snpeff': 'Snpeff', 'vcf': 'Vcf', 'dbsnp': 'Dbsnp', 'cosmic': 'Cosmic', 'clinvar': 'ClinVar', 'mutdb': 'Mutdb', 'gnomad_exome': 'Gnomad', 'gnomad_genome': 'Gnomad'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Variant annotation not found for the provided variant."
+          },
+          "503": {
+            "description": "VEP web service error for the provided variant."
+          }
+        }
+      }
+    },
+    "/pdb/header": {
+      "post": {
+        "operationId": "createHeader",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved PDB headers for the provided list of PDB ids.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<PdbHeader>": {
+                      "type": "string",
+                      "description": "{'pdbId': 'string', 'title': 'string', 'compound': 'Map<String, Object>', 'source': 'Map<String, Object>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the PDB web service call fails or returns an error."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pdbIds": {
+                    "type": "string",
+                    "description": "List of pdb ids, for example [\"1a37\",\"1a4o\"]"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pfam/domain/{pfamAccession}": {
+      "get": {
+        "operationId": "getDomain",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "pfamAccession",
+            "in": "path",
+            "required": true,
+            "description": "A PFAM domain accession ID. For example PF02827",
+            "schema": {
+              "type": "string",
+              "description": "A PFAM domain accession ID. For example PF02827"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the PFAM domain by its accession ID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PfamDomain": {
+                      "type": "string",
+                      "description": "{'pfamAccession': 'string', 'name': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "PFAM domain not found for the given accession ID."
+          }
+        }
+      }
+    },
+    "/pdb/header/{pdbId}": {
+      "get": {
+        "operationId": "getHeader",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "pdbId",
+            "in": "path",
+            "required": true,
+            "description": "PDB id, for example 1a37",
+            "schema": {
+              "type": "string",
+              "description": "PDB id, for example 1a37"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved PDB header info by PDB id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PdbHeader": {
+                      "type": "string",
+                      "description": "{'pdbId': 'string', 'title': 'string', 'compound': 'object', 'source': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "PDB header not found"
+          },
+          "503": {
+            "description": "PDB web service error"
+          }
+        }
+      }
+    },
+    "/nucleotide_context/{variant}": {
+      "get": {
+        "operationId": "getNucleotideContext",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "variant",
+            "in": "path",
+            "required": true,
+            "description": "A variant. For example 7:g.140453136A>T",
+            "schema": {
+              "type": "string",
+              "description": "A variant. For example 7:g.140453136A>T"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved nucleotide context information for the provided variant.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "NucleotideContext": {
+                      "type": "string",
+                      "description": "{'query': 'string', 'molecule': 'string', 'id': 'string', 'seq': 'string', 'hgvs': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Variant annotation not found or nucleotide context not found."
+          },
+          "503": {
+            "description": "Variant annotation web service error or nucleotide context web service error."
+          }
+        }
+      }
+    },
+    "/pfam/domain": {
+      "post": {
+        "operationId": "createDomain",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved PFAM domains by PFAM domain accession IDs. Returns a list of PfamDomain objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PfamDomain": {
+                      "type": "string",
+                      "description": "{'pfamAccession': 'string', 'name': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates to PfamDomainService.getPfamDomainsByPfamAccession and does not catch any exceptions, so any failure in that call results in a 500 response."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pfamAccessions": {
+                    "type": "string",
+                    "description": "List of PFAM domain accession IDs. For example [\"PF02827\",\"PF00093\",\"PF15276\"]"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signal/mutation": {
+      "post": {
+        "operationId": "createMutation",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved SignalDB mutations by Mutation Filter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SignalMutation": {
+                      "type": "string",
+                      "description": "{'hugoGeneSymbol': 'string', 'chromosome': 'string', 'startPosition': 'long', 'endPosition': 'long', 'referenceAllele': 'string', 'variantAllele': 'string', 'mutationStatus': 'string', 'pathogenic': 'string', 'penetrance': 'string', 'overallNumberOfGermlineHomozygous': 'integer', 'countsByTumorType': 'array', 'biallelicCountsByTumorType': 'array', 'qcPassCountsByTumorType': 'array', 'generalPopulationStats': 'object', 'mskExperReview': 'boolean', 'statsByTumorType': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "hugoSymbols": {
+                    "type": "string",
+                    "description": "List of Hugo Gene Symbols. For example [\"TP53\", \"PIK3CA\", \"BRCA1\"]"
+                  }
+                },
+                "required": [
+                  "hugoSymbols"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getMutation",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "hugoGeneSymbol",
+            "in": "query",
+            "required": false,
+            "description": "Hugo Symbol. For example BRCA1",
+            "schema": {
+              "type": "string",
+              "description": "Hugo Symbol. For example BRCA1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of SignalMutation objects matching the given Hugo gene symbol (or all mutations if no symbol is provided).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SignalMutation": {
+                      "type": "string",
+                      "description": "{'hugoGeneSymbol': 'string', 'chromosome': 'string', 'startPosition': 'long', 'endPosition': 'long', 'referenceAllele': 'string', 'variantAllele': 'string', 'mutationStatus': 'string', 'pathogenic': 'string', 'penetrance': 'string', 'overallNumberOfGermlineHomozygous': 'integer', 'countsByTumorType': 'array<CountByTumorType>', 'biallelicCountsByTumorType': 'array<CountByTumorType>', 'qcPassCountsByTumorType': 'array<CountByTumorType>', 'generalPopulationStats': 'GeneralPopulationStats', 'mskExperReview': 'boolean', 'statsByTumorType': 'array<StatsByTumorType>'}"
+                    },
+                    "CountByTumorType": {
+                      "type": "string",
+                      "description": "{'tumorType': 'string', 'tumorTypeCount': 'integer', 'variantCount': 'integer'}"
+                    },
+                    "GeneralPopulationStats": {
+                      "type": "string",
+                      "description": "{'counts': 'SignalPopulationStats', 'frequencies': 'SignalPopulationStats'}"
+                    },
+                    "SignalPopulationStats": {
+                      "type": "string",
+                      "description": "{'impact': 'double', 'eur': 'double', 'afr': 'double', 'asn': 'double', 'asj': 'double', 'oth': 'double'}"
+                    },
+                    "StatsByTumorType": {
+                      "type": "string",
+                      "description": "{'tumorType': 'string', 'nCancerTypeCount': 'integer', 'fCancerTypeCount': 'double', 'fBiallelic': 'double', 'ageAtDx': 'integer', 'tmb': 'double', 'msiScore': 'double', 'numberWithSig': 'integer', 'hrdScore': 'HrdScore', 'numberOfGermlineHomozygous': 'integer'}"
+                    },
+                    "HrdScore": {
+                      "type": "string",
+                      "description": "{'lst': 'double', 'ntelomericAi': 'double', 'fractionLoh': 'double'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signal/search": {
+      "get": {
+        "operationId": "getSearch",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "description": "keyword. For example BRCA; BRAF V600; 13:32906640-32906640; 13:g.32890665G>A",
+            "schema": {
+              "type": "string",
+              "description": "keyword. For example BRCA; BRAF V600; 13:32906640-32906640; 13:g.32890665G>A"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Max number of matching results to return",
+            "schema": {
+              "type": "integer",
+              "description": "Max number of matching results to return"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of SignalQuery objects matching the search keyword.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SignalQuery": {
+                      "type": "string",
+                      "description": "{'queryType': 'SignalQueryType', 'matchType': 'SignalMatchType', 'hugoSymbol': 'string', 'alteration': 'string', 'region': 'string', 'variant': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the signal query service fails to process the request."
+          }
+        }
+      }
+    },
+    "/ptm/experimental": {
+      "get": {
+        "operationId": "getExperimental",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "ensemblTranscriptId",
+            "in": "query",
+            "required": false,
+            "description": "Ensembl Transcript ID. For example ENST00000646891",
+            "schema": {
+              "type": "string",
+              "description": "Ensembl Transcript ID. For example ENST00000646891"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved PTM entries by Ensembl Transcript ID. Returns a list of PostTranslationalModification objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PostTranslationalModification": {
+                      "type": "string",
+                      "description": "{'uniprotEntry': 'string', 'uniprotAccession': 'string', 'ensemblTranscriptIds': 'array of string', 'position': 'integer', 'type': 'string', 'pubmedIds': 'array of string', 'sequence': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates to PostTranslationalModificationService.getPostTranslationalModifications(String) and does not catch any exceptions, so any failure in that service call results in a 500 response."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createExperimental",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved PTM entries by Ensembl Transcript IDs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<PostTranslationalModification>": {
+                      "type": "string",
+                      "description": "{'uniprotEntry': 'string', 'uniprotAccession': 'string', 'ensemblTranscriptIds': 'array of string', 'position': 'integer', 'type': 'string', 'pubmedIds': 'array of string', 'sequence': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the service fails to retrieve PTM entries"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "transcriptIds": {
+                    "type": "string",
+                    "description": "List of Ensembl transcript IDs. For example [\"ENST00000420316\", \"ENST00000646891\", \"ENST00000371953\"]"
+                  }
+                },
+                "required": [
+                  "transcriptIds"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "operationId": "getSearch",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "description": "keyword. For example 13:g.32890665G>A, TP53 p.R273C, BRAF c.1799T>A",
+            "schema": {
+              "type": "string",
+              "description": "keyword. For example 13:g.32890665G>A, TP53 p.R273C, BRAF c.1799T>A"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Max number of matching results to return",
+            "schema": {
+              "type": "integer",
+              "description": "Max number of matching results to return"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful index search. Returns a list of IndexSearch objects containing the query type and matching results.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "IndexSearch": {
+                      "type": "string",
+                      "description": "{'queryType': 'IndexSearchType', 'results': 'List<Index>'}"
+                    },
+                    "IndexSearchType": {
+                      "type": "string",
+                      "description": "{'GENE_HGVSPSHORT': 'enum', 'GENE_CDNA': 'enum', 'GENE_HGVSP': 'enum', 'HGVSG': 'enum', 'HGVSC': 'enum'}"
+                    },
+                    "Index": {
+                      "type": "string",
+                      "description": "{'variant': 'string', 'hugoSymbol': 'List<string>', 'hgvspShort': 'List<string>', 'hgvsp': 'List<string>', 'cdna': 'List<string>', 'hgvsc': 'List<string>', 'rsid': 'List<string>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates entirely to IndexSearchService.search; any uncaught exception from that call results in a 500 response."
+          }
+        }
+      }
+    },
+    "/signal/mutation/hgvs/{variant}": {
+      "get": {
+        "operationId": "getHgvs",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "variant",
+            "in": "path",
+            "required": true,
+            "description": "A variant. For example 13:g.32890665G>A",
+            "schema": {
+              "type": "string",
+              "description": "A variant. For example 13:g.32890665G>A"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of SignalMutation objects matching the provided HGVS variant.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SignalMutation": {
+                      "type": "string",
+                      "description": "{'hugoGeneSymbol': 'string', 'chromosome': 'string', 'startPosition': 'long', 'endPosition': 'long', 'referenceAllele': 'string', 'variantAllele': 'string', 'mutationStatus': 'string', 'pathogenic': 'string', 'penetrance': 'string', 'overallNumberOfGermlineHomozygous': 'integer', 'countsByTumorType': 'array<CountByTumorType>', 'biallelicCountsByTumorType': 'array<CountByTumorType>', 'qcPassCountsByTumorType': 'array<CountByTumorType>', 'generalPopulationStats': 'GeneralPopulationStats', 'mskExperReview': 'boolean', 'statsByTumorType': 'array<StatsByTumorType>'}"
+                    },
+                    "CountByTumorType": {
+                      "type": "string",
+                      "description": "{'tumorType': 'string', 'tumorTypeCount': 'integer', 'variantCount': 'integer'}"
+                    },
+                    "GeneralPopulationStats": {
+                      "type": "string",
+                      "description": "{'counts': 'SignalPopulationStats', 'frequencies': 'SignalPopulationStats'}"
+                    },
+                    "SignalPopulationStats": {
+                      "type": "string",
+                      "description": "{'impact': 'double', 'eur': 'double', 'afr': 'double', 'asn': 'double', 'asj': 'double', 'oth': 'double'}"
+                    },
+                    "StatsByTumorType": {
+                      "type": "string",
+                      "description": "{'tumorType': 'string', 'nCancerTypeCount': 'integer', 'fCancerTypeCount': 'double', 'fBiallelic': 'double', 'ageAtDx': 'integer', 'tmb': 'double', 'msiScore': 'double', 'numberWithSig': 'integer', 'hrdScore': 'HrdScore', 'numberOfGermlineHomozygous': 'integer'}"
+                    },
+                    "HrdScore": {
+                      "type": "string",
+                      "description": "{'lst': 'double', 'ntelomericAi': 'double', 'fractionLoh': 'double'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

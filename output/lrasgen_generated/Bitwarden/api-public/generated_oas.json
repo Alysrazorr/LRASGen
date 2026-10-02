@@ -1,0 +1,176 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "Public API",
+    "description": "LRASGen-generated specification for Public (aspnetcore).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/public/collections/{id}": {
+      "delete": {
+        "operationId": "deleteCollections",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The identifier of the collection to be deleted.",
+            "schema": {
+              "type": "string",
+              "description": "The identifier of the collection to be deleted."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The collection was successfully deleted."
+          },
+          "404": {
+            "description": "Not Found. The collection does not exist or does not belong to the current organization."
+          }
+        }
+      },
+      "get": {
+        "operationId": "getCollections",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The identifier of the collection to be retrieved.",
+            "schema": {
+              "type": "string",
+              "description": "The identifier of the collection to be retrieved."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieves the details of an existing collection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CollectionResponseModel": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'organizationId': 'string', 'name': 'string', 'externalId': 'string', 'groups': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Collection not found or does not belong to the organization."
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateCollections",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The identifier of the collection to be updated.",
+            "schema": {
+              "type": "string",
+              "description": "The identifier of the collection to be updated."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the updated collection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CollectionResponseModel": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'organizationId': 'string', 'name': 'string', 'externalId': 'string', 'groups': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request model is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ErrorResponseModel": {
+                      "type": "string",
+                      "description": "{'message': 'string', 'validationErrors': 'object', 'exceptionMessage': 'string', 'exceptionType': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found. The collection does not exist or belongs to another organization."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "model": {
+                    "type": "string",
+                    "description": "The request model."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/collections": {
+      "get": {
+        "operationId": "getCollections",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a list of your organization's collections. Collection objects listed in this call do not include information about their associated groups.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ListResponseModel<CollectionResponseModel>": {
+                      "type": "string",
+                      "description": "{'data': 'array', 'continuationToken': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

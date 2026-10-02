@@ -1,0 +1,2093 @@
+{
+  "task_id": "restcountries",
+  "api_name": "restcountries",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/v2/v1",
+      "http_method": "GET",
+      "method_name": "getCountries",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the list of all countries.",
+          "data_schema": [
+            {
+              "name": "CountryList",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array<string>",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array<string>",
+                "capital": "string",
+                "altSpellings": "array<string>",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array<double>",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array<string>",
+                "borders": "array<string>",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array<string>",
+                "languages": "array<string>",
+                "translations": {
+                  "de": "string",
+                  "es": "string",
+                  "fr": "string",
+                  "ja": "string",
+                  "it": "string"
+                },
+                "relevance": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/v1/all",
+      "http_method": "GET",
+      "method_name": "getAllCountries",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the list of all countries.",
+          "data_schema": [
+            {
+              "name": "Country",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array<string>",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array<string>",
+                "capital": "string",
+                "altSpellings": "array<string>",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array<double>",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array<string>",
+                "borders": "array<string>",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array<string>",
+                "languages": "array<string>",
+                "translations": {
+                  "de": "string",
+                  "es": "string",
+                  "fr": "string",
+                  "ja": "string",
+                  "it": "string"
+                },
+                "relevance": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/v1/name/{name}",
+      "http_method": "GET",
+      "method_name": "getByName",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Country name to search for",
+          "_depth": 0
+        },
+        {
+          "name": "fullText",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether to perform a full-text search instead of substring search",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the given name (substring or full-text search depending on the fullText query parameter).",
+          "data_schema": [
+            {
+              "name": "Country",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array[string]",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array[string]",
+                "capital": "string",
+                "altSpellings": "array[string]",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array[double]",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array[string]",
+                "borders": "array[string]",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array[string]",
+                "languages": "array[string]",
+                "translations": {
+                  "de": "string",
+                  "es": "string",
+                  "fr": "string",
+                  "ja": "string",
+                  "it": "string"
+                },
+                "relevance": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No countries found matching the given name.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while searching for countries by name.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/v1/alpha/{alphacode}",
+      "http_method": "GET",
+      "method_name": "getByAlpha",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "alphacode",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Country alpha code (2 or 3 characters)",
+          "min_length": "2",
+          "max_length": "3",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the country matching the given alpha code (2 or 3 letters).",
+          "data_schema": [
+            {
+              "name": "Country",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array<string>",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array<string>",
+                "capital": "string",
+                "altSpellings": "array<string>",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array<double>",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array<string>",
+                "borders": "array<string>",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array<string>",
+                "languages": "array<string>",
+                "translations": "CountryTranslations",
+                "relevance": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request: the alpha code is empty or its length is not between 2 and 3 characters.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found: no country matches the given alpha code.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/v1/region/{region}",
+      "http_method": "GET",
+      "method_name": "getByRegion",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "region",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The region to filter countries by",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the specified region.",
+          "data_schema": [
+            {
+              "name": "CountryList",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array of string",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array of string",
+                "capital": "string",
+                "altSpellings": "array of string",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array of double",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array of string",
+                "borders": "array of string",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array of string",
+                "languages": "array of string",
+                "translations": {
+                  "de": "string",
+                  "es": "string",
+                  "fr": "string",
+                  "ja": "string",
+                  "it": "string"
+                },
+                "relevance": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No countries found for the specified region.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while processing the request.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/v1/callingcode/{callingcode}",
+      "http_method": "GET",
+      "method_name": "getByCallingCode",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "callingcode",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The calling code to search countries by",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the calling code.",
+          "data_schema": [
+            {
+              "name": "Country",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array",
+                "capital": "string",
+                "altSpellings": "array",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array",
+                "borders": "array",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array",
+                "languages": "array",
+                "translations": "CountryTranslations",
+                "relevance": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No countries found for the given calling code.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while processing the request.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/v1/capital/{capital}",
+      "http_method": "GET",
+      "method_name": "getByCapital",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "capital",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The capital city name to search countries by",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the capital name (case-insensitive substring match).",
+          "data_schema": [
+            {
+              "name": "Country",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array<string>",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array<string>",
+                "capital": "string",
+                "altSpellings": "array<string>",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array<double>",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array<string>",
+                "borders": "array<string>",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array<string>",
+                "languages": "array<string>",
+                "translations": {
+                  "de": "string",
+                  "es": "string",
+                  "fr": "string",
+                  "ja": "string",
+                  "it": "string"
+                },
+                "relevance": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No countries found for the given capital.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while processing the request.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/v1/subregion/{subregion}",
+      "http_method": "GET",
+      "method_name": "getBySubregion",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "subregion",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The subregion to filter countries by",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the given subregion (case-insensitive).",
+          "data_schema": [
+            {
+              "name": "Country",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array<string>",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array<string>",
+                "capital": "string",
+                "altSpellings": "array<string>",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array<double>",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array<string>",
+                "borders": "array<string>",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array<string>",
+                "languages": "array<string>",
+                "translations": "CountryTranslations",
+                "relevance": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No countries found for the given subregion.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while processing the request.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/v1/currency/{currency}",
+      "http_method": "GET",
+      "method_name": "getByCurrency",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "currency",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Currency code to search countries by; must be exactly 3 characters long",
+          "min_length": "3",
+          "max_length": "3",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the given currency code.",
+          "data_schema": [
+            {
+              "name": "Country",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array of string",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array of string",
+                "capital": "string",
+                "altSpellings": "array of string",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array of double",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array of string",
+                "borders": "array of string",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array of string",
+                "languages": "array of string",
+                "translations": {
+                  "de": "string",
+                  "es": "string",
+                  "fr": "string",
+                  "ja": "string",
+                  "it": "string"
+                },
+                "relevance": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The currency parameter is empty or its length is not exactly 3.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. No countries match the given currency code.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An exception occurred while retrieving countries by currency.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/v1/alpha",
+      "http_method": "GET",
+      "method_name": "getByAlphaList",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "codes",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Semicolon-separated list of alpha codes (2 or 3 letters each) used to look up multiple countries.",
+          "min_length": "2",
+          "max_length": "3",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the provided alpha codes.",
+          "data_schema": [
+            {
+              "name": "CountryList",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array<string>",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array<string>",
+                "capital": "string",
+                "altSpellings": "array<string>",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array<double>",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array<string>",
+                "borders": "array<string>",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array<string>",
+                "languages": "array<string>",
+                "translations": {
+                  "de": "string",
+                  "es": "string",
+                  "fr": "string",
+                  "ja": "string",
+                  "it": "string"
+                },
+                "relevance": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The 'codes' query parameter is missing, empty, or has an invalid length (less than 2, or greater than 3 without a semicolon).",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. No countries were found for the provided alpha codes.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An exception occurred while processing the request.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/v1",
+      "http_method": "POST",
+      "method_name": "doPOST",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 405,
+          "description": "Method Not Allowed. The POST handler explicitly returns a Response with status METHOD_NOT_ALLOWED (405) and a JSON body containing the status code and reason phrase.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/v1/lang/{lang}",
+      "http_method": "GET",
+      "method_name": "getByLanguage",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v1\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "lang",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Language code to filter countries by language",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the given language.",
+          "data_schema": [
+            {
+              "name": "Country",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array<string>",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array<string>",
+                "capital": "string",
+                "altSpellings": "array<string>",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array<double>",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array<string>",
+                "borders": "array<string>",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array<string>",
+                "languages": "array<string>",
+                "translations": {
+                  "de": "string",
+                  "es": "string",
+                  "fr": "string",
+                  "ja": "string",
+                  "it": "string"
+                },
+                "relevance": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No countries found for the given language.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while processing the request.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2",
+      "http_method": "GET",
+      "method_name": "getCountries",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated list of fields to include in the response; if omitted, all fields are returned.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns all countries. If the 'fields' query parameter is provided, the response contains only the specified fields for each country; otherwise, all fields are returned.",
+          "data_schema": [
+            {
+              "name": "Country",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array of string",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array of string",
+                "capital": "string",
+                "altSpellings": "array of string",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array of double",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array of string",
+                "borders": "array of string",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array of Currency",
+                "languages": "array of Language",
+                "translations": "Translations",
+                "flag": "string",
+                "regionalBlocs": "array of RegionalBloc",
+                "cioc": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/all",
+      "http_method": "GET",
+      "method_name": "getAllCountries",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated list of fields to include in the response; if omitted, all fields are returned.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns all countries. If the 'fields' query parameter is provided, the response contains only the specified fields; otherwise, all fields are returned.",
+          "data_schema": [
+            {
+              "name": "Country",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array of string",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array of string",
+                "capital": "string",
+                "altSpellings": "array of string",
+                "region": "string",
+                "subregion": "string",
+                "translations": "object",
+                "population": "integer",
+                "latlng": "array of double",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array of string",
+                "borders": "array of string",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array of object",
+                "languages": "array of object",
+                "flag": "string",
+                "regionalBlocs": "array of object",
+                "cioc": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/alpha/{alphacode}",
+      "http_method": "GET",
+      "method_name": "getByAlpha",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "alphacode",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Country alpha code (2 or 3 characters)",
+          "min_length": "2",
+          "max_length": "3",
+          "_depth": 0
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated list of fields to include in the response",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Country found and returned, optionally filtered by fields",
+          "data_schema": [
+            {
+              "name": "Country",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array",
+                "capital": "string",
+                "altSpellings": "array",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array",
+                "borders": "array",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array",
+                "languages": "array",
+                "translations": "object",
+                "flag": "string",
+                "regionalBlocs": "array",
+                "cioc": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request: alphacode is empty or its length is less than 2 or greater than 3",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Country not found for the given alphacode",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/callingcode/{callingcode}",
+      "http_method": "GET",
+      "method_name": "getByCallingCode",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "callingcode",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The calling code to search for.",
+          "_depth": 0
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "A semicolon-separated list of fields to include in the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the calling code, optionally filtered by fields.",
+          "data_schema": [
+            {
+              "name": "CountryList",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array[string]",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array[string]",
+                "capital": "string",
+                "altSpellings": "array[string]",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array[double]",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array[string]",
+                "borders": "array[string]",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array[Currency]",
+                "languages": "array[Language]",
+                "translations": "Translations",
+                "flag": "string",
+                "regionalBlocs": "array[RegionalBloc]",
+                "cioc": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No countries found for the given calling code.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/alpha",
+      "http_method": "GET",
+      "method_name": "getByAlphaList",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "codes",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Semicolon-separated list of alpha codes to look up",
+          "min_length": "2",
+          "_depth": 0
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Semicolon-separated list of fields to include in the response",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the provided alpha codes, optionally filtered by fields.",
+          "data_schema": [
+            {
+              "name": "CountryList",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array",
+                "capital": "string",
+                "altSpellings": "array",
+                "region": "string",
+                "subregion": "string",
+                "translations": "object",
+                "population": "integer",
+                "latlng": "array",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array",
+                "borders": "array",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array",
+                "languages": "array",
+                "flag": "string",
+                "regionalBlocs": "array",
+                "cioc": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the 'codes' query parameter is empty, has length less than 2, or has length greater than 3 without containing a semicolon.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned when no countries match the provided alpha codes.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when an exception occurs while retrieving countries by code list.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/currency/{currency}",
+      "http_method": "GET",
+      "method_name": "getByCurrency",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "currency",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Currency code to search countries by",
+          "min_length": "3",
+          "max_length": "3",
+          "_depth": 0
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Semicolon-separated list of fields to include in the response",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the given currency code. If the 'fields' query parameter is provided, only the specified fields are included in each country object; otherwise all fields are returned.",
+          "data_schema": [
+            {
+              "name": "CountryList",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array of string",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array of string",
+                "capital": "string",
+                "altSpellings": "array of string",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array of double",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array of string",
+                "borders": "array of string",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array of Currency",
+                "languages": "array of Language",
+                "translations": "Translations",
+                "flag": "string",
+                "regionalBlocs": "array of RegionalBloc",
+                "cioc": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the currency path parameter is empty or its length is not exactly 3.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned when no countries match the given currency code.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when an exception occurs while retrieving countries by currency.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/name/{name}",
+      "http_method": "GET",
+      "method_name": "getByName",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Country name to search for",
+          "_depth": 0
+        },
+        {
+          "name": "fullText",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether to perform a full text search",
+          "_depth": 0
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Semicolon-separated list of fields to include in the response",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the name (substring or full-text search). If the 'fields' query parameter is provided, only the specified fields are included in each country object.",
+          "data_schema": [
+            {
+              "name": "CountryList",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array of string",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array of string",
+                "capital": "string",
+                "altSpellings": "array of string",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array of double",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array of string",
+                "borders": "array of string",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array of Currency",
+                "languages": "array of Language",
+                "translations": "Translations",
+                "flag": "string",
+                "regionalBlocs": "array of RegionalBloc",
+                "cioc": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No countries found matching the given name.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while processing the request.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/capital/{capital}",
+      "http_method": "GET",
+      "method_name": "getByCapital",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "capital",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The capital city name to search countries by",
+          "_depth": 0
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Semicolon-separated list of fields to include in the response",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries whose capital contains the provided capital string (case-insensitive, accent-normalized). If the 'fields' query parameter is provided, only the specified fields are included in each country object.",
+          "data_schema": [
+            {
+              "name": "CountryList",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array of string",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array of string",
+                "capital": "string",
+                "altSpellings": "array of string",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array of number",
+                "demonym": "string",
+                "area": "number",
+                "gini": "number",
+                "timezones": "array of string",
+                "borders": "array of string",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array of Currency",
+                "languages": "array of Language",
+                "translations": "Translations",
+                "flag": "string",
+                "regionalBlocs": "array of RegionalBloc",
+                "cioc": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No countries found with a capital matching the provided capital string.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/region/{region}",
+      "http_method": "GET",
+      "method_name": "getByRegion",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "region",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The region to filter countries by",
+          "_depth": 0
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Semicolon-separated list of fields to include in the response",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the specified region. If the 'fields' query parameter is provided, only the specified fields are included in the response; otherwise, all fields are returned.",
+          "data_schema": [
+            {
+              "name": "CountryList",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array of string",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array of string",
+                "capital": "string",
+                "altSpellings": "array of string",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array of double",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array of string",
+                "borders": "array of string",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array of Currency",
+                "languages": "array of Language",
+                "translations": "Translations",
+                "flag": "string",
+                "regionalBlocs": "array of RegionalBloc",
+                "cioc": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No countries found for the specified region.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while processing the request.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2",
+      "http_method": "POST",
+      "method_name": "doPOST",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 405,
+          "description": "Method Not Allowed. The POST /v2 endpoint explicitly returns this status via getResponse(Response.Status.METHOD_NOT_ALLOWED).",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/contribute",
+      "http_method": "POST",
+      "method_name": "contribute",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\StripeRest.java",
+      "parameters": [
+        {
+          "name": "amount",
+          "type": "int",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contribution object containing amount and token for the Stripe charge"
+        },
+        {
+          "name": "token",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contribution object containing amount and token for the Stripe charge"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "Bad Request - returned when the contribution is null or the token is blank, or when the Stripe charge creation fails with an exception.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 202,
+          "description": "Accepted - returned when the Stripe charge is successfully created.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/subregion/{subregion}",
+      "http_method": "GET",
+      "method_name": "getBySubRegion",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "subregion",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The subregion to filter countries by",
+          "_depth": 0
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated list of fields to include in the response",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the given subregion. If the 'fields' query parameter is provided, only the specified fields are included in each country object.",
+          "data_schema": [
+            {
+              "name": "CountryList",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array[string]",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array[string]",
+                "capital": "string",
+                "altSpellings": "array[string]",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array[double]",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array[string]",
+                "borders": "array[string]",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array[Currency]",
+                "languages": "array[Language]",
+                "translations": "Translations",
+                "flag": "string",
+                "regionalBlocs": "array[RegionalBloc]",
+                "cioc": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Returned when no countries are found for the given subregion.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Returned when an unexpected error occurs while retrieving countries by subregion.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/lang/{lang}",
+      "http_method": "GET",
+      "method_name": "getByLanguage",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "lang",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Language code (ISO 639-1 two-letter or ISO 639-2 three-letter) used to filter countries by language.",
+          "_depth": 0
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Semicolon-separated list of country fields to include in the response; all other fields are excluded.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the given language code (ISO 639-1 or ISO 639-2).",
+          "data_schema": [
+            {
+              "name": "Country",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array of string",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array of string",
+                "capital": "string",
+                "altSpellings": "array of string",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array of double",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array of string",
+                "borders": "array of string",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array of Currency",
+                "languages": "array of Language",
+                "translations": "Translations",
+                "flag": "string",
+                "regionalBlocs": "array of RegionalBloc",
+                "cioc": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No countries found for the given language code.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/demonym/{demonym}",
+      "http_method": "GET",
+      "method_name": "getByDemonym",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "demonym",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The demonym to search countries by",
+          "_depth": 0
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated list of fields to include in the response",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved countries matching the demonym. Returns a list of Country objects, optionally filtered by the fields query parameter.",
+          "data_schema": [
+            {
+              "name": "Country",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array[string]",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array[string]",
+                "capital": "string",
+                "altSpellings": "array[string]",
+                "region": "string",
+                "subregion": "string",
+                "population": "integer",
+                "latlng": "array[double]",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array[string]",
+                "borders": "array[string]",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array[Currency]",
+                "languages": "array[Language]",
+                "translations": "Translations",
+                "flag": "string",
+                "regionalBlocs": "array[RegionalBloc]",
+                "cioc": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No countries found matching the given demonym.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while processing the request.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/regionalbloc/{regionalbloc}",
+      "http_method": "GET",
+      "method_name": "getByRegionalBloc",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\RESTcountries\\restcountries\\src\\main\\java\\eu\\fayder\\restcountries\\v2\\rest\\CountryRest.java",
+      "parameters": [
+        {
+          "name": "regionalbloc",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Regional bloc acronym to filter countries by",
+          "_depth": 0
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Semicolon-separated list of fields to include in the response",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of countries matching the given regional bloc acronym or other acronyms. If the 'fields' query parameter is provided, only the specified fields are included in each country object; otherwise all fields are returned.",
+          "data_schema": [
+            {
+              "name": "CountryList",
+              "schema": {
+                "name": "string",
+                "topLevelDomain": "array of string",
+                "alpha2Code": "string",
+                "alpha3Code": "string",
+                "callingCodes": "array of string",
+                "capital": "string",
+                "altSpellings": "array of string",
+                "region": "string",
+                "subregion": "string",
+                "translations": "object",
+                "population": "integer",
+                "latlng": "array of double",
+                "demonym": "string",
+                "area": "double",
+                "gini": "double",
+                "timezones": "array of string",
+                "borders": "array of string",
+                "nativeName": "string",
+                "numericCode": "string",
+                "currencies": "array of object",
+                "languages": "array of object",
+                "flag": "string",
+                "regionalBlocs": "array of object",
+                "cioc": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No countries found for the given regional bloc.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while processing the request.",
+          "data_schema": [
+            {
+              "name": "ResponseEntity",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 3,
+    "step2_ms": 15,
+    "step3_ms": 8814,
+    "step4_ms": 11668,
+    "step5_ms": 0,
+    "total_ms": 20504
+  }
+}

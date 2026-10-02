@@ -1,0 +1,100 @@
+/*
+ * Copyright (c) 2013-2018 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+
+@mainFontFamily: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@headerFontFamily: "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@codeFontFamily: "Menlo", "Monaco", "Consolas", "Courier New", monospace;;
+
+@phonePortraitMaxWidth: 400px;
+
+/* New Colors */
+@primaryColor: #414A56; // #4d8bd9; // #373737;
+@darkAccentColor: #637082; // #3c6fb1; // #5d5e60;
+@lightAccentColor: #EBEBEB;
+
+/* Old Colors */
+@accentColor: #2a86d5;
+@bodyColor: #222;
+@lighterText: #777;
+@highlight-shadow-color: @darkAccentColor; // #f9a11b;
+
+
+/* Customize scrollbar (webkit) */
+.custom-scrollbar() {
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+    &::-webkit-scrollbar-track {
+        background: white;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: #ccc;
+        background-clip: padding-box;
+        border: 2px solid white;
+        border-radius: 6px;
+    }
+}
+
+/* Restyle links */
+.aLink (@color) {
+    color: @color;
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 0;
+
+    &:hover {
+        color: darken(@color, 50%);
+        text-decoration: none;
+    }
+}
+
+.unlink() {
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 0;
+    &:hover {
+        color: unset;
+        border-bottom: 0;
+    }
+}
+
+/* Dashboard Sidebar */
+@sidebar-width: 300px;
+@sidebar-expander-height: 20px;
+@sidebar-expander-width: 12px;
+@sidebar-header-height: 100px;
+@sidebar-footer-height: 67px;
+@sidebar-transition-duration: 0.5s;
+
+@sidebar-outline-color: #ccc;
+@sidebar-expander-color: black;
+@sidebar-header-color: #333333;
+@sidebar-header-background-color: #f0f0f0;
+@sidebar-header-font-size: 1.6rem;
+@sidebar-iconbar-color: #202020;
+@sidebar-iconbar-background-color: #fff;
+@sidebar-heading-font-size: 1.5rem;
+@sidebar-heading-color: #333333;
+@sidebar-heading-background-color: #e0e0e0;
+@sidebar-heading-border-bottom: 1px solid white;
+@sidebar-panel-color: inherit;
+@sidebar-panel-background-color: white;
+@sidebar-footer-color: #333333;
+@sidebar-footer-background-color: #f0f0f0;
+

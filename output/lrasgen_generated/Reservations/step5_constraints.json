@@ -1,0 +1,477 @@
+{
+  "task_id": "reservations-api",
+  "api_name": "reservations-api",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/reservation",
+      "http_method": "GET",
+      "method_name": "getAllReservations",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Reservations\\reservations-api\\src\\main\\java\\sk\\cyrilgavala\\reservationsApi\\web\\controller\\ReservationRestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of all reservations available.",
+          "data_schema": [
+            {
+              "name": "List<ReservationResponse>",
+              "schema": {
+                "uuid": "string",
+                "reservationFor": "string",
+                "reservationFrom": "date-time",
+                "reservationTo": "date-time"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the service call fails and the exception is not handled by the controller.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/reservation/{username}",
+      "http_method": "GET",
+      "method_name": "getAllReservationsForUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Reservations\\reservations-api\\src\\main\\java\\sk\\cyrilgavala\\reservationsApi\\web\\controller\\ReservationRestController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Username of the user whose reservations are to be retrieved.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved reservations for the specified username.",
+          "data_schema": [
+            {
+              "name": "ReservationResponse",
+              "schema": {
+                "uuid": "string",
+                "reservationFor": "string",
+                "reservationFrom": "date",
+                "reservationTo": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The username path variable is blank or invalid.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/reservation",
+      "http_method": "PUT",
+      "method_name": "updateReservation",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Reservations\\reservations-api\\src\\main\\java\\sk\\cyrilgavala\\reservationsApi\\web\\controller\\ReservationRestController.java",
+      "parameters": [
+        {
+          "name": "uuid",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Update reservation when valid information provided."
+        },
+        {
+          "name": "reservationFor",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Update reservation when valid information provided."
+        },
+        {
+          "name": "reservationFrom",
+          "type": "LocalDateTime",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Update reservation when valid information provided.",
+          "format": "yyyy-MM-dd'T'HH:mm:ss"
+        },
+        {
+          "name": "reservationTo",
+          "type": "LocalDateTime",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Update reservation when valid information provided.",
+          "format": "yyyy-MM-dd'T'HH:mm:ss"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Reservation updated successfully. Returns the updated reservation details.",
+          "data_schema": [
+            {
+              "name": "ReservationResponse",
+              "schema": {
+                "uuid": "string",
+                "reservationFor": "string",
+                "reservationFrom": "datetime",
+                "reservationTo": "datetime"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The request body failed validation (e.g., missing required fields, blank strings, or invalid date format).",
+          "data_schema": null
+        },
+        {
+          "status_code": 422,
+          "description": "Unprocessable Entity. The reservation could not be updated due to a business rule violation.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/reservation/{reservationUuid}",
+      "http_method": "DELETE",
+      "method_name": "deleteReservation",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Reservations\\reservations-api\\src\\main\\java\\sk\\cyrilgavala\\reservationsApi\\web\\controller\\ReservationRestController.java",
+      "parameters": [
+        {
+          "name": "reservationUuid",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Delete reservation when valid UUID provided.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Reservation deleted successfully. No response body is returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The reservationUuid path variable is blank or invalid, triggering a ConstraintViolationException.",
+          "data_schema": []
+        },
+        {
+          "status_code": 422,
+          "description": "Unprocessable Entity. The reservation could not be deleted, typically because it does not exist.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while processing the deletion request.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/user/register",
+      "http_method": "POST",
+      "method_name": "register",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Reservations\\reservations-api\\src\\main\\java\\sk\\cyrilgavala\\reservationsApi\\web\\controller\\UserRestController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration request containing username, email, and password."
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration request containing username, email, and password."
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration request containing username, email, and password."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "User registered successfully; returns an access token.",
+          "data_schema": [
+            {
+              "name": "AuthResponse",
+              "schema": {
+                "accessToken": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 409,
+          "description": "Username or email already exists.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid request body (validation failure or malformed Base64 password).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/user/login",
+      "http_method": "POST",
+      "method_name": "login",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Reservations\\reservations-api\\src\\main\\java\\sk\\cyrilgavala\\reservationsApi\\web\\controller\\UserRestController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Login request containing username and password"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Login request containing username and password"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful login, returns an access token.",
+          "data_schema": [
+            {
+              "name": "AuthResponse",
+              "schema": {
+                "accessToken": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The request body is missing or invalid (e.g., blank username or password).",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. Authentication failed due to invalid credentials.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/reservation",
+      "http_method": "POST",
+      "method_name": "createReservation",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Reservations\\reservations-api\\src\\main\\java\\sk\\cyrilgavala\\reservationsApi\\web\\controller\\ReservationRestController.java",
+      "parameters": [
+        {
+          "name": "reservationFor",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "New reservation details to create."
+        },
+        {
+          "name": "reservationFrom",
+          "type": "LocalDateTime",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "New reservation details to create.",
+          "format": "yyyy-MM-dd'T'HH:mm:ss"
+        },
+        {
+          "name": "reservationTo",
+          "type": "LocalDateTime",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "New reservation details to create.",
+          "format": "yyyy-MM-dd'T'HH:mm:ss"
+        },
+        {
+          "name": "createdAt",
+          "type": "LocalDateTime",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "New reservation details to create.",
+          "format": "yyyy-MM-dd'T'HH:mm:ss"
+        },
+        {
+          "name": "reservationFor",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Username or identifier the reservation is for.",
+          "_depth": 0
+        },
+        {
+          "name": "reservationFrom",
+          "type": "LocalDateTime",
+          "require": "false",
+          "position": "body",
+          "description": "Start date and time of the reservation.",
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "_depth": 0
+        },
+        {
+          "name": "reservationTo",
+          "type": "LocalDateTime",
+          "require": "false",
+          "position": "body",
+          "description": "End date and time of the reservation.",
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "_depth": 0
+        },
+        {
+          "name": "createdAt",
+          "type": "LocalDateTime",
+          "require": "false",
+          "position": "body",
+          "description": "Creation date and time of the reservation.",
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Reservation created successfully",
+          "data_schema": [
+            {
+              "name": "ReservationResponse",
+              "schema": {
+                "uuid": "string",
+                "reservationFor": "string",
+                "reservationFrom": "date",
+                "reservationTo": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation error on request body or path variable",
+          "data_schema": null
+        },
+        {
+          "status_code": 422,
+          "description": "Unprocessable Entity - reservation business exception",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Conflict - duplicate user exception",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - unexpected server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 3168,
+  "tokens": {
+    "prompt_tokens": 5474,
+    "completion_tokens": 2534,
+    "total_tokens": 8008,
+    "calls": 6,
+    "elapsed_s": 29.467,
+    "prompt_cost_usd": 0.000695,
+    "completion_cost_usd": 0.001742,
+    "total_cost_usd": 0.002435,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 1835,
+        "completion_tokens": 435,
+        "total_tokens": 2270,
+        "calls": 2,
+        "elapsed_s": 3.167229,
+        "prompt_cost_usd": 3.7e-05,
+        "completion_cost_usd": 0.000261,
+        "total_cost_usd": 0.000298
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 1685,
+        "completion_tokens": 1668,
+        "total_tokens": 3353,
+        "calls": 2,
+        "elapsed_s": 19.602,
+        "prompt_cost_usd": 0.000169,
+        "completion_cost_usd": 0.000834,
+        "total_cost_usd": 0.001002
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 1954,
+        "completion_tokens": 431,
+        "total_tokens": 2385,
+        "calls": 2,
+        "elapsed_s": 6.698,
+        "prompt_cost_usd": 0.000489,
+        "completion_cost_usd": 0.000647,
+        "total_cost_usd": 0.001135
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 4,
+    "step2_ms": 13,
+    "step3_ms": 3852,
+    "step4_ms": 3667,
+    "step5_ms": 3168,
+    "total_ms": 10706
+  }
+}

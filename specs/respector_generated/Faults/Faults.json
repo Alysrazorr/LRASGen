@@ -1,0 +1,179 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "info": {
+    "title": "REST API",
+    "version": "",
+    "description": "REST API"
+  },
+  "paths": {
+    "/k": {
+      "get": {
+        "description": "",
+        "operationId": "em5",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em4",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "b": {
+                    "type": "boolean"
+                  },
+                  "i": {
+                    "type": "integer"
+                  },
+                  "s": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 3
+              }
+            }
+          }
+        }
+      }
+    },
+    "/x": {
+      "get": {
+        "description": "",
+        "operationId": "em0",
+        "parameters": [],
+        "responses": {
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      }
+    },
+    "/y": {
+      "delete": {
+        "description": "",
+        "operationId": "em3",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "operationId": "em1",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "CREATED"
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em2",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "CREATED"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "b": {
+                    "type": "boolean"
+                  },
+                  "i": {
+                    "type": "integer"
+                  },
+                  "s": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 3
+              }
+            }
+          }
+        }
+      }
+    },
+    "/z": {
+      "get": {
+        "description": "",
+        "operationId": "em6",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em7",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "x-endpoint-constraints": {},
+    "x-endpoint-interdependence": {},
+    "x-global-variables-info": {}
+  }
+}

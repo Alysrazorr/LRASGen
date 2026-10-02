@@ -1,0 +1,25 @@
+.annotation-chart-widget(ng-controller='AnnotationChartWidget')
+    h1.title(ng-if='::widget.title') {{ widgetTitle() }}
+
+    .annotation-editor(ng-if='selectedPoint')
+        button.btn.btn-link(type='button', 
+        uib-popover-template='"/widgets/annotationChart/addAnnotation.html"', 
+        popover-title='Annotations',
+        popover-placement='auto bottom', 
+        popover-is-open='annotations.popoverOpen')
+            | {{ annotations.verb }} Annotation
+
+    .widget-body
+
+        .widget-loading(spinjs, ng-if='isLoading()')
+        .widget-error(ng-if='widgetContext.dataSourceError == true && !isLoading()')
+        .widget-nodata(ng-if='widgetContext.nodata && !isLoading()')
+            .fa.fa-exclamation-triangle
+            span  {{ widgetContext.nodata }}
+
+        .the-chart(google-chart='google-chart', chart='chartObject', 
+            agc-on-error='handleError(message)',
+            agc-on-select='selectItem(selectedItem)',
+            agc-on-range-change='rangeChange(start, end)',
+            ng-if='!noDataOrError() && chartObject.data')
+

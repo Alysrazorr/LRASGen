@@ -1,0 +1,816 @@
+{
+  "task_id": "tiltaksgjennomforing",
+  "api_name": "tiltaksgjennomforing",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/innlogget-bruker",
+      "http_method": "GET",
+      "method_name": "hentInnloggetBruker",
+      "summary": "Hent innlogget bruker",
+      "description": "Returns the currently logged-in user based on the 'innlogget-part' cookie. Throws IkkeValgtPartException if the cookie is not present.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\autorisasjon\\InnloggetBrukerController.java"
+    },
+    {
+      "endpoint_path": "/be-om-altinn-rettighet-urler",
+      "http_method": "GET",
+      "method_name": "beOmRettighetUrler",
+      "summary": "Get Altinn authorization request URLs for a given organization number",
+      "description": "Returns a map of Tiltakstype to Altinn authorization request URL for the specified organization number (orgNr).",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\autorisasjon\\altinntilgangsstyring\\BeOmAltinnRettighetUrlerController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/reberegn",
+      "http_method": "POST",
+      "method_name": "reberegnLønnstilskudd",
+      "summary": "Reberegn lønnstilskudd for a list of avtale IDs",
+      "description": "Reberegns lønnstilskudd for the given avtale IDs. Requires developer access.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/reberegn-mangler-dato-for-redusert-prosent/{migreringsDato}",
+      "http_method": "POST",
+      "method_name": "reberegnVarigLønnstilskuddSomIkkeHarRedusertDato",
+      "summary": "Reberegn varig lønnstilskudd missing reduced percentage date",
+      "description": "Fixes missing reduced percentage and reduced amount for varig lønnstilskudd avtaler. Requires developer access.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/reberegn-mangler-dato-for-redusert-prosent-dry-run/{migreringsDato}",
+      "http_method": "POST",
+      "method_name": "reberegnVarigLønnstilskuddSomIkkeHarRedusertDatoDryRun",
+      "summary": "Dry run for reberegn varig lønnstilskudd missing reduced percentage date",
+      "description": "Dry run version of the reberegn job for missing reduced percentage and reduced amount. Requires developer access.",
+      "line_number": 57,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/annuller-tilskuddsperiode/{tilskuddsperiodeId}",
+      "http_method": "POST",
+      "method_name": "annullerTilskuddsperiode",
+      "summary": "Annuller a tilskuddsperiode",
+      "description": "Cancels a tilskuddsperiode by ID. Requires developer access.",
+      "line_number": 79,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/annuller-og-resend-tilskuddsperiode/{tilskuddsperiodeId}",
+      "http_method": "POST",
+      "method_name": "annullerOgResendTilskuddsperiode",
+      "summary": "Annuller and resend a tilskuddsperiode as approved",
+      "description": "Cancels a tilskuddsperiode and resends it as approved. Requires developer access.",
+      "line_number": 91,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/annuller-og-generer-tilskuddsperiode/{tilskuddsperiodeId}",
+      "http_method": "POST",
+      "method_name": "annullerOgGenererTilskuddsperiode",
+      "summary": "Annuller and generate a new unhandled tilskuddsperiode",
+      "description": "Cancels a tilskuddsperiode and generates a new unhandled one. Requires developer access.",
+      "line_number": 103,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/annuller-og-generer-behandlet-i-arena-perioder/{avtaleId}/{dato}",
+      "http_method": "POST",
+      "method_name": "annullerOgGenererBehandletIArenaPerioder",
+      "summary": "Annuller and generate periods treated in Arena",
+      "description": "Cancels tilskuddsperioder with end date before the given date and creates new ones with status BEHANDLET_I_ARENA. Requires developer access.",
+      "line_number": 115,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/lag-tilskuddsperioder-for-en-avtale/{avtaleId}/{migreringsDato}",
+      "http_method": "POST",
+      "method_name": "lagTilskuddsperioderPåEnAvtale",
+      "summary": "Create tilskuddsperioder for a single avtale",
+      "description": "Creates tilskuddsperioder for a single avtale from the given migration date. Requires developer access.",
+      "line_number": 131,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/reberegn-ubehandlede-tilskuddsperioder/{avtaleId}",
+      "http_method": "POST",
+      "method_name": "reberegnUbehandledeTilskuddsperioder",
+      "summary": "Reberegn unhandled tilskuddsperioder for an avtale",
+      "description": "Reberegns unhandled tilskuddsperioder for the given avtale ID. Requires developer access.",
+      "line_number": 142,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/finn-avtaler-med-tilskuddsperioder-feil-datoer",
+      "http_method": "POST",
+      "method_name": "finnTilskuddsperioderMedFeilDatoer",
+      "summary": "Find avtaler with tilskuddsperioder having incorrect dates",
+      "description": "Finds avtaler with tilskuddsperioder where start date is before a period with lower sequence number. Requires developer access.",
+      "line_number": 152,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}",
+      "http_method": "GET",
+      "method_name": "hent",
+      "summary": "Hent detaljer for avtale om arbeidsmarkedstiltak",
+      "description": "Hent detaljer for avtale om arbeidsmarkedstiltak",
+      "line_number": 32,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/vis-salesforce-dialog",
+      "http_method": "GET",
+      "method_name": "visSalesforceDialog",
+      "summary": "",
+      "description": "",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/avtaleNr/{avtaleNr}",
+      "http_method": "GET",
+      "method_name": "hentFraAvtaleNr",
+      "summary": "Hent detaljer for avtale om arbeidsmarkedstiltak",
+      "description": "Hent detaljer for avtale om arbeidsmarkedstiltak",
+      "line_number": 49,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/versjoner",
+      "http_method": "GET",
+      "method_name": "hentVersjoner",
+      "summary": "",
+      "description": "",
+      "line_number": 55,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler",
+      "http_method": "GET",
+      "method_name": "hentAlleAvtalerInnloggetBrukerHarTilgangTil",
+      "summary": "Hent liste over avtaler om arbeidsmarkedstiltak",
+      "description": "Hent liste over avtaler om arbeidsmarkedstiltak",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/sok",
+      "http_method": "GET",
+      "method_name": "hentAlleAvtalerInnloggetBrukerHarTilgangTilMedGet",
+      "summary": "Hent liste over avtaler om arbeidsmarkedstiltak",
+      "description": "Hent liste over avtaler om arbeidsmarkedstiltak",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/sok",
+      "http_method": "POST",
+      "method_name": "hentAlleAvtalerInnloggetBrukerHarTilgangTilMedPost",
+      "summary": "Hent liste over avtaler om arbeidsmarkedstiltak",
+      "description": "Hent liste over avtaler om arbeidsmarkedstiltak",
+      "line_number": 126,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/beslutter-liste",
+      "http_method": "GET",
+      "method_name": "finnGodkjenteAvtalerMedTilskuddsperiodestatusOgNavEnheterListe",
+      "summary": "Hent liste over avtaler om arbeidsmarkedstiltak",
+      "description": "Hent liste over avtaler om arbeidsmarkedstiltak",
+      "line_number": 166,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/pdf",
+      "http_method": "GET",
+      "method_name": "hentAvtalePdf",
+      "summary": "",
+      "description": "",
+      "line_number": 193,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}",
+      "http_method": "PUT",
+      "method_name": "endreAvtale",
+      "summary": "",
+      "description": "",
+      "line_number": 210,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/dry-run",
+      "http_method": "PUT",
+      "method_name": "endreAvtaleDryRun",
+      "summary": "Test endring av avtale om arbeidsmarkedstiltak",
+      "description": "Test endring av avtale om arbeidsmarkedstiltak",
+      "line_number": 226,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/opphev-godkjenninger",
+      "http_method": "POST",
+      "method_name": "opphevGodkjenninger",
+      "summary": "",
+      "description": "",
+      "line_number": 238,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/godkjenn",
+      "http_method": "POST",
+      "method_name": "godkjenn",
+      "summary": "",
+      "description": "",
+      "line_number": 249,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/mentorGodkjennTaushetserklæring",
+      "http_method": "POST",
+      "method_name": "mentorGodkjennTaushetserklæring",
+      "summary": "",
+      "description": "",
+      "line_number": 261,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/min-side-arbeidsgiver",
+      "http_method": "GET",
+      "method_name": "hentAlleAvtalerForMinSideArbeidsgiver",
+      "summary": "Hent liste over avtaler om arbeidsmarkedstiltak",
+      "description": "Hent liste over avtaler om arbeidsmarkedstiltak",
+      "line_number": 275,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/kontonummer-arbeidsgiver",
+      "http_method": "GET",
+      "method_name": "hentBedriftKontonummer",
+      "summary": "",
+      "description": "",
+      "line_number": 281,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/opprett-som-arbeidsgiver",
+      "http_method": "POST",
+      "method_name": "opprettAvtaleSomArbeidsgiver",
+      "summary": "",
+      "description": "",
+      "line_number": 291,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/deltaker-allerede-paa-tiltak",
+      "http_method": "GET",
+      "method_name": "sjekkOmDeltakerAlleredeErRegistrertPaaTiltak",
+      "summary": "Hent liste over registrerte avtaler for bruker",
+      "description": "Hent liste over registrerte avtaler for bruker",
+      "line_number": 303,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler",
+      "http_method": "POST",
+      "method_name": "opprettAvtaleSomVeileder",
+      "summary": "",
+      "description": "",
+      "line_number": 325,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/opprett-mentor-avtale",
+      "http_method": "POST",
+      "method_name": "opprettMentorAvtale",
+      "summary": "",
+      "description": "",
+      "line_number": 344,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/forkort",
+      "http_method": "POST",
+      "method_name": "forkortAvtale",
+      "summary": "",
+      "description": "",
+      "line_number": 366,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/forkort-dry-run",
+      "http_method": "POST",
+      "method_name": "forkortAvtaleDryRun",
+      "summary": "Test forkortelse av avtale om arbeidsmarkedstiltak",
+      "description": "Test forkortelse av avtale om arbeidsmarkedstiltak",
+      "line_number": 380,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/forleng",
+      "http_method": "POST",
+      "method_name": "forlengAvtale",
+      "summary": "",
+      "description": "",
+      "line_number": 393,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/forleng-dry-run",
+      "http_method": "POST",
+      "method_name": "forlengAvtaleDryRun",
+      "summary": "Test forlengelse av avtale om arbeidsmarkedstiltak",
+      "description": "Test forlengelse av avtale om arbeidsmarkedstiltak",
+      "line_number": 406,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/endre-maal",
+      "http_method": "POST",
+      "method_name": "endreMål",
+      "summary": "",
+      "description": "",
+      "line_number": 418,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/endre-inkluderingstilskudd",
+      "http_method": "POST",
+      "method_name": "endreInkluderingstilskudd",
+      "summary": "",
+      "description": "",
+      "line_number": 429,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/endre-stillingbeskrivelse",
+      "http_method": "POST",
+      "method_name": "endreStillingbeskrivelse",
+      "summary": "",
+      "description": "",
+      "line_number": 439,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/endre-oppfolging-og-tilrettelegging",
+      "http_method": "POST",
+      "method_name": "endreOppfølgingOgTilrettelegging",
+      "summary": "",
+      "description": "",
+      "line_number": 451,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/endre-om-mentor",
+      "http_method": "POST",
+      "method_name": "endreOmMentor",
+      "summary": "",
+      "description": "",
+      "line_number": 463,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/endre-kontaktinfo",
+      "http_method": "POST",
+      "method_name": "endreKontaktinfo",
+      "summary": "",
+      "description": "",
+      "line_number": 475,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/endre-tilskuddsberegning",
+      "http_method": "POST",
+      "method_name": "endreTilskuddsberegning",
+      "summary": "",
+      "description": "",
+      "line_number": 486,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/endre-tilskuddsberegning-dry-run",
+      "http_method": "POST",
+      "method_name": "endreTilskuddsberegningDryRun",
+      "summary": "Test endring av tilskuddsberegning på avtale om arbeidsmarkedstiltak",
+      "description": "Test endring av tilskuddsberegning på avtale om arbeidsmarkedstiltak",
+      "line_number": 498,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/send-tilbake-til-beslutter",
+      "http_method": "POST",
+      "method_name": "sendTilbakeTilBeslutter",
+      "summary": "",
+      "description": "",
+      "line_number": 510,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/godkjenn-paa-vegne-av",
+      "http_method": "POST",
+      "method_name": "godkjennPaVegneAv",
+      "summary": "",
+      "description": "",
+      "line_number": 519,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/godkjenn-paa-vegne-av-deltaker",
+      "http_method": "POST",
+      "method_name": "godkjennPaVegneAv",
+      "summary": "",
+      "description": "",
+      "line_number": 519,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/godkjenn-paa-vegne-av-arbeidsgiver",
+      "http_method": "POST",
+      "method_name": "godkjennPaVegneAvArbeidsgiver",
+      "summary": "",
+      "description": "",
+      "line_number": 530,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/godkjenn-paa-vegne-av-deltaker-og-arbeidsgiver",
+      "http_method": "POST",
+      "method_name": "godkjennPaVegneAvDeltakerOgArbeidsgiver",
+      "summary": "",
+      "description": "",
+      "line_number": 541,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/annuller",
+      "http_method": "POST",
+      "method_name": "annuller",
+      "summary": "",
+      "description": "",
+      "line_number": 552,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/slettemerk",
+      "http_method": "POST",
+      "method_name": "slettemerk",
+      "summary": "",
+      "description": "",
+      "line_number": 564,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/del-med-avtalepart",
+      "http_method": "POST",
+      "method_name": "delAvtaleMedAvtalepart",
+      "summary": "",
+      "description": "",
+      "line_number": 573,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/overta",
+      "http_method": "PUT",
+      "method_name": "settNyVeilederPåAvtale",
+      "summary": "",
+      "description": "",
+      "line_number": 582,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/juster-arena-migreringsdato",
+      "http_method": "POST",
+      "method_name": "justerArenaMigreringsdato",
+      "summary": "",
+      "description": "",
+      "line_number": 591,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/juster-arena-migreringsdato/dry-run",
+      "http_method": "POST",
+      "method_name": "justerArenaMigreringsdatoDryRun",
+      "summary": "Justering av migreringsdato i avtale om arbeidsmarkedstiltak",
+      "description": "Justering av migreringsdato i avtale om arbeidsmarkedstiltak",
+      "line_number": 615,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/godkjenn-tilskuddsperiode",
+      "http_method": "POST",
+      "method_name": "godkjennTilskuddsperiode",
+      "summary": "",
+      "description": "",
+      "line_number": 625,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/set-om-avtalen-kan-etterregistreres",
+      "http_method": "POST",
+      "method_name": "setOmAvtalenKanEtterregistreres",
+      "summary": "Oppdater avtale om arbeidsmarkedstiltak",
+      "description": "Oppdater avtale om arbeidsmarkedstiltak",
+      "line_number": 636,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/endre-kostnadssted",
+      "http_method": "POST",
+      "method_name": "endreKostnadssted",
+      "summary": "Oppdater avtale om arbeidsmarkedstiltak",
+      "description": "Oppdater avtale om arbeidsmarkedstiltak",
+      "line_number": 646,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/avslag-tilskuddsperiode",
+      "http_method": "POST",
+      "method_name": "avslåTilskuddsperiode",
+      "summary": "",
+      "description": "",
+      "line_number": 659,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/avtaler/{avtaleId}/oppdaterOppfølgingsEnhet",
+      "http_method": "POST",
+      "method_name": "oppdaterOppfølgingsEnhet",
+      "summary": "Oppdater avtale om arbeidsmarkedstiltak",
+      "description": "Oppdater avtale om arbeidsmarkedstiltak",
+      "line_number": 668,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\avtale\\AvtaleController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/avtale-hendelse/send-melding-en-avtale/{avtaleId}",
+      "http_method": "POST",
+      "method_name": "sendMeldingForEnAvtale",
+      "summary": "Send hendelsemelding for en avtale",
+      "description": "Sender en hendelsemelding for en spesifikk avtale basert på avtaleId.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\datadeling\\AvtaleHendelseController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/avtale-hendelse/dry-send-melding-alle-avtaler",
+      "http_method": "POST",
+      "method_name": "drySendMeldingAlleAvtaler",
+      "summary": "DRY - Send alle avtaler som hendelsemeldinger på topic",
+      "description": "Utfører en dry-run av sending av hendelsemeldinger for alle avtaler.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\datadeling\\AvtaleHendelseController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/avtale-hendelse/send-melding-alle-avtaler",
+      "http_method": "POST",
+      "method_name": "sendMeldingAlleAvtaler",
+      "summary": "Send alle avtaler som hendelsemeldinger på topic",
+      "description": "Sender hendelsemeldinger for alle avtaler.",
+      "line_number": 39,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\datadeling\\AvtaleHendelseController.java"
+    },
+    {
+      "endpoint_path": "/avtale-hendelse/fnr",
+      "http_method": "POST",
+      "method_name": "hentSisteHendelseForFnr",
+      "summary": "Hent siste hendelse for fødselsnummer",
+      "description": "Returnerer en liste med JSON-meldinger for siste hendelse for alle avtaler tilknyttet et gitt fødselsnummer. Krever AD-rollen 'access_as_application'.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\datadeling\\InternalAvtaleHendelseController.java"
+    },
+    {
+      "endpoint_path": "/avtale-hendelse/{avtaleId}",
+      "http_method": "GET",
+      "method_name": "hentSisteHendelse",
+      "summary": "Hent siste hendelse for avtale",
+      "description": "Returnerer JSON-meldingen for siste hendelse for en gitt avtaleId. Kaster RessursFinnesIkkeException (404) hvis ingen melding finnes.",
+      "line_number": 40,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\datadeling\\InternalAvtaleHendelseController.java"
+    },
+    {
+      "endpoint_path": "/avtale-hendelse/skjema",
+      "http_method": "GET",
+      "method_name": "hentJsonSkjema",
+      "summary": "Hent JSON-skjema",
+      "description": "Returnerer et JSON-skjema (Draft 2020-12) for AvtaleMelding. Endepunktet er ubeskyttet (@Unprotected).",
+      "line_number": 48,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\datadeling\\InternalAvtaleHendelseController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/dvh-melding/patch",
+      "http_method": "POST",
+      "method_name": "patcheAvtale",
+      "summary": "Patcher avtaler til dvh",
+      "description": "Patcher avtaler til dvh for de angitte avtaleIder. Sjekker tilgang via AD-gruppe, oppretter en DVH-melding for hver avtale og lagrer denne.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\datavarehus\\InternalDvhMeldingProdusentController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/dvh-melding/patchalleavtaler",
+      "http_method": "POST",
+      "method_name": "patchAlleAvtaler",
+      "summary": "Patcher alle avtaler til dvh",
+      "description": "Patcher alle avtaler til dvh ved å kalle dvhAvtalePatchService.lagDvhPatchMeldingForAlleAvtaler(). Sjekker tilgang via AD-gruppe.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\datavarehus\\InternalDvhMeldingProdusentController.java"
+    },
+    {
+      "endpoint_path": "/feature",
+      "http_method": "GET",
+      "method_name": "feature",
+      "summary": "Get feature toggles",
+      "description": "Returns a map of feature toggle names to their enabled status for the given list of features.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\featuretoggles\\FeatureToggleController.java"
+    },
+    {
+      "endpoint_path": "/feature/variant",
+      "http_method": "GET",
+      "method_name": "variant",
+      "summary": "Get feature variants",
+      "description": "Returns a map of feature toggle names to their variant for the given list of features.",
+      "line_number": 21,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\featuretoggles\\FeatureToggleController.java"
+    },
+    {
+      "endpoint_path": "/internal/healthcheck",
+      "http_method": "GET",
+      "method_name": "healthcheck",
+      "summary": "Health check endpoint",
+      "description": "Returns 'ok' by executing a query against the database via JdbcTemplate.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\infrastruktur\\HealthCheckController.java"
+    },
+    {
+      "endpoint_path": "/internal/avtaler",
+      "http_method": "GET",
+      "method_name": "hentIkkeJournalfoerteAvtaler",
+      "summary": "Hent ikke-journalførte avtaler",
+      "description": "Henter alle avtaleversjoner som ikke er journalført. Validerer systembruker og mapper avtaleversjoner til AvtaleTilJournalfoering-objekter med tilskuddsperioder.",
+      "line_number": 19,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\journalfoering\\InternalAvtaleController.java"
+    },
+    {
+      "endpoint_path": "/internal/avtaler",
+      "http_method": "PUT",
+      "method_name": "journalfoerAvtaler",
+      "summary": "Journalfør avtaler",
+      "description": "Oppdaterer journalpostId for avtaleversjoner basert på en map av avtaleversjon-ID til journalpost-ID. Validerer systembruker og lagrer endringene.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\journalfoering\\InternalAvtaleController.java"
+    },
+    {
+      "endpoint_path": "/kodeverk",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Hent kodeverk",
+      "description": "Returnerer en map med tiltakstyper og statuser.",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\kodeverk\\KodeverkController.java"
+    },
+    {
+      "endpoint_path": "/kodeverk/statuser",
+      "http_method": "GET",
+      "method_name": "statuser",
+      "summary": "Hent statuser",
+      "description": "Returnerer en liste over alle statuser med navn og beskrivelse.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\kodeverk\\KodeverkController.java"
+    },
+    {
+      "endpoint_path": "/kodeverk/tiltakstyper",
+      "http_method": "GET",
+      "method_name": "tiltakstyper",
+      "summary": "Hent tiltakstyper",
+      "description": "Returnerer en liste over alle tiltakstyper med navn, beskrivelse, behandlingstema og eventuell tiltakskodeArena.",
+      "line_number": 28,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\kodeverk\\KodeverkController.java"
+    },
+    {
+      "endpoint_path": "/organisasjoner",
+      "http_method": "GET",
+      "method_name": "hentVirksomhet",
+      "summary": "Hent virksomhet",
+      "description": "Henter virksomhetsinformasjon basert på bedriftsnummer.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\orgenhet\\OrganisasjonController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/tilskuddsperioder/send-tilskuddsperiode-godkjent-melding/{tilskuddsperiodeId}",
+      "http_method": "POST",
+      "method_name": "sendTilskuddsperiodeGodkjentMelding",
+      "summary": "Send tilskuddsperiode godkjent melding",
+      "description": "Generer en kafkamelding og send den. Oppdaterer ikke statuser eller lignende på perioden",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\tilskuddsperiode\\TilskuddsperiodeAdminController.java"
+    },
+    {
+      "endpoint_path": "/utvikler-admin/tilskuddsperioder/send-tilskuddsperiode-annullert-melding/{tilskuddsperiodeId}",
+      "http_method": "POST",
+      "method_name": "sendTilskuddsperiodeAnnullertMelding",
+      "summary": "Send tilskuddsperiode annullert melding",
+      "description": "Generer en kafkamelding og send den. Oppdaterer ikke statuser eller lignende på perioden",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\tilskuddsperiode\\TilskuddsperiodeAdminController.java"
+    },
+    {
+      "endpoint_path": "/varsler/oversikt",
+      "http_method": "GET",
+      "method_name": "hentVarslerMedBjelleForOversikt",
+      "summary": "Hent varsler med bjelle for oversikt",
+      "description": "Henter alle uleste varsler med bjelle aktivert for innlogget avtalepart.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\varsel\\VarselController.java"
+    },
+    {
+      "endpoint_path": "/varsler/avtale-modal",
+      "http_method": "GET",
+      "method_name": "hentVarslerMedBjelleForAvtale",
+      "summary": "Hent varsler med bjelle for avtale",
+      "description": "Henter uleste varsler med bjelle aktivert for en spesifikk avtale for innlogget avtalepart.",
+      "line_number": 23,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\varsel\\VarselController.java"
+    },
+    {
+      "endpoint_path": "/varsler/avtale-logg",
+      "http_method": "GET",
+      "method_name": "hentAlleVarslerForAvtale",
+      "summary": "Hent alle varsler for avtale",
+      "description": "Henter alle varsler for en spesifikk avtale for innlogget avtalepart, med tilgangskontroll.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\varsel\\VarselController.java"
+    },
+    {
+      "endpoint_path": "/varsler/{varselId}/sett-til-lest",
+      "http_method": "POST",
+      "method_name": "settTilLest",
+      "summary": "Sett varsel til lest",
+      "description": "Markerer et spesifikt varsel som lest for innlogget avtalepart.",
+      "line_number": 40,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\varsel\\VarselController.java"
+    },
+    {
+      "endpoint_path": "/varsler/sett-alle-til-lest",
+      "http_method": "POST",
+      "method_name": "settFlereVarslerTilLest",
+      "summary": "Sett flere varsler til lest",
+      "description": "Markerer flere varsler som lest basert på en liste med varsel-IDer for innlogget avtalepart.",
+      "line_number": 50,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Tiltak\\tiltaksgjennomforing\\src\\main\\java\\no\\nav\\tag\\tiltaksgjennomforing\\varsel\\VarselController.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 36248,
+  "tokens": {
+    "prompt_tokens": 2823335,
+    "completion_tokens": 36988,
+    "total_tokens": 2860323,
+    "calls": 42,
+    "elapsed_s": 347.572,
+    "prompt_cost_usd": 0.35037,
+    "completion_cost_usd": 0.025302,
+    "total_cost_usd": 0.375673,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 966366,
+        "completion_tokens": 7704,
+        "total_tokens": 974070,
+        "calls": 14,
+        "elapsed_s": 36.195581,
+        "prompt_cost_usd": 0.019327,
+        "completion_cost_usd": 0.004622,
+        "total_cost_usd": 0.02395
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 887994,
+        "completion_tokens": 23246,
+        "total_tokens": 911240,
+        "calls": 14,
+        "elapsed_s": 214.079,
+        "prompt_cost_usd": 0.088799,
+        "completion_cost_usd": 0.011623,
+        "total_cost_usd": 0.100422
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 968975,
+        "completion_tokens": 6038,
+        "total_tokens": 975013,
+        "calls": 14,
+        "elapsed_s": 97.297,
+        "prompt_cost_usd": 0.242244,
+        "completion_cost_usd": 0.009057,
+        "total_cost_usd": 0.251301
+      }
+    ]
+  }
+}

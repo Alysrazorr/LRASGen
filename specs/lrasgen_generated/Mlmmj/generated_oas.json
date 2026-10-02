@@ -1,0 +1,534 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "mlmmjadmin-master API",
+    "description": "LRASGen-generated specification for mlmmjadmin-master (webpy).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/{mail}/moderators": {
+      "get": {
+        "operationId": "getModerators",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "mail",
+            "in": "path",
+            "required": true,
+            "description": "Email address of the mailing list account.",
+            "schema": {
+              "type": "string",
+              "description": "Email address of the mailing list account."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved moderators. Returns a JSON object with '_success': true and '_data' containing the list of moderators.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ModeratorsResponse": {
+                      "type": "string",
+                      "description": "{'_success': 'boolean', '_data': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateModerators",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "mail",
+            "in": "path",
+            "required": true,
+            "description": "Mail address of the mailing list account.",
+            "schema": {
+              "type": "string",
+              "description": "Mail address of the mailing list account."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. Returns a JSON object with '_success' set to true. When the request includes a 'moderators' parameter, the moderators are reset to the given list; otherwise 'add_moderators' and/or 'remove_moderators' are applied. The response body is produced by api_render(True), i.e. {\"_success\": true}.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'_success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/{mail}/owners": {
+      "put": {
+        "operationId": "updateOwners",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "mail",
+            "in": "path",
+            "required": true,
+            "description": "Mailing list email address from the URL path.",
+            "schema": {
+              "type": "string",
+              "description": "Mailing list email address from the URL path."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owners updated successfully. Returns a JSON object with '_success': true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'_success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getOwners",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "mail",
+            "in": "path",
+            "required": true,
+            "description": "Email address of the mailing list account.",
+            "schema": {
+              "type": "string",
+              "description": "Email address of the mailing list account."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of owners for the mailing list. The response is a JSON object with '_success' set to true and '_data' containing the list of owner email addresses.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "OwnersResponse": {
+                      "type": "string",
+                      "description": "{'_success': 'boolean', '_data': 'array of strings'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/{}/subscribers": {
+      "get": {
+        "operationId": "getSubscribers",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved subscribers. If `email_only` is present in the query, returns a list of subscriber email addresses. Otherwise returns a dict mapping subscription versions ('normal', 'digest', 'nomail') to lists of subscriber email addresses.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SubscribersResponse": {
+                      "type": "string",
+                      "description": "{'_success': 'boolean', '_data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createSubscribers",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "mail",
+            "in": "path",
+            "required": false,
+            "description": "email address of the mailing list account",
+            "schema": {
+              "type": "string",
+              "description": "email address of the mailing list account"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. Returns a JSON object with `_success` set to true. When adding subscribers, the response is `{\"_success\": true}`. When removing subscribers, the response is also `{\"_success\": true}`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SuccessResponse": {
+                      "type": "string",
+                      "description": "{'_success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/{mail}": {
+      "get": {
+        "operationId": "getApi",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "mail",
+            "in": "path",
+            "required": true,
+            "description": "Email address of the mailing list account.",
+            "schema": {
+              "type": "string",
+              "description": "Email address of the mailing list account."
+            }
+          },
+          {
+            "name": "params",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated list of profile parameter names to return. If omitted, all profile parameters are returned.",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of profile parameter names to return. If omitted, all profile parameters are returned."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved mailing list profile parameters. Returns a JSON object with '_success': true and '_data' containing a dict of requested parameter names and their values.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProfileResponse": {
+                      "type": "string",
+                      "description": "{'_success': 'boolean', '_data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteApi",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "mail",
+            "in": "path",
+            "required": true,
+            "description": "Email address of the mailing list account to delete.",
+            "schema": {
+              "type": "string",
+              "description": "Email address of the mailing list account to delete."
+            }
+          },
+          {
+            "name": "archive",
+            "in": "query",
+            "required": false,
+            "description": "If set to 'yes' (or omitted), only the account in the backend is removed and data on file system is kept (archived). If set to 'no', account in backend AND all data on file system will be removed.",
+            "schema": {
+              "type": "string",
+              "description": "If set to 'yes' (or omitted), only the account in the backend is removed and data on file system is kept (archived). If set to 'no', account in backend AND all data on file system will be removed.",
+              "enum": [
+                "yes",
+                "no"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The mailing list account is removed from the backend and either archived or deleted from the file system. Returns a JSON object with '_success': true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'_success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateApi",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "mail",
+            "in": "path",
+            "required": true,
+            "description": "Email address of the mailing list account to update.",
+            "schema": {
+              "type": "string",
+              "description": "Email address of the mailing list account to update."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. Returns JSON with '_success': true. If the backend update fails, returns '_success': false with '_msg' containing the error. If the mlmmj update fails, returns '_success': false with '_msg' containing the error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'_success': 'boolean', '_msg': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createApi",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "mail",
+            "in": "path",
+            "required": true,
+            "description": "Email address of the mailing list account to create.",
+            "schema": {
+              "type": "string",
+              "description": "Email address of the mailing list account to create."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mailing list account created successfully. Returns the result of the mlmmj account creation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'_success': 'boolean', '_data': 'object', '_msg': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/{}/has_subscriber/{}": {
+      "get": {
+        "operationId": "getHasSubscriber",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "mail",
+            "in": "path",
+            "required": false,
+            "description": "Email address of the mailing list account",
+            "schema": {
+              "type": "string",
+              "description": "Email address of the mailing list account"
+            }
+          },
+          {
+            "name": "subscriber",
+            "in": "path",
+            "required": false,
+            "description": "Email address of the subscriber to check",
+            "schema": {
+              "type": "string",
+              "description": "Email address of the subscriber to check"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully checked whether the subscriber is a member of the mailing list. Returns a JSON object with '_success' set to true and '_data' containing the subscription version if the subscriber is found, or '_success' set to false if not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "HasSubscriberResponse": {
+                      "type": "string",
+                      "description": "{'_success': 'boolean', '_data': 'string', '_msg': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/subscriber/{}/subscribe": {
+      "post": {
+        "operationId": "createSubscribe",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "subscriber",
+            "in": "path",
+            "required": false,
+            "description": "Email address of the subscriber",
+            "schema": {
+              "type": "string",
+              "description": "Email address of the subscriber"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully subscribed the subscriber to the specified mailing lists. Returns a JSON object with '_success' set to true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'_success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/subscriber/{}/subscribed": {
+      "get": {
+        "operationId": "getSubscribed",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "subscriber",
+            "in": "path",
+            "required": false,
+            "description": "subscriber's email address",
+            "schema": {
+              "type": "string",
+              "description": "subscriber's email address"
+            }
+          },
+          {
+            "name": "email_only",
+            "in": "query",
+            "required": false,
+            "description": "if set to `yes`, return list of email addresses of subscribed lists",
+            "schema": {
+              "type": "string",
+              "description": "if set to `yes`, return list of email addresses of subscribed lists"
+            }
+          },
+          {
+            "name": "query_all_lists",
+            "in": "query",
+            "required": false,
+            "description": "If set to 'yes', will check all available mailing lists on server. If 'no', check only lists under same domain.",
+            "schema": {
+              "type": "string",
+              "description": "If set to 'yes', will check all available mailing lists on server. If 'no', check only lists under same domain."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the mailing lists that the given subscriber is subscribed to. The response body is a JSON object with '_success' set to true and '_data' containing either a list of mailing list email addresses (when 'email_only=yes') or a list of objects with 'subscription' and 'mail' fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SubscribedListsResponse": {
+                      "type": "string",
+                      "description": "{'_success': 'boolean', '_data': 'array'}"
+                    },
+                    "SubscribedListEmailOnly": {
+                      "type": "string",
+                      "description": "{'_success': 'boolean', '_data': 'array of strings (mailing list email addresses)'}"
+                    },
+                    "SubscribedListDetailed": {
+                      "type": "string",
+                      "description": "{'_success': 'boolean', '_data': \"array of objects, each with 'subscription' (string) and 'mail' (string)\"}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

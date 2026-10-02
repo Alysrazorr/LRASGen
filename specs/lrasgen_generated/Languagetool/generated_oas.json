@@ -1,0 +1,909 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "languagetool API",
+    "description": "LRASGen-generated specification for languagetool (jdk).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/v2/stop": {
+      "get": {
+        "operationId": "getStop",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Server stopped successfully. The handler calls httpServer.stop() and returns without sending a response body."
+          }
+        }
+      }
+    },
+    "/v2/maxtextlength": {
+      "get": {
+        "operationId": "getMaxtextlength",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the maximum text length allowed by the server as a plain text integer.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "MaxTextLength": {
+                      "type": "string",
+                      "description": "{'maxTextLength': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/languages": {
+      "get": {
+        "operationId": "getLanguages",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a JSON array of supported languages, each with name, code, and longCode.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "LanguageList": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'code': 'string', 'longCode': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/healthcheck": {
+      "get": {
+        "operationId": "getHealthcheck",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Healthcheck succeeded, returns plain text 'OK'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "HealthcheckResponse": {
+                      "type": "string",
+                      "description": "{'response': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Healthcheck failed because the work queue is full",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ErrorResponse": {
+                      "type": "string",
+                      "description": "{'error': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/info": {
+      "get": {
+        "operationId": "getInfo",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns software information as JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SoftwareInfo": {
+                      "type": "string",
+                      "description": "{'software': {'name': 'string', 'version': 'string', 'buildDate': 'string', 'commit': 'string', 'premium': 'boolean'}}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/configinfo": {
+      "get": {
+        "operationId": "getConfiginfo",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "language",
+            "in": "query",
+            "required": false,
+            "description": "Language code for which configuration information is requested, e.g. 'en-US' or 'fr'.",
+            "schema": {
+              "type": "string",
+              "description": "Language code for which configuration information is requested, e.g. 'en-US' or 'fr'."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing configuration information for the specified language, including software details, parameter limits, and rules.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ConfigurationInfo": {
+                      "type": "string",
+                      "description": "{'software': {'name': 'string', 'version': 'string', 'buildDate': 'string', 'premium': 'boolean'}, 'parameter': {'maxTextLength': 'integer'}, 'rules': [{'ruleId': 'string', 'description': 'string', 'isDictionaryBasedSpellingRule': 'string', 'isDefaultOff': 'string', 'isOfficeDefaultOff': 'string', 'isOfficeDefaultOn': 'string', 'hasConfigurableValue': 'string', 'configureText': 'string', 'maxConfigurableValue': 'string', 'minConfigurableValue': 'string', 'defaultValue': 'string', 'categoryId': 'string', 'categoryName': 'string', 'locQualityIssueType': 'string', 'isTextLevelRule': 'string', 'minToCheckParagraph': 'string'}]}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The 'language' parameter is missing or invalid."
+          },
+          "404": {
+            "description": "Not Found: The requested path is not supported."
+          },
+          "500": {
+            "description": "Internal Server Error: An unexpected error occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/v2/words/delete": {
+      "post": {
+        "operationId": "createDelete",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "word",
+            "in": "query",
+            "required": false,
+            "description": "The word to delete from the user's dictionary. Must not be empty or contain whitespace.",
+            "schema": {
+              "type": "string",
+              "description": "The word to delete from the user's dictionary. Must not be empty or contain whitespace."
+            }
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "required": false,
+            "description": "Username for authentication; required to obtain a premium user id.",
+            "schema": {
+              "type": "string",
+              "description": "Username for authentication; required to obtain a premium user id."
+            }
+          },
+          {
+            "name": "apiKey",
+            "in": "query",
+            "required": false,
+            "description": "API key for authentication; required to obtain a premium user id.",
+            "schema": {
+              "type": "string",
+              "description": "API key for authentication; required to obtain a premium user id."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response indicating whether the word was deleted. Returns a JSON object with a boolean field 'deleted'.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "WordDeleteResponse": {
+                      "type": "string",
+                      "description": "{'deleted': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the request method is not POST, when required parameters are missing or invalid, or when the word is invalid (empty, whitespace-only, or contains spaces)."
+          },
+          "403": {
+            "description": "Forbidden. Returned when authentication fails (e.g., invalid username/apiKey combination) or when the request is denied by the request limiter."
+          },
+          "404": {
+            "description": "Not found. Returned when the requested path is not supported."
+          },
+          "500": {
+            "description": "Internal server error. Returned when an unexpected error occurs during processing."
+          }
+        }
+      }
+    },
+    "/v2/words": {
+      "get": {
+        "operationId": "getWords",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Offset for pagination of the user's word list",
+            "schema": {
+              "type": "integer",
+              "description": "Offset for pagination of the user's word list"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of words to return",
+            "schema": {
+              "type": "integer",
+              "description": "Maximum number of words to return"
+            }
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "required": false,
+            "description": "Username for authentication; required because the endpoint needs a premium user id",
+            "schema": {
+              "type": "string",
+              "description": "Username for authentication; required because the endpoint needs a premium user id"
+            }
+          },
+          {
+            "name": "apiKey",
+            "in": "query",
+            "required": false,
+            "description": "API key for authentication; required because the endpoint needs a premium user id",
+            "schema": {
+              "type": "string",
+              "description": "API key for authentication; required because the endpoint needs a premium user id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object containing a list of the user's dictionary words.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "WordsResponse": {
+                      "type": "string",
+                      "description": "{'words': 'array of string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when the request method is not GET, or when required parameters are missing or invalid."
+          },
+          "403": {
+            "description": "Forbidden. Returned when access is denied due to IP restrictions, blocked referrers, or request limits."
+          },
+          "404": {
+            "description": "Not Found. Returned when the requested path is not supported."
+          },
+          "500": {
+            "description": "Internal Server Error. Returned when an unexpected error occurs during request processing."
+          }
+        }
+      }
+    },
+    "/v2/words/add": {
+      "post": {
+        "operationId": "createAdd",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "word",
+            "in": "query",
+            "required": false,
+            "description": "The word to add to the user's ignored words list.",
+            "schema": {
+              "type": "string",
+              "description": "The word to add to the user's ignored words list."
+            }
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "required": false,
+            "description": "Username for authentication; required to identify the premium user.",
+            "schema": {
+              "type": "string",
+              "description": "Username for authentication; required to identify the premium user."
+            }
+          },
+          {
+            "name": "apiKey",
+            "in": "query",
+            "required": false,
+            "description": "API key for authentication; required to identify the premium user.",
+            "schema": {
+              "type": "string",
+              "description": "API key for authentication; required to identify the premium user."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Word added successfully. Returns a JSON object with a boolean field 'added' indicating whether the word was added.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "WordAddResponse": {
+                      "type": "string",
+                      "description": "{'added': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Possible causes: missing or invalid parameters (e.g., missing 'word', invalid word containing spaces, missing user id, or invalid method). The exception message is returned in the response body."
+          },
+          "403": {
+            "description": "Forbidden. Authentication failed (e.g., invalid username or API key). The exception message is returned in the response body."
+          },
+          "404": {
+            "description": "Not found. The requested path is not supported. The exception message is returned in the response body."
+          },
+          "500": {
+            "description": "Internal server error. An unexpected error occurred while processing the request. The exception message is returned in the response body."
+          }
+        }
+      }
+    },
+    "/v2/swagger": {
+      "get": {
+        "operationId": "getSwagger",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the swagger.json content as JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Swagger": {
+                      "type": "string",
+                      "description": "{'swagger': 'string', 'info': 'object', 'host': 'string', 'basePath': 'string', 'tags': 'array', 'schemes': 'array', 'paths': 'object', 'definitions': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/log": {
+      "get": {
+        "operationId": "getLog",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "message",
+            "in": "query",
+            "required": false,
+            "description": "Log message from the client (truncated to 250 characters if longer)",
+            "schema": {
+              "type": "string",
+              "description": "Log message from the client (truncated to 250 characters if longer)",
+              "maxLength": 250
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK - the log message was received and printed to the server log. The response body is the plain text 'OK'.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "LogResponse": {
+                      "type": "string",
+                      "description": "{'response': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/rule/examples": {
+      "get": {
+        "operationId": "getExamples",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "description": "Language code for which to retrieve rule examples; missing value throws IllegalArgumentException('lang' parameter missing).",
+            "schema": {
+              "type": "string",
+              "description": "Language code for which to retrieve rule examples; missing value throws IllegalArgumentException('lang' parameter missing)."
+            }
+          },
+          {
+            "name": "ruleId",
+            "in": "query",
+            "required": false,
+            "description": "ID of the rule whose examples are requested; missing value throws IllegalArgumentException('ruleId' parameter missing).",
+            "schema": {
+              "type": "string",
+              "description": "ID of the rule whose examples are requested; missing value throws IllegalArgumentException('ruleId' parameter missing)."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object containing rule examples for the specified rule and language. The response includes a 'results' array with objects for correct and incorrect examples, each containing 'status' and 'sentence' fields, and for incorrect examples also a 'corrections' array. A warning message is included indicating this is not a public API.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RuleExamplesResponse": {
+                      "type": "string",
+                      "description": "{'results': 'array', 'results[].status': 'string', 'results[].sentence': 'string', 'results[].corrections': 'array of string', 'results[].warning': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when required parameters are missing or invalid. Specifically, if 'lang' parameter is missing, if 'ruleId' parameter is missing, or if the HTTP method is not GET (ensureGetMethod throws IllegalArgumentException). The error message is included in the response body."
+          },
+          "404": {
+            "description": "Not Found. Returned when the specified rule is not found for the given language. The error message includes the rule ID, language, and LanguageTool version information."
+          },
+          "500": {
+            "description": "Internal Server Error. Returned when an unexpected exception occurs during processing, such as JSON generation errors or other runtime exceptions not explicitly caught."
+          }
+        }
+      }
+    },
+    "/v2/check": {
+      "post": {
+        "operationId": "createCheck",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "text",
+            "in": "query",
+            "required": false,
+            "description": "The text to be checked. Either 'text' or 'data' must be provided, but not both.",
+            "schema": {
+              "type": "string",
+              "description": "The text to be checked. Either 'text' or 'data' must be provided, but not both."
+            }
+          },
+          {
+            "name": "data",
+            "in": "query",
+            "required": false,
+            "description": "JSON data containing the text or annotation to be checked. Either 'text' or 'data' must be provided, but not both.",
+            "schema": {
+              "type": "string",
+              "description": "JSON data containing the text or annotation to be checked. Either 'text' or 'data' must be provided, but not both."
+            }
+          },
+          {
+            "name": "language",
+            "in": "query",
+            "required": false,
+            "description": "The language of the text, e.g. 'en-US' for American English or 'fr' for French. Use 'auto' for automatic language detection.",
+            "schema": {
+              "type": "string",
+              "description": "The language of the text, e.g. 'en-US' for American English or 'fr' for French. Use 'auto' for automatic language detection."
+            }
+          },
+          {
+            "name": "enabledRules",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated list of rule IDs to enable.",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of rule IDs to enable."
+            }
+          },
+          {
+            "name": "disabledRules",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated list of rule IDs to disable.",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of rule IDs to disable."
+            }
+          },
+          {
+            "name": "enabledCategories",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated list of category IDs to enable.",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of category IDs to enable."
+            }
+          },
+          {
+            "name": "disabledCategories",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated list of category IDs to disable.",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of category IDs to disable."
+            }
+          },
+          {
+            "name": "enabledOnly",
+            "in": "query",
+            "required": false,
+            "description": "If set to 'yes' or 'true', only the rules specified in enabledRules or enabledCategories will be used.",
+            "schema": {
+              "type": "string",
+              "description": "If set to 'yes' or 'true', only the rules specified in enabledRules or enabledCategories will be used."
+            }
+          },
+          {
+            "name": "enableTempOffRules",
+            "in": "query",
+            "required": false,
+            "description": "If set to 'true', temporarily disabled rules will be enabled.",
+            "schema": {
+              "type": "string",
+              "description": "If set to 'true', temporarily disabled rules will be enabled."
+            }
+          },
+          {
+            "name": "allowIncompleteResults",
+            "in": "query",
+            "required": false,
+            "description": "If set to 'true', the server may return incomplete results if the check takes too long or too many errors occur.",
+            "schema": {
+              "type": "string",
+              "description": "If set to 'true', the server may return incomplete results if the check takes too long or too many errors occur."
+            }
+          },
+          {
+            "name": "enableHiddenRules",
+            "in": "query",
+            "required": false,
+            "description": "If set to 'true', hidden rules (from a hidden matches server) will be enabled.",
+            "schema": {
+              "type": "string",
+              "description": "If set to 'true', hidden rules (from a hidden matches server) will be enabled."
+            }
+          },
+          {
+            "name": "motherTongue",
+            "in": "query",
+            "required": false,
+            "description": "The mother tongue of the user, used for some rules.",
+            "schema": {
+              "type": "string",
+              "description": "The mother tongue of the user, used for some rules."
+            }
+          },
+          {
+            "name": "preferredVariants",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated list of preferred language variants, e.g. 'en-GB,en-US'. Only allowed when language=auto.",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of preferred language variants, e.g. 'en-GB,en-US'. Only allowed when language=auto."
+            }
+          },
+          {
+            "name": "preferredLanguages",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated list of preferred languages for language detection.",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of preferred languages for language detection."
+            }
+          },
+          {
+            "name": "noopLanguages",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated list of languages to ignore during language detection. Only allowed when language=auto.",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of languages to ignore during language detection. Only allowed when language=auto."
+            }
+          },
+          {
+            "name": "altLanguages",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated list of alternative languages to check against.",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of alternative languages to check against."
+            }
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "description": "The checking mode. Must be one of 'textLevelOnly', 'allButTextLevelOnly', or 'all'.",
+            "schema": {
+              "type": "string",
+              "description": "The checking mode. Must be one of 'textLevelOnly', 'allButTextLevelOnly', or 'all'.",
+              "enum": [
+                "textLevelOnly",
+                "allButTextLevelOnly",
+                "all"
+              ]
+            }
+          },
+          {
+            "name": "level",
+            "in": "query",
+            "required": false,
+            "description": "The level of checking. Must be 'default' or 'picky'.",
+            "schema": {
+              "type": "string",
+              "description": "The level of checking. Must be 'default' or 'picky'.",
+              "enum": [
+                "default",
+                "picky"
+              ]
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "description": "JSONP callback function name. Must match [a-zA-Z]+.",
+            "schema": {
+              "type": "string",
+              "description": "JSONP callback function name. Must match [a-zA-Z]+."
+            }
+          },
+          {
+            "name": "c",
+            "in": "query",
+            "required": false,
+            "description": "Compact mode flag. If set to '1', the response will be more compact.",
+            "schema": {
+              "type": "string",
+              "description": "Compact mode flag. If set to '1', the response will be more compact."
+            }
+          },
+          {
+            "name": "textSessionId",
+            "in": "query",
+            "required": false,
+            "description": "An identifier for the text session, used for A/B testing and caching.",
+            "schema": {
+              "type": "string",
+              "description": "An identifier for the text session, used for A/B testing and caching."
+            }
+          },
+          {
+            "name": "useragent",
+            "in": "query",
+            "required": false,
+            "description": "The user agent string of the client, used for logging and A/B testing.",
+            "schema": {
+              "type": "string",
+              "description": "The user agent string of the client, used for logging and A/B testing."
+            }
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "required": false,
+            "description": "Username for authentication. Requires either 'apiKey' or 'password'.",
+            "schema": {
+              "type": "string",
+              "description": "Username for authentication. Requires either 'apiKey' or 'password'."
+            }
+          },
+          {
+            "name": "apiKey",
+            "in": "query",
+            "required": false,
+            "description": "API key for authentication. Requires 'username'.",
+            "schema": {
+              "type": "string",
+              "description": "API key for authentication. Requires 'username'."
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": false,
+            "description": "Password for authentication. Requires 'username'.",
+            "schema": {
+              "type": "string",
+              "description": "Password for authentication. Requires 'username'."
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": false,
+            "description": "JWT token for authentication, can be used to increase text length limits.",
+            "schema": {
+              "type": "string",
+              "description": "JWT token for authentication, can be used to increase text length limits."
+            }
+          },
+          {
+            "name": "filterDictionaryMatches",
+            "in": "query",
+            "required": false,
+            "description": "If set to 'true', matches from the user's dictionary will be filtered out.",
+            "schema": {
+              "type": "string",
+              "description": "If set to 'true', matches from the user's dictionary will be filtered out."
+            }
+          },
+          {
+            "name": "ruleValues",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated list of rule ID and value pairs, e.g. 'rule1:value1,rule2:value2'.",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of rule ID and value pairs, e.g. 'rule1:value1,rule2:value2'."
+            }
+          },
+          {
+            "name": "sourceText",
+            "in": "query",
+            "required": false,
+            "description": "Source text for bilingual checking. Requires 'sourceLanguage'.",
+            "schema": {
+              "type": "string",
+              "description": "Source text for bilingual checking. Requires 'sourceLanguage'."
+            }
+          },
+          {
+            "name": "sourceLanguage",
+            "in": "query",
+            "required": false,
+            "description": "Language of the source text for bilingual checking. Required when 'sourceText' is set.",
+            "schema": {
+              "type": "string",
+              "description": "Language of the source text for bilingual checking. Required when 'sourceText' is set."
+            }
+          },
+          {
+            "name": "multilingual",
+            "in": "query",
+            "required": false,
+            "description": "If set to 'true', enables multilingual checking using preferredLanguages.",
+            "schema": {
+              "type": "string",
+              "description": "If set to 'true', enables multilingual checking using preferredLanguages."
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "required": false,
+            "description": "Version of the client, used for logging.",
+            "schema": {
+              "type": "string",
+              "description": "Version of the client, used for logging."
+            }
+          },
+          {
+            "name": "inputLogging",
+            "in": "query",
+            "required": false,
+            "description": "If set to 'no', the input text will not be logged in case of errors.",
+            "schema": {
+              "type": "string",
+              "description": "If set to 'no', the input text will not be logged in case of errors."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful check response containing rule matches as JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CheckResponse": {
+                      "type": "string",
+                      "description": "{'software': 'object', 'language': 'object', 'matches': 'array', 'incompleteResults': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request: missing or invalid parameters, invalid language, invalid mode/level, invalid callback, invalid rule/category settings, or error rate too high."
+          },
+          "403": {
+            "description": "Forbidden: access denied due to blocked referrer/origin, request limit exceeded, too many recent timeouts, or authentication failure."
+          },
+          "404": {
+            "description": "Not found: unsupported action path."
+          },
+          "413": {
+            "description": "Payload too large: text exceeds the maximum allowed length."
+          },
+          "500": {
+            "description": "Internal server error: text checking took longer than the configured maximum time."
+          },
+          "503": {
+            "description": "Service unavailable: too many parallel requests in the work queue."
+          }
+        }
+      }
+    }
+  }
+}

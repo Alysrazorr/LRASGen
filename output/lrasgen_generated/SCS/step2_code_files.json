@@ -1,0 +1,62 @@
+{
+  "task_id": "scs",
+  "api_name": "scs",
+  "framework": "spring-boot",
+  "entry_to_deps": {
+    "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SCS\\scs\\src\\main\\java\\org\\restscs\\ScsRest.java": {
+      "entry_code_file": "@RestController\n@RequestMapping(path = \"/api\")\npublic class ScsRest {\n\n    @GetMapping(path = \"/calc/{op}/{arg1}/{arg2}\")\n    public ResponseEntity<String> calc(\n            @PathVariable(\"op\")\n                    String op,\n            @PathVariable(\"arg1\")\n                    double arg1,\n            @PathVariable(\"arg2\")\n                    double arg2\n    ) {\n        String res = Calc.subject(op, arg1, arg2);\n        return ResponseEntity.ok(res);\n    }\n\n\n    @GetMapping(path = \"/cookie/{name}/{val}/{site}\")\n    public ResponseEntity<String> cookie(\n            @PathVariable(\"name\")\n                    String name,\n            @PathVariable(\"val\")\n                    String val,\n            @PathVariable(\"site\")\n                    String site\n    ) {\n        String res = Cookie.subject(name, val, site);\n        return ResponseEntity.ok(res);\n    }\n\n\n    @GetMapping(path = \"/costfuns/{i}/{s}\")\n    public ResponseEntity<String> costfuns(\n            @PathVariable(\"i\")\n                    Integer i,\n            @PathVariable(\"s\")\n                    String s\n    ) {\n        String res = Costfuns.subject(i, s);\n        return ResponseEntity.ok(res);\n    }\n\n\n    @GetMapping(path = \"/dateparse/{dayname}/{monthname}\")\n    public ResponseEntity<String> dateParse(\n            @PathVariable(\"dayname\")\n                    String dayname,\n            @PathVariable(\"monthname\")\n                    String monthname\n    ) {\n        String res = DateParse.subject(dayname, monthname);\n        return ResponseEntity.ok(res);\n    }\n\n\n    @GetMapping(path = \"/filesuffix/{directory}/{file}\")\n    public ResponseEntity<String> fileSuffix(\n            @PathVariable(\"directory\")\n                    String directory,\n            @PathVariable(\"file\")\n                    String file\n    ) {\n        String res = FileSuffix.subject(directory, file);\n        return ResponseEntity.ok(res);\n    }\n\n\n\n    @GetMapping(path = \"/notypevar/{i}/{s}\")\n    public ResponseEntity<String> notyPevar(\n            @PathVariable(\"i\")\n                    Integer i,\n            @PathVariable(\"s\")\n                    String s\n    ) {\n        String res = NotyPevar.subject(i, s);\n        return ResponseEntity.ok(res);\n    }\n\n\n    @GetMapping(path = \"/ordered4/{w}/{x}/{z}/{y}\")\n    public ResponseEntity<String> ordered4(\n            @PathVariable(\"w\")\n                    String w,\n            @PathVariable(\"x\")\n                    String x,\n            @PathVariable(\"z\")\n                    String z,\n            @PathVariable(\"y\")\n                    String y\n    ) {\n        String res = Ordered4.subject(w, x, z, y);\n        return ResponseEntity.ok(res);\n    }\n\n\n    @GetMapping(path = \"/pat/{txt}/{pat}\")\n    public ResponseEntity<String> pat(\n            @PathVariable(\"txt\")\n                    String txt,\n            @PathVariable(\"pat\")\n                    String pat\n    ) {\n        String res = Pat.subject(txt, pat);\n        return ResponseEntity.ok(res);\n    }\n\n\n    @GetMapping(path = \"/pat/{txt}\")\n    public ResponseEntity<String> regex(\n            @PathVariable(\"txt\")\n                    String txt\n    ) {\n        String res = Regex.subject(txt);\n        return ResponseEntity.ok(res);\n    }\n\n\n    @GetMapping(path = \"/text2txt/{word1}/{word2}/{word3}\")\n    public ResponseEntity<String> text2txt(\n            @PathVariable(\"word1\")\n                    String word1,\n            @PathVariable(\"word2\")\n                    String word2,\n            @PathVariable(\"word3\")\n                    String word3\n    ) {\n        String res = Text2Txt.subject(word1, word2, word3);\n        return ResponseEntity.ok(res);\n    }\n\n\n    @GetMapping(path = \"/title/{sex}/{title}\")\n    public ResponseEntity<String> title(\n            @PathVariable(\"sex\")\n                    String sex,\n            @PathVariable(\"title\")\n                    String title\n    ) {\n        String res = Title.subject(sex, title);\n        return ResponseEntity.ok(res);\n    }\n\n}\n"
+    }
+  },
+  "duration_ms": 2,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  }
+}

@@ -1,0 +1,549 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "person-controller API",
+    "description": "LRASGen-generated specification for person-controller (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/persons": {
+      "delete": {
+        "operationId": "deletePersons",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully deleted all persons. Returns the number of deleted persons as a Long.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Long": {
+                      "type": "string",
+                      "description": "{'value': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when the service call throws a RuntimeException, handled by the @ExceptionHandler method."
+          }
+        }
+      },
+      "get": {
+        "operationId": "getPersons",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a list of all persons.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<PersonDTO>": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'firstName': 'string', 'lastName': 'string', 'age': 'integer', 'address': 'AddressDTO', 'createdAt': 'date', 'insurance': 'boolean', 'cars': 'List<CarDTO>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPersons",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Created. Returns the list of saved PersonDTO objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<PersonDTO>": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'firstName': 'string', 'lastName': 'string', 'age': 'integer', 'address': 'AddressDTO', 'createdAt': 'date', 'insurance': 'boolean', 'cars': 'List<CarDTO>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when a RuntimeException is thrown during processing."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "personEntities": {
+                    "type": "string",
+                    "description": "List of PersonDTO objects to be saved"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updatePersons",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "The number of persons updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Long": {
+                      "type": "string",
+                      "description": "{'value': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "personEntities": {
+                    "type": "string",
+                    "description": "A list of PersonDTO objects to update."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/person": {
+      "post": {
+        "operationId": "createPerson",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Person created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PersonDTO": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'firstName': 'string', 'lastName': 'string', 'age': 'integer', 'address': 'AddressDTO', 'createdAt': 'date', 'insurance': 'boolean', 'cars': 'List<CarDTO>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Person data transfer object sent in the request body"
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "description": "Person data transfer object sent in the request body"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "description": "Person data transfer object sent in the request body"
+                  },
+                  "age": {
+                    "type": "integer",
+                    "description": "Person data transfer object sent in the request body"
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "description": "Person data transfer object sent in the request body"
+                  },
+                  "insurance": {
+                    "type": "boolean",
+                    "description": "Person data transfer object sent in the request body"
+                  },
+                  "cars": {
+                    "type": "string",
+                    "description": "Person data transfer object sent in the request body"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updatePerson",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "The person was updated successfully. Returns the updated PersonDTO.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PersonDTO": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'firstName': 'string', 'lastName': 'string', 'age': 'integer', 'address': 'AddressDTO', 'createdAt': 'date', 'insurance': 'boolean', 'cars': 'List<CarDTO>'}"
+                    },
+                    "AddressDTO": {
+                      "type": "string",
+                      "description": "{'number': 'integer', 'street': 'string', 'postcode': 'string', 'city': 'string', 'country': 'string'}"
+                    },
+                    "CarDTO": {
+                      "type": "string",
+                      "description": "{'brand': 'string', 'model': 'string', 'maxSpeedKmH': 'float'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates to personService.update and does not catch failures, so a RuntimeException from the service is handled by the @ExceptionHandler and returns 500."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Person data to update"
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "description": "Person data to update"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "description": "Person data to update"
+                  },
+                  "age": {
+                    "type": "integer",
+                    "description": "Person data to update"
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "description": "Person data to update"
+                  },
+                  "insurance": {
+                    "type": "boolean",
+                    "description": "Person data to update"
+                  },
+                  "cars": {
+                    "type": "string",
+                    "description": "Person data to update"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/persons/count": {
+      "get": {
+        "operationId": "getCount",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the total number of persons as a Long value.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "string",
+                      "description": "{'count': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when the service call throws a RuntimeException, handled by the @ExceptionHandler method."
+          }
+        }
+      }
+    },
+    "/api/persons/{ids}": {
+      "delete": {
+        "operationId": "deletePersons",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "path",
+            "required": true,
+            "description": "Comma-separated list of person IDs to delete",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of person IDs to delete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted the persons with the specified IDs. Returns the number of deleted persons.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Long": {
+                      "type": "string",
+                      "description": "{'value': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when the service call throws a RuntimeException."
+          }
+        }
+      },
+      "get": {
+        "operationId": "getPersons",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "path",
+            "required": true,
+            "description": "Comma-separated list of person IDs to retrieve",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of person IDs to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of PersonDTO objects matching the provided comma-separated IDs. If no persons match, an empty list is returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PersonDTO": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'firstName': 'string', 'lastName': 'string', 'age': 'integer', 'address': 'AddressDTO', 'createdAt': 'date', 'insurance': 'boolean', 'cars': 'List<CarDTO>'}"
+                    },
+                    "AddressDTO": {
+                      "type": "string",
+                      "description": "{'number': 'integer', 'street': 'string', 'postcode': 'string', 'city': 'string', 'country': 'string'}"
+                    },
+                    "CarDTO": {
+                      "type": "string",
+                      "description": "{'brand': 'string', 'model': 'string', 'maxSpeedKmH': 'float'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when the service call throws a RuntimeException, handled by the @ExceptionHandler method."
+          }
+        }
+      }
+    },
+    "/api/person/{id}": {
+      "delete": {
+        "operationId": "deletePerson",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the person to delete",
+            "schema": {
+              "type": "string",
+              "description": "The id of the person to delete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted the person with the specified id. Returns the number of deleted records as a Long.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Long": {
+                      "type": "string",
+                      "description": "{'value': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates to personService.delete(id) and does not catch any exception; a RuntimeException thrown by the service is handled by the @ExceptionHandler, which logs the error and returns the exception.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Exception": {
+                      "type": "string",
+                      "description": "{'message': 'string', 'cause': 'string', 'stackTrace': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getPerson",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the person to retrieve",
+            "schema": {
+              "type": "string",
+              "description": "The id of the person to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Person found and returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PersonDTO": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'firstName': 'string', 'lastName': 'string', 'age': 'integer', 'address': 'AddressDTO', 'createdAt': 'date', 'insurance': 'boolean', 'cars': 'List<CarDTO>'}"
+                    },
+                    "AddressDTO": {
+                      "type": "string",
+                      "description": "{'number': 'integer', 'street': 'string', 'postcode': 'string', 'city': 'string', 'country': 'string'}"
+                    },
+                    "CarDTO": {
+                      "type": "string",
+                      "description": "{'brand': 'string', 'model': 'string', 'maxSpeedKmH': 'float'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Person not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/persons/averageAge": {
+      "get": {
+        "operationId": "getAverageage",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "The average age of all persons is returned as a Double.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Double": {
+                      "type": "string",
+                      "description": "{'value': 'double'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates to personService.getAverageAge() and does not catch failures, so a RuntimeException from the service is handled by the @ExceptionHandler and returns 500."
+          }
+        }
+      }
+    }
+  }
+}

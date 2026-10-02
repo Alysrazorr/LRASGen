@@ -1,0 +1,2699 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "management-api-for-apache-cassandra API",
+    "description": "LRASGen-generated specification for management-api-for-apache-cassandra (jersey).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/v0/ops/seeds/reload": {
+      "post": {
+        "operationId": "createReload",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "List of new seeds after reload",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<String>": {
+                      "type": "string",
+                      "description": "{'seeds': 'array of string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed"
+          }
+        }
+      }
+    },
+    "/api/v0/probes/readiness": {
+      "get": {
+        "operationId": "getReadiness",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Service is ready to handle requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Service is not ready to handle requests"
+          }
+        }
+      }
+    },
+    "/api/v0/probes/liveness": {
+      "get": {
+        "operationId": "getLiveness",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Service is running",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/ops/keyspace/cleanup": {
+      "post": {
+        "operationId": "createCleanup",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Job ID for keyspace cleanup process",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JobId": {
+                      "type": "string",
+                      "description": "{'job_id': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed or error when executing request"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "jobs": {
+                    "type": "integer",
+                    "description": "Number of jobs to use for the cleanup operation; defaults to 1 when 0 is provided"
+                  },
+                  "keyspaceName": {
+                    "type": "string",
+                    "description": "Keyspace cleanup request containing jobs, keyspace_name, and tables"
+                  },
+                  "tables": {
+                    "type": "array",
+                    "description": "List of tables to clean up; defaults to an empty list when empty"
+                  },
+                  "keyspace_name": {
+                    "type": "string",
+                    "description": "Name of the keyspace to clean up; defaults to NON_LOCAL_STRATEGY when blank"
+                  }
+                },
+                "required": [
+                  "jobs",
+                  "keyspaceName",
+                  "tables"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/ops/keyspace/refresh": {
+      "post": {
+        "operationId": "createRefresh",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "keyspaceName",
+            "in": "query",
+            "required": false,
+            "description": "Keyspace name",
+            "schema": {
+              "type": "string",
+              "description": "Keyspace name"
+            }
+          },
+          {
+            "name": "table",
+            "in": "query",
+            "required": false,
+            "description": "Table name",
+            "schema": {
+              "type": "string",
+              "description": "Table name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SSTables loaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Keyspace name or Table name not provided",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/ops/auth/role": {
+      "post": {
+        "operationId": "createRole",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": false,
+            "description": "Username for the new role",
+            "schema": {
+              "type": "string",
+              "description": "Username for the new role"
+            }
+          },
+          {
+            "name": "is_superuser",
+            "in": "query",
+            "required": false,
+            "description": "Whether the role is a superuser",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether the role is a superuser"
+            }
+          },
+          {
+            "name": "can_login",
+            "in": "query",
+            "required": false,
+            "description": "Whether the role can login",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether the role can login"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": false,
+            "description": "Password for the new role",
+            "schema": {
+              "type": "string",
+              "description": "Password for the new role"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Username and/or password is empty",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/probes/cluster": {
+      "get": {
+        "operationId": "getCluster",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "consistency_level",
+            "in": "query",
+            "required": false,
+            "description": "The consistency level to check. Defaults to LOCAL_QUORUM if not provided.",
+            "schema": {
+              "type": "string",
+              "description": "The consistency level to check. Defaults to LOCAL_QUORUM if not provided."
+            }
+          },
+          {
+            "name": "rf_per_dc",
+            "in": "query",
+            "required": false,
+            "description": "The replication factor per data center. Defaults to 3 if not provided.",
+            "schema": {
+              "type": "integer",
+              "description": "The replication factor per data center. Defaults to 3 if not provided."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cassandra is able to achieve the specified consistency"
+          },
+          "500": {
+            "description": "Cassandra is unable to achieve the specified consistency",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Map": {
+                      "type": "string",
+                      "description": "{'key': 'string', 'value': 'array of strings'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/ops/keyspace/create": {
+      "post": {
+        "operationId": "createCreate",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Keyspace created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Keyspace name or Replication Settings not provided",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keyspaceName": {
+                    "type": "string",
+                    "description": "Keyspace creation request containing keyspace name and replication settings"
+                  },
+                  "replicationSettings": {
+                    "type": "string",
+                    "description": "Keyspace creation request containing keyspace name and replication settings"
+                  }
+                },
+                "required": [
+                  "keyspaceName",
+                  "replicationSettings"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/ops/keyspace/alter": {
+      "post": {
+        "operationId": "createAlter",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Keyspace Replication Settings altered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Keyspace name or Replication Settings not provided",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keyspaceName": {
+                    "type": "string",
+                    "description": "Keyspace alter request containing keyspace_name and replication_settings"
+                  },
+                  "replicationSettings": {
+                    "type": "string",
+                    "description": "Keyspace alter request containing keyspace_name and replication_settings"
+                  }
+                },
+                "required": [
+                  "keyspaceName",
+                  "replicationSettings"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/ops/executor/job": {
+      "get": {
+        "operationId": "getJob",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "query",
+            "required": false,
+            "description": "The Job ID for which to retrieve job details",
+            "schema": {
+              "type": "string",
+              "description": "The Job ID for which to retrieve job details"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Map of job details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Job": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'type': 'string', 'status': 'string', 'submit_time': 'long', 'end_time': 'long', 'error': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Job": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'type': 'string', 'status': 'string', 'submit_time': 'long', 'end_time': 'long', 'error': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed"
+          }
+        }
+      }
+    },
+    "/api/v0/ops/keyspace": {
+      "get": {
+        "operationId": "getKeyspace",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "keyspaceName",
+            "in": "query",
+            "required": false,
+            "description": "Filter the list of keyspaces by name. If blank, all keyspaces are returned.",
+            "schema": {
+              "type": "string",
+              "description": "Filter the list of keyspaces by name. If blank, all keyspaces are returned."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Keyspaces",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "keyspaces": {
+                      "type": "string",
+                      "description": "{'keyspaces': 'array of string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/v0/lifecycle/stop": {
+      "post": {
+        "operationId": "createStop",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Cassandra stopped successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Cassandra not stopped successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/metadata/versions/release": {
+      "get": {
+        "operationId": "getRelease",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Cassandra version",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed"
+          }
+        }
+      }
+    },
+    "/api/v0/metadata/endpoints": {
+      "get": {
+        "operationId": "getEndpoints",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Endpoint states",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "EndpointStates": {
+                      "type": "string",
+                      "description": "{'entity': 'array', 'variant': 'object', 'annotations': 'array', 'mediaType': 'object', 'language': 'string', 'encoding': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed"
+          }
+        }
+      }
+    },
+    "/api/v0/lifecycle/pid": {
+      "get": {
+        "operationId": "getPid",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Cassandra Process ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pid": {
+                      "type": "string",
+                      "description": "{'pid': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Cassandra Process running"
+          },
+          "500": {
+            "description": "Error finding Cassandra Process",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "{'error': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/lifecycle/configure": {
+      "post": {
+        "operationId": "createConfigure",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "profile",
+            "in": "query",
+            "required": false,
+            "description": "Profile name used to configure Cassandra/DSE",
+            "schema": {
+              "type": "string",
+              "description": "Profile name used to configure Cassandra/DSE"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Invalid JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "config": {
+                    "type": "string",
+                    "description": "JSON configuration for Cassandra/DSE"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/metadata/versions/features": {
+      "get": {
+        "operationId": "getFeatures",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Local datacenter'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "FeatureSet": {
+                      "type": "string",
+                      "description": "{'cassandra_version': 'string', 'mgmt_version': 'string', 'features': 'array of string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed"
+          }
+        }
+      }
+    },
+    "/api/v0/metadata/localdc": {
+      "get": {
+        "operationId": "getLocaldc",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Local datacenter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/v0/ops/keyspace/replication": {
+      "get": {
+        "operationId": "getReplication",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "keyspaceName",
+            "in": "query",
+            "required": false,
+            "description": "Name of the keyspace to get replication settings for. Must be non-empty; otherwise a 400 response is returned.",
+            "schema": {
+              "type": "string",
+              "description": "Name of the keyspace to get replication settings for. Must be non-empty; otherwise a 400 response is returned."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Keyspace Replication Settings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ReplicationSettings": {
+                      "type": "string",
+                      "description": "{'class': 'string', 'replication_factor': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Keyspace name not provided"
+          },
+          "404": {
+            "description": "Keyspace name not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/v0/lifecycle/start": {
+      "post": {
+        "operationId": "createStart",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "profile",
+            "in": "query",
+            "required": false,
+            "description": "Profile name used to locate the cassandra.yaml and node-topology.properties under /tmp/<profile>",
+            "schema": {
+              "type": "string",
+              "description": "Profile name used to locate the cassandra.yaml and node-topology.properties under /tmp/<profile>",
+              "minLength": 1,
+              "maxLength": 128
+            }
+          },
+          {
+            "name": "replace_ip",
+            "in": "query",
+            "required": false,
+            "description": "IPv4 address to replace on first boot; must match the IPv4 pattern",
+            "schema": {
+              "type": "string",
+              "description": "IPv4 address to replace on first boot; must match the IPv4 pattern",
+              "format": "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Cassandra started successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Cassandra already running and can connect"
+          },
+          "204": {
+            "description": "Cassandra already running but can't connect"
+          },
+          "206": {
+            "description": "Cassandra process not found but can connect"
+          },
+          "420": {
+            "description": "Cassandra could not start successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error trying to start Cassandra",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/v0/ops/node/decommission": {
+      "post": {
+        "operationId": "createDecommission",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "description": "Force decommission",
+            "schema": {
+              "type": "boolean",
+              "description": "Force decommission"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cassandra node decommissioned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed"
+          }
+        }
+      }
+    },
+    "/api/v0/ops/node/schema/reset": {
+      "post": {
+        "operationId": "createReset",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Cassandra node schema reset successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/v0/ops/node/streaminfo": {
+      "get": {
+        "operationId": "getStreaminfo",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Cassandra streaming status info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "StreamingInfo": {
+                      "type": "string",
+                      "description": "{'entity': 'array', 'variant': 'object', 'annotations': 'array', 'mediaType': 'object', 'language': 'string', 'encoding': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed"
+          }
+        }
+      }
+    },
+    "/api/v0/ops/node/schema/reload": {
+      "post": {
+        "operationId": "createReload",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Cassandra node schema reloaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/ops/node/compaction": {
+      "post": {
+        "operationId": "createCompaction",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "value",
+            "in": "query",
+            "required": false,
+            "description": "Set the MB/s throughput cap for compaction in the system, or 0 to disable throttling",
+            "schema": {
+              "type": "integer",
+              "description": "Set the MB/s throughput cap for compaction in the system, or 0 to disable throttling"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cassandra compaction throughput set successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/ops/node/logging": {
+      "post": {
+        "operationId": "createLogging",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "target",
+            "in": "query",
+            "required": false,
+            "description": "The component or class to set the log level for. If not provided, resets to the initial configuration.",
+            "schema": {
+              "type": "string",
+              "description": "The component or class to set the log level for. If not provided, resets to the initial configuration."
+            }
+          },
+          {
+            "name": "rawLevel",
+            "in": "query",
+            "required": false,
+            "description": "The log level to set (e.g., DEBUG, INFO, WARN, ERROR). If not provided, resets to the initial configuration.",
+            "schema": {
+              "type": "string",
+              "description": "The log level to set (e.g., DEBUG, INFO, WARN, ERROR). If not provided, resets to the initial configuration."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cassandra logging level set successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/ops/node/assassinate": {
+      "post": {
+        "operationId": "createAssassinate",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "required": false,
+            "description": "Address of the node to assassinate",
+            "schema": {
+              "type": "string",
+              "description": "Address of the node to assassinate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cassandra node assasinated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Cassandra node assasination request missing address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/ops/node/drain": {
+      "post": {
+        "operationId": "createDrain",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Cassandra node drained successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/ops/node/hints/truncate": {
+      "post": {
+        "operationId": "createTruncate",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "host",
+            "in": "query",
+            "required": false,
+            "description": "Truncate hints for the endpoint(s) specified. If not provided, truncates all hints on the local node.",
+            "schema": {
+              "type": "string",
+              "description": "Truncate hints for the endpoint(s) specified. If not provided, truncates all hints on the local node."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cassandra node hints truncated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/ops/node/snapshots": {
+      "delete": {
+        "operationId": "deleteSnapshots",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "snapshotNames",
+            "in": "query",
+            "required": false,
+            "description": "List of snapshot names to clear",
+            "schema": {
+              "type": "string",
+              "description": "List of snapshot names to clear"
+            }
+          },
+          {
+            "name": "keyspaces",
+            "in": "query",
+            "required": false,
+            "description": "List of keyspaces to clear snapshots for",
+            "schema": {
+              "type": "string",
+              "description": "List of keyspaces to clear snapshots for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Snapshots cleared successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getSnapshots",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "snapshotNames",
+            "in": "query",
+            "required": false,
+            "description": "List of snapshot names to retrieve details for",
+            "schema": {
+              "type": "string",
+              "description": "List of snapshot names to retrieve details for"
+            }
+          },
+          {
+            "name": "keyspaces",
+            "in": "query",
+            "required": false,
+            "description": "List of keyspaces to retrieve snapshot details for",
+            "schema": {
+              "type": "string",
+              "description": "List of keyspaces to retrieve snapshot details for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cassandra snapshot details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SnapshotDetails": {
+                      "type": "string",
+                      "description": "{'entity': 'array', 'variant': 'object', 'annotations': 'array', 'mediaType': 'object', 'language': 'string', 'encoding': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createSnapshots",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Snapshot created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid snapshot request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "snapshotName": {
+                    "type": "string",
+                    "description": "Snapshot creation request containing snapshot name, keyspaces, table name, skip flush flag, and keyspace tables"
+                  },
+                  "keyspaces": {
+                    "type": "string",
+                    "description": "Snapshot creation request containing snapshot name, keyspaces, table name, skip flush flag, and keyspace tables"
+                  },
+                  "tableName": {
+                    "type": "string",
+                    "description": "Snapshot creation request containing snapshot name, keyspaces, table name, skip flush flag, and keyspace tables"
+                  },
+                  "skipFlush": {
+                    "type": "boolean",
+                    "description": "Snapshot creation request containing snapshot name, keyspaces, table name, skip flush flag, and keyspace tables"
+                  },
+                  "keyspaceTables": {
+                    "type": "string",
+                    "description": "Snapshot creation request containing snapshot name, keyspaces, table name, skip flush flag, and keyspace tables"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ops/tables/scrub": {
+      "post": {
+        "operationId": "createScrub",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Table scrub successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "disableSnapshot": {
+                    "type": "boolean",
+                    "description": "Scrub request containing tables, keyspace name, and scrub options"
+                  },
+                  "skipCorrupted": {
+                    "type": "boolean",
+                    "description": "Scrub request containing tables, keyspace name, and scrub options"
+                  },
+                  "checkData": {
+                    "type": "boolean",
+                    "description": "Scrub request containing tables, keyspace name, and scrub options"
+                  },
+                  "reinsertOverflowedTTL": {
+                    "type": "boolean",
+                    "description": "Scrub request containing tables, keyspace name, and scrub options"
+                  },
+                  "jobs": {
+                    "type": "integer",
+                    "description": "Scrub request containing tables, keyspace name, and scrub options"
+                  },
+                  "keyspaceName": {
+                    "type": "string",
+                    "description": "Scrub request containing tables, keyspace name, and scrub options"
+                  },
+                  "tables": {
+                    "type": "string",
+                    "description": "Scrub request containing tables, keyspace name, and scrub options"
+                  }
+                },
+                "required": [
+                  "disableSnapshot",
+                  "skipCorrupted",
+                  "checkData",
+                  "reinsertOverflowedTTL",
+                  "jobs",
+                  "keyspaceName",
+                  "tables"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/ops/node/fullquerylogging": {
+      "get": {
+        "operationId": "getFullquerylogging",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Full Query enabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "FullQueryLoggingStatus": {
+                      "type": "string",
+                      "description": "{'entity': 'boolean', 'variant': 'object', 'annotations': 'array', 'mediaType': 'object', 'language': 'string', 'encoding': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createFullquerylogging",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "enabled",
+            "in": "query",
+            "required": false,
+            "description": "Enable or disable full query logging facility.",
+            "schema": {
+              "type": "boolean",
+              "description": "Enable or disable full query logging facility."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Full Query Logging set successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/ops/node/repair": {
+      "post": {
+        "operationId": "createRepair",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Nodetool repair executed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response": {
+                      "type": "string",
+                      "description": "{'result': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Repair request missing Keyspace name",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "{'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "{'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keyspaceName": {
+                    "type": "string",
+                    "description": "Repair request containing keyspace name, tables, and full flag"
+                  },
+                  "tables": {
+                    "type": "array",
+                    "description": "List of tables to repair"
+                  },
+                  "full": {
+                    "type": "boolean",
+                    "description": "Whether to perform a full repair"
+                  },
+                  "keyspace_name": {
+                    "type": "string",
+                    "description": "Name of the keyspace to repair"
+                  }
+                },
+                "required": [
+                  "keyspaceName"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v0/ops/node/move": {
+      "post": {
+        "operationId": "createMove",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "newToken",
+            "in": "query",
+            "required": false,
+            "description": "The new token to move the node to on the token ring",
+            "schema": {
+              "type": "string",
+              "description": "The new token to move the node to on the token ring"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Job ID for successfully scheduled Cassandra node move request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JobId": {
+                      "type": "string",
+                      "description": "{'job_id': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required newToken parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ErrorResponse": {
+                      "type": "string",
+                      "description": "{'error': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ErrorResponse": {
+                      "type": "string",
+                      "description": "{'error': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/v1/ops/tables/sstables/upgrade": {
+      "post": {
+        "operationId": "createUpgrade",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "excludeCurrentVersion",
+            "in": "query",
+            "required": false,
+            "description": "Whether to exclude the current version when upgrading SSTables",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether to exclude the current version when upgrading SSTables"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SSTable upgrade successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response": {
+                      "type": "string",
+                      "description": "{'body': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "jobs": {
+                    "type": "integer",
+                    "description": "Keyspace request containing keyspace name, tables, and jobs"
+                  },
+                  "keyspaceName": {
+                    "type": "string",
+                    "description": "Keyspace request containing keyspace name, tables, and jobs"
+                  },
+                  "tables": {
+                    "type": "string",
+                    "description": "Keyspace request containing keyspace name, tables, and jobs"
+                  }
+                },
+                "required": [
+                  "jobs",
+                  "keyspaceName",
+                  "tables"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ops/tables/compact": {
+      "post": {
+        "operationId": "createCompact",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Table compaction successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid table compaction request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "{'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "{'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "splitOutput": {
+                    "type": "boolean",
+                    "description": "Request body containing compaction options: split_output, user_defined, start_token, end_token, keyspace_name, user_defined_files, tables"
+                  },
+                  "userDefined": {
+                    "type": "boolean",
+                    "description": "Request body containing compaction options: split_output, user_defined, start_token, end_token, keyspace_name, user_defined_files, tables"
+                  },
+                  "startToken": {
+                    "type": "string",
+                    "description": "Request body containing compaction options: split_output, user_defined, start_token, end_token, keyspace_name, user_defined_files, tables"
+                  },
+                  "endToken": {
+                    "type": "string",
+                    "description": "Request body containing compaction options: split_output, user_defined, start_token, end_token, keyspace_name, user_defined_files, tables"
+                  },
+                  "keyspaceName": {
+                    "type": "string",
+                    "description": "Request body containing compaction options: split_output, user_defined, start_token, end_token, keyspace_name, user_defined_files, tables"
+                  },
+                  "userDefinedFiles": {
+                    "type": "string",
+                    "description": "Request body containing compaction options: split_output, user_defined, start_token, end_token, keyspace_name, user_defined_files, tables"
+                  },
+                  "tables": {
+                    "type": "string",
+                    "description": "Request body containing compaction options: split_output, user_defined, start_token, end_token, keyspace_name, user_defined_files, tables"
+                  }
+                },
+                "required": [
+                  "splitOutput",
+                  "userDefined",
+                  "keyspaceName"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ops/tables/flush": {
+      "post": {
+        "operationId": "createFlush",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Table flush successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "jobs": {
+                    "type": "integer",
+                    "description": "Request body containing keyspace name, tables, and jobs for the flush operation"
+                  },
+                  "keyspaceName": {
+                    "type": "string",
+                    "description": "Request body containing keyspace name, tables, and jobs for the flush operation"
+                  },
+                  "tables": {
+                    "type": "string",
+                    "description": "Request body containing keyspace name, tables, and jobs for the flush operation"
+                  }
+                },
+                "required": [
+                  "jobs",
+                  "keyspaceName",
+                  "tables"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ops/tables/create": {
+      "post": {
+        "operationId": "createCreate",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Table creation successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Table creation failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keyspaceName": {
+                    "type": "string",
+                    "description": "Table creation request containing keyspace name, table name, columns, and options"
+                  },
+                  "tableName": {
+                    "type": "string",
+                    "description": "Table creation request containing keyspace name, table name, columns, and options"
+                  },
+                  "columns": {
+                    "type": "string",
+                    "description": "Table creation request containing keyspace name, table name, columns, and options"
+                  },
+                  "options": {
+                    "type": "string",
+                    "description": "Table creation request containing keyspace name, table name, columns, and options"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Table creation request containing keyspace name, table name, columns, and options"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Table creation request containing keyspace name, table name, columns, and options"
+                  },
+                  "kind": {
+                    "type": "string",
+                    "description": "Table creation request containing keyspace name, table name, columns, and options"
+                  },
+                  "position": {
+                    "type": "integer",
+                    "description": "Table creation request containing keyspace name, table name, columns, and options"
+                  },
+                  "order": {
+                    "type": "string",
+                    "description": "Table creation request containing keyspace name, table name, columns, and options"
+                  }
+                },
+                "required": [
+                  "keyspaceName",
+                  "tableName",
+                  "columns",
+                  "name",
+                  "type"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ops/node/decommission": {
+      "post": {
+        "operationId": "createDecommission",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "description": "Whether to force the decommission operation",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether to force the decommission operation"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Job ID for successfully scheduled Cassandra node decommission request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JobId": {
+                      "type": "string",
+                      "description": "{'job_id': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/v1/ops/tables": {
+      "get": {
+        "operationId": "getTables",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "keyspaceName",
+            "in": "query",
+            "required": false,
+            "description": "List the table names in the given keyspace",
+            "schema": {
+              "type": "string",
+              "description": "List the table names in the given keyspace"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Table list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tables": {
+                      "type": "string",
+                      "description": "{'tables': 'array of string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Keyspace name not provided"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/v1/ops/tables/garbagecollect": {
+      "post": {
+        "operationId": "createGarbagecollect",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "tombstoneOption",
+            "in": "query",
+            "required": false,
+            "description": "Tombstone option, must be either ROW or CELL",
+            "schema": {
+              "type": "string",
+              "description": "Tombstone option, must be either ROW or CELL",
+              "enum": [
+                "ROW",
+                "CELL"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Table garbage collection successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid table garbage collection request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "jobs": {
+                    "type": "integer",
+                    "description": "Number of jobs"
+                  },
+                  "keyspaceName": {
+                    "type": "string",
+                    "description": "Keyspace request containing jobs, keyspace_name, and tables"
+                  },
+                  "tables": {
+                    "type": "array",
+                    "description": "List of tables"
+                  },
+                  "keyspace_name": {
+                    "type": "string",
+                    "description": "Keyspace name"
+                  }
+                },
+                "required": [
+                  "jobs",
+                  "keyspaceName",
+                  "tables"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ops/node/rebuild": {
+      "post": {
+        "operationId": "createRebuild",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "src_dc",
+            "in": "query",
+            "required": false,
+            "description": "Source datacenter to rebuild data from",
+            "schema": {
+              "type": "string",
+              "description": "Source datacenter to rebuild data from"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Job ID for successfully scheduled Cassandra node rebuild request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "jobId": {
+                      "type": "string",
+                      "description": "{'jobId': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/v1/ops/node/schema/versions": {
+      "get": {
+        "operationId": "getVersions",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Gets the schema versions for each node. Useful for checking schema agreement",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "schemaVersions": {
+                      "type": "string",
+                      "description": "{'schema_version_uuid': 'array of strings'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed"
+          }
+        }
+      }
+    },
+    "/api/v1/ops/keyspace/cleanup": {
+      "post": {
+        "operationId": "createCleanup",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Cleanup not needed for tables 'system' or 'system_schema'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Job ID for keyspace cleanup process",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal connection to Cassandra closed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "jobs": {
+                    "type": "integer",
+                    "description": "Keyspace cleanup request containing jobs, keyspace_name, and tables"
+                  },
+                  "keyspaceName": {
+                    "type": "string",
+                    "description": "Keyspace cleanup request containing jobs, keyspace_name, and tables"
+                  },
+                  "tables": {
+                    "type": "string",
+                    "description": "Keyspace cleanup request containing jobs, keyspace_name, and tables"
+                  }
+                },
+                "required": [
+                  "jobs",
+                  "keyspaceName",
+                  "tables"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

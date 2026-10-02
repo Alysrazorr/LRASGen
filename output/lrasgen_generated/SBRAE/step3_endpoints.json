@@ -1,0 +1,141 @@
+{
+  "task_id": "spring-rest-example",
+  "api_name": "spring-rest-example",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/problem/{code}",
+      "http_method": "GET",
+      "method_name": "getProblemByCode",
+      "summary": "code로 문제 조회",
+      "description": "code는 6자리 영문과 숫자조합",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProblemController.java"
+    },
+    {
+      "endpoint_path": "/api/problem/{code}",
+      "http_method": "POST",
+      "method_name": "saveProblem",
+      "summary": "문제 생성",
+      "description": "code는 6자리 영문과 숫자조합, problem parameter는 사용 X",
+      "line_number": 39,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProblemController.java"
+    },
+    {
+      "endpoint_path": "/api/problem/{code}",
+      "http_method": "DELETE",
+      "method_name": "deleteProblem",
+      "summary": "code로 최근 문제 삭제",
+      "description": "code는 6자리 영문과 숫자조합",
+      "line_number": 65,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProblemController.java"
+    },
+    {
+      "endpoint_path": "/api/problem/{code}/all",
+      "http_method": "DELETE",
+      "method_name": "deleteAllProblem",
+      "summary": "code로 모든 문제 삭제, ",
+      "description": "code는 6자리 영문과 숫자조합",
+      "line_number": 79,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProblemController.java"
+    },
+    {
+      "endpoint_path": "/api/project/{code}",
+      "http_method": "GET",
+      "method_name": "getProject",
+      "summary": "code로 프로젝트 조회",
+      "description": "code는 6자리 영문과 숫자조합",
+      "line_number": 21,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProjectController.java"
+    },
+    {
+      "endpoint_path": "/api/project",
+      "http_method": "POST",
+      "method_name": "createProject",
+      "summary": "프로젝트 생성",
+      "description": "code는 자동생성, title(String) 필요",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProjectController.java"
+    },
+    {
+      "endpoint_path": "/api/project/{code}",
+      "http_method": "DELETE",
+      "method_name": "deleteProject",
+      "summary": "code로 프로젝트 삭제",
+      "description": "code 필요",
+      "line_number": 59,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProjectController.java"
+    },
+    {
+      "endpoint_path": "/api/project/{code}",
+      "http_method": "PUT",
+      "method_name": "updateProject",
+      "summary": "project 업데이트",
+      "description": "code로 project 변경, title 필요",
+      "line_number": 73,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\ProjectController.java"
+    },
+    {
+      "endpoint_path": "/api/subproblem",
+      "http_method": "POST",
+      "method_name": "saveSubProblem",
+      "summary": "Create a new sub-problem",
+      "description": "Validates the content length (must be > 10 characters), retrieves the associated Problem by pro_idx, creates a subProblem entity, saves it, and returns a 201 Created response with the location of the new resource.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SBRAE\\spring-rest-example\\src\\main\\java\\com\\sw\\project\\controller\\subProblemController.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 5528,
+  "tokens": {
+    "prompt_tokens": 38205,
+    "completion_tokens": 4661,
+    "total_tokens": 42866,
+    "calls": 9,
+    "elapsed_s": 60.339,
+    "prompt_cost_usd": 0.004935,
+    "completion_cost_usd": 0.003048,
+    "total_cost_usd": 0.007983,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 12356,
+        "completion_tokens": 710,
+        "total_tokens": 13066,
+        "calls": 3,
+        "elapsed_s": 5.525364,
+        "prompt_cost_usd": 0.000247,
+        "completion_cost_usd": 0.000426,
+        "total_cost_usd": 0.000673
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 11827,
+        "completion_tokens": 3305,
+        "total_tokens": 15132,
+        "calls": 3,
+        "elapsed_s": 42.782,
+        "prompt_cost_usd": 0.001183,
+        "completion_cost_usd": 0.001653,
+        "total_cost_usd": 0.002835
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 14022,
+        "completion_tokens": 646,
+        "total_tokens": 14668,
+        "calls": 3,
+        "elapsed_s": 12.032,
+        "prompt_cost_usd": 0.003505,
+        "completion_cost_usd": 0.000969,
+        "total_cost_usd": 0.004475
+      }
+    ]
+  }
+}

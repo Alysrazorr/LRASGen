@@ -1,0 +1,4358 @@
+{
+  "task_id": "blogapi",
+  "api_name": "blogapi",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/auth/signup",
+      "http_method": "POST",
+      "method_name": "registerUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AuthController.java",
+      "parameters": [
+        {
+          "name": "firstName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration details"
+        },
+        {
+          "name": "lastName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration details"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration details"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration details"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration details"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "User registered successfully",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Username is already taken or Email is already taken",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "User role not set",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/categories",
+      "http_method": "GET",
+      "method_name": "getAllCategories",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CategoryController.java",
+      "parameters": [
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of items per page",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved a paginated list of categories.",
+          "data_schema": [
+            {
+              "name": "PagedResponse<Category>",
+              "schema": {
+                "content": "array<Category>",
+                "page": "integer",
+                "size": "integer",
+                "totalElements": "long",
+                "totalPages": "integer",
+                "last": "boolean"
+              }
+            },
+            {
+              "name": "Category",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "posts": "array<Post>",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/albums",
+      "http_method": "GET",
+      "method_name": "getAllAlbums",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AlbumController.java",
+      "parameters": [
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page size for pagination",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved a paginated list of albums.",
+          "data_schema": [
+            {
+              "name": "PagedResponse<AlbumResponse>",
+              "schema": {
+                "content": "array<AlbumResponse>",
+                "page": "integer",
+                "size": "integer",
+                "totalElements": "long",
+                "totalPages": "integer",
+                "last": "boolean"
+              }
+            },
+            {
+              "name": "AlbumResponse",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "user": "User",
+                "photo": "array<Photo>",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The page number or size is invalid (e.g., negative or exceeds maximum allowed size).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/albums/{id}",
+      "http_method": "GET",
+      "method_name": "getAlbum",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AlbumController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the album to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Album retrieved successfully",
+          "data_schema": [
+            {
+              "name": "Album",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "user": "User",
+                "photo": "List<Photo>",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Album not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/albums/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteAlbum",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AlbumController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the album to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Album deleted successfully",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication is required",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have permission to delete this album",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Album not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/auth/signin",
+      "http_method": "POST",
+      "method_name": "authenticateUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AuthController.java",
+      "parameters": [
+        {
+          "name": "usernameOrEmail",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Login credentials containing usernameOrEmail and password"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Login credentials containing usernameOrEmail and password"
+        },
+        {
+          "name": "usernameOrEmail",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Username or email of the user",
+          "min_length": "1",
+          "max_length": "",
+          "_depth": 0
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Password of the user",
+          "min_length": "1",
+          "max_length": "",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Authentication successful; returns a JWT access token.",
+          "data_schema": [
+            {
+              "name": "JwtAuthenticationResponse",
+              "schema": {
+                "accessToken": "string",
+                "tokenType": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Authentication failed due to invalid username/email or password.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request; request body validation failed (e.g., missing usernameOrEmail or password).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error; an unexpected error occurred during authentication or token generation.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/categories",
+      "http_method": "POST",
+      "method_name": "addCategory",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CategoryController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Category object to be added"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Category object to be added"
+        },
+        {
+          "name": "posts",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Category object to be added"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Category created successfully",
+          "data_schema": [
+            {
+              "name": "Category",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "posts": "array",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation error or malformed request body",
+          "data_schema": [
+            {
+              "name": "ExceptionResponse",
+              "schema": {
+                "messages": "array",
+                "status": "string",
+                "code": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication required",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have required role",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - unexpected server error",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/albums/{id}",
+      "http_method": "PUT",
+      "method_name": "updateAlbum",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AlbumController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the album to update",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "Long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The album data to update"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The album data to update"
+        },
+        {
+          "name": "photo",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The album data to update"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Album updated successfully",
+          "data_schema": [
+            {
+              "name": "AlbumResponse",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "user": "User",
+                "photo": "List<Photo>",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - Invalid input or page/size validation failure",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - Authentication required",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - User does not have permission",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found - Album not found",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - Unexpected server error",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/albums/{id}/photos",
+      "http_method": "GET",
+      "method_name": "getAllPhotosByAlbum",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AlbumController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the album whose photos are to be retrieved",
+          "_depth": 0
+        },
+        {
+          "name": "page",
+          "type": "Integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "Integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of items per page for pagination",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved a paginated list of photos for the specified album.",
+          "data_schema": [
+            {
+              "name": "PagedResponse<PhotoResponse>",
+              "schema": {
+                "content": "array of PhotoResponse",
+                "page": "integer",
+                "size": "integer",
+                "totalElements": "long",
+                "totalPages": "integer",
+                "last": "boolean"
+              }
+            },
+            {
+              "name": "PhotoResponse",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "url": "string",
+                "thumbnailUrl": "string",
+                "albumId": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The request parameters are invalid (e.g., page or size is negative, or size exceeds the maximum allowed).",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The album with the specified ID does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/albums",
+      "http_method": "POST",
+      "method_name": "addAlbum",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AlbumController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Album request payload containing album details"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Album request payload containing album details"
+        },
+        {
+          "name": "photo",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "Album request payload containing album details"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Album created successfully",
+          "data_schema": [
+            {
+              "name": "Album",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "user": "User",
+                "photo": "List<Photo>",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "Instant",
+                "updatedAt": "Instant"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation errors or invalid page/size parameters",
+          "data_schema": [
+            {
+              "name": "ExceptionResponse",
+              "schema": {
+                "messages": "List<string>",
+                "status": "string",
+                "code": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication required",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have required role",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - unexpected error during album creation",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/posts/{postId}/comments/{id}",
+      "http_method": "GET",
+      "method_name": "getComment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CommentController.java",
+      "parameters": [
+        {
+          "name": "postId",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the post that owns the comment",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the comment to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Comment retrieved successfully",
+          "data_schema": [
+            {
+              "name": "Comment",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "email": "string",
+                "body": "string",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Comment not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/categories/{id}",
+      "http_method": "GET",
+      "method_name": "getCategory",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CategoryController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the category to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Category found and returned successfully",
+          "data_schema": [
+            {
+              "name": "Category",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "posts": "array",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Category not found",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/categories/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteCategory",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CategoryController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the category to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Category deleted successfully",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - user is not authenticated or does not have permission to delete the category",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Category not found",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/categories/{id}",
+      "http_method": "PUT",
+      "method_name": "updateCategory",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CategoryController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the category to update",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "Long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated category object"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated category object"
+        },
+        {
+          "name": "posts",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated category object"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Category updated successfully",
+          "data_schema": [
+            {
+              "name": "Category",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "posts": "array",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - user is not authorized to update this category",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation errors or malformed request",
+          "data_schema": [
+            {
+              "name": "ExceptionResponse",
+              "schema": {
+                "messages": "array",
+                "status": "string",
+                "code": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - unexpected server error",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/posts/{postId}/comments",
+      "http_method": "GET",
+      "method_name": "getAllComments",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CommentController.java",
+      "parameters": [
+        {
+          "name": "postId",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the post whose comments are being retrieved",
+          "_depth": 0
+        },
+        {
+          "name": "page",
+          "type": "Integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "Integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of comments per page",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved paginated comments for the post.",
+          "data_schema": [
+            {
+              "name": "PagedResponse<Comment>",
+              "schema": {
+                "content": "array<Comment>",
+                "page": "integer",
+                "size": "integer",
+                "totalElements": "long",
+                "totalPages": "integer",
+                "last": "boolean"
+              }
+            },
+            {
+              "name": "Comment",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "email": "string",
+                "body": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "createdBy": "long",
+                "updatedBy": "long"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/posts/{postId}/comments",
+      "http_method": "POST",
+      "method_name": "addComment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CommentController.java",
+      "parameters": [
+        {
+          "name": "postId",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the post to which the comment is added",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Comment request payload containing the comment body"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Comment created successfully",
+          "data_schema": [
+            {
+              "name": "Comment",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "email": "string",
+                "body": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "createdBy": "long",
+                "updatedBy": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation error or invalid request body",
+          "data_schema": [
+            {
+              "name": "ExceptionResponse",
+              "schema": {
+                "messages": "array",
+                "status": "string",
+                "code": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication required",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - insufficient permissions",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found - post not found",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - unexpected server error",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/posts/{postId}/comments/{id}",
+      "http_method": "PUT",
+      "method_name": "updateComment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CommentController.java",
+      "parameters": [
+        {
+          "name": "postId",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the post that owns the comment",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the comment to update",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Comment update payload"
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Comment body",
+          "min_length": "10",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Comment updated successfully",
+          "data_schema": [
+            {
+              "name": "Comment",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "email": "string",
+                "body": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "createdBy": "long",
+                "updatedBy": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation errors or invalid request body",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication required",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have permission to update this comment",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found - post or comment not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - unexpected server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/posts/{postId}/comments/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteComment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CommentController.java",
+      "parameters": [
+        {
+          "name": "postId",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the post that owns the comment",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the comment to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Comment deleted successfully. Returns an ApiResponse with success=true and a message.",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the service returns an ApiResponse with success=false (e.g., comment does not belong to the user or post).",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. Returned when the request lacks valid authentication credentials.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when the authenticated user does not have the required role (USER or ADMIN).",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned when the post or comment with the given IDs does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when an unexpected error occurs during the hand-off to the service.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/photos",
+      "http_method": "GET",
+      "method_name": "getAllPhotos",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PhotoController.java",
+      "parameters": [
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of items per page",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved a paginated list of photos.",
+          "data_schema": [
+            {
+              "name": "PagedResponse<PhotoResponse>",
+              "schema": {
+                "content": "array<PhotoResponse>",
+                "page": "integer",
+                "size": "integer",
+                "totalElements": "long",
+                "totalPages": "integer",
+                "last": "boolean"
+              }
+            },
+            {
+              "name": "PhotoResponse",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "url": "string",
+                "thumbnailUrl": "string",
+                "albumId": "long"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/photos",
+      "http_method": "POST",
+      "method_name": "addPhoto",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PhotoController.java",
+      "parameters": [
+        {
+          "name": "title",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Photo request payload containing title, url, thumbnailUrl and albumId",
+          "min_length": "3"
+        },
+        {
+          "name": "url",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Photo request payload containing title, url, thumbnailUrl and albumId",
+          "min_length": "10"
+        },
+        {
+          "name": "thumbnailUrl",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Photo request payload containing title, url, thumbnailUrl and albumId",
+          "min_length": "10"
+        },
+        {
+          "name": "albumId",
+          "type": "Long",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Photo request payload containing title, url, thumbnailUrl and albumId"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Photo added successfully",
+          "data_schema": [
+            {
+              "name": "PhotoResponse",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "url": "string",
+                "thumbnailUrl": "string",
+                "albumId": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation error or malformed request body",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication required",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have required role",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - unexpected error during photo creation",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/photos/{id}",
+      "http_method": "GET",
+      "method_name": "getPhoto",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PhotoController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the photo to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Photo retrieved successfully",
+          "data_schema": [
+            {
+              "name": "PhotoResponse",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "url": "string",
+                "thumbnailUrl": "string",
+                "albumId": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Photo not found",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/photos/{id}",
+      "http_method": "PUT",
+      "method_name": "updatePhoto",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PhotoController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the photo to update",
+          "_depth": 0
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The photo data to update",
+          "min_length": "3"
+        },
+        {
+          "name": "url",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The photo data to update",
+          "min_length": "10"
+        },
+        {
+          "name": "thumbnailUrl",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The photo data to update",
+          "min_length": "10"
+        },
+        {
+          "name": "albumId",
+          "type": "Long",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The photo data to update"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The title of the photo",
+          "min_length": "3",
+          "_depth": 0
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The URL of the photo",
+          "min_length": "10",
+          "_depth": 0
+        },
+        {
+          "name": "thumbnailUrl",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The thumbnail URL of the photo",
+          "min_length": "10",
+          "_depth": 0
+        },
+        {
+          "name": "albumId",
+          "type": "Long",
+          "require": "false",
+          "position": "body",
+          "description": "The ID of the album the photo belongs to",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Photo updated successfully",
+          "data_schema": [
+            {
+              "name": "PhotoResponse",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "url": "string",
+                "thumbnailUrl": "string",
+                "albumId": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation errors or malformed request body",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication required",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have permission to update this photo",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found - photo or album not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - unexpected error during photo update",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/photos/{id}",
+      "http_method": "DELETE",
+      "method_name": "deletePhoto",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PhotoController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the photo to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Photo deleted successfully",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication is required",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have permission to delete this photo",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Photo not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/posts",
+      "http_method": "GET",
+      "method_name": "getAllPosts",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PostController.java",
+      "parameters": [
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of items per page",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved a paginated list of posts.",
+          "data_schema": [
+            {
+              "name": "PagedResponse<Post>",
+              "schema": {
+                "content": "array<Post>",
+                "page": "integer",
+                "size": "integer",
+                "totalElements": "long",
+                "totalPages": "integer",
+                "last": "boolean"
+              }
+            },
+            {
+              "name": "Post",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "body": "string",
+                "user": "User",
+                "category": "Category",
+                "tags": "array<Tag>",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "createdBy": "long",
+                "updatedBy": "long"
+              }
+            },
+            {
+              "name": "User",
+              "schema": {
+                "id": "long",
+                "firstName": "string",
+                "lastName": "string",
+                "username": "string",
+                "email": "string",
+                "phone": "string",
+                "website": "string",
+                "address": "Address",
+                "company": "Company",
+                "roles": "array<Role>",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            },
+            {
+              "name": "Category",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "createdBy": "long",
+                "updatedBy": "long"
+              }
+            },
+            {
+              "name": "Tag",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "createdBy": "long",
+                "updatedBy": "long"
+              }
+            },
+            {
+              "name": "Address",
+              "schema": {
+                "street": "string",
+                "suite": "string",
+                "city": "string",
+                "zipcode": "string",
+                "geo": "Geo"
+              }
+            },
+            {
+              "name": "Geo",
+              "schema": {
+                "lat": "string",
+                "lng": "string"
+              }
+            },
+            {
+              "name": "Company",
+              "schema": {
+                "name": "string",
+                "catchPhrase": "string",
+                "bs": "string"
+              }
+            },
+            {
+              "name": "Role",
+              "schema": {
+                "id": "long",
+                "name": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates entirely to PostService.getAllPosts; any unhandled exception from that call results in a 500 response.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/posts/{id}",
+      "http_method": "GET",
+      "method_name": "getPost",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PostController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the post to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Post retrieved successfully",
+          "data_schema": [
+            {
+              "name": "Post",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "body": "string",
+                "user": "User",
+                "category": "Category",
+                "comments": "List<Comment>",
+                "tags": "List<Tag>",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Post not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/posts/category/{id}",
+      "http_method": "GET",
+      "method_name": "getPostsByCategory",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PostController.java",
+      "parameters": [
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of items per page",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "Category ID",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a paged list of posts belonging to the specified category.",
+          "data_schema": [
+            {
+              "name": "PagedResponse<Post>",
+              "schema": {
+                "content": "array<Post>",
+                "page": "integer",
+                "size": "integer",
+                "totalElements": "long",
+                "totalPages": "integer",
+                "last": "boolean"
+              }
+            },
+            {
+              "name": "Post",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "body": "string",
+                "user": "User",
+                "category": "Category",
+                "tags": "array<Tag>",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "createdBy": "long",
+                "updatedBy": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when a request parameter has the wrong type (e.g., page or size is not an integer, or id is not a long).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the service call postService.getPostsByCategory(id, page, size) fails and no handler catches the failure.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/posts/tag/{id}",
+      "http_method": "GET",
+      "method_name": "getPostsByTag",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PostController.java",
+      "parameters": [
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of items per page",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "Tag ID to filter posts by",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a paginated list of posts filtered by the given tag id.",
+          "data_schema": [
+            {
+              "name": "PagedResponse<Post>",
+              "schema": {
+                "content": "array<Post>",
+                "page": "integer",
+                "size": "integer",
+                "totalElements": "long",
+                "totalPages": "integer",
+                "last": "boolean"
+              }
+            },
+            {
+              "name": "Post",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "body": "string",
+                "user": "User",
+                "category": "Category",
+                "tags": "array<Tag>",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "createdBy": "long",
+                "updatedBy": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Returned when the path variable 'id' cannot be converted to Long (MethodArgumentTypeMismatchException).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Returned when the service call postService.getPostsByTag(id, page, size) throws an unhandled exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/posts/{id}",
+      "http_method": "DELETE",
+      "method_name": "deletePost",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PostController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the post to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Post deleted successfully",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication is required",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have permission to delete this post",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Post not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/posts",
+      "http_method": "POST",
+      "method_name": "addPost",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PostController.java",
+      "parameters": [
+        {
+          "name": "title",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Post creation request body containing title, body, categoryId and tags"
+        },
+        {
+          "name": "body",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Post creation request body containing title, body, categoryId and tags"
+        },
+        {
+          "name": "categoryId",
+          "type": "Long",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Post creation request body containing title, body, categoryId and tags"
+        },
+        {
+          "name": "tags",
+          "type": "List",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Post creation request body containing title, body, categoryId and tags"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Post created successfully",
+          "data_schema": [
+            {
+              "name": "PostResponse",
+              "schema": {
+                "title": "string",
+                "body": "string",
+                "category": "string",
+                "tags": "array of string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation errors or malformed JSON",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication required",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have required role",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found - referenced category not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - unexpected error during post creation",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/posts/{id}",
+      "http_method": "PUT",
+      "method_name": "updatePost",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PostController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the post to update",
+          "_depth": 0
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated post data"
+        },
+        {
+          "name": "body",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated post data"
+        },
+        {
+          "name": "categoryId",
+          "type": "Long",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated post data"
+        },
+        {
+          "name": "tags",
+          "type": "List",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Updated post data"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Post updated successfully",
+          "data_schema": [
+            {
+              "name": "Post",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "body": "string",
+                "user": "User",
+                "category": "Category",
+                "comments": "List<Comment>",
+                "tags": "List<Tag>",
+                "createdAt": "Instant",
+                "updatedAt": "Instant",
+                "createdBy": "long",
+                "updatedBy": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation errors or malformed request",
+          "data_schema": [
+            {
+              "name": "ExceptionResponse",
+              "schema": {
+                "messages": "List<string>",
+                "status": "string",
+                "code": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication required",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have permission",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found - post not found",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/tags",
+      "http_method": "GET",
+      "method_name": "getAllTags",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TagController.java",
+      "parameters": [
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of items per page",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved a paginated list of tags.",
+          "data_schema": [
+            {
+              "name": "PagedResponse<Tag>",
+              "schema": {
+                "content": "array<Tag>",
+                "page": "integer",
+                "size": "integer",
+                "totalElements": "long",
+                "totalPages": "integer",
+                "last": "boolean"
+              }
+            },
+            {
+              "name": "Tag",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/tags/{id}",
+      "http_method": "GET",
+      "method_name": "getTag",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TagController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the tag to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Tag retrieved successfully",
+          "data_schema": [
+            {
+              "name": "Tag",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Tag not found",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/tags",
+      "http_method": "POST",
+      "method_name": "addTag",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TagController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The tag object to create, sent as the request body and validated with @Valid"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The tag object to create, sent as the request body and validated with @Valid"
+        },
+        {
+          "name": "posts",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The tag object to create, sent as the request body and validated with @Valid"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Tag created successfully",
+          "data_schema": [
+            {
+              "name": "Tag",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid request body or validation error",
+          "data_schema": [
+            {
+              "name": "ExceptionResponse",
+              "schema": {
+                "messages": "array",
+                "status": "string",
+                "code": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication required",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have required role",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/tags/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteTag",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TagController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the tag to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Tag deleted successfully. Returns an ApiResponse object indicating success and a message.",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. Authentication is required to access this endpoint.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required role (USER or ADMIN) to delete the tag.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The tag with the specified id does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/todos/{id}",
+      "http_method": "GET",
+      "method_name": "getTodo",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TodoController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the todo to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Todo retrieved successfully",
+          "data_schema": [
+            {
+              "name": "Todo",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "completed": "boolean",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "createdBy": "long",
+                "updatedBy": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication is required",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have the required role",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Todo not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/todos/{id}",
+      "http_method": "PUT",
+      "method_name": "updateTodo",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TodoController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the todo to update",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "Long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated todo object"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The updated todo object"
+        },
+        {
+          "name": "completed",
+          "type": "Boolean",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated todo object"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Todo updated successfully",
+          "data_schema": [
+            {
+              "name": "Todo",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "completed": "boolean",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation error on request body or invalid path variable type",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication required",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have permission to update this todo",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found - todo with given id does not exist",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - unexpected error during todo update",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/tags/{id}",
+      "http_method": "PUT",
+      "method_name": "updateTag",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TagController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the tag to update",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "Long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated tag object"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated tag object"
+        },
+        {
+          "name": "posts",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated tag object"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Tag updated successfully",
+          "data_schema": [
+            {
+              "name": "Tag",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation errors in request body or invalid path variable type",
+          "data_schema": [
+            {
+              "name": "ExceptionResponse",
+              "schema": {
+                "messages": "array",
+                "status": "string",
+                "code": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication required",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have required role or permission",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found - tag with given id does not exist",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - unexpected server error",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/todos",
+      "http_method": "GET",
+      "method_name": "getAllTodos",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TodoController.java",
+      "parameters": [
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of items per page",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved a paginated list of todos for the current user.",
+          "data_schema": [
+            {
+              "name": "PagedResponse<Todo>",
+              "schema": {
+                "content": "array<Todo>",
+                "page": "integer",
+                "size": "integer",
+                "totalElements": "long",
+                "totalPages": "integer",
+                "last": "boolean"
+              }
+            },
+            {
+              "name": "Todo",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "completed": "boolean",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "createdBy": "long",
+                "updatedBy": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication is required to access this endpoint.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - the authenticated user does not have the required role (USER).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - an unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/todos/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteTodo",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TodoController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the todo item to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Todo deleted successfully. Returns an ApiResponse with success=true and a message.",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication is required to access this endpoint.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - the authenticated user does not have the required role (ROLE_USER) or does not own the todo.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found - the todo with the specified id does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - an unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/todos",
+      "http_method": "POST",
+      "method_name": "addTodo",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TodoController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The todo object to create, sent as the request body and validated with @Valid."
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The todo object to create, sent as the request body and validated with @Valid."
+        },
+        {
+          "name": "completed",
+          "type": "Boolean",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The todo object to create, sent as the request body and validated with @Valid."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Todo created successfully",
+          "data_schema": [
+            {
+              "name": "Todo",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "completed": "boolean",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "createdBy": "long",
+                "updatedBy": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation error or malformed JSON",
+          "data_schema": [
+            {
+              "name": "ExceptionResponse",
+              "schema": {
+                "messages": "array",
+                "status": "string",
+                "code": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication required",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - insufficient permissions",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/todos/{id}/complete",
+      "http_method": "PUT",
+      "method_name": "completeTodo",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TodoController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the todo item to mark as complete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Todo completed successfully",
+          "data_schema": [
+            {
+              "name": "Todo",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "completed": "boolean",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication is required",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have permission to complete this todo",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Todo not found",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/todos/{id}/unComplete",
+      "http_method": "PUT",
+      "method_name": "unCompleteTodo",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TodoController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the todo item to mark as incomplete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Todo successfully marked as uncompleted",
+          "data_schema": [
+            {
+              "name": "Todo",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "completed": "boolean",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "createdBy": "long",
+                "updatedBy": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication is required",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have the required role",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Todo not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/users/me",
+      "http_method": "GET",
+      "method_name": "getCurrentUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the current authenticated user's summary information.",
+          "data_schema": [
+            {
+              "name": "UserSummary",
+              "schema": {
+                "id": "long",
+                "username": "string",
+                "firstName": "string",
+                "lastName": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication is required to access this endpoint.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - the authenticated user does not have the required role (USER).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error - an unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/users/checkUsernameAvailability",
+      "http_method": "GET",
+      "method_name": "checkUsernameAvailability",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Username to check availability for",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns availability of the username.",
+          "data_schema": [
+            {
+              "name": "UserIdentityAvailability",
+              "schema": {
+                "available": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/users/checkEmailAvailability",
+      "http_method": "GET",
+      "method_name": "checkEmailAvailability",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "email",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Email address to check availability for",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns whether the given email is available, wrapped in a UserIdentityAvailability object.",
+          "data_schema": [
+            {
+              "name": "UserIdentityAvailability",
+              "schema": {
+                "available": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if the userService.checkEmailAvailability call fails and the exception is not handled by the handler.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/users/{username}/profile",
+      "http_method": "GET",
+      "method_name": "getUSerProfile",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Username of the user whose profile is requested",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "User profile retrieved successfully",
+          "data_schema": [
+            {
+              "name": "UserProfile",
+              "schema": {
+                "id": "long",
+                "username": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "joinedAt": "Instant",
+                "email": "string",
+                "address": "Address",
+                "phone": "string",
+                "website": "string",
+                "company": "Company",
+                "postCount": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "User not found",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/users/{username}/albums",
+      "http_method": "GET",
+      "method_name": "getUserAlbums",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Username of the user whose albums are to be retrieved",
+          "_depth": 0
+        },
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of items per page",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the paginated list of albums for the specified user.",
+          "data_schema": [
+            {
+              "name": "PagedResponse<Album>",
+              "schema": {
+                "content": "array<Album>",
+                "page": "integer",
+                "size": "integer",
+                "totalElements": "long",
+                "totalPages": "integer",
+                "last": "boolean"
+              }
+            },
+            {
+              "name": "Album",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "user": "User",
+                "photo": "array<Photo>",
+                "createdBy": "long",
+                "updatedBy": "long",
+                "createdAt": "date",
+                "updatedAt": "date"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/users/{username}",
+      "http_method": "DELETE",
+      "method_name": "deleteUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Username of the user to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "User deleted successfully",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication is required to access this resource",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - the authenticated user does not have permission to delete this user",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "User not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/users/{username}/posts",
+      "http_method": "GET",
+      "method_name": "getPostsCreatedBy",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Username of the user whose posts are requested",
+          "_depth": 0
+        },
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page number for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Page size for pagination",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved a paginated list of posts created by the specified user.",
+          "data_schema": [
+            {
+              "name": "PagedResponse<Post>",
+              "schema": {
+                "content": "array<Post>",
+                "page": "integer",
+                "size": "integer",
+                "totalElements": "long",
+                "totalPages": "integer",
+                "last": "boolean"
+              }
+            },
+            {
+              "name": "Post",
+              "schema": {
+                "id": "long",
+                "title": "string",
+                "body": "string",
+                "user": "User",
+                "category": "Category",
+                "tags": "array<Tag>",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "createdBy": "long",
+                "updatedBy": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The specified username does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/users",
+      "http_method": "POST",
+      "method_name": "addUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "User object to be added"
+        },
+        {
+          "name": "firstName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object to be added",
+          "max_length": 40
+        },
+        {
+          "name": "lastName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object to be added",
+          "max_length": 40
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object to be added",
+          "max_length": 15
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object to be added",
+          "max_length": 100
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object to be added",
+          "format": "email",
+          "max_length": 40
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "User object to be added"
+        },
+        {
+          "name": "website",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "User object to be added"
+        },
+        {
+          "name": "roles",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "User object to be added"
+        },
+        {
+          "name": "todos",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "User object to be added"
+        },
+        {
+          "name": "albums",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "User object to be added"
+        },
+        {
+          "name": "posts",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "User object to be added"
+        },
+        {
+          "name": "comments",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "User object to be added"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "User created successfully",
+          "data_schema": [
+            {
+              "name": "User",
+              "schema": {
+                "id": "long",
+                "firstName": "string",
+                "lastName": "string",
+                "username": "string",
+                "password": "string",
+                "email": "string",
+                "address": "Address",
+                "phone": "string",
+                "website": "string",
+                "roles": "List<Role>",
+                "todos": "List<Todo>",
+                "albums": "List<Album>",
+                "posts": "List<Post>",
+                "comments": "List<Comment>",
+                "company": "Company",
+                "createdAt": "Instant",
+                "updatedAt": "Instant",
+                "createdBy": "long",
+                "updatedBy": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation errors or malformed request body",
+          "data_schema": [
+            {
+              "name": "ExceptionResponse",
+              "schema": {
+                "messages": "List<string>",
+                "status": "string",
+                "code": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have ADMIN role",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - unexpected error during user creation",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/users/{username}/giveAdmin",
+      "http_method": "PUT",
+      "method_name": "giveAdmin",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Username of the user to grant admin role",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Admin role granted successfully. Returns an ApiResponse indicating success.",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. Returned when the request is not authenticated (e.g., missing or invalid JWT).",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when the authenticated user does not have the ADMIN role.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned when the specified username does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when an unexpected error occurs during processing.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/users/{username}/takeAdmin",
+      "http_method": "PUT",
+      "method_name": "takeAdmin",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Username of the user to grant admin role to",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Admin role removed successfully",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication is required",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have ADMIN role",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "User not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/users/{username}",
+      "http_method": "PUT",
+      "method_name": "updateUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated user object sent in the request body, validated with @Valid."
+        },
+        {
+          "name": "firstName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The updated user object sent in the request body, validated with @Valid.",
+          "max_length": 40
+        },
+        {
+          "name": "lastName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The updated user object sent in the request body, validated with @Valid.",
+          "max_length": 40
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The updated user object sent in the request body, validated with @Valid.",
+          "max_length": 15
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The updated user object sent in the request body, validated with @Valid.",
+          "max_length": 100
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The updated user object sent in the request body, validated with @Valid.",
+          "format": "email",
+          "max_length": 40
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated user object sent in the request body, validated with @Valid."
+        },
+        {
+          "name": "website",
+          "type": "String",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated user object sent in the request body, validated with @Valid."
+        },
+        {
+          "name": "roles",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated user object sent in the request body, validated with @Valid."
+        },
+        {
+          "name": "todos",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated user object sent in the request body, validated with @Valid."
+        },
+        {
+          "name": "albums",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated user object sent in the request body, validated with @Valid."
+        },
+        {
+          "name": "posts",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated user object sent in the request body, validated with @Valid."
+        },
+        {
+          "name": "comments",
+          "type": "List",
+          "_depth": 0,
+          "require": "false",
+          "position": "body",
+          "description": "The updated user object sent in the request body, validated with @Valid."
+        },
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The username of the user to update, extracted from the URL path.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "User updated successfully",
+          "data_schema": [
+            {
+              "name": "User",
+              "schema": {
+                "id": "long",
+                "firstName": "string",
+                "lastName": "string",
+                "username": "string",
+                "password": "string",
+                "email": "string",
+                "address": "Address",
+                "phone": "string",
+                "website": "string",
+                "roles": "List<Role>",
+                "company": "Company",
+                "createdAt": "Instant",
+                "updatedAt": "Instant"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation errors or malformed request body",
+          "data_schema": [
+            {
+              "name": "ExceptionResponse",
+              "schema": {
+                "messages": "List<string>",
+                "status": "string",
+                "code": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - authentication required",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - user does not have permission to update this user",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found - user not found",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - unexpected error during user update",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/users/setOrUpdateInfo",
+      "http_method": "PUT",
+      "method_name": "setAddress",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "street",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+        },
+        {
+          "name": "suite",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+        },
+        {
+          "name": "city",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+        },
+        {
+          "name": "zipcode",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+        },
+        {
+          "name": "companyName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+        },
+        {
+          "name": "catchPhrase",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+        },
+        {
+          "name": "bs",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+        },
+        {
+          "name": "website",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+        },
+        {
+          "name": "lat",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+        },
+        {
+          "name": "lng",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "User profile information updated successfully",
+          "data_schema": [
+            {
+              "name": "UserProfile",
+              "schema": {
+                "id": "long",
+                "username": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "joinedAt": "date",
+                "email": "string",
+                "address": "Address",
+                "phone": "string",
+                "website": "string",
+                "company": "Company",
+                "postCount": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - Invalid input data or validation failure",
+          "data_schema": [
+            {
+              "name": "ExceptionResponse",
+              "schema": {
+                "messages": "array",
+                "status": "string",
+                "code": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - Authentication is required",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - User does not have permission",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "success": "boolean",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - Unexpected server error",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 14347,
+  "tokens": {
+    "prompt_tokens": 23815,
+    "completion_tokens": 7969,
+    "total_tokens": 31784,
+    "calls": 18,
+    "elapsed_s": 130.433,
+    "prompt_cost_usd": 0.003065,
+    "completion_cost_usd": 0.005284,
+    "total_cost_usd": 0.008349,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 7790,
+        "completion_tokens": 2095,
+        "total_tokens": 9885,
+        "calls": 6,
+        "elapsed_s": 14.342823,
+        "prompt_cost_usd": 0.000156,
+        "completion_cost_usd": 0.001257,
+        "total_cost_usd": 0.001413
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 7313,
+        "completion_tokens": 4784,
+        "total_tokens": 12097,
+        "calls": 6,
+        "elapsed_s": 90.763,
+        "prompt_cost_usd": 0.000731,
+        "completion_cost_usd": 0.002392,
+        "total_cost_usd": 0.003123
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 8712,
+        "completion_tokens": 1090,
+        "total_tokens": 9802,
+        "calls": 6,
+        "elapsed_s": 25.327,
+        "prompt_cost_usd": 0.002178,
+        "completion_cost_usd": 0.001635,
+        "total_cost_usd": 0.003813
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 6,
+    "step2_ms": 123,
+    "step3_ms": 22978,
+    "step4_ms": 15523,
+    "step5_ms": 14347,
+    "total_ms": 52984
+  }
+}

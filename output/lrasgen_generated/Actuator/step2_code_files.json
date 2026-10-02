@@ -1,0 +1,62 @@
+{
+  "task_id": "spring-actuator-demo",
+  "api_name": "spring-actuator-demo",
+  "framework": "spring-boot",
+  "entry_to_deps": {
+    "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Actuator\\spring-actuator-demo\\src\\main\\java\\com\\example\\actuatordemo\\controller\\SampleController.java": {
+      "entry_code_file": "@RestController\npublic class SampleController {\n\n    @GetMapping(\"/\")\n    public String sayHello(@RequestParam(value = \"name\", defaultValue = \"Guest\") String name) {\n        return \"Hello \" + name + \"!!\";\n    }\n\n    @GetMapping(\"/slowApi\")\n    public String timeConsumingAPI(@RequestParam(value = \"delay\", defaultValue = \"0\") Integer delay) throws InterruptedException {\n        if(delay == 0) {\n            Random random = new Random();\n            delay = random.nextInt(10);\n        }\n\n        TimeUnit.SECONDS.sleep(delay);\n        return \"Result\";\n    }\n\n}\n"
+    }
+  },
+  "duration_ms": 3,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  }
+}

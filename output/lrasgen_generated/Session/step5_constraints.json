@@ -1,0 +1,578 @@
+{
+  "task_id": "session-service",
+  "api_name": "session-service",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/info",
+      "http_method": "GET",
+      "method_name": "getInfo",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Session\\session-service\\src\\main\\java\\org\\cbioportal\\session_service\\web\\InfoController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the implementation version of the package as a string.",
+          "data_schema": [
+            {
+              "name": "version",
+              "schema": {
+                "version": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/sessions/{source}/{type}/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteSession",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Session\\session-service\\src\\main\\java\\org\\cbioportal\\session_service\\web\\SessionServiceController.java",
+      "parameters": [
+        {
+          "name": "source",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The source of the session",
+          "_depth": 0
+        },
+        {
+          "name": "type",
+          "type": "SessionType",
+          "require": "true",
+          "position": "path",
+          "description": "The type of the session",
+          "enum": [
+            "main_session",
+            "virtual_study",
+            "group",
+            "comparison_session",
+            "settings",
+            "custom_data",
+            "genomic_chart",
+            "custom_gene_list"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the session",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Session deleted successfully. No response body is returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Session not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if an unexpected exception occurs during session deletion.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/sessions/{source}/{type}/{id}",
+      "http_method": "PUT",
+      "method_name": "updateSession",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Session\\session-service\\src\\main\\java\\org\\cbioportal\\session_service\\web\\SessionServiceController.java",
+      "parameters": [
+        {
+          "name": "source",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The source of the session",
+          "_depth": 0
+        },
+        {
+          "name": "type",
+          "type": "SessionType",
+          "require": "true",
+          "position": "path",
+          "description": "The type of the session",
+          "enum": [
+            "main_session",
+            "virtual_study",
+            "group",
+            "comparison_session",
+            "settings",
+            "custom_data",
+            "genomic_chart",
+            "custom_gene_list"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the session",
+          "_depth": 0
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The session data",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Session updated successfully. The endpoint returns no body.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the session data is invalid or the session type is invalid.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Session not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an unexpected error occurs during session update.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/sessions/{source}/{type}/{id}",
+      "http_method": "GET",
+      "method_name": "getSession",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Session\\session-service\\src\\main\\java\\org\\cbioportal\\session_service\\web\\SessionServiceController.java",
+      "parameters": [
+        {
+          "name": "source",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The source of the session",
+          "_depth": 0
+        },
+        {
+          "name": "type",
+          "type": "SessionType",
+          "require": "true",
+          "position": "path",
+          "description": "The type of the session",
+          "enum": [
+            "main_session",
+            "virtual_study",
+            "group",
+            "comparison_session",
+            "settings",
+            "custom_data",
+            "genomic_chart",
+            "custom_gene_list"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the session",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Session found and returned",
+          "data_schema": [
+            {
+              "name": "Session",
+              "schema": {
+                "id": "string",
+                "checksum": "string",
+                "data": "object",
+                "source": "string",
+                "type": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid session type provided",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Session not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/sessions/{source}/{type}/query/fetch",
+      "http_method": "POST",
+      "method_name": "fetchSessionsByQuery",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Session\\session-service\\src\\main\\java\\org\\cbioportal\\session_service\\web\\SessionServiceController.java",
+      "parameters": [
+        {
+          "name": "source",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The source of the session",
+          "_depth": 0
+        },
+        {
+          "name": "type",
+          "type": "SessionType",
+          "require": "true",
+          "position": "path",
+          "description": "The type of the session",
+          "enum": [
+            "main_session",
+            "virtual_study",
+            "group",
+            "comparison_session",
+            "settings",
+            "custom_data",
+            "genomic_chart",
+            "custom_gene_list"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "selection filter similar to mongo filter",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of sessions matching the query, serialized with the Full JSON view (id, checksum, data, source, type).",
+          "data_schema": [
+            {
+              "name": "Session",
+              "schema": {
+                "id": "string",
+                "checksum": "string",
+                "data": "object",
+                "source": "string",
+                "type": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the query is invalid (SessionQueryInvalidException) or when the type path variable cannot be converted to SessionType (MethodArgumentTypeMismatchException).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the delegated sessionService.getSessionsByQuery call fails with an unhandled exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/sessions/{source}/{type}",
+      "http_method": "POST",
+      "method_name": "addSession",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Session\\session-service\\src\\main\\java\\org\\cbioportal\\session_service\\web\\SessionServiceController.java",
+      "parameters": [
+        {
+          "name": "source",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The source of the session",
+          "_depth": 0
+        },
+        {
+          "name": "type",
+          "type": "SessionType",
+          "require": "true",
+          "position": "path",
+          "description": "The type of the session",
+          "enum": [
+            "main_session",
+            "virtual_study",
+            "group",
+            "comparison_session",
+            "settings",
+            "custom_data",
+            "genomic_chart",
+            "custom_gene_list"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The session data as a JSON string",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Session created successfully. Returns the created session serialized with the IdOnly JSON view, containing only the session id.",
+          "data_schema": [
+            {
+              "name": "Session",
+              "schema": {
+                "id": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the session data is invalid (SessionInvalidException) or when the {type} path variable cannot be converted to a SessionType enum value (MethodArgumentTypeMismatchException).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. The handler delegates to sessionService.addSession and does not catch failures other than the declared exceptions, so an unexpected failure from the service call results in a 500 response.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/sessions/{source}/{type}/query",
+      "http_method": "GET",
+      "method_name": "getSessionsByQuery",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Session\\session-service\\src\\main\\java\\org\\cbioportal\\session_service\\web\\SessionServiceController.java",
+      "parameters": [
+        {
+          "name": "source",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The source of the session",
+          "_depth": 0
+        },
+        {
+          "name": "type",
+          "type": "SessionType",
+          "require": "true",
+          "position": "path",
+          "description": "The type of the session",
+          "enum": [
+            "main_session",
+            "virtual_study",
+            "group",
+            "comparison_session",
+            "settings",
+            "custom_data",
+            "genomic_chart",
+            "custom_gene_list"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "field",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The field to query by",
+          "_depth": 0
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The value to match for the field",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of sessions matching the query constructed from the 'field' and 'value' request parameters.",
+          "data_schema": [
+            {
+              "name": "Session",
+              "schema": {
+                "id": "string",
+                "checksum": "string",
+                "data": "object",
+                "source": "string",
+                "type": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the session query is invalid (SessionQueryInvalidException) or when the 'type' path variable cannot be converted to a SessionType enum value (MethodArgumentTypeMismatchException).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when an unexpected error occurs while processing the request, such as a failure in the session service call that is not caught by the handler.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/sessions/{source}/{type}",
+      "http_method": "GET",
+      "method_name": "getSessions",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Session\\session-service\\src\\main\\java\\org\\cbioportal\\session_service\\web\\SessionServiceController.java",
+      "parameters": [
+        {
+          "name": "source",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The source of the sessions to retrieve.",
+          "_depth": 0
+        },
+        {
+          "name": "type",
+          "type": "SessionType",
+          "require": "true",
+          "position": "path",
+          "description": "The type of sessions to retrieve.",
+          "enum": [
+            "main_session",
+            "virtual_study",
+            "group",
+            "comparison_session",
+            "settings",
+            "custom_data",
+            "genomic_chart",
+            "custom_gene_list"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of sessions matching the given source and type, serialized with the Full JSON view.",
+          "data_schema": [
+            {
+              "name": "Session",
+              "schema": {
+                "id": "string",
+                "checksum": "string",
+                "data": "object",
+                "source": "string",
+                "type": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the {type} path variable cannot be converted to a SessionType enum value; the response body lists the valid types.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when the delegated call to sessionService.getSessions fails and no handler catches the failure.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 2,
+    "step2_ms": 6,
+    "step3_ms": 4644,
+    "step4_ms": 3839,
+    "step5_ms": 0,
+    "total_ms": 8493
+  }
+}

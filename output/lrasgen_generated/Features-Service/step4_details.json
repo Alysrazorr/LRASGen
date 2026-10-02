@@ -1,0 +1,712 @@
+{
+  "task_id": "features-service",
+  "api_name": "features-service",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/products/{productName}/configurations/{configurationName}",
+      "http_method": "DELETE",
+      "method_name": "deleteConfiguration",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConfigurationResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product",
+          "_depth": 0
+        },
+        {
+          "name": "configurationName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the configuration",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content - configuration deleted successfully",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}/configurations",
+      "http_method": "GET",
+      "method_name": "getConfigurationsForProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConfigurationResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product whose configurations are retrieved",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of configuration names for the specified product.",
+          "data_schema": [
+            {
+              "name": "List<String>",
+              "schema": {
+                "configurationNames": "array of string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if an exception occurs during the retrieval of configurations, such as when the product is not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}/configurations/{configurationName}/features/{featureName}",
+      "http_method": "POST",
+      "method_name": "addFeatureToConfiguration",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConfigurationFeaturesResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product",
+          "_depth": 0
+        },
+        {
+          "name": "configurationName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the configuration",
+          "_depth": 0
+        },
+        {
+          "name": "featureName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the feature to add",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Created. The feature was successfully added to the configuration. The Location header contains the URI of the newly added feature.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while processing the request.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}/constraints/excludes",
+      "http_method": "POST",
+      "method_name": "addExcludesConstraintToProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConstraintsResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product to which the excludes constraint is added",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Created. The excludes constraint was successfully added to the product. The Location header contains the URI of the newly created constraint.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when the product with the given name does not exist (ObjectNotFoundException) or when another failure occurs during constraint creation.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}/constraints/{constraintId}",
+      "http_method": "DELETE",
+      "method_name": "deleteConstraint",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConstraintsResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product whose constraint is to be deleted",
+          "_depth": 0
+        },
+        {
+          "name": "constraintId",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "Identifier of the constraint to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content - the constraint was successfully deleted from the product.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - an unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}/configurations/{configurationName}/features/{featureName}",
+      "http_method": "DELETE",
+      "method_name": "deleteFeature",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConfigurationFeaturesResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product",
+          "_depth": 0
+        },
+        {
+          "name": "configurationName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the configuration",
+          "_depth": 0
+        },
+        {
+          "name": "featureName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the feature to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content - the feature was successfully removed from the configuration.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - an unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}/configurations/{configurationName}/features",
+      "http_method": "GET",
+      "method_name": "getConfigurationActivedFeatures",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConfigurationFeaturesResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product",
+          "_depth": 0
+        },
+        {
+          "name": "configurationName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the configuration",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of active feature names for the specified configuration.",
+          "data_schema": [
+            {
+              "name": "List<String>",
+              "schema": {
+                "items": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when the service call fails, e.g., if the product or configuration is not found (ObjectNotFoundException) or another runtime exception occurs.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}/configurations/{configurationName}",
+      "http_method": "GET",
+      "method_name": "getConfigurationWithNameForProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConfigurationResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product",
+          "_depth": 0
+        },
+        {
+          "name": "configurationName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the configuration",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the ProductConfiguration with the given configurationName for the given productName.",
+          "data_schema": [
+            {
+              "name": "ProductConfiguration",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "valid": "boolean",
+                "activedFeatures": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the configuration lookup fails or the service call throws an unexpected exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}/configurations/{configurationName}",
+      "http_method": "POST",
+      "method_name": "addConfiguration",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConfigurationResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product, extracted from the URL path.",
+          "_depth": 0
+        },
+        {
+          "name": "configurationName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the configuration, extracted from the URL path.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Configuration created successfully. The Location header contains the URI of the newly created configuration.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when the product does not exist (ObjectNotFoundException) or when a configuration with the same name already exists (DuplicatedObjectException) during the service call.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}/constraints/requires",
+      "http_method": "POST",
+      "method_name": "addRequiresConstraintToProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConstraintsResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product to which the requires constraint is added",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Created. The requires constraint was successfully added to the product. The Location header contains the URI of the new constraint.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An error occurred while processing the request, such as when the product is not found or a database error occurs.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}/features",
+      "http_method": "GET",
+      "method_name": "getFeaturesForProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsFeaturesResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product whose features are to be retrieved",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the set of features for the specified product.",
+          "data_schema": [
+            {
+              "name": "Set<Feature>",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when the product is not found (ObjectNotFoundException) or another runtime exception occurs.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}/features/{featureName}",
+      "http_method": "DELETE",
+      "method_name": "deleteFeatureOfProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsFeaturesResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product whose feature is to be deleted",
+          "_depth": 0
+        },
+        {
+          "name": "featureName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the feature to delete from the product",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. The feature was successfully deleted from the product.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while processing the request.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}",
+      "http_method": "DELETE",
+      "method_name": "deleteProductByName",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Product deleted successfully. No content returned.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}",
+      "http_method": "GET",
+      "method_name": "getProductByName",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the product with the given name.",
+          "data_schema": [
+            {
+              "name": "Product",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "features": "Set<Feature>",
+                "constraints": "Set<FeatureConstraint>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if the product is not found or if an unexpected error occurs.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}/features/{featureName}",
+      "http_method": "POST",
+      "method_name": "addFeatureToProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsFeaturesResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product to which the feature is added",
+          "_depth": 0
+        },
+        {
+          "name": "featureName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the feature to add to the product",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Feature added to product successfully. The Location header contains the URI of the newly created feature.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when the product is not found (ObjectNotFoundException) or when the feature already exists (DuplicatedObjectException).",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}",
+      "http_method": "POST",
+      "method_name": "addProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product to add",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Product created successfully. The Location header contains the URI of the newly created product.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products",
+      "http_method": "GET",
+      "method_name": "getAllProducts",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of all product names.",
+          "data_schema": [
+            {
+              "name": "List<String>",
+              "schema": {
+                "items": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/products/{productName}/features/{featureName}",
+      "http_method": "PUT",
+      "method_name": "updateFeatureOfProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsFeaturesResource.java",
+      "parameters": [
+        {
+          "name": "productName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the product whose feature is to be updated",
+          "_depth": 0
+        },
+        {
+          "name": "featureName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the feature to update",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the updated Feature object with the new description.",
+          "data_schema": [
+            {
+              "name": "Feature",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "description": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Product or feature not found. Thrown by ProductsDAO.findByName or Product.findProductFeatureByName when the product or feature does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to ProductsService.updateFeatureOfProduct, which may throw an uncaught exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 6377,
+  "tokens": {
+    "prompt_tokens": 771461,
+    "completion_tokens": 22594,
+    "total_tokens": 794055,
+    "calls": 108,
+    "elapsed_s": 527.442,
+    "prompt_cost_usd": 0.097465,
+    "completion_cost_usd": 0.015743,
+    "total_cost_usd": 0.113208,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 254776,
+        "completion_tokens": 3691,
+        "total_tokens": 258467,
+        "calls": 36,
+        "elapsed_s": 54.530657000000005,
+        "prompt_cost_usd": 0.005096,
+        "completion_cost_usd": 0.002215,
+        "total_cost_usd": 0.00731
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 245349,
+        "completion_tokens": 14826,
+        "total_tokens": 260175,
+        "calls": 36,
+        "elapsed_s": 341.656,
+        "prompt_cost_usd": 0.024535,
+        "completion_cost_usd": 0.007413,
+        "total_cost_usd": 0.031948
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 271336,
+        "completion_tokens": 4077,
+        "total_tokens": 275413,
+        "calls": 36,
+        "elapsed_s": 131.255,
+        "prompt_cost_usd": 0.067834,
+        "completion_cost_usd": 0.006115,
+        "total_cost_usd": 0.07395
+      }
+    ]
+  }
+}

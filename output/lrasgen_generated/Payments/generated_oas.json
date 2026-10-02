@@ -1,0 +1,2680 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "pay-publicapi API",
+    "description": "LRASGen-generated specification for pay-publicapi (jersey).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/healthcheck": {
+      "get": {
+        "operationId": "getHealthcheck",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "All health checks passed; returns a map of health check names to their healthy status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "HealthCheckResults": {
+                      "type": "string",
+                      "description": "{'additionalProperties': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "One or more health checks failed; returns a map of health check names to their healthy status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "HealthCheckResults": {
+                      "type": "string",
+                      "description": "{'additionalProperties': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/agreements/{agreementId}/cancel": {
+      "post": {
+        "operationId": "createCancel",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "agreementId",
+            "in": "path",
+            "required": true,
+            "description": "The `agreement_id` of the agreement you are cancelling",
+            "schema": {
+              "type": "string",
+              "description": "The `agreement_id` of the agreement you are cancelling"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Cancellation of agreement failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Credentials are required to access this resource"
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiErrorResponse": {
+                      "type": "string",
+                      "description": "{'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Downstream system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/v1/payments/{paymentId}/refunds": {
+      "post": {
+        "operationId": "createRefunds",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "paymentId",
+            "in": "path",
+            "required": true,
+            "description": "The unique `payment_id` of the payment you want to refund.",
+            "schema": {
+              "type": "string",
+              "description": "The unique `payment_id` of the payment you want to refund."
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted. The refund request has been accepted and a refund response is returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RefundResponse": {
+                      "type": "string",
+                      "description": "{'refund_id': 'string', 'created_date': 'string', 'amount': 'long', '_links': 'RefundLinksForSearch', 'status': 'string', 'settlement_summary': 'RefundSettlementSummary'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates to CreateRefundService.createRefund, which may throw an uncaught exception."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "integer",
+                    "description": "requestPayload"
+                  },
+                  "refundAmountAvailable": {
+                    "type": "integer",
+                    "description": "requestPayload"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "refundAmountAvailable"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getRefunds",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "paymentId",
+            "in": "path",
+            "required": true,
+            "description": "The unique `payment_id` of the payment you want a list of refunds for.",
+            "schema": {
+              "type": "string",
+              "description": "The unique `payment_id` of the payment you want a list of refunds for."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RefundForSearchResult": {
+                      "type": "string",
+                      "description": "{'payment_id': 'string', '_links': 'RefundLinksForSearch', '_embedded': 'Embedded'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Credentials are required to access this resource"
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiErrorResponse": {
+                      "type": "string",
+                      "description": "{'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Downstream system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/payments/{paymentId}/refunds/{refundId}": {
+      "get": {
+        "operationId": "getRefunds",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "paymentId",
+            "in": "path",
+            "required": true,
+            "description": "The unique `payment_id` of the payment you want to view a refund of.",
+            "schema": {
+              "type": "string",
+              "description": "The unique `payment_id` of the payment you want to view a refund of."
+            }
+          },
+          {
+            "name": "refundId",
+            "in": "path",
+            "required": true,
+            "description": "The unique `refund_id` of the refund you want to view. If one payment has multiple refunds, each refund has a different `refund_id`.",
+            "schema": {
+              "type": "string",
+              "description": "The unique `refund_id` of the refund you want to view. If one payment has multiple refunds, each refund has a different `refund_id`."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Refund": {
+                      "type": "string",
+                      "description": "{'refund_id': 'string', 'created_date': 'string', 'amount': 'long', '_links': 'RefundLinksForSearch', 'status': 'string', 'settlement_summary': 'RefundSettlementSummary'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Credentials are required to access this resource"
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ErrorResponse": {
+                      "type": "string",
+                      "description": "{'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Downstream system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/agreements": {
+      "post": {
+        "operationId": "createAgreements",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Created - Agreement created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Agreement": {
+                      "type": "string",
+                      "description": "{'agreement_id': 'string', 'reference': 'string', 'description': 'string', 'status': 'string', 'created_date': 'string', 'payment_instrument': {'card_details': {'last_digits_card_number': 'string', 'first_digits_card_number': 'string', 'cardholder_name': 'string', 'expiry_date': 'string', 'billing_address': {'line1': 'string', 'line2': 'string', 'postcode': 'string', 'city': 'string', 'country': 'string'}, 'card_brand': 'string', 'card_type': 'string'}, 'created_date': 'string', 'type': 'string'}, 'user_identifier': 'string', 'cancelled_date': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid request payload",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Authentication failed"
+          },
+          "422": {
+            "description": "Unprocessable Entity - Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiErrorResponse": {
+                      "type": "string",
+                      "description": "{'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Downstream system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "reference": {
+                    "type": "string",
+                    "description": "requestPayload"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "requestPayload"
+                  },
+                  "userIdentifier": {
+                    "type": "string",
+                    "description": "requestPayload"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAgreements",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "reference",
+            "in": "query",
+            "required": false,
+            "description": "Returns agreements with a `reference` that exactly matches the value you sent. This parameter is not case sensitive. A `reference` was associated with the agreement when that agreement was created.",
+            "schema": {
+              "type": "string",
+              "description": "Returns agreements with a `reference` that exactly matches the value you sent. This parameter is not case sensitive. A `reference` was associated with the agreement when that agreement was created.",
+              "maxLength": 255
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "Returns agreements in a matching `status`. `status` reflects where an agreement is in its lifecycle. You can [read more about the meanings of the different agreement status values](https://docs.payments.service.gov.uk/recurring_payments/#understanding-agreement-status).",
+            "schema": {
+              "type": "string",
+              "description": "Returns agreements in a matching `status`. `status` reflects where an agreement is in its lifecycle. You can [read more about the meanings of the different agreement status values](https://docs.payments.service.gov.uk/recurring_payments/#understanding-agreement-status).",
+              "enum": [
+                "created",
+                "active",
+                "cancelled",
+                "inactive"
+              ]
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Returns a specific page of results. Defaults to `1`. You can [read about search pagination](https://docs.payments.service.gov.uk/api_reference/#pagination)",
+            "schema": {
+              "type": "string",
+              "description": "Returns a specific page of results. Defaults to `1`. You can [read about search pagination](https://docs.payments.service.gov.uk/api_reference/#pagination)"
+            }
+          },
+          {
+            "name": "display_size",
+            "in": "query",
+            "required": false,
+            "description": "The number of agreements returned per results page. Defaults to `500`. Maximum value is `500`. You can [read about search pagination](https://docs.payments.service.gov.uk/api_reference/#pagination)",
+            "schema": {
+              "type": "string",
+              "description": "The number of agreements returned per results page. Defaults to `500`. Maximum value is `500`. You can [read about search pagination](https://docs.payments.service.gov.uk/api_reference/#pagination)"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AgreementSearchResults": {
+                      "type": "string",
+                      "description": "{'total': 'integer', 'count': 'integer', 'page': 'integer', 'results': 'array of Agreement', '_links': 'SearchNavigationLinks'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Credentials are required to access this resource."
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid parameters: %s. See Public API documentation for the correct data formats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiErrorResponse": {
+                      "type": "string",
+                      "description": "{'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Downstream system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/agreements/{agreementId}": {
+      "get": {
+        "operationId": "getAgreements",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "agreementId",
+            "in": "path",
+            "required": true,
+            "description": "Returns the agreement with the matching `agreement_id`. GOV.UK Pay generated an `agreement_id` when you created the agreement.",
+            "schema": {
+              "type": "string",
+              "description": "Returns the agreement with the matching `agreement_id`. GOV.UK Pay generated an `agreement_id` when you created the agreement."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Agreement": {
+                      "type": "string",
+                      "description": "{'agreement_id': 'string', 'reference': 'string', 'description': 'string', 'status': 'string', 'created_date': 'string', 'payment_instrument': 'PaymentInstrument', 'user_identifier': 'string', 'cancelled_date': 'string'}"
+                    },
+                    "PaymentInstrument": {
+                      "type": "string",
+                      "description": "{'card_details': 'CardDetails', 'created_date': 'string', 'type': 'string'}"
+                    },
+                    "CardDetails": {
+                      "type": "string",
+                      "description": "{'last_digits_card_number': 'string', 'first_digits_card_number': 'string', 'cardholder_name': 'string', 'expiry_date': 'string', 'billing_address': 'Address', 'card_brand': 'string', 'card_type': 'string'}"
+                    },
+                    "Address": {
+                      "type": "string",
+                      "description": "{'line1': 'string', 'line2': 'string', 'postcode': 'string', 'city': 'string', 'country': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Credentials are required to access this resource."
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiErrorResponse": {
+                      "type": "string",
+                      "description": "{'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Downstream system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth": {
+      "post": {
+        "operationId": "createAuth",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "204": {
+            "description": "Your authorisation request was successful."
+          },
+          "400": {
+            "description": "Your request is invalid. Check the `code` and `description` in the response to find out why your request failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "The `card_number` you sent is not a valid card number or you chose not to accept this card type. Check the `code` and `description` fields in the response to find out why your request failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "A value you sent is invalid or missing. Check the `code` and `description` in the response to find out why your request failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ErrorResponse": {
+                      "type": "string",
+                      "description": "{'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "There is something wrong with GOV.UK Pay. If there are no issues on our status page (https://payments.statuspage.io), you can contact us with your error code and we'll investigate.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "oneTimeToken": {
+                    "type": "string",
+                    "description": "Contains the user's payment information. This information will be sent to the payment service provider to authorise the payment."
+                  },
+                  "cardNumber": {
+                    "type": "string",
+                    "description": "Contains the user's payment information. This information will be sent to the payment service provider to authorise the payment."
+                  },
+                  "cvc": {
+                    "type": "string",
+                    "description": "The card verification code (CVC) or card verification value (CVV) on the paying user's card."
+                  },
+                  "expiryDate": {
+                    "type": "string",
+                    "description": "Contains the user's payment information. This information will be sent to the payment service provider to authorise the payment."
+                  },
+                  "cardholderName": {
+                    "type": "string",
+                    "description": "Contains the user's payment information. This information will be sent to the payment service provider to authorise the payment."
+                  },
+                  "one_time_token": {
+                    "type": "string",
+                    "description": "This single use token authorises your request and matches it to a payment. GOV.UK Pay generated the `one_time_token` when the payment was created."
+                  },
+                  "card_number": {
+                    "type": "string",
+                    "description": "The full card number from the paying user's card."
+                  },
+                  "expiry_date": {
+                    "type": "string",
+                    "description": "The expiry date of the paying user's card. This value must be in `MM/YY` format."
+                  },
+                  "cardholder_name": {
+                    "type": "string",
+                    "description": "The name on the paying user's card."
+                  }
+                },
+                "required": [
+                  "oneTimeToken",
+                  "cardNumber",
+                  "cvc",
+                  "expiryDate",
+                  "cardholderName"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/payments/{paymentId}/events": {
+      "get": {
+        "operationId": "getEvents",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "paymentId",
+            "in": "path",
+            "required": true,
+            "description": "Payment identifier",
+            "schema": {
+              "type": "string",
+              "description": "Payment identifier"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PaymentEventsResponse": {
+                      "type": "string",
+                      "description": "{'payment_id': 'string', 'events': 'array', 'links': 'PaymentLinksForEvents'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiErrorResponse": {
+                      "type": "string",
+                      "description": "{'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/payments/{paymentId}": {
+      "get": {
+        "operationId": "getPayments",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "paymentId",
+            "in": "path",
+            "required": true,
+            "description": "Returns the payment with the matching `payment_id`.",
+            "schema": {
+              "type": "string",
+              "description": "Returns the payment with the matching `payment_id`."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PaymentWithAllLinks": {
+                      "type": "string",
+                      "description": "{'payment_id': 'string', 'payment_provider': 'string', 'amount': 'long', 'description': 'string', 'reference': 'string', 'created_date': 'string', 'refund_summary': 'RefundSummary', 'settlement_summary': 'PaymentSettlementSummary', 'card_details': 'CardDetails', 'language': 'SupportedLanguage', 'delayed_capture': 'boolean', 'moto': 'boolean', 'corporate_card_surcharge': 'long', 'total_amount': 'long', 'fee': 'long', 'net_amount': 'long', 'provider_id': 'string', 'metadata': 'ExternalMetadata', 'return_url': 'string', 'email': 'string', 'state': 'PaymentState', 'authorisation_summary': 'AuthorisationSummary', 'agreement_id': 'string', 'authorisation_mode': 'AuthorisationMode', 'card_brand': 'string', '_links': 'PaymentLinks'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiErrorResponse": {
+                      "type": "string",
+                      "description": "{'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/request-denied": {
+      "put": {
+        "operationId": "updateRequestDenied",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "400": {
+            "description": "Bad Request - The request was denied due to Naxsi rules violation. Returns a REQUEST_DENIED_ERROR error entity.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'error': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getRequestDenied",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "400": {
+            "description": "Bad Request. The request was denied by Naxsi due to violated rules. Returns a request error entity with the error code REQUEST_DENIED_ERROR.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'error_code': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createRequestDenied",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "400": {
+            "description": "Bad Request - Request denied due to Naxsi rules violation. Returns a request error entity.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'error': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteRequestDenied",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "400": {
+            "description": "Bad Request. The request was denied by Naxsi (a web application firewall). The response body contains a request error object with the error code REQUEST_DENIED_ERROR.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'error_code': 'string', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/v1/transactions": {
+      "get": {
+        "operationId": "getTransactions",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "query",
+            "required": true,
+            "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters.",
+            "schema": {
+              "type": "string",
+              "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+            }
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "required": true,
+            "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters.",
+            "schema": {
+              "type": "string",
+              "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters.",
+            "schema": {
+              "type": "string",
+              "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": true,
+            "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters.",
+            "schema": {
+              "type": "string",
+              "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+            }
+          },
+          {
+            "name": "cardBrand",
+            "in": "query",
+            "required": true,
+            "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters.",
+            "schema": {
+              "type": "string",
+              "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+            }
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "required": true,
+            "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters.",
+            "schema": {
+              "type": "string",
+              "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+            }
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "required": true,
+            "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters.",
+            "schema": {
+              "type": "string",
+              "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": true,
+            "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters.",
+            "schema": {
+              "type": "string",
+              "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+            }
+          },
+          {
+            "name": "displaySize",
+            "in": "query",
+            "required": true,
+            "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters.",
+            "schema": {
+              "type": "string",
+              "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+            }
+          },
+          {
+            "name": "cardHolderName",
+            "in": "query",
+            "required": true,
+            "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters.",
+            "schema": {
+              "type": "string",
+              "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+            }
+          },
+          {
+            "name": "firstDigitsCardNumber",
+            "in": "query",
+            "required": true,
+            "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters.",
+            "schema": {
+              "type": "string",
+              "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+            }
+          },
+          {
+            "name": "lastDigitsCardNumber",
+            "in": "query",
+            "required": true,
+            "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters.",
+            "schema": {
+              "type": "string",
+              "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+            }
+          },
+          {
+            "name": "fromSettledDate",
+            "in": "query",
+            "required": true,
+            "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters.",
+            "schema": {
+              "type": "string",
+              "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+            }
+          },
+          {
+            "name": "toSettledDate",
+            "in": "query",
+            "required": true,
+            "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters.",
+            "schema": {
+              "type": "string",
+              "description": "Bean parameter (@BeanParam) carrying the transaction search query parameters."
+            }
+          },
+          {
+            "name": "card_brand",
+            "in": "query",
+            "required": false,
+            "description": "Brand of the card used for the payment.",
+            "schema": {
+              "type": "string",
+              "description": "Brand of the card used for the payment."
+            }
+          },
+          {
+            "name": "from_date",
+            "in": "query",
+            "required": false,
+            "description": "Start date for the search range.",
+            "schema": {
+              "type": "string",
+              "description": "Start date for the search range."
+            }
+          },
+          {
+            "name": "to_date",
+            "in": "query",
+            "required": false,
+            "description": "End date for the search range.",
+            "schema": {
+              "type": "string",
+              "description": "End date for the search range."
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number of the results.",
+            "schema": {
+              "type": "string",
+              "description": "Page number of the results."
+            }
+          },
+          {
+            "name": "display_size",
+            "in": "query",
+            "required": false,
+            "description": "Number of results to display per page.",
+            "schema": {
+              "type": "string",
+              "description": "Number of results to display per page."
+            }
+          },
+          {
+            "name": "cardholder_name",
+            "in": "query",
+            "required": false,
+            "description": "Name of the cardholder.",
+            "schema": {
+              "type": "string",
+              "description": "Name of the cardholder."
+            }
+          },
+          {
+            "name": "first_digits_card_number",
+            "in": "query",
+            "required": false,
+            "description": "First digits of the card number.",
+            "schema": {
+              "type": "string",
+              "description": "First digits of the card number."
+            }
+          },
+          {
+            "name": "last_digits_card_number",
+            "in": "query",
+            "required": false,
+            "description": "Last digits of the card number.",
+            "schema": {
+              "type": "string",
+              "description": "Last digits of the card number."
+            }
+          },
+          {
+            "name": "from_settled_date",
+            "in": "query",
+            "required": false,
+            "description": "Start settled date for the search range.",
+            "schema": {
+              "type": "string",
+              "description": "Start settled date for the search range."
+            }
+          },
+          {
+            "name": "to_settled_date",
+            "in": "query",
+            "required": false,
+            "description": "End settled date for the search range.",
+            "schema": {
+              "type": "string",
+              "description": "End settled date for the search range."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results for transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SearchResults": {
+                      "type": "string",
+                      "description": "{'total': 'integer', 'count': 'integer', 'page': 'integer', 'results': 'array', 'links': 'SearchNavigationLinks'}"
+                    },
+                    "SearchNavigationLinks": {
+                      "type": "string",
+                      "description": "{'self': 'Link', 'first_page': 'Link', 'last_page': 'Link', 'prev_page': 'Link', 'next_page': 'Link'}"
+                    },
+                    "Link": {
+                      "type": "string",
+                      "description": "{'href': 'string', 'method': 'string'}"
+                    },
+                    "PaymentForSearchResult": {
+                      "type": "string",
+                      "description": "{'payment_id': 'string', 'payment_provider': 'string', 'amount': 'long', 'description': 'string', 'reference': 'string', 'created_date': 'string', 'refund_summary': 'RefundSummary', 'settlement_summary': 'PaymentSettlementSummary', 'card_details': 'CardDetails', 'language': 'SupportedLanguage', 'delayed_capture': 'boolean', 'moto': 'boolean', 'corporate_card_surcharge': 'long', 'total_amount': 'long', 'fee': 'long', 'net_amount': 'long', 'provider_id': 'string', 'metadata': 'ExternalMetadata', 'return_url': 'string', 'email': 'string', 'state': 'PaymentState', 'authorisation_summary': 'AuthorisationSummary', 'agreement_id': 'string', 'authorisation_mode': 'AuthorisationMode', 'card_brand': 'string', '_links': 'PaymentLinksForSearch'}"
+                    },
+                    "RefundSummary": {
+                      "type": "string",
+                      "description": "{'status': 'string', 'amount_available': 'long', 'amount_submitted': 'long'}"
+                    },
+                    "PaymentSettlementSummary": {
+                      "type": "string",
+                      "description": "{'capture_submit_time': 'string', 'captured_date': 'string', 'settled_date': 'string'}"
+                    },
+                    "CardDetails": {
+                      "type": "string",
+                      "description": "{'last_digits_card_number': 'string', 'first_digits_card_number': 'string', 'cardholder_name': 'string', 'expiry_date': 'string', 'billing_address': 'Address', 'card_brand': 'string', 'card_type': 'string', 'wallet_type': 'string'}"
+                    },
+                    "Address": {
+                      "type": "string",
+                      "description": "{'line1': 'string', 'line2': 'string', 'postcode': 'string', 'city': 'string', 'country': 'string'}"
+                    },
+                    "PaymentState": {
+                      "type": "string",
+                      "description": "{'status': 'string', 'finished': 'boolean', 'message': 'string', 'code': 'string', 'can_retry': 'boolean'}"
+                    },
+                    "AuthorisationSummary": {
+                      "type": "string",
+                      "description": "{'three_d_secure': 'ThreeDSecure'}"
+                    },
+                    "ThreeDSecure": {
+                      "type": "string",
+                      "description": "{'required': 'boolean'}"
+                    },
+                    "PaymentLinksForSearch": {
+                      "type": "string",
+                      "description": "{'self': 'Link', 'cancel': 'PostLink', 'events': 'Link', 'refunds': 'Link', 'capture': 'PostLink'}"
+                    },
+                    "PostLink": {
+                      "type": "string",
+                      "description": "{'href': 'string', 'method': 'string', 'type': 'string', 'params': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid search parameters"
+          },
+          "500": {
+            "description": "Internal Server Error - Downstream system error"
+          }
+        }
+      }
+    },
+    "/v1/payments/{paymentId}/capture": {
+      "post": {
+        "operationId": "createCapture",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "paymentId",
+            "in": "path",
+            "required": true,
+            "description": "The `payment_id` of the payment you’re capturing.",
+            "schema": {
+              "type": "string",
+              "description": "The `payment_id` of the payment you’re capturing.",
+              "minLength": 26,
+              "maxLength": 26
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Capture of payment failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiErrorResponse": {
+                      "type": "string",
+                      "description": "{'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Downstream system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/v1/payments/{paymentId}/cancel": {
+      "post": {
+        "operationId": "createCancel",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "paymentId",
+            "in": "path",
+            "required": true,
+            "description": "The `payment_id` of the payment you’re cancelling.",
+            "schema": {
+              "type": "string",
+              "description": "The `payment_id` of the payment you’re cancelling."
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Cancellation of payment failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Credentials are required to access this resource"
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiErrorResponse": {
+                      "type": "string",
+                      "description": "{'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Downstream system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/v1/payments": {
+      "post": {
+        "operationId": "createPayments",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CreatePaymentResult": {
+                      "type": "string",
+                      "description": "{'amount': 'long', 'state': 'PaymentState', 'description': 'string', 'reference': 'string', 'language': 'SupportedLanguage', 'payment_id': 'string', 'payment_provider': 'string', 'return_url': 'string', 'created_date': 'string', 'delayed_capture': 'boolean', 'moto': 'boolean', 'refund_summary': 'RefundSummary', 'settlement_summary': 'PaymentSettlementSummary', '_links': 'PaymentLinks', 'provider_id': 'string', 'metadata': 'ExternalMetadata', 'email': 'string', 'card_details': 'CardDetailsFromResponse'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PaymentWithAllLinks": {
+                      "type": "string",
+                      "description": "{'payment_id': 'string', 'payment_provider': 'string', 'amount': 'long', 'description': 'string', 'reference': 'string', 'created_date': 'string', 'refund_summary': 'RefundSummary', 'settlement_summary': 'PaymentSettlementSummary', 'card_details': 'CardDetails', 'language': 'SupportedLanguage', 'delayed_capture': 'boolean', 'moto': 'boolean', 'corporate_card_surcharge': 'Long', 'total_amount': 'Long', 'fee': 'Long', 'net_amount': 'Long', 'provider_id': 'string', 'metadata': 'ExternalMetadata', 'return_url': 'string', 'email': 'string', 'state': 'PaymentState', 'authorisation_summary': 'AuthorisationSummary', 'agreement_id': 'string', 'authorisation_mode': 'AuthorisationMode', '_links': 'PaymentLinks'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiErrorResponse": {
+                      "type": "string",
+                      "description": "{'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "accountId": {
+                    "type": "string",
+                    "description": "Authenticated account injected via @Auth"
+                  },
+                  "tokenLink": {
+                    "type": "string",
+                    "description": "Authenticated account injected via @Auth"
+                  },
+                  "amount": {
+                    "type": "integer",
+                    "description": "requestPayload"
+                  },
+                  "reference": {
+                    "type": "string",
+                    "description": "requestPayload"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "requestPayload"
+                  },
+                  "language": {
+                    "type": "string",
+                    "description": "requestPayload"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "requestPayload"
+                  },
+                  "returnUrl": {
+                    "type": "string",
+                    "description": "requestPayload"
+                  },
+                  "delayedCapture": {
+                    "type": "boolean",
+                    "description": "requestPayload"
+                  },
+                  "moto": {
+                    "type": "boolean",
+                    "description": "requestPayload"
+                  },
+                  "metadata": {
+                    "type": "string",
+                    "description": "requestPayload"
+                  },
+                  "setUpAgreement": {
+                    "type": "string",
+                    "description": "requestPayload"
+                  },
+                  "agreementId": {
+                    "type": "string",
+                    "description": "requestPayload"
+                  },
+                  "authorisationMode": {
+                    "type": "string",
+                    "description": "requestPayload"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "reference",
+                  "description",
+                  "language",
+                  "email",
+                  "returnUrl",
+                  "delayedCapture",
+                  "moto",
+                  "metadata",
+                  "setUpAgreement",
+                  "agreementId",
+                  "authorisationMode"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getPayments",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "paymentId",
+            "in": "path",
+            "required": false,
+            "description": "Returns the payment with the matching `payment_id`.",
+            "schema": {
+              "type": "string",
+              "description": "Returns the payment with the matching `payment_id`.",
+              "format": "hu20sqlact5260q2nanm0q8u93"
+            }
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "required": false,
+            "description": "Returns payments with `reference` values exactly matching your specified value.",
+            "schema": {
+              "type": "string",
+              "description": "Returns payments with `reference` values exactly matching your specified value."
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "description": "Returns payments with matching `email` values. You can send full or partial email addresses. `email` is the paying user’s email address.",
+            "schema": {
+              "type": "string",
+              "description": "Returns payments with matching `email` values. You can send full or partial email addresses. `email` is the paying user’s email address."
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "description": "Returns payments in a matching `state`. `state` reflects where a payment is in the [payment status lifecycle](https://docs.payments.service.gov.uk/api_reference/#payment-status-lifecycle).",
+            "schema": {
+              "type": "string",
+              "description": "Returns payments in a matching `state`. `state` reflects where a payment is in the [payment status lifecycle](https://docs.payments.service.gov.uk/api_reference/#payment-status-lifecycle).",
+              "enum": [
+                "created",
+                "started",
+                "submitted",
+                "success",
+                "failed",
+                "cancelled",
+                "error"
+              ]
+            }
+          },
+          {
+            "name": "card_brand",
+            "in": "query",
+            "required": false,
+            "description": "Returns payments paid with a particular card brand.",
+            "schema": {
+              "type": "string",
+              "description": "Returns payments paid with a particular card brand."
+            }
+          },
+          {
+            "name": "from_date",
+            "in": "query",
+            "required": false,
+            "description": "Returns payments created on or after the `from_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+            "schema": {
+              "type": "string",
+              "description": "Returns payments created on or after the `from_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+              "format": "YYYY-MM-DDThh:mm:ssZ"
+            }
+          },
+          {
+            "name": "to_date",
+            "in": "query",
+            "required": false,
+            "description": "Returns payments created before the `to_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+            "schema": {
+              "type": "string",
+              "description": "Returns payments created before the `to_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+              "format": "YYYY-MM-DDThh:mm:ssZ"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Returns a [specific page of results](https://docs.payments.service.gov.uk/api_reference/#pagination). Defaults to `1`.",
+            "schema": {
+              "type": "string",
+              "description": "Returns a [specific page of results](https://docs.payments.service.gov.uk/api_reference/#pagination). Defaults to `1`."
+            }
+          },
+          {
+            "name": "display_size",
+            "in": "query",
+            "required": false,
+            "description": "The number of payments returned [per results page](https://docs.payments.service.gov.uk/api_reference/#pagination). Defaults to `500`. Maximum value is `500`.",
+            "schema": {
+              "type": "string",
+              "description": "The number of payments returned [per results page](https://docs.payments.service.gov.uk/api_reference/#pagination). Defaults to `500`. Maximum value is `500`.",
+              "maximum": 500.0
+            }
+          },
+          {
+            "name": "cardholder_name",
+            "in": "query",
+            "required": false,
+            "description": "Returns payments paid with cards under this cardholder name.",
+            "schema": {
+              "type": "string",
+              "description": "Returns payments paid with cards under this cardholder name."
+            }
+          },
+          {
+            "name": "first_digits_card_number",
+            "in": "query",
+            "required": false,
+            "description": "Returns payments paid by cards beginning with the `first_digits_card_number` value. `first_digits_card_number` value must be 6 digits.",
+            "schema": {
+              "type": "string",
+              "description": "Returns payments paid by cards beginning with the `first_digits_card_number` value. `first_digits_card_number` value must be 6 digits.",
+              "minLength": 6,
+              "maxLength": 6
+            }
+          },
+          {
+            "name": "last_digits_card_number",
+            "in": "query",
+            "required": false,
+            "description": "Returns payments paid by cards ending with the `last_digits_card_number` value. `last_digits_card_number` value must be 4 digits.",
+            "schema": {
+              "type": "string",
+              "description": "Returns payments paid by cards ending with the `last_digits_card_number` value. `last_digits_card_number` value must be 4 digits.",
+              "minLength": 4,
+              "maxLength": 4
+            }
+          },
+          {
+            "name": "from_settled_date",
+            "in": "query",
+            "required": false,
+            "description": "Returns payments settled on or after the `from_settled_date` value. You can only search by settled date if your payment service provider is Stripe. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Payments are settled when your payment service provider sends funds to your bank account.",
+            "schema": {
+              "type": "string",
+              "description": "Returns payments settled on or after the `from_settled_date` value. You can only search by settled date if your payment service provider is Stripe. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Payments are settled when your payment service provider sends funds to your bank account.",
+              "format": "YYYY-MM-DD"
+            }
+          },
+          {
+            "name": "to_settled_date",
+            "in": "query",
+            "required": false,
+            "description": "Returns payments settled before the `to_settled_date` value. You can only search by settled date if your payment service provider is Stripe. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Payments are settled when your payment service provider sends funds to your bank account.",
+            "schema": {
+              "type": "string",
+              "description": "Returns payments settled before the `to_settled_date` value. You can only search by settled date if your payment service provider is Stripe. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Payments are settled when your payment service provider sends funds to your bank account.",
+              "format": "YYYY-MM-DD"
+            }
+          },
+          {
+            "name": "agreement_id",
+            "in": "query",
+            "required": false,
+            "description": "Returns payments that were authorised using the agreement with this `agreement_id`. Must be an exact match.",
+            "schema": {
+              "type": "string",
+              "description": "Returns payments that were authorised using the agreement with this `agreement_id`. Must be an exact match.",
+              "format": "abcefghjklmnopqr1234567890"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK - Payments search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PaymentSearchResults": {
+                      "type": "string",
+                      "description": "{'total': 'integer', 'count': 'integer', 'page': 'integer', 'results': 'array of PaymentForSearchResult', '_links': 'SearchNavigationLinks'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "422": {
+            "description": "Invalid parameters: from_date, to_date, status, display_size. See Public API documentation for the correct data formats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiErrorResponse": {
+                      "type": "string",
+                      "description": "{'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Downstream system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/.well-known/security.txt": {
+      "get": {
+        "operationId": "getSecurity.txt",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "302": {
+            "description": "Redirects to the Cabinet Office security.txt URL (https://vdp.cabinetoffice.gov.uk/.well-known/security.txt) with a Location header, Cache-Control: no-cache, and an Expires header set to the current date."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/security.txt": {
+      "get": {
+        "operationId": "getSecurity.txt",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "302": {
+            "description": "Redirect to the Cabinet Office security.txt URL. The response includes a Location header pointing to https://vdp.cabinetoffice.gov.uk/.well-known/security.txt, a Cache-Control header set to no-cache, and an Expires header set to the current date."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/v1/refunds": {
+      "get": {
+        "operationId": "getRefunds",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "from_date",
+            "in": "query",
+            "required": false,
+            "description": "Returns refunds created on or after the `from_date`. Date and time must use Coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+            "schema": {
+              "type": "string",
+              "description": "Returns refunds created on or after the `from_date`. Date and time must use Coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+              "format": "YYYY-MM-DDThh:mm:ssZ"
+            }
+          },
+          {
+            "name": "to_date",
+            "in": "query",
+            "required": false,
+            "description": "Returns refunds created before the `to_date`. Date and time must use Coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+            "schema": {
+              "type": "string",
+              "description": "Returns refunds created before the `to_date`. Date and time must use Coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+              "format": "YYYY-MM-DDThh:mm:ssZ"
+            }
+          },
+          {
+            "name": "from_settled_date",
+            "in": "query",
+            "required": false,
+            "description": "Returns refunds settled on or after the `from_settled_date` value. You can only use `from_settled_date` if your payment service provider is Stripe. Date must use ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Refunds are settled when Stripe takes the refund from your account balance.",
+            "schema": {
+              "type": "string",
+              "description": "Returns refunds settled on or after the `from_settled_date` value. You can only use `from_settled_date` if your payment service provider is Stripe. Date must use ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Refunds are settled when Stripe takes the refund from your account balance.",
+              "format": "YYYY-MM-DD"
+            }
+          },
+          {
+            "name": "to_settled_date",
+            "in": "query",
+            "required": false,
+            "description": "Returns refunds settled before the `to_settled_date` value. You can only use `to_settled_date` if your payment service provider is Stripe. Date must use ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Refunds are settled when Stripe takes the refund from your account balance.",
+            "schema": {
+              "type": "string",
+              "description": "Returns refunds settled before the `to_settled_date` value. You can only use `to_settled_date` if your payment service provider is Stripe. Date must use ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Refunds are settled when Stripe takes the refund from your account balance.",
+              "format": "YYYY-MM-DD"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Returns a specific page of results. Defaults to `1`.",
+            "schema": {
+              "type": "string",
+              "description": "Returns a specific page of results. Defaults to `1`."
+            }
+          },
+          {
+            "name": "display_size",
+            "in": "query",
+            "required": false,
+            "description": "The number of refunds returned per results page. Defaults to `500`. Maximum value is `500`.",
+            "schema": {
+              "type": "string",
+              "description": "The number of refunds returned per results page. Defaults to `500`. Maximum value is `500`.",
+              "maximum": 500.0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search refunds",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SearchRefundsResults": {
+                      "type": "string",
+                      "description": "{'total': 'integer', 'count': 'integer', 'page': 'integer', 'results': 'array', 'links': 'SearchNavigationLinks'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Credentials are required to access this resource"
+          },
+          "422": {
+            "description": "Invalid parameters. See Public API documentation for the correct data formats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Downstream system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/disputes": {
+      "get": {
+        "operationId": "getDisputes",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "from_date",
+            "in": "query",
+            "required": false,
+            "description": "Returns disputes raised on or after the `from_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+            "schema": {
+              "type": "string",
+              "description": "Returns disputes raised on or after the `from_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+              "format": "YYYY-MM-DDThh:mm:ssZ"
+            }
+          },
+          {
+            "name": "to_date",
+            "in": "query",
+            "required": false,
+            "description": "Returns disputes raised before the `to_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+            "schema": {
+              "type": "string",
+              "description": "Returns disputes raised before the `to_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.",
+              "format": "YYYY-MM-DDThh:mm:ssZ"
+            }
+          },
+          {
+            "name": "from_settled_date",
+            "in": "query",
+            "required": false,
+            "description": "Returns disputes settled on or after the `from_settled_date`. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Disputes are settled when your payment service provider takes the disputed amount from a payout to your bank account.",
+            "schema": {
+              "type": "string",
+              "description": "Returns disputes settled on or after the `from_settled_date`. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Disputes are settled when your payment service provider takes the disputed amount from a payout to your bank account.",
+              "format": "YYYY-MM-DD"
+            }
+          },
+          {
+            "name": "to_settled_date",
+            "in": "query",
+            "required": false,
+            "description": "Returns disputes settled before the `to_settled_date`. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Disputes are settled when your payment service provider takes the disputed amount from a payout to your bank account.",
+            "schema": {
+              "type": "string",
+              "description": "Returns disputes settled before the `to_settled_date`. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Disputes are settled when your payment service provider takes the disputed amount from a payout to your bank account.",
+              "format": "YYYY-MM-DD"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "Returns disputes with a matching `status`. `status` reflects what stage of the dispute process a dispute is at. You can [read more about the meanings of the different status values](https://docs.payments.service.gov.uk/disputes/#dispute-status)",
+            "schema": {
+              "type": "string",
+              "description": "Returns disputes with a matching `status`. `status` reflects what stage of the dispute process a dispute is at. You can [read more about the meanings of the different status values](https://docs.payments.service.gov.uk/disputes/#dispute-status)",
+              "enum": [
+                "needs_response",
+                "under_review",
+                "lost",
+                "won"
+              ]
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Returns a specific page of results. Defaults to `1`.",
+            "schema": {
+              "type": "string",
+              "description": "Returns a specific page of results. Defaults to `1`."
+            }
+          },
+          {
+            "name": "display_size",
+            "in": "query",
+            "required": false,
+            "description": "The number of disputes returned per results page. Defaults to `500`. Maximum value is `500`.",
+            "schema": {
+              "type": "string",
+              "description": "The number of disputes returned per results page. Defaults to `500`. Maximum value is `500`.",
+              "maximum": 500.0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK - Disputes search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DisputesSearchResults": {
+                      "type": "string",
+                      "description": "{'total': 'integer', 'count': 'integer', 'page': 'integer', 'results': 'array<DisputeForSearchResult>', 'links': 'SearchNavigationLinks'}"
+                    },
+                    "DisputeForSearchResult": {
+                      "type": "string",
+                      "description": "{'amount': 'long', 'created_date': 'string', 'dispute_id': 'string', 'evidence_due_date': 'string', 'fee': 'long', 'net_amount': 'long', 'payment_id': 'string', 'reason': 'string', 'settlement_summary': 'DisputeSettlementSummary', 'status': 'string', 'links': 'DisputeLinksForSearch'}"
+                    },
+                    "DisputeSettlementSummary": {
+                      "type": "string",
+                      "description": "{'settled_date': 'string'}"
+                    },
+                    "DisputeLinksForSearch": {
+                      "type": "string",
+                      "description": "{'payment': 'Link'}"
+                    },
+                    "Link": {
+                      "type": "string",
+                      "description": "{'href': 'string', 'method': 'string'}"
+                    },
+                    "SearchNavigationLinks": {
+                      "type": "string",
+                      "description": "{'self': 'Link', 'first_page': 'Link', 'last_page': 'Link', 'prev_page': 'Link', 'next_page': 'Link'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Authentication failed"
+          },
+          "422": {
+            "description": "Invalid parameters: from_date, to_date, from_settled_date, to_settled_date, status, display_size. See Public API documentation for the correct data formats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiErrorResponse": {
+                      "type": "string",
+                      "description": "{'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Downstream system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RequestError": {
+                      "type": "string",
+                      "description": "{'field': 'string', 'header': 'string', 'code': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/payment_notification": {
+      "post": {
+        "operationId": "createPaymentNotification",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Payment notification created successfully. The response body contains the telephone payment details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "TelephonePaymentResponse": {
+                      "type": "string",
+                      "description": "{'amount': 'long', 'reference': 'string', 'description': 'string', 'created_date': 'string', 'authorised_date': 'string', 'processorId': 'string', 'providerId': 'string', 'auth_code': 'string', 'paymentOutcome': 'PaymentOutcome', 'cardType': 'string', 'name_on_card': 'string', 'email_address': 'string', 'cardExpiry': 'string', 'lastFourDigits': 'string', 'firstSixDigits': 'string', 'telephone_number': 'string', 'paymentId': 'string', 'state': 'PaymentState'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Payment notification created successfully. The response body contains the telephone payment details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "TelephonePaymentResponse": {
+                      "type": "string",
+                      "description": "{'amount': 'long', 'reference': 'string', 'description': 'string', 'created_date': 'string', 'authorised_date': 'string', 'processorId': 'string', 'providerId': 'string', 'auth_code': 'string', 'paymentOutcome': 'PaymentOutcome', 'cardType': 'string', 'name_on_card': 'string', 'email_address': 'string', 'cardExpiry': 'string', 'lastFourDigits': 'string', 'firstSixDigits': 'string', 'telephone_number': 'string', 'paymentId': 'string', 'state': 'PaymentState'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. The connector returned an error response or an unexpected error occurred."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "integer",
+                    "description": "Payment amount in pence."
+                  },
+                  "reference": {
+                    "type": "string",
+                    "description": "Payment reference."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Payment description."
+                  },
+                  "createdDate": {
+                    "type": "string",
+                    "description": "Telephone payment creation payload validated with @Valid."
+                  },
+                  "authorisedDate": {
+                    "type": "string",
+                    "description": "Telephone payment creation payload validated with @Valid."
+                  },
+                  "processorId": {
+                    "type": "string",
+                    "description": "Telephone payment creation payload validated with @Valid."
+                  },
+                  "providerId": {
+                    "type": "string",
+                    "description": "Telephone payment creation payload validated with @Valid."
+                  },
+                  "authCode": {
+                    "type": "string",
+                    "description": "Telephone payment creation payload validated with @Valid."
+                  },
+                  "cardType": {
+                    "type": "string",
+                    "description": "Telephone payment creation payload validated with @Valid."
+                  },
+                  "nameOnCard": {
+                    "type": "string",
+                    "description": "Telephone payment creation payload validated with @Valid."
+                  },
+                  "emailAddress": {
+                    "type": "string",
+                    "description": "Telephone payment creation payload validated with @Valid."
+                  },
+                  "cardExpiry": {
+                    "type": "string",
+                    "description": "Telephone payment creation payload validated with @Valid."
+                  },
+                  "lastFourDigits": {
+                    "type": "string",
+                    "description": "Telephone payment creation payload validated with @Valid."
+                  },
+                  "firstSixDigits": {
+                    "type": "string",
+                    "description": "Telephone payment creation payload validated with @Valid."
+                  },
+                  "telephoneNumber": {
+                    "type": "string",
+                    "description": "Telephone payment creation payload validated with @Valid."
+                  },
+                  "created_date": {
+                    "type": "string",
+                    "description": "ISO-8601 date and time the payment was created."
+                  },
+                  "authorised_date": {
+                    "type": "string",
+                    "description": "ISO-8601 date and time the payment was authorised."
+                  },
+                  "processor_id": {
+                    "type": "string",
+                    "description": "Identifier of the payment processor."
+                  },
+                  "provider_id": {
+                    "type": "string",
+                    "description": "Identifier of the payment provider."
+                  },
+                  "auth_code": {
+                    "type": "string",
+                    "description": "Authorisation code returned by the provider."
+                  },
+                  "status": {
+                    "type": "string",
+                    "description": "Outcome of the payment attempt; must include a valid status and error code."
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "Outcome of the payment attempt; must include a valid status and error code."
+                  },
+                  "card_type": {
+                    "type": "string",
+                    "description": "Card brand."
+                  },
+                  "name_on_card": {
+                    "type": "string",
+                    "description": "Name on the card."
+                  },
+                  "email_address": {
+                    "type": "string",
+                    "description": "Email address of the payer."
+                  },
+                  "card_expiry": {
+                    "type": "string",
+                    "description": "Card expiry date."
+                  },
+                  "last_four_digits": {
+                    "type": "string",
+                    "description": "Last four digits of the card number."
+                  },
+                  "first_six_digits": {
+                    "type": "string",
+                    "description": "First six digits of the card number."
+                  },
+                  "telephone_number": {
+                    "type": "string",
+                    "description": "Telephone number associated with the payment."
+                  }
+                },
+                "required": [
+                  "amount",
+                  "reference",
+                  "description",
+                  "createdDate",
+                  "authorisedDate",
+                  "processorId",
+                  "providerId",
+                  "authCode",
+                  "cardType",
+                  "nameOnCard",
+                  "emailAddress",
+                  "cardExpiry",
+                  "lastFourDigits",
+                  "firstSixDigits",
+                  "telephoneNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

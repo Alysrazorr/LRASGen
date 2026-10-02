@@ -1,0 +1,173 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "src API",
+    "description": "LRASGen-generated specification for src (koa).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/device-approval/{organizationId}": {
+      "get": {
+        "operationId": "getDeviceApproval",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "description": "The organization identifier from the route path /device-approval/:organizationId",
+            "schema": {
+              "type": "string",
+              "description": "The organization identifier from the route path /device-approval/:organizationId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of device approval requests for the organization. The response body contains the result of the ListCommand."
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates to ListCommand.create(this.serviceContainer).run(...) and does not catch any failure from that call."
+          }
+        }
+      }
+    },
+    "/device-approval/{organizationId}/deny/{requestId}": {
+      "post": {
+        "operationId": "createDeny",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "description": "The organization identifier from the route path parameter :organizationId",
+            "schema": {
+              "type": "string",
+              "description": "The organization identifier from the route path parameter :organizationId"
+            }
+          },
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "description": "The device approval request identifier from the route path parameter :requestId",
+            "schema": {
+              "type": "string",
+              "description": "The device approval request identifier from the route path parameter :requestId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully denied the device approval request. The response is produced by DenyCommand and processed via processResponse."
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates to DenyCommand.create(this.serviceContainer).run(...) without catching failures, so an exception from that call results in a 500 response."
+          }
+        }
+      }
+    },
+    "/device-approval/{organizationId}/deny-all": {
+      "post": {
+        "operationId": "createDenyAll",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "description": "Organization identifier from the route path /device-approval/:organizationId/deny-all",
+            "schema": {
+              "type": "string",
+              "description": "Organization identifier from the route path /device-approval/:organizationId/deny-all"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully denied all device approval requests for the organization. The response is produced by DenyAllCommand and processed by processResponse."
+          },
+          "401": {
+            "description": "Unauthorized. Returned by errorIfLocked when the vault is locked."
+          },
+          "500": {
+            "description": "Internal server error. Returned when DenyAllCommand.create(...).run(...) throws an unhandled exception."
+          }
+        }
+      }
+    },
+    "/device-approval/{organizationId}/approve/{requestId}": {
+      "post": {
+        "operationId": "createApprove",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "description": "The organization identifier from the route path /device-approval/:organizationId/approve/:requestId",
+            "schema": {
+              "type": "string",
+              "description": "The organization identifier from the route path /device-approval/:organizationId/approve/:requestId"
+            }
+          },
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "description": "The device approval request identifier from the route path /device-approval/:organizationId/approve/:requestId",
+            "schema": {
+              "type": "string",
+              "description": "The device approval request identifier from the route path /device-approval/:organizationId/approve/:requestId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully approved the device approval request. The response is produced by ApproveCommand and processed via processResponse."
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates to ApproveCommand.create(...).run(...) without catching failures, so any exception from that call results in a 500 response."
+          }
+        }
+      }
+    },
+    "/device-approval/{organizationId}/approve-all": {
+      "post": {
+        "operationId": "createApproveAll",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "description": "The organization identifier from the route path /device-approval/:organizationId/approve-all",
+            "schema": {
+              "type": "string",
+              "description": "The organization identifier from the route path /device-approval/:organizationId/approve-all"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully approved all pending device approval requests for the organization. The response body is produced by ApproveAllCommand and processed via processResponse."
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates the entire operation to ApproveAllCommand.create(this.serviceContainer).run(...) without catching failures, so any error thrown by the command results in a 500 response."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,409 @@
+{
+  "task_id": "news",
+  "api_name": "news",
+  "framework": "spring-boot-kotlin",
+  "endpoints": [
+    {
+      "endpoint_path": "/countries",
+      "http_method": "GET",
+      "method_name": "get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\News\\news\\src\\main\\kotlin\\org\\tsdes\\spring\\examples\\news\\api\\CountryApi.kt",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the list of country names.",
+          "data_schema": [
+            {
+              "name": "List<String>",
+              "schema": {
+                "items": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/news/{id}",
+      "http_method": "GET",
+      "method_name": "getNews",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\News\\news\\src\\main\\kotlin\\org\\tsdes\\spring\\examples\\news\\api\\NewsRestApi.kt",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The numeric id of the news",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The news with the specified id was found and returned.",
+          "data_schema": [
+            {
+              "name": "NewsDto",
+              "schema": {
+                "newsId": "string",
+                "authorId": "string",
+                "text": "string",
+                "country": "string",
+                "creationTime": "ZonedDateTime",
+                "id": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The provided id is not a valid number, or no news exists with the given id.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/news",
+      "http_method": "POST",
+      "method_name": "createNews",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\News\\news\\src\\main\\kotlin\\org\\tsdes\\spring\\examples\\news\\api\\NewsRestApi.kt",
+      "parameters": [
+        {
+          "name": "newsId",
+          "type": "String?",
+          "_class_name": "NewsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Text of news, plus author id and country. Should not specify id or creation time"
+        },
+        {
+          "name": "authorId",
+          "type": "String?",
+          "_class_name": "NewsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Text of news, plus author id and country. Should not specify id or creation time"
+        },
+        {
+          "name": "text",
+          "type": "String?",
+          "_class_name": "NewsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Text of news, plus author id and country. Should not specify id or creation time"
+        },
+        {
+          "name": "country",
+          "type": "String?",
+          "_class_name": "NewsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Text of news, plus author id and country. Should not specify id or creation time"
+        },
+        {
+          "name": "creationTime",
+          "type": "ZonedDateTime?",
+          "_class_name": "NewsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Text of news, plus author id and country. Should not specify id or creation time"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "The id of newly created news",
+          "data_schema": [
+            {
+              "name": "Long",
+              "schema": {
+                "id": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request: id or newsId specified, creationTime specified, missing required fields (authorId, text, country), or constraint violation",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error: failed to create news",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/news/{id}",
+      "http_method": "PUT",
+      "method_name": "update",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\News\\news\\src\\main\\kotlin\\org\\tsdes\\spring\\examples\\news\\api\\NewsRestApi.kt",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The numeric id of the news",
+          "_depth": 0
+        },
+        {
+          "name": "newsId",
+          "type": "String?",
+          "_class_name": "NewsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The news that will replace the old one. Cannot change its id though."
+        },
+        {
+          "name": "authorId",
+          "type": "String?",
+          "_class_name": "NewsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The news that will replace the old one. Cannot change its id though."
+        },
+        {
+          "name": "text",
+          "type": "String?",
+          "_class_name": "NewsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The news that will replace the old one. Cannot change its id though."
+        },
+        {
+          "name": "country",
+          "type": "String?",
+          "_class_name": "NewsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The news that will replace the old one. Cannot change its id though."
+        },
+        {
+          "name": "creationTime",
+          "type": "ZonedDateTime?",
+          "_class_name": "NewsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The news that will replace the old one. Cannot change its id though."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "News updated successfully",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Invalid id format or news not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Conflict: id in request body does not match path id",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request: missing required fields or constraint violation",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/news",
+      "http_method": "GET",
+      "method_name": "get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\News\\news\\src\\main\\kotlin\\org\\tsdes\\spring\\examples\\news\\api\\NewsRestApi.kt",
+      "parameters": [
+        {
+          "name": "country",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The country name",
+          "_depth": 0
+        },
+        {
+          "name": "authorId",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The id of the author who wrote the news",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the list of news. The list may be filtered by country and/or authorId if provided as query parameters.",
+          "data_schema": [
+            {
+              "name": "List<NewsDto>",
+              "schema": {
+                "newsId": "string",
+                "authorId": "string",
+                "text": "string",
+                "country": "string",
+                "creationTime": "ZonedDateTime",
+                "id": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when a ConstraintViolationException occurs during the retrieval or transformation of news data, typically due to invalid input parameters or data integrity issues.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/news/{id}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\News\\news\\src\\main\\kotlin\\org\\tsdes\\spring\\examples\\news\\api\\NewsRestApi.kt",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The numeric id of the news",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the path id cannot be parsed as a Long.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned when no news exists with the given id.",
+          "data_schema": []
+        },
+        {
+          "status_code": 204,
+          "description": "No Content. Returned when the news was successfully deleted.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/news/{id}/text",
+      "http_method": "PUT",
+      "method_name": "updateText",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\News\\news\\src\\main\\kotlin\\org\\tsdes\\spring\\examples\\news\\api\\NewsRestApi.kt",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The numeric id of the news",
+          "_depth": 0
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The new text which will replace the old one",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "The text was successfully updated. No content is returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the id is null, or when a ConstraintViolationException occurs during the update.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when no news exists with the given id.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 3496,
+  "tokens": {
+    "prompt_tokens": 216212,
+    "completion_tokens": 10020,
+    "total_tokens": 226232,
+    "calls": 42,
+    "elapsed_s": 222.201,
+    "prompt_cost_usd": 0.027443,
+    "completion_cost_usd": 0.006615,
+    "total_cost_usd": 0.034058,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 71015,
+        "completion_tokens": 1412,
+        "total_tokens": 72427,
+        "calls": 14,
+        "elapsed_s": 19.850945,
+        "prompt_cost_usd": 0.00142,
+        "completion_cost_usd": 0.000847,
+        "total_cost_usd": 0.002267
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 68515,
+        "completion_tokens": 7144,
+        "total_tokens": 75659,
+        "calls": 14,
+        "elapsed_s": 156.286,
+        "prompt_cost_usd": 0.006852,
+        "completion_cost_usd": 0.003572,
+        "total_cost_usd": 0.010424
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 76682,
+        "completion_tokens": 1464,
+        "total_tokens": 78146,
+        "calls": 14,
+        "elapsed_s": 46.064,
+        "prompt_cost_usd": 0.019171,
+        "completion_cost_usd": 0.002196,
+        "total_cost_usd": 0.021367
+      }
+    ]
+  }
+}

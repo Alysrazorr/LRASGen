@@ -1,0 +1,1230 @@
+{
+  "task_id": "envirocar-server",
+  "api_name": "enviroCar-server",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/groups/{group}/activities",
+      "http_method": "GET",
+      "method_name": "activities",
+      "summary": "Get activities",
+      "description": "Returns the activities for the group, optionally filtered by type.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\ActivitiesResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/activities",
+      "http_method": "GET",
+      "method_name": "activities",
+      "summary": "Get activities",
+      "description": "Returns the activities for the user, optionally filtered by type.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\ActivitiesResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/groups/{group}/activities",
+      "http_method": "GET",
+      "method_name": "activities",
+      "summary": "Get activities",
+      "description": "Returns the activities for the user within the group, optionally filtered by type.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\ActivitiesResource.java"
+    },
+    {
+      "endpoint_path": "/groups/{group}/activities/{id}",
+      "http_method": "GET",
+      "method_name": "activity",
+      "summary": "Get activity",
+      "description": "Returns a single activity by its id for the group.",
+      "line_number": 40,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\ActivitiesResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/activities/{id}",
+      "http_method": "GET",
+      "method_name": "activity",
+      "summary": "Get activity",
+      "description": "Returns a single activity by its id for the user.",
+      "line_number": 40,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\ActivitiesResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/groups/{group}/activities/{id}",
+      "http_method": "GET",
+      "method_name": "activity",
+      "summary": "Get activity",
+      "description": "Returns a single activity by its id for the user within the group.",
+      "line_number": 40,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\ActivitiesResource.java"
+    },
+    {
+      "endpoint_path": "/announcements/{id}",
+      "http_method": "GET",
+      "method_name": "announcement",
+      "summary": "Get an announcement",
+      "description": "Returns the announcement identified by the given id.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\AnnouncementResource.java"
+    },
+    {
+      "endpoint_path": "/announcements",
+      "http_method": "GET",
+      "method_name": "announcements",
+      "summary": "Get all announcements",
+      "description": "Returns the list of announcements using pagination.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\AnnouncementsResource.java"
+    },
+    {
+      "endpoint_path": "/api-docs",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get the OpenAPI documentation",
+      "description": "Loads the OpenAPI YAML document, adds the server URL based on the request base URI, replaces schema links with external URIs, and returns the adjusted JSON document.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\ApiDocsResource.java"
+    },
+    {
+      "endpoint_path": "/api-docs/{file}",
+      "http_method": "GET",
+      "method_name": "ui",
+      "summary": "Serve a Swagger UI static file",
+      "description": "Serves a static file from the swagger-ui resource directory. If the file name is empty, redirects to index.html. If the file does not exist, throws NotFoundException. The media type is determined by the file extension.",
+      "line_number": 56,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\ApiDocsResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/avatar",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get user avatar",
+      "description": "Redirects to the Gravatar URL for the user's avatar, using the specified size (default 80).",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\AvatarResource.java"
+    },
+    {
+      "endpoint_path": "/badges",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get all badges",
+      "description": "Returns the list of badges using pagination.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\BadgesResource.java"
+    },
+    {
+      "endpoint_path": "/confirm/{code}",
+      "http_method": "GET",
+      "method_name": "confirm",
+      "summary": "Confirm user account",
+      "description": "Confirms a user account using the provided confirmation code. If the code is valid, the user is confirmed and the client is redirected to the login page. If the code is not found, a ResourceNotFoundException is thrown.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\ConfirmResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/friends/{friend}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "summary": "Remove a friend",
+      "description": "Removes the friendship between the user and the friend. Requires permission to unfriend.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\FriendResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/friendActivities",
+      "http_method": "GET",
+      "method_name": "activities",
+      "summary": "Get friend activities",
+      "description": "Returns the activities of the friends of the user identified by {username}, optionally filtered by activity type.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\FriendsActivitiesResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/friendActivities/{id}",
+      "http_method": "GET",
+      "method_name": "activity",
+      "summary": "Get a friend activity",
+      "description": "Returns a single friend activity identified by {id} for the user identified by {username}.",
+      "line_number": 19,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\FriendsActivitiesResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/friends",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get friends of a user",
+      "description": "Returns the list of friends for the specified user. Requires permission to see friends of the user.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\FriendsResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/friends",
+      "http_method": "POST",
+      "method_name": "add",
+      "summary": "Add a friend",
+      "description": "Adds a new friend to the user's friend list. Requires authentication and a JSON body containing a user reference. Throws BadRequestException if the friend name is null or equals the current user's name.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\FriendsResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/friends/incomingRequests",
+      "http_method": "GET",
+      "method_name": "pendingIncomingFriendRequests",
+      "summary": "Get pending incoming friend requests",
+      "description": "Returns the list of pending incoming friend requests for the user. Requires permission to see friends of the user.",
+      "line_number": 48,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\FriendsResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/friends/outgoingRequests",
+      "http_method": "GET",
+      "method_name": "pendingOutgoingFriendRequests",
+      "summary": "Get pending outgoing friend requests",
+      "description": "Returns the list of pending outgoing friend requests for the user. Requires permission to see friends of the user.",
+      "line_number": 55,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\FriendsResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/friends/declineRequest",
+      "http_method": "POST",
+      "method_name": "decline",
+      "summary": "Decline a friend request",
+      "description": "Declines a friend request from the specified user. Requires authentication and a JSON body containing a user reference. Throws UserNotFoundException if the user does not exist.",
+      "line_number": 62,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\FriendsResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/fuelings",
+      "http_method": "GET",
+      "method_name": "getAll",
+      "summary": "Get all fuelings",
+      "description": "Retrieves all fuelings for the user specified by the username path parameter. Supports temporal filtering and pagination.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\FuelingsResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/fuelings",
+      "http_method": "POST",
+      "method_name": "create",
+      "summary": "Create a new fueling",
+      "description": "Creates a new fueling for the current user. The request body must be a JSON representation of a fueling.",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\FuelingsResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/fuelings/{id}",
+      "http_method": "GET",
+      "method_name": "getFueling",
+      "summary": "Get a fueling by ID",
+      "description": "Retrieves a specific fueling by its ID for the user specified by the username path parameter.",
+      "line_number": 45,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\FuelingsResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/fuelings/{id}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "summary": "Delete a fueling",
+      "description": "Deletes a specific fueling by its ID for the user specified by the username path parameter. Requires appropriate rights.",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\FuelingsResource.java"
+    },
+    {
+      "endpoint_path": "/groups/{group}/members/{member}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "summary": "Remove a member from a group",
+      "description": "Removes the specified user from the specified group. The caller must have permission to leave the group.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupMemberResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/groups/{group}/members/{member}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "summary": "Remove a member from a group",
+      "description": "Removes the specified user from the specified group. The caller must have permission to leave the group.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupMemberResource.java"
+    },
+    {
+      "endpoint_path": "/groups/{group}/members",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get group members",
+      "description": "Returns the list of members of the group. Requires the right to see members of the group.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupMembersResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/groups/{group}/members",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get group members",
+      "description": "Returns the list of members of the group. Requires the right to see members of the group.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupMembersResource.java"
+    },
+    {
+      "endpoint_path": "/groups/{group}/members",
+      "http_method": "POST",
+      "method_name": "add",
+      "summary": "Add a group member",
+      "description": "Adds the referenced user to the group. Requires authentication and the right to join the group.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupMembersResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/groups/{group}/members",
+      "http_method": "POST",
+      "method_name": "add",
+      "summary": "Add a group member",
+      "description": "Adds the referenced user to the group. Requires authentication and the right to join the group.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupMembersResource.java"
+    },
+    {
+      "endpoint_path": "/groups/{group}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get the group",
+      "description": "Returns the group resource.",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/groups/{group}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get the group",
+      "description": "Returns the group resource.",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupResource.java"
+    },
+    {
+      "endpoint_path": "/groups/{group}",
+      "http_method": "PUT",
+      "method_name": "modify",
+      "summary": "Modify the group",
+      "description": "Modifies the group with the given changes. Requires authentication.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/groups/{group}",
+      "http_method": "PUT",
+      "method_name": "modify",
+      "summary": "Modify the group",
+      "description": "Modifies the group with the given changes. Requires authentication.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupResource.java"
+    },
+    {
+      "endpoint_path": "/groups/{group}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "summary": "Delete the group",
+      "description": "Deletes the group. Requires authentication.",
+      "line_number": 39,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/groups/{group}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "summary": "Delete the group",
+      "description": "Deletes the group. Requires authentication.",
+      "line_number": 39,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupResource.java"
+    },
+    {
+      "endpoint_path": "/groups",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get groups",
+      "description": "Returns groups. If a user context is present, returns the groups of that user. If a search query is provided, searches groups. Otherwise returns all groups.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupsResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/groups",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get groups",
+      "description": "Returns groups. If a user context is present, returns the groups of that user. If a search query is provided, searches groups. Otherwise returns all groups.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupsResource.java"
+    },
+    {
+      "endpoint_path": "/groups",
+      "http_method": "POST",
+      "method_name": "createGroup",
+      "summary": "Create a group",
+      "description": "Creates a new group for the current user and returns a 201 Created response with the location of the new group.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupsResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/groups",
+      "http_method": "POST",
+      "method_name": "createGroup",
+      "summary": "Create a group",
+      "description": "Creates a new group for the current user and returns a 201 Created response with the location of the new group.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\GroupsResource.java"
+    },
+    {
+      "endpoint_path": "/schemas",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get all available JSON schemas",
+      "description": "Returns a JSON object containing a list of URIs pointing to all available JSON schemas.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\JsonSchemaResource.java"
+    },
+    {
+      "endpoint_path": "/schemas/{schema}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get a specific JSON schema",
+      "description": "Loads and returns the JSON schema identified by the given schema path parameter, with schema links replaced by external URIs.",
+      "line_number": 46,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\JsonSchemaResource.java"
+    },
+    {
+      "endpoint_path": "/measurements/{measurement}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get a measurement",
+      "description": "Returns the measurement resource.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/measurements/{measurement}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "summary": "Delete a measurement",
+      "description": "Deletes the measurement after checking delete rights.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}/measurements/{measurement}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get a measurement",
+      "description": "Returns the measurement resource.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}/measurements/{measurement}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "summary": "Delete a measurement",
+      "description": "Deletes the measurement after checking delete rights.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/measurements/{measurement}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get a measurement",
+      "description": "Returns the measurement resource.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/measurements/{measurement}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "summary": "Delete a measurement",
+      "description": "Deletes the measurement after checking delete rights.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}/measurements/{measurement}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get a measurement",
+      "description": "Returns the measurement resource.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}/measurements/{measurement}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "summary": "Delete a measurement",
+      "description": "Deletes the measurement after checking delete rights.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/measurements/{measurement}/sensor",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get the sensor of a measurement",
+      "description": "Returns the sensor resource associated with the measurement.",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}/measurements/{measurement}/sensor",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get the sensor of a measurement",
+      "description": "Returns the sensor resource associated with the measurement.",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/measurements/{measurement}/sensor",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get the sensor of a measurement",
+      "description": "Returns the sensor resource associated with the measurement.",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}/measurements/{measurement}/sensor",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get the sensor of a measurement",
+      "description": "Returns the sensor resource associated with the measurement.",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/measurements/{measurement}/sensor/statistics",
+      "http_method": "GET",
+      "method_name": "statistics",
+      "summary": "Get statistics for the sensor",
+      "description": "Returns statistics for the sensor of the measurement.",
+      "line_number": 103,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}/measurements/{measurement}/sensor/statistics",
+      "http_method": "GET",
+      "method_name": "statistics",
+      "summary": "Get statistics for the sensor",
+      "description": "Returns statistics for the sensor of the measurement.",
+      "line_number": 103,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/measurements/{measurement}/sensor/statistics",
+      "http_method": "GET",
+      "method_name": "statistics",
+      "summary": "Get statistics for the sensor",
+      "description": "Returns statistics for the sensor of the measurement.",
+      "line_number": 103,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}/measurements/{measurement}/sensor/statistics",
+      "http_method": "GET",
+      "method_name": "statistics",
+      "summary": "Get statistics for the sensor",
+      "description": "Returns statistics for the sensor of the measurement.",
+      "line_number": 103,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/measurements/{measurement}/sensor/statistics/{phen}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get a statistic for a phenomenon",
+      "description": "Returns the statistic for the specified phenomenon.",
+      "line_number": 143,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}/measurements/{measurement}/sensor/statistics/{phen}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get a statistic for a phenomenon",
+      "description": "Returns the statistic for the specified phenomenon.",
+      "line_number": 143,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/measurements/{measurement}/sensor/statistics/{phen}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get a statistic for a phenomenon",
+      "description": "Returns the statistic for the specified phenomenon.",
+      "line_number": 143,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}/measurements/{measurement}/sensor/statistics/{phen}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get a statistic for a phenomenon",
+      "description": "Returns the statistic for the specified phenomenon.",
+      "line_number": 143,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementResource.java"
+    },
+    {
+      "endpoint_path": "/measurements",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get measurements",
+      "description": "Returns measurements filtered by optional bbox or nearPoint spatial filter, temporal filter, and pagination.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementsResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}/measurements",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get measurements",
+      "description": "Returns measurements of the track filtered by optional bbox or nearPoint spatial filter, temporal filter, and pagination.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementsResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/measurements",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get measurements",
+      "description": "Returns measurements of the user filtered by optional bbox or nearPoint spatial filter, temporal filter, and pagination.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementsResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}/measurements",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get measurements",
+      "description": "Returns measurements of the user's track filtered by optional bbox or nearPoint spatial filter, temporal filter, and pagination.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementsResource.java"
+    },
+    {
+      "endpoint_path": "/measurements",
+      "http_method": "POST",
+      "method_name": "create",
+      "summary": "Create a measurement",
+      "description": "Creates a new measurement. Requires authentication. If mounted under a track, checks modify rights and associates the measurement with the track.",
+      "line_number": 51,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementsResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}/measurements",
+      "http_method": "POST",
+      "method_name": "create",
+      "summary": "Create a measurement",
+      "description": "Creates a new measurement for the track. Requires authentication and modify rights on the track.",
+      "line_number": 51,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementsResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/measurements",
+      "http_method": "POST",
+      "method_name": "create",
+      "summary": "Create a measurement",
+      "description": "Creates a new measurement. Requires authentication.",
+      "line_number": 51,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementsResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}/measurements",
+      "http_method": "POST",
+      "method_name": "create",
+      "summary": "Create a measurement",
+      "description": "Creates a new measurement for the track. Requires authentication and modify rights on the track.",
+      "line_number": 51,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\MeasurementsResource.java"
+    },
+    {
+      "endpoint_path": "/phenomenons/{phenomenon}",
+      "http_method": "GET",
+      "method_name": "getPhenomenon",
+      "summary": "Get the phenomenon",
+      "description": "Returns the Phenomenon represented by this resource.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\PhenomenonResource.java"
+    },
+    {
+      "endpoint_path": "/phenomenons/{phenomenon}/statistic",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get the statistic",
+      "description": "Returns the Statistic for the phenomenon, optionally filtered by user, track, and sensor.",
+      "line_number": 46,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\PhenomenonResource.java"
+    },
+    {
+      "endpoint_path": "/phenomenons",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get all phenomenons",
+      "description": "Returns a paginated list of all phenomenons.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\PhenomenonsResource.java"
+    },
+    {
+      "endpoint_path": "/phenomenons",
+      "http_method": "POST",
+      "method_name": "create",
+      "summary": "Create a phenomenon",
+      "description": "Creates a new phenomenon. Requires authentication. Consumes JSON.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\PhenomenonsResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}/preview",
+      "http_method": "GET",
+      "method_name": "getMapImage",
+      "summary": "Get the preview map image for a track",
+      "description": "Returns a PNG image preview of the track's route rendered on an OpenStreetMap base map. If a cached image exists it is loaded from disk, otherwise the image is created from the track's measurements, clipped to 768x512, and saved. Responds with the PNG image bytes.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\PreviewResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}/preview",
+      "http_method": "GET",
+      "method_name": "getMapImage",
+      "summary": "Get the preview map image for a track",
+      "description": "Returns a PNG image preview of the track's route rendered on an OpenStreetMap base map. If a cached image exists it is loaded from disk, otherwise the image is created from the track's measurements, clipped to 768x512, and saved. Responds with the PNG image bytes.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\PreviewResource.java"
+    },
+    {
+      "endpoint_path": "/privacyStatements/{id}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get a privacy statement",
+      "description": "Returns the privacy statement with the specified id, with contents localized based on the Acceptable-Languages header.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\PrivacyStatementResource.java"
+    },
+    {
+      "endpoint_path": "/privacyStatements",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get privacy statements",
+      "description": "Returns the list of privacy statements with pagination.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\PrivacyStatementsResource.java"
+    },
+    {
+      "endpoint_path": "/resetPassword",
+      "http_method": "POST",
+      "method_name": "get",
+      "summary": "Request a password reset",
+      "description": "Processes a password reset request for the specified user. Requires the right to access password reset. Consumes JSON containing a ResetPasswordRequest with the user. Returns 204 No Content on success.",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\ResetPasswordResource.java"
+    },
+    {
+      "endpoint_path": "/resetPassword",
+      "http_method": "PUT",
+      "method_name": "resetPassword",
+      "summary": "Reset a user's password",
+      "description": "Resets the password for the specified user using the provided verification code. Requires the right to access password reset. Consumes JSON containing a ResetPasswordRequest with the user and code. Returns 204 No Content on success.",
+      "line_number": 19,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\ResetPasswordResource.java"
+    },
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get API root",
+      "description": "Returns the root resource with links to available resources and counts.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/rest",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get API root",
+      "description": "Returns the root resource with links to available resources and counts.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get users",
+      "description": "Returns a list of users.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users",
+      "http_method": "POST",
+      "method_name": "create",
+      "summary": "Create user",
+      "description": "Creates a new user.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}",
+      "http_method": "PUT",
+      "method_name": "modify",
+      "summary": "Modify user",
+      "description": "Modifies the specified user.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get user",
+      "description": "Returns the specified user.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "summary": "Delete user",
+      "description": "Deletes the specified user.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get tracks",
+      "description": "Returns tracks for the user.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks",
+      "http_method": "POST",
+      "method_name": "create",
+      "summary": "Create track",
+      "description": "Creates a new track.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}",
+      "http_method": "PUT",
+      "method_name": "modify",
+      "summary": "Modify track",
+      "description": "Modifies the specified track.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get track",
+      "description": "Returns the specified track.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "summary": "Delete track",
+      "description": "Deletes the specified track.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}/sensor",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get sensor",
+      "description": "Returns the sensor for the track.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}/sensor/statistics",
+      "http_method": "GET",
+      "method_name": "statistics",
+      "summary": "Get statistics",
+      "description": "Returns statistics for the sensor.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}/sensor/statistics/{phen}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get statistic",
+      "description": "Returns a specific statistic.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}/statistics",
+      "http_method": "GET",
+      "method_name": "statistics",
+      "summary": "Get statistics",
+      "description": "Returns statistics for the track.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}/statistics/{phen}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get statistic",
+      "description": "Returns a specific statistic.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}/share",
+      "http_method": "GET",
+      "method_name": "getShareImage",
+      "summary": "Get share image",
+      "description": "Returns the share image for the track.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/tracks/{track}/share/{locale}",
+      "http_method": "GET",
+      "method_name": "getLocalizedShareImage",
+      "summary": "Get localized share image",
+      "description": "Returns the localized share image for the track.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/statistics",
+      "http_method": "GET",
+      "method_name": "statistics",
+      "summary": "Get statistics",
+      "description": "Returns statistics for the user.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/statistics/{phen}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get statistic",
+      "description": "Returns a specific statistic.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/userStatistic",
+      "http_method": "GET",
+      "method_name": "UserStatistics",
+      "summary": "Get user statistic",
+      "description": "Returns user statistics.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/sensors",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get sensors",
+      "description": "Returns sensors for the user.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/sensors",
+      "http_method": "POST",
+      "method_name": "create",
+      "summary": "Create sensor",
+      "description": "Creates a new sensor.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/sensors/{sensor}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get sensor",
+      "description": "Returns the specified sensor.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/sensors/{sensor}/statistics",
+      "http_method": "GET",
+      "method_name": "statistics",
+      "summary": "Get statistics",
+      "description": "Returns statistics for the sensor.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/users/{username}/sensors/{sensor}/statistics/{phen}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get statistic",
+      "description": "Returns a specific statistic.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/sensors",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get sensors",
+      "description": "Returns a list of sensors.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/sensors",
+      "http_method": "POST",
+      "method_name": "create",
+      "summary": "Create sensor",
+      "description": "Creates a new sensor.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/sensors/{sensor}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get sensor",
+      "description": "Returns the specified sensor.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/sensors/{sensor}/statistics",
+      "http_method": "GET",
+      "method_name": "statistics",
+      "summary": "Get statistics",
+      "description": "Returns statistics for the sensor.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/sensors/{sensor}/statistics/{phen}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get statistic",
+      "description": "Returns a specific statistic.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/statistics",
+      "http_method": "GET",
+      "method_name": "statistics",
+      "summary": "Get statistics",
+      "description": "Returns statistics.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/statistics/{phen}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get statistic",
+      "description": "Returns a specific statistic.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/termsOfUse",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get terms of use",
+      "description": "Returns terms of use.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/termsOfUse/{id}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get terms of use instance",
+      "description": "Returns a specific terms of use instance.",
+      "line_number": 1,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}/sensor",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get the sensor of a track",
+      "description": "Returns the Sensor associated with the track.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\SensorResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}/sensor/statistics",
+      "http_method": "GET",
+      "method_name": "statistics",
+      "summary": "Get statistics for the sensor",
+      "description": "Returns the Statistics for the sensor.",
+      "line_number": 66,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\SensorResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}/sensor/statistics/{phen}",
+      "http_method": "GET",
+      "method_name": "statistics",
+      "summary": "Get statistic for a phenomenon",
+      "description": "Returns the Statistic for the given phenomenon.",
+      "line_number": 72,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\SensorResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}/share",
+      "http_method": "GET",
+      "method_name": "getShareImage",
+      "summary": "Get share image",
+      "description": "Returns the share image for the track using the default locale (EN).",
+      "line_number": 62,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\ShareResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}/share/{locale}",
+      "http_method": "GET",
+      "method_name": "getLocalizedShareImage",
+      "summary": "Get localized share image",
+      "description": "Returns the share image for the track localized to the given locale.",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\ShareResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}/statistics",
+      "http_method": "GET",
+      "method_name": "statistics",
+      "summary": "Get statistics",
+      "description": "Returns statistics filtered by the given track.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\StatisticsResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}/statistics/{phen}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get statistic for phenomenon",
+      "description": "Returns the statistic for the specified phenomenon.",
+      "line_number": 50,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\StatisticsResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}",
+      "http_method": "PUT",
+      "method_name": "modify",
+      "summary": "Modify a track",
+      "description": "Modifies the track with the given changes. Requires authentication and modify rights. Accepts JSON body conforming to the track-modify schema.",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\TrackResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get a track",
+      "description": "Returns the track. Response conforms to the track schema.",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\TrackResource.java"
+    },
+    {
+      "endpoint_path": "/tracks/{track}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "summary": "Delete a track",
+      "description": "Deletes the track. Requires authentication and delete rights.",
+      "line_number": 43,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\TrackResource.java"
+    },
+    {
+      "endpoint_path": "/tracks",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get tracks",
+      "description": "Retrieves a list of tracks filtered by bounding box, status, and temporal filters.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\TracksResource.java"
+    },
+    {
+      "endpoint_path": "/tracks",
+      "http_method": "POST",
+      "method_name": "create",
+      "summary": "Create track",
+      "description": "Creates a new track, optionally with measurements.",
+      "line_number": 35,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\TracksResource.java"
+    }
+  ],
+  "errors": [
+    {
+      "entry_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\StatisticResource.java",
+      "error": "the model returned an empty endpoint list"
+    },
+    {
+      "entry_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\enviroCar\\enviroCar-server\\rest\\src\\main\\java\\org\\envirocar\\server\\rest\\resources\\UserResource.java",
+      "error": "the model returned an empty endpoint list"
+    }
+  ],
+  "duration_ms": 96538,
+  "tokens": {
+    "prompt_tokens": 6114776,
+    "completion_tokens": 149379,
+    "total_tokens": 6264155,
+    "calls": 111,
+    "elapsed_s": 824.092,
+    "prompt_cost_usd": 0.780562,
+    "completion_cost_usd": 0.100971,
+    "total_cost_usd": 0.881533,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 2015550,
+        "completion_tokens": 27243,
+        "total_tokens": 2042793,
+        "calls": 37,
+        "elapsed_s": 96.321914,
+        "prompt_cost_usd": 0.040311,
+        "completion_cost_usd": 0.016346,
+        "total_cost_usd": 0.056657
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 1897036,
+        "completion_tokens": 98579,
+        "total_tokens": 1995615,
+        "calls": 37,
+        "elapsed_s": 523.722,
+        "prompt_cost_usd": 0.189704,
+        "completion_cost_usd": 0.049289,
+        "total_cost_usd": 0.238993
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 2202190,
+        "completion_tokens": 23557,
+        "total_tokens": 2225747,
+        "calls": 37,
+        "elapsed_s": 204.048,
+        "prompt_cost_usd": 0.550547,
+        "completion_cost_usd": 0.035336,
+        "total_cost_usd": 0.585883
+      }
+    ]
+  }
+}

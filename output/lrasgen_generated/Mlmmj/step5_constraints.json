@@ -1,0 +1,529 @@
+{
+  "task_id": "mlmmjadmin-master",
+  "api_name": "mlmmjadmin-master",
+  "framework": "webpy",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/{mail}/moderators",
+      "http_method": "GET",
+      "method_name": "Moderators.GET",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py",
+      "parameters": [
+        {
+          "name": "mail",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Email address of the mailing list account.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved moderators. Returns a JSON object with '_success': true and '_data' containing the list of moderators.",
+          "data_schema": [
+            {
+              "name": "ModeratorsResponse",
+              "schema": {
+                "_success": "boolean",
+                "_data": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/{mail}/owners",
+      "http_method": "PUT",
+      "method_name": "Owners.PUT",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py",
+      "parameters": [
+        {
+          "name": "mail",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Mailing list email address from the URL path.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Owners updated successfully. Returns a JSON object with '_success': true.",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "_success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/{mail}/owners",
+      "http_method": "GET",
+      "method_name": "Owners.GET",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py",
+      "parameters": [
+        {
+          "name": "mail",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Email address of the mailing list account.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the list of owners for the mailing list. The response is a JSON object with '_success' set to true and '_data' containing the list of owner email addresses.",
+          "data_schema": [
+            {
+              "name": "OwnersResponse",
+              "schema": {
+                "_success": "boolean",
+                "_data": "array of strings"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/{}/subscribers",
+      "http_method": "GET",
+      "method_name": "Subscribers.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\subscriber.py",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved subscribers. If `email_only` is present in the query, returns a list of subscriber email addresses. Otherwise returns a dict mapping subscription versions ('normal', 'digest', 'nomail') to lists of subscriber email addresses.",
+          "data_schema": [
+            {
+              "name": "SubscribersResponse",
+              "schema": {
+                "_success": "boolean",
+                "_data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/{}/subscribers",
+      "http_method": "POST",
+      "method_name": "Subscribers.post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\subscriber.py",
+      "parameters": [
+        {
+          "name": "mail",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "email address of the mailing list account",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. Returns a JSON object with `_success` set to true. When adding subscribers, the response is `{\"_success\": true}`. When removing subscribers, the response is also `{\"_success\": true}`.",
+          "data_schema": [
+            {
+              "name": "SuccessResponse",
+              "schema": {
+                "_success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/{mail}",
+      "http_method": "GET",
+      "method_name": "Profile.GET",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py",
+      "parameters": [
+        {
+          "name": "mail",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Email address of the mailing list account.",
+          "_depth": 0
+        },
+        {
+          "name": "params",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated list of profile parameter names to return. If omitted, all profile parameters are returned.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved mailing list profile parameters. Returns a JSON object with '_success': true and '_data' containing a dict of requested parameter names and their values.",
+          "data_schema": [
+            {
+              "name": "ProfileResponse",
+              "schema": {
+                "_success": "boolean",
+                "_data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/{mail}",
+      "http_method": "DELETE",
+      "method_name": "Profile.DELETE",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py",
+      "parameters": [
+        {
+          "name": "mail",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Email address of the mailing list account to delete.",
+          "_depth": 0
+        },
+        {
+          "name": "archive",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "If set to 'yes' (or omitted), only the account in the backend is removed and data on file system is kept (archived). If set to 'no', account in backend AND all data on file system will be removed.",
+          "enum": [
+            "yes",
+            "no"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. The mailing list account is removed from the backend and either archived or deleted from the file system. Returns a JSON object with '_success': true.",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "_success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/{mail}/moderators",
+      "http_method": "PUT",
+      "method_name": "Moderators.PUT",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py",
+      "parameters": [
+        {
+          "name": "mail",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Mail address of the mailing list account.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. Returns a JSON object with '_success' set to true. When the request includes a 'moderators' parameter, the moderators are reset to the given list; otherwise 'add_moderators' and/or 'remove_moderators' are applied. The response body is produced by api_render(True), i.e. {\"_success\": true}.",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "_success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/{}/has_subscriber/{}",
+      "http_method": "GET",
+      "method_name": "HasSubscriber.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\subscriber.py",
+      "parameters": [
+        {
+          "name": "mail",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "Email address of the mailing list account",
+          "_depth": 0
+        },
+        {
+          "name": "subscriber",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "Email address of the subscriber to check",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully checked whether the subscriber is a member of the mailing list. Returns a JSON object with '_success' set to true and '_data' containing the subscription version if the subscriber is found, or '_success' set to false if not found.",
+          "data_schema": [
+            {
+              "name": "HasSubscriberResponse",
+              "schema": {
+                "_success": "boolean",
+                "_data": "string",
+                "_msg": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/subscriber/{}/subscribe",
+      "http_method": "POST",
+      "method_name": "Subscribe.post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\subscriber.py",
+      "parameters": [
+        {
+          "name": "subscriber",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "Email address of the subscriber",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully subscribed the subscriber to the specified mailing lists. Returns a JSON object with '_success' set to true.",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "_success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/subscriber/{}/subscribed",
+      "http_method": "GET",
+      "method_name": "SubscribedLists.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\subscriber.py",
+      "parameters": [
+        {
+          "name": "subscriber",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "subscriber's email address",
+          "_depth": 0
+        },
+        {
+          "name": "email_only",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "if set to `yes`, return list of email addresses of subscribed lists",
+          "_depth": 0
+        },
+        {
+          "name": "query_all_lists",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "If set to 'yes', will check all available mailing lists on server. If 'no', check only lists under same domain.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the mailing lists that the given subscriber is subscribed to. The response body is a JSON object with '_success' set to true and '_data' containing either a list of mailing list email addresses (when 'email_only=yes') or a list of objects with 'subscription' and 'mail' fields.",
+          "data_schema": [
+            {
+              "name": "SubscribedListsResponse",
+              "schema": {
+                "_success": "boolean",
+                "_data": "array"
+              }
+            },
+            {
+              "name": "SubscribedListEmailOnly",
+              "schema": {
+                "_success": "boolean",
+                "_data": "array of strings (mailing list email addresses)"
+              }
+            },
+            {
+              "name": "SubscribedListDetailed",
+              "schema": {
+                "_success": "boolean",
+                "_data": "array of objects, each with 'subscription' (string) and 'mail' (string)"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/{mail}",
+      "http_method": "PUT",
+      "method_name": "Profile.PUT",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py",
+      "parameters": [
+        {
+          "name": "mail",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Email address of the mailing list account to update.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. Returns JSON with '_success': true. If the backend update fails, returns '_success': false with '_msg' containing the error. If the mlmmj update fails, returns '_success': false with '_msg' containing the error.",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "_success": "boolean",
+                "_msg": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/{mail}",
+      "http_method": "POST",
+      "method_name": "Profile.POST",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py",
+      "parameters": [
+        {
+          "name": "mail",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Email address of the mailing list account to create.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Mailing list account created successfully. Returns the result of the mlmmj account creation.",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "_success": "boolean",
+                "_data": "object",
+                "_msg": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 4,
+    "step2_ms": 99,
+    "step3_ms": 7304,
+    "step4_ms": 11097,
+    "step5_ms": 0,
+    "total_ms": 18507
+  }
+}

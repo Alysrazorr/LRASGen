@@ -1,0 +1,114 @@
+{
+  "task_id": "http-patch-spring",
+  "api_name": "http-patch-spring",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/contacts",
+      "http_method": "POST",
+      "method_name": "updateContact",
+      "summary": "Create a new contact",
+      "description": "Creates a new contact from the provided contact resource and returns the location of the created resource.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\HTTPPatch\\http-patch-spring\\src\\main\\java\\com\\cassiomolin\\patch\\web\\controller\\ContactController.java"
+    },
+    {
+      "endpoint_path": "/contacts",
+      "http_method": "GET",
+      "method_name": "findContacts",
+      "summary": "List all contacts",
+      "description": "Retrieves a list of all contacts.",
+      "line_number": 29,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\HTTPPatch\\http-patch-spring\\src\\main\\java\\com\\cassiomolin\\patch\\web\\controller\\ContactController.java"
+    },
+    {
+      "endpoint_path": "/contacts/{id}",
+      "http_method": "GET",
+      "method_name": "findContact",
+      "summary": "Get a contact by ID",
+      "description": "Retrieves a single contact by its ID. Returns 404 if not found.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\HTTPPatch\\http-patch-spring\\src\\main\\java\\com\\cassiomolin\\patch\\web\\controller\\ContactController.java"
+    },
+    {
+      "endpoint_path": "/contacts/{id}",
+      "http_method": "PUT",
+      "method_name": "updateContact",
+      "summary": "Update a contact",
+      "description": "Updates an existing contact with the provided contact resource. Returns 204 No Content on success.",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\HTTPPatch\\http-patch-spring\\src\\main\\java\\com\\cassiomolin\\patch\\web\\controller\\ContactController.java"
+    },
+    {
+      "endpoint_path": "/contacts/{id}",
+      "http_method": "PATCH",
+      "method_name": "updateContact",
+      "summary": "Partially update a contact using JSON Patch",
+      "description": "Applies a JSON Patch document to an existing contact. Returns 204 No Content on success.",
+      "line_number": 58,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\HTTPPatch\\http-patch-spring\\src\\main\\java\\com\\cassiomolin\\patch\\web\\controller\\ContactController.java"
+    },
+    {
+      "endpoint_path": "/contacts/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteContact",
+      "summary": "Delete a contact",
+      "description": "Deletes an existing contact by its ID. Returns 204 No Content on success.",
+      "line_number": 84,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\HTTPPatch\\http-patch-spring\\src\\main\\java\\com\\cassiomolin\\patch\\web\\controller\\ContactController.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 3219,
+  "tokens": {
+    "prompt_tokens": 14310,
+    "completion_tokens": 2659,
+    "total_tokens": 16969,
+    "calls": 3,
+    "elapsed_s": 27.619,
+    "prompt_cost_usd": 0.001826,
+    "completion_cost_usd": 0.001863,
+    "total_cost_usd": 0.00369,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 4685,
+        "completion_tokens": 524,
+        "total_tokens": 5209,
+        "calls": 1,
+        "elapsed_s": 3.217546,
+        "prompt_cost_usd": 9.4e-05,
+        "completion_cost_usd": 0.000314,
+        "total_cost_usd": 0.000408
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 4493,
+        "completion_tokens": 1653,
+        "total_tokens": 6146,
+        "calls": 1,
+        "elapsed_s": 18.553,
+        "prompt_cost_usd": 0.000449,
+        "completion_cost_usd": 0.000826,
+        "total_cost_usd": 0.001276
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 5132,
+        "completion_tokens": 482,
+        "total_tokens": 5614,
+        "calls": 1,
+        "elapsed_s": 5.848,
+        "prompt_cost_usd": 0.001283,
+        "completion_cost_usd": 0.000723,
+        "total_cost_usd": 0.002006
+      }
+    ]
+  }
+}

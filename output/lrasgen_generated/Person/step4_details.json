@@ -1,0 +1,675 @@
+{
+  "task_id": "person-controller",
+  "api_name": "person-controller",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/persons",
+      "http_method": "DELETE",
+      "method_name": "deletePersons",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Person\\person-controller\\src\\main\\java\\com\\mongodb\\starter\\controllers\\PersonController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully deleted all persons. Returns the number of deleted persons as a Long.",
+          "data_schema": [
+            {
+              "name": "Long",
+              "schema": {
+                "value": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the service call throws a RuntimeException, handled by the @ExceptionHandler method.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/person",
+      "http_method": "POST",
+      "method_name": "postPerson",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Person\\person-controller\\src\\main\\java\\com\\mongodb\\starter\\controllers\\PersonController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "String",
+          "_class_name": "PersonDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Person data transfer object sent in the request body"
+        },
+        {
+          "name": "firstName",
+          "type": "String",
+          "_class_name": "PersonDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Person data transfer object sent in the request body"
+        },
+        {
+          "name": "lastName",
+          "type": "String",
+          "_class_name": "PersonDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Person data transfer object sent in the request body"
+        },
+        {
+          "name": "age",
+          "type": "int",
+          "_class_name": "PersonDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Person data transfer object sent in the request body"
+        },
+        {
+          "name": "createdAt",
+          "type": "Date",
+          "_class_name": "PersonDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Person data transfer object sent in the request body"
+        },
+        {
+          "name": "insurance",
+          "type": "Boolean",
+          "_class_name": "PersonDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Person data transfer object sent in the request body"
+        },
+        {
+          "name": "cars",
+          "type": "List",
+          "_class_name": "PersonDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Person data transfer object sent in the request body"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Person created successfully",
+          "data_schema": [
+            {
+              "name": "PersonDTO",
+              "schema": {
+                "id": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "age": "integer",
+                "address": "AddressDTO",
+                "createdAt": "date",
+                "insurance": "boolean",
+                "cars": "List<CarDTO>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/persons",
+      "http_method": "GET",
+      "method_name": "getPersons",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Person\\person-controller\\src\\main\\java\\com\\mongodb\\starter\\controllers\\PersonController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of all persons.",
+          "data_schema": [
+            {
+              "name": "List<PersonDTO>",
+              "schema": {
+                "id": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "age": "integer",
+                "address": "AddressDTO",
+                "createdAt": "date",
+                "insurance": "boolean",
+                "cars": "List<CarDTO>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/persons/count",
+      "http_method": "GET",
+      "method_name": "getCount",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Person\\person-controller\\src\\main\\java\\com\\mongodb\\starter\\controllers\\PersonController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the total number of persons as a Long value.",
+          "data_schema": [
+            {
+              "name": "count",
+              "schema": {
+                "count": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the service call throws a RuntimeException, handled by the @ExceptionHandler method.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/persons/{ids}",
+      "http_method": "DELETE",
+      "method_name": "deletePersons",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Person\\person-controller\\src\\main\\java\\com\\mongodb\\starter\\controllers\\PersonController.java",
+      "parameters": [
+        {
+          "name": "ids",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Comma-separated list of person IDs to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully deleted the persons with the specified IDs. Returns the number of deleted persons.",
+          "data_schema": [
+            {
+              "name": "Long",
+              "schema": {
+                "value": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the service call throws a RuntimeException.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/person/{id}",
+      "http_method": "DELETE",
+      "method_name": "deletePerson",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Person\\person-controller\\src\\main\\java\\com\\mongodb\\starter\\controllers\\PersonController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The id of the person to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully deleted the person with the specified id. Returns the number of deleted records as a Long.",
+          "data_schema": [
+            {
+              "name": "Long",
+              "schema": {
+                "value": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to personService.delete(id) and does not catch any exception; a RuntimeException thrown by the service is handled by the @ExceptionHandler, which logs the error and returns the exception.",
+          "data_schema": [
+            {
+              "name": "Exception",
+              "schema": {
+                "message": "string",
+                "cause": "string",
+                "stackTrace": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/person/{id}",
+      "http_method": "GET",
+      "method_name": "getPerson",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Person\\person-controller\\src\\main\\java\\com\\mongodb\\starter\\controllers\\PersonController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The id of the person to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Person found and returned",
+          "data_schema": [
+            {
+              "name": "PersonDTO",
+              "schema": {
+                "id": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "age": "integer",
+                "address": "AddressDTO",
+                "createdAt": "date",
+                "insurance": "boolean",
+                "cars": "List<CarDTO>"
+              }
+            },
+            {
+              "name": "AddressDTO",
+              "schema": {
+                "number": "integer",
+                "street": "string",
+                "postcode": "string",
+                "city": "string",
+                "country": "string"
+              }
+            },
+            {
+              "name": "CarDTO",
+              "schema": {
+                "brand": "string",
+                "model": "string",
+                "maxSpeedKmH": "float"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Person not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/persons",
+      "http_method": "POST",
+      "method_name": "postPersons",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Person\\person-controller\\src\\main\\java\\com\\mongodb\\starter\\controllers\\PersonController.java",
+      "parameters": [
+        {
+          "name": "personEntities",
+          "type": "List<PersonDTO>",
+          "require": "false",
+          "position": "body",
+          "description": "List of PersonDTO objects to be saved",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Created. Returns the list of saved PersonDTO objects.",
+          "data_schema": [
+            {
+              "name": "List<PersonDTO>",
+              "schema": {
+                "id": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "age": "integer",
+                "address": "AddressDTO",
+                "createdAt": "date",
+                "insurance": "boolean",
+                "cars": "List<CarDTO>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when a RuntimeException is thrown during processing.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/person",
+      "http_method": "PUT",
+      "method_name": "putPerson",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Person\\person-controller\\src\\main\\java\\com\\mongodb\\starter\\controllers\\PersonController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "String",
+          "_class_name": "PersonDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Person data to update"
+        },
+        {
+          "name": "firstName",
+          "type": "String",
+          "_class_name": "PersonDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Person data to update"
+        },
+        {
+          "name": "lastName",
+          "type": "String",
+          "_class_name": "PersonDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Person data to update"
+        },
+        {
+          "name": "age",
+          "type": "int",
+          "_class_name": "PersonDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Person data to update"
+        },
+        {
+          "name": "createdAt",
+          "type": "Date",
+          "_class_name": "PersonDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Person data to update"
+        },
+        {
+          "name": "insurance",
+          "type": "Boolean",
+          "_class_name": "PersonDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Person data to update"
+        },
+        {
+          "name": "cars",
+          "type": "List",
+          "_class_name": "PersonDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Person data to update"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The person was updated successfully. Returns the updated PersonDTO.",
+          "data_schema": [
+            {
+              "name": "PersonDTO",
+              "schema": {
+                "id": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "age": "integer",
+                "address": "AddressDTO",
+                "createdAt": "date",
+                "insurance": "boolean",
+                "cars": "List<CarDTO>"
+              }
+            },
+            {
+              "name": "AddressDTO",
+              "schema": {
+                "number": "integer",
+                "street": "string",
+                "postcode": "string",
+                "city": "string",
+                "country": "string"
+              }
+            },
+            {
+              "name": "CarDTO",
+              "schema": {
+                "brand": "string",
+                "model": "string",
+                "maxSpeedKmH": "float"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to personService.update and does not catch failures, so a RuntimeException from the service is handled by the @ExceptionHandler and returns 500.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/persons/{ids}",
+      "http_method": "GET",
+      "method_name": "getPersons",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Person\\person-controller\\src\\main\\java\\com\\mongodb\\starter\\controllers\\PersonController.java",
+      "parameters": [
+        {
+          "name": "ids",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Comma-separated list of person IDs to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of PersonDTO objects matching the provided comma-separated IDs. If no persons match, an empty list is returned.",
+          "data_schema": [
+            {
+              "name": "PersonDTO",
+              "schema": {
+                "id": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "age": "integer",
+                "address": "AddressDTO",
+                "createdAt": "date",
+                "insurance": "boolean",
+                "cars": "List<CarDTO>"
+              }
+            },
+            {
+              "name": "AddressDTO",
+              "schema": {
+                "number": "integer",
+                "street": "string",
+                "postcode": "string",
+                "city": "string",
+                "country": "string"
+              }
+            },
+            {
+              "name": "CarDTO",
+              "schema": {
+                "brand": "string",
+                "model": "string",
+                "maxSpeedKmH": "float"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the service call throws a RuntimeException, handled by the @ExceptionHandler method.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/persons/averageAge",
+      "http_method": "GET",
+      "method_name": "averageAge",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Person\\person-controller\\src\\main\\java\\com\\mongodb\\starter\\controllers\\PersonController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The average age of all persons is returned as a Double.",
+          "data_schema": [
+            {
+              "name": "Double",
+              "schema": {
+                "value": "double"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to personService.getAverageAge() and does not catch failures, so a RuntimeException from the service is handled by the @ExceptionHandler and returns 500.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/persons",
+      "http_method": "PUT",
+      "method_name": "putPerson",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Person\\person-controller\\src\\main\\java\\com\\mongodb\\starter\\controllers\\PersonController.java",
+      "parameters": [
+        {
+          "name": "personEntities",
+          "type": "List<PersonDTO>",
+          "require": "false",
+          "position": "body",
+          "description": "A list of PersonDTO objects to update.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The number of persons updated.",
+          "data_schema": [
+            {
+              "name": "Long",
+              "schema": {
+                "value": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 3170,
+  "tokens": {
+    "prompt_tokens": 328392,
+    "completion_tokens": 14096,
+    "total_tokens": 342488,
+    "calls": 72,
+    "elapsed_s": 185.955,
+    "prompt_cost_usd": 0.042204,
+    "completion_cost_usd": 0.009682,
+    "total_cost_usd": 0.051887,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 105868,
+        "completion_tokens": 2598,
+        "total_tokens": 108466,
+        "calls": 24,
+        "elapsed_s": 21.689726999999998,
+        "prompt_cost_usd": 0.002117,
+        "completion_cost_usd": 0.001559,
+        "total_cost_usd": 0.003676
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 103624,
+        "completion_tokens": 9123,
+        "total_tokens": 112747,
+        "calls": 24,
+        "elapsed_s": 117.14,
+        "prompt_cost_usd": 0.010362,
+        "completion_cost_usd": 0.004561,
+        "total_cost_usd": 0.014924
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 118900,
+        "completion_tokens": 2375,
+        "total_tokens": 121275,
+        "calls": 24,
+        "elapsed_s": 47.125,
+        "prompt_cost_usd": 0.029725,
+        "completion_cost_usd": 0.003562,
+        "total_cost_usd": 0.033287
+      }
+    ]
+  }
+}

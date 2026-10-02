@@ -1,0 +1,48 @@
+.table-widget(ng-controller='TableWidget')
+    h1.title(ng-if='::widget.title') {{ widgetTitle() }}
+
+    .widget-body
+
+        .widget-loading(spinjs, ng-if='isLoading()')
+        .widget-error(ng-if='widgetContext.dataSourceError == true && !isLoading()')
+        .widget-nodata(ng-if='widgetContext.nodata && !isLoading()')
+            .fa.fa-exclamation-triangle
+            span  {{ widgetContext.nodata }}
+
+        .results(ng-if='sortedRows && !noDataOrError()')
+            table(table-fixed-header='widget.freezeHeaders')
+                thead(ng-if='widget.omitHeaders != true')
+                    tr(ng-if='columnGroups.length > 0', table-row)
+                        th.group(ng-repeat='group in columnGroups', colspan='{{ group.length }}', 
+                            ng-class='{ empty: group.name === null }') {{ group.name }}
+                    tr(table-row)
+                        th(ng-repeat='column in columns', ng-class='{ empty: column.label === "" }', title='{{ ::column.headerTooltip }}')
+                            a(ng-if='widget.enableSort != false', ng-click='selectSort(column.name)') {{ ::column.label }}
+                            span(ng-if='widget.enableSort == false') {{ ::column.label }}
+                            i.fa.fa-sort-up(ng-show='isSorted(column.name, true)')
+                            i.fa.fa-sort-down(ng-show='isSorted(column.name, false)')
+                            i.fa.fa-sort-down.invisible(ng-show='!isSorted(column.name, false) && !isSorted(column.name, true)')
+                tbody
+                    tr(ng-repeat='row in sortedRows | limitTo:paging.itemsPerPage:(paging.currentPage-1)*paging.itemsPerPage', table-rule, table-row)
+                        td(ng-repeat='column in ::columns', table-rule, table-column, 
+                            title='{{ getCellProperty(row, column, "tooltip") }}'
+                            ng-class='{hidden: isCellHidden(row, column, $parent.$index), aLink: getCellProperty(row, column, "link"), actionable: column.onClick}',
+                            rowspan='{{ getRowSpan(row, column, $parent.$index) }}', 
+                            ng-click='onClickEvent(row, column)') 
+
+                            img(ng-if='::getCellProperty(row, column, "image")', ng-src='{{ ::getCellProperty(row, column, "image") }}', style='height: {{ ::getCellProperty(row, column, "imageHeight", "1em") }};')
+
+                            i(ng-if='::getCellProperty(row, column, "icon")', class='fa {{ ::getCellProperty(row, column, "icon") }}', ng-style='{color: getCellProperty(row, column, "iconColor")}')
+
+                            //- Normal text output
+                            span(ng-if='::!getCellProperty(row, column, "link")')  {{ ::getText(row, column) }}
+
+                            //- Link if the column specifies a link
+                            a(ng-if='getCellProperty(row, column, "link")', target='{{ ::linkTarget(column) }}', ng-href='{{ ::getCellProperty(row, column, "link") }}') {{ ::getText(row, column) }}
+                                i.fa.fa-external-link
+        
+            .paging(ng-if='widget.pagination.enabled')
+                uib-pagination.pagination-sm(total-items='paging.totalItems', ng-model='paging.currentPage', 
+                    items-per-page='paging.itemsPerPage', max-size='paging.maxSize', 
+                    boundary-links='paging.boundaryLinks')
+                p.below-pager-message(ng-if='widget.pagination.belowPagerMessage') {{ getBelowPagerMessage() }}

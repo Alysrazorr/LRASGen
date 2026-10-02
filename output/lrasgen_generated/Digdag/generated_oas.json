@@ -1,0 +1,2341 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "digdag-server API",
+    "description": "LRASGen-generated specification for digdag-server (jersey).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/attempts/{id}/retries": {
+      "get": {
+        "operationId": "getRetries",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "attempt id",
+            "schema": {
+              "type": "integer",
+              "description": "attempt id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List attempts of a session of a given attempt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestSessionAttemptCollection": {
+                      "type": "string",
+                      "description": "{'attempts': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Attempt not found"
+          },
+          "403": {
+            "description": "Access control exception"
+          }
+        }
+      }
+    },
+    "/api/admin/attempts/{id}/userinfo": {
+      "get": {
+        "operationId": "getUserinfo",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the session attempt whose user info is requested.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the session attempt whose user info is requested."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the user info config of the revision associated with the attempt's workflow definition.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Config": {
+                      "type": "string",
+                      "description": "{'userInfo': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. Thrown when the attempt's session has no workflow definition id present, or when the attempt/session is not found."
+          }
+        }
+      }
+    },
+    "/api/logs/{attempt_id}/files/{file_name}": {
+      "get": {
+        "operationId": "getFiles",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "attempt_id",
+            "in": "path",
+            "required": true,
+            "description": "attempt id",
+            "schema": {
+              "type": "integer",
+              "description": "attempt id"
+            }
+          },
+          {
+            "name": "file_name",
+            "in": "path",
+            "required": true,
+            "description": "log file name",
+            "schema": {
+              "type": "string",
+              "description": "log file name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Log file content returned as a gzip-compressed byte array.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "byte[]": {
+                      "type": "string",
+                      "description": "{'content': 'byte[]'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The attempt or its project was not found, or the log file was not found."
+          },
+          "403": {
+            "description": "The authenticated user is not allowed to access the log files of the attempt."
+          },
+          "500": {
+            "description": "An I/O error occurred while reading the log file."
+          }
+        }
+      }
+    },
+    "/api/attempts/{id}": {
+      "get": {
+        "operationId": "getAttempts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "attempt id",
+            "schema": {
+              "type": "integer",
+              "description": "attempt id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get an attempt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestSessionAttempt": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'index': 'integer', 'project': 'IdAndName', 'workflow': 'NameOptionalId', 'sessionId': 'string', 'sessionUuid': 'string', 'sessionTime': 'date', 'retryAttemptName': 'string', 'done': 'boolean', 'success': 'boolean', 'cancelRequested': 'boolean', 'params': 'object', 'createdAt': 'date', 'finishedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Attempt not found"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/api/attempts/{id}/tasks": {
+      "get": {
+        "operationId": "getTasks",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "attempt id",
+            "schema": {
+              "type": "integer",
+              "description": "attempt id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List tasks of an attempt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestTaskCollection": {
+                      "type": "string",
+                      "description": "{'tasks': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Attempt or project not found"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/api/attempts/{id}/kill": {
+      "post": {
+        "operationId": "createKill",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "attempt id",
+            "schema": {
+              "type": "integer",
+              "description": "attempt id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attempt killed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestSessionAttempt": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'index': 'integer', 'project': 'IdAndName', 'workflow': 'NameOptionalId', 'sessionId': 'string', 'sessionUuid': 'string', 'sessionTime': 'date', 'retryAttemptName': 'string', 'done': 'boolean', 'success': 'boolean', 'cancelRequested': 'boolean', 'params': 'object', 'createdAt': 'date', 'finishedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Attempt not found"
+          },
+          "409": {
+            "description": "Session attempt already killed or finished"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/api/project": {
+      "get": {
+        "operationId": "getProject",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "project name",
+            "schema": {
+              "type": "string",
+              "description": "project name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the project with the given name.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestProject": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'revision': 'string', 'createdAt': 'date', 'updatedAt': 'date', 'deletedAt': 'date', 'archiveType': 'string', 'archiveMd5': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the required query parameter 'name' is missing."
+          },
+          "404": {
+            "description": "Not found. Returned when the project does not exist, is deleted, or has no revisions."
+          },
+          "403": {
+            "description": "Forbidden. Returned when the authenticated user is not allowed to access the project."
+          }
+        }
+      }
+    },
+    "/api/logs/{attempt_id}/files": {
+      "get": {
+        "operationId": "getFiles",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "attempt_id",
+            "in": "path",
+            "required": true,
+            "description": "attempt id",
+            "schema": {
+              "type": "integer",
+              "description": "attempt id"
+            }
+          },
+          {
+            "name": "task",
+            "in": "query",
+            "required": false,
+            "description": "partial prefix match filter on task name",
+            "schema": {
+              "type": "string",
+              "description": "partial prefix match filter on task name"
+            }
+          },
+          {
+            "name": "direct_download",
+            "in": "query",
+            "required": false,
+            "description": "enable returning direct download handle",
+            "schema": {
+              "type": "boolean",
+              "description": "enable returning direct download handle"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List log files of an attempt with filters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestLogFileHandleCollection": {
+                      "type": "string",
+                      "description": "{'files': 'array<RestLogFileHandle>'}"
+                    },
+                    "RestLogFileHandle": {
+                      "type": "string",
+                      "description": "{'fileName': 'string', 'fileSize': 'long', 'taskName': 'string', 'fileTime': 'date', 'agentId': 'string', 'direct': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Attempt or project not found"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/attempts": {
+      "get": {
+        "operationId": "getAttempts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "required": false,
+            "description": "exact matching filter on project name",
+            "schema": {
+              "type": "string",
+              "description": "exact matching filter on project name"
+            }
+          },
+          {
+            "name": "workflow",
+            "in": "query",
+            "required": false,
+            "description": "exact matching filter on workflow name",
+            "schema": {
+              "type": "string",
+              "description": "exact matching filter on workflow name"
+            }
+          },
+          {
+            "name": "include_retried",
+            "in": "query",
+            "required": false,
+            "description": "list more than 1 attempts per session",
+            "schema": {
+              "type": "boolean",
+              "description": "list more than 1 attempts per session"
+            }
+          },
+          {
+            "name": "last_id",
+            "in": "query",
+            "required": false,
+            "description": "list attempts whose id is grater than this id for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "list attempts whose id is grater than this id for pagination"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "description": "number of attempts to return",
+            "schema": {
+              "type": "integer",
+              "description": "number of attempts to return"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List attempts with filters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestSessionAttemptCollection": {
+                      "type": "string",
+                      "description": "{'attempts': 'array<RestSessionAttempt>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: page_size is larger than the maximum allowed page size"
+          },
+          "404": {
+            "description": "Not Found: project or workflow not found"
+          },
+          "403": {
+            "description": "Forbidden: access control check failed"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateAttempts",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Workflow execution started successfully. Returns the created session attempt.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestSessionAttempt": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'index': 'integer', 'project': 'IdAndName', 'workflow': 'NameOptionalId', 'sessionId': 'string', 'sessionUuid': 'string', 'sessionTime': 'date', 'retryAttemptName': 'string', 'done': 'boolean', 'success': 'boolean', 'cancelRequested': 'boolean', 'params': 'object', 'createdAt': 'date', 'finishedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Session attempt conflict. A conflicting attempt already exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestSessionAttempt": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'index': 'integer', 'project': 'IdAndName', 'workflow': 'NameOptionalId', 'sessionId': 'string', 'sessionUuid': 'string', 'sessionTime': 'date', 'retryAttemptName': 'string', 'done': 'boolean', 'success': 'boolean', 'cancelRequested': 'boolean', 'params': 'object', 'createdAt': 'date', 'finishedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Workflow definition not found."
+          },
+          "403": {
+            "description": "Access denied."
+          },
+          "400": {
+            "description": "Attempt limit exceeded."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "request": {
+                    "type": "string",
+                    "description": "Start a workflow execution as a new session or a new attempt of an existing session"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{id}": {
+      "get": {
+        "operationId": "getProjects",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "project id",
+            "schema": {
+              "type": "integer",
+              "description": "project id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the project",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestProject": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'revision': 'string', 'createdAt': 'date', 'updatedAt': 'date', 'deletedAt': 'date', 'archiveType': 'string', 'archiveMd5': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found or already deleted"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteProjects",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "project id",
+            "schema": {
+              "type": "integer",
+              "description": "project id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project deleted successfully. Returns the deleted project.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestProject": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'revision': 'string', 'createdAt': 'date', 'updatedAt': 'date', 'deletedAt': 'date', 'archiveType': 'string', 'archiveMd5': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found or already deleted."
+          },
+          "403": {
+            "description": "User does not have permission to delete the project."
+          }
+        }
+      }
+    },
+    "/api/projects/{id}/revisions": {
+      "get": {
+        "operationId": "getRevisions",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "project id",
+            "schema": {
+              "type": "integer",
+              "description": "project id"
+            }
+          },
+          {
+            "name": "last_id",
+            "in": "query",
+            "required": false,
+            "description": "deprecated - do not use",
+            "schema": {
+              "type": "integer",
+              "description": "deprecated - do not use"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "revision name",
+            "schema": {
+              "type": "string",
+              "description": "revision name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List revisions of a project",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestRevisionCollection": {
+                      "type": "string",
+                      "description": "{'revisions': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found or deleted"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/api/projects/{id}/workflow": {
+      "get": {
+        "operationId": "getWorkflow",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "project id",
+            "schema": {
+              "type": "integer",
+              "description": "project id"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "workflow name",
+            "schema": {
+              "type": "string",
+              "description": "workflow name"
+            }
+          },
+          {
+            "name": "revision",
+            "in": "query",
+            "required": false,
+            "description": "revision name",
+            "schema": {
+              "type": "string",
+              "description": "revision name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the workflow definition of the specified project and revision.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestWorkflowDefinition": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'project': 'object', 'revision': 'string', 'timeZone': 'string', 'config': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project, revision, or workflow definition not found."
+          },
+          "403": {
+            "description": "Access denied."
+          },
+          "400": {
+            "description": "Missing required query parameter 'name'."
+          }
+        }
+      }
+    },
+    "/api/projects/{id}/workflows/{name}": {
+      "get": {
+        "operationId": "getWorkflows",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "project id",
+            "schema": {
+              "type": "integer",
+              "description": "project id"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "workflow name",
+            "schema": {
+              "type": "string",
+              "description": "workflow name"
+            }
+          },
+          {
+            "name": "revision",
+            "in": "query",
+            "required": false,
+            "description": "use a given revision of the project instead of the latest revision",
+            "schema": {
+              "type": "string",
+              "description": "use a given revision of the project instead of the latest revision"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the workflow definition of the specified workflow in the project.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestWorkflowDefinition": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'project': 'IdAndName', 'revision': 'string', 'timeZone': 'string', 'config': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project, revision, or workflow not found."
+          },
+          "403": {
+            "description": "Access denied."
+          }
+        }
+      }
+    },
+    "/api/projects": {
+      "get": {
+        "operationId": "getProjects",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "exact matching filter on project name",
+            "schema": {
+              "type": "string",
+              "description": "exact matching filter on project name"
+            }
+          },
+          {
+            "name": "last_id",
+            "in": "query",
+            "required": false,
+            "description": "list projects whose id is grater than this id for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "list projects whose id is grater than this id for pagination"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "required": false,
+            "description": "number of projects to return",
+            "schema": {
+              "type": "integer",
+              "description": "number of projects to return"
+            }
+          },
+          {
+            "name": "name_pattern",
+            "in": "query",
+            "required": false,
+            "description": "name pattern to be partially matched",
+            "schema": {
+              "type": "string",
+              "description": "name pattern to be partially matched"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List projects with filters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestProjectCollection": {
+                      "type": "string",
+                      "description": "{'projects': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateProjects",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "required": false,
+            "description": "project name",
+            "schema": {
+              "type": "string",
+              "description": "project name"
+            }
+          },
+          {
+            "name": "revision",
+            "in": "query",
+            "required": false,
+            "description": "revision",
+            "schema": {
+              "type": "string",
+              "description": "revision"
+            }
+          },
+          {
+            "name": "schedule_from",
+            "in": "query",
+            "required": false,
+            "description": "start scheduling of new workflows from the given time instead of current time",
+            "schema": {
+              "type": "string",
+              "description": "start scheduling of new workflows from the given time instead of current time",
+              "format": "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project archive uploaded successfully. Returns the created or updated project.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestProject": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'revision': 'string', 'createdAt': 'date', 'updatedAt': 'date', 'deletedAt': 'date', 'archiveType': 'string', 'archiveMd5': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when required parameters are missing, schedule_from format is invalid, archive size exceeds limit, Content-Length does not match uploaded data, or archive validation fails."
+          },
+          "404": {
+            "description": "Not found. Returned when the project or a referenced resource does not exist."
+          },
+          "409": {
+            "description": "Conflict. Returned when the project revision conflicts with an existing one."
+          },
+          "403": {
+            "description": "Forbidden. Returned when the authenticated user is not allowed to put the project."
+          },
+          "500": {
+            "description": "Internal server error. Returned when uploading the archive to remote storage or loading archive data in memory fails."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string",
+                    "description": "project archive file (application/gzip)"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{id}/workflows": {
+      "get": {
+        "operationId": "getWorkflows",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "project id",
+            "schema": {
+              "type": "integer",
+              "description": "project id"
+            }
+          },
+          {
+            "name": "revision",
+            "in": "query",
+            "required": false,
+            "description": "use a given revision of the project instead of the latest revision",
+            "schema": {
+              "type": "string",
+              "description": "use a given revision of the project instead of the latest revision"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "exact matching filter on workflow name",
+            "schema": {
+              "type": "string",
+              "description": "exact matching filter on workflow name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List workflows of a project with filters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestWorkflowDefinitionCollection": {
+                      "type": "string",
+                      "description": "{'workflows': 'array<RestWorkflowDefinition>'}"
+                    },
+                    "RestWorkflowDefinition": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'project': 'IdAndName', 'revision': 'string', 'timeZone': 'string', 'config': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found or revision not found"
+          }
+        }
+      }
+    },
+    "/api/projects/{id}/archive": {
+      "get": {
+        "operationId": "getArchive",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "project id",
+            "schema": {
+              "type": "integer",
+              "description": "project id"
+            }
+          },
+          {
+            "name": "revision",
+            "in": "query",
+            "required": false,
+            "description": "use a given revision of a project instead of the latest revision",
+            "schema": {
+              "type": "string",
+              "description": "use a given revision of a project instead of the latest revision"
+            }
+          },
+          {
+            "name": "direct_download",
+            "in": "query",
+            "required": false,
+            "description": "enable returning direct download handle",
+            "schema": {
+              "type": "boolean",
+              "description": "enable returning direct download handle"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Returns the archive file content as application/gzip. The body may be the archive bytes directly, or a streaming output of the archive file.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ArchiveFile": {
+                      "type": "string",
+                      "description": "{'content': 'binary'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "303": {
+            "description": "See Other. Redirects to a direct download URL when direct download is enabled and a direct download handle is available."
+          },
+          "404": {
+            "description": "Not Found. The project does not exist, is deleted, the archive is not stored, or the archive file is not found."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user is not allowed to access the project archive."
+          }
+        }
+      }
+    },
+    "/api/projects/{id}/schedules": {
+      "get": {
+        "operationId": "getSchedules",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "project id",
+            "schema": {
+              "type": "integer",
+              "description": "project id"
+            }
+          },
+          {
+            "name": "workflow",
+            "in": "query",
+            "required": false,
+            "description": "exact matching filter on workflow name",
+            "schema": {
+              "type": "string",
+              "description": "exact matching filter on workflow name"
+            }
+          },
+          {
+            "name": "last_id",
+            "in": "query",
+            "required": false,
+            "description": "list schedules whose id is grater than this id for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "list schedules whose id is grater than this id for pagination"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List schedules of a project with filters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestScheduleCollection": {
+                      "type": "string",
+                      "description": "{'schedules': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found or deleted"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/api/projects/{id}/sessions": {
+      "get": {
+        "operationId": "getSessions",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "project id",
+            "schema": {
+              "type": "integer",
+              "description": "project id"
+            }
+          },
+          {
+            "name": "workflow",
+            "in": "query",
+            "required": false,
+            "description": "exact matching filter on workflow name",
+            "schema": {
+              "type": "string",
+              "description": "exact matching filter on workflow name"
+            }
+          },
+          {
+            "name": "last_id",
+            "in": "query",
+            "required": false,
+            "description": "list sessions whose id is grater than this id for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "list sessions whose id is grater than this id for pagination"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "description": "number of sessions to return",
+            "schema": {
+              "type": "integer",
+              "description": "number of sessions to return",
+              "maximum": 100.0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List sessions of a project with filters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestSessionCollection": {
+                      "type": "string",
+                      "description": "{'sessions': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - page_size exceeds the maximum allowed value"
+          },
+          "404": {
+            "description": "Not Found - project does not exist or is deleted"
+          },
+          "403": {
+            "description": "Forbidden - access control check failed"
+          }
+        }
+      }
+    },
+    "/api/projects/{id}/secrets/{key}": {
+      "put": {
+        "operationId": "updateSecrets",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "project id",
+            "schema": {
+              "type": "integer",
+              "description": "project id"
+            }
+          },
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "secret key",
+            "schema": {
+              "type": "string",
+              "description": "secret key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Secret set successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestSecret": {
+                      "type": "string",
+                      "description": "{'key': 'string', 'project': 'IdAndName'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid secret"
+          },
+          "404": {
+            "description": "Project not found or deleted"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "request": {
+                    "type": "string",
+                    "description": "secret value"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteSecrets",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "project id",
+            "schema": {
+              "type": "integer",
+              "description": "project id"
+            }
+          },
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "secret key",
+            "schema": {
+              "type": "string",
+              "description": "secret key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Secret deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestSecret": {
+                      "type": "string",
+                      "description": "{'key': 'string', 'project': 'IdAndName'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid secret key"
+          },
+          "404": {
+            "description": "Project not found or already deleted"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/api/schedules": {
+      "get": {
+        "operationId": "getSchedules",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "last_id",
+            "in": "query",
+            "required": false,
+            "description": "list schedules whose id is grater than this id for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "list schedules whose id is grater than this id for pagination"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List schedules",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestScheduleCollection": {
+                      "type": "string",
+                      "description": "{'schedules': 'array<RestSchedule>'}"
+                    },
+                    "RestSchedule": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'project': 'IdAndName', 'workflow': 'IdAndName', 'nextRunTime': 'date', 'nextScheduleTime': 'date', 'disabledAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{id}/secrets": {
+      "get": {
+        "operationId": "getSecrets",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "project id",
+            "schema": {
+              "type": "integer",
+              "description": "project id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List secret keys of a project",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestSecretList": {
+                      "type": "string",
+                      "description": "{'secrets': 'array<RestSecretMetadata>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found or already deleted"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/api/schedules/{id}/disable": {
+      "post": {
+        "operationId": "createDisable",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "session id",
+            "schema": {
+              "type": "integer",
+              "description": "session id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Schedule disabled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestScheduleSummary": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'workflow': 'object', 'project': 'object', 'nextRunTime': 'date', 'nextScheduleTime': 'date', 'createdAt': 'date', 'updatedAt': 'date', 'disabledAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Schedule or project not found"
+          },
+          "409": {
+            "description": "Conflict while disabling schedule"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/api/schedules/{id}/enable": {
+      "post": {
+        "operationId": "createEnable",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "session id",
+            "schema": {
+              "type": "integer",
+              "description": "session id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Schedule enabled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestScheduleSummary": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'workflow': 'object', 'project': 'object', 'nextRunTime': 'string', 'nextScheduleTime': 'string', 'createdAt': 'string', 'updatedAt': 'string', 'disabledAt': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Schedule or project not found"
+          },
+          "409": {
+            "description": "Conflict when updating schedule"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "request": {
+                    "type": "string",
+                    "description": "request body for enabling a schedule"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/schedules/{id}": {
+      "get": {
+        "operationId": "getSchedules",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "schedule id",
+            "schema": {
+              "type": "integer",
+              "description": "schedule id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the schedule with the given id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestSchedule": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'project': 'IdAndName', 'workflow': 'IdAndName', 'nextRunTime': 'date', 'nextScheduleTime': 'date', 'disabledAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The schedule or project was not found."
+          },
+          "403": {
+            "description": "The authenticated user is not allowed to access the schedule."
+          }
+        }
+      }
+    },
+    "/api/schedules/{id}/skip": {
+      "post": {
+        "operationId": "createSkip",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "session id",
+            "schema": {
+              "type": "integer",
+              "description": "session id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully skipped the schedule. Returns the updated schedule summary.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestScheduleSummary": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'workflow': 'IdAndName', 'project': 'IdAndName', 'nextRunTime': 'date', 'nextScheduleTime': 'date', 'createdAt': 'date', 'updatedAt': 'date', 'disabledAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request must contain either nextTime or both fromTime and count."
+          },
+          "404": {
+            "description": "Schedule or project not found."
+          },
+          "409": {
+            "description": "Conflict. The schedule could not be skipped due to a conflict."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to skip the schedule."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "request": {
+                    "type": "string",
+                    "description": "skip request body"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/schedules/{id}/backfill": {
+      "post": {
+        "operationId": "createBackfill",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "session id",
+            "schema": {
+              "type": "integer",
+              "description": "session id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully re-scheduled past sessions. Returns a collection of session attempts created by the backfill operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestScheduleAttemptCollection": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'workflow': 'IdAndName', 'project': 'IdAndName', 'attempts': 'array<RestSessionAttempt>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Schedule or project not found. Thrown when the schedule id or project id does not exist."
+          },
+          "409": {
+            "description": "Conflict. Thrown when the backfill operation conflicts with the current state."
+          },
+          "403": {
+            "description": "Access denied. Thrown when the authenticated user is not allowed to backfill the schedule."
+          },
+          "400": {
+            "description": "Bad request. Thrown when the request parameters are invalid or exceed limits."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "request": {
+                    "type": "string",
+                    "description": "backfill request"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sessions/{id}": {
+      "get": {
+        "operationId": "getSessions",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "session id",
+            "schema": {
+              "type": "integer",
+              "description": "session id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get a session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestSession": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'project': 'IdAndName', 'workflow': 'NameOptionalId', 'sessionUuid': 'string', 'sessionTime': 'date', 'lastAttempt': 'RestSession.Attempt'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session or project not found"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/assets/{path}": {
+      "get": {
+        "operationId": "getAssets",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "description": "The path to the asset resource under public/assets/",
+            "schema": {
+              "type": "string",
+              "description": "The path to the asset resource under public/assets/"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the requested asset file as bytes with a content type guessed from the file name.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "asset": {
+                      "type": "string",
+                      "description": "{'content': 'byte[]'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the requested asset resource does not exist."
+          }
+        }
+      }
+    },
+    "/api/sessions": {
+      "get": {
+        "operationId": "getSessions",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "last_id",
+            "in": "query",
+            "required": false,
+            "description": "list sessions whose id is grater than this id for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "list sessions whose id is grater than this id for pagination"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "description": "number of sessions to return",
+            "schema": {
+              "type": "integer",
+              "description": "number of sessions to return"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List sessions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestSessionCollection": {
+                      "type": "string",
+                      "description": "{'sessions': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. The page_size parameter is larger than the maximum allowed page size."
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to list sessions of the site."
+          }
+        }
+      }
+    },
+    "/api/version": {
+      "get": {
+        "operationId": "getVersion",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the server version as a JSON object containing a 'version' field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "VersionResponse": {
+                      "type": "string",
+                      "description": "{'version': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/version/check": {
+      "get": {
+        "operationId": "getCheck",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "client",
+            "in": "query",
+            "required": false,
+            "description": "client version",
+            "schema": {
+              "type": "string",
+              "description": "client version"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the result of checking the given client version against the server version, including the server version, whether an upgrade is recommended, and whether the API is compatible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestVersionCheckResult": {
+                      "type": "string",
+                      "description": "{'serverVersion': 'string', 'upgradeRecommended': 'boolean', 'apiCompatible': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sessions/{id}/attempts": {
+      "get": {
+        "operationId": "getAttempts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "session id",
+            "schema": {
+              "type": "integer",
+              "description": "session id"
+            }
+          },
+          {
+            "name": "last_id",
+            "in": "query",
+            "required": false,
+            "description": "list attempts whose id is grater than this id for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "list attempts whose id is grater than this id for pagination"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "description": "number of attempts to return",
+            "schema": {
+              "type": "integer",
+              "description": "number of attempts to return"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List attempts of a session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestSessionAttemptCollection": {
+                      "type": "string",
+                      "description": "{'attempts': 'array of RestSessionAttempt'}"
+                    },
+                    "RestSessionAttempt": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'index': 'integer', 'project': 'IdAndName', 'workflow': 'NameOptionalId', 'sessionId': 'string', 'sessionUuid': 'string', 'sessionTime': 'date', 'retryAttemptName': 'string', 'done': 'boolean', 'success': 'boolean', 'cancelRequested': 'boolean', 'params': 'object', 'createdAt': 'date', 'finishedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session or project not found"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "400": {
+            "description": "Invalid page_size parameter"
+          }
+        }
+      }
+    },
+    "/api/workflows/{id}": {
+      "get": {
+        "operationId": "getWorkflows",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "workflow id",
+            "schema": {
+              "type": "integer",
+              "description": "workflow id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get a workflow",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestWorkflowDefinition": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'project': 'IdAndName', 'revision': 'string', 'timeZone': 'string', 'config': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Workflow not found"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/{path:.*}": {
+      "get": {
+        "operationId": "get",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": false,
+            "description": "The path segment(s) captured by the regex {path:.*}; used to locate a static resource under public/, falling back to the index response.",
+            "schema": {
+              "type": "string",
+              "description": "The path segment(s) captured by the regex {path:.*}; used to locate a static resource under public/, falling back to the index response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the requested static resource from the public directory if it exists; otherwise returns the index.html response. The response body is the raw bytes of the resource, with content type guessed from the file name.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResourceBytes": {
+                      "type": "string",
+                      "description": "{'bytes': 'byte[]'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the requested resource does not exist and the index response is not available (index.html was not found at construction time)."
+          }
+        }
+      }
+    },
+    "/api/workflow": {
+      "get": {
+        "operationId": "getWorkflow",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "required": false,
+            "description": "project name",
+            "schema": {
+              "type": "string",
+              "description": "project name"
+            }
+          },
+          {
+            "name": "revision",
+            "in": "query",
+            "required": false,
+            "description": "revision name",
+            "schema": {
+              "type": "string",
+              "description": "revision name"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "workflow name",
+            "schema": {
+              "type": "string",
+              "description": "workflow name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the workflow definition.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestWorkflowDefinition": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'project': 'IdAndName', 'revision': 'string', 'timeZone': 'string', 'config': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The required query parameters 'project' or 'name' are missing."
+          },
+          "404": {
+            "description": "Not found. The specified project, revision, or workflow definition does not exist."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access the workflow."
+          }
+        }
+      }
+    },
+    "/api/workflows/{id}/truncated_session_time": {
+      "get": {
+        "operationId": "getTruncatedSessionTime",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "workflow id",
+            "schema": {
+              "type": "integer",
+              "description": "workflow id"
+            }
+          },
+          {
+            "name": "session_time",
+            "in": "query",
+            "required": false,
+            "description": "session time to be truncated",
+            "schema": {
+              "type": "string",
+              "description": "session time to be truncated"
+            }
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "description": "truncation mode - second, minute, hour, day, schedule, or next_schedule",
+            "schema": {
+              "type": "string",
+              "description": "truncation mode - second, minute, hour, day, schedule, or next_schedule",
+              "enum": [
+                "HOUR",
+                "DAY",
+                "SCHEDULE",
+                "NEXT_SCHEDULE"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returns the truncated session time based on the time zone of the workflow.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestWorkflowSessionTime": {
+                      "type": "string",
+                      "description": "{'project': 'IdAndName', 'revision': 'string', 'sessionTime': 'OffsetDateTime', 'timeZone': 'ZoneId'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the required query parameter 'session_time' is missing, or when the truncation mode requires a schedule but the workflow has no schedule set."
+          },
+          "404": {
+            "description": "Not found. Returned when the workflow definition with the specified id does not exist."
+          },
+          "403": {
+            "description": "Forbidden. Returned when the authenticated user does not have permission to access the workflow."
+          }
+        }
+      }
+    },
+    "/api/workflows": {
+      "get": {
+        "operationId": "getWorkflows",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "last_id",
+            "in": "query",
+            "required": false,
+            "description": "pagination. return workflows which id are greater than last_id with order 'asc', which id are less than the last_id with order 'desc'",
+            "schema": {
+              "type": "integer",
+              "description": "pagination. return workflows which id are greater than last_id with order 'asc', which id are less than the last_id with order 'desc'"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "required": false,
+            "description": "number of workflows to return",
+            "schema": {
+              "type": "integer",
+              "description": "number of workflows to return"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "description": "Sort order. 'asc' or 'desc'",
+            "schema": {
+              "type": "string",
+              "description": "Sort order. 'asc' or 'desc'",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "name_pattern",
+            "in": "query",
+            "required": false,
+            "description": "name pattern to be partially matched",
+            "schema": {
+              "type": "string",
+              "description": "name pattern to be partially matched"
+            }
+          },
+          {
+            "name": "search_project_name",
+            "in": "query",
+            "required": false,
+            "description": "name pattern to be partially matched",
+            "schema": {
+              "type": "boolean",
+              "description": "name pattern to be partially matched"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List workflows",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RestWorkflowDefinitionCollection": {
+                      "type": "string",
+                      "description": "{'workflows': 'array<RestWorkflowDefinition>'}"
+                    },
+                    "RestWorkflowDefinition": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'name': 'string', 'project': 'IdAndName', 'revision': 'string', 'timeZone': 'string', 'config': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The 'order' parameter must be either 'asc' or 'desc'."
+          },
+          "401": {
+            "description": "Unauthorized. Authentication is required."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user is not allowed to list workflows of the site."
+          },
+          "404": {
+            "description": "Not found. The requested resource does not exist."
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates to the project store and does not catch failures of that call."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,488 @@
+{
+  "task_id": "management-api-for-apache-cassandra",
+  "api_name": "management-api-for-apache-cassandra",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/v0/ops/auth/role",
+      "http_method": "POST",
+      "method_name": "createRole",
+      "summary": "Creates a new user role",
+      "description": "Creates a new user role",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\AuthResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/probes/liveness",
+      "http_method": "GET",
+      "method_name": "checkLiveness",
+      "summary": "Indicates whether this service is running",
+      "description": "",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\K8OperatorResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/probes/readiness",
+      "http_method": "GET",
+      "method_name": "checkReadiness",
+      "summary": "Indicates whether the Cassandra service is ready to service requests",
+      "description": "",
+      "line_number": 63,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\K8OperatorResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/probes/cluster",
+      "http_method": "GET",
+      "method_name": "checkClusterConsistency",
+      "summary": "Indicated whether the Cassandra cluster is able to achieve the specified consistency",
+      "description": "",
+      "line_number": 96,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\K8OperatorResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/seeds/reload",
+      "http_method": "POST",
+      "method_name": "seedReload",
+      "summary": "Reload the seed node list from the seed provider",
+      "description": "",
+      "line_number": 133,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\K8OperatorResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/executor/job",
+      "http_method": "GET",
+      "method_name": "getJobStatus",
+      "summary": "Returns Job details for the supplied Job ID",
+      "description": "",
+      "line_number": 152,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\K8OperatorResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/keyspace/cleanup",
+      "http_method": "POST",
+      "method_name": "cleanup",
+      "summary": "Triggers the immediate cleanup of keys no longer belonging to a node. By default, clean all keyspaces. This operation is blocking and will return the executed job after finishing.",
+      "description": "Triggers the immediate cleanup of keys no longer belonging to a node. By default, clean all keyspaces. This operation is blocking and will return the executed job after finishing.",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\KeyspaceOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/keyspace/refresh",
+      "http_method": "POST",
+      "method_name": "refresh",
+      "summary": "Load newly placed SSTables to the system without restart",
+      "description": "Load newly placed SSTables to the system without restart",
+      "line_number": 82,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\KeyspaceOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/keyspace/create",
+      "http_method": "POST",
+      "method_name": "create",
+      "summary": "Create a new keyspace with the given name and replication settings",
+      "description": "Create a new keyspace with the given name and replication settings",
+      "line_number": 118,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\KeyspaceOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/keyspace/alter",
+      "http_method": "POST",
+      "method_name": "alter",
+      "summary": "Alter the replication settings of an existing keyspace",
+      "description": "Alter the replication settings of an existing keyspace",
+      "line_number": 154,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\KeyspaceOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/keyspace",
+      "http_method": "GET",
+      "method_name": "list",
+      "summary": "List the keyspaces existing in the cluster",
+      "description": "List the keyspaces existing in the cluster",
+      "line_number": 190,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\KeyspaceOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/keyspace/replication",
+      "http_method": "GET",
+      "method_name": "getReplication",
+      "summary": "Get the replication settings of an existing keyspace",
+      "description": "Get the replication settings of an existing keyspace",
+      "line_number": 222,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\KeyspaceOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/lifecycle/start",
+      "http_method": "POST",
+      "method_name": "startNode",
+      "summary": "Starts Cassandra/DSE",
+      "description": "Starts a Cassandra/DSE node. Handles the following: Cassandra pid found and can connect: status 202; Cassandra pid not found and can not connect: status 201; Cassandra pid not found but can connect: status 206; Cassandra pid found but can not connect: status 204.",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\LifecycleResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/lifecycle/stop",
+      "http_method": "POST",
+      "method_name": "stopNode",
+      "summary": "Stops Cassandra/DSE. Keeps node from restarting automatically until /start is called",
+      "description": "Stops Cassandra/DSE. Keeps node from restarting automatically until /start is called.",
+      "line_number": 175,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\LifecycleResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/lifecycle/configure",
+      "http_method": "POST",
+      "method_name": "configureNodeJson",
+      "summary": "Configure Cassandra. Will fail if Cassandra is already started",
+      "description": "Configure Cassandra. Will fail if Cassandra is already started. Consumes application/json.",
+      "line_number": 271,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\LifecycleResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/lifecycle/pid",
+      "http_method": "GET",
+      "method_name": "getPID",
+      "summary": "The PID of Cassandra/DSE, if it's running",
+      "description": "The PID of Cassandra/DSE, if it's running.",
+      "line_number": 400,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\LifecycleResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/metadata/versions/release",
+      "http_method": "GET",
+      "method_name": "getReleaseVersion",
+      "summary": "Returns the Cassandra release version",
+      "description": "",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\MetadataResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/metadata/endpoints",
+      "http_method": "GET",
+      "method_name": "getEndpointStates",
+      "summary": "Returns this nodes view of the endpoint states of nodes",
+      "description": "",
+      "line_number": 57,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\MetadataResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/metadata/localdc",
+      "http_method": "GET",
+      "method_name": "getLocalDataCenter",
+      "summary": "Returns the DataCenter the local node belongs to",
+      "description": "",
+      "line_number": 76,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\MetadataResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/metadata/versions/features",
+      "http_method": "GET",
+      "method_name": "getFeatureSet",
+      "summary": "Returns the management-api featureSet",
+      "description": "",
+      "line_number": 95,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\MetadataResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/decommission",
+      "http_method": "POST",
+      "method_name": "decommission",
+      "summary": "Decommission the *node I am connecting to*",
+      "description": "Decommission the *node I am connecting to*",
+      "line_number": 57,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/compaction",
+      "http_method": "POST",
+      "method_name": "setCompactionThroughput",
+      "summary": "Set the MB/s throughput cap for compaction in the system, or 0 to disable throttling",
+      "description": "Set the MB/s throughput cap for compaction in the system, or 0 to disable throttling",
+      "line_number": 74,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/assassinate",
+      "http_method": "POST",
+      "method_name": "assassinate",
+      "summary": "Forcefully remove a dead node without re-replicating any data. Use as a last resort if you cannot removenode",
+      "description": "Forcefully remove a dead node without re-replicating any data. Use as a last resort if you cannot removenode",
+      "line_number": 93,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/logging",
+      "http_method": "POST",
+      "method_name": "setLoggingLevel",
+      "summary": "Set the log level threshold for a given component or class. Will reset to the initial configuration if called with no parameters.",
+      "description": "Set the log level threshold for a given component or class. Will reset to the initial configuration if called with no parameters.",
+      "line_number": 117,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/drain",
+      "http_method": "POST",
+      "method_name": "drain",
+      "summary": "Drain the node (stop accepting writes and flush all tables)",
+      "description": "Drain the node (stop accepting writes and flush all tables)",
+      "line_number": 141,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/hints/truncate",
+      "http_method": "POST",
+      "method_name": "truncateHints",
+      "summary": "Truncate all hints on the local node, or truncate hints for the endpoint(s) specified.",
+      "description": "Truncate all hints on the local node, or truncate hints for the endpoint(s) specified.",
+      "line_number": 166,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/schema/reset",
+      "http_method": "POST",
+      "method_name": "resetLocalSchema",
+      "summary": "Reset node's local schema and resync",
+      "description": "Reset node's local schema and resync",
+      "line_number": 190,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/schema/reload",
+      "http_method": "POST",
+      "method_name": "reloadLocalSchema",
+      "summary": "Reload local node schema from system tables",
+      "description": "Reload local node schema from system tables",
+      "line_number": 211,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/streaminfo",
+      "http_method": "GET",
+      "method_name": "getStreamInfo",
+      "summary": "Retrieve Streaming status information",
+      "description": "Retrieve Streaming status information",
+      "line_number": 232,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/snapshots",
+      "http_method": "GET",
+      "method_name": "getSnapshotDetails",
+      "summary": "Retrieve snapshot details",
+      "description": "Retrieve snapshot details",
+      "line_number": 254,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/snapshots",
+      "http_method": "POST",
+      "method_name": "takeSnapshot",
+      "summary": "Take a snapshot",
+      "description": "Take a snapshot",
+      "line_number": 283,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/snapshots",
+      "http_method": "DELETE",
+      "method_name": "clearSnapshots",
+      "summary": "Clear snapshots",
+      "description": "Clear snapshots",
+      "line_number": 341,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/repair",
+      "http_method": "POST",
+      "method_name": "repair",
+      "summary": "Execute a nodetool repair operation",
+      "description": "Execute a nodetool repair operation",
+      "line_number": 360,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/fullquerylogging",
+      "http_method": "POST",
+      "method_name": "setFullQuerylog",
+      "summary": "Enable or disable full query logging facility.",
+      "description": "Enable or disable full query logging facility.",
+      "line_number": 386,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/fullquerylogging",
+      "http_method": "GET",
+      "method_name": "isFullQueryLogEnabled",
+      "summary": "Get whether full query logging is enabled.",
+      "description": "Get whether full query logging is enabled.",
+      "line_number": 403,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v0/ops/node/move",
+      "http_method": "POST",
+      "method_name": "move",
+      "summary": "Move node on the token ring to a new token. This operation returns immediately with a job id.",
+      "description": "Move node on the token ring to a new token. This operation returns immediately with a job id.",
+      "line_number": 423,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v1/ops/tables/scrub",
+      "http_method": "POST",
+      "method_name": "scrub",
+      "summary": "Scrub (rebuild sstables for) one or more tables",
+      "description": "",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\TableOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v1/ops/tables/sstables/upgrade",
+      "http_method": "POST",
+      "method_name": "upgradeSSTables",
+      "summary": "Rewrite sstables (for the requested tables) that are not on the current version (thus upgrading them to said current version)",
+      "description": "",
+      "line_number": 66,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\TableOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v1/ops/tables/compact",
+      "http_method": "POST",
+      "method_name": "compact",
+      "summary": "Force a (major) compaction on one or more tables or user-defined compaction on given SSTables",
+      "description": "",
+      "line_number": 96,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\TableOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v1/ops/tables/garbagecollect",
+      "http_method": "POST",
+      "method_name": "garbageCollect",
+      "summary": "Remove deleted data from one or more tables",
+      "description": "",
+      "line_number": 156,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\TableOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v1/ops/tables/flush",
+      "http_method": "POST",
+      "method_name": "flush",
+      "summary": "Flush one or more tables",
+      "description": "",
+      "line_number": 197,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\TableOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v1/ops/tables",
+      "http_method": "GET",
+      "method_name": "list",
+      "summary": "List the table names in the given keyspace",
+      "description": "",
+      "line_number": 226,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\TableOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v1/ops/tables/create",
+      "http_method": "POST",
+      "method_name": "create",
+      "summary": "Create a new table in an existing keyspace",
+      "description": "",
+      "line_number": 256,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\TableOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v1/ops/keyspace/cleanup",
+      "http_method": "POST",
+      "method_name": "cleanup",
+      "summary": "Triggers the immediate cleanup of keys no longer belonging to a node. By default, clean all keyspaces. This operation is asynchronous and returns immediately",
+      "description": "Triggers the immediate cleanup of keys no longer belonging to a node. By default, clean all keyspaces. This operation is asynchronous and returns immediately",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\v1\\KeyspaceOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v1/ops/node/decommission",
+      "http_method": "POST",
+      "method_name": "decommission",
+      "summary": "Decommission the *node I am connecting to*. This invocation returns immediately and returns a job id.",
+      "description": "Decommission the *node I am connecting to*. This invocation returns immediately and returns a job id.",
+      "line_number": 40,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\v1\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v1/ops/node/rebuild",
+      "http_method": "POST",
+      "method_name": "rebuild",
+      "summary": "Rebuild data by streaming data from other nodes. This operation returns immediately with a job id.",
+      "description": "Rebuild data by streaming data from other nodes. This operation returns immediately with a job id.",
+      "line_number": 57,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\v1\\NodeOpsResources.java"
+    },
+    {
+      "endpoint_path": "/api/v1/ops/node/schema/versions",
+      "http_method": "GET",
+      "method_name": "schemaVersions",
+      "summary": "Get schema versions.",
+      "description": "Get schema versions.",
+      "line_number": 72,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\resources\\v1\\NodeOpsResources.java"
+    }
+  ],
+  "errors": [
+    {
+      "entry_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cassandra\\management-api-for-apache-cassandra\\management-api-server\\src\\main\\java\\com\\datastax\\mgmtapi\\Cli.java",
+      "error": "the model returned an empty endpoint list"
+    }
+  ],
+  "duration_ms": 17111,
+  "tokens": {
+    "prompt_tokens": 1108387,
+    "completion_tokens": 23272,
+    "total_tokens": 1131659,
+    "calls": 33,
+    "elapsed_s": 182.808,
+    "prompt_cost_usd": 0.142549,
+    "completion_cost_usd": 0.01526,
+    "total_cost_usd": 0.15781,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 361391,
+        "completion_tokens": 3465,
+        "total_tokens": 364856,
+        "calls": 11,
+        "elapsed_s": 17.056724,
+        "prompt_cost_usd": 0.007228,
+        "completion_cost_usd": 0.002079,
+        "total_cost_usd": 0.009307
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 342852,
+        "completion_tokens": 16529,
+        "total_tokens": 359381,
+        "calls": 11,
+        "elapsed_s": 121.154,
+        "prompt_cost_usd": 0.034285,
+        "completion_cost_usd": 0.008264,
+        "total_cost_usd": 0.04255
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 404144,
+        "completion_tokens": 3278,
+        "total_tokens": 407422,
+        "calls": 11,
+        "elapsed_s": 44.597,
+        "prompt_cost_usd": 0.101036,
+        "completion_cost_usd": 0.004917,
+        "total_cost_usd": 0.105953
+      }
+    ]
+  }
+}

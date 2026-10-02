@@ -1,0 +1,138 @@
+/*
+ * Copyright (c) 2013-2018 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+
+.header-widget {
+    overflow: auto;
+    height: 100%;
+
+    .title {
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        a { 
+            color: unset;
+            text-decoration: none;
+            border-bottom: none;
+            cursor: unset;
+            word-wrap: break-word;
+
+            &.actionable {
+                cursor: pointer
+            }
+        }
+
+        a.logo {
+            flex: 0 0 auto;
+            img {
+                margin-right: 0.75rem;
+            }
+        }
+
+        a.title { 
+            flex: 1 1 25rem;
+            
+            h1 {
+                display: inline-block;
+            }
+
+            .separator {
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+            }
+
+            .page-name {
+                color: @lighterText;
+                font-size: 80%;
+            }
+        }
+    }
+
+    .parameters {
+        &:first-child {
+            // Prevent top margin when parameters is the first element in the header.
+            margin-top: -0.5rem;
+        }
+
+        .header-parameter {
+            float: left;
+            display: inline-block;
+            margin-right: 0.5rem;
+            margin-top: 0.5rem;
+            padding: 0.75rem;
+            
+            i.fa.fa-cog {
+                margin-left: 0.5rem;
+            }
+
+            label {
+                font-weight: 400;
+                margin-bottom: 0;
+            }
+
+            input {
+                margin: 0; padding: 0;
+            }
+            input[type="checkbox"] {
+                margin: 5px 0;
+            }
+            select {
+                margin: 2px 0;
+            }
+
+            background-color: @widgetBackgroundAccentColor;
+            border: 1px solid @widgetBackgroundAccentBorderColor;
+
+            .links a.btn {
+                padding: 0;
+                margin-left: 0.5rem;
+                color: @color;
+                &.selected {
+                    color: @accentColor;
+                }
+            }
+        }
+
+        button {
+            float: left;
+            display: inline-block;
+            color: @color;
+            margin: 12px 0;
+            height: 36px;
+            border: 1px solid @widgetBackgroundAccentBorderColor;
+        }
+    }
+
+    .custom-box {
+        clear: both;
+    }
+}
+
+.widget-noscroll .header-widget {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+// Skinny overrides
+&.widget-skinny {
+    .header-widget {
+        .parameters {
+            .header-parameter {
+                display: block;
+                float: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,2394 @@
+{
+  "task_id": "digdag-server",
+  "api_name": "digdag-server",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/attempts/{id}/retries",
+      "http_method": "GET",
+      "method_name": "getAttemptRetries",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\AttemptResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "attempt id",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List attempts of a session of a given attempt",
+          "data_schema": [
+            {
+              "name": "RestSessionAttemptCollection",
+              "schema": {
+                "attempts": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Attempt not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access control exception",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/admin/attempts/{id}/userinfo",
+      "http_method": "GET",
+      "method_name": "getUserInfo",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\AdminResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the session attempt whose user info is requested.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the user info config of the revision associated with the attempt's workflow definition.",
+          "data_schema": [
+            {
+              "name": "Config",
+              "schema": {
+                "userInfo": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Thrown when the attempt's session has no workflow definition id present, or when the attempt/session is not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/logs/{attempt_id}/files/{file_name}",
+      "http_method": "GET",
+      "method_name": "getFile",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\LogResource.java",
+      "parameters": [
+        {
+          "name": "attempt_id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "attempt id",
+          "_depth": 0
+        },
+        {
+          "name": "file_name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "log file name",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Log file content returned as a gzip-compressed byte array.",
+          "data_schema": [
+            {
+              "name": "byte[]",
+              "schema": {
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The attempt or its project was not found, or the log file was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "The authenticated user is not allowed to access the log files of the attempt.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An I/O error occurred while reading the log file.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/attempts/{id}",
+      "http_method": "GET",
+      "method_name": "getAttempt",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\AttemptResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "attempt id",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Get an attempt",
+          "data_schema": [
+            {
+              "name": "RestSessionAttempt",
+              "schema": {
+                "id": "string",
+                "index": "integer",
+                "project": "IdAndName",
+                "workflow": "NameOptionalId",
+                "sessionId": "string",
+                "sessionUuid": "string",
+                "sessionTime": "date",
+                "retryAttemptName": "string",
+                "done": "boolean",
+                "success": "boolean",
+                "cancelRequested": "boolean",
+                "params": "object",
+                "createdAt": "date",
+                "finishedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Attempt not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/attempts/{id}/tasks",
+      "http_method": "GET",
+      "method_name": "getTasks",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\AttemptResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "attempt id",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List tasks of an attempt",
+          "data_schema": [
+            {
+              "name": "RestTaskCollection",
+              "schema": {
+                "tasks": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Attempt or project not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/attempts/{id}/kill",
+      "http_method": "POST",
+      "method_name": "killAttempt",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\AttemptResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "attempt id",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Attempt killed successfully",
+          "data_schema": [
+            {
+              "name": "RestSessionAttempt",
+              "schema": {
+                "id": "string",
+                "index": "integer",
+                "project": "IdAndName",
+                "workflow": "NameOptionalId",
+                "sessionId": "string",
+                "sessionUuid": "string",
+                "sessionTime": "date",
+                "retryAttemptName": "string",
+                "done": "boolean",
+                "success": "boolean",
+                "cancelRequested": "boolean",
+                "params": "object",
+                "createdAt": "date",
+                "finishedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Attempt not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Session attempt already killed or finished",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/project",
+      "http_method": "GET",
+      "method_name": "getProject",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "project name",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the project with the given name.",
+          "data_schema": [
+            {
+              "name": "RestProject",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "revision": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "deletedAt": "date",
+                "archiveType": "string",
+                "archiveMd5": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the required query parameter 'name' is missing.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the project does not exist, is deleted, or has no revisions.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when the authenticated user is not allowed to access the project.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/logs/{attempt_id}/files",
+      "http_method": "GET",
+      "method_name": "getFileHandles",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\LogResource.java",
+      "parameters": [
+        {
+          "name": "attempt_id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "attempt id",
+          "_depth": 0
+        },
+        {
+          "name": "task",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "partial prefix match filter on task name",
+          "_depth": 0
+        },
+        {
+          "name": "direct_download",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "enable returning direct download handle",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List log files of an attempt with filters",
+          "data_schema": [
+            {
+              "name": "RestLogFileHandleCollection",
+              "schema": {
+                "files": "array<RestLogFileHandle>"
+              }
+            },
+            {
+              "name": "RestLogFileHandle",
+              "schema": {
+                "fileName": "string",
+                "fileSize": "long",
+                "taskName": "string",
+                "fileTime": "date",
+                "agentId": "string",
+                "direct": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Attempt or project not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/attempts",
+      "http_method": "GET",
+      "method_name": "getAttempts",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\AttemptResource.java",
+      "parameters": [
+        {
+          "name": "project",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "exact matching filter on project name",
+          "_depth": 0
+        },
+        {
+          "name": "workflow",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "exact matching filter on workflow name",
+          "_depth": 0
+        },
+        {
+          "name": "include_retried",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "list more than 1 attempts per session",
+          "_depth": 0
+        },
+        {
+          "name": "last_id",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "list attempts whose id is grater than this id for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "page_size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "number of attempts to return",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List attempts with filters",
+          "data_schema": [
+            {
+              "name": "RestSessionAttemptCollection",
+              "schema": {
+                "attempts": "array<RestSessionAttempt>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request: page_size is larger than the maximum allowed page size",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found: project or workflow not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: access control check failed",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/attempts",
+      "http_method": "PUT",
+      "method_name": "startAttempt",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\AttemptResource.java",
+      "parameters": [
+        {
+          "name": "request",
+          "type": "RestSessionAttemptRequest",
+          "require": "false",
+          "position": "body",
+          "description": "Start a workflow execution as a new session or a new attempt of an existing session",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Workflow execution started successfully. Returns the created session attempt.",
+          "data_schema": [
+            {
+              "name": "RestSessionAttempt",
+              "schema": {
+                "id": "string",
+                "index": "integer",
+                "project": "IdAndName",
+                "workflow": "NameOptionalId",
+                "sessionId": "string",
+                "sessionUuid": "string",
+                "sessionTime": "date",
+                "retryAttemptName": "string",
+                "done": "boolean",
+                "success": "boolean",
+                "cancelRequested": "boolean",
+                "params": "object",
+                "createdAt": "date",
+                "finishedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 409,
+          "description": "Session attempt conflict. A conflicting attempt already exists.",
+          "data_schema": [
+            {
+              "name": "RestSessionAttempt",
+              "schema": {
+                "id": "string",
+                "index": "integer",
+                "project": "IdAndName",
+                "workflow": "NameOptionalId",
+                "sessionId": "string",
+                "sessionUuid": "string",
+                "sessionTime": "date",
+                "retryAttemptName": "string",
+                "done": "boolean",
+                "success": "boolean",
+                "cancelRequested": "boolean",
+                "params": "object",
+                "createdAt": "date",
+                "finishedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Workflow definition not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Attempt limit exceeded.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/projects/{id}",
+      "http_method": "GET",
+      "method_name": "getProject",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "int",
+          "require": "true",
+          "position": "path",
+          "description": "project id",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the project",
+          "data_schema": [
+            {
+              "name": "RestProject",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "revision": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "deletedAt": "date",
+                "archiveType": "string",
+                "archiveMd5": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found or already deleted",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/revisions",
+      "http_method": "GET",
+      "method_name": "getRevisions",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "int",
+          "require": "true",
+          "position": "path",
+          "description": "project id",
+          "_depth": 0
+        },
+        {
+          "name": "last_id",
+          "type": "Integer",
+          "require": "false",
+          "position": "query",
+          "description": "deprecated - do not use",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "revision name",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List revisions of a project",
+          "data_schema": [
+            {
+              "name": "RestRevisionCollection",
+              "schema": {
+                "revisions": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found or deleted",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/workflow",
+      "http_method": "GET",
+      "method_name": "getWorkflow",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "project id",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "workflow name",
+          "_depth": 0
+        },
+        {
+          "name": "revision",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "revision name",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the workflow definition of the specified project and revision.",
+          "data_schema": [
+            {
+              "name": "RestWorkflowDefinition",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "project": "object",
+                "revision": "string",
+                "timeZone": "string",
+                "config": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Project, revision, or workflow definition not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Missing required query parameter 'name'.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/workflows/{name}",
+      "http_method": "GET",
+      "method_name": "getWorkflowByName",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "int",
+          "require": "true",
+          "position": "path",
+          "description": "project id",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "workflow name",
+          "_depth": 0
+        },
+        {
+          "name": "revision",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "use a given revision of the project instead of the latest revision",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the workflow definition of the specified workflow in the project.",
+          "data_schema": [
+            {
+              "name": "RestWorkflowDefinition",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "project": "IdAndName",
+                "revision": "string",
+                "timeZone": "string",
+                "config": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Project, revision, or workflow not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/projects",
+      "http_method": "GET",
+      "method_name": "getProjects",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "exact matching filter on project name",
+          "_depth": 0
+        },
+        {
+          "name": "last_id",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "list projects whose id is grater than this id for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "number of projects to return",
+          "_depth": 0
+        },
+        {
+          "name": "name_pattern",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "name pattern to be partially matched",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List projects with filters",
+          "data_schema": [
+            {
+              "name": "RestProjectCollection",
+              "schema": {
+                "projects": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/workflows",
+      "http_method": "GET",
+      "method_name": "getWorkflows",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "project id",
+          "_depth": 0
+        },
+        {
+          "name": "revision",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "use a given revision of the project instead of the latest revision",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "exact matching filter on workflow name",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List workflows of a project with filters",
+          "data_schema": [
+            {
+              "name": "RestWorkflowDefinitionCollection",
+              "schema": {
+                "workflows": "array<RestWorkflowDefinition>"
+              }
+            },
+            {
+              "name": "RestWorkflowDefinition",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "project": "IdAndName",
+                "revision": "string",
+                "timeZone": "string",
+                "config": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found or revision not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/archive",
+      "http_method": "GET",
+      "method_name": "getArchive",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "project id",
+          "_depth": 0
+        },
+        {
+          "name": "revision",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "use a given revision of a project instead of the latest revision",
+          "_depth": 0
+        },
+        {
+          "name": "direct_download",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "enable returning direct download handle",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK. Returns the archive file content as application/gzip. The body may be the archive bytes directly, or a streaming output of the archive file.",
+          "data_schema": [
+            {
+              "name": "ArchiveFile",
+              "schema": {
+                "content": "binary"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 303,
+          "description": "See Other. Redirects to a direct download URL when direct download is enabled and a direct download handle is available.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The project does not exist, is deleted, the archive is not stored, or the archive file is not found.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user is not allowed to access the project archive.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/schedules",
+      "http_method": "GET",
+      "method_name": "getSchedules",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "project id",
+          "_depth": 0
+        },
+        {
+          "name": "workflow",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "exact matching filter on workflow name",
+          "_depth": 0
+        },
+        {
+          "name": "last_id",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "list schedules whose id is grater than this id for pagination",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List schedules of a project with filters",
+          "data_schema": [
+            {
+              "name": "RestScheduleCollection",
+              "schema": {
+                "schedules": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found or deleted",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/projects/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteProject",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "int",
+          "require": "true",
+          "position": "path",
+          "description": "project id",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Project deleted successfully. Returns the deleted project.",
+          "data_schema": [
+            {
+              "name": "RestProject",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "revision": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "deletedAt": "date",
+                "archiveType": "string",
+                "archiveMd5": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found or already deleted.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "User does not have permission to delete the project.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/sessions",
+      "http_method": "GET",
+      "method_name": "getSessions",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "project id",
+          "_depth": 0
+        },
+        {
+          "name": "workflow",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "exact matching filter on workflow name",
+          "_depth": 0
+        },
+        {
+          "name": "last_id",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "list sessions whose id is grater than this id for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "page_size",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "number of sessions to return",
+          "max": 100,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List sessions of a project with filters",
+          "data_schema": [
+            {
+              "name": "RestSessionCollection",
+              "schema": {
+                "sessions": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - page_size exceeds the maximum allowed value",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found - project does not exist or is deleted",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - access control check failed",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/secrets/{key}",
+      "http_method": "PUT",
+      "method_name": "putProjectSecret",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "int",
+          "require": "true",
+          "position": "path",
+          "description": "project id",
+          "_depth": 0
+        },
+        {
+          "name": "key",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "secret key",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "RestSetSecretRequest",
+          "require": "false",
+          "position": "body",
+          "description": "secret value",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Secret set successfully",
+          "data_schema": [
+            {
+              "name": "RestSecret",
+              "schema": {
+                "key": "string",
+                "project": "IdAndName"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid secret",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found or deleted",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/secrets/{key}",
+      "http_method": "DELETE",
+      "method_name": "deleteProjectSecret",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "int",
+          "require": "true",
+          "position": "path",
+          "description": "project id",
+          "_depth": 0
+        },
+        {
+          "name": "key",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "secret key",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Secret deleted successfully",
+          "data_schema": [
+            {
+              "name": "RestSecret",
+              "schema": {
+                "key": "string",
+                "project": "IdAndName"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid secret key",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found or already deleted",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/schedules",
+      "http_method": "GET",
+      "method_name": "getSchedules",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ScheduleResource.java",
+      "parameters": [
+        {
+          "name": "last_id",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "list schedules whose id is grater than this id for pagination",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List schedules",
+          "data_schema": [
+            {
+              "name": "RestScheduleCollection",
+              "schema": {
+                "schedules": "array<RestSchedule>"
+              }
+            },
+            {
+              "name": "RestSchedule",
+              "schema": {
+                "id": "string",
+                "project": "IdAndName",
+                "workflow": "IdAndName",
+                "nextRunTime": "date",
+                "nextScheduleTime": "date",
+                "disabledAt": "date"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/projects/{id}/secrets",
+      "http_method": "GET",
+      "method_name": "getProjectSecrets",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "int",
+          "require": "true",
+          "position": "path",
+          "description": "project id",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List secret keys of a project",
+          "data_schema": [
+            {
+              "name": "RestSecretList",
+              "schema": {
+                "secrets": "array<RestSecretMetadata>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Project not found or already deleted",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/schedules/{id}/disable",
+      "http_method": "POST",
+      "method_name": "disableSchedule",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ScheduleResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "int",
+          "require": "true",
+          "position": "path",
+          "description": "session id",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Schedule disabled successfully",
+          "data_schema": [
+            {
+              "name": "RestScheduleSummary",
+              "schema": {
+                "id": "string",
+                "workflow": "object",
+                "project": "object",
+                "nextRunTime": "date",
+                "nextScheduleTime": "date",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "disabledAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Schedule or project not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Conflict while disabling schedule",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/schedules/{id}/enable",
+      "http_method": "POST",
+      "method_name": "enableSchedule",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ScheduleResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "int",
+          "require": "true",
+          "position": "path",
+          "description": "session id",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "RestScheduleEnableRequest",
+          "require": "false",
+          "position": "body",
+          "description": "request body for enabling a schedule",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Schedule enabled successfully",
+          "data_schema": [
+            {
+              "name": "RestScheduleSummary",
+              "schema": {
+                "id": "string",
+                "workflow": "object",
+                "project": "object",
+                "nextRunTime": "string",
+                "nextScheduleTime": "string",
+                "createdAt": "string",
+                "updatedAt": "string",
+                "disabledAt": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Schedule or project not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Conflict when updating schedule",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/schedules/{id}",
+      "http_method": "GET",
+      "method_name": "getSchedules",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ScheduleResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "schedule id",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the schedule with the given id.",
+          "data_schema": [
+            {
+              "name": "RestSchedule",
+              "schema": {
+                "id": "string",
+                "project": "IdAndName",
+                "workflow": "IdAndName",
+                "nextRunTime": "date",
+                "nextScheduleTime": "date",
+                "disabledAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The schedule or project was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "The authenticated user is not allowed to access the schedule.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/projects",
+      "http_method": "PUT",
+      "method_name": "putProject",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ProjectResource.java",
+      "parameters": [
+        {
+          "name": "project",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "project name",
+          "_depth": 0
+        },
+        {
+          "name": "revision",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "revision",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "InputStream",
+          "require": "false",
+          "position": "body",
+          "description": "project archive file (application/gzip)",
+          "_depth": 0
+        },
+        {
+          "name": "schedule_from",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "start scheduling of new workflows from the given time instead of current time",
+          "format": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Project archive uploaded successfully. Returns the created or updated project.",
+          "data_schema": [
+            {
+              "name": "RestProject",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "revision": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "deletedAt": "date",
+                "archiveType": "string",
+                "archiveMd5": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when required parameters are missing, schedule_from format is invalid, archive size exceeds limit, Content-Length does not match uploaded data, or archive validation fails.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the project or a referenced resource does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Conflict. Returned when the project revision conflicts with an existing one.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when the authenticated user is not allowed to put the project.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when uploading the archive to remote storage or loading archive data in memory fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/schedules/{id}/skip",
+      "http_method": "POST",
+      "method_name": "skipSchedule",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ScheduleResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "session id",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "RestScheduleSkipRequest",
+          "require": "false",
+          "position": "body",
+          "description": "skip request body",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully skipped the schedule. Returns the updated schedule summary.",
+          "data_schema": [
+            {
+              "name": "RestScheduleSummary",
+              "schema": {
+                "id": "string",
+                "workflow": "IdAndName",
+                "project": "IdAndName",
+                "nextRunTime": "date",
+                "nextScheduleTime": "date",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "disabledAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The request must contain either nextTime or both fromTime and count.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Schedule or project not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Conflict. The schedule could not be skipped due to a conflict.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have permission to skip the schedule.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/schedules/{id}/backfill",
+      "http_method": "POST",
+      "method_name": "backfillSchedule",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\ScheduleResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "int",
+          "require": "true",
+          "position": "path",
+          "description": "session id",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "RestScheduleBackfillRequest",
+          "require": "false",
+          "position": "body",
+          "description": "backfill request",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully re-scheduled past sessions. Returns a collection of session attempts created by the backfill operation.",
+          "data_schema": [
+            {
+              "name": "RestScheduleAttemptCollection",
+              "schema": {
+                "id": "string",
+                "workflow": "IdAndName",
+                "project": "IdAndName",
+                "attempts": "array<RestSessionAttempt>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Schedule or project not found. Thrown when the schedule id or project id does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Conflict. Thrown when the backfill operation conflicts with the current state.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied. Thrown when the authenticated user is not allowed to backfill the schedule.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Thrown when the request parameters are invalid or exceed limits.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/sessions/{id}",
+      "http_method": "GET",
+      "method_name": "getSession",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\SessionResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "session id",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Get a session",
+          "data_schema": [
+            {
+              "name": "RestSession",
+              "schema": {
+                "id": "string",
+                "project": "IdAndName",
+                "workflow": "NameOptionalId",
+                "sessionUuid": "string",
+                "sessionTime": "date",
+                "lastAttempt": "RestSession.Attempt"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Session or project not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/assets/{path}",
+      "http_method": "GET",
+      "method_name": "getAssets",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\UiResource.java",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The path to the asset resource under public/assets/",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the requested asset file as bytes with a content type guessed from the file name.",
+          "data_schema": [
+            {
+              "name": "asset",
+              "schema": {
+                "content": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Returned when the requested asset resource does not exist.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/sessions",
+      "http_method": "GET",
+      "method_name": "getSessions",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\SessionResource.java",
+      "parameters": [
+        {
+          "name": "last_id",
+          "type": "Long",
+          "require": "false",
+          "position": "query",
+          "description": "list sessions whose id is grater than this id for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "page_size",
+          "type": "Integer",
+          "require": "false",
+          "position": "query",
+          "description": "number of sessions to return",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List sessions",
+          "data_schema": [
+            {
+              "name": "RestSessionCollection",
+              "schema": {
+                "sessions": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The page_size parameter is larger than the maximum allowed page size.",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. The request lacks valid authentication credentials.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have permission to list sessions of the site.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/version",
+      "http_method": "GET",
+      "method_name": "getVersion",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\VersionResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the server version as a JSON object containing a 'version' field.",
+          "data_schema": [
+            {
+              "name": "VersionResponse",
+              "schema": {
+                "version": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/version/check",
+      "http_method": "GET",
+      "method_name": "checkClientVersion",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\VersionResource.java",
+      "parameters": [
+        {
+          "name": "client",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "client version",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the result of checking the given client version against the server version, including the server version, whether an upgrade is recommended, and whether the API is compatible.",
+          "data_schema": [
+            {
+              "name": "RestVersionCheckResult",
+              "schema": {
+                "serverVersion": "string",
+                "upgradeRecommended": "boolean",
+                "apiCompatible": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/sessions/{id}/attempts",
+      "http_method": "GET",
+      "method_name": "getSessionAttempts",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\SessionResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "session id",
+          "_depth": 0
+        },
+        {
+          "name": "last_id",
+          "type": "Long",
+          "require": "false",
+          "position": "query",
+          "description": "list attempts whose id is grater than this id for pagination",
+          "_depth": 0
+        },
+        {
+          "name": "page_size",
+          "type": "Integer",
+          "require": "false",
+          "position": "query",
+          "description": "number of attempts to return",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List attempts of a session",
+          "data_schema": [
+            {
+              "name": "RestSessionAttemptCollection",
+              "schema": {
+                "attempts": "array of RestSessionAttempt"
+              }
+            },
+            {
+              "name": "RestSessionAttempt",
+              "schema": {
+                "id": "string",
+                "index": "integer",
+                "project": "IdAndName",
+                "workflow": "NameOptionalId",
+                "sessionId": "string",
+                "sessionUuid": "string",
+                "sessionTime": "date",
+                "retryAttemptName": "string",
+                "done": "boolean",
+                "success": "boolean",
+                "cancelRequested": "boolean",
+                "params": "object",
+                "createdAt": "date",
+                "finishedAt": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Session or project not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid page_size parameter",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/workflows/{id}",
+      "http_method": "GET",
+      "method_name": "getWorkflowDefinition",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\WorkflowResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "workflow id",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Get a workflow",
+          "data_schema": [
+            {
+              "name": "RestWorkflowDefinition",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "project": "IdAndName",
+                "revision": "string",
+                "timeZone": "string",
+                "config": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Workflow not found",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/{path:.*}",
+      "http_method": "GET",
+      "method_name": "getApplication",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\UiResource.java",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The path segment(s) captured by the regex {path:.*}; used to locate a static resource under public/, falling back to the index response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the requested static resource from the public directory if it exists; otherwise returns the index.html response. The response body is the raw bytes of the resource, with content type guessed from the file name.",
+          "data_schema": [
+            {
+              "name": "ResourceBytes",
+              "schema": {
+                "bytes": "byte[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Returned when the requested resource does not exist and the index response is not available (index.html was not found at construction time).",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/workflow",
+      "http_method": "GET",
+      "method_name": "getWorkflowDefinition",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\WorkflowResource.java",
+      "parameters": [
+        {
+          "name": "project",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "project name",
+          "_depth": 0
+        },
+        {
+          "name": "revision",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "revision name",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "workflow name",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the workflow definition.",
+          "data_schema": [
+            {
+              "name": "RestWorkflowDefinition",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "project": "IdAndName",
+                "revision": "string",
+                "timeZone": "string",
+                "config": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The required query parameters 'project' or 'name' are missing.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The specified project, revision, or workflow definition does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have permission to access the workflow.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/workflows/{id}/truncated_session_time",
+      "http_method": "GET",
+      "method_name": "getWorkflowDefinition",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\WorkflowResource.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "workflow id",
+          "_depth": 0
+        },
+        {
+          "name": "session_time",
+          "type": "LocalTimeOrInstant",
+          "require": "false",
+          "position": "query",
+          "description": "session time to be truncated",
+          "_depth": 0
+        },
+        {
+          "name": "mode",
+          "type": "SessionTimeTruncate",
+          "require": "false",
+          "position": "query",
+          "description": "truncation mode - second, minute, hour, day, schedule, or next_schedule",
+          "enum": [
+            "HOUR",
+            "DAY",
+            "SCHEDULE",
+            "NEXT_SCHEDULE"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns the truncated session time based on the time zone of the workflow.",
+          "data_schema": [
+            {
+              "name": "RestWorkflowSessionTime",
+              "schema": {
+                "project": "IdAndName",
+                "revision": "string",
+                "sessionTime": "OffsetDateTime",
+                "timeZone": "ZoneId"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the required query parameter 'session_time' is missing, or when the truncation mode requires a schedule but the workflow has no schedule set.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the workflow definition with the specified id does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when the authenticated user does not have permission to access the workflow.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/workflows",
+      "http_method": "GET",
+      "method_name": "getWorkflowDefinitions",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Digdag\\digdag\\digdag-server\\src\\main\\java\\io\\digdag\\server\\rs\\WorkflowResource.java",
+      "parameters": [
+        {
+          "name": "last_id",
+          "type": "Long",
+          "require": "false",
+          "position": "query",
+          "description": "pagination. return workflows which id are greater than last_id with order 'asc', which id are less than the last_id with order 'desc'",
+          "_depth": 0
+        },
+        {
+          "name": "count",
+          "type": "Integer",
+          "require": "false",
+          "position": "query",
+          "description": "number of workflows to return",
+          "_depth": 0
+        },
+        {
+          "name": "order",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Sort order. 'asc' or 'desc'",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "name_pattern",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "name pattern to be partially matched",
+          "_depth": 0
+        },
+        {
+          "name": "search_project_name",
+          "type": "Boolean",
+          "require": "false",
+          "position": "query",
+          "description": "name pattern to be partially matched",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List workflows",
+          "data_schema": [
+            {
+              "name": "RestWorkflowDefinitionCollection",
+              "schema": {
+                "workflows": "array<RestWorkflowDefinition>"
+              }
+            },
+            {
+              "name": "RestWorkflowDefinition",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "project": "IdAndName",
+                "revision": "string",
+                "timeZone": "string",
+                "config": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The 'order' parameter must be either 'asc' or 'desc'.",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. Authentication is required.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user is not allowed to list workflows of the site.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested resource does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to the project store and does not catch failures of that call.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 10435,
+  "tokens": {
+    "prompt_tokens": 2390406,
+    "completion_tokens": 92793,
+    "total_tokens": 2483199,
+    "calls": 246,
+    "elapsed_s": 1019.576,
+    "prompt_cost_usd": 0.305327,
+    "completion_cost_usd": 0.062825,
+    "total_cost_usd": 0.368151,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 782739,
+        "completion_tokens": 13383,
+        "total_tokens": 796122,
+        "calls": 82,
+        "elapsed_s": 90.23516599999999,
+        "prompt_cost_usd": 0.015655,
+        "completion_cost_usd": 0.00803,
+        "total_cost_usd": 0.023685
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 748298,
+        "completion_tokens": 64321,
+        "total_tokens": 812619,
+        "calls": 82,
+        "elapsed_s": 702.327,
+        "prompt_cost_usd": 0.07483,
+        "completion_cost_usd": 0.032161,
+        "total_cost_usd": 0.10699
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 859369,
+        "completion_tokens": 15089,
+        "total_tokens": 874458,
+        "calls": 82,
+        "elapsed_s": 227.014,
+        "prompt_cost_usd": 0.214842,
+        "completion_cost_usd": 0.022634,
+        "total_cost_usd": 0.237476
+      }
+    ]
+  }
+}

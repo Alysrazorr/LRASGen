@@ -1,0 +1,68 @@
+{
+  "task_id": "session-service",
+  "api_name": "session-service",
+  "framework": "spring-boot",
+  "entry_to_deps": {
+    "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Session\\session-service\\src\\main\\java\\org\\cbioportal\\session_service\\web\\InfoController.java": {
+      "entry_code_file": "@RestController\n@RequestMapping(value = \"/info\")\npublic class InfoController {\n\n    public String getVersion() {\n        return getClass().getPackage().getImplementationVersion();\n    }\n\n    @RequestMapping(method = RequestMethod.GET, value = \"\")\n    public String getInfo() {\n        return this.getVersion();\n    }\n}\n"
+    },
+    "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Session\\session-service\\src\\main\\java\\org\\cbioportal\\session_service\\web\\SessionServiceController.java": {
+      "entry_code_file": "@RestController // shorthand for @Controller, @ResponseBody\n@RequestMapping(value = \"/api/sessions/\")\n@EnableWebSecurity\npublic class SessionServiceController  extends WebSecurityConfigurerAdapter {\n    @Value(\"${security.basic.enabled:false}\")\n    private boolean securityEnabled;\n\n    @Autowired\n    private SessionService sessionService;\n\n    @RequestMapping(method = RequestMethod.POST, value=\"/{source}/{type}\")\n    @JsonView(Session.Views.IdOnly.class)\n    public Session addSession(@PathVariable String source, \n        @PathVariable SessionType type, \n        @RequestBody String data) { \n        return sessionService.addSession(source, type, data);\n    }\n\n    @RequestMapping(method = RequestMethod.GET, value=\"/{source}/{type}\")\n    @JsonView(Session.Views.Full.class)\n    public Iterable<Session> getSessions(@PathVariable String source, \n        @PathVariable SessionType type) {\n        return sessionService.getSessions(source, type);\n    }\n    \n    @RequestMapping(method = RequestMethod.GET, value=\"/{source}/{type}/query\")\n    @JsonView(Session.Views.Full.class)\n    public Iterable<Session> getSessionsByQuery(@PathVariable String source, \n        @PathVariable SessionType type, \n        @RequestParam(name=\"field\") String field,\n        @RequestParam(name=\"value\") String value) {\n        String query = \"{\\\"\"+field+\"\\\":\\\"\"+value+\"\\\"}\";\n        return sessionService.getSessionsByQuery(source, type, query);\n    }\n\n    @RequestMapping(method = RequestMethod.POST, value = \"/{source}/{type}/query/fetch\")\n    @JsonView(Session.Views.Full.class)\n    public Iterable<Session> fetchSessionsByQuery(@PathVariable String source,\n            @PathVariable SessionType type,\n            @ApiParam(required = true, value = \"selection filter similar to mongo filter\")\n            @RequestBody String query) {\n        return sessionService.getSessionsByQuery(source, type, query);\n    }\n\n    @RequestMapping(value = \"/{source}/{type}/{id}\", method = RequestMethod.GET)\n    @JsonView(Session.Views.Full.class)\n    public Session getSession(@PathVariable String source, \n        @PathVariable SessionType type,\n        @PathVariable String id) {\n        return sessionService.getSession(source, type, id);\n    }\n\n    @RequestMapping(value = \"/{source}/{type}/{id}\", method = RequestMethod.PUT)\n    public void updateSession(@PathVariable String source, \n        @PathVariable SessionType type,\n        @PathVariable String id, \n        @RequestBody String data) {\n        sessionService.updateSession(source, type, id, data);\n    }\n\n    @RequestMapping(value = \"/{source}/{type}/{id}\", method = RequestMethod.DELETE)\n    public void deleteSession(@PathVariable String source, \n        @PathVariable SessionType type,\n        @PathVariable String id) {\n        sessionService.deleteSession(source, type, id);\n    } \n\n    @ExceptionHandler\n    public void handleSessionInvalid(SessionInvalidException e, HttpServletResponse response) \n        throws IOException {\n        response.sendError(HttpStatus.BAD_REQUEST.value(), e.getMessage());\n    }\n\n    @ExceptionHandler\n    public void handleSessionQueryInvalid(SessionQueryInvalidException e, HttpServletResponse response) \n        throws IOException {\n        response.sendError(HttpStatus.BAD_REQUEST.value(), e.getMessage());\n    }\n    \n    @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = \"Session not found\")\n    @ExceptionHandler(SessionNotFoundException.class)\n    public void handleSessionNotFound() {}\n    \n    @ExceptionHandler\n    public void handleSessionTypeInvalid(MethodArgumentTypeMismatchException e, HttpServletResponse response)\n            throws IOException {\n        if (e.getRequiredType() == SessionType.class) {\n            List<String> validTypes = Stream.of(SessionType.values()).map(Enum::name).collect(Collectors.toList());\n            response.sendError(HttpStatus.BAD_REQUEST.value(), \"valid types are: \" + String.join(\", \", validTypes));\n        } else {\n            response.sendError(HttpStatus.BAD_REQUEST.value(), e.getMessage());\n        }\n    }\n\n    @Override\n    protected void configure(HttpSecurity http) throws Exception {\n        if (securityEnabled) {\n            http\n                .csrf().disable()\n                .authorizeRequests()\n                .antMatchers(\"/info\").permitAll()\n                .anyRequest().authenticated()\n                .and().httpBasic();\n        } else {\n            http\n                .csrf().disable()\n                .authorizeRequests()\n                .antMatchers(\"/**\")\n                .permitAll();\n\n        }\n    }\n}\n",
+      "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Session\\session-service\\src\\main\\java\\org\\cbioportal\\session_service\\service\\SessionService.java": "public interface SessionService {\n    Session addSession(String source, SessionType type, String data) throws SessionInvalidException;\n    List<Session> getSessions(String source, SessionType type);\n    List<Session> getSessionsByQuery(String source, SessionType type, String query);\n    Session getSession(String source, SessionType type, String id) throws SessionNotFoundException;\n    void updateSession(String source, SessionType type, String id, String data) throws SessionInvalidException, \n        SessionNotFoundException;\n    void deleteSession(String source, SessionType type, String id) throws SessionNotFoundException;\n}\n",
+      "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Session\\session-service\\src\\main\\java\\org\\cbioportal\\session_service\\domain\\Session.java": "@JsonInclude(Include.NON_NULL)\npublic class Session {\n    @Id\n    private String id;\n    @NotNull\n    private String checksum;\n    @NotNull\n    private Object data;\n    @NotNull\n    @Size(min=3, message=\"source has a minimum length of 3\")\n    private String source;\n    @NotNull\n    private SessionType type;\n\n\n    @JsonView(Session.Views.IdOnly.class)\n    public String getId() {\n        return id;\n    }\n\n    public String getChecksum() {\n        return checksum;\n    }\n\n    public void setData(Object data) {\n        if(data instanceof String) {\n            this.data = Document.parse((String)data);\n        } else {\n            this.data = data;\n        }\n        this.checksum = DigestUtils.md5DigestAsHex(this.data.toString().getBytes());\n    }\n\n    @JsonView(Session.Views.Full.class)\n    public Object getData() {\n        return data;\n    }\n\n    public void setType(SessionType type) {\n        this.type = type;\n    }\n\n    @JsonView(Session.Views.Full.class)\n    public SessionType getType() {\n        return type;\n    }\n\n    public void setSource(String source) {\n        this.source = source;\n    }\n\n    @JsonView(Session.Views.Full.class)\n    public String getSource() {\n        return source;\n    }\n\n    public static final class Views {\n        // show only id\n        public interface IdOnly {}\n\n        // show all data\n        public interface Full extends IdOnly {}\n    }\n}\n",
+      "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Session\\session-service\\src\\main\\java\\org\\cbioportal\\session_service\\domain\\SessionType.java": "public enum SessionType {\n\tmain_session,\n\tvirtual_study,\n\tgroup,\n\tcomparison_session,\n\tsettings,\n\tcustom_data,\n\tgenomic_chart,\n\tcustom_gene_list;\n}\n"
+    }
+  },
+  "duration_ms": 6,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "task_id": "rest-faults-master",
+  "api_name": "rest-faults-master",
+  "framework": "spring-boot",
+  "entry_to_deps": {
+    "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Faults\\rest-faults-master\\src\\main\\java\\com\\example\\api\\Endpoints.java": {
+      "entry_code_file": "@RestController(\"/api\")\npublic class Endpoints {\n\n    private int z = 0;\n\n    private FooDto k = new FooDto();\n\n    @GetMapping(\"/x\")\n    public String getX(){\n        //#1 thrown exception\n        throw new RuntimeException(\"Simulated thrown exception\");\n    }\n\n\n    @GetMapping(value = \"/y\", produces = MediaType.APPLICATION_JSON_VALUE)\n    public ResponseEntity<FooDto> getY(){\n\n        FooDto dto = new FooDto();\n        dto.i = 42;\n        dto.s = \"FOO\";\n        dto.b = null; //#2 null is not valid type for boolean\n\n        //#3 schema gives different status code\n        return ResponseEntity.status(201).body(dto);\n    }\n\n    @PostMapping(value = \"/y\", consumes = MediaType.APPLICATION_JSON_VALUE)\n    public ResponseEntity postY(\n            @RequestBody FooDto dto\n    ){\n        //not checking  any constraint\n        //#4,#5,#6: 3 different constraints on data\n\n        //#7: location header leading to 404\n        return ResponseEntity.created(URI.create(\"/api/doesNotExist\")).build();\n    }\n\n    @DeleteMapping(\"/y\")\n    public void deleteY(){\n        //do nothing\n        //#8 GET would still return data\n    }\n\n    @PutMapping(value = \"/k\", consumes = MediaType.APPLICATION_JSON_VALUE)\n    public void putK(\n            @RequestBody FooDto dto\n    ){\n        //k = dto; //this would had been correct\n        //#9: partial update\n        if(dto.b != null){\n            k.b = dto.b;\n        }\n        if(dto.s != null){\n            k.s = dto.s;\n        }\n        if(dto.i != null){\n            k.i = dto.i;\n        }\n    }\n\n    @GetMapping(value = \"/k\", produces = MediaType.APPLICATION_JSON_VALUE)\n    public ResponseEntity<FooDto> getK(){\n\n        return ResponseEntity.status(200).body(k);\n    }\n\n\n    @GetMapping(\"/z\")\n    public int getZ(){\n        return z;\n    }\n\n    @PutMapping(\"/z\")\n    public void putZ(\n            @RequestBody int delta\n    ){\n        //#10 not idempotent\n        z += delta;\n    }\n\n\n}\n",
+      "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Faults\\rest-faults-master\\src\\main\\java\\com\\example\\api\\FooDto.java": "public class FooDto {\n\n    public Integer i;\n\n    public Boolean b;\n\n    public String s;\n\n}\n"
+    }
+  },
+  "duration_ms": 2,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  }
+}

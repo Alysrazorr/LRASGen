@@ -1,0 +1,782 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "spring-ecommerce API",
+    "description": "LRASGen-generated specification for spring-ecommerce (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/auth/accountVerification/{token}": {
+      "get": {
+        "operationId": "getAccountverification",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "description": "Verification token used to activate the user account",
+            "schema": {
+              "type": "string",
+              "description": "Verification token used to activate the user account"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is Enabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/store/catalog/products/featured": {
+      "get": {
+        "operationId": "getFeatured",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a list of featured products (ProductDto objects where featured is true).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<ProductDto>": {
+                      "type": "string",
+                      "description": "{'productName': 'string', 'imageUrl': 'string', 'sku': 'string', 'price': 'BigDecimal', 'description': 'string', 'manufacturer': 'string', 'availability': 'ProductAvailability', 'attributeList': 'List<ProductAttribute>', 'featured': 'boolean', 'productRatingDtoList': 'List<ProductRatingDto>'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/store/catalog/categories": {
+      "get": {
+        "operationId": "getCategories",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved all categories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<CategoryDto>": {
+                      "type": "string",
+                      "description": "{'categoryNames': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/cart/add/{sku}": {
+      "post": {
+        "operationId": "createAdd",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "required": true,
+            "description": "The SKU of the product to add to the cart",
+            "schema": {
+              "type": "string",
+              "description": "The SKU of the product to add to the cart"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cart updated successfully. The addToCart method returns ResponseEntity with HttpStatus.OK and no body."
+          }
+        }
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "operationId": "createRegister",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "User Registration Completed Successfully!!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Username already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "User registration details"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "User registration details"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "User registration details"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "User registration details"
+                  },
+                  "confirmPassword": {
+                    "type": "string",
+                    "description": "User registration details"
+                  }
+                },
+                "required": [
+                  "username",
+                  "name",
+                  "email",
+                  "password",
+                  "confirmPassword"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/store/catalog/products/category/{categoryName}": {
+      "get": {
+        "operationId": "getCategory",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "categoryName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the category used to look up products",
+            "schema": {
+              "type": "string",
+              "description": "Name of the category used to look up products"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of products belonging to the specified category. If the category does not exist, the service throws an IllegalArgumentException which is not handled by the controller, resulting in a 500 error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<ProductDto>": {
+                      "type": "string",
+                      "description": "{'productName': 'string', 'imageUrl': 'string', 'sku': 'string', 'price': 'number', 'description': 'string', 'manufacturer': 'string', 'availability': 'ProductAvailability', 'attributeList': 'List<ProductAttribute>', 'featured': 'boolean', 'productRatingDtoList': 'List<ProductRatingDto>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Occurs when the category name does not exist, as the service throws an IllegalArgumentException that is not caught by the controller."
+          }
+        }
+      }
+    },
+    "/api/store/catalog/products": {
+      "get": {
+        "operationId": "getProducts",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved all products",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<ProductDto>": {
+                      "type": "string",
+                      "description": "{'productName': 'string', 'imageUrl': 'string', 'sku': 'string', 'price': 'BigDecimal', 'description': 'string', 'manufacturer': 'string', 'availability': 'ProductAvailability', 'attributeList': 'List<ProductAttribute>', 'featured': 'boolean', 'productRatingDtoList': 'List<ProductRatingDto>'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/store/catalog/products/{sku}": {
+      "get": {
+        "operationId": "getProducts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "required": true,
+            "description": "The SKU of the product to read",
+            "schema": {
+              "type": "string",
+              "description": "The SKU of the product to read"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product found and returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProductDto": {
+                      "type": "string",
+                      "description": "{'productName': 'string', 'imageUrl': 'string', 'sku': 'string', 'price': 'BigDecimal', 'description': 'string', 'manufacturer': 'string', 'availability': 'ProductAvailability', 'attributeList': 'List<ProductAttribute>', 'featured': 'boolean', 'productRatingDtoList': 'List<ProductRatingDto>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when product with the given SKU is not found. The handler delegates to ProductService.readOneProduct, which throws IllegalArgumentException when the product lookup returns empty; nothing in the handler catches it."
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "operationId": "createLogin",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Login successful, returns authentication response with access token and username",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AuthenticationResponse": {
+                      "type": "string",
+                      "description": "{'accessToken': 'string', 'username': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request due to validation failure on request body (e.g., missing username or password)"
+          },
+          "401": {
+            "description": "Unauthorized due to invalid credentials"
+          },
+          "500": {
+            "description": "Internal server error when authentication service fails unexpectedly"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "The username of the user"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "The password of the user"
+                  }
+                },
+                "required": [
+                  "username",
+                  "password"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/store/catalog/{categoryName}/facets/filter": {
+      "post": {
+        "operationId": "createFilter",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "categoryName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the category used to filter facets",
+            "schema": {
+              "type": "string",
+              "description": "Name of the category used to filter facets"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful search with filters. Returns a ProductSearchResponseDto containing the list of products matching the search query and category, the minimum and maximum price among the results, and the facet aggregations.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProductSearchResponseDto": {
+                      "type": "string",
+                      "description": "{'products': 'array<ProductDto>', 'minPrice': 'BigDecimal', 'maxPrice': 'BigDecimal', 'facetDtos': 'array<FacetDto>'}"
+                    },
+                    "ProductDto": {
+                      "type": "string",
+                      "description": "{'productName': 'string', 'imageUrl': 'string', 'sku': 'string', 'price': 'BigDecimal', 'description': 'string', 'manufacturer': 'string', 'availability': 'ProductAvailability', 'attributeList': 'array<ProductAttribute>', 'featured': 'boolean', 'productRatingDtoList': 'array<ProductRatingDto>'}"
+                    },
+                    "ProductAvailability": {
+                      "type": "string",
+                      "description": "{'availability': 'string', 'color': 'string'}"
+                    },
+                    "ProductAttribute": {
+                      "type": "string",
+                      "description": "{'attributeName': 'string', 'attributeValue': 'string'}"
+                    },
+                    "ProductRatingDto": {
+                      "type": "string",
+                      "description": "{'ratingId': 'string', 'ratingStars': 'BigDecimal', 'review': 'string', 'userName': 'string', 'sku': 'string'}"
+                    },
+                    "FacetDto": {
+                      "type": "string",
+                      "description": "{'facetName': 'string', 'facetValueDto': 'array<FacetValueDto>'}"
+                    },
+                    "FacetValueDto": {
+                      "type": "string",
+                      "description": "{'facetValueName': 'string', 'count': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Thrown when the category with the given name is not found (SpringStoreException) or when an IOException occurs during the search."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "textQuery": {
+                    "type": "string",
+                    "description": "Search query containing text query and filters"
+                  },
+                  "filters": {
+                    "type": "string",
+                    "description": "Search query containing text query and filters"
+                  },
+                  "key": {
+                    "type": "string",
+                    "description": "Search query containing text query and filters"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Search query containing text query and filters"
+                  },
+                  "from": {
+                    "type": "string",
+                    "description": "Search query containing text query and filters"
+                  },
+                  "to": {
+                    "type": "string",
+                    "description": "Search query containing text query and filters"
+                  }
+                },
+                "required": [
+                  "textQuery",
+                  "filters",
+                  "key",
+                  "value",
+                  "from",
+                  "to"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/products/ratings/edit": {
+      "put": {
+        "operationId": "updateEdit",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Rating edited successfully. The endpoint returns no body on success."
+          },
+          "500": {
+            "description": "Internal server error. Thrown when the product or Elasticsearch product is not found, or when the rating ID does not exist. The service throws SpringStoreException, which is not handled by the exception handler and results in a 500 response."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ratingId": {
+                    "type": "string",
+                    "description": "Product rating details to edit, sent as the request body and validated with @Valid"
+                  },
+                  "ratingStars": {
+                    "type": "string",
+                    "description": "Product rating details to edit, sent as the request body and validated with @Valid"
+                  },
+                  "review": {
+                    "type": "string",
+                    "description": "Product rating details to edit, sent as the request body and validated with @Valid"
+                  },
+                  "userName": {
+                    "type": "string",
+                    "description": "Product rating details to edit, sent as the request body and validated with @Valid"
+                  },
+                  "sku": {
+                    "type": "string",
+                    "description": "Product rating details to edit, sent as the request body and validated with @Valid"
+                  }
+                },
+                "required": [
+                  "ratingId",
+                  "ratingStars",
+                  "review",
+                  "userName",
+                  "sku"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/products/ratings/delete/{ratingId}": {
+      "delete": {
+        "operationId": "deleteDelete",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "ratingId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the rating to delete, extracted from the URL path.",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the rating to delete, extracted from the URL path."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Rating deleted successfully. The handler returns void, so the response body is empty."
+          },
+          "500": {
+            "description": "Internal server error. Thrown when no product exists with the given sku (SpringStoreException from productRepository.findBySku or productSearchRepository.findBySku)."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ratingId": {
+                    "type": "string",
+                    "description": "The product rating data transfer object containing the SKU and other rating details."
+                  },
+                  "ratingStars": {
+                    "type": "string",
+                    "description": "The product rating data transfer object containing the SKU and other rating details."
+                  },
+                  "review": {
+                    "type": "string",
+                    "description": "The product rating data transfer object containing the SKU and other rating details."
+                  },
+                  "userName": {
+                    "type": "string",
+                    "description": "The product rating data transfer object containing the SKU and other rating details."
+                  },
+                  "sku": {
+                    "type": "string",
+                    "description": "The product rating data transfer object containing the SKU and other rating details."
+                  }
+                },
+                "required": [
+                  "ratingId",
+                  "ratingStars",
+                  "review",
+                  "userName",
+                  "sku"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/products/ratings/get/{sku}": {
+      "get": {
+        "operationId": "getGet",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "required": true,
+            "description": "Product SKU used to look up the product ratings",
+            "schema": {
+              "type": "string",
+              "description": "Product SKU used to look up the product ratings"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of product ratings for the given SKU.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<ProductRatingDto>": {
+                      "type": "string",
+                      "description": "{'ratingId': 'string', 'ratingStars': 'BigDecimal', 'review': 'string', 'userName': 'string', 'sku': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Thrown when no product exists with the provided SKU, as the service throws a SpringStoreException that is not handled by the controller."
+          }
+        }
+      }
+    },
+    "/api/products/ratings/submit": {
+      "post": {
+        "operationId": "createSubmit",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Rating submitted successfully. The endpoint returns no body (void)."
+          },
+          "400": {
+            "description": "Bad Request. Returned when the request body fails validation (e.g., ratingStars outside 1-5) or when the request body is not readable."
+          },
+          "500": {
+            "description": "Internal Server Error. Returned when the product or ElasticSearch product with the given sku does not exist, or when saving fails."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ratingId": {
+                    "type": "string",
+                    "description": "Product rating details to submit"
+                  },
+                  "ratingStars": {
+                    "type": "string",
+                    "description": "Product rating details to submit"
+                  },
+                  "review": {
+                    "type": "string",
+                    "description": "Product rating details to submit"
+                  },
+                  "userName": {
+                    "type": "string",
+                    "description": "Product rating details to submit"
+                  },
+                  "sku": {
+                    "type": "string",
+                    "description": "Product rating details to submit"
+                  }
+                },
+                "required": [
+                  "ratingId",
+                  "ratingStars",
+                  "review",
+                  "userName",
+                  "sku"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/store/catalog/search": {
+      "post": {
+        "operationId": "createSearch",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Search results returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProductSearchResponseDto": {
+                      "type": "string",
+                      "description": "{'products': 'List<ProductDto>', 'minPrice': 'BigDecimal', 'maxPrice': 'BigDecimal', 'facetDtos': 'List<FacetDto>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when search fails"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "textQuery": {
+                    "type": "string",
+                    "description": "Full-text search query string"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "description": "List of attribute filters applied to the search"
+                  },
+                  "key": {
+                    "type": "string",
+                    "description": "Search query payload containing the full-text query and filters"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Search query payload containing the full-text query and filters"
+                  },
+                  "from": {
+                    "type": "string",
+                    "description": "Search query payload containing the full-text query and filters"
+                  },
+                  "to": {
+                    "type": "string",
+                    "description": "Search query payload containing the full-text query and filters"
+                  }
+                },
+                "required": [
+                  "textQuery",
+                  "filters",
+                  "key",
+                  "value",
+                  "from",
+                  "to"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

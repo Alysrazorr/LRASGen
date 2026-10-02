@@ -1,0 +1,476 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "bibliothek API",
+    "description": "LRASGen-generated specification for bibliothek (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "get",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "302": {
+            "description": "Redirects to the docs/ path."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/v2/projects": {
+      "get": {
+        "operationId": "getProjects",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Gets a list of all available projects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProjectsResponse": {
+                      "type": "string",
+                      "description": "{'projects': 'array<string>'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/docs": {
+      "get": {
+        "operationId": "getDocs",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "302": {
+            "description": "Redirects to the docs/ path."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/v2/projects/{project:[a-z]+}/versions/{version:[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?}/builds": {
+      "get": {
+        "operationId": "getBuilds",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "project",
+            "in": "path",
+            "required": false,
+            "description": "The project identifier.",
+            "schema": {
+              "type": "string",
+              "description": "The project identifier.",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": false,
+            "description": "A version of the project.",
+            "schema": {
+              "type": "string",
+              "description": "A version of the project.",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Gets all available builds for a project's version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "BuildsResponse": {
+                      "type": "string",
+                      "description": "{'project_id': 'string', 'project_name': 'string', 'version': 'string', 'builds': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found."
+          }
+        }
+      }
+    },
+    "/v2/projects/{project}": {
+      "get": {
+        "operationId": "getProjects",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "project",
+            "in": "path",
+            "required": true,
+            "description": "The project identifier.",
+            "schema": {
+              "type": "string",
+              "description": "The project identifier.",
+              "format": "[a-z]+",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns information about the project, including its identifier, friendly name, version groups, and versions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProjectResponse": {
+                      "type": "string",
+                      "description": "{'project_id': 'string', 'project_name': 'string', 'version_groups': 'array<string>', 'versions': 'array<string>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found."
+          }
+        }
+      }
+    },
+    "/v2/projects/{project:[a-z]+}/versions/{version:[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?}/builds/{build:\\d+}/downloads/{download:[a-zA-Z0-9._-]+}": {
+      "get": {
+        "operationId": "getDownloads",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "project",
+            "in": "path",
+            "required": false,
+            "description": "The project identifier.",
+            "schema": {
+              "type": "string",
+              "description": "The project identifier.",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": false,
+            "description": "A version of the project.",
+            "schema": {
+              "type": "string",
+              "description": "A version of the project.",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "build",
+            "in": "path",
+            "required": false,
+            "description": "A build of the version.",
+            "schema": {
+              "type": "integer",
+              "description": "A build of the version.",
+              "minimum": 0.0
+            }
+          },
+          {
+            "name": "download",
+            "in": "path",
+            "required": false,
+            "description": "A download of the build.",
+            "schema": {
+              "type": "string",
+              "description": "A download of the build.",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested file is returned as an attachment with caching headers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "FileSystemResource": {
+                      "type": "string",
+                      "description": "{'file': 'binary'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found."
+          },
+          "500": {
+            "description": "An internal error occurred while serving your download."
+          }
+        }
+      }
+    },
+    "/v2/projects/{project}/version_group/{family}": {
+      "get": {
+        "operationId": "getVersionGroup",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "project",
+            "in": "path",
+            "required": true,
+            "description": "The project identifier.",
+            "schema": {
+              "type": "string",
+              "description": "The project identifier.",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "family",
+            "in": "path",
+            "required": true,
+            "description": "The version group name.",
+            "schema": {
+              "type": "string",
+              "description": "The version group name.",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns information about a project's version group, including the project ID, project name, version group name, and a sorted list of version names.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "VersionFamilyResponse": {
+                      "type": "string",
+                      "description": "{'project_id': 'string', 'project_name': 'string', 'version_group': 'string', 'versions': 'array<string>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found."
+          }
+        }
+      }
+    },
+    "/v2/projects/{project}/versions/{version}": {
+      "get": {
+        "operationId": "getVersions",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "project",
+            "in": "path",
+            "required": true,
+            "description": "The project identifier.",
+            "schema": {
+              "type": "string",
+              "description": "The project identifier.",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "description": "A version of the project.",
+            "schema": {
+              "type": "string",
+              "description": "A version of the project.",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns information about a version, including the project id, project name, version name, and list of build numbers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "VersionResponse": {
+                      "type": "string",
+                      "description": "{'project_id': 'string', 'project_name': 'string', 'version': 'string', 'builds': 'array<integer>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found."
+          }
+        }
+      }
+    },
+    "/v2/projects/{project}/version_group/{family}/builds": {
+      "get": {
+        "operationId": "getBuilds",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "project",
+            "in": "path",
+            "required": true,
+            "description": "The project identifier.",
+            "schema": {
+              "type": "string",
+              "description": "The project identifier.",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "family",
+            "in": "path",
+            "required": true,
+            "description": "The version group name.",
+            "schema": {
+              "type": "string",
+              "description": "The version group name.",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns all available builds for a project's version group.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "VersionFamilyBuildsResponse": {
+                      "type": "string",
+                      "description": "{'project_id': 'string', 'project_name': 'string', 'version_group': 'string', 'versions': 'array<string>', 'builds': 'array<VersionFamilyBuild>'}"
+                    },
+                    "VersionFamilyBuild": {
+                      "type": "string",
+                      "description": "{'version': 'string', 'build': 'integer', 'time': 'string', 'channel': 'string', 'promoted': 'boolean', 'changes': 'array<Build.Change>', 'downloads': 'object<string, Build.Download>'}"
+                    },
+                    "Build.Change": {
+                      "type": "string",
+                      "description": "{'commit': 'string', 'summary': 'string', 'message': 'string'}"
+                    },
+                    "Build.Download": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'sha256': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found."
+          }
+        }
+      }
+    },
+    "/v2/projects/{project:[a-z]+}/versions/{version:[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?}/builds/{build:\\d+}": {
+      "get": {
+        "operationId": "getBuilds",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "project",
+            "in": "path",
+            "required": false,
+            "description": "The project identifier.",
+            "schema": {
+              "type": "string",
+              "description": "The project identifier.",
+              "format": "[a-z]+",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": false,
+            "description": "A version of the project.",
+            "schema": {
+              "type": "string",
+              "description": "A version of the project.",
+              "format": "[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "build",
+            "in": "path",
+            "required": false,
+            "description": "A build of the version.",
+            "schema": {
+              "type": "integer",
+              "description": "A build of the version.",
+              "format": "\\d+",
+              "minimum": 0.0,
+              "maximum": 2147483647.0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Gets information related to a specific build.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "BuildResponse": {
+                      "type": "string",
+                      "description": "{'project_id': 'string', 'project_name': 'string', 'version': 'string', 'build': 'integer', 'time': 'date', 'channel': 'string', 'promoted': 'boolean', 'changes': 'array', 'downloads': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found."
+          }
+        }
+      }
+    }
+  }
+}

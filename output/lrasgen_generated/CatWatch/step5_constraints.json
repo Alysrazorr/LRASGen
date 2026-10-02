@@ -1,0 +1,836 @@
+{
+  "task_id": "catwatch",
+  "api_name": "catwatch",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/delete",
+      "http_method": "GET",
+      "method_name": "deleteAll",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\admin\\AdminController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 403,
+          "description": "Forbidden. The endpoint is deactivated and throws UnsupportedOperationException, which is handled by the @ExceptionHandler method returning the exception message with HTTP 403.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/config/scoring.project",
+      "http_method": "POST",
+      "method_name": "configScoringProjects",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\admin\\AdminController.java",
+      "parameters": [
+        {
+          "name": "scoringProject",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Scoring project configuration payload",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 403,
+          "description": "Forbidden. The endpoint is deactivated and throws UnsupportedOperationException, which is handled by the @ExceptionHandler method that returns the exception message with HTTP status 403.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/init",
+      "http_method": "GET",
+      "method_name": "init",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\admin\\AdminController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 403,
+          "description": "Forbidden. The endpoint is deactivated and throws UnsupportedOperationException, which is handled by the @ExceptionHandler method returning the exception message with HTTP 403 status.",
+          "data_schema": [
+            {
+              "name": "errorMessage",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/languages",
+      "http_method": "GET",
+      "method_name": "languagesGet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\LanguagesApi.java",
+      "parameters": [
+        {
+          "name": "organizations",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "List of github.com organizations to scan(comma seperated)",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of items to retrieve. Default is 5.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Offset the list of returned results by this amount. Default is zero.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "query paramater for search query (this can be language name prefix)",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "An array of programming language used and count of projects using it.",
+          "data_schema": [
+            {
+              "name": "Language",
+              "schema": {
+                "name": "string",
+                "projectsCount": "integer",
+                "percentage": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Unexpected error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/statistics/languages",
+      "http_method": "GET",
+      "method_name": "statisticsLanguagesGet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\StatisticsApi.java",
+      "parameters": [
+        {
+          "name": "organizations",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "List of github.com organizations to scan(comma seperated)",
+          "_depth": 0
+        },
+        {
+          "name": "start_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Date from which to start fetching statistics records from database(default = current date)",
+          "format": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+          "_depth": 0
+        },
+        {
+          "name": "end_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Date till which statistics records will be fetched from database(default = current date)",
+          "format": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "An array of LanguageStats objects, each containing the language name, project counts per snapshot date, and the snapshot dates.",
+          "data_schema": [
+            {
+              "name": "LanguageStats",
+              "schema": {
+                "name": "string",
+                "project_counts": "array<integer>",
+                "snapshot_dates": "array<date>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the date parameters are not in valid ISO 8601 format. The response body contains the error message.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/statistics/contributors",
+      "http_method": "GET",
+      "method_name": "statisticsContributorGet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\StatisticsApi.java",
+      "parameters": [
+        {
+          "name": "organizations",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "List of github.com organizations to scan(comma seperated)",
+          "_depth": 0
+        },
+        {
+          "name": "start_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Date from which to start fetching statistics records from database(default = current date)",
+          "format": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+          "_depth": 0
+        },
+        {
+          "name": "end_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Date till which statistics records will be fetched from database(default = current date)",
+          "format": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "An array of ContributorStats objects, each representing a contributor's statistics over time. The list is sorted by the last organizational commits count in descending order and limited to the top 10 contributors.",
+          "data_schema": [
+            {
+              "name": "ContributorStats",
+              "schema": {
+                "name": "string",
+                "organization_name": "array of string",
+                "url": "string",
+                "organization_commit_counts": "array of integer",
+                "personal_commit_counts": "array of integer",
+                "organization_project_counts": "array of integer",
+                "personal_project_counts": "array of integer",
+                "snapshot_dates": "array of date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when an IllegalArgumentException is thrown, e.g., if the date string cannot be parsed or if the contributor login ID cannot be determined.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/statistics/projects",
+      "http_method": "GET",
+      "method_name": "statisticsProjectGet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\StatisticsApi.java",
+      "parameters": [
+        {
+          "name": "organizations",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "List of github.com organizations to scan(comma seperated)",
+          "_depth": 0
+        },
+        {
+          "name": "start_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Date from which to start fetching statistics records from database(default = current date)",
+          "format": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+          "_depth": 0
+        },
+        {
+          "name": "end_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Date till which statistics records will be fetched from database(default = current date)",
+          "format": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "An array of ProjectStats objects representing the top 10 projects by last score, over the selected period of time.",
+          "data_schema": [
+            {
+              "name": "ProjectStats",
+              "schema": {
+                "name": "string",
+                "organization_name": "string",
+                "url": "string",
+                "primary_language": "string",
+                "description": "string",
+                "commit_counts": "array<integer>",
+                "fork_counts": "array<integer>",
+                "contributors_counts": "array<integer>",
+                "scores": "array<integer>",
+                "snapshot_dates": "array<date>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when an IllegalArgumentException is thrown, e.g. when a date string cannot be parsed.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/statistics",
+      "http_method": "GET",
+      "method_name": "statisticsGet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\StatisticsApi.java",
+      "parameters": [
+        {
+          "name": "organizations",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "List of github.com organizations to scan(comma seperated)",
+          "_depth": 0
+        },
+        {
+          "name": "start_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Date from which to start fetching statistics records from database(default = current date)",
+          "format": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+          "_depth": 0
+        },
+        {
+          "name": "end_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Date till which statistics records will be fetched from database(default = current date)",
+          "format": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "An array of Statistics over selected period of time.",
+          "data_schema": [
+            {
+              "name": "Statistics",
+              "schema": {
+                "id": "long",
+                "privateProjectCount": "integer",
+                "publicProjectCount": "integer",
+                "membersCount": "integer",
+                "teamsCount": "integer",
+                "allContributorsCount": "integer",
+                "externalContributorsCount": "integer",
+                "allStarsCount": "integer",
+                "allForksCount": "integer",
+                "allSizeCount": "integer",
+                "programLanguagesCount": "integer",
+                "tagsCount": "integer",
+                "organizationName": "string",
+                "snapshotDate": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when an IllegalArgumentException is thrown, e.g. due to an invalid date format.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/contributors",
+      "http_method": "GET",
+      "method_name": "contributorsGet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\ContributorsApi.java",
+      "parameters": [
+        {
+          "name": "organizations",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "List of github.com organizations to scan(comma seperated)",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of items to retrieve. Default is 5.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Offset the list of returned results by this amount. Default is zero.",
+          "_depth": 0
+        },
+        {
+          "name": "start_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Date from which to start fetching records from database(default = current_date)",
+          "format": "yyyy-MM-dd'T'HH:mm:ss",
+          "_depth": 0
+        },
+        {
+          "name": "end_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Date till which records will be fetched from database(default = current_date)",
+          "format": "yyyy-MM-dd'T'HH:mm:ss",
+          "_depth": 0
+        },
+        {
+          "name": "sortBy",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "parameter by which result should be sorted. '-' means descending order (default is count of commit)",
+          "enum": [
+            "organizationalCommitsCount",
+            "organizationalProjectsCount",
+            "personalCommitsCount",
+            "personalProjectsCount",
+            "organizationName",
+            "name"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "query paramater for search query (this will be contributor names prefix)",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "An array of Contributors of selected Github organization",
+          "data_schema": [
+            {
+              "name": "Contributor",
+              "schema": {
+                "id": "long",
+                "organizationId": "long",
+                "name": "string",
+                "url": "string",
+                "organizationalCommitsCount": "integer",
+                "personalCommitsCount": "integer",
+                "personalProjectsCount": "integer",
+                "organizationalProjectsCount": "integer",
+                "organizationName": "string",
+                "snapshotDate": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Unexpected error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/projects",
+      "http_method": "GET",
+      "method_name": "projectsGet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\ProjectsApi.java",
+      "parameters": [
+        {
+          "name": "organizations",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "List of github.com organizations to scan(comma seperated)",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of items to retrieve. Default is 5.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Offset the list of returned results by this amount. Default is zero.",
+          "_depth": 0
+        },
+        {
+          "name": "start_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Date from which to start fetching records from database(default = current_date)",
+          "format": "yyyy-MM-dd'T'HH:mm:ss",
+          "_depth": 0
+        },
+        {
+          "name": "end_date",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Date till which records will be fetched from database(default = current_date)",
+          "format": "yyyy-MM-dd'T'HH:mm:ss",
+          "_depth": 0
+        },
+        {
+          "name": "sortBy",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "parameter by which result should be sorted. '-' means descending order (count of star,count of commit, count of forks, count of contributors, score). Default is descending order of score.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "query paramater for search query (this will be project names prefix)",
+          "_depth": 0
+        },
+        {
+          "name": "language",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "query paramater for filtering by primary programming language",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "An array of Projects of selected Github organization",
+          "data_schema": [
+            {
+              "name": "Project",
+              "schema": {
+                "id": "integer",
+                "languageList": "array of string",
+                "gitHubProjectId": "long",
+                "snapshotDate": "date",
+                "name": "string",
+                "title": "string",
+                "image": "string",
+                "organizationName": "string",
+                "url": "string",
+                "description": "string",
+                "starsCount": "integer",
+                "commitsCount": "integer",
+                "forksCount": "integer",
+                "contributorsCount": "integer",
+                "externalContributorsCount": "integer",
+                "score": "integer",
+                "lastPushed": "string",
+                "primaryLanguage": "string",
+                "maintainers": "array of string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Unexpected error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/config",
+      "http_method": "GET",
+      "method_name": "config",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\config\\ConfigController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object mapping each property name from application-public.properties to its resolved value from the Spring Environment.",
+          "data_schema": [
+            {
+              "name": "ConfigProperties",
+              "schema": {
+                "propertyName": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/fetch",
+      "http_method": "GET",
+      "method_name": "fetch",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\fetch\\FetchController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/import",
+      "http_method": "POST",
+      "method_name": "importJson",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\admin\\AdminController.java",
+      "parameters": [
+        {
+          "name": "contributors",
+          "type": "List",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Database transfer object containing contributors, projects, and statistics lists"
+        },
+        {
+          "name": "projects",
+          "type": "List",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Database transfer object containing contributors, projects, and statistics lists"
+        },
+        {
+          "name": "statistics",
+          "type": "List",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Database transfer object containing contributors, projects, and statistics lists"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 403,
+          "description": "Forbidden. The endpoint is deactivated and throws UnsupportedOperationException, which is handled by the @ExceptionHandler method returning the exception message with HTTP 403 status.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/export",
+      "http_method": "GET",
+      "method_name": "exportJson",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\admin\\AdminController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a DatabaseDto containing all contributors, projects, and statistics.",
+          "data_schema": [
+            {
+              "name": "DatabaseDto",
+              "schema": {
+                "contributors": "array of Contributor",
+                "projects": "array of Project",
+                "statistics": "array of Statistics"
+              }
+            },
+            {
+              "name": "Contributor",
+              "schema": {
+                "id": "long",
+                "organizationId": "long",
+                "name": "string",
+                "url": "string",
+                "organizationalCommitsCount": "integer",
+                "personalCommitsCount": "integer",
+                "personalProjectsCount": "integer",
+                "organizationalProjectsCount": "integer",
+                "organizationName": "string",
+                "snapshotDate": "date"
+              }
+            },
+            {
+              "name": "Project",
+              "schema": {
+                "languageList": "array of string",
+                "gitHubProjectId": "long",
+                "snapshotDate": "date",
+                "name": "string",
+                "title": "string",
+                "image": "string",
+                "organizationName": "string",
+                "url": "string",
+                "description": "string",
+                "starsCount": "integer",
+                "commitsCount": "integer",
+                "forksCount": "integer",
+                "contributorsCount": "integer",
+                "externalContributorsCount": "integer",
+                "score": "integer",
+                "lastPushed": "string",
+                "primaryLanguage": "string",
+                "maintainers": "array of string"
+              }
+            },
+            {
+              "name": "Statistics",
+              "schema": {
+                "id": "long",
+                "privateProjectCount": "integer",
+                "publicProjectCount": "integer",
+                "membersCount": "integer",
+                "teamsCount": "integer",
+                "allContributorsCount": "integer",
+                "externalContributorsCount": "integer",
+                "allStarsCount": "integer",
+                "allForksCount": "integer",
+                "allSizeCount": "integer",
+                "programLanguagesCount": "integer",
+                "tagsCount": "integer",
+                "organizationName": "string",
+                "snapshotDate": "date"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 7,
+    "step2_ms": 64,
+    "step3_ms": 12475,
+    "step4_ms": 6706,
+    "step5_ms": 0,
+    "total_ms": 19255
+  }
+}

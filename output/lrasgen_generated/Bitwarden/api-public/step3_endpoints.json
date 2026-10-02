@@ -1,0 +1,96 @@
+{
+  "task_id": "public",
+  "api_name": "Public",
+  "framework": "aspnetcore",
+  "endpoints": [
+    {
+      "endpoint_path": "/public/collections/{id}",
+      "http_method": "GET",
+      "method_name": "Get",
+      "summary": "Retrieve a collection.",
+      "description": "Retrieves the details of an existing collection. You need only supply the unique collection identifier that was returned upon collection creation.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\Public\\Controllers\\CollectionsController.cs"
+    },
+    {
+      "endpoint_path": "/public/collections",
+      "http_method": "GET",
+      "method_name": "List",
+      "summary": "List all collections.",
+      "description": "Returns a list of your organization's collections. Collection objects listed in this call do not include information about their associated groups.",
+      "line_number": 56,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\Public\\Controllers\\CollectionsController.cs"
+    },
+    {
+      "endpoint_path": "/public/collections/{id}",
+      "http_method": "PUT",
+      "method_name": "Put",
+      "summary": "Update a collection.",
+      "description": "Updates the specified collection object. If a property is not provided, the value of the existing property will be reset.",
+      "line_number": 75,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\Public\\Controllers\\CollectionsController.cs"
+    },
+    {
+      "endpoint_path": "/public/collections/{id}",
+      "http_method": "DELETE",
+      "method_name": "Delete",
+      "summary": "Delete a collection.",
+      "description": "Permanently deletes a collection. This cannot be undone.",
+      "line_number": 96,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\Public\\Controllers\\CollectionsController.cs"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 2850,
+  "tokens": {
+    "prompt_tokens": 5902,
+    "completion_tokens": 1644,
+    "total_tokens": 7546,
+    "calls": 3,
+    "elapsed_s": 26.821,
+    "prompt_cost_usd": 0.000763,
+    "completion_cost_usd": 0.001094,
+    "total_cost_usd": 0.001858,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 1913,
+        "completion_tokens": 321,
+        "total_tokens": 2234,
+        "calls": 1,
+        "elapsed_s": 2.850044,
+        "prompt_cost_usd": 3.8e-05,
+        "completion_cost_usd": 0.000193,
+        "total_cost_usd": 0.000231
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 1812,
+        "completion_tokens": 1083,
+        "total_tokens": 2895,
+        "calls": 1,
+        "elapsed_s": 17.878,
+        "prompt_cost_usd": 0.000181,
+        "completion_cost_usd": 0.000541,
+        "total_cost_usd": 0.000723
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 2177,
+        "completion_tokens": 240,
+        "total_tokens": 2417,
+        "calls": 1,
+        "elapsed_s": 6.093,
+        "prompt_cost_usd": 0.000544,
+        "completion_cost_usd": 0.00036,
+        "total_cost_usd": 0.000904
+      }
+    ]
+  }
+}

@@ -1,0 +1,2084 @@
+{
+  "task_id": "gravitee-api-management",
+  "api_name": "gravitee-api-management",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/openapi.yaml",
+      "http_method": "GET",
+      "method_name": "getOpenApi",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\OpenAPIResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK",
+          "data_schema": [
+            {
+              "name": "management-openapi-v4.yaml",
+              "schema": {
+                "openapi": "string",
+                "info": "object",
+                "paths": "object",
+                "components": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans/{plan}",
+      "http_method": "DELETE",
+      "method_name": "deleteApiPlan",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java",
+      "parameters": [
+        {
+          "name": "api",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The API identifier",
+          "_depth": 0
+        },
+        {
+          "name": "plan",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The plan identifier",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Plan successfully deleted. No content returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "'plan' parameter does not correspond to the current API",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden access. The user does not have permission to delete the plan.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans",
+      "http_method": "POST",
+      "method_name": "createApiPlan",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java",
+      "parameters": [
+        {
+          "name": "api",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The API identifier",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "_class_name": "NewPlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new plan entity to create"
+        },
+        {
+          "name": "crossId",
+          "type": "String",
+          "_class_name": "NewPlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new plan entity to create"
+        },
+        {
+          "name": "apiId",
+          "type": "String",
+          "_class_name": "NewPlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new plan entity to create"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "NewPlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new plan entity to create"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_class_name": "NewPlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new plan entity to create"
+        },
+        {
+          "name": "security",
+          "type": "PlanSecurity",
+          "_class_name": "NewPlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new plan entity to create"
+        },
+        {
+          "name": "flows",
+          "type": "List",
+          "_class_name": "NewPlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new plan entity to create"
+        },
+        {
+          "name": "characteristics",
+          "type": "List",
+          "_class_name": "NewPlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new plan entity to create"
+        },
+        {
+          "name": "excludedGroups",
+          "type": "List",
+          "_class_name": "NewPlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new plan entity to create"
+        },
+        {
+          "name": "commentRequired",
+          "type": "boolean",
+          "_class_name": "NewPlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new plan entity to create"
+        },
+        {
+          "name": "commentMessage",
+          "type": "String",
+          "_class_name": "NewPlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new plan entity to create"
+        },
+        {
+          "name": "tags",
+          "type": "Set",
+          "_class_name": "NewPlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new plan entity to create"
+        },
+        {
+          "name": "selectionRule",
+          "type": "String",
+          "_class_name": "NewPlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new plan entity to create"
+        },
+        {
+          "name": "generalConditions",
+          "type": "String",
+          "_class_name": "NewPlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new plan entity to create"
+        },
+        {
+          "name": "order",
+          "type": "int",
+          "_class_name": "NewPlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new plan entity to create"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Plan created successfully. The response body contains the created plan entity.",
+          "data_schema": [
+            {
+              "name": "PlanEntity",
+              "schema": {
+                "id": "string",
+                "crossId": "string",
+                "name": "string",
+                "description": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "publishedAt": "date",
+                "closedAt": "date",
+                "needRedeployAt": "date",
+                "validation": "string",
+                "type": "string",
+                "security": "object",
+                "selectionRule": "string",
+                "flows": "array",
+                "tags": "array",
+                "status": "string",
+                "apiId": "string",
+                "order": "integer",
+                "characteristics": "array",
+                "excludedGroups": "array",
+                "commentRequired": "boolean",
+                "commentMessage": "string",
+                "generalConditions": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The plan creation is delegated to PlanService.create, and any unhandled exception from that call results in a 500 response.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans/{plan}",
+      "http_method": "GET",
+      "method_name": "getApiPlan",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java",
+      "parameters": [
+        {
+          "name": "api",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The API identifier",
+          "_depth": 0
+        },
+        {
+          "name": "plan",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The plan identifier",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK. The plan entity is returned.",
+          "data_schema": [
+            {
+              "name": "PlanEntity",
+              "schema": {
+                "id": "string",
+                "crossId": "string",
+                "name": "string",
+                "description": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "publishedAt": "date",
+                "closedAt": "date",
+                "needRedeployAt": "date",
+                "validation": "string",
+                "type": "string",
+                "security": "PlanSecurity",
+                "selectionRule": "string",
+                "flows": "array",
+                "tags": "array",
+                "status": "string",
+                "apiId": "string",
+                "order": "integer",
+                "characteristics": "array",
+                "excludedGroups": "array",
+                "commentRequired": "boolean",
+                "commentMessage": "string",
+                "generalConditions": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The 'plan' parameter does not correspond to the current API.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The user does not have permission to access the plan.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans/{plan}/_publish",
+      "http_method": "POST",
+      "method_name": "publishApiPlan",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java",
+      "parameters": [
+        {
+          "name": "api",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The API identifier",
+          "_depth": 0
+        },
+        {
+          "name": "plan",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The plan identifier",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Plan successfully published",
+          "data_schema": [
+            {
+              "name": "PlanEntity",
+              "schema": {
+                "id": "string",
+                "crossId": "string",
+                "name": "string",
+                "description": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "publishedAt": "date",
+                "closedAt": "date",
+                "needRedeployAt": "date",
+                "validation": "string",
+                "type": "string",
+                "security": "object",
+                "selectionRule": "string",
+                "flows": "array",
+                "tags": "array",
+                "status": "string",
+                "apiId": "string",
+                "order": "integer",
+                "characteristics": "array",
+                "excludedGroups": "array",
+                "commentRequired": "boolean",
+                "commentMessage": "string",
+                "generalConditions": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "'plan' parameter does not correspond to the current API",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans/{plan}/_deprecate",
+      "http_method": "POST",
+      "method_name": "deprecateApiPlan",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java",
+      "parameters": [
+        {
+          "name": "api",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The API identifier, injected via @PathParam(\"api\") on the class field apiId.",
+          "_depth": 0
+        },
+        {
+          "name": "plan",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The plan identifier, injected via @PathParam(\"plan\") on the method parameter.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The plan has been deprecated successfully.",
+          "data_schema": [
+            {
+              "name": "PlanEntity",
+              "schema": {
+                "id": "string",
+                "crossId": "string",
+                "name": "string",
+                "description": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "publishedAt": "date",
+                "closedAt": "date",
+                "needRedeployAt": "date",
+                "validation": "string",
+                "type": "string",
+                "security": "object",
+                "selectionRule": "string",
+                "flows": "array",
+                "tags": "array",
+                "status": "string",
+                "apiId": "string",
+                "order": "integer",
+                "characteristics": "array",
+                "excludedGroups": "array",
+                "commentRequired": "boolean",
+                "commentMessage": "string",
+                "generalConditions": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "'plan' parameter does not correspond to the current API",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans/{plan}",
+      "http_method": "PUT",
+      "method_name": "updateApiPlan",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java",
+      "parameters": [
+        {
+          "name": "api",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The API identifier",
+          "_depth": 0
+        },
+        {
+          "name": "plan",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The plan identifier",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "_class_name": "UpdatePlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The plan update entity"
+        },
+        {
+          "name": "crossId",
+          "type": "String",
+          "_class_name": "UpdatePlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The plan update entity"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "UpdatePlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The plan update entity"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_class_name": "UpdatePlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The plan update entity"
+        },
+        {
+          "name": "characteristics",
+          "type": "List",
+          "_class_name": "UpdatePlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The plan update entity"
+        },
+        {
+          "name": "order",
+          "type": "int",
+          "_class_name": "UpdatePlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The plan update entity"
+        },
+        {
+          "name": "excludedGroups",
+          "type": "List",
+          "_class_name": "UpdatePlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The plan update entity"
+        },
+        {
+          "name": "security",
+          "type": "PlanSecurity",
+          "_class_name": "UpdatePlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The plan update entity"
+        },
+        {
+          "name": "commentRequired",
+          "type": "boolean",
+          "_class_name": "UpdatePlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The plan update entity"
+        },
+        {
+          "name": "commentMessage",
+          "type": "String",
+          "_class_name": "UpdatePlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The plan update entity"
+        },
+        {
+          "name": "generalConditions",
+          "type": "String",
+          "_class_name": "UpdatePlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The plan update entity"
+        },
+        {
+          "name": "tags",
+          "type": "Set",
+          "_class_name": "UpdatePlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The plan update entity"
+        },
+        {
+          "name": "selectionRule",
+          "type": "String",
+          "_class_name": "UpdatePlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The plan update entity"
+        },
+        {
+          "name": "flows",
+          "type": "List",
+          "_class_name": "UpdatePlanEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The plan update entity"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Plan updated successfully",
+          "data_schema": [
+            {
+              "name": "PlanEntityV4",
+              "schema": {
+                "id": "string",
+                "crossId": "string",
+                "name": "string",
+                "description": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "publishedAt": "date",
+                "closedAt": "date",
+                "validation": "string",
+                "type": "string",
+                "security": "object",
+                "selectionRule": "string",
+                "flows": "array",
+                "tags": "array",
+                "status": "string",
+                "apiId": "string",
+                "order": "integer",
+                "characteristics": "array",
+                "excludedGroups": "array",
+                "commentRequired": "boolean",
+                "commentMessage": "string",
+                "generalConditions": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "'plan' parameter does not correspond to the plan to update or does not correspond to the current API",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans",
+      "http_method": "GET",
+      "method_name": "getApiPlans",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java",
+      "parameters": [
+        {
+          "name": "api",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The API ID",
+          "_depth": 0
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Filter plans by status",
+          "_depth": 0
+        },
+        {
+          "name": "security",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Filter plans by security type",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List of API plans",
+          "data_schema": [
+            {
+              "name": "PlanEntity",
+              "schema": {
+                "id": "string",
+                "crossId": "string",
+                "name": "string",
+                "description": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "publishedAt": "date",
+                "closedAt": "date",
+                "needRedeployAt": "date",
+                "validation": "string",
+                "type": "string",
+                "security": "object",
+                "selectionRule": "string",
+                "flows": "array",
+                "tags": "array",
+                "status": "string",
+                "apiId": "string",
+                "order": "integer",
+                "characteristics": "array",
+                "excludedGroups": "array",
+                "commentRequired": "boolean",
+                "commentMessage": "string",
+                "generalConditions": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden access",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans/{plan}/_close",
+      "http_method": "POST",
+      "method_name": "closeApiPlan",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java",
+      "parameters": [
+        {
+          "name": "api",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The API identifier",
+          "_depth": 0
+        },
+        {
+          "name": "plan",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The plan identifier",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Plan closed successfully",
+          "data_schema": [
+            {
+              "name": "PlanEntity",
+              "schema": {
+                "id": "string",
+                "crossId": "string",
+                "name": "string",
+                "description": "string",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "publishedAt": "date",
+                "closedAt": "date",
+                "validation": "string",
+                "type": "string",
+                "security": "object",
+                "selectionRule": "string",
+                "flows": "array",
+                "tags": "array",
+                "status": "string",
+                "apiId": "string",
+                "order": "integer",
+                "characteristics": "array",
+                "excludedGroups": "array",
+                "commentRequired": "boolean",
+                "commentMessage": "string",
+                "generalConditions": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "'plan' parameter does not correspond to the current API",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/apis/{apiId}",
+      "http_method": "GET",
+      "method_name": "getApiById",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiResource.java",
+      "parameters": [
+        {
+          "name": "apiId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The API identifier",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "API found and returned",
+          "data_schema": [
+            {
+              "name": "ApiEntity",
+              "schema": {
+                "id": "string",
+                "crossId": "string",
+                "name": "string",
+                "apiVersion": "string",
+                "definitionVersion": "string",
+                "type": "string",
+                "deployedAt": "date",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "description": "string",
+                "tags": "array",
+                "listeners": "array",
+                "endpointGroups": "array",
+                "analytics": "object",
+                "properties": "array",
+                "resources": "array",
+                "plans": "array",
+                "flowMode": "string",
+                "flows": "array",
+                "responseTemplates": "object",
+                "services": "object",
+                "groups": "array",
+                "visibility": "string",
+                "state": "string",
+                "primaryOwner": "object",
+                "picture": "string",
+                "pictureUrl": "string",
+                "categories": "array",
+                "labels": "array",
+                "definitionContext": "object",
+                "metadata": "object",
+                "lifecycleState": "string",
+                "workflowState": "string",
+                "disableMembershipNotifications": "boolean",
+                "background": "string",
+                "backgroundUrl": "string",
+                "referenceType": "string",
+                "referenceId": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden access",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/apis/{apiId}",
+      "http_method": "PUT",
+      "method_name": "updateApi",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiResource.java",
+      "parameters": [
+        {
+          "name": "apiId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The API identifier from the path /apis/{apiId}",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "crossId",
+          "type": "String",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "apiVersion",
+          "type": "String",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "definitionVersion",
+          "type": "DefinitionVersion",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "type",
+          "type": "ApiType",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "tags",
+          "type": "Set",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "listeners",
+          "type": "List",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "endpointGroups",
+          "type": "List",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "analytics",
+          "type": "Analytics",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "properties",
+          "type": "List",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "resources",
+          "type": "List",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "plans",
+          "type": "Set",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "flowMode",
+          "type": "FlowMode",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "flows",
+          "type": "List",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "services",
+          "type": "ApiServices",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "groups",
+          "type": "Set",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "picture",
+          "type": "String",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "pictureUrl",
+          "type": "String",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "categories",
+          "type": "Set",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "labels",
+          "type": "List",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "metadata",
+          "type": "List",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "disableMembershipNotifications",
+          "type": "boolean",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "background",
+          "type": "String",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        },
+        {
+          "name": "backgroundUrl",
+          "type": "String",
+          "_class_name": "UpdateApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The API update payload"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "API updated successfully",
+          "data_schema": [
+            {
+              "name": "ApiEntityV4",
+              "schema": {
+                "id": "string",
+                "crossId": "string",
+                "name": "string",
+                "apiVersion": "string",
+                "definitionVersion": "string",
+                "type": "string",
+                "deployedAt": "date",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "description": "string",
+                "tags": "array",
+                "listeners": "array",
+                "endpointGroups": "array",
+                "analytics": "object",
+                "properties": "array",
+                "resources": "array",
+                "plans": "array",
+                "flowMode": "string",
+                "flows": "array",
+                "responseTemplates": "object",
+                "services": "object",
+                "groups": "array",
+                "visibility": "string",
+                "state": "string",
+                "primaryOwner": "object",
+                "picture": "string",
+                "pictureUrl": "string",
+                "categories": "array",
+                "labels": "array",
+                "definitionContext": "object",
+                "metadata": "object",
+                "lifecycleState": "string",
+                "workflowState": "string",
+                "disableMembershipNotifications": "boolean",
+                "background": "string",
+                "backgroundUrl": "string",
+                "referenceType": "string",
+                "referenceId": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - 'apiId' is not the same that the API in payload, or invalid image format",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - User does not have permission to manage the API",
+          "data_schema": null
+        },
+        {
+          "status_code": 412,
+          "description": "Precondition Failed - If-Match header does not match current ETag",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/apis/{apiId}",
+      "http_method": "DELETE",
+      "method_name": "deleteApi",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiResource.java",
+      "parameters": [
+        {
+          "name": "apiId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "API identifier from the path",
+          "_depth": 0
+        },
+        {
+          "name": "closePlans",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether to close plans when deleting the API",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. The API was successfully deleted.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/endpoints",
+      "http_method": "GET",
+      "method_name": "getEndpoints",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EndpointsResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK. Returns the set of all endpoint connector plugins.",
+          "data_schema": [
+            {
+              "name": "Set<ConnectorPluginEntity>",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "description": "string",
+                "category": "string",
+                "version": "string",
+                "supportedApiType": "ApiType",
+                "supportedModes": "Set<ConnectorMode>",
+                "supportedQos": "Set<Qos>",
+                "availableFeatures": "Set<ConnectorFeature>",
+                "supportedListenerType": "ListenerType"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/endpoints/{endpointId}/schema",
+      "http_method": "GET",
+      "method_name": "getEntrypointSchema",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EndpointsResource.java",
+      "parameters": [
+        {
+          "name": "endpointId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The endpoint identifier",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The schema of the endpoint as a JSON string.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The endpoint with the given endpointId does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An unexpected error occurred while retrieving the endpoint schema.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/endpoints/{endpointId}/documentation",
+      "http_method": "GET",
+      "method_name": "getEntrypointDoc",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EndpointsResource.java",
+      "parameters": [
+        {
+          "name": "endpointId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The endpoint identifier",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The endpoint documentation as plain text",
+          "data_schema": [
+            {
+              "name": "documentation",
+              "schema": {
+                "documentation": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the endpoint service fails to retrieve the endpoint or its documentation",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/entrypoints",
+      "http_method": "GET",
+      "method_name": "getEntrypoints",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EntrypointsResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK",
+          "data_schema": [
+            {
+              "name": "ConnectorPluginEntity",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "description": "string",
+                "category": "string",
+                "version": "string",
+                "supportedApiType": "ApiType",
+                "supportedModes": "Set<ConnectorMode>",
+                "supportedQos": "Set<Qos>",
+                "availableFeatures": "Set<ConnectorFeature>",
+                "supportedListenerType": "ListenerType"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/endpoints/{endpointId}",
+      "http_method": "GET",
+      "method_name": "getEntrypoint",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EndpointsResource.java",
+      "parameters": [
+        {
+          "name": "endpointId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The endpoint identifier",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The endpoint connector plugin entity",
+          "data_schema": [
+            {
+              "name": "ConnectorPluginEntity",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "description": "string",
+                "category": "string",
+                "version": "string",
+                "supportedApiType": "ApiType",
+                "supportedModes": "Set<ConnectorMode>",
+                "supportedQos": "Set<Qos>",
+                "availableFeatures": "Set<ConnectorFeature>",
+                "supportedListenerType": "ListenerType"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/_stop",
+      "http_method": "POST",
+      "method_name": "stopAPI",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiResource.java",
+      "parameters": [
+        {
+          "name": "apiId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "API identifier from the path template /apis/{apiId}",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "API stopped successfully. No content returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The API is already stopped, or the API is archived and cannot be stopped.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have permission to manage the API.",
+          "data_schema": []
+        },
+        {
+          "status_code": 412,
+          "description": "Precondition failed. The If-Match header does not match the current ETag of the API.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/deployments",
+      "http_method": "POST",
+      "method_name": "deployApi",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiResource.java",
+      "parameters": [
+        {
+          "name": "apiId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The API identifier",
+          "_depth": 0
+        },
+        {
+          "name": "deploymentLabel",
+          "type": "String",
+          "_class_name": "ApiDeploymentEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "API deployment entity containing deployment label"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "API deployed successfully. Returns the deployed API entity.",
+          "data_schema": [
+            {
+              "name": "ApiEntity",
+              "schema": {
+                "id": "string",
+                "crossId": "string",
+                "name": "string",
+                "apiVersion": "string",
+                "definitionVersion": "string",
+                "type": "string",
+                "deployedAt": "date",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "description": "string",
+                "tags": "set<string>",
+                "listeners": "list<Listener>",
+                "endpointGroups": "list<EndpointGroup>",
+                "analytics": "Analytics",
+                "properties": "list<Property>",
+                "resources": "list<Resource>",
+                "plans": "set<PlanEntity>",
+                "flowMode": "string",
+                "flows": "list<Flow>",
+                "responseTemplates": "map<string, map<string, ResponseTemplate>>",
+                "services": "ApiServices",
+                "groups": "set<string>",
+                "visibility": "string",
+                "state": "string",
+                "primaryOwner": "PrimaryOwnerEntity",
+                "picture": "string",
+                "pictureUrl": "string",
+                "categories": "set<string>",
+                "labels": "list<string>",
+                "definitionContext": "DefinitionContext",
+                "metadata": "map<string, object>",
+                "lifecycleState": "string",
+                "workflowState": "string",
+                "disableMembershipNotifications": "boolean",
+                "background": "string",
+                "backgroundUrl": "string",
+                "referenceType": "string",
+                "referenceId": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an exception occurs during deployment.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/_start",
+      "http_method": "POST",
+      "method_name": "startAPI",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiResource.java",
+      "parameters": [
+        {
+          "name": "apiId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "API identifier from the path template /apis/{apiId}",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "API started successfully. Returns no content, with ETag and Last-Modified headers set from the updated API's updatedAt timestamp.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Thrown by checkApiLifeCycle when the API is ARCHIVED, already STARTED, or when API review is enabled and the workflow state is not REVIEW_OK.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Thrown by getApiById when the authenticated user cannot manage the API.",
+          "data_schema": null
+        },
+        {
+          "status_code": 412,
+          "description": "Precondition Failed. Returned by evaluateIfMatch when the If-Match header does not match the current API ETag.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/entrypoints/{entrypointId}",
+      "http_method": "GET",
+      "method_name": "getEntrypoint",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EntrypointsResource.java",
+      "parameters": [
+        {
+          "name": "entrypointId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the entrypoint to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK",
+          "data_schema": [
+            {
+              "name": "ConnectorPluginEntity",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "description": "string",
+                "category": "string",
+                "version": "string",
+                "supportedApiType": "ApiType",
+                "supportedModes": "Set<ConnectorMode>",
+                "supportedQos": "Set<Qos>",
+                "availableFeatures": "Set<ConnectorFeature>",
+                "supportedListenerType": "ListenerType"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/entrypoints/{entrypointId}/schema",
+      "http_method": "GET",
+      "method_name": "getEntrypointSchema",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EntrypointsResource.java",
+      "parameters": [
+        {
+          "name": "entrypointId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The entrypoint identifier",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The entrypoint schema as a JSON string.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Entrypoint not found. The service's findById method throws an exception when the entrypoint does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates entirely to entrypointService.findById and entrypointService.getSchema without catching failures.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/entrypoints/{entrypointId}/documentation",
+      "http_method": "GET",
+      "method_name": "getEntrypointDoc",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EntrypointsResource.java",
+      "parameters": [
+        {
+          "name": "entrypointId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The entrypoint identifier",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The documentation of the entrypoint connector plugin, returned as plain text.",
+          "data_schema": [
+            {
+              "name": "documentation",
+              "schema": {
+                "documentation": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to EntrypointConnectorPluginService.findById and getDocumentation without catching failures, so a failure in those calls results in a 500 response.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/entrypoints/{entrypointId}/subscriptionSchema",
+      "http_method": "GET",
+      "method_name": "getEntrypointSubscriptionSchema",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EntrypointsResource.java",
+      "parameters": [
+        {
+          "name": "entrypointId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The entrypoint identifier",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The subscription schema of the entrypoint as a JSON string.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Entrypoint not found. The entrypointService.findById(entrypointId) call throws a not found exception when the entrypoint does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to entrypointService.findById and entrypointService.getSubscriptionSchema without catching failures.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/environments/{envId}",
+      "http_method": "GET",
+      "method_name": "getEnvironment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\installation\\EnvironmentResource.java",
+      "parameters": [
+        {
+          "name": "envId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The environment identifier from the path.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The environment with the specified envId is returned.",
+          "data_schema": [
+            {
+              "name": "EnvironmentEntity",
+              "schema": {
+                "id": "string",
+                "cockpitId": "string",
+                "hrids": "array<string>",
+                "name": "string",
+                "description": "string",
+                "organizationId": "string",
+                "domainRestrictions": "array<string>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/organizations/{orgId}",
+      "http_method": "GET",
+      "method_name": "get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\installation\\OrganizationResource.java",
+      "parameters": [
+        {
+          "name": "orgId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The organization identifier",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Organization retrieved successfully",
+          "data_schema": [
+            {
+              "name": "OrganizationEntity",
+              "schema": {
+                "id": "string",
+                "cockpitId": "string",
+                "hrids": "array",
+                "name": "string",
+                "description": "string",
+                "domainRestrictions": "array",
+                "flowMode": "string",
+                "flows": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/organizations/{orgId}/environments",
+      "http_method": "GET",
+      "method_name": "getEnvironments",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\installation\\OrganizationResource.java",
+      "parameters": [
+        {
+          "name": "orgId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The organization identifier",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK. Returns the collection of environments the authenticated user can access within the organization.",
+          "data_schema": [
+            {
+              "name": "EnvironmentEntity",
+              "schema": {
+                "id": "string",
+                "cockpitId": "string",
+                "hrids": "array<string>",
+                "name": "string",
+                "description": "string",
+                "organizationId": "string",
+                "domainRestrictions": "array<string>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. The handler delegates to EnvironmentService.findByUser and does not catch failures, so a server error from that call is returned.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/environments/{envId}/apis",
+      "http_method": "POST",
+      "method_name": "createApi",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\installation\\EnvironmentResource.java",
+      "parameters": [
+        {
+          "name": "envId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The environment ID from the path.",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "NewApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new API entity to create."
+        },
+        {
+          "name": "apiVersion",
+          "type": "String",
+          "_class_name": "NewApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new API entity to create."
+        },
+        {
+          "name": "definitionVersion",
+          "type": "DefinitionVersion",
+          "_class_name": "NewApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new API entity to create."
+        },
+        {
+          "name": "type",
+          "type": "ApiType",
+          "_class_name": "NewApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new API entity to create."
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_class_name": "NewApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new API entity to create."
+        },
+        {
+          "name": "tags",
+          "type": "Set",
+          "_class_name": "NewApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new API entity to create."
+        },
+        {
+          "name": "listeners",
+          "type": "List",
+          "_class_name": "NewApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new API entity to create."
+        },
+        {
+          "name": "endpointGroups",
+          "type": "List",
+          "_class_name": "NewApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new API entity to create."
+        },
+        {
+          "name": "analytics",
+          "type": "Analytics",
+          "_class_name": "NewApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new API entity to create."
+        },
+        {
+          "name": "flowMode",
+          "type": "FlowMode",
+          "_class_name": "NewApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new API entity to create."
+        },
+        {
+          "name": "flows",
+          "type": "List",
+          "_class_name": "NewApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new API entity to create."
+        },
+        {
+          "name": "groups",
+          "type": "Set",
+          "_class_name": "NewApiEntity",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new API entity to create."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "API created successfully. The response body contains the created API entity and the Location header points to the new API.",
+          "data_schema": [
+            {
+              "name": "ApiEntity",
+              "schema": {
+                "id": "string",
+                "crossId": "string",
+                "name": "string",
+                "apiVersion": "string",
+                "definitionVersion": "string",
+                "type": "string",
+                "deployedAt": "date",
+                "createdAt": "date",
+                "updatedAt": "date",
+                "description": "string",
+                "tags": "array",
+                "listeners": "array",
+                "endpointGroups": "array",
+                "analytics": "object",
+                "properties": "array",
+                "resources": "array",
+                "plans": "array",
+                "flowMode": "string",
+                "flows": "array",
+                "responseTemplates": "object",
+                "services": "object",
+                "groups": "array",
+                "visibility": "string",
+                "state": "string",
+                "primaryOwner": "object",
+                "picture": "string",
+                "pictureUrl": "string",
+                "categories": "array",
+                "labels": "array",
+                "definitionContext": "object",
+                "metadata": "object",
+                "lifecycleState": "string",
+                "workflowState": "string",
+                "disableMembershipNotifications": "boolean",
+                "background": "string",
+                "backgroundUrl": "string",
+                "referenceType": "string",
+                "referenceId": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to apiServiceV4.create and does not catch any exception, so a failure in that call results in a 500 response.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 11582,
+  "tokens": {
+    "prompt_tokens": 2588094,
+    "completion_tokens": 48172,
+    "total_tokens": 2636266,
+    "calls": 168,
+    "elapsed_s": 877.303,
+    "prompt_cost_usd": 0.327334,
+    "completion_cost_usd": 0.033496,
+    "total_cost_usd": 0.360829,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 864600,
+        "completion_tokens": 8645,
+        "total_tokens": 873245,
+        "calls": 56,
+        "elapsed_s": 97.04468,
+        "prompt_cost_usd": 0.017292,
+        "completion_cost_usd": 0.005187,
+        "total_cost_usd": 0.022479
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 805548,
+        "completion_tokens": 30982,
+        "total_tokens": 836530,
+        "calls": 56,
+        "elapsed_s": 573.563,
+        "prompt_cost_usd": 0.080555,
+        "completion_cost_usd": 0.015491,
+        "total_cost_usd": 0.096046
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 917946,
+        "completion_tokens": 8545,
+        "total_tokens": 926491,
+        "calls": 56,
+        "elapsed_s": 206.695,
+        "prompt_cost_usd": 0.229487,
+        "completion_cost_usd": 0.012818,
+        "total_cost_usd": 0.242304
+      }
+    ]
+  }
+}

@@ -1,0 +1,1617 @@
+{
+  "task_id": "familie-ba-sak",
+  "api_name": "familie-ba-sak",
+  "framework": "spring-boot-kotlin",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/feature",
+      "http_method": "POST",
+      "method_name": "hentToggles",
+      "summary": "Hent feature toggles",
+      "description": "Takes a list of toggle IDs and returns a map of toggle ID to boolean indicating whether each toggle is enabled.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\config\\featureToggle\\FeatureToggleController.kt"
+    },
+    {
+      "endpoint_path": "/api/klage/fagsaker/{fagsakId}/kan-opprette-revurdering-klage",
+      "http_method": "GET",
+      "method_name": "kanOppretteRevurderingKlage",
+      "summary": "Sjekk om revurdering med årsak klage kan opprettes",
+      "description": "Validerer tilgang og sjekker om det er mulig å opprette en revurdering med årsak klage på en gitt fagsak. Returnerer et objekt som indikerer om det er mulig og eventuell årsak til at det ikke er mulig.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\ekstern\\EksternKlageController.kt"
+    },
+    {
+      "endpoint_path": "/api/klage/fagsaker/{fagsakId}/opprett-revurdering-klage",
+      "http_method": "POST",
+      "method_name": "opprettRevurderingKlage",
+      "summary": "Opprett revurdering med årsak klage",
+      "description": "Validerer tilgang og oppretter en revurdering med årsak klage på en gitt fagsak. Returnerer et objekt som indikerer om opprettelsen var vellykket og eventuell behandlings-ID.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\ekstern\\EksternKlageController.kt"
+    },
+    {
+      "endpoint_path": "/api/klage/fagsaker/{fagsakId}/vedtak",
+      "http_method": "GET",
+      "method_name": "hentVedtak",
+      "summary": "Hent vedtak for en fagsak",
+      "description": "Henter alle vedtak knyttet til en gitt fagsak. Tilgang valideres med mindre kallet kommer fra et maskin-til-maskin token.",
+      "line_number": 51,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\ekstern\\EksternKlageController.kt"
+    },
+    {
+      "endpoint_path": "/api/bisys/hent-utvidet-barnetrygd",
+      "http_method": "POST",
+      "method_name": "hentUtvidetBarnetrygd",
+      "summary": "Hent utvidet barnetrygd og småbarnstillegg",
+      "description": "Tjeneste for BISYS for å hente utvidet barnetrygd og småbarnstillegg for en gitt person.",
+      "line_number": 55,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\ekstern\\bisys\\BisysController.kt"
+    },
+    {
+      "endpoint_path": "/api/ekstern/pensjon/hent-barnetrygd",
+      "http_method": "POST",
+      "method_name": "hentBarnetrygd",
+      "summary": "Tjeneste for Pensjon for å hente barnetrygd og relaterte saker for en gitt person.",
+      "description": "Tjeneste for Pensjon for å hente barnetrygd og relaterte saker for en gitt person.",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\ekstern\\pensjon\\PensjonController.kt"
+    },
+    {
+      "endpoint_path": "/api/ekstern/pensjon/bestill-personer-med-barnetrygd/{år}",
+      "http_method": "GET",
+      "method_name": "bestillPersonerMedBarnetrygdForGittÅrPåKafka",
+      "summary": "Tjeneste for Pensjon for å bestille identer med barnetrygd for et gitt år på kafka.",
+      "description": "Tjeneste for Pensjon for å bestille identer med barnetrygd for et gitt år på kafka.",
+      "line_number": 117,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\ekstern\\pensjon\\PensjonController.kt"
+    },
+    {
+      "endpoint_path": "/api/skatt/personer",
+      "http_method": "GET",
+      "method_name": "finnPersonerMedUtvidetBarnetrygd",
+      "summary": "Hent personer med utvidet barnetrygd for et gitt år",
+      "description": "Returnerer en liste over personer med utvidet barnetrygd for det angitte året. Bruker testdata hvis feature toggle SKATTEETATEN_API_EKTE_DATA er deaktivert.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\ekstern\\skatteetaten\\SkatteetatenController.kt"
+    },
+    {
+      "endpoint_path": "/api/skatt/personer/test",
+      "http_method": "GET",
+      "method_name": "finnPersonerMedUtvidetBarnetrygdTest",
+      "summary": "Test-endepunkt for henting av personer med utvidet barnetrygd",
+      "description": "Henter personer med utvidet barnetrygd for et gitt år, alltid fra ekte data (skatteetatenService).",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\ekstern\\skatteetaten\\SkatteetatenController.kt"
+    },
+    {
+      "endpoint_path": "/api/skatt/perioder",
+      "http_method": "POST",
+      "method_name": "hentPerioderMedUtvidetBarnetrygd",
+      "summary": "Hent perioder med utvidet barnetrygd for angitte personer og år",
+      "description": "Returnerer perioder med utvidet barnetrygd for de angitte personene og året. Bruker testdata hvis feature toggle SKATTEETATEN_API_EKTE_DATA er deaktivert.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\ekstern\\skatteetaten\\SkatteetatenController.kt"
+    },
+    {
+      "endpoint_path": "/api/skatt/perioder/test",
+      "http_method": "POST",
+      "method_name": "hentPerioderMedUtvidetBarnetrygdForMidlertidigTest",
+      "summary": "Test-endepunkt for henting av perioder med utvidet barnetrygd",
+      "description": "Henter perioder med utvidet barnetrygd for angitte personer og år, alltid fra ekte data (skatteetatenService).",
+      "line_number": 61,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\ekstern\\skatteetaten\\SkatteetatenController.kt"
+    },
+    {
+      "endpoint_path": "/api/infotrygd/hent-infotrygdsaker-for-soker",
+      "http_method": "POST",
+      "method_name": "hentInfotrygdsakerForSøker",
+      "summary": "Hent infotrygdsaker for søker",
+      "description": "Henter infotrygdsaker for en gitt personident. Returnerer maskerte saker dersom søker mangler tilgang, ellers returneres søkerens infotrygdsaker.",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\infotrygd\\InfotrygdController.kt"
+    },
+    {
+      "endpoint_path": "/api/infotrygd/hent-infotrygdstonader-for-soker",
+      "http_method": "POST",
+      "method_name": "hentInfotrygdstønaderForSøker",
+      "summary": "Hent infotrygdstønader for søker",
+      "description": "Henter infotrygdstønader for en gitt personident. Returnerer maskerte stønader dersom søker mangler tilgang, ellers returneres søkerens infotrygdstønader.",
+      "line_number": 23,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\infotrygd\\InfotrygdController.kt"
+    },
+    {
+      "endpoint_path": "/api/infotrygd/har-lopende-sak",
+      "http_method": "POST",
+      "method_name": "harLøpendeSak",
+      "summary": "Sjekk om søker har løpende sak i infotrygd",
+      "description": "Sjekker om en gitt personident har en løpende barnetrygdsak i infotrygd.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\infotrygd\\InfotrygdController.kt"
+    },
+    {
+      "endpoint_path": "/api/journalpost/{journalpostId}/hent",
+      "http_method": "GET",
+      "method_name": "hentJournalpost",
+      "summary": "Hent journalpost",
+      "description": "Henter en journalpost basert på journalpostId.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\journalføring\\JournalføringController.kt"
+    },
+    {
+      "endpoint_path": "/api/journalpost/for-bruker",
+      "http_method": "POST",
+      "method_name": "hentJournalposterForBruker",
+      "summary": "Hent journalposter for bruker",
+      "description": "Henter journalposter for en gitt bruker basert på personident.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\journalføring\\JournalføringController.kt"
+    },
+    {
+      "endpoint_path": "/api/journalpost/{journalpostId}/hent/{dokumentInfoId}",
+      "http_method": "GET",
+      "method_name": "hentDokument",
+      "summary": "Hent dokument",
+      "description": "Henter et dokument som byte-array basert på journalpostId og dokumentInfoId.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\journalføring\\JournalføringController.kt"
+    },
+    {
+      "endpoint_path": "/api/journalpost/{journalpostId}/dokument/{dokumentInfoId}",
+      "http_method": "GET",
+      "method_name": "hentDokumentBytearray",
+      "summary": "Hent dokument som PDF",
+      "description": "Henter et dokument som PDF basert på journalpostId og dokumentInfoId.",
+      "line_number": 35,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\journalføring\\JournalføringController.kt"
+    },
+    {
+      "endpoint_path": "/api/journalpost/{journalpostId}/journalfør/{oppgaveId}",
+      "http_method": "POST",
+      "method_name": "journalførV2",
+      "summary": "Journalfør journalpost",
+      "description": "Journalfører en journalpost og knytter den til en fagsak. Krever saksbehandlerrolle.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\journalføring\\JournalføringController.kt"
+    },
+    {
+      "endpoint_path": "/api/oppgave/hent-oppgaver",
+      "http_method": "POST",
+      "method_name": "hentOppgaver",
+      "summary": "Hent oppgaver",
+      "description": "Henter oppgaver basert på RestFinnOppgaveRequest",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\oppgave\\OppgaveController.kt"
+    },
+    {
+      "endpoint_path": "/api/oppgave/{oppgaveId}/fordel",
+      "http_method": "POST",
+      "method_name": "fordelOppgave",
+      "summary": "Fordel oppgave",
+      "description": "Fordeler en oppgave til en saksbehandler",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\oppgave\\OppgaveController.kt"
+    },
+    {
+      "endpoint_path": "/api/oppgave/{oppgaveId}/tilbakestill",
+      "http_method": "POST",
+      "method_name": "tilbakestillFordelingPåOppgave",
+      "summary": "Tilbakestill fordeling på oppgave",
+      "description": "Tilbakestiller fordelingen av en oppgave",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\oppgave\\OppgaveController.kt"
+    },
+    {
+      "endpoint_path": "/api/oppgave/{oppgaveId}",
+      "http_method": "GET",
+      "method_name": "hentDataForManuellJournalføring",
+      "summary": "Hent data for manuell journalføring",
+      "description": "Henter data som trengs for manuell journalføring av en oppgave",
+      "line_number": 66,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\oppgave\\OppgaveController.kt"
+    },
+    {
+      "endpoint_path": "/api/oppgave/{oppgaveId}/ferdigstill",
+      "http_method": "GET",
+      "method_name": "ferdigstillOppgave",
+      "summary": "Ferdigstill oppgave",
+      "description": "Ferdigstiller en oppgave",
+      "line_number": 91,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\oppgave\\OppgaveController.kt"
+    },
+    {
+      "endpoint_path": "/api/oppgave/{oppgaveId}/ferdigstillOgKnyttjournalpost",
+      "http_method": "POST",
+      "method_name": "ferdigstillOppgaveOgKnyttJournalpostTilBehandling",
+      "summary": "Ferdigstill oppgave og knytt journalpost",
+      "description": "Ferdigstiller en oppgave og knytter en journalpost til en behandling",
+      "line_number": 102,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\oppgave\\OppgaveController.kt"
+    },
+    {
+      "endpoint_path": "/api/oppgave/hent-frister-for-apne-utvidet-barnetrygd-behandlinger",
+      "http_method": "POST",
+      "method_name": "hentFristerForÅpneUtvidetBarnetrygdBehandlinger",
+      "summary": "Hent frister for åpne utvidet barnetrygd behandlinger",
+      "description": "Henter frister for åpne utvidet barnetrygd behandlinger",
+      "line_number": 117,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\oppgave\\OppgaveController.kt"
+    },
+    {
+      "endpoint_path": "/api/oppgave/fjern-behandles-av-applikasjon",
+      "http_method": "POST",
+      "method_name": "fjernBehandlesAvApplikasjonFor",
+      "summary": "Fjern behandles av applikasjon",
+      "description": "Fjerner behandlesAvApplikasjon for en liste med oppgaver",
+      "line_number": 124,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\oppgave\\OppgaveController.kt"
+    },
+    {
+      "endpoint_path": "/api/konsistensavstemming/dryrun",
+      "http_method": "POST",
+      "method_name": "kjørKonsistensavstemmingUtenSendingTilØkonomi",
+      "summary": "Testkjører konsistensavstemming uten å sende til økonomi",
+      "description": "Oppretter en batch og en task for å starte konsistensavstemming mot oppdrag, men sender ikke meldinger til økonomi. Returnerer transaksjonsId og callId.",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\økonomi\\KonsistensavstemmingController.kt"
+    },
+    {
+      "endpoint_path": "/api/konsistensavstemming/run",
+      "http_method": "POST",
+      "method_name": "kjørKonsistensavstemming",
+      "summary": "Kjører konsistensavstemming",
+      "description": "Oppretter en batch og en task for å starte konsistensavstemming mot oppdrag, og sender meldinger til økonomi. Tar imot en triggerTid i request body. Returnerer transaksjonsId og callId.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\integrasjoner\\økonomi\\KonsistensavstemmingController.kt"
+    },
+    {
+      "endpoint_path": "/api/forvalter/ferdigstill-oppgaver",
+      "http_method": "POST",
+      "method_name": "ferdigstillListeMedOppgaver",
+      "summary": "Ferdigstill liste med oppgaver",
+      "description": "Ferdigstiller en liste med oppgaver gitt en liste med oppgave-IDer. Returnerer en melding med antall oppgaver som ikke ble ferdigstilt.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\ForvalterController.kt"
+    },
+    {
+      "endpoint_path": "/api/forvalter/start-manuell-restart-av-smaabarnstillegg-jobb/skalOppretteOppgaver/{skalOppretteOppgaver}",
+      "http_method": "POST",
+      "method_name": "triggManuellStartAvSmåbarnstillegg",
+      "summary": "Trigg manuell start av småbarnstillegg",
+      "description": "Starter manuell restart av småbarnstillegg-jobben. Tar en path-parameter skalOppretteOppgaver som indikerer om oppgaver skal opprettes.",
+      "line_number": 41,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\ForvalterController.kt"
+    },
+    {
+      "endpoint_path": "/api/forvalter/lag-og-send-utbetalingsoppdrag-til-økonomi",
+      "http_method": "POST",
+      "method_name": "lagOgSendUtbetalingsoppdragTilØkonomi",
+      "summary": "Lag og send utbetalingsoppdrag til økonomi",
+      "description": "Oppretter og sender utbetalingsoppdrag til økonomi for en liste med behandlings-IDer.",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\ForvalterController.kt"
+    },
+    {
+      "endpoint_path": "/api/forvalter/kjor-satsendring-uten-validering",
+      "http_method": "POST",
+      "method_name": "kjørSatsendringFor",
+      "summary": "Kjør satsendring uten validering",
+      "description": "Kjører forenklet satsendring for en liste med fagsak-IDer uten validering.",
+      "line_number": 75,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\ForvalterController.kt"
+    },
+    {
+      "endpoint_path": "/api/forvalter/identifiser-utbetalinger-over-100-prosent",
+      "http_method": "POST",
+      "method_name": "identifiserUtbetalingerOver100Prosent",
+      "summary": "Identifiser utbetalinger over 100 prosent",
+      "description": "Starter en asynkron jobb for å identifisere utbetalinger over 100 prosent. Returnerer en callId.",
+      "line_number": 87,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\ForvalterController.kt"
+    },
+    {
+      "endpoint_path": "/api/forvalter/finnBehandlingerMedPotensieltFeilUtbetalingsoppdrag",
+      "http_method": "POST",
+      "method_name": "identifiserBehandlingerSomKanKrevePatching",
+      "summary": "Finn behandlinger med potensielt feil utbetalingsoppdrag",
+      "description": "Identifiserer behandlinger som kan ha feil i utbetalingsoppdraget og validerer opphørsdatoer.",
+      "line_number": 96,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\ForvalterController.kt"
+    },
+    {
+      "endpoint_path": "/api/forvalter/sjekkOmTilkjentYtelseForBehandlingHarUkorrektOpphørsdato",
+      "http_method": "POST",
+      "method_name": "sjekkOmTilkjentYtelseForBehandlingHarUkorrektOpphørsdato",
+      "summary": "Sjekk om tilkjent ytelse for behandling har ukorrekt opphørsdato",
+      "description": "Sjekker om tilkjent ytelse for en liste med behandlinger har ukorrekte opphørsdatoer.",
+      "line_number": 105,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\ForvalterController.kt"
+    },
+    {
+      "endpoint_path": "/api/forvalter/sendKorrigertUtbetalingsoppdragForBehandlinger",
+      "http_method": "POST",
+      "method_name": "sendKorrigertUtbetalingsoppdragForBehandlinger",
+      "summary": "Send korrigert utbetalingsoppdrag for behandlinger",
+      "description": "Sender korrigerte utbetalingsoppdrag for en liste med behandlinger.",
+      "line_number": 124,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\ForvalterController.kt"
+    },
+    {
+      "endpoint_path": "/api/forvalter/sendKorrigertUtbetalingsoppdragForBehandling/{behandlingId}/{versjon}",
+      "http_method": "POST",
+      "method_name": "sendKorrigertUtbetalingsoppdragForBehandling",
+      "summary": "Send korrigert utbetalingsoppdrag for behandling",
+      "description": "Sender korrigert utbetalingsoppdrag for en spesifikk behandling og versjon.",
+      "line_number": 144,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\ForvalterController.kt"
+    },
+    {
+      "endpoint_path": "/api/forvalter/populer-stonad-fom-tom/{behandlingId}",
+      "http_method": "POST",
+      "method_name": "populerStønadFomTomForBehandling",
+      "summary": "Populer stønad fom/tom for behandling",
+      "description": "Oppdaterer stønad fom/tom for en spesifikk behandling.",
+      "line_number": 163,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\ForvalterController.kt"
+    },
+    {
+      "endpoint_path": "/api/forvalter/populer-stonad-fom-tom-alle/{limit}",
+      "http_method": "POST",
+      "method_name": "populerStønadFomTom",
+      "summary": "Populer stønad fom/tom for alle",
+      "description": "Oppdaterer stønad fom/tom for alle aktive behandlinger som mangler stønadTom, opp til en gitt limit.",
+      "line_number": 168,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\ForvalterController.kt"
+    },
+    {
+      "endpoint_path": "/api/forvalter/finnFagsakerSomSkalAvsluttes",
+      "http_method": "GET",
+      "method_name": "finnFagsakerSomSkalAvsluttes",
+      "summary": "Finn fagsaker som skal avsluttes",
+      "description": "Returnerer en liste med fagsak-IDer som skal avsluttes.",
+      "line_number": 183,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\ForvalterController.kt"
+    },
+    {
+      "endpoint_path": "/api/forvalter/oppdaterLøpendeStatusPåFagsaker",
+      "http_method": "POST",
+      "method_name": "oppdaterLøpendeStatusPåFagsaker",
+      "summary": "Oppdater løpende status på fagsaker",
+      "description": "Oppdaterer løpende status på fagsaker.",
+      "line_number": 188,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\ForvalterController.kt"
+    },
+    {
+      "endpoint_path": "/api/forvalter/finnÅpneFagsakerMedFlereMigreringsbehandlingerOgLøpendeSakIInfotrygd",
+      "http_method": "GET",
+      "method_name": "finnÅpneFagsakerMedFlereMigreringsbehandlingerOgLøpendeSakIInfotrygd",
+      "summary": "Finn åpne fagsaker med flere migreringsbehandlinger og løpende sak i Infotrygd",
+      "description": "Returnerer en liste med fagsaker som har flere migreringsbehandlinger og løpende sak i Infotrygd.",
+      "line_number": 193,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\ForvalterController.kt"
+    },
+    {
+      "endpoint_path": "/api/forvalter/finnÅpneFagsakerMedFlereMigreringsbehandlinger",
+      "http_method": "GET",
+      "method_name": "finnÅpneFagsakerMedFlereMigreringsbehandlinger",
+      "summary": "Finn åpne fagsaker med flere migreringsbehandlinger",
+      "description": "Returnerer en liste med fagsaker som har flere migreringsbehandlinger.",
+      "line_number": 202,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\ForvalterController.kt"
+    },
+    {
+      "endpoint_path": "/api/preprod/{behandlingId}/fyll-ut-vilkarsvurdering",
+      "http_method": "PUT",
+      "method_name": "settFomPåTommeVilkårTilFødselsdato",
+      "summary": "Fyller ut vilkårsvurdering for tomme vilkår",
+      "description": "Setter fom på tomme vilkår til fødselsdato og setter resultat til oppfylt. Kun tilgjengelig i preprod eller lokalt, ikke i prod.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\PreprodController.kt"
+    },
+    {
+      "endpoint_path": "/internal/autobrev",
+      "http_method": "GET",
+      "method_name": "kjørSchedulerForAutobrev",
+      "summary": "Trigger autobrev scheduler",
+      "description": "Triggers the autobrev scheduler to create a task. Only works in preprod or dev environments.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/testverktoy/autobrev",
+      "http_method": "GET",
+      "method_name": "kjørSchedulerForAutobrev",
+      "summary": "Trigger autobrev scheduler",
+      "description": "Triggers the autobrev scheduler to create a task. Only works in preprod or dev environments.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/internal/test-satsendring/{fagsakId}",
+      "http_method": "GET",
+      "method_name": "utførSatsendringPåFagsak",
+      "summary": "Trigger satsendring for a case",
+      "description": "Triggers a satsendring task for the given fagsakId. Only works in preprod or dev environments.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/testverktoy/test-satsendring/{fagsakId}",
+      "http_method": "GET",
+      "method_name": "utførSatsendringPåFagsak",
+      "summary": "Trigger satsendring for a case",
+      "description": "Triggers a satsendring task for the given fagsakId. Only works in preprod or dev environments.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/internal/vedtak-om-overgangsstønad",
+      "http_method": "POST",
+      "method_name": "mottaHendelseOmVedtakOmOvergangsstønad",
+      "summary": "Receive event about overgangsstønad decision",
+      "description": "Receives an event about a decision on overgangsstønad and processes it. Only works in preprod or dev environments.",
+      "line_number": 45,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/testverktoy/vedtak-om-overgangsstønad",
+      "http_method": "POST",
+      "method_name": "mottaHendelseOmVedtakOmOvergangsstønad",
+      "summary": "Receive event about overgangsstønad decision",
+      "description": "Receives an event about a decision on overgangsstønad and processes it. Only works in preprod or dev environments.",
+      "line_number": 45,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/internal/foedselshendelse",
+      "http_method": "POST",
+      "method_name": "mottaFødselshendelse",
+      "summary": "Receive birth event",
+      "description": "Receives a birth event and creates a task for processing it. Only works in preprod or dev environments.",
+      "line_number": 58,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/testverktoy/foedselshendelse",
+      "http_method": "POST",
+      "method_name": "mottaFødselshendelse",
+      "summary": "Receive birth event",
+      "description": "Receives a birth event and creates a task for processing it. Only works in preprod or dev environments.",
+      "line_number": 58,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/internal/kjor-intern-konsistensavstemming/{maksAntallTasker}",
+      "http_method": "GET",
+      "method_name": "kjørInternKonsistensavstemming",
+      "summary": "Run internal consistency reconciliation",
+      "description": "Runs internal consistency reconciliation with a maximum number of tasks. Only works in preprod or dev environments.",
+      "line_number": 69,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/testverktoy/kjor-intern-konsistensavstemming/{maksAntallTasker}",
+      "http_method": "GET",
+      "method_name": "kjørInternKonsistensavstemming",
+      "summary": "Run internal consistency reconciliation",
+      "description": "Runs internal consistency reconciliation with a maximum number of tasks. Only works in preprod or dev environments.",
+      "line_number": 69,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/internal/ta-behandlinger-etter-ventefrist-av-vent",
+      "http_method": "GET",
+      "method_name": "taBehandlingerEtterVentefristAvVent",
+      "summary": "Take treatments off hold after deadline",
+      "description": "Creates a task to take treatments off hold after the deadline has passed. Only works in preprod or dev environments.",
+      "line_number": 79,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/testverktoy/ta-behandlinger-etter-ventefrist-av-vent",
+      "http_method": "GET",
+      "method_name": "taBehandlingerEtterVentefristAvVent",
+      "summary": "Take treatments off hold after deadline",
+      "description": "Creates a task to take treatments off hold after the deadline has passed. Only works in preprod or dev environments.",
+      "line_number": 79,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/internal/hent-simulering-pa-behandling/{behandlingId}",
+      "http_method": "GET",
+      "method_name": "hentSimuleringPåBehandling",
+      "summary": "Get simulation for a treatment",
+      "description": "Retrieves simulation data for the given behandlingId. Requires access validation.",
+      "line_number": 91,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/testverktoy/hent-simulering-pa-behandling/{behandlingId}",
+      "http_method": "GET",
+      "method_name": "hentSimuleringPåBehandling",
+      "summary": "Get simulation for a treatment",
+      "description": "Retrieves simulation data for the given behandlingId. Requires access validation.",
+      "line_number": 91,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/internal/behandling/{behandlingId}/begrunnelsetest",
+      "http_method": "GET",
+      "method_name": "hentBegrunnelsetestPåBehandling",
+      "summary": "Get justification test for a treatment",
+      "description": "Retrieves justification test data for the given behandlingId. Only works in preprod or dev environments.",
+      "line_number": 98,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/testverktoy/behandling/{behandlingId}/begrunnelsetest",
+      "http_method": "GET",
+      "method_name": "hentBegrunnelsetestPåBehandling",
+      "summary": "Get justification test for a treatment",
+      "description": "Retrieves justification test data for the given behandlingId. Only works in preprod or dev environments.",
+      "line_number": 98,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/internal/behandling/{behandlingId}/vedtaksperiodertest",
+      "http_method": "GET",
+      "method_name": "hentVedtaksperioderTestPåBehandling",
+      "summary": "Get decision period test for a treatment",
+      "description": "Retrieves decision period test data for the given behandlingId. Only works in preprod or dev environments.",
+      "line_number": 111,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/testverktoy/behandling/{behandlingId}/vedtaksperiodertest",
+      "http_method": "GET",
+      "method_name": "hentVedtaksperioderTestPåBehandling",
+      "summary": "Get decision period test for a treatment",
+      "description": "Retrieves decision period test data for the given behandlingId. Only works in preprod or dev environments.",
+      "line_number": 111,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/internal/redirect/behandling/{behandlingId}",
+      "http_method": "GET",
+      "method_name": "redirectTilBarnetrygd",
+      "summary": "Redirect to child benefit system",
+      "description": "Redirects to the child benefit system for the given behandlingId. The redirect URL depends on the environment.",
+      "line_number": 124,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/testverktoy/redirect/behandling/{behandlingId}",
+      "http_method": "GET",
+      "method_name": "redirectTilBarnetrygd",
+      "summary": "Redirect to child benefit system",
+      "description": "Redirects to the child benefit system for the given behandlingId. The redirect URL depends on the environment.",
+      "line_number": 124,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\internal\\TestVerktøyController.kt"
+    },
+    {
+      "endpoint_path": "/api/arbeidsfordeling/{behandlingId}",
+      "http_method": "PUT",
+      "method_name": "endreBehandlendeEnhet",
+      "summary": "Endre behandlende enhet",
+      "description": "Endrer behandlende enhet for en gitt behandling. Krever begrunnelse og saksbehandlerrolle.",
+      "line_number": 13,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\arbeidsfordeling\\ArbeidsfordelingController.kt"
+    },
+    {
+      "endpoint_path": "/api/satsendring/kjorsatsendring/{fagsakId}",
+      "http_method": "GET",
+      "method_name": "utførSatsendringITaskPåFagsak",
+      "summary": "Trigger satsendring for a single fagsak",
+      "description": "Triggers satsendring for the given fagsakId by calling startSatsendring.opprettSatsendringForFagsak.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\autovedtak\\satsendring\\SatsendringController.kt"
+    },
+    {
+      "endpoint_path": "/api/satsendring/kjorsatsendring",
+      "http_method": "POST",
+      "method_name": "utførSatsendringITaskPåFagsaker",
+      "summary": "Trigger satsendring for multiple fagsaker",
+      "description": "Triggers satsendring for each fagsakId in the provided set.",
+      "line_number": 25,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\autovedtak\\satsendring\\SatsendringController.kt"
+    },
+    {
+      "endpoint_path": "/api/satsendring/{fagsakId}/kjor-satsendring-synkront",
+      "http_method": "PUT",
+      "method_name": "utførSatsendringSynkrontPåFagsak",
+      "summary": "Run satsendring synchronously for a fagsak",
+      "description": "Validates access and runs satsendring synchronously for the given fagsakId.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\autovedtak\\satsendring\\SatsendringController.kt"
+    },
+    {
+      "endpoint_path": "/api/satsendring/{fagsakId}/kan-kjore-satsendring",
+      "http_method": "GET",
+      "method_name": "kanKjøreSatsendringPåFagsak",
+      "summary": "Check if satsendring can be run for a fagsak",
+      "description": "Returns whether satsendring can be run manually for the given fagsakId.",
+      "line_number": 41,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\autovedtak\\satsendring\\SatsendringController.kt"
+    },
+    {
+      "endpoint_path": "/api/satsendring/kjorsatsendringForListeMedIdenter",
+      "http_method": "POST",
+      "method_name": "utførSatsendringPåListeIdenter",
+      "summary": "Trigger satsendring for a list of identities",
+      "description": "Triggers satsendring for each identity in the provided set.",
+      "line_number": 46,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\autovedtak\\satsendring\\SatsendringController.kt"
+    },
+    {
+      "endpoint_path": "/api/satsendring/henleggBehandlingerMedLangFristSenereEnn/{valideringsdato}",
+      "http_method": "POST",
+      "method_name": "henleggBehandlingerMedLangLiggetid",
+      "summary": "Henlegg behandlinger with long processing time",
+      "description": "Creates henlegg tasks for the provided behandlinger with a validation date.",
+      "line_number": 53,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\autovedtak\\satsendring\\SatsendringController.kt"
+    },
+    {
+      "endpoint_path": "/api/satsendring/saker-uten-sats",
+      "http_method": "POST",
+      "method_name": "finnSakerUtenSisteSats",
+      "summary": "Find cases without latest sats",
+      "description": "Starts an asynchronous job to find cases without the latest sats and returns a callId.",
+      "line_number": 71,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\autovedtak\\satsendring\\SatsendringController.kt"
+    },
+    {
+      "endpoint_path": "/api/overgangsstonad",
+      "http_method": "POST",
+      "method_name": "håndterVedtakOmOvergangsstønad",
+      "summary": "Håndterer vedtak om overgangsstønad",
+      "description": "Oppretter en task for å håndtere vedtak om overgangsstønad for en gitt personident.",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\autovedtak\\småbarnstillegg\\VedtakOmOvergangsstønadController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger",
+      "http_method": "POST",
+      "method_name": "opprettBehandling",
+      "summary": "Opprett behandling",
+      "description": "Oppretter en ny behandling basert på NyBehandling-objektet. Validerer tilgang til personer og handling, oppretter behandling via StegService, validerer tilgang til behandlingen og returnerer RestUtvidetBehandling.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\BehandlingController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger",
+      "http_method": "PUT",
+      "method_name": "opprettEllerOppdaterBehandlingFraHendelse",
+      "summary": "Opprett eller oppdater behandling fra hendelse",
+      "description": "Oppretter en task for behandling av fødselshendelse basert på NyBehandlingHendelse. Validerer systemtilgang og lagrer tasken.",
+      "line_number": 42,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\BehandlingController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger/{behandlingId}/behandlingstema",
+      "http_method": "PUT",
+      "method_name": "endreBehandlingstema",
+      "summary": "Endre behandlingstema",
+      "description": "Endrer behandlingstema (kategori og underkategori) for en gitt behandling. Validerer tilgang og redigeringsrettigheter, oppdaterer behandlingstema og returnerer oppdatert RestUtvidetBehandling.",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\BehandlingController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger/{behandlingId}/personer-med-ugyldig-etterbetalingsperiode",
+      "http_method": "GET",
+      "method_name": "hentPersonerMedUgyldigEtterbetalingsperiode",
+      "summary": "Hent personer med ugyldig etterbetalingsperiode",
+      "description": "Henter en liste over personer (aktører) som har ugyldig etterbetalingsperiode for en gitt behandling. Validerer tilgang og returnerer listen over fødselsnumre.",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\BehandlingController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger/{behandlingId}/steg/registrer-søknad",
+      "http_method": "POST",
+      "method_name": "registrereSøknadOgHentPersongrunnlag",
+      "summary": "Registrer søknad og hent persongrunnlag",
+      "description": "Registrerer en søknad for en behandling og returnerer den utvidede behandlingen.",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\BehandlingStegController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger/{behandlingId}/steg/vilkårsvurdering",
+      "http_method": "POST",
+      "method_name": "validerVilkårsvurdering",
+      "summary": "Valider vilkårsvurdering",
+      "description": "Validerer vilkårsvurderingen for en behandling og returnerer den utvidede behandlingen.",
+      "line_number": 32,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\BehandlingStegController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger/{behandlingId}/steg/behandlingsresultat/valider",
+      "http_method": "GET",
+      "method_name": "validerBehandlingsresultat",
+      "summary": "Valider behandlingsresultat",
+      "description": "Validerer behandlingsresultatet for en behandling og returnerer en boolean.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\BehandlingStegController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger/{behandlingId}/steg/behandlingsresultat",
+      "http_method": "POST",
+      "method_name": "utledBehandlingsresultat",
+      "summary": "Utled behandlingsresultat",
+      "description": "Utleder behandlingsresultatet for en behandling og returnerer den utvidede behandlingen.",
+      "line_number": 63,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\BehandlingStegController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger/{behandlingId}/steg/tilbakekreving",
+      "http_method": "POST",
+      "method_name": "lagreTilbakekrevingOgGåVidereTilNesteSteg",
+      "summary": "Lagre tilbakekreving og gå videre til neste steg",
+      "description": "Lagrer tilbakekrevingsinformasjon og går videre til neste steg i behandlingen.",
+      "line_number": 75,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\BehandlingStegController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger/{behandlingId}/steg/send-til-beslutter",
+      "http_method": "POST",
+      "method_name": "sendTilBeslutter",
+      "summary": "Send til beslutter",
+      "description": "Sender behandlingen til beslutter for godkjenning.",
+      "line_number": 89,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\BehandlingStegController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger/{behandlingId}/steg/iverksett-vedtak",
+      "http_method": "POST",
+      "method_name": "iverksettVedtak",
+      "summary": "Iverksett vedtak",
+      "description": "Iverksetter vedtaket for en behandling.",
+      "line_number": 104,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\BehandlingStegController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger/{behandlingId}/steg/henlegg",
+      "http_method": "PUT",
+      "method_name": "henleggBehandlingOgSendBrev",
+      "summary": "Henlegg behandling og send brev",
+      "description": "Henlegger behandlingen og sender brev.",
+      "line_number": 119,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\BehandlingStegController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger/{behandlingId}/steg/registrer-institusjon-og-verge",
+      "http_method": "POST",
+      "method_name": "registerInstitusjonOgVerge",
+      "summary": "Registrer institusjon og verge",
+      "description": "Registrerer institusjon og verge for en behandling.",
+      "line_number": 154,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\BehandlingStegController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger/{behandlingId}",
+      "http_method": "GET",
+      "method_name": "hentUtvidetBehandling",
+      "summary": "Hent utvidet behandling",
+      "description": "Henter utvidet behandling for en gitt behandlingId. Validerer tilgang til behandling og sjekker at bruker har minimum VEILEDER rolle.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\UtvidetBehandlingController.kt"
+    },
+    {
+      "endpoint_path": "/api/sett-på-vent/{behandlingId}",
+      "http_method": "POST",
+      "method_name": "settBehandlingPåVent",
+      "summary": "Setter en behandling på vent",
+      "description": "Setter en behandling på vent med angitt frist og årsak. Validerer tilgang til behandlingen og sjekker at saksbehandler har minimum rollen SAKSBEHANDLER.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\settpåvent\\SettPåVentController.kt"
+    },
+    {
+      "endpoint_path": "/api/sett-på-vent/{behandlingId}",
+      "http_method": "PUT",
+      "method_name": "oppdaterSettBehandlingPåVent",
+      "summary": "Oppdaterer ventestatus på en behandling",
+      "description": "Oppdaterer frist og årsak for en behandling som allerede er satt på vent. Validerer tilgang til behandlingen og sjekker at saksbehandler har minimum rollen SAKSBEHANDLER.",
+      "line_number": 28,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\settpåvent\\SettPåVentController.kt"
+    },
+    {
+      "endpoint_path": "/api/sett-på-vent/{behandlingId}/fortsettbehandling",
+      "http_method": "PUT",
+      "method_name": "gjenopptaBehandling",
+      "summary": "Gjenopptar en behandling som er satt på vent",
+      "description": "Gjenopptar behandlingen slik at den kan fortsette saksbehandlingen. Validerer tilgang til behandlingen og sjekker at saksbehandler har minimum rollen SAKSBEHANDLER.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\behandling\\settpåvent\\SettPåVentController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger/{behandlingId}/endringstidspunkt",
+      "http_method": "GET",
+      "method_name": "hentEndringstidspunkt",
+      "summary": "Hent endringstidspunkt for behandling",
+      "description": "Returnerer overstyrt endringstidspunkt hvis satt, ellers utledet endringstidspunkt for behandlingen.",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\beregning\\endringstidspunkt\\EndringstidspunktController.kt"
+    },
+    {
+      "endpoint_path": "/api/dokument/vedtaksbrev/{vedtakId}",
+      "http_method": "POST",
+      "method_name": "genererVedtaksbrev",
+      "summary": "Generer vedtaksbrev",
+      "description": "Genererer vedtaksbrev for et gitt vedtak og lagrer det på vedtaket.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\brev\\DokumentController.kt"
+    },
+    {
+      "endpoint_path": "/api/dokument/vedtaksbrev/{vedtakId}",
+      "http_method": "GET",
+      "method_name": "hentVedtaksbrev",
+      "summary": "Hent vedtaksbrev",
+      "description": "Henter vedtaksbrev for et gitt vedtak.",
+      "line_number": 39,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\brev\\DokumentController.kt"
+    },
+    {
+      "endpoint_path": "/api/dokument/forhaandsvis-brev/{behandlingId}",
+      "http_method": "POST",
+      "method_name": "hentForhåndsvisning",
+      "summary": "Hent forhåndsvisning av brev",
+      "description": "Henter forhåndsvisning av et manuelt brev for en behandling.",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\brev\\DokumentController.kt"
+    },
+    {
+      "endpoint_path": "/api/dokument/send-brev/{behandlingId}",
+      "http_method": "POST",
+      "method_name": "sendBrev",
+      "summary": "Send brev",
+      "description": "Sender et manuelt brev for en behandling og returnerer oppdatert behandling.",
+      "line_number": 75,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\brev\\DokumentController.kt"
+    },
+    {
+      "endpoint_path": "/api/dokument/fagsak/{fagsakId}/forhaandsvis-brev",
+      "http_method": "POST",
+      "method_name": "hentForhåndsvisningPåFagsak",
+      "summary": "Hent forhåndsvisning av brev på fagsak",
+      "description": "Henter forhåndsvisning av et manuelt brev for en fagsak.",
+      "line_number": 101,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\brev\\DokumentController.kt"
+    },
+    {
+      "endpoint_path": "/api/dokument/fagsak/{fagsakId}/send-brev",
+      "http_method": "POST",
+      "method_name": "sendBrevPåFagsak",
+      "summary": "Send brev på fagsak",
+      "description": "Sender et manuelt brev for en fagsak og returnerer minimal fagsak.",
+      "line_number": 119,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\brev\\DokumentController.kt"
+    },
+    {
+      "endpoint_path": "/api/brevmottaker/{behandlingId}",
+      "http_method": "POST",
+      "method_name": "leggTilBrevmottaker",
+      "summary": "Legg til brevmottaker",
+      "description": "Legger til en brevmottaker for en gitt behandling. Validerer tilgang og at behandlingen kan redigeres, og returnerer oppdatert utvidet behandling.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\brev\\mottaker\\BrevmottakerController.kt"
+    },
+    {
+      "endpoint_path": "/api/brevmottaker/{behandlingId}/{mottakerId}",
+      "http_method": "DELETE",
+      "method_name": "fjernBrevmottaker",
+      "summary": "Fjern brevmottaker",
+      "description": "Fjerner en brevmottaker med gitt mottakerId fra en behandling. Validerer tilgang og at behandlingen kan redigeres, og returnerer oppdatert utvidet behandling.",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\brev\\mottaker\\BrevmottakerController.kt"
+    },
+    {
+      "endpoint_path": "/api/brevmottaker/{behandlingId}",
+      "http_method": "GET",
+      "method_name": "hentBrevmottakere",
+      "summary": "Hent brevmottakere",
+      "description": "Henter alle brevmottakere for en gitt behandling. Validerer tilgang og returnerer listen av brevmottakere.",
+      "line_number": 39,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\brev\\mottaker\\BrevmottakerController.kt"
+    },
+    {
+      "endpoint_path": "/api/endretutbetalingandel/{behandlingId}/{endretUtbetalingAndelId}",
+      "http_method": "PUT",
+      "method_name": "oppdaterEndretUtbetalingAndelOgOppdaterTilkjentYtelse",
+      "summary": "Oppdater endret utbetaling andel og oppdater tilkjent ytelse",
+      "description": "Oppdaterer en endret utbetaling andel og oppdaterer tilkjent ytelse for behandlingen.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\endretutbetaling\\EndretUtbetalingAndelController.kt"
+    },
+    {
+      "endpoint_path": "/api/endretutbetalingandel/{behandlingId}/{endretUtbetalingAndelId}",
+      "http_method": "DELETE",
+      "method_name": "fjernEndretUtbetalingAndelOgOppdaterTilkjentYtelse",
+      "summary": "Fjern endret utbetaling andel og oppdater tilkjent ytelse",
+      "description": "Fjerner en endret utbetaling andel og oppdaterer tilkjent ytelse for behandlingen.",
+      "line_number": 50,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\endretutbetaling\\EndretUtbetalingAndelController.kt"
+    },
+    {
+      "endpoint_path": "/api/endretutbetalingandel/{behandlingId}",
+      "http_method": "POST",
+      "method_name": "lagreEndretUtbetalingAndelOgOppdaterTilkjentYtelse",
+      "summary": "Lagre endret utbetaling andel og oppdater tilkjent ytelse",
+      "description": "Oppretter en ny tom endret utbetaling andel og oppdaterer tilkjent ytelse for behandlingen.",
+      "line_number": 76,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\endretutbetaling\\EndretUtbetalingAndelController.kt"
+    },
+    {
+      "endpoint_path": "/api/endretutbetalingandel/{behandlingId}/tilbakestill",
+      "http_method": "POST",
+      "method_name": "tilbakestillBehandlingTilBehandlingsresultat",
+      "summary": "Tilbakestill behandling til behandlingsresultat",
+      "description": "Tilbakestiller behandlingen til behandlingsresultat-steget.",
+      "line_number": 98,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\endretutbetaling\\EndretUtbetalingAndelController.kt"
+    },
+    {
+      "endpoint_path": "/api/kompetanse/{behandlingId}",
+      "http_method": "PUT",
+      "method_name": "oppdaterKompetanse",
+      "summary": "Oppdaterer kompetanse for en behandling",
+      "description": "Oppdaterer kompetanse for en behandling. Krever saksbehandlerrolle og at behandlingen kan redigeres.",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\eøs\\kompetanse\\KompetanseController.kt"
+    },
+    {
+      "endpoint_path": "/api/kompetanse/{behandlingId}/{kompetanseId}",
+      "http_method": "DELETE",
+      "method_name": "slettKompetanse",
+      "summary": "Sletter kompetanse for en behandling",
+      "description": "Sletter kompetanse for en behandling. Krever saksbehandlerrolle og at behandlingen kan redigeres.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\eøs\\kompetanse\\KompetanseController.kt"
+    },
+    {
+      "endpoint_path": "/api/differanseberegning/utenlandskperidebeløp/{behandlingId}",
+      "http_method": "PUT",
+      "method_name": "oppdaterUtenlandskPeriodebeløp",
+      "summary": "Oppdaterer utenlandsk periodebeløp",
+      "description": "Oppdaterer utenlandsk periodebeløp for en gitt behandling. Validerer tilgang, henter barn aktører, og oppdaterer periodebeløpet.",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\eøs\\utenlandskperiodebeløp\\UtenlandskPeriodebeløpController.kt"
+    },
+    {
+      "endpoint_path": "/api/differanseberegning/utenlandskperidebeløp/{behandlingId}/{utenlandskPeriodebeløpId}",
+      "http_method": "DELETE",
+      "method_name": "slettUtenlandskPeriodebeløp",
+      "summary": "Sletter utenlandsk periodebeløp",
+      "description": "Sletter et utenlandsk periodebeløp for en gitt behandling. Validerer tilgang og sletter periodebeløpet.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\eøs\\utenlandskperiodebeløp\\UtenlandskPeriodebeløpController.kt"
+    },
+    {
+      "endpoint_path": "/api/differanseberegning/valutakurs/{behandlingId}",
+      "http_method": "PUT",
+      "method_name": "oppdaterValutakurs",
+      "summary": "Oppdaterer valutakurs for en behandling",
+      "description": "Oppdaterer valutakurs for en gitt behandling. Henter valutakurs fra ECB hvis ikke manuelt satt.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\eøs\\valutakurs\\ValutakursController.kt"
+    },
+    {
+      "endpoint_path": "/api/differanseberegning/valutakurs/{behandlingId}/{valutakursId}",
+      "http_method": "DELETE",
+      "method_name": "slettValutakurs",
+      "summary": "Sletter valutakurs for en behandling",
+      "description": "Sletter en valutakurs med gitt valutakursId for en behandling.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\eøs\\valutakurs\\ValutakursController.kt"
+    },
+    {
+      "endpoint_path": "/api/tidslinjer/{behandlingId}",
+      "http_method": "GET",
+      "method_name": "hentTidslinjer",
+      "summary": "Hent tidslinjer",
+      "description": "Henter tidslinjer for en gitt behandling. Validerer tilgang til behandlingen og krever minimumsrollen VEILEDER.",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\eøs\\vilkårsvurdering\\rest\\TidslinjeController.kt"
+    },
+    {
+      "endpoint_path": "/api/fagsaker",
+      "http_method": "POST",
+      "method_name": "hentEllerOpprettFagsak",
+      "summary": "Henter eller oppretter fagsak",
+      "description": "Henter eller oppretter en fagsak basert på FagsakRequest. Validerer tilgang til person og saksbehandlerrolle før opprettelse.",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\fagsak\\FagsakController.kt"
+    },
+    {
+      "endpoint_path": "/api/fagsaker/{fagsakId}",
+      "http_method": "GET",
+      "method_name": "hentRestFagsak",
+      "summary": "Henter fagsak",
+      "description": "Henter en fagsak med gitt fagsakId. Validerer tilgang til fagsaken.",
+      "line_number": 28,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\fagsak\\FagsakController.kt"
+    },
+    {
+      "endpoint_path": "/api/fagsaker/minimal/{fagsakId}",
+      "http_method": "GET",
+      "method_name": "hentMinimalFagsak",
+      "summary": "Henter minimal fagsak",
+      "description": "Henter en minimal fagsak med gitt fagsakId. Validerer tilgang til fagsaken.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\fagsak\\FagsakController.kt"
+    },
+    {
+      "endpoint_path": "/api/fagsaker/hent-fagsak-paa-person",
+      "http_method": "POST",
+      "method_name": "hentMinimalFagsakForPerson",
+      "summary": "Henter minimal fagsak for person",
+      "description": "Henter minimal fagsak for en person basert på personIdent og fagsakType. Validerer tilgang til personen.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\fagsak\\FagsakController.kt"
+    },
+    {
+      "endpoint_path": "/api/fagsaker/hent-fagsaker-paa-person",
+      "http_method": "POST",
+      "method_name": "hentMinimalFagsakerForPerson",
+      "summary": "Henter minimal fagsaker for person",
+      "description": "Henter minimal fagsaker for en person basert på personIdent og fagsakTyper. Validerer tilgang til personen.",
+      "line_number": 58,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\fagsak\\FagsakController.kt"
+    },
+    {
+      "endpoint_path": "/api/fagsaker/sok",
+      "http_method": "POST",
+      "method_name": "søkFagsak",
+      "summary": "Søker fagsak",
+      "description": "Søker etter fagsaker basert på personIdent og returnerer fagsakdeltagere.",
+      "line_number": 73,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\fagsak\\FagsakController.kt"
+    },
+    {
+      "endpoint_path": "/api/fagsaker/sok/fagsaker-hvor-person-er-deltaker",
+      "http_method": "POST",
+      "method_name": "søkFagsakerHvorPersonErSøkerEllerMottarOrdinærBarnetrygd",
+      "summary": "Søker fagsaker hvor person er søker eller mottar ordinær barnetrygd",
+      "description": "Finner alle fagsaker hvor personen er søker eller mottar løpende ordinær barnetrygd. Validerer tilgang til personen.",
+      "line_number": 82,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\fagsak\\FagsakController.kt"
+    },
+    {
+      "endpoint_path": "/api/fagsaker/sok/fagsaker-hvor-person-mottar-lopende-ytelse",
+      "http_method": "POST",
+      "method_name": "søkFagsakerHvorPersonMottarLøpendeYtelse",
+      "summary": "Søker fagsaker hvor person mottar løpende ytelse",
+      "description": "Finner alle fagsaker hvor personen mottar løpende utvidet eller ordinær barnetrygd. Validerer tilgang til personen.",
+      "line_number": 100,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\fagsak\\FagsakController.kt"
+    },
+    {
+      "endpoint_path": "/api/fagsaker/sok/fagsakdeltagere",
+      "http_method": "POST",
+      "method_name": "oppgiFagsakdeltagere",
+      "summary": "Oppgir fagsakdeltagere",
+      "description": "Henter fagsakdeltagere for en person og deres barn. Håndterer feil og returnerer passende HTTP-status.",
+      "line_number": 123,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\fagsak\\FagsakController.kt"
+    },
+    {
+      "endpoint_path": "/api/fagsaker/{fagsakId}/har-apen-tilbakekreving",
+      "http_method": "GET",
+      "method_name": "harÅpenTilbakekreving",
+      "summary": "Sjekker om fagsak har åpen tilbakekreving",
+      "description": "Returnerer en boolean som indikerer om søker har åpen tilbakekrevingsbehandling for gitt fagsakId.",
+      "line_number": 150,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\fagsak\\FagsakController.kt"
+    },
+    {
+      "endpoint_path": "/api/fagsaker/{fagsakId}/opprett-tilbakekreving",
+      "http_method": "GET",
+      "method_name": "opprettTilbakekrevingsbehandling",
+      "summary": "Oppretter tilbakekrevingsbehandling",
+      "description": "Oppretter en manuell tilbakekrevingsbehandling for gitt fagsakId. Krever saksbehandlerrolle.",
+      "line_number": 157,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\fagsak\\FagsakController.kt"
+    },
+    {
+      "endpoint_path": "/api/person",
+      "http_method": "GET",
+      "method_name": "hentPerson",
+      "summary": "Hent person",
+      "description": "Henter personinformasjon med relasjoner og registerinformasjon basert på personIdent header. Returnerer maskert informasjon hvis manglende tilgang.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\grunnlag\\personopplysninger\\PersonController.kt"
+    },
+    {
+      "endpoint_path": "/api/person/enkel",
+      "http_method": "GET",
+      "method_name": "hentPersonEnkel",
+      "summary": "Hent enkel person",
+      "description": "Henter enkel personinformasjon basert på personIdent header. Returnerer maskert informasjon hvis manglende tilgang.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\grunnlag\\personopplysninger\\PersonController.kt"
+    },
+    {
+      "endpoint_path": "/api/person/adresse",
+      "http_method": "GET",
+      "method_name": "hentPersonAdresse",
+      "summary": "Hent personadresse",
+      "description": "Henter personinformasjon med navn og adresse basert på personIdent header. Returnerer maskert informasjon hvis manglende tilgang.",
+      "line_number": 42,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\grunnlag\\personopplysninger\\PersonController.kt"
+    },
+    {
+      "endpoint_path": "/api/person/oppdater-registeropplysninger/{behandlingId}",
+      "http_method": "GET",
+      "method_name": "hentOgOppdaterRegisteropplysninger",
+      "summary": "Oppdater registeropplysninger",
+      "description": "Oppdaterer registeropplysninger for en gitt behandling og returnerer utvidet behandling.",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\grunnlag\\personopplysninger\\PersonController.kt"
+    },
+    {
+      "endpoint_path": "/api/person/registrer-manuell-dodsfall/{behandlingId}",
+      "http_method": "POST",
+      "method_name": "registrerManuellDødsfallPåPerson",
+      "summary": "Registrer manuell dødsfall",
+      "description": "Registrerer manuell dødsfall på en person i en behandling og returnerer utvidet behandling.",
+      "line_number": 65,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\grunnlag\\personopplysninger\\PersonController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger/{behandlingId}/legg-til-barn",
+      "http_method": "POST",
+      "method_name": "leggTilBarnIPersonopplysningsgrunnlag",
+      "summary": "Legg til barn i personopplysningsgrunnlag",
+      "description": "Legger til et barn i personopplysningsgrunnlaget for en behandling, initierer og setter behandlingen til vilkårsvurdering, og returnerer den oppdaterte utvidede behandlingen.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\grunnlag\\søknad\\GrunnlagController.kt"
+    },
+    {
+      "endpoint_path": "/api/samhandler/orgnr/{orgnr}",
+      "http_method": "GET",
+      "method_name": "hentSamhandlerDataForOrganisasjon",
+      "summary": "Hent samhandlerdata for organisasjon",
+      "description": "Henter samhandlerinformasjon basert på organisasjonsnummer. Returnerer 404 dersom institusjonen ikke finnes.",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\institusjon\\SamhandlerController.kt"
+    },
+    {
+      "endpoint_path": "/api/samhandler/navn",
+      "http_method": "POST",
+      "method_name": "søkSamhandlerinfoFraNavn",
+      "summary": "Søk samhandlerinfo fra navn",
+      "description": "Søker etter samhandlere basert på navn, postnummer eller område. Krever at minst ett av feltene er oppgitt.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\institusjon\\SamhandlerController.kt"
+    },
+    {
+      "endpoint_path": "/api/fagsaker/{fagsakId}/opprett-klagebehandling",
+      "http_method": "POST",
+      "method_name": "opprettKlage",
+      "summary": "Opprett klagebehandling",
+      "description": "Oppretter en klagebehandling for en gitt fagsak. Validerer tilgang til handlingen og fagsaken før klagen opprettes.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\klage\\KlageController.kt"
+    },
+    {
+      "endpoint_path": "/api/fagsaker/{fagsakId}/hent-klagebehandlinger",
+      "http_method": "GET",
+      "method_name": "hentKlagebehandlinger",
+      "summary": "Hent klagebehandlinger på fagsak",
+      "description": "Henter alle klagebehandlinger knyttet til en gitt fagsak. Validerer tilgang til fagsaken før henting.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\klage\\KlageController.kt"
+    },
+    {
+      "endpoint_path": "/api/korrigertetterbetaling/behandling/{behandlingId}",
+      "http_method": "POST",
+      "method_name": "opprettKorrigertEtterbetalingPåBehandling",
+      "summary": "Opprett korrigert etterbetaling på behandling",
+      "description": "Oppretter en korrigert etterbetaling for en gitt behandling. Krever saksbehandlerrolle og at behandlingen kan redigeres.",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\korrigertetterbetaling\\KorrigertEtterbetalingController.kt"
+    },
+    {
+      "endpoint_path": "/api/korrigertetterbetaling/behandling/{behandlingId}",
+      "http_method": "GET",
+      "method_name": "hentAlleKorrigerteEtterbetalingPåBehandling",
+      "summary": "Hent alle korrigerte etterbetalinger på behandling",
+      "description": "Henter alle korrigerte etterbetalinger for en gitt behandling. Krever veilederrolle.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\korrigertetterbetaling\\KorrigertEtterbetalingController.kt"
+    },
+    {
+      "endpoint_path": "/api/korrigertetterbetaling/behandling/{behandlingId}",
+      "http_method": "PATCH",
+      "method_name": "settKorrigertEtterbetalingTilInaktivPåBehandling",
+      "summary": "Sett korrigert etterbetaling til inaktiv på behandling",
+      "description": "Setter den aktive korrigerte etterbetalingen på en behandling til inaktiv. Krever saksbehandlerrolle og at behandlingen kan redigeres.",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\korrigertetterbetaling\\KorrigertEtterbetalingController.kt"
+    },
+    {
+      "endpoint_path": "/api/korrigertvedtak/behandling/{behandlingId}",
+      "http_method": "POST",
+      "method_name": "opprettKorrigertVedtakPåBehandling",
+      "summary": "Opprett korrigert vedtak på behandling",
+      "description": "Oppretter et korrigert vedtak på en behandling. Validerer tilgang til behandlingen og sjekker at brukeren har minimum saksbehandlerrolle. Henter behandlingen, validerer at den kan redigeres, oppretter og lagrer det korrigerte vedtaket, og returnerer den oppdaterte utvidede behandlingen.",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\korrigertvedtak\\KorrigertVedtakController.kt"
+    },
+    {
+      "endpoint_path": "/api/korrigertvedtak/behandling/{behandlingId}",
+      "http_method": "PATCH",
+      "method_name": "settKorrigertVedtakTilInaktivPåBehandling",
+      "summary": "Sett korrigert vedtak til inaktiv på behandling",
+      "description": "Setter det aktive korrigerte vedtaket på en behandling til inaktivt. Validerer tilgang til behandlingen og sjekker at brukeren har minimum saksbehandlerrolle. Henter behandlingen, validerer at den kan redigeres, setter det korrigerte vedtaket til inaktivt, og returnerer den oppdaterte utvidede behandlingen.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\korrigertvedtak\\KorrigertVedtakController.kt"
+    },
+    {
+      "endpoint_path": "/api/logg/{behandlingId}",
+      "http_method": "GET",
+      "method_name": "hentLoggForBehandling",
+      "summary": "Hent logg for behandling",
+      "description": "Henter logg for en gitt behandling. Validerer tilgang til behandlingen først.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\logg\\LoggController.kt"
+    },
+    {
+      "endpoint_path": "/api/ident",
+      "http_method": "POST",
+      "method_name": "håndterPdlHendelse",
+      "summary": "Handle new identity event",
+      "description": "Receives a PersonIdent and creates a task for handling the new identity event.",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\personident\\IdentController.kt"
+    },
+    {
+      "endpoint_path": "/api/behandlinger/{behandlingId}/simulering",
+      "http_method": "GET",
+      "method_name": "hentSimulering",
+      "summary": "Hent simulering for behandling",
+      "description": "Henter simulering for en gitt behandling. Validerer tilgang, oppdaterer simulering ved behov, og returnerer RestSimulering.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\simulering\\SimuleringController.kt"
+    },
+    {
+      "endpoint_path": "/api/småbarnstilleggkorrigering/behandling/{behandlingId}",
+      "http_method": "POST",
+      "method_name": "leggTilSmåBarnstilleggPåBehandling",
+      "summary": "Legger til småbarnstillegg på behandling",
+      "description": "Legger til småbarnstillegg for en gitt måned på en behandling. Krever saksbehandlerrolle og at behandlingen kan redigeres.",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\småbarnstilleggkorrigering\\SmåbarnstilleggKorrigeringController.kt"
+    },
+    {
+      "endpoint_path": "/api/småbarnstilleggkorrigering/behandling/{behandlingId}",
+      "http_method": "DELETE",
+      "method_name": "fjernSmåbarnstilleggFraMåned",
+      "summary": "Fjerner småbarnstillegg fra måned",
+      "description": "Fjerner småbarnstillegg for en gitt måned fra en behandling. Krever saksbehandlerrolle og at behandlingen kan redigeres.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\småbarnstilleggkorrigering\\SmåbarnstilleggKorrigeringController.kt"
+    },
+    {
+      "endpoint_path": "/api/tilbakekreving/{behandlingId}/forhandsvis-varselbrev",
+      "http_method": "POST",
+      "method_name": "hentForhåndsvisningVarselbrev",
+      "summary": "Hent forhåndsvisning av varselbrev for tilbakekreving",
+      "description": "Henter en forhåndsvisning av varselbrevet for tilbakekreving for en gitt behandling. Krever at saksbehandler har tilgang til behandlingen og minimum rollen VEILEDER.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\tilbakekreving\\TilbakekrevingController.kt"
+    },
+    {
+      "endpoint_path": "/api/feilutbetalt-valuta/behandling/{behandlingId}",
+      "http_method": "POST",
+      "method_name": "leggTilFeilutbetaltValutaPeriode",
+      "summary": "Legg til periode med feilutbetalt valuta",
+      "description": "Legger til en ny periode med feilutbetalt valuta for en gitt behandling. Krever saksbehandlerrolle og validerer tilgang til behandlingen.",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vedtak\\feilutbetaltValuta\\FeilutbetaltValutaController.kt"
+    },
+    {
+      "endpoint_path": "/api/feilutbetalt-valuta/behandling/{behandlingId}/periode/{id}",
+      "http_method": "PUT",
+      "method_name": "oppdaterFeilutbetaltValutaPeriode",
+      "summary": "Oppdater periode med feilutbetalt valuta",
+      "description": "Oppdaterer en eksisterende periode med feilutbetalt valuta for en gitt behandling. Krever saksbehandlerrolle og validerer tilgang til behandlingen.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vedtak\\feilutbetaltValuta\\FeilutbetaltValutaController.kt"
+    },
+    {
+      "endpoint_path": "/api/feilutbetalt-valuta/behandling/{behandlingId}/periode/{id}",
+      "http_method": "DELETE",
+      "method_name": "fjernFeilutbetaltValutaPeriode",
+      "summary": "Fjern periode med feilutbetalt valuta",
+      "description": "Fjerner en periode med feilutbetalt valuta for en gitt behandling. Krever saksbehandlerrolle og validerer tilgang til behandlingen.",
+      "line_number": 54,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vedtak\\feilutbetaltValuta\\FeilutbetaltValutaController.kt"
+    },
+    {
+      "endpoint_path": "/api/feilutbetalt-valuta/behandling/{behandlingId}",
+      "http_method": "GET",
+      "method_name": "hentFeilutbetaltValutaPerioder",
+      "summary": "Hent feilutbetalt valuta perioder",
+      "description": "Henter alle perioder med feilutbetalt valuta for en gitt behandling. Krever veilederrolle og validerer tilgang til behandlingen.",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vedtak\\feilutbetaltValuta\\FeilutbetaltValutaController.kt"
+    },
+    {
+      "endpoint_path": "/api/refusjon-eøs/behandlinger/{behandlingId}",
+      "http_method": "POST",
+      "method_name": "leggTilRefusjonEøsPeriode",
+      "summary": "Legg til periode med refusjon EØS",
+      "description": "Legger til en ny periode med refusjon EØS for en gitt behandling. Krever SAKSBEHANDLER rolle og at behandlingen kan redigeres.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vedtak\\refusjonEøs\\RefusjonEøsController.kt"
+    },
+    {
+      "endpoint_path": "/api/refusjon-eøs/behandlinger/{behandlingId}/perioder/{id}",
+      "http_method": "PUT",
+      "method_name": "oppdaterRefusjonEøsPeriode",
+      "summary": "Oppdater periode med refusjon EØS",
+      "description": "Oppdaterer en eksisterende periode med refusjon EØS for en gitt behandling. Krever SAKSBEHANDLER rolle og at behandlingen kan redigeres.",
+      "line_number": 32,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vedtak\\refusjonEøs\\RefusjonEøsController.kt"
+    },
+    {
+      "endpoint_path": "/api/refusjon-eøs/behandlinger/{behandlingId}/perioder/{id}",
+      "http_method": "DELETE",
+      "method_name": "fjernRefusjonEøsPeriode",
+      "summary": "Fjern periode med refusjon EØS",
+      "description": "Fjerner en periode med refusjon EØS for en gitt behandling. Krever SAKSBEHANDLER rolle og at behandlingen kan redigeres.",
+      "line_number": 50,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vedtak\\refusjonEøs\\RefusjonEøsController.kt"
+    },
+    {
+      "endpoint_path": "/api/refusjon-eøs/behandlinger/{behandlingId}",
+      "http_method": "GET",
+      "method_name": "hentRefusjonEøsPerioder",
+      "summary": "Hent refusjon EØS perioder",
+      "description": "Henter alle perioder med refusjon EØS for en gitt behandling. Krever VEILEDER rolle.",
+      "line_number": 65,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vedtak\\refusjonEøs\\RefusjonEøsController.kt"
+    },
+    {
+      "endpoint_path": "/api/vedtaksperioder/standardbegrunnelser/{vedtaksperiodeId}",
+      "http_method": "PUT",
+      "method_name": "oppdaterVedtaksperiodeStandardbegrunnelser",
+      "summary": "Oppdaterer standardbegrunnelser for en vedtaksperiode",
+      "description": "Oppdaterer standardbegrunnelser for en vedtaksperiode basert på vedtaksperiodeId og RestPutVedtaksperiodeMedStandardbegrunnelser. Returnerer en liste over oppdaterte vedtaksperioder med begrunnelser.",
+      "line_number": 23,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vedtak\\vedtaksperiode\\VedtaksperiodeMedBegrunnelserController.kt"
+    },
+    {
+      "endpoint_path": "/api/vedtaksperioder/fritekster/{vedtaksperiodeId}",
+      "http_method": "PUT",
+      "method_name": "oppdaterVedtaksperiodeMedFritekster",
+      "summary": "Oppdaterer fritekster for en vedtaksperiode",
+      "description": "Oppdaterer fritekster for en vedtaksperiode basert på vedtaksperiodeId og RestPutVedtaksperiodeMedFritekster. Returnerer en liste over oppdaterte vedtaksperioder med begrunnelser.",
+      "line_number": 53,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vedtak\\vedtaksperiode\\VedtaksperiodeMedBegrunnelserController.kt"
+    },
+    {
+      "endpoint_path": "/api/vedtaksperioder/endringstidspunkt",
+      "http_method": "PUT",
+      "method_name": "genererVedtaksperioderTilOgMedFørsteEndringstidspunkt",
+      "summary": "Genererer vedtaksperioder til og med første endringstidspunkt",
+      "description": "Oppdaterer endringstidspunkt og genererer vedtaksperioder på nytt basert på RestGenererVedtaksperioderForOverstyrtEndringstidspunkt. Returnerer en oppdatert RestUtvidetBehandling.",
+      "line_number": 73,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vedtak\\vedtaksperiode\\VedtaksperiodeMedBegrunnelserController.kt"
+    },
+    {
+      "endpoint_path": "/api/vedtaksperioder/brevbegrunnelser/{vedtaksperiodeId}",
+      "http_method": "GET",
+      "method_name": "genererBrevBegrunnelserForPeriode",
+      "summary": "Genererer brevbegrunnelser for en periode",
+      "description": "Genererer og returnerer et sett med brevbegrunnelser for en gitt vedtaksperiodeId.",
+      "line_number": 90,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vedtak\\vedtaksperiode\\VedtaksperiodeMedBegrunnelserController.kt"
+    },
+    {
+      "endpoint_path": "/api/vedtaksperioder/behandling/{behandlingId}/hent-vedtaksperioder",
+      "http_method": "GET",
+      "method_name": "hentRestUtvidetVedtaksperiodeMedBegrunnelser",
+      "summary": "Henter vedtaksperioder med begrunnelser for en behandling",
+      "description": "Henter en liste over vedtaksperioder med begrunnelser for en gitt behandlingId.",
+      "line_number": 108,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vedtak\\vedtaksperiode\\VedtaksperiodeMedBegrunnelserController.kt"
+    },
+    {
+      "endpoint_path": "/api/vilkaarsvurdering/{behandlingId}/{vilkaarId}",
+      "http_method": "PUT",
+      "method_name": "endreVilkår",
+      "summary": "Endre vilkår",
+      "description": "Endrer et vilkår for en gitt behandling og vilkårId. Validerer tilgang, oppdaterer vilkåret, tilbakestiller behandlingssteg og returnerer oppdatert utvidet behandling.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vilkårsvurdering\\VilkårController.kt"
+    },
+    {
+      "endpoint_path": "/api/vilkaarsvurdering/{behandlingId}/annenvurdering/{annenVurderingId}",
+      "http_method": "PUT",
+      "method_name": "endreAnnenVurdering",
+      "summary": "Endre annen vurdering",
+      "description": "Endrer en annen vurdering for en gitt behandling og annenVurderingId. Validerer tilgang, oppdaterer vurderingen og returnerer oppdatert utvidet behandling.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vilkårsvurdering\\VilkårController.kt"
+    },
+    {
+      "endpoint_path": "/api/vilkaarsvurdering/{behandlingId}/{vilkaarId}",
+      "http_method": "DELETE",
+      "method_name": "slettVilkårsperiode",
+      "summary": "Slett vilkårsperiode",
+      "description": "Sletter en vilkårsperiode for en gitt behandling og vilkårId. Validerer tilgang, sletter perioden, tilbakestiller behandlingssteg og returnerer oppdatert utvidet behandling.",
+      "line_number": 56,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vilkårsvurdering\\VilkårController.kt"
+    },
+    {
+      "endpoint_path": "/api/vilkaarsvurdering/{behandlingId}/vilkaar",
+      "http_method": "DELETE",
+      "method_name": "slettVilkår",
+      "summary": "Slett vilkår",
+      "description": "Sletter et vilkår for en gitt behandling. Validerer tilgang, sletter vilkåret, tilbakestiller behandlingssteg og returnerer oppdatert utvidet behandling.",
+      "line_number": 76,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vilkårsvurdering\\VilkårController.kt"
+    },
+    {
+      "endpoint_path": "/api/vilkaarsvurdering/{behandlingId}",
+      "http_method": "POST",
+      "method_name": "nyttVilkår",
+      "summary": "Opprett nytt vilkår",
+      "description": "Oppretter et nytt vilkår for en gitt behandling. Validerer tilgang, oppretter vilkåret, tilbakestiller behandlingssteg og returnerer oppdatert utvidet behandling.",
+      "line_number": 94,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vilkårsvurdering\\VilkårController.kt"
+    },
+    {
+      "endpoint_path": "/api/vilkaarsvurdering/vilkaarsbegrunnelser",
+      "http_method": "GET",
+      "method_name": "hentTeksterForVilkårsbegrunnelser",
+      "summary": "Hent tekster for vilkårsbegrunnelser",
+      "description": "Henter tekster for vilkårsbegrunnelser gruppert etter vedtakbegrunnelsestype.",
+      "line_number": 111,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\kjerne\\vilkårsvurdering\\VilkårController.kt"
+    },
+    {
+      "endpoint_path": "/api/tilgang",
+      "http_method": "POST",
+      "method_name": "hentTilgangOgDiskresjonskode",
+      "summary": "Hent tilgang og diskresjonskode for en bruker",
+      "description": "Sjekker om saksbehandler har tilgang til personen og returnerer adressebeskyttelsesgradering.",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\sikkerhet\\TilgangController.kt"
+    },
+    {
+      "endpoint_path": "/api/internstatistikk",
+      "http_method": "GET",
+      "method_name": "hentAntallFagsakerOpprettet",
+      "summary": "Hent internstatistikk",
+      "description": "Henter intern statistikk med antall fagsaker totalt, løpende, behandlinger ikke ferdigstilt og behandlinger per årsak.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\statistikk\\internstatistikk\\InternStatistikkController.kt"
+    },
+    {
+      "endpoint_path": "/api/internstatistikk/antallSoknader",
+      "http_method": "GET",
+      "method_name": "hentSøknadsstatistikkForPeriode",
+      "summary": "Hent søknadsstatistikk for periode",
+      "description": "Henter søknadsstatistikk for en gitt periode (fom og tom). Hvis ikke angitt, brukes siste 4 måneder.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\statistikk\\internstatistikk\\InternStatistikkController.kt"
+    },
+    {
+      "endpoint_path": "/api/saksstatistikk/behandling/{behandlingId}",
+      "http_method": "GET",
+      "method_name": "hentBehandlingDvh",
+      "summary": "Hent behandling DVH",
+      "description": "Henter behandling DVH for gitt behandlingId",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\statistikk\\saksstatistikk\\SaksstatistikkController.kt"
+    },
+    {
+      "endpoint_path": "/api/saksstatistikk/sak/{fagsakId}",
+      "http_method": "GET",
+      "method_name": "hentSakDvh",
+      "summary": "Hent sak DVH",
+      "description": "Henter sak DVH for gitt fagsakId",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\statistikk\\saksstatistikk\\SaksstatistikkController.kt"
+    },
+    {
+      "endpoint_path": "/api/saksstatistikk/registrer-sendt-fra-statistikk",
+      "http_method": "POST",
+      "method_name": "registrerSendtFraStatistikk",
+      "summary": "Registrer sendt fra statistikk",
+      "description": "Oppdaterer saksstatistikk mellomlagring om at en melding har blitt sendt. Setter sendtTidspunkt slik at melding ikke blir sendt på nytt.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\statistikk\\saksstatistikk\\SaksstatistikkController.kt"
+    },
+    {
+      "endpoint_path": "/api/stonadsstatistikk/vedtakV2",
+      "http_method": "POST",
+      "method_name": "hentVedtakDvhV2",
+      "summary": "Hent vedtak DVH V2",
+      "description": "Henter stønadsstatistikk V2 for en liste av behandlinger",
+      "line_number": 19,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\statistikk\\stønadsstatistikk\\StønadsstatistikkController.kt"
+    },
+    {
+      "endpoint_path": "/api/stonadsstatistikk/send-til-dvh",
+      "http_method": "POST",
+      "method_name": "sendTilStønadsstatistikk",
+      "summary": "Send til stønadsstatistikk",
+      "description": "Sender vedtak til DVH for behandlinger som ikke allerede er sendt",
+      "line_number": 29,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\statistikk\\stønadsstatistikk\\StønadsstatistikkController.kt"
+    },
+    {
+      "endpoint_path": "/api/stonadsstatistikk/send-til-dvh-manuell",
+      "http_method": "POST",
+      "method_name": "sendTilStønadsstatistikkManuell",
+      "summary": "Send til stønadsstatistikk manuell",
+      "description": "Sender vedtak til DVH manuelt for behandlinger",
+      "line_number": 39,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\statistikk\\stønadsstatistikk\\StønadsstatistikkController.kt"
+    },
+    {
+      "endpoint_path": "/api/stonadsstatistikk/ettersend-manuell-migrering/{dryRun}",
+      "http_method": "POST",
+      "method_name": "ettersendManuellMigrereringer",
+      "summary": "Ettersend manuell migrering",
+      "description": "Ettersender stønadsstatistikk for manuelle migreringer",
+      "line_number": 48,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Familie\\familie-ba-sak\\src\\main\\kotlin\\no\\nav\\familie\\ba\\sak\\statistikk\\stønadsstatistikk\\StønadsstatistikkController.kt"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 137805,
+  "tokens": {
+    "prompt_tokens": 50674868,
+    "completion_tokens": 121715,
+    "total_tokens": 50796583,
+    "calls": 141,
+    "elapsed_s": 1376.849,
+    "prompt_cost_usd": 6.513148,
+    "completion_cost_usd": 0.082761,
+    "total_cost_usd": 6.595909,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 16413976,
+        "completion_tokens": 19854,
+        "total_tokens": 16433830,
+        "calls": 47,
+        "elapsed_s": 135.101793,
+        "prompt_cost_usd": 0.32828,
+        "completion_cost_usd": 0.011912,
+        "total_cost_usd": 0.340192
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 15869032,
+        "completion_tokens": 81943,
+        "total_tokens": 15950975,
+        "calls": 47,
+        "elapsed_s": 919.246,
+        "prompt_cost_usd": 1.586903,
+        "completion_cost_usd": 0.040972,
+        "total_cost_usd": 1.627875
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 18391860,
+        "completion_tokens": 19918,
+        "total_tokens": 18411778,
+        "calls": 47,
+        "elapsed_s": 322.501,
+        "prompt_cost_usd": 4.597965,
+        "completion_cost_usd": 0.029877,
+        "total_cost_usd": 4.627842
+      }
+    ]
+  }
+}

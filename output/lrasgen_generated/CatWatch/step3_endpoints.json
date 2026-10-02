@@ -1,0 +1,186 @@
+{
+  "task_id": "catwatch",
+  "api_name": "catwatch",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/contributors",
+      "http_method": "GET",
+      "method_name": "contributorsGet",
+      "summary": "Contributor",
+      "description": "The Contributors endpoint returns all information like name, url, commits count, projects count of all the Contributors for the selected filter.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\ContributorsApi.java"
+    },
+    {
+      "endpoint_path": "/languages",
+      "http_method": "GET",
+      "method_name": "languagesGet",
+      "summary": "Project programming language",
+      "description": "The languages endpoint returns information about the languages used for projects by selected Github Organizations order by the number of projects using the programming language.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\LanguagesApi.java"
+    },
+    {
+      "endpoint_path": "/projects",
+      "http_method": "GET",
+      "method_name": "projectsGet",
+      "summary": "Project",
+      "description": "The Projects endpoint returns all information like name,description, url, stars count, commits count, forks count, contributors count, score, languages used, last pushed of all the projects for the selected filter.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\ProjectsApi.java"
+    },
+    {
+      "endpoint_path": "/statistics",
+      "http_method": "GET",
+      "method_name": "statisticsGet",
+      "summary": "General Statistics of list of Github.com Organizations",
+      "description": "The Statistics endpoint returns snapshot of statistics over a given period of time of the organization Github account. Statistics contains information of the count of all private projects, public projects, members, teams, contributors, stars, forks, size, programming languages, tags of the list of Github.com Organizations.",
+      "line_number": 45,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\StatisticsApi.java"
+    },
+    {
+      "endpoint_path": "/statistics/projects",
+      "http_method": "GET",
+      "method_name": "statisticsProjectGet",
+      "summary": "",
+      "description": "",
+      "line_number": 76,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\StatisticsApi.java"
+    },
+    {
+      "endpoint_path": "/statistics/contributors",
+      "http_method": "GET",
+      "method_name": "statisticsContributorGet",
+      "summary": "",
+      "description": "",
+      "line_number": 110,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\StatisticsApi.java"
+    },
+    {
+      "endpoint_path": "/statistics/languages",
+      "http_method": "GET",
+      "method_name": "statisticsLanguagesGet",
+      "summary": "",
+      "description": "",
+      "line_number": 162,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\StatisticsApi.java"
+    },
+    {
+      "endpoint_path": "/config/scoring.project",
+      "http_method": "POST",
+      "method_name": "configScoringProjects",
+      "summary": "Deactivated endpoint for configuring scoring projects",
+      "description": "This endpoint was previously used to configure scoring projects but has been deactivated because it allowed execution of arbitrary JavaScript code passed in through the request body.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\admin\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/init",
+      "http_method": "GET",
+      "method_name": "init",
+      "summary": "Deactivated initialization endpoint",
+      "description": "This endpoint was previously used to initialize the database but has been deactivated because it was an unsecured writable endpoint.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\admin\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/delete",
+      "http_method": "GET",
+      "method_name": "deleteAll",
+      "summary": "Deactivated endpoint for deleting all data",
+      "description": "This endpoint was previously used to delete all data but has been deactivated because it was an unsecured writable endpoint.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\admin\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/import",
+      "http_method": "POST",
+      "method_name": "importJson",
+      "summary": "Deactivated endpoint for importing data",
+      "description": "This endpoint was previously used to import data from a JSON payload but has been deactivated because it was an unsecured writable endpoint.",
+      "line_number": 46,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\admin\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/export",
+      "http_method": "GET",
+      "method_name": "exportJson",
+      "summary": "Export all data as JSON",
+      "description": "Returns a DatabaseDto containing all contributors, projects, and statistics from the database.",
+      "line_number": 54,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\admin\\AdminController.java"
+    },
+    {
+      "endpoint_path": "/config",
+      "http_method": "GET",
+      "method_name": "config",
+      "summary": "Get public configuration properties",
+      "description": "Loads properties from /application-public.properties and returns a map of property names to their resolved values from the Spring Environment.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\config\\ConfigController.java"
+    },
+    {
+      "endpoint_path": "/fetch",
+      "http_method": "GET",
+      "method_name": "fetch",
+      "summary": "Trigger data fetch",
+      "description": "Triggers the RetryableFetcher to fetch data from GitHub and returns 'OK'.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CatWatch\\catwatch\\catwatch-backend\\src\\main\\java\\org\\zalando\\catwatch\\backend\\web\\fetch\\FetchController.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 12475,
+  "tokens": {
+    "prompt_tokens": 169784,
+    "completion_tokens": 5759,
+    "total_tokens": 175543,
+    "calls": 21,
+    "elapsed_s": 100.389,
+    "prompt_cost_usd": 0.021682,
+    "completion_cost_usd": 0.003967,
+    "total_cost_usd": 0.025649,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 55391,
+        "completion_tokens": 1117,
+        "total_tokens": 56508,
+        "calls": 7,
+        "elapsed_s": 12.464993999999999,
+        "prompt_cost_usd": 0.001108,
+        "completion_cost_usd": 0.00067,
+        "total_cost_usd": 0.001778
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 53491,
+        "completion_tokens": 3666,
+        "total_tokens": 57157,
+        "calls": 7,
+        "elapsed_s": 64.284,
+        "prompt_cost_usd": 0.005349,
+        "completion_cost_usd": 0.001833,
+        "total_cost_usd": 0.007182
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 60902,
+        "completion_tokens": 976,
+        "total_tokens": 61878,
+        "calls": 7,
+        "elapsed_s": 23.64,
+        "prompt_cost_usd": 0.015225,
+        "completion_cost_usd": 0.001464,
+        "total_cost_usd": 0.016689
+      }
+    ]
+  }
+}

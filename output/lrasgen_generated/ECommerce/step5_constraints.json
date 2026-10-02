@@ -1,0 +1,932 @@
+{
+  "task_id": "spring-ecommerce",
+  "api_name": "spring-ecommerce",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/auth/accountVerification/{token}",
+      "http_method": "GET",
+      "method_name": "verifyAccount",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\AuthController.java",
+      "parameters": [
+        {
+          "name": "token",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Verification token used to activate the user account",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "User is Enabled",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid Token",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/store/catalog/products/featured",
+      "http_method": "GET",
+      "method_name": "readFeaturedProducts",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CatalogController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of featured products (ProductDto objects where featured is true).",
+          "data_schema": [
+            {
+              "name": "List<ProductDto>",
+              "schema": {
+                "productName": "string",
+                "imageUrl": "string",
+                "sku": "string",
+                "price": "BigDecimal",
+                "description": "string",
+                "manufacturer": "string",
+                "availability": "ProductAvailability",
+                "attributeList": "List<ProductAttribute>",
+                "featured": "boolean",
+                "productRatingDtoList": "List<ProductRatingDto>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/store/catalog/categories",
+      "http_method": "GET",
+      "method_name": "readAllCategories",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CatalogController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved all categories",
+          "data_schema": [
+            {
+              "name": "List<CategoryDto>",
+              "schema": {
+                "categoryNames": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/cart/add/{sku}",
+      "http_method": "POST",
+      "method_name": "addToCart",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CartController.java",
+      "parameters": [
+        {
+          "name": "sku",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The SKU of the product to add to the cart",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Cart updated successfully. The addToCart method returns ResponseEntity with HttpStatus.OK and no body.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/auth/register",
+      "http_method": "POST",
+      "method_name": "register",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\AuthController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration details"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration details"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration details",
+          "format": "email"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration details",
+          "min_length": "8",
+          "max_length": "20"
+        },
+        {
+          "name": "confirmPassword",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User registration details"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "User Registration Completed Successfully!!",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Username already exists",
+          "data_schema": [
+            {
+              "name": "ApiResponse",
+              "schema": {
+                "status": "integer",
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/store/catalog/products/category/{categoryName}",
+      "http_method": "GET",
+      "method_name": "readProductByCategory",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CatalogController.java",
+      "parameters": [
+        {
+          "name": "categoryName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the category used to look up products",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of products belonging to the specified category. If the category does not exist, the service throws an IllegalArgumentException which is not handled by the controller, resulting in a 500 error.",
+          "data_schema": [
+            {
+              "name": "List<ProductDto>",
+              "schema": {
+                "productName": "string",
+                "imageUrl": "string",
+                "sku": "string",
+                "price": "number",
+                "description": "string",
+                "manufacturer": "string",
+                "availability": "ProductAvailability",
+                "attributeList": "List<ProductAttribute>",
+                "featured": "boolean",
+                "productRatingDtoList": "List<ProductRatingDto>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Occurs when the category name does not exist, as the service throws an IllegalArgumentException that is not caught by the controller.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/store/catalog/products",
+      "http_method": "GET",
+      "method_name": "readAllProducts",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CatalogController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved all products",
+          "data_schema": [
+            {
+              "name": "List<ProductDto>",
+              "schema": {
+                "productName": "string",
+                "imageUrl": "string",
+                "sku": "string",
+                "price": "BigDecimal",
+                "description": "string",
+                "manufacturer": "string",
+                "availability": "ProductAvailability",
+                "attributeList": "List<ProductAttribute>",
+                "featured": "boolean",
+                "productRatingDtoList": "List<ProductRatingDto>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/store/catalog/products/{sku}",
+      "http_method": "GET",
+      "method_name": "readOneProduct",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CatalogController.java",
+      "parameters": [
+        {
+          "name": "sku",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The SKU of the product to read",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Product found and returned successfully",
+          "data_schema": [
+            {
+              "name": "ProductDto",
+              "schema": {
+                "productName": "string",
+                "imageUrl": "string",
+                "sku": "string",
+                "price": "BigDecimal",
+                "description": "string",
+                "manufacturer": "string",
+                "availability": "ProductAvailability",
+                "attributeList": "List<ProductAttribute>",
+                "featured": "boolean",
+                "productRatingDtoList": "List<ProductRatingDto>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when product with the given SKU is not found. The handler delegates to ProductService.readOneProduct, which throws IllegalArgumentException when the product lookup returns empty; nothing in the handler catches it.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/auth/login",
+      "http_method": "POST",
+      "method_name": "login",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\AuthController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Login credentials containing username and password"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Login credentials containing username and password"
+        },
+        {
+          "name": "username",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The username of the user",
+          "_depth": 0
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The password of the user",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Login successful, returns authentication response with access token and username",
+          "data_schema": [
+            {
+              "name": "AuthenticationResponse",
+              "schema": {
+                "accessToken": "string",
+                "username": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request due to validation failure on request body (e.g., missing username or password)",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized due to invalid credentials",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when authentication service fails unexpectedly",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/store/catalog/{categoryName}/facets/filter",
+      "http_method": "POST",
+      "method_name": "filterForFacets",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CatalogController.java",
+      "parameters": [
+        {
+          "name": "categoryName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the category used to filter facets",
+          "_depth": 0
+        },
+        {
+          "name": "textQuery",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Search query containing text query and filters"
+        },
+        {
+          "name": "filters",
+          "type": "List",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Search query containing text query and filters"
+        },
+        {
+          "name": "key",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Search query containing text query and filters"
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Search query containing text query and filters"
+        },
+        {
+          "name": "from",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Search query containing text query and filters"
+        },
+        {
+          "name": "to",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Search query containing text query and filters"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful search with filters. Returns a ProductSearchResponseDto containing the list of products matching the search query and category, the minimum and maximum price among the results, and the facet aggregations.",
+          "data_schema": [
+            {
+              "name": "ProductSearchResponseDto",
+              "schema": {
+                "products": "array<ProductDto>",
+                "minPrice": "BigDecimal",
+                "maxPrice": "BigDecimal",
+                "facetDtos": "array<FacetDto>"
+              }
+            },
+            {
+              "name": "ProductDto",
+              "schema": {
+                "productName": "string",
+                "imageUrl": "string",
+                "sku": "string",
+                "price": "BigDecimal",
+                "description": "string",
+                "manufacturer": "string",
+                "availability": "ProductAvailability",
+                "attributeList": "array<ProductAttribute>",
+                "featured": "boolean",
+                "productRatingDtoList": "array<ProductRatingDto>"
+              }
+            },
+            {
+              "name": "ProductAvailability",
+              "schema": {
+                "availability": "string",
+                "color": "string"
+              }
+            },
+            {
+              "name": "ProductAttribute",
+              "schema": {
+                "attributeName": "string",
+                "attributeValue": "string"
+              }
+            },
+            {
+              "name": "ProductRatingDto",
+              "schema": {
+                "ratingId": "string",
+                "ratingStars": "BigDecimal",
+                "review": "string",
+                "userName": "string",
+                "sku": "string"
+              }
+            },
+            {
+              "name": "FacetDto",
+              "schema": {
+                "facetName": "string",
+                "facetValueDto": "array<FacetValueDto>"
+              }
+            },
+            {
+              "name": "FacetValueDto",
+              "schema": {
+                "facetValueName": "string",
+                "count": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when the category with the given name is not found (SpringStoreException) or when an IOException occurs during the search.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/products/ratings/edit",
+      "http_method": "PUT",
+      "method_name": "editRating",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\ProductRatingController.java",
+      "parameters": [
+        {
+          "name": "ratingId",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product rating details to edit, sent as the request body and validated with @Valid"
+        },
+        {
+          "name": "ratingStars",
+          "type": "BigDecimal",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product rating details to edit, sent as the request body and validated with @Valid"
+        },
+        {
+          "name": "review",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product rating details to edit, sent as the request body and validated with @Valid"
+        },
+        {
+          "name": "userName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product rating details to edit, sent as the request body and validated with @Valid"
+        },
+        {
+          "name": "sku",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product rating details to edit, sent as the request body and validated with @Valid"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Rating edited successfully. The endpoint returns no body on success.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when the product or Elasticsearch product is not found, or when the rating ID does not exist. The service throws SpringStoreException, which is not handled by the exception handler and results in a 500 response.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/products/ratings/delete/{ratingId}",
+      "http_method": "DELETE",
+      "method_name": "deleteRating",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\ProductRatingController.java",
+      "parameters": [
+        {
+          "name": "ratingId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the rating to delete, extracted from the URL path.",
+          "_depth": 0
+        },
+        {
+          "name": "ratingId",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The product rating data transfer object containing the SKU and other rating details."
+        },
+        {
+          "name": "ratingStars",
+          "type": "BigDecimal",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The product rating data transfer object containing the SKU and other rating details."
+        },
+        {
+          "name": "review",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The product rating data transfer object containing the SKU and other rating details."
+        },
+        {
+          "name": "userName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The product rating data transfer object containing the SKU and other rating details."
+        },
+        {
+          "name": "sku",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The product rating data transfer object containing the SKU and other rating details."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Rating deleted successfully. The handler returns void, so the response body is empty.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when no product exists with the given sku (SpringStoreException from productRepository.findBySku or productSearchRepository.findBySku).",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/products/ratings/get/{sku}",
+      "http_method": "GET",
+      "method_name": "getRating",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\ProductRatingController.java",
+      "parameters": [
+        {
+          "name": "sku",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Product SKU used to look up the product ratings",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the list of product ratings for the given SKU.",
+          "data_schema": [
+            {
+              "name": "List<ProductRatingDto>",
+              "schema": {
+                "ratingId": "string",
+                "ratingStars": "BigDecimal",
+                "review": "string",
+                "userName": "string",
+                "sku": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when no product exists with the provided SKU, as the service throws a SpringStoreException that is not handled by the controller.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/products/ratings/submit",
+      "http_method": "POST",
+      "method_name": "postRating",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\ProductRatingController.java",
+      "parameters": [
+        {
+          "name": "ratingId",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product rating details to submit"
+        },
+        {
+          "name": "ratingStars",
+          "type": "BigDecimal",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product rating details to submit"
+        },
+        {
+          "name": "review",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product rating details to submit"
+        },
+        {
+          "name": "userName",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product rating details to submit"
+        },
+        {
+          "name": "sku",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Product rating details to submit"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Rating submitted successfully. The endpoint returns no body (void).",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the request body fails validation (e.g., ratingStars outside 1-5) or when the request body is not readable.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when the product or ElasticSearch product with the given sku does not exist, or when saving fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/store/catalog/search",
+      "http_method": "POST",
+      "method_name": "search",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ECommerce\\spring-ecommerce\\src\\main\\java\\com\\techie\\shoppingstore\\controller\\CatalogController.java",
+      "parameters": [
+        {
+          "name": "textQuery",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Search query payload containing the full-text query and filters"
+        },
+        {
+          "name": "filters",
+          "type": "List",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Search query payload containing the full-text query and filters"
+        },
+        {
+          "name": "key",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Search query payload containing the full-text query and filters"
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Search query payload containing the full-text query and filters"
+        },
+        {
+          "name": "from",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Search query payload containing the full-text query and filters"
+        },
+        {
+          "name": "to",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Search query payload containing the full-text query and filters"
+        },
+        {
+          "name": "textQuery",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Full-text search query string",
+          "_depth": 0
+        },
+        {
+          "name": "filters",
+          "type": "array",
+          "require": "false",
+          "position": "body",
+          "description": "List of attribute filters applied to the search",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Search results returned successfully",
+          "data_schema": [
+            {
+              "name": "ProductSearchResponseDto",
+              "schema": {
+                "products": "List<ProductDto>",
+                "minPrice": "BigDecimal",
+                "maxPrice": "BigDecimal",
+                "facetDtos": "List<FacetDto>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when search fails",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 3006,
+  "tokens": {
+    "prompt_tokens": 4874,
+    "completion_tokens": 1348,
+    "total_tokens": 6222,
+    "calls": 6,
+    "elapsed_s": 28.421,
+    "prompt_cost_usd": 0.00062,
+    "completion_cost_usd": 0.000923,
+    "total_cost_usd": 0.001545,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 1607,
+        "completion_tokens": 259,
+        "total_tokens": 1866,
+        "calls": 2,
+        "elapsed_s": 3.0053520000000002,
+        "prompt_cost_usd": 3.2e-05,
+        "completion_cost_usd": 0.000155,
+        "total_cost_usd": 0.000188
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 1524,
+        "completion_tokens": 865,
+        "total_tokens": 2389,
+        "calls": 2,
+        "elapsed_s": 18.641,
+        "prompt_cost_usd": 0.000152,
+        "completion_cost_usd": 0.000432,
+        "total_cost_usd": 0.000585
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 1743,
+        "completion_tokens": 224,
+        "total_tokens": 1967,
+        "calls": 2,
+        "elapsed_s": 6.775,
+        "prompt_cost_usd": 0.000436,
+        "completion_cost_usd": 0.000336,
+        "total_cost_usd": 0.000772
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 5,
+    "step2_ms": 48,
+    "step3_ms": 6302,
+    "step4_ms": 5202,
+    "step5_ms": 3006,
+    "total_ms": 14568
+  }
+}

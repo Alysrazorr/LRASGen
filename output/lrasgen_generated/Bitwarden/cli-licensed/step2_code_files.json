@@ -1,0 +1,64 @@
+{
+  "task_id": "src",
+  "api_name": "src",
+  "framework": "koa",
+  "entry_to_deps": {
+    "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts": {
+      "entry_code_file": "\n\n  ApproveAllCommand,\n  ApproveCommand,\n  DenyAllCommand,\n  DenyCommand,\n  ListCommand,\n} from \"./admin-console/device-approval\";\n\nexport class BitServeConfigurator extends OssServeConfigurator {\n  constructor(protected override serviceContainer: ServiceContainer) {\n    super(serviceContainer);\n  }\n\n  override async configureRouter(router: Router): Promise<void> {\n    // Register OSS endpoints\n    await super.configureRouter(router);\n\n    // Register bit endpoints\n    this.serveDeviceApprovals(router);\n  }\n\n  private serveDeviceApprovals(router: Router) {\n    router.get(\"/device-approval/:organizationId\", async (ctx, next) => {\n      if (await this.errorIfLocked(ctx.response)) {\n        await next();\n        return;\n      }\n\n      const response = await ListCommand.create(this.serviceContainer).run(\n        ctx.params.organizationId,\n      );\n      this.processResponse(ctx.response, response);\n      await next();\n    });\n\n    router.post(\"/device-approval/:organizationId/approve-all\", async (ctx, next) => {\n      if (await this.errorIfLocked(ctx.response)) {\n        await next();\n        return;\n      }\n\n      const response = await ApproveAllCommand.create(this.serviceContainer).run(\n        ctx.params.organizationId,\n      );\n      this.processResponse(ctx.response, response);\n      await next();\n    });\n\n    router.post(\"/device-approval/:organizationId/approve/:requestId\", async (ctx, next) => {\n      if (await this.errorIfLocked(ctx.response)) {\n        await next();\n        return;\n      }\n\n      const response = await ApproveCommand.create(this.serviceContainer).run(\n        ctx.params.organizationId,\n        ctx.params.requestId,\n      );\n      this.processResponse(ctx.response, response);\n      await next();\n    });\n\n    router.post(\"/device-approval/:organizationId/deny-all\", async (ctx, next) => {\n      if (await this.errorIfLocked(ctx.response)) {\n        await next();\n        return;\n      }\n\n      const response = await DenyAllCommand.create(this.serviceContainer).run(\n        ctx.params.organizationId,\n      );\n      this.processResponse(ctx.response, response);\n      await next();\n    });\n\n    router.post(\"/device-approval/:organizationId/deny/:requestId\", async (ctx, next) => {\n      if (await this.errorIfLocked(ctx.response)) {\n        await next();\n        return;\n      }\n\n      const response = await DenyCommand.create(this.serviceContainer).run(\n        ctx.params.organizationId,\n        ctx.params.requestId,\n      );\n      this.processResponse(ctx.response, response);\n      await next();\n    });\n  }\n}\n",
+      "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\admin-console\\device-approval\\index.ts": "export * from \"./device-approval.program\";\nexport * from \"./approve.command\";\nexport * from \"./approve-all.command\";\nexport * from \"./deny.command\";\nexport * from \"./deny-all.command\";\nexport * from \"./list.command\";\n",
+      "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\service-container.ts": "// FIXME: Update this file to be type safe and remove this and next line\n// @ts-strict-ignore\n  OrganizationAuthRequestService,\n  OrganizationAuthRequestApiService,\n} from \"@bitwarden/bit-common/admin-console/auth-requests\";\n\n/**\n * Instantiates services and makes them available for dependency injection.\n * Any Bitwarden-licensed services should be registered here.\n */\nexport class ServiceContainer extends OssServiceContainer {\n  organizationAuthRequestApiService: OrganizationAuthRequestApiService;\n  organizationAuthRequestService: OrganizationAuthRequestService;\n\n  constructor() {\n    super();\n    this.organizationAuthRequestApiService = new OrganizationAuthRequestApiService(this.apiService);\n    this.organizationAuthRequestService = new OrganizationAuthRequestService(\n      this.organizationAuthRequestApiService,\n      this.keyService,\n      this.encryptService,\n      this.organizationUserApiService,\n      this.accountService,\n    );\n  }\n}\n"
+    }
+  },
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  }
+}

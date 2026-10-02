@@ -1,0 +1,354 @@
+{
+  "task_id": "ncs",
+  "api_name": "ncs",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/bessj/{n}/{x}",
+      "http_method": "GET",
+      "method_name": "bessj",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\NCS\\ncs\\src\\main\\java\\org\\restncs\\NcsRest.java",
+      "parameters": [
+        {
+          "name": "n",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "First edge",
+          "_depth": 0
+        },
+        {
+          "name": "x",
+          "type": "number",
+          "require": "true",
+          "position": "path",
+          "description": "Second edge",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing the Bessel function result as a double.",
+          "data_schema": [
+            {
+              "name": "Dto",
+              "schema": {
+                "resultAsInt": "integer",
+                "resultAsDouble": "double"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request when n is less than or equal to 2 or greater than 1000.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/expint/{n}/{x}",
+      "http_method": "GET",
+      "method_name": "expint",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\NCS\\ncs\\src\\main\\java\\org\\restncs\\NcsRest.java",
+      "parameters": [
+        {
+          "name": "n",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The order of the Bessel function",
+          "_depth": 0
+        },
+        {
+          "name": "x",
+          "type": "number",
+          "require": "true",
+          "position": "path",
+          "description": "The argument of the Bessel function",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing the result of the expint calculation.",
+          "data_schema": [
+            {
+              "name": "Dto",
+              "schema": {
+                "resultAsInt": "integer",
+                "resultAsDouble": "double"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when a RuntimeException is thrown during the expint calculation.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/remainder/{a}/{b}",
+      "http_method": "GET",
+      "method_name": "remainder",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\NCS\\ncs\\src\\main\\java\\org\\restncs\\NcsRest.java",
+      "parameters": [
+        {
+          "name": "a",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "First operand of the remainder operation",
+          "min": -10000,
+          "max": 10000,
+          "_depth": 0
+        },
+        {
+          "name": "b",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "Second operand of the remainder operation",
+          "min": -10000,
+          "max": 10000,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully computed the remainder of a divided by b. Returns a DTO containing the integer result.",
+          "data_schema": [
+            {
+              "name": "Dto",
+              "schema": {
+                "resultAsInt": "integer",
+                "resultAsDouble": "double"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when either a or b is outside the range [-10000, 10000].",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/triangle/{a}/{b}/{c}",
+      "http_method": "GET",
+      "method_name": "checkTriangle",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\NCS\\ncs\\src\\main\\java\\org\\restncs\\NcsRest.java",
+      "parameters": [
+        {
+          "name": "a",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "First edge",
+          "_depth": 0
+        },
+        {
+          "name": "b",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "Second edge",
+          "_depth": 0
+        },
+        {
+          "name": "c",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "Third edge",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully classified the triangle type and returned the result.",
+          "data_schema": [
+            {
+              "name": "Dto",
+              "schema": {
+                "resultAsInt": "integer",
+                "resultAsDouble": "double"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/gammq/{a}/{x}",
+      "http_method": "GET",
+      "method_name": "gammq",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\NCS\\ncs\\src\\main\\java\\org\\restncs\\NcsRest.java",
+      "parameters": [
+        {
+          "name": "a",
+          "type": "number",
+          "require": "true",
+          "position": "path",
+          "description": "First parameter",
+          "_depth": 0
+        },
+        {
+          "name": "x",
+          "type": "number",
+          "require": "true",
+          "position": "path",
+          "description": "Second parameter",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing the result of the gammq computation as a double.",
+          "data_schema": [
+            {
+              "name": "Dto",
+              "schema": {
+                "resultAsInt": "integer",
+                "resultAsDouble": "double"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when a RuntimeException is thrown during the gammq computation.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/fisher/{m}/{n}/{x}",
+      "http_method": "GET",
+      "method_name": "fisher",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\NCS\\ncs\\src\\main\\java\\org\\restncs\\NcsRest.java",
+      "parameters": [
+        {
+          "name": "m",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "First parameter of the Fisher distribution",
+          "max": 1000,
+          "_depth": 0
+        },
+        {
+          "name": "n",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "Second parameter of the Fisher distribution",
+          "max": 1000,
+          "_depth": 0
+        },
+        {
+          "name": "x",
+          "type": "number",
+          "require": "true",
+          "position": "path",
+          "description": "Value at which to evaluate the Fisher distribution",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response with the computed Fisher distribution result",
+          "data_schema": [
+            {
+              "name": "Dto",
+              "schema": {
+                "resultAsInt": "integer",
+                "resultAsDouble": "double"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request when m > 1000 or n > 1000, or when Fisher.exe throws a RuntimeException",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 1,
+    "step2_ms": 2,
+    "step3_ms": 2446,
+    "step4_ms": 2946,
+    "step5_ms": 0,
+    "total_ms": 5397
+  }
+}

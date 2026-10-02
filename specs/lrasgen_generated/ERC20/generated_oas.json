@@ -1,0 +1,651 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "erc20-rest-service API",
+    "description": "LRASGen-generated specification for erc20-rest-service (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/{contractAddress}/decimals": {
+      "get": {
+        "operationId": "getDecimals",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "contractAddress",
+            "in": "path",
+            "required": true,
+            "description": "Contract address of the ERC-20 token",
+            "schema": {
+              "type": "string",
+              "description": "Contract address of the ERC-20 token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the decimal precision of the token as a string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "decimals": {
+                      "type": "string",
+                      "description": "{'decimals': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Thrown when the underlying contract call fails (e.g., InterruptedException or ExecutionException), wrapped in a RuntimeException."
+          }
+        }
+      }
+    },
+    "/{contractAddress}/symbol": {
+      "get": {
+        "operationId": "getSymbol",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "contractAddress",
+            "in": "path",
+            "required": true,
+            "description": "The address of the ERC-20 contract",
+            "schema": {
+              "type": "string",
+              "description": "The address of the ERC-20 contract"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the token symbol as a plain string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "symbol": {
+                      "type": "string",
+                      "description": "{'symbol': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Thrown when the underlying contract call fails (e.g., InterruptedException or ExecutionException), wrapped in a RuntimeException by the service."
+          }
+        }
+      }
+    },
+    "/{contractAddress}/balanceOf/{ownerAddress}": {
+      "get": {
+        "operationId": "getBalanceof",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "contractAddress",
+            "in": "path",
+            "required": true,
+            "description": "Contract address",
+            "schema": {
+              "type": "string",
+              "description": "Contract address"
+            }
+          },
+          {
+            "name": "ownerAddress",
+            "in": "path",
+            "required": true,
+            "description": "Owner address",
+            "schema": {
+              "type": "string",
+              "description": "Owner address"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token balance for the given owner address, returned as a string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "balance": {
+                      "type": "string",
+                      "description": "{'balance': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the balance lookup fails."
+          }
+        }
+      }
+    },
+    "/{contractAddress}/version": {
+      "get": {
+        "operationId": "getVersion",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "contractAddress",
+            "in": "path",
+            "required": true,
+            "description": "The address of the ERC-20 contract",
+            "schema": {
+              "type": "string",
+              "description": "The address of the ERC-20 contract"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the contract version as a string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string",
+                      "description": "{'version': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the contract call fails."
+          }
+        }
+      }
+    },
+    "/{contractAddress}/totalSupply": {
+      "get": {
+        "operationId": "getTotalsupply",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "contractAddress",
+            "in": "path",
+            "required": true,
+            "description": "Contract address of the ERC-20 token",
+            "schema": {
+              "type": "string",
+              "description": "Contract address of the ERC-20 token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Total supply of tokens as a string",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "totalSupply": {
+                      "type": "string",
+                      "description": "{'totalSupply': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the contract call fails"
+          }
+        }
+      }
+    },
+    "/{contractAddress}/name": {
+      "get": {
+        "operationId": "getName",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "contractAddress",
+            "in": "path",
+            "required": true,
+            "description": "The address of the ERC-20 contract",
+            "schema": {
+              "type": "string",
+              "description": "The address of the ERC-20 contract"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the token name as a plain string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Thrown when the underlying contract call fails (e.g., InterruptedException or ExecutionException)."
+          }
+        }
+      }
+    },
+    "/deploy": {
+      "post": {
+        "operationId": "createDeploy",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns hex encoded contract address as a plain string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ContractAddress": {
+                      "type": "string",
+                      "description": "{'contractAddress': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the contract deployment fails."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "contractSpecification": {
+                    "type": "string",
+                    "description": "Contract specification for deploying new ERC-20 token"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/config": {
+      "get": {
+        "operationId": "getConfig",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Application configuration returned as JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "NodeConfiguration": {
+                      "type": "string",
+                      "description": "{'nodeEndpoint': 'string', 'fromAddress': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{contractAddress}/transferFrom": {
+      "post": {
+        "operationId": "createTransferfrom",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "contractAddress",
+            "in": "path",
+            "required": true,
+            "description": "The address of the ERC-20 contract",
+            "schema": {
+              "type": "string",
+              "description": "The address of the ERC-20 contract"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns hex encoded transaction hash, and Transfer event if called",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "TransactionResponse": {
+                      "type": "string",
+                      "description": "{'transactionHash': 'string', 'event': 'TransferEventResponse'}"
+                    },
+                    "TransferEventResponse": {
+                      "type": "string",
+                      "description": "{'from': 'string', 'to': 'string', 'value': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the underlying contract call fails"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "transferFromRequest": {
+                    "type": "string",
+                    "description": "Transfer request details"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{contractAddress}/approve": {
+      "post": {
+        "operationId": "createApprove",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "contractAddress",
+            "in": "path",
+            "required": true,
+            "description": "The address of the ERC-20 contract",
+            "schema": {
+              "type": "string",
+              "description": "The address of the ERC-20 contract"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns hex encoded transaction hash, and Approval event if called",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "TransactionResponse<ApprovalEventResponse>": {
+                      "type": "string",
+                      "description": "{'transactionHash': 'string', 'event': 'ApprovalEventResponse'}"
+                    },
+                    "ApprovalEventResponse": {
+                      "type": "string",
+                      "description": "{'owner': 'string', 'spender': 'string', 'value': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the service call fails"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "approveRequest": {
+                    "type": "string",
+                    "description": "The approve request body containing spender and value"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{contractAddress}/transfer": {
+      "post": {
+        "operationId": "createTransfer",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "contractAddress",
+            "in": "path",
+            "required": true,
+            "description": "The address of the ERC-20 contract",
+            "schema": {
+              "type": "string",
+              "description": "The address of the ERC-20 contract"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns hex encoded transaction hash, and Transfer event if called",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "TransactionResponse<TransferEventResponse>": {
+                      "type": "string",
+                      "description": "{'transactionHash': 'string', 'event': 'TransferEventResponse'}"
+                    },
+                    "TransferEventResponse": {
+                      "type": "string",
+                      "description": "{'from': 'string', 'to': 'string', 'value': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the service call fails"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "transferRequest": {
+                    "type": "string",
+                    "description": "Transfer request containing recipient and amount"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{contractAddress}/allowance": {
+      "get": {
+        "operationId": "getAllowance",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "contractAddress",
+            "in": "path",
+            "required": true,
+            "description": "The address of the ERC-20 contract",
+            "schema": {
+              "type": "string",
+              "description": "The address of the ERC-20 contract"
+            }
+          },
+          {
+            "name": "ownerAddress",
+            "in": "query",
+            "required": false,
+            "description": "The address of the token owner",
+            "schema": {
+              "type": "string",
+              "description": "The address of the token owner"
+            }
+          },
+          {
+            "name": "spenderAddress",
+            "in": "query",
+            "required": false,
+            "description": "The address of the spender",
+            "schema": {
+              "type": "string",
+              "description": "The address of the spender"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the quantity of tokens that the spender is still allowed to transfer on the owner's behalf, as a string representation of the allowance value.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AllowanceResponse": {
+                      "type": "string",
+                      "description": "{'allowance': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Thrown when the underlying contract call fails (e.g., InterruptedException or ExecutionException), wrapped in a RuntimeException."
+          }
+        }
+      }
+    },
+    "/{contractAddress}/approveAndCall": {
+      "post": {
+        "operationId": "createApproveandcall",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "contractAddress",
+            "in": "path",
+            "required": true,
+            "description": "The address of the ERC-20 contract",
+            "schema": {
+              "type": "string",
+              "description": "The address of the ERC-20 contract"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns hex encoded transaction hash, and Approval event if called",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "TransactionResponse<ApprovalEventResponse>": {
+                      "type": "string",
+                      "description": "{'transactionHash': 'string', 'event': 'ApprovalEventResponse'}"
+                    },
+                    "ApprovalEventResponse": {
+                      "type": "string",
+                      "description": "{'owner': 'string', 'spender': 'string', 'value': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the contract service call fails"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "approveAndCallRequest": {
+                    "type": "string",
+                    "description": "Request body containing spender, value, and extraData for approveAndCall"
+                  },
+                  "spender": {
+                    "type": "string",
+                    "description": "The address of the spender to approve"
+                  },
+                  "value": {
+                    "type": "integer",
+                    "description": "The amount of tokens to approve"
+                  },
+                  "extraData": {
+                    "type": "string",
+                    "description": "Extra data to pass to the spender contract"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

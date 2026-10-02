@@ -1,0 +1,583 @@
+{
+  "task_id": "scs",
+  "api_name": "scs",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/pat/{txt}",
+      "http_method": "GET",
+      "method_name": "regex",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SCS\\scs\\src\\main\\java\\org\\restscs\\ScsRest.java",
+      "parameters": [
+        {
+          "name": "txt",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Path variable txt from the endpoint GET /api/pat/{txt}",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing the result of Regex.subject(txt) as a plain string.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "result": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if Regex.subject(txt) throws an uncaught exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/cookie/{name}/{val}/{site}",
+      "http_method": "GET",
+      "method_name": "cookie",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SCS\\scs\\src\\main\\java\\org\\restscs\\ScsRest.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The cookie name, bound from the {name} path variable.",
+          "_depth": 0
+        },
+        {
+          "name": "val",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The cookie value, bound from the {val} path variable.",
+          "_depth": 0
+        },
+        {
+          "name": "site",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The cookie site, bound from the {site} path variable.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing the result of Cookie.subject(name, val, site) as a plain string.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "result": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error returned when Cookie.subject(name, val, site) throws an uncaught exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/dateparse/{dayname}/{monthname}",
+      "http_method": "GET",
+      "method_name": "dateParse",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SCS\\scs\\src\\main\\java\\org\\restscs\\ScsRest.java",
+      "parameters": [
+        {
+          "name": "dayname",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Day name path variable",
+          "_depth": 0
+        },
+        {
+          "name": "monthname",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Month name path variable",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing the result of DateParse.subject(dayname, monthname) as a plain string.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "result": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error returned when DateParse.subject(dayname, monthname) throws an uncaught exception.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/pat/{txt}/{pat}",
+      "http_method": "GET",
+      "method_name": "pat",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SCS\\scs\\src\\main\\java\\org\\restscs\\ScsRest.java",
+      "parameters": [
+        {
+          "name": "txt",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The text to search in",
+          "_depth": 0
+        },
+        {
+          "name": "pat",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The pattern to search for",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing the result of Pat.subject(txt, pat) as a string.",
+          "data_schema": [
+            {
+              "name": "result",
+              "schema": {
+                "result": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if Pat.subject throws an uncaught exception.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/costfuns/{i}/{s}",
+      "http_method": "GET",
+      "method_name": "costfuns",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SCS\\scs\\src\\main\\java\\org\\restscs\\ScsRest.java",
+      "parameters": [
+        {
+          "name": "i",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "Integer path parameter i",
+          "_depth": 0
+        },
+        {
+          "name": "s",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "String path parameter s",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing the result of the costfuns operation as a string.",
+          "data_schema": [
+            {
+              "name": "result",
+              "schema": {
+                "result": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the delegated Costfuns.subject call throws an uncaught exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/notypevar/{i}/{s}",
+      "http_method": "GET",
+      "method_name": "notyPevar",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SCS\\scs\\src\\main\\java\\org\\restscs\\ScsRest.java",
+      "parameters": [
+        {
+          "name": "i",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "Path variable i",
+          "_depth": 0
+        },
+        {
+          "name": "s",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Path variable s",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the result of NotyPevar.subject(i, s) as a plain string in the response body.",
+          "data_schema": [
+            {
+              "name": "result",
+              "schema": {
+                "result": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error returned when NotyPevar.subject(i, s) throws an uncaught exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/text2txt/{word1}/{word2}/{word3}",
+      "http_method": "GET",
+      "method_name": "text2txt",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SCS\\scs\\src\\main\\java\\org\\restscs\\ScsRest.java",
+      "parameters": [
+        {
+          "name": "word1",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "First word parameter for text2txt endpoint",
+          "_depth": 0
+        },
+        {
+          "name": "word2",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Second word parameter for text2txt endpoint",
+          "_depth": 0
+        },
+        {
+          "name": "word3",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Third word parameter for text2txt endpoint",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing the result of Text2Txt.subject(word1, word2, word3) as a plain string.",
+          "data_schema": [
+            {
+              "name": "result",
+              "schema": {
+                "result": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error returned when Text2Txt.subject(word1, word2, word3) throws an uncaught exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/filesuffix/{directory}/{file}",
+      "http_method": "GET",
+      "method_name": "fileSuffix",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SCS\\scs\\src\\main\\java\\org\\restscs\\ScsRest.java",
+      "parameters": [
+        {
+          "name": "directory",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The directory path",
+          "_depth": 0
+        },
+        {
+          "name": "file",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The file name",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing the result of FileSuffix.subject(directory, file) as a plain string.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "result": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if FileSuffix.subject throws an uncaught exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/calc/{op}/{arg1}/{arg2}",
+      "http_method": "GET",
+      "method_name": "calc",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SCS\\scs\\src\\main\\java\\org\\restscs\\ScsRest.java",
+      "parameters": [
+        {
+          "name": "op",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The operation to perform",
+          "_depth": 0
+        },
+        {
+          "name": "arg1",
+          "type": "number",
+          "require": "true",
+          "position": "path",
+          "description": "The first argument for the operation",
+          "_depth": 0
+        },
+        {
+          "name": "arg2",
+          "type": "number",
+          "require": "true",
+          "position": "path",
+          "description": "The second argument for the operation",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing the result of the calculation as a string.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "result": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if an exception occurs during the calculation.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/ordered4/{w}/{x}/{z}/{y}",
+      "http_method": "GET",
+      "method_name": "ordered4",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SCS\\scs\\src\\main\\java\\org\\restscs\\ScsRest.java",
+      "parameters": [
+        {
+          "name": "w",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "First path variable of the ordered4 endpoint",
+          "_depth": 0
+        },
+        {
+          "name": "x",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Second path variable of the ordered4 endpoint",
+          "_depth": 0
+        },
+        {
+          "name": "z",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Third path variable of the ordered4 endpoint",
+          "_depth": 0
+        },
+        {
+          "name": "y",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Fourth path variable of the ordered4 endpoint",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing the result of Ordered4.subject(w, x, z, y) as a string.",
+          "data_schema": [
+            {
+              "name": "result",
+              "schema": {
+                "result": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if Ordered4.subject throws an unhandled exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/title/{sex}/{title}",
+      "http_method": "GET",
+      "method_name": "title",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\SCS\\scs\\src\\main\\java\\org\\restscs\\ScsRest.java",
+      "parameters": [
+        {
+          "name": "sex",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The sex parameter from the path",
+          "_depth": 0
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The title parameter from the path",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing the result of Title.subject(sex, title) as a string.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if Title.subject throws an uncaught exception.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 1,
+    "step2_ms": 2,
+    "step3_ms": 3474,
+    "step4_ms": 3522,
+    "step5_ms": 0,
+    "total_ms": 7001
+  }
+}

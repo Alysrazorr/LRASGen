@@ -1,0 +1,3019 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "proxyprint-kitchen API",
+    "description": "LRASGen-generated specification for proxyprint-kitchen (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/admin/seed": {
+      "post": {
+        "operationId": "createSeed",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Seeding completed successfully. Returns a JSON object with a 'message' property set to 'seeding completed'.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SeedResponse": {
+                      "type": "string",
+                      "description": "{'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "operationId": "get",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with a greeting message.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "GreetingResponse": {
+                      "type": "string",
+                      "description": "{'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/*": {
+      "options": {
+        "operationId": "options*",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "204": {
+            "description": "No Content - the OPTIONS request is handled and an empty response with status 204 is returned."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/admin/printshops": {
+      "get": {
+        "operationId": "getPrintshops",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object containing a 'prinshops' property with a JSON-encoded list of all printshops and a 'success' property set to true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AdminPrintShopsResponse": {
+                      "type": "string",
+                      "description": "{'prinshops': 'string', 'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied. The endpoint is secured with @Secured({\"ROLE_ADMIN\"}) and requires the ROLE_ADMIN authority; requests without it are rejected by Spring Security."
+          }
+        }
+      }
+    },
+    "/api/secured": {
+      "get": {
+        "operationId": "getSecured",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with a message indicating the user is authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SecuredResponse": {
+                      "type": "string",
+                      "description": "{'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - The request lacks valid authentication credentials for the secured endpoint."
+          }
+        }
+      }
+    },
+    "/admin/register": {
+      "post": {
+        "operationId": "createRegister",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Admin registered successfully. Returns the saved Admin entity.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Admin": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'username': 'string', 'password': 'string', 'roles': 'array', 'email': 'string', 'balance': 'Money'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "Admin entity to register"
+                  }
+                },
+                "required": [
+                  "email"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/useed": {
+      "post": {
+        "operationId": "createUseed",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Consumers seeding completed successfully. Returns a JSON object with a message property.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SeedResponse": {
+                      "type": "string",
+                      "description": "{'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "operationId": "createLogin",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Login attempt processed. Returns a JSON object with a 'success' boolean indicating whether authentication succeeded. On success, also includes a 'user' object with the authenticated user's data. If the Ngrok tunnel is available and the user is a Consumer, an 'externalURL' string is also included.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "LoginResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'user': 'object', 'externalURL': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consumer/info": {
+      "get": {
+        "operationId": "getInfo",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the consumer's personal information if the authenticated user exists, otherwise success is false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ConsumerInfoResponse": {
+                      "type": "string",
+                      "description": "{'consumer': 'Consumer', 'success': 'boolean'}"
+                    },
+                    "Consumer": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'username': 'string', 'name': 'string', 'email': 'string', 'latitude': 'string', 'longitude': 'string', 'printingSchemas': 'Set<PrintingSchema>', 'notifications': 'List<Notification>', 'balance': 'Money', 'roles': 'Collection<GrantedAuthority>'}"
+                    },
+                    "Money": {
+                      "type": "string",
+                      "description": "{'currency': 'string', 'integerPart': 'integer', 'fractionalPart': 'integer'}"
+                    },
+                    "Notification": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'message': 'string', 'timestamp': 'date', 'readStatus': 'boolean'}"
+                    },
+                    "PrintingSchema": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'paperSpecs': 'string', 'bindingSpecs': 'string', 'coverSpecs': 'string', 'deleted': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consumer/register": {
+      "post": {
+        "operationId": "createRegister",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Consumer registration successful. Returns the created consumer object and success=true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RegistrationResponse": {
+                      "type": "string",
+                      "description": "{'consumer': 'Consumer', 'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consumer/{username}/notifications": {
+      "delete": {
+        "operationId": "deleteNotifications",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "The username of the consumer whose notifications should be removed.",
+            "schema": {
+              "type": "string",
+              "description": "The username of the consumer whose notifications should be removed."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns success/insuccess. This method allows consumers to remove all notifications.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DeleteAllNotificationsResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateNotifications",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "The username of the consumer whose notifications should be marked as read.",
+            "schema": {
+              "type": "string",
+              "description": "The username of the consumer whose notifications should be marked as read."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns success/insuccess. Marks all notifications as read for the given consumer and returns a JSON object with a success property set to true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "NotificationReadResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consumer/info/update": {
+      "put": {
+        "operationId": "updateUpdate",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object indicating whether the consumer information update was successful. The response contains a 'success' boolean property.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UpdateConsumerInfoResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consumer/requests/cancel/{id}": {
+      "delete": {
+        "operationId": "deleteCancel",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pending print request to cancel.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pending print request to cancel."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns success/insuccess. The request is cancelled and the consumer is refunded if the request is pending; otherwise success is false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CancelRequestResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consumer/satisfied": {
+      "get": {
+        "operationId": "getSatisfied",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the history of satisfied requests from a consumer. If the consumer is not found, returns success=false. Otherwise returns success=true with a list of satisfied requests, each containing the print request and the print shop name.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SatisfiedRequestsResponse": {
+                      "type": "string",
+                      "description": "{'satisfiedrequests': 'array', 'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consumer/balance": {
+      "get": {
+        "operationId": "getBalance",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the consumer's balance and success flag when the consumer is found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ConsumerBalanceResponse": {
+                      "type": "string",
+                      "description": "{'balance': {'currency': 'string', 'integerPart': 'integer', 'fractionalPart': 'integer'}, 'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consumer/requests": {
+      "get": {
+        "operationId": "getRequests",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the consumer's pending print requests. If the consumer is not found, returns success=false. Otherwise returns success=true with the list of pending print requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PendingRequestsResponse": {
+                      "type": "string",
+                      "description": "{'printrequests': 'array', 'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/paypal/ipn/consumer/{consumerID}": {
+      "post": {
+        "operationId": "createConsumer",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "consumerID",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the consumer whose load up is being confirmed.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the consumer whose load up is being confirmed."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The IPN message is processed. If the consumer exists and the payment status is 'Completed', the consumer's balance is updated and a success notification is sent. If the payment status is not 'Completed', a failure notification is sent. If the consumer does not exist, no action is taken. In all cases, the method returns void and the HTTP response has an empty body with status 200."
+          }
+        }
+      }
+    },
+    "/consumer/{consumerID}/printingschemas": {
+      "get": {
+        "operationId": "getPrintingschemas",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "consumerID",
+            "in": "path",
+            "required": true,
+            "description": "the id of the consumer.",
+            "schema": {
+              "type": "integer",
+              "description": "the id of the consumer."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with success=true and the set of printing schemas belonging to the consumer, or success=false if the consumer has no printing schemas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PrintingSchemaResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'pschemas': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPrintingschemas",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "consumerID",
+            "in": "path",
+            "required": true,
+            "description": "the id of the consumer.",
+            "schema": {
+              "type": "integer",
+              "description": "the id of the consumer."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully added a new PrintingSchema to the consumer's collection. Returns a JSON object with success=true and the id of the added PrintingSchema.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AddPrintingSchemaResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'id': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "the PrintingSchema created by the consumer."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "the PrintingSchema created by the consumer."
+                  },
+                  "paperSpecs": {
+                    "type": "string",
+                    "description": "the PrintingSchema created by the consumer."
+                  },
+                  "bindingSpecs": {
+                    "type": "string",
+                    "description": "the PrintingSchema created by the consumer."
+                  },
+                  "coverSpecs": {
+                    "type": "string",
+                    "description": "the PrintingSchema created by the consumer."
+                  },
+                  "deleted": {
+                    "type": "boolean",
+                    "description": "the PrintingSchema created by the consumer."
+                  }
+                },
+                "required": [
+                  "name",
+                  "paperSpecs",
+                  "deleted"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/paypal/ipn/{printRequestID}": {
+      "post": {
+        "operationId": "createIpn",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "printRequestID",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print request whose payment is being confirmed by PayPal.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print request whose payment is being confirmed by PayPal."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The IPN notification is processed. The method returns void, so the response body is empty. This occurs when the IPN is verified and the payment is successfully confirmed (print request status updated to PENDING, PayPal sale ID set, and notification sent), or when the IPN is not verified or the payment status is not 'Completed', or when the print request is not found, or when the consumer is not valid, or when required IPN fields are missing. In all these cases, the method completes without throwing an exception and returns HTTP 200 with an empty body."
+          }
+        }
+      }
+    },
+    "/consumer/{consumerID}/printingschemas/{printingSchemaID}": {
+      "delete": {
+        "operationId": "deletePrintingschemas",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "consumerID",
+            "in": "path",
+            "required": true,
+            "description": "the id of the consumer.",
+            "schema": {
+              "type": "integer",
+              "description": "the id of the consumer."
+            }
+          },
+          {
+            "name": "printingSchemaID",
+            "in": "path",
+            "required": true,
+            "description": "the id of the printing schema to delete.",
+            "schema": {
+              "type": "integer",
+              "description": "the id of the printing schema to delete."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted the printing schema. Returns a JSON object with 'success' set to true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DeleteResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updatePrintingschemas",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "consumerID",
+            "in": "path",
+            "required": true,
+            "description": "the id of the consumer.",
+            "schema": {
+              "type": "integer",
+              "description": "the id of the consumer."
+            }
+          },
+          {
+            "name": "printingSchemaID",
+            "in": "path",
+            "required": true,
+            "description": "the PrintingSchema id.",
+            "schema": {
+              "type": "integer",
+              "description": "the PrintingSchema id."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully edited the printing schema. Returns a JSON object with a 'success' property set to true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "EditResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when the printing schema could not be saved (res is null). Returns a JSON object with a 'success' property set to false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "EditResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "the PrintingSchema with the new values to apply."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "the PrintingSchema with the new values to apply."
+                  },
+                  "paperSpecs": {
+                    "type": "string",
+                    "description": "the PrintingSchema with the new values to apply."
+                  },
+                  "bindingSpecs": {
+                    "type": "string",
+                    "description": "the PrintingSchema with the new values to apply."
+                  },
+                  "coverSpecs": {
+                    "type": "string",
+                    "description": "the PrintingSchema with the new values to apply."
+                  },
+                  "deleted": {
+                    "type": "boolean",
+                    "description": "the PrintingSchema with the new values to apply."
+                  }
+                },
+                "required": [
+                  "name",
+                  "paperSpecs",
+                  "deleted"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printdocument/{id}": {
+      "get": {
+        "operationId": "getPrintdocument",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print request whose documents are to be retrieved.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print request whose documents are to be retrieved."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the documents of the print request when the print request exists, or a failure response when the print request does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PrintRequestDocumentsResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'documents': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consumer/printrequest/{printRequestID}/submit": {
+      "post": {
+        "operationId": "createSubmit",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "printRequestID",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print request to submit",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print request to submit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Print request submitted successfully. Returns success=true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SubmitPrintRequestResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "printshopID": {
+                    "type": "integer",
+                    "description": "The ID of the print shop to which the print request is submitted"
+                  },
+                  "budget": {
+                    "type": "number",
+                    "description": "The budget/cost for the print request"
+                  },
+                  "paymentMethod": {
+                    "type": "string",
+                    "description": "The payment method to use (e.g., PROXYPRINT_PAYMENT or PAYPAL_PAYMENT)"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consumer/budget": {
+      "post": {
+        "operationId": "createBudget",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully calculated budgets for the print request. Returns a JSON object with success flag, budgets map, and print request ID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "BudgetResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'budgets': 'object', 'printRequestID': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials for the protected endpoint."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required ROLE_USER authority."
+          },
+          "500": {
+            "description": "Internal server error. An unexpected condition occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/printdocument": {
+      "post": {
+        "operationId": "createPrintdocument",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully created a print request and processed the submitted files. Returns a JSON object with success=true and the generated printRequestID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PrintDocumentResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'printRequestID': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consumer/{id}/notify": {
+      "post": {
+        "operationId": "createNotify",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The consumer id used to look up the consumer whose username receives the notification.",
+            "schema": {
+              "type": "integer",
+              "description": "The consumer id used to look up the consumer whose username receives the notification."
+            }
+          },
+          {
+            "name": "message",
+            "in": "query",
+            "required": false,
+            "description": "The notification message read from the request parameter and sent to the consumer.",
+            "schema": {
+              "type": "string",
+              "description": "The notification message read from the request parameter and sent to the consumer."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Notification sent successfully. The method returns void, so the response body is empty."
+          }
+        }
+      }
+    },
+    "/printdocument/{id}/budget": {
+      "post": {
+        "operationId": "createBudget",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print request for which budgets are calculated.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print request for which budgets are calculated."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully calculated budgets for the given print request and printshops. Returns a JSON object with 'success' set to true, 'budgets' mapping printshop IDs to budget strings, and 'printRequestID'.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "BudgetResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'budgets': 'object', 'printRequestID': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "array",
+                    "description": "A JSON array of print shop IDs (as numbers) for which budgets should be calculated."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consumer/subscribe": {
+      "get": {
+        "operationId": "getSubscribe",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": false,
+            "description": "Username of the consumer subscribing to SSE notifications.",
+            "schema": {
+              "type": "string",
+              "description": "Username of the consumer subscribing to SSE notifications."
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": false,
+            "description": "Password of the consumer subscribing to SSE notifications.",
+            "schema": {
+              "type": "string",
+              "description": "Password of the consumer subscribing to SSE notifications."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subscription successful. Returns an SseEmitter for the consumer's SSE subscription.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SseEmitter": {
+                      "type": "string",
+                      "description": "{'timeout': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Consumer not found. Returned when no consumer exists with the provided username."
+          },
+          "401": {
+            "description": "Unauthorized. Returned when the provided password does not match the consumer's password."
+          }
+        }
+      }
+    },
+    "/consumer/notifications": {
+      "get": {
+        "operationId": "getNotifications",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the list of notifications for the authenticated consumer.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<Notification>": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'message': 'string', 'timestamp': 'date', 'read': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/notifications/{notificationId}": {
+      "delete": {
+        "operationId": "deleteNotifications",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "notificationId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the notification to delete.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the notification to delete."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Notification deleted successfully. Returns a JSON object with a success property set to true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DeleteNotificationResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateNotifications",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "notificationId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the notification to mark as read.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the notification to mark as read."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/documents/{id}": {
+      "get": {
+        "operationId": "getDocuments",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the document to retrieve.",
+            "schema": {
+              "type": "integer",
+              "description": "The id of the document to retrieve."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the requested document as a PDF file.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "FileSystemResource": {
+                      "type": "string",
+                      "description": "{'file': 'binary'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Document not found."
+          },
+          "401": {
+            "description": "Unauthorized: the document does not belong to the employee's print shop."
+          }
+        }
+      }
+    },
+    "/printshops/{printShopID}/employees": {
+      "get": {
+        "operationId": "getEmployees",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "printShopID",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the printshop whose employees are to be listed.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the printshop whose employees are to be listed."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with a list of employees for the given printshop. If the printshop exists, the response contains 'employees' (array of Employee objects) and 'success' set to true. If the printshop does not exist, the response contains only 'success' set to false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "EmployeeListResponse": {
+                      "type": "string",
+                      "description": "{'employees': 'array', 'success': 'boolean'}"
+                    },
+                    "Employee": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'username': 'string', 'password': 'string', 'name': 'string', 'printShop': 'object', 'roles': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateEmployees",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "printShopID",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the printshop whose employee is being edited.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the printshop whose employee is being edited."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee edited successfully. Returns a JSON object with success=true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "EditEmployeeSuccessResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The employee data to update, parsed from the request body as JSON. Must contain name, username, and password."
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createEmployees",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "printShopID",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print shop to which the employee will be added.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print shop to which the employee will be added."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee added successfully. Returns success=true and the new employee's id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AddEmployeeSuccessResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'id': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/{printShopID}/employees/{employeeID}": {
+      "delete": {
+        "operationId": "deleteEmployees",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "printShopID",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print shop.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print shop."
+            }
+          },
+          {
+            "name": "employeeID",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the employee to delete.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the employee to delete."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee deleted successfully. Returns a JSON object with success set to true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DeleteEmployeeResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/stats": {
+      "get": {
+        "operationId": "getStats",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns statistics for the manager's printshop. The response is a JSON object with success=true and fields: nPendingRequests, nInProgressRequests, nFinished, nEmployees, pshopProfit. If the manager or printshop is not found, returns success=false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PrintShopStatistics": {
+                      "type": "string",
+                      "description": "{'nPendingRequests': 'integer', 'nInProgressRequests': 'integer', 'nFinished': 'integer', 'nEmployees': 'integer', 'pshopProfit': 'string', 'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshop": {
+      "get": {
+        "operationId": "getPrintshop",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the manager's printshop information on success, or a failure flag if the manager has no printshop.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ManagerPrintShopResponse": {
+                      "type": "string",
+                      "description": "{'printshop': 'object', 'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/{id}/pricetable/papers": {
+      "put": {
+        "operationId": "updatePapers",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identifier of the print shop whose price table is being edited.",
+            "schema": {
+              "type": "integer",
+              "description": "Identifier of the print shop whose price table is being edited."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with a 'success' property set to true when the print shop exists and the paper item is edited successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JsonObject": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "DEFAULT": {
+                    "type": "string",
+                    "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+                  },
+                  "A4Simplex": {
+                    "type": "string",
+                    "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+                  },
+                  "A4Duplex": {
+                    "type": "string",
+                    "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+                  },
+                  "A3Simplex": {
+                    "type": "string",
+                    "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+                  },
+                  "A3Duplex": {
+                    "type": "string",
+                    "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+                  },
+                  "infLim": {
+                    "type": "integer",
+                    "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+                  },
+                  "supLim": {
+                    "type": "integer",
+                    "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+                  },
+                  "colors": {
+                    "type": "string",
+                    "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+                  },
+                  "priceA4SIMPLEX": {
+                    "type": "string",
+                    "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+                  },
+                  "priceA4DUPLEX": {
+                    "type": "string",
+                    "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+                  },
+                  "priceA3SIMPLEX": {
+                    "type": "string",
+                    "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+                  },
+                  "priceA3DUPLEX": {
+                    "type": "string",
+                    "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPapers",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identifier of the print shop whose price table receives the new paper item.",
+            "schema": {
+              "type": "integer",
+              "description": "Identifier of the print shop whose price table receives the new paper item."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with a 'success' boolean property. If the print shop with the given id exists, the paper table item is inserted into its price table and saved, and 'success' is true. If no print shop is found, 'success' is false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "DEFAULT": {
+                    "type": "string",
+                    "description": "Paper table item to insert into the print shop price table."
+                  },
+                  "A4Simplex": {
+                    "type": "string",
+                    "description": "Paper table item to insert into the print shop price table."
+                  },
+                  "A4Duplex": {
+                    "type": "string",
+                    "description": "Paper table item to insert into the print shop price table."
+                  },
+                  "A3Simplex": {
+                    "type": "string",
+                    "description": "Paper table item to insert into the print shop price table."
+                  },
+                  "A3Duplex": {
+                    "type": "string",
+                    "description": "Paper table item to insert into the print shop price table."
+                  },
+                  "infLim": {
+                    "type": "integer",
+                    "description": "Lower bound of the page range for the paper price."
+                  },
+                  "supLim": {
+                    "type": "integer",
+                    "description": "Upper bound of the page range for the paper price."
+                  },
+                  "colors": {
+                    "type": "string",
+                    "description": "Color mode of the paper item."
+                  },
+                  "priceA4SIMPLEX": {
+                    "type": "string",
+                    "description": "Price for A4 simplex printing; default sentinel is '-'."
+                  },
+                  "priceA4DUPLEX": {
+                    "type": "string",
+                    "description": "Price for A4 duplex printing; default sentinel is '-'."
+                  },
+                  "priceA3SIMPLEX": {
+                    "type": "string",
+                    "description": "Price for A3 simplex printing; default sentinel is '-'."
+                  },
+                  "priceA3DUPLEX": {
+                    "type": "string",
+                    "description": "Price for A3 duplex printing; default sentinel is '-'."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/{id}/pricetable/deletepaper": {
+      "post": {
+        "operationId": "createDeletepaper",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print shop whose price table will have a paper item deleted.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print shop whose price table will have a paper item deleted."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with a 'success' property set to true when the print shop is found and the paper items are deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DeletePaperResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "DEFAULT": {
+                    "type": "string",
+                    "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+                  },
+                  "A4Simplex": {
+                    "type": "string",
+                    "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+                  },
+                  "A4Duplex": {
+                    "type": "string",
+                    "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+                  },
+                  "A3Simplex": {
+                    "type": "string",
+                    "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+                  },
+                  "A3Duplex": {
+                    "type": "string",
+                    "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+                  },
+                  "infLim": {
+                    "type": "integer",
+                    "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+                  },
+                  "supLim": {
+                    "type": "integer",
+                    "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+                  },
+                  "colors": {
+                    "type": "string",
+                    "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+                  },
+                  "priceA4SIMPLEX": {
+                    "type": "string",
+                    "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+                  },
+                  "priceA4DUPLEX": {
+                    "type": "string",
+                    "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+                  },
+                  "priceA3SIMPLEX": {
+                    "type": "string",
+                    "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+                  },
+                  "priceA3DUPLEX": {
+                    "type": "string",
+                    "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/{id}/pricetable/rings": {
+      "post": {
+        "operationId": "createRings",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identifier of the print shop whose price table will receive the new rings item.",
+            "schema": {
+              "type": "integer",
+              "description": "Identifier of the print shop whose price table will receive the new rings item."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with a 'success' boolean property. If the print shop with the given id exists, the rings item is added to the price table and 'success' is true. If the print shop does not exist, 'success' is false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ringType": {
+                    "type": "string",
+                    "description": "Rings table item containing the ring type, lower and upper thickness limits, and price to add to the print shop's price table."
+                  },
+                  "infLim": {
+                    "type": "integer",
+                    "description": "Rings table item containing the ring type, lower and upper thickness limits, and price to add to the print shop's price table."
+                  },
+                  "supLim": {
+                    "type": "integer",
+                    "description": "Rings table item containing the ring type, lower and upper thickness limits, and price to add to the print shop's price table."
+                  },
+                  "price": {
+                    "type": "string",
+                    "description": "Rings table item containing the ring type, lower and upper thickness limits, and price to add to the print shop's price table."
+                  }
+                },
+                "required": [
+                  "ringType",
+                  "infLim",
+                  "supLim",
+                  "price"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateRings",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print shop whose price table will be edited.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print shop whose price table will be edited."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with a 'success' boolean property. If the print shop with the given id exists, the rings item is added/updated in the price table and 'success' is true. If the print shop does not exist, 'success' is false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JsonObject": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ringType": {
+                    "type": "string",
+                    "description": "The rings price table item to edit, containing ring type, lower and upper limits, and price."
+                  },
+                  "infLim": {
+                    "type": "integer",
+                    "description": "The rings price table item to edit, containing ring type, lower and upper limits, and price."
+                  },
+                  "supLim": {
+                    "type": "integer",
+                    "description": "The rings price table item to edit, containing ring type, lower and upper limits, and price."
+                  },
+                  "price": {
+                    "type": "string",
+                    "description": "The rings price table item to edit, containing ring type, lower and upper limits, and price."
+                  }
+                },
+                "required": [
+                  "ringType",
+                  "infLim",
+                  "supLim",
+                  "price"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/{id}/pricetable/covers": {
+      "post": {
+        "operationId": "createCovers",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print shop whose price table will receive the new cover item.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print shop whose price table will receive the new cover item."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with a 'success' boolean property. If the print shop exists, the cover items are added to the price table and 'success' is true; otherwise 'success' is false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SuccessResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "DEFAULT": {
+                    "type": "string",
+                    "description": "Cover table item containing cover type and A4/A3 prices to add to the print shop price table."
+                  },
+                  "coverType": {
+                    "type": "string",
+                    "description": "Cover table item containing cover type and A4/A3 prices to add to the print shop price table."
+                  }
+                },
+                "required": [
+                  "DEFAULT",
+                  "coverType"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateCovers",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print shop whose cover price table item is to be edited.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print shop whose cover price table item is to be edited."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with a 'success' boolean property. On success (print shop found), 'success' is true; if the print shop is not found, 'success' is false. The HTTP status is 200 in both cases.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JsonObject": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "DEFAULT": {
+                    "type": "string",
+                    "description": "The cover table item containing the cover type and prices for A4 and A3 formats."
+                  },
+                  "coverType": {
+                    "type": "string",
+                    "description": "The cover table item containing the cover type and prices for A4 and A3 formats."
+                  }
+                },
+                "required": [
+                  "DEFAULT",
+                  "coverType"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/{id}/pricetable/deletering": {
+      "post": {
+        "operationId": "createDeletering",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print shop whose price table will have a ring item deleted.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print shop whose price table will have a ring item deleted."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with a 'success' boolean property. If the print shop exists, 'success' is true; otherwise, 'success' is false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JsonObject": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ringType": {
+                    "type": "string",
+                    "description": "The type of ring. Possible values are PLASTIC, SPIRAL, WIRE, STEELMAT, STAPLING, BINDING."
+                  },
+                  "infLim": {
+                    "type": "integer",
+                    "description": "The lower limit of the ring thickness range in millimeters."
+                  },
+                  "supLim": {
+                    "type": "integer",
+                    "description": "The upper limit of the ring thickness range in millimeters."
+                  },
+                  "price": {
+                    "type": "string",
+                    "description": "The price of the ring item."
+                  }
+                },
+                "required": [
+                  "ringType",
+                  "infLim",
+                  "supLim",
+                  "price"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/{id}/pricetable/deletecover": {
+      "post": {
+        "operationId": "createDeletecover",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print shop whose price table will be modified.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print shop whose price table will be modified."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with a 'success' boolean property. If the print shop exists, 'success' is true and the cover items are removed from the price table. If the print shop does not exist, 'success' is false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DeleteCoverResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "DEFAULT": {
+                    "type": "string",
+                    "description": "The cover table item to delete from the price table."
+                  },
+                  "coverType": {
+                    "type": "string",
+                    "description": "The cover table item to delete from the price table."
+                  }
+                },
+                "required": [
+                  "DEFAULT",
+                  "coverType"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/{printShopID}/pricetable/editstapling": {
+      "put": {
+        "operationId": "updateEditstapling",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "printShopID",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print shop whose stapling price is to be edited.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print shop whose stapling price is to be edited."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with a success property set to true when the print shop exists and the stapling price is updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "StaplingPriceEditResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "newStaplingPrice": {
+                    "type": "string",
+                    "description": "The new stapling price as a string, parsed to a float and stored under the key \"BINDING,STAPLING,0,0\"."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/{id}/pricetable": {
+      "get": {
+        "operationId": "getPricetable",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The identifier of the printshop whose price table is returned.",
+            "schema": {
+              "type": "integer",
+              "description": "The identifier of the printshop whose price table is returned."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a pricetable of a specific printshop. The response is a JSON object containing a success flag and, if successful, the printcopy, rings, stapling, and covers data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PriceTableResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'printcopy': 'object', 'rings': 'object', 'stapling': 'number', 'covers': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/nearest": {
+      "get": {
+        "operationId": "getNearest",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "latitude",
+            "in": "query",
+            "required": false,
+            "description": "Latitude of the reference location used to compute distances to printshops.",
+            "schema": {
+              "type": "string",
+              "description": "Latitude of the reference location used to compute distances to printshops."
+            }
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "required": false,
+            "description": "Longitude of the reference location used to compute distances to printshops.",
+            "schema": {
+              "type": "string",
+              "description": "Longitude of the reference location used to compute distances to printshops."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object containing a success flag and, if latitude and longitude parameters are provided, a map of printshops keyed by distance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "NearestPrintShopsResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'printshops': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/requests/{id}": {
+      "post": {
+        "operationId": "createRequests",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print request whose status is to be changed.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print request whose status is to be changed."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the new status of the print request after a successful status change.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ChangeStatusResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'newStatus': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when PayPalRESTException is thrown during PayPal payout processing."
+          }
+        }
+      },
+      "get": {
+        "operationId": "getRequests",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print request to retrieve.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print request to retrieve."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the corresponding print request from a printshop. The response is a JSON object with a 'success' boolean and, when successful, a 'printrequest' object containing the print request details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PrintShopRequestResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'printrequest': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/requests": {
+      "get": {
+        "operationId": "getRequests",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the pending and in progress requests from a printshop. If the employee has no associated printshop, returns success=false. Otherwise returns success=true and the list of print requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PrintShopRequestsResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'printrequest': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/satisfied": {
+      "get": {
+        "operationId": "getSatisfied",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the satisfied requests from a printshop. The response is a JSON object with a 'success' boolean and a 'satisfiedrequests' array containing the list of print requests with status FINISHED.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SatisfiedRequestsResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'satisfiedrequests': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/history": {
+      "get": {
+        "operationId": "getHistory",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the history of requests from a printshop. On success, the response contains a JSON object with a 'historyrequests' array and a 'success' boolean set to true. If the employee has no associated printshop, the response contains only a 'success' boolean set to false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "HistoryResponse": {
+                      "type": "string",
+                      "description": "{'historyrequests': 'array', 'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/requests/cancel/{id}": {
+      "post": {
+        "operationId": "createCancel",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the print request to cancel.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the print request to cancel."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object indicating success or failure of the cancellation. On success, the print request is removed from the printshop and consumer, a notification is sent, and the response contains {\"success\": true}. On failure (printshop not found, print request not found, or status not PENDING), the response contains {\"success\": false}.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CancelResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "motive": {
+                    "type": "string",
+                    "description": "The reason for cancelling the print request."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/{id}": {
+      "get": {
+        "operationId": "getPrintshops",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The identifier of the printshop to retrieve.",
+            "schema": {
+              "type": "integer",
+              "description": "The identifier of the printshop to retrieve."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the printshop info as JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PrintShop": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'address': 'string', 'latitude': 'double', 'longitude': 'double', 'nif': 'string', 'logo': 'string', 'avgRating': 'float', 'priceTable': 'map<string,float>', 'balance': 'Money'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Printshop not found."
+          }
+        }
+      }
+    },
+    "/printshops": {
+      "get": {
+        "operationId": "getPrintshops",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a JSON array of all printshops.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PrintShopList": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'address': 'string', 'latitude': 'double', 'longitude': 'double', 'nif': 'string', 'logo': 'string', 'avgRating': 'float', 'priceTable': 'map<string,float>', 'balance': 'Money'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/request/accept/{id}": {
+      "post": {
+        "operationId": "createAccept",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the register request to accept.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the register request to accept."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with a 'success' property. If the register request with the given id does not exist, returns {\"success\": false}. If the request exists and the manager and printshop are successfully created, returns {\"success\": true}. If the manager or printshop creation fails, returns {\"success\": true} (due to a bug in the code).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JsonResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/request/register": {
+      "post": {
+        "operationId": "createRegister",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the saved RegisterRequest object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RegisterRequest": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'managerName': 'string', 'managerUsername': 'string', 'managerEmail': 'string', 'managerPassword': 'string', 'pShopAddress': 'string', 'pShopLatitude': 'double', 'pShopLongitude': 'double', 'pShopNIF': 'string', 'pShopName': 'string', 'pShopDateRequest': 'string', 'pShopDateRequestAccepted': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "The register request object containing manager and printshop registration details."
+                  },
+                  "managerName": {
+                    "type": "string",
+                    "description": "The register request object containing manager and printshop registration details."
+                  },
+                  "managerUsername": {
+                    "type": "string",
+                    "description": "The register request object containing manager and printshop registration details."
+                  },
+                  "managerEmail": {
+                    "type": "string",
+                    "description": "The register request object containing manager and printshop registration details."
+                  },
+                  "managerPassword": {
+                    "type": "string",
+                    "description": "The register request object containing manager and printshop registration details."
+                  },
+                  "pShopAddress": {
+                    "type": "string",
+                    "description": "The register request object containing manager and printshop registration details."
+                  },
+                  "pShopLatitude": {
+                    "type": "number",
+                    "description": "The register request object containing manager and printshop registration details."
+                  },
+                  "pShopLongitude": {
+                    "type": "number",
+                    "description": "The register request object containing manager and printshop registration details."
+                  },
+                  "pShopNIF": {
+                    "type": "string",
+                    "description": "The register request object containing manager and printshop registration details."
+                  },
+                  "pShopName": {
+                    "type": "string",
+                    "description": "The register request object containing manager and printshop registration details."
+                  },
+                  "accepted": {
+                    "type": "boolean",
+                    "description": "The register request object containing manager and printshop registration details."
+                  },
+                  "pShopDateRequest": {
+                    "type": "string",
+                    "description": "The register request object containing manager and printshop registration details."
+                  },
+                  "pShopDateRequestAccepted": {
+                    "type": "string",
+                    "description": "The register request object containing manager and printshop registration details."
+                  }
+                },
+                "required": [
+                  "id",
+                  "managerName",
+                  "managerUsername",
+                  "managerEmail",
+                  "managerPassword",
+                  "pShopAddress",
+                  "pShopLatitude",
+                  "pShopLongitude",
+                  "pShopNIF",
+                  "pShopName",
+                  "accepted",
+                  "pShopDateRequest",
+                  "pShopDateRequestAccepted"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/requests/pending": {
+      "get": {
+        "operationId": "getPending",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a list of pending register requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<RegisterRequest>": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'managerName': 'string', 'managerUsername': 'string', 'managerEmail': 'string', 'managerPassword': 'string', 'pShopAddress': 'string', 'pShopLatitude': 'double', 'pShopLongitude': 'double', 'pShopNIF': 'string', 'pShopName': 'string', 'pShopDateRequest': 'string', 'pShopDateRequestAccepted': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/request/reject/{printRequestID}": {
+      "post": {
+        "operationId": "createReject",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "printRequestID",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the register request to reject.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the register request to reject."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object with a 'success' property set to false when the register request with the given ID does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JsonObject": {
+                      "type": "string",
+                      "description": "{'success': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "motive": {
+                    "type": "string",
+                    "description": "The reason for rejecting the register request."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/{id}/reviews": {
+      "get": {
+        "operationId": "getReviews",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the printshop whose reviews are to be retrieved.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the printshop whose reviews are to be retrieved."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns all printshop reviews as a JSON array of review objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ReviewList": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'description': 'string', 'rating': 'integer', 'username': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Printshop not found."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createReviews",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the printshop to add the review to",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the printshop to add the review to"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Review added successfully. Returns the created review as JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Review": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'description': 'string', 'rating': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Printshop not found."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "params": {
+                    "type": "string",
+                    "description": "Request body map containing the review text and rating"
+                  },
+                  "review": {
+                    "type": "string",
+                    "description": "The review text"
+                  },
+                  "rating": {
+                    "type": "integer",
+                    "description": "The rating value for the review"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/printshops/{printShopId}/reviews/{reviewId}": {
+      "put": {
+        "operationId": "updateReviews",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "printShopId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the printshop whose review is being edited",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the printshop whose review is being edited"
+            }
+          },
+          {
+            "name": "reviewId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the review to edit",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the review to edit"
+            }
+          },
+          {
+            "name": "review",
+            "in": "query",
+            "required": false,
+            "description": "Updated review text",
+            "schema": {
+              "type": "string",
+              "description": "Updated review text"
+            }
+          },
+          {
+            "name": "rating",
+            "in": "query",
+            "required": false,
+            "description": "Updated rating value",
+            "schema": {
+              "type": "integer",
+              "description": "Updated rating value"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Review edited successfully. Returns the updated review as JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Review": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'description': 'string', 'rating': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Print shop not found or review not found."
+          },
+          "401": {
+            "description": "Unauthorized: the review does not belong to the authenticated user."
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteReviews",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "printShopId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the printshop whose review is to be deleted",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the printshop whose review is to be deleted"
+            }
+          },
+          {
+            "name": "reviewId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the review to delete",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the review to delete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Review deleted successfully. Returns the deleted review as JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Review": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'description': 'string', 'rating': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Print shop not found or review not found."
+          },
+          "401": {
+            "description": "Unauthorized: the review does not belong to the authenticated user."
+          }
+        }
+      }
+    }
+  }
+}

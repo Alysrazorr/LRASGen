@@ -1,0 +1,398 @@
+{
+  "task_id": "http-patch-spring",
+  "api_name": "http-patch-spring",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/contacts",
+      "http_method": "GET",
+      "method_name": "findContacts",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\HTTPPatch\\http-patch-spring\\src\\main\\java\\com\\cassiomolin\\patch\\web\\controller\\ContactController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK. Returns a list of contacts.",
+          "data_schema": [
+            {
+              "name": "ContactResourceOutput",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "birthday": "date",
+                "work": "WorkResourceOutput",
+                "phones": "array of PhoneResourceOutput",
+                "emails": "array of EmailResourceOutput",
+                "groups": "array of string",
+                "favorite": "boolean",
+                "notes": "string",
+                "createdDateTime": "datetime",
+                "lastModifiedDateTime": "datetime"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/contacts/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteContact",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\HTTPPatch\\http-patch-spring\\src\\main\\java\\com\\cassiomolin\\patch\\web\\controller\\ContactController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the contact to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content - the contact was successfully deleted.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found - the contact with the specified ID does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/contacts/{id}",
+      "http_method": "PUT",
+      "method_name": "updateContact",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\HTTPPatch\\http-patch-spring\\src\\main\\java\\com\\cassiomolin\\patch\\web\\controller\\ContactController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "Identifier of the contact to update",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "ContactResourceInput",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contact data to update"
+        },
+        {
+          "name": "birthday",
+          "type": "LocalDate",
+          "_class_name": "ContactResourceInput",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contact data to update"
+        },
+        {
+          "name": "phones",
+          "type": "List",
+          "_class_name": "ContactResourceInput",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contact data to update"
+        },
+        {
+          "name": "emails",
+          "type": "List",
+          "_class_name": "ContactResourceInput",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contact data to update"
+        },
+        {
+          "name": "groups",
+          "type": "List",
+          "_class_name": "ContactResourceInput",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contact data to update"
+        },
+        {
+          "name": "favorite",
+          "type": "Boolean",
+          "_class_name": "ContactResourceInput",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contact data to update"
+        },
+        {
+          "name": "notes",
+          "type": "String",
+          "_class_name": "ContactResourceInput",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contact data to update"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Contact updated successfully. No content returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Contact not found. The requested contact ID does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 422,
+          "description": "Validation error. The request body contains invalid data.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/contacts",
+      "http_method": "POST",
+      "method_name": "updateContact",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\HTTPPatch\\http-patch-spring\\src\\main\\java\\com\\cassiomolin\\patch\\web\\controller\\ContactController.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "ContactResourceInput",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contact resource input to create a new contact"
+        },
+        {
+          "name": "birthday",
+          "type": "LocalDate",
+          "_class_name": "ContactResourceInput",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contact resource input to create a new contact"
+        },
+        {
+          "name": "phones",
+          "type": "List",
+          "_class_name": "ContactResourceInput",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contact resource input to create a new contact"
+        },
+        {
+          "name": "emails",
+          "type": "List",
+          "_class_name": "ContactResourceInput",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contact resource input to create a new contact"
+        },
+        {
+          "name": "groups",
+          "type": "List",
+          "_class_name": "ContactResourceInput",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contact resource input to create a new contact"
+        },
+        {
+          "name": "favorite",
+          "type": "Boolean",
+          "_class_name": "ContactResourceInput",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contact resource input to create a new contact"
+        },
+        {
+          "name": "notes",
+          "type": "String",
+          "_class_name": "ContactResourceInput",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Contact resource input to create a new contact"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Contact created successfully. The Location header contains the URI of the newly created contact.",
+          "data_schema": []
+        },
+        {
+          "status_code": 422,
+          "description": "Validation error. The request body is invalid (e.g., missing required fields or constraint violations).",
+          "data_schema": [
+            {
+              "name": "ApiError",
+              "schema": {
+                "message": "string",
+                "status": "string",
+                "details": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/contacts/{id}",
+      "http_method": "GET",
+      "method_name": "findContact",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\HTTPPatch\\http-patch-spring\\src\\main\\java\\com\\cassiomolin\\patch\\web\\controller\\ContactController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "Identifier of the contact to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Contact found and returned",
+          "data_schema": [
+            {
+              "name": "ContactResourceOutput",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "birthday": "date",
+                "work": "WorkResourceOutput",
+                "phones": "List<PhoneResourceOutput>",
+                "emails": "List<EmailResourceOutput>",
+                "groups": "List<string>",
+                "favorite": "boolean",
+                "notes": "string",
+                "createdDateTime": "OffsetDateTime",
+                "lastModifiedDateTime": "OffsetDateTime"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Contact not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/contacts/{id}",
+      "http_method": "PATCH",
+      "method_name": "updateContact",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\HTTPPatch\\http-patch-spring\\src\\main\\java\\com\\cassiomolin\\patch\\web\\controller\\ContactController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Long",
+          "require": "true",
+          "position": "path",
+          "description": "Identifier of the contact to patch",
+          "_depth": 0
+        },
+        {
+          "name": "patchDocument",
+          "type": "JsonPatch",
+          "require": "false",
+          "position": "body",
+          "description": "JSON Patch document describing the changes to apply to the contact",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content - the contact was successfully patched and updated.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found - the contact with the specified id does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 422,
+          "description": "Unprocessable Entity - the patch document could not be applied or the resulting resource failed validation.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 3299,
+  "tokens": {
+    "prompt_tokens": 190179,
+    "completion_tokens": 6005,
+    "total_tokens": 196184,
+    "calls": 36,
+    "elapsed_s": 146.015,
+    "prompt_cost_usd": 0.024267,
+    "completion_cost_usd": 0.00421,
+    "total_cost_usd": 0.028477,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 62262,
+        "completion_tokens": 1183,
+        "total_tokens": 63445,
+        "calls": 12,
+        "elapsed_s": 17.010751,
+        "prompt_cost_usd": 0.001245,
+        "completion_cost_usd": 0.00071,
+        "total_cost_usd": 0.001955
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 59715,
+        "completion_tokens": 3733,
+        "total_tokens": 63448,
+        "calls": 12,
+        "elapsed_s": 98.087,
+        "prompt_cost_usd": 0.005972,
+        "completion_cost_usd": 0.001867,
+        "total_cost_usd": 0.007838
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 68202,
+        "completion_tokens": 1089,
+        "total_tokens": 69291,
+        "calls": 12,
+        "elapsed_s": 30.917,
+        "prompt_cost_usd": 0.01705,
+        "completion_cost_usd": 0.001633,
+        "total_cost_usd": 0.018684
+      }
+    ]
+  }
+}

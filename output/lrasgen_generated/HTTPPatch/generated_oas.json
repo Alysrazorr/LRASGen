@@ -1,0 +1,314 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "http-patch-spring API",
+    "description": "LRASGen-generated specification for http-patch-spring (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/contacts": {
+      "get": {
+        "operationId": "getContacts",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "OK. Returns a list of contacts.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ContactResourceOutput": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'birthday': 'date', 'work': 'WorkResourceOutput', 'phones': 'array of PhoneResourceOutput', 'emails': 'array of EmailResourceOutput', 'groups': 'array of string', 'favorite': 'boolean', 'notes': 'string', 'createdDateTime': 'datetime', 'lastModifiedDateTime': 'datetime'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createContacts",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Contact created successfully. The Location header contains the URI of the newly created contact."
+          },
+          "422": {
+            "description": "Validation error. The request body is invalid (e.g., missing required fields or constraint violations).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiError": {
+                      "type": "string",
+                      "description": "{'message': 'string', 'status': 'string', 'details': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Contact resource input to create a new contact"
+                  },
+                  "birthday": {
+                    "type": "string",
+                    "description": "Contact resource input to create a new contact"
+                  },
+                  "phones": {
+                    "type": "string",
+                    "description": "Contact resource input to create a new contact"
+                  },
+                  "emails": {
+                    "type": "string",
+                    "description": "Contact resource input to create a new contact"
+                  },
+                  "groups": {
+                    "type": "string",
+                    "description": "Contact resource input to create a new contact"
+                  },
+                  "favorite": {
+                    "type": "boolean",
+                    "description": "Contact resource input to create a new contact"
+                  },
+                  "notes": {
+                    "type": "string",
+                    "description": "Contact resource input to create a new contact"
+                  }
+                },
+                "required": [
+                  "name",
+                  "birthday",
+                  "phones",
+                  "emails",
+                  "groups",
+                  "favorite",
+                  "notes"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contacts/{id}": {
+      "delete": {
+        "operationId": "deleteContacts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the contact to delete",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the contact to delete"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content - the contact was successfully deleted."
+          },
+          "404": {
+            "description": "Not Found - the contact with the specified ID does not exist."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateContacts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identifier of the contact to update",
+            "schema": {
+              "type": "integer",
+              "description": "Identifier of the contact to update"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Contact updated successfully. No content returned."
+          },
+          "404": {
+            "description": "Contact not found. The requested contact ID does not exist."
+          },
+          "422": {
+            "description": "Validation error. The request body contains invalid data."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Contact data to update"
+                  },
+                  "birthday": {
+                    "type": "string",
+                    "description": "Contact data to update"
+                  },
+                  "phones": {
+                    "type": "string",
+                    "description": "Contact data to update"
+                  },
+                  "emails": {
+                    "type": "string",
+                    "description": "Contact data to update"
+                  },
+                  "groups": {
+                    "type": "string",
+                    "description": "Contact data to update"
+                  },
+                  "favorite": {
+                    "type": "boolean",
+                    "description": "Contact data to update"
+                  },
+                  "notes": {
+                    "type": "string",
+                    "description": "Contact data to update"
+                  }
+                },
+                "required": [
+                  "name",
+                  "birthday",
+                  "phones",
+                  "emails",
+                  "groups",
+                  "favorite",
+                  "notes"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getContacts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identifier of the contact to retrieve",
+            "schema": {
+              "type": "integer",
+              "description": "Identifier of the contact to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact found and returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ContactResourceOutput": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'birthday': 'date', 'work': 'WorkResourceOutput', 'phones': 'List<PhoneResourceOutput>', 'emails': 'List<EmailResourceOutput>', 'groups': 'List<string>', 'favorite': 'boolean', 'notes': 'string', 'createdDateTime': 'OffsetDateTime', 'lastModifiedDateTime': 'OffsetDateTime'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contact not found"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "patchContacts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identifier of the contact to patch",
+            "schema": {
+              "type": "integer",
+              "description": "Identifier of the contact to patch"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content - the contact was successfully patched and updated."
+          },
+          "404": {
+            "description": "Not Found - the contact with the specified id does not exist."
+          },
+          "422": {
+            "description": "Unprocessable Entity - the patch document could not be applied or the resulting resource failed validation."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "patchDocument": {
+                    "type": "string",
+                    "description": "JSON Patch document describing the changes to apply to the contact"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

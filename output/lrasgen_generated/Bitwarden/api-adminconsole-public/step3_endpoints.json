@@ -1,0 +1,240 @@
+{
+  "task_id": "public",
+  "api_name": "Public",
+  "framework": "aspnetcore",
+  "endpoints": [
+    {
+      "endpoint_path": "/public/events",
+      "http_method": "GET",
+      "method_name": "List",
+      "summary": "List all events.",
+      "description": "Returns a filtered list of your organization's event logs, paged by a continuation token. If no filters are provided, it will return the last 30 days of event for the organization.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\EventsController.cs"
+    },
+    {
+      "endpoint_path": "/public/groups/{id}",
+      "http_method": "GET",
+      "method_name": "Get",
+      "summary": "Retrieve a group.",
+      "description": "Retrieves the details of an existing group. You need only supply the unique group identifier that was returned upon group creation.",
+      "line_number": 43,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs"
+    },
+    {
+      "endpoint_path": "/public/groups/{id}/member-ids",
+      "http_method": "GET",
+      "method_name": "GetMemberIds",
+      "summary": "Retrieve a groups's member ids",
+      "description": "Retrieves the unique identifiers for all members that are associated with this group. You need only supply the unique group identifier that was returned upon group creation.",
+      "line_number": 61,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs"
+    },
+    {
+      "endpoint_path": "/public/groups",
+      "http_method": "GET",
+      "method_name": "List",
+      "summary": "List all groups.",
+      "description": "Returns a list of your organization's groups. Group objects listed in this call include information about their associated collections.",
+      "line_number": 78,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs"
+    },
+    {
+      "endpoint_path": "/public/groups",
+      "http_method": "POST",
+      "method_name": "Post",
+      "summary": "Create a group.",
+      "description": "Creates a new group object.",
+      "line_number": 92,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs"
+    },
+    {
+      "endpoint_path": "/public/groups/{id}",
+      "http_method": "PUT",
+      "method_name": "Put",
+      "summary": "Update a group.",
+      "description": "Updates the specified group object. If a property is not provided, the value of the existing property will be reset.",
+      "line_number": 110,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs"
+    },
+    {
+      "endpoint_path": "/public/groups/{id}/member-ids",
+      "http_method": "PUT",
+      "method_name": "PutMemberIds",
+      "summary": "Update a group's members.",
+      "description": "Updates the specified group's member associations.",
+      "line_number": 131,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs"
+    },
+    {
+      "endpoint_path": "/public/groups/{id}",
+      "http_method": "DELETE",
+      "method_name": "Delete",
+      "summary": "Delete a group.",
+      "description": "Permanently deletes a group. This cannot be undone.",
+      "line_number": 149,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs"
+    },
+    {
+      "endpoint_path": "/public/members/{id}",
+      "http_method": "GET",
+      "method_name": "Get",
+      "summary": "Retrieve a member.",
+      "description": "Retrieves the details of an existing member of the organization. You need only supply the unique member identifier that was returned upon member creation.",
+      "line_number": 67,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/members/{id}/group-ids",
+      "http_method": "GET",
+      "method_name": "GetGroupIds",
+      "summary": "Retrieve a member's group ids",
+      "description": "Retrieves the unique identifiers for all groups that are associated with this member. You need only supply the unique member identifier that was returned upon member creation.",
+      "line_number": 86,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/members",
+      "http_method": "GET",
+      "method_name": "List",
+      "summary": "List all members.",
+      "description": "Returns a list of your organization's members. Member objects listed in this call do not include information about their associated collections.",
+      "line_number": 101,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/members",
+      "http_method": "POST",
+      "method_name": "Post",
+      "summary": "Create a member.",
+      "description": "Creates a new member object by inviting a user to the organization.",
+      "line_number": 120,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/members/{id}",
+      "http_method": "PUT",
+      "method_name": "Put",
+      "summary": "Update a member.",
+      "description": "Updates the specified member object. If a property is not provided, the value of the existing property will be reset.",
+      "line_number": 145,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/members/{id}/group-ids",
+      "http_method": "PUT",
+      "method_name": "PutGroupIds",
+      "summary": "Update a member's groups.",
+      "description": "Updates the specified member's group associations.",
+      "line_number": 172,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/members/{id}",
+      "http_method": "DELETE",
+      "method_name": "Remove",
+      "summary": "Remove a member.",
+      "description": "Permanently removes a member from the organization. This cannot be undone. The user account will still remain. The user is only removed from the organization.",
+      "line_number": 194,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/members/{id}/reinvite",
+      "http_method": "POST",
+      "method_name": "PostReinvite",
+      "summary": "Re-invite a member.",
+      "description": "Re-sends the invitation email to an organization member.",
+      "line_number": 212,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/organization/import",
+      "http_method": "POST",
+      "method_name": "Import",
+      "summary": "Import members and groups.",
+      "description": "Import members and groups from an external system.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\OrganizationController.cs"
+    },
+    {
+      "endpoint_path": "/public/policies/{type}",
+      "http_method": "GET",
+      "method_name": "Get",
+      "summary": "Retrieve a policy.",
+      "description": "Retrieves the details of a policy.",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\PoliciesController.cs"
+    },
+    {
+      "endpoint_path": "/public/policies",
+      "http_method": "GET",
+      "method_name": "List",
+      "summary": "List all policies.",
+      "description": "Returns a list of your organization's policies.",
+      "line_number": 54,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\PoliciesController.cs"
+    },
+    {
+      "endpoint_path": "/public/policies/{type}",
+      "http_method": "PUT",
+      "method_name": "Put",
+      "summary": "Update a policy.",
+      "description": "Updates the specified policy. If a property is not provided, the value of the existing property will be reset.",
+      "line_number": 69,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\PoliciesController.cs"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 10611,
+  "tokens": {
+    "prompt_tokens": 117784,
+    "completion_tokens": 8109,
+    "total_tokens": 125893,
+    "calls": 15,
+    "elapsed_s": 99.825,
+    "prompt_cost_usd": 0.015242,
+    "completion_cost_usd": 0.005399,
+    "total_cost_usd": 0.020638,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 38177,
+        "completion_tokens": 1583,
+        "total_tokens": 39760,
+        "calls": 5,
+        "elapsed_s": 10.607601,
+        "prompt_cost_usd": 0.000764,
+        "completion_cost_usd": 0.00095,
+        "total_cost_usd": 0.001713
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 36165,
+        "completion_tokens": 5341,
+        "total_tokens": 41506,
+        "calls": 5,
+        "elapsed_s": 66.54,
+        "prompt_cost_usd": 0.003617,
+        "completion_cost_usd": 0.002671,
+        "total_cost_usd": 0.006287
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 43442,
+        "completion_tokens": 1185,
+        "total_tokens": 44627,
+        "calls": 5,
+        "elapsed_s": 22.677,
+        "prompt_cost_usd": 0.010861,
+        "completion_cost_usd": 0.001778,
+        "total_cost_usd": 0.012638
+      }
+    ]
+  }
+}

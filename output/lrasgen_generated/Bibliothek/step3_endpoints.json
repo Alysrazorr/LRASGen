@@ -1,0 +1,150 @@
+{
+  "task_id": "bibliothek",
+  "api_name": "bibliothek",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "redirectToDocs",
+      "summary": "Redirect to docs",
+      "description": "Redirects the root path to the docs directory.",
+      "line_number": 5,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\RootController.java"
+    },
+    {
+      "endpoint_path": "/docs",
+      "http_method": "GET",
+      "method_name": "redirectToDocs",
+      "summary": "Redirect to docs",
+      "description": "Redirects the /docs path to the docs directory.",
+      "line_number": 5,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\RootController.java"
+    },
+    {
+      "endpoint_path": "/v2/projects/{project:[a-z]+}/versions/{version:[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?}/builds/{build:\\d+}/downloads/{download:[a-zA-Z0-9._-]+}",
+      "http_method": "GET",
+      "method_name": "download",
+      "summary": "Downloads the given file from a build's data.",
+      "description": "",
+      "line_number": 73,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\DownloadController.java"
+    },
+    {
+      "endpoint_path": "/v2/projects/{project}",
+      "http_method": "GET",
+      "method_name": "project",
+      "summary": "Gets information about a project.",
+      "description": "",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\ProjectController.java"
+    },
+    {
+      "endpoint_path": "/v2/projects",
+      "http_method": "GET",
+      "method_name": "projects",
+      "summary": "Gets a list of all available projects.",
+      "description": "",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\ProjectsController.java"
+    },
+    {
+      "endpoint_path": "/v2/projects/{project:[a-z]+}/versions/{version:[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?}/builds/{build:\\d+}",
+      "http_method": "GET",
+      "method_name": "build",
+      "summary": "Gets information related to a specific build.",
+      "description": "",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\VersionBuildController.java"
+    },
+    {
+      "endpoint_path": "/v2/projects/{project:[a-z]+}/versions/{version:[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?}/builds",
+      "http_method": "GET",
+      "method_name": "builds",
+      "summary": "Gets all available builds for a project's version.",
+      "description": "",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\VersionBuildsController.java"
+    },
+    {
+      "endpoint_path": "/v2/projects/{project}/versions/{version}",
+      "http_method": "GET",
+      "method_name": "version",
+      "summary": "Gets information about a version.",
+      "description": "",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\VersionController.java"
+    },
+    {
+      "endpoint_path": "/v2/projects/{project}/version_group/{family}/builds",
+      "http_method": "GET",
+      "method_name": "familyBuilds",
+      "summary": "Gets all available builds for a project's version group.",
+      "description": "",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\VersionFamilyBuildsController.java"
+    },
+    {
+      "endpoint_path": "/v2/projects/{project}/version_group/{family}",
+      "http_method": "GET",
+      "method_name": "family",
+      "summary": "Gets information about a project's version group.",
+      "description": "",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bibliothek\\bibliothek\\src\\main\\java\\io\\papermc\\bibliothek\\controller\\v2\\VersionFamilyController.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 13967,
+  "tokens": {
+    "prompt_tokens": 97111,
+    "completion_tokens": 4782,
+    "total_tokens": 101893,
+    "calls": 27,
+    "elapsed_s": 133.073,
+    "prompt_cost_usd": 0.012341,
+    "completion_cost_usd": 0.003251,
+    "total_cost_usd": 0.015592,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 31743,
+        "completion_tokens": 753,
+        "total_tokens": 32496,
+        "calls": 9,
+        "elapsed_s": 13.960363000000001,
+        "prompt_cost_usd": 0.000635,
+        "completion_cost_usd": 0.000452,
+        "total_cost_usd": 0.001087
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 30905,
+        "completion_tokens": 3245,
+        "total_tokens": 34150,
+        "calls": 9,
+        "elapsed_s": 85.323,
+        "prompt_cost_usd": 0.00309,
+        "completion_cost_usd": 0.001623,
+        "total_cost_usd": 0.004713
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 34463,
+        "completion_tokens": 784,
+        "total_tokens": 35247,
+        "calls": 9,
+        "elapsed_s": 33.79,
+        "prompt_cost_usd": 0.008616,
+        "completion_cost_usd": 0.001176,
+        "total_cost_usd": 0.009792
+      }
+    ]
+  }
+}

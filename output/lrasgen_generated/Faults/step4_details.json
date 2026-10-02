@@ -1,0 +1,269 @@
+{
+  "task_id": "rest-faults-master",
+  "api_name": "rest-faults-master",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/k",
+      "http_method": "GET",
+      "method_name": "getK",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Faults\\rest-faults-master\\src\\main\\java\\com\\example\\api\\Endpoints.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK",
+          "data_schema": [
+            {
+              "name": "FooDto",
+              "schema": {
+                "i": "integer",
+                "b": "boolean",
+                "s": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/y",
+      "http_method": "POST",
+      "method_name": "postY",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Faults\\rest-faults-master\\src\\main\\java\\com\\example\\api\\Endpoints.java",
+      "parameters": [
+        {
+          "name": "i",
+          "type": "Integer",
+          "_class_name": "FooDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body bound from JSON to FooDto"
+        },
+        {
+          "name": "b",
+          "type": "Boolean",
+          "_class_name": "FooDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body bound from JSON to FooDto"
+        },
+        {
+          "name": "s",
+          "type": "String",
+          "_class_name": "FooDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body bound from JSON to FooDto"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Created. The endpoint returns a 201 Created response with a Location header pointing to /api/doesNotExist. The response body is empty.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/z",
+      "http_method": "GET",
+      "method_name": "getZ",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Faults\\rest-faults-master\\src\\main\\java\\com\\example\\api\\Endpoints.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the current value of the integer field z as a plain integer.",
+          "data_schema": [
+            {
+              "name": "int",
+              "schema": {
+                "value": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/y",
+      "http_method": "DELETE",
+      "method_name": "deleteY",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Faults\\rest-faults-master\\src\\main\\java\\com\\example\\api\\Endpoints.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The DELETE /api/y endpoint returns a successful response with no body. The handler method deleteY() is declared void and performs no operations, so Spring Boot returns HTTP 200 OK with an empty response body.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/x",
+      "http_method": "GET",
+      "method_name": "getX",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Faults\\rest-faults-master\\src\\main\\java\\com\\example\\api\\Endpoints.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 500,
+          "description": "Internal Server Error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/z",
+      "http_method": "PUT",
+      "method_name": "putZ",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Faults\\rest-faults-master\\src\\main\\java\\com\\example\\api\\Endpoints.java",
+      "parameters": [
+        {
+          "name": "delta",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "Delta value to add to z",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. The request was processed and the method returns void, so the response has an empty body.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/y",
+      "http_method": "GET",
+      "method_name": "getY",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Faults\\rest-faults-master\\src\\main\\java\\com\\example\\api\\Endpoints.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Created - returns the FooDto object with i=42, s='FOO', b=null",
+          "data_schema": [
+            {
+              "name": "FooDto",
+              "schema": {
+                "i": "integer",
+                "b": "boolean",
+                "s": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/k",
+      "http_method": "PUT",
+      "method_name": "putK",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Faults\\rest-faults-master\\src\\main\\java\\com\\example\\api\\Endpoints.java",
+      "parameters": [
+        {
+          "name": "i",
+          "type": "Integer",
+          "_class_name": "FooDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing FooDto fields i, b, and s"
+        },
+        {
+          "name": "b",
+          "type": "Boolean",
+          "_class_name": "FooDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing FooDto fields i, b, and s"
+        },
+        {
+          "name": "s",
+          "type": "String",
+          "_class_name": "FooDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing FooDto fields i, b, and s"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response with no body. The PUT /api/k endpoint returns void, so Spring Boot responds with 200 OK and an empty body.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 3069,
+  "tokens": {
+    "prompt_tokens": 96635,
+    "completion_tokens": 5804,
+    "total_tokens": 102439,
+    "calls": 48,
+    "elapsed_s": 204.852,
+    "prompt_cost_usd": 0.012212,
+    "completion_cost_usd": 0.00377,
+    "total_cost_usd": 0.015983,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 31920,
+        "completion_tokens": 734,
+        "total_tokens": 32654,
+        "calls": 16,
+        "elapsed_s": 21.074011999999996,
+        "prompt_cost_usd": 0.000638,
+        "completion_cost_usd": 0.00044,
+        "total_cost_usd": 0.001079
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 30701,
+        "completion_tokens": 4275,
+        "total_tokens": 34976,
+        "calls": 16,
+        "elapsed_s": 137.072,
+        "prompt_cost_usd": 0.00307,
+        "completion_cost_usd": 0.002138,
+        "total_cost_usd": 0.005208
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 34014,
+        "completion_tokens": 795,
+        "total_tokens": 34809,
+        "calls": 16,
+        "elapsed_s": 46.706,
+        "prompt_cost_usd": 0.008504,
+        "completion_cost_usd": 0.001192,
+        "total_cost_usd": 0.009696
+      }
+    ]
+  }
+}

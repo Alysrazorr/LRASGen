@@ -1,0 +1,921 @@
+{
+  "task_id": "languagetool",
+  "api_name": "languagetool",
+  "framework": "jdk",
+  "endpoints": [
+    {
+      "endpoint_path": "/v2/stop",
+      "http_method": "GET",
+      "method_name": "handle",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Server stopped successfully. The handler calls httpServer.stop() and returns without sending a response body.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/maxtextlength",
+      "http_method": "GET",
+      "method_name": "handleMaxTextLengthRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the maximum text length allowed by the server as a plain text integer.",
+          "data_schema": [
+            {
+              "name": "MaxTextLength",
+              "schema": {
+                "maxTextLength": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/languages",
+      "http_method": "GET",
+      "method_name": "handleLanguagesRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON array of supported languages, each with name, code, and longCode.",
+          "data_schema": [
+            {
+              "name": "LanguageList",
+              "schema": {
+                "name": "string",
+                "code": "string",
+                "longCode": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/healthcheck",
+      "http_method": "GET",
+      "method_name": "handle",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Healthcheck succeeded, returns plain text 'OK'",
+          "data_schema": [
+            {
+              "name": "HealthcheckResponse",
+              "schema": {
+                "response": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 503,
+          "description": "Healthcheck failed because the work queue is full",
+          "data_schema": [
+            {
+              "name": "ErrorResponse",
+              "schema": {
+                "error": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/info",
+      "http_method": "GET",
+      "method_name": "handleSoftwareInfoRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns software information as JSON.",
+          "data_schema": [
+            {
+              "name": "SoftwareInfo",
+              "schema": {
+                "software": {
+                  "name": "string",
+                  "version": "string",
+                  "buildDate": "string",
+                  "commit": "string",
+                  "premium": "boolean"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/configinfo",
+      "http_method": "GET",
+      "method_name": "handleGetConfigurationInfoRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java",
+      "parameters": [
+        {
+          "name": "language",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Language code for which configuration information is requested, e.g. 'en-US' or 'fr'.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing configuration information for the specified language, including software details, parameter limits, and rules.",
+          "data_schema": [
+            {
+              "name": "ConfigurationInfo",
+              "schema": {
+                "software": {
+                  "name": "string",
+                  "version": "string",
+                  "buildDate": "string",
+                  "premium": "boolean"
+                },
+                "parameter": {
+                  "maxTextLength": "integer"
+                },
+                "rules": [
+                  {
+                    "ruleId": "string",
+                    "description": "string",
+                    "isDictionaryBasedSpellingRule": "string",
+                    "isDefaultOff": "string",
+                    "isOfficeDefaultOff": "string",
+                    "isOfficeDefaultOn": "string",
+                    "hasConfigurableValue": "string",
+                    "configureText": "string",
+                    "maxConfigurableValue": "string",
+                    "minConfigurableValue": "string",
+                    "defaultValue": "string",
+                    "categoryId": "string",
+                    "categoryName": "string",
+                    "locQualityIssueType": "string",
+                    "isTextLevelRule": "string",
+                    "minToCheckParagraph": "string"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request: The 'language' parameter is missing or invalid.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found: The requested path is not supported.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error: An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/words/delete",
+      "http_method": "POST",
+      "method_name": "handleWordDeleteRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java",
+      "parameters": [
+        {
+          "name": "word",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The word to delete from the user's dictionary. Must not be empty or contain whitespace.",
+          "_depth": 0
+        },
+        {
+          "name": "username",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Username for authentication; required to obtain a premium user id.",
+          "_depth": 0
+        },
+        {
+          "name": "apiKey",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "API key for authentication; required to obtain a premium user id.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response indicating whether the word was deleted. Returns a JSON object with a boolean field 'deleted'.",
+          "data_schema": [
+            {
+              "name": "WordDeleteResponse",
+              "schema": {
+                "deleted": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the request method is not POST, when required parameters are missing or invalid, or when the word is invalid (empty, whitespace-only, or contains spaces).",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when authentication fails (e.g., invalid username/apiKey combination) or when the request is denied by the request limiter.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the requested path is not supported.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an unexpected error occurs during processing.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/words",
+      "http_method": "GET",
+      "method_name": "handleWordsRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java",
+      "parameters": [
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Offset for pagination of the user's word list",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Maximum number of words to return",
+          "_depth": 0
+        },
+        {
+          "name": "username",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Username for authentication; required because the endpoint needs a premium user id",
+          "_depth": 0
+        },
+        {
+          "name": "apiKey",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "API key for authentication; required because the endpoint needs a premium user id",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object containing a list of the user's dictionary words.",
+          "data_schema": [
+            {
+              "name": "WordsResponse",
+              "schema": {
+                "words": "array of string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the request method is not GET, or when required parameters are missing or invalid.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when access is denied due to IP restrictions, blocked referrers, or request limits.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned when the requested path is not supported.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when an unexpected error occurs during request processing.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/words/add",
+      "http_method": "POST",
+      "method_name": "handleWordAddRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java",
+      "parameters": [
+        {
+          "name": "word",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The word to add to the user's ignored words list.",
+          "_depth": 0
+        },
+        {
+          "name": "username",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Username for authentication; required to identify the premium user.",
+          "_depth": 0
+        },
+        {
+          "name": "apiKey",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "API key for authentication; required to identify the premium user.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Word added successfully. Returns a JSON object with a boolean field 'added' indicating whether the word was added.",
+          "data_schema": [
+            {
+              "name": "WordAddResponse",
+              "schema": {
+                "added": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Possible causes: missing or invalid parameters (e.g., missing 'word', invalid word containing spaces, missing user id, or invalid method). The exception message is returned in the response body.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Authentication failed (e.g., invalid username or API key). The exception message is returned in the response body.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested path is not supported. The exception message is returned in the response body.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected error occurred while processing the request. The exception message is returned in the response body.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/swagger",
+      "http_method": "GET",
+      "method_name": "handleSwaggerRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the swagger.json content as JSON.",
+          "data_schema": [
+            {
+              "name": "Swagger",
+              "schema": {
+                "swagger": "string",
+                "info": "object",
+                "host": "string",
+                "basePath": "string",
+                "tags": "array",
+                "schemes": "array",
+                "paths": "object",
+                "definitions": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/log",
+      "http_method": "GET",
+      "method_name": "handleLogRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java",
+      "parameters": [
+        {
+          "name": "message",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Log message from the client (truncated to 250 characters if longer)",
+          "max_length": "250",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK - the log message was received and printed to the server log. The response body is the plain text 'OK'.",
+          "data_schema": [
+            {
+              "name": "LogResponse",
+              "schema": {
+                "response": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/rule/examples",
+      "http_method": "GET",
+      "method_name": "handleRuleExamplesRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java",
+      "parameters": [
+        {
+          "name": "lang",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Language code for which to retrieve rule examples; missing value throws IllegalArgumentException('lang' parameter missing).",
+          "_depth": 0
+        },
+        {
+          "name": "ruleId",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "ID of the rule whose examples are requested; missing value throws IllegalArgumentException('ruleId' parameter missing).",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object containing rule examples for the specified rule and language. The response includes a 'results' array with objects for correct and incorrect examples, each containing 'status' and 'sentence' fields, and for incorrect examples also a 'corrections' array. A warning message is included indicating this is not a public API.",
+          "data_schema": [
+            {
+              "name": "RuleExamplesResponse",
+              "schema": {
+                "results": "array",
+                "results[].status": "string",
+                "results[].sentence": "string",
+                "results[].corrections": "array of string",
+                "results[].warning": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when required parameters are missing or invalid. Specifically, if 'lang' parameter is missing, if 'ruleId' parameter is missing, or if the HTTP method is not GET (ensureGetMethod throws IllegalArgumentException). The error message is included in the response body.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned when the specified rule is not found for the given language. The error message includes the rule ID, language, and LanguageTool version information.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when an unexpected exception occurs during processing, such as JSON generation errors or other runtime exceptions not explicitly caught.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v2/check",
+      "http_method": "POST",
+      "method_name": "handleCheckRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java",
+      "parameters": [
+        {
+          "name": "text",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The text to be checked. Either 'text' or 'data' must be provided, but not both.",
+          "_depth": 0
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "JSON data containing the text or annotation to be checked. Either 'text' or 'data' must be provided, but not both.",
+          "_depth": 0
+        },
+        {
+          "name": "language",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The language of the text, e.g. 'en-US' for American English or 'fr' for French. Use 'auto' for automatic language detection.",
+          "_depth": 0
+        },
+        {
+          "name": "enabledRules",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated list of rule IDs to enable.",
+          "_depth": 0
+        },
+        {
+          "name": "disabledRules",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated list of rule IDs to disable.",
+          "_depth": 0
+        },
+        {
+          "name": "enabledCategories",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated list of category IDs to enable.",
+          "_depth": 0
+        },
+        {
+          "name": "disabledCategories",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated list of category IDs to disable.",
+          "_depth": 0
+        },
+        {
+          "name": "enabledOnly",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "If set to 'yes' or 'true', only the rules specified in enabledRules or enabledCategories will be used.",
+          "_depth": 0
+        },
+        {
+          "name": "enableTempOffRules",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "If set to 'true', temporarily disabled rules will be enabled.",
+          "_depth": 0
+        },
+        {
+          "name": "allowIncompleteResults",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "If set to 'true', the server may return incomplete results if the check takes too long or too many errors occur.",
+          "_depth": 0
+        },
+        {
+          "name": "enableHiddenRules",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "If set to 'true', hidden rules (from a hidden matches server) will be enabled.",
+          "_depth": 0
+        },
+        {
+          "name": "motherTongue",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The mother tongue of the user, used for some rules.",
+          "_depth": 0
+        },
+        {
+          "name": "preferredVariants",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated list of preferred language variants, e.g. 'en-GB,en-US'. Only allowed when language=auto.",
+          "_depth": 0
+        },
+        {
+          "name": "preferredLanguages",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated list of preferred languages for language detection.",
+          "_depth": 0
+        },
+        {
+          "name": "noopLanguages",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated list of languages to ignore during language detection. Only allowed when language=auto.",
+          "_depth": 0
+        },
+        {
+          "name": "altLanguages",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated list of alternative languages to check against.",
+          "_depth": 0
+        },
+        {
+          "name": "mode",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The checking mode. Must be one of 'textLevelOnly', 'allButTextLevelOnly', or 'all'.",
+          "enum": [
+            "textLevelOnly",
+            "allButTextLevelOnly",
+            "all"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "level",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The level of checking. Must be 'default' or 'picky'.",
+          "enum": [
+            "default",
+            "picky"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "callback",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "JSONP callback function name. Must match [a-zA-Z]+.",
+          "_depth": 0
+        },
+        {
+          "name": "c",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Compact mode flag. If set to '1', the response will be more compact.",
+          "_depth": 0
+        },
+        {
+          "name": "textSessionId",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "An identifier for the text session, used for A/B testing and caching.",
+          "_depth": 0
+        },
+        {
+          "name": "useragent",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The user agent string of the client, used for logging and A/B testing.",
+          "_depth": 0
+        },
+        {
+          "name": "username",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Username for authentication. Requires either 'apiKey' or 'password'.",
+          "_depth": 0
+        },
+        {
+          "name": "apiKey",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "API key for authentication. Requires 'username'.",
+          "_depth": 0
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Password for authentication. Requires 'username'.",
+          "_depth": 0
+        },
+        {
+          "name": "token",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "JWT token for authentication, can be used to increase text length limits.",
+          "_depth": 0
+        },
+        {
+          "name": "filterDictionaryMatches",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "If set to 'true', matches from the user's dictionary will be filtered out.",
+          "_depth": 0
+        },
+        {
+          "name": "ruleValues",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated list of rule ID and value pairs, e.g. 'rule1:value1,rule2:value2'.",
+          "_depth": 0
+        },
+        {
+          "name": "sourceText",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Source text for bilingual checking. Requires 'sourceLanguage'.",
+          "_depth": 0
+        },
+        {
+          "name": "sourceLanguage",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Language of the source text for bilingual checking. Required when 'sourceText' is set.",
+          "_depth": 0
+        },
+        {
+          "name": "multilingual",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "If set to 'true', enables multilingual checking using preferredLanguages.",
+          "_depth": 0
+        },
+        {
+          "name": "v",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Version of the client, used for logging.",
+          "_depth": 0
+        },
+        {
+          "name": "inputLogging",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "If set to 'no', the input text will not be logged in case of errors.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful check response containing rule matches as JSON.",
+          "data_schema": [
+            {
+              "name": "CheckResponse",
+              "schema": {
+                "software": "object",
+                "language": "object",
+                "matches": "array",
+                "incompleteResults": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request: missing or invalid parameters, invalid language, invalid mode/level, invalid callback, invalid rule/category settings, or error rate too high.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: access denied due to blocked referrer/origin, request limit exceeded, too many recent timeouts, or authentication failure.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found: unsupported action path.",
+          "data_schema": null
+        },
+        {
+          "status_code": 413,
+          "description": "Payload too large: text exceeds the maximum allowed length.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error: text checking took longer than the configured maximum time.",
+          "data_schema": null
+        },
+        {
+          "status_code": 503,
+          "description": "Service unavailable: too many parallel requests in the work queue.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 98,
+    "step2_ms": 131,
+    "step3_ms": 5068,
+    "step4_ms": 13480,
+    "step5_ms": 0,
+    "total_ms": 18780
+  }
+}

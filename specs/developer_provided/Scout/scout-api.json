@@ -1,0 +1,3461 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "info": {
+    "title": "REST API",
+    "version": "",
+    "description": "REST API"
+  },
+  "paths": {
+    "/v1/activities": {
+      "get": {
+        "description": "",
+        "operationId": "em7",
+        "parameters": [
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "text",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "featured",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "categories",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "age_1",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "age_2",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "participants",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_1",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_2",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "my_favourites",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "x-parameter-constraints": {
+                "$ref": "#/components/x-endpoint-constraints/~1v1~1activities/get/x-parameter-constraints/my_favourites"
+              }
+            }
+          },
+          {
+            "name": "ratings_count_min",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "ratings_average_min",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "random",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "favourites",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1activities/get"
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em9",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.Activity"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1activities/post"
+        }
+      }
+    },
+    "/v1/activities/{id}": {
+      "delete": {
+        "description": "",
+        "operationId": "em8",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1activities~1{id}/delete"
+        }
+      },
+      "get": {
+        "description": "",
+        "operationId": "em10",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1activities~1{id}/get"
+        }
+      },
+      "patch": {
+        "description": "",
+        "operationId": "em15",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.Activity"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1activities~1{id}/patch"
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em14",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.Activity"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1activities~1{id}/put"
+        }
+      }
+    },
+    "/v1/activities/{id}/rating": {
+      "delete": {
+        "description": "",
+        "operationId": "em13",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1activities~1{id}~1rating/delete"
+        }
+      },
+      "get": {
+        "description": "",
+        "operationId": "em11",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1activities~1{id}~1rating/get"
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em12",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1activities~1{id}~1rating/post"
+        }
+      }
+    },
+    "/v1/categories": {
+      "get": {
+        "description": "",
+        "operationId": "em2",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "min_activities_count",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1categories/get"
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em4",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.Tag"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1categories/post"
+        }
+      }
+    },
+    "/v1/categories/{id}": {
+      "delete": {
+        "description": "",
+        "operationId": "em3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1categories~1{id}/delete"
+        }
+      },
+      "get": {
+        "description": "",
+        "operationId": "em5",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1categories~1{id}/get"
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em6",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.Tag"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1categories~1{id}/put"
+        }
+      }
+    },
+    "/v1/favourites": {
+      "get": {
+        "description": "",
+        "operationId": "em0",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1favourites/get"
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 1
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1favourites/post"
+        }
+      }
+    },
+    "/v1/media_files": {
+      "get": {
+        "description": "",
+        "operationId": "em34",
+        "parameters": [
+          {
+            "name": "uri",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1media_files/get"
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em36",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.MediaFile"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1media_files/post"
+        }
+      }
+    },
+    "/v1/media_files/{id}": {
+      "delete": {
+        "description": "",
+        "operationId": "em35",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "verify_unused",
+            "in": "query",
+            "required": false,
+            "examples": {
+              "false": {
+                "value": false
+              }
+            },
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1media_files~1{id}/delete"
+        }
+      },
+      "get": {
+        "description": "",
+        "operationId": "em37",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1media_files~1{id}/get"
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em39",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.MediaFile"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1media_files~1{id}/put"
+        }
+      }
+    },
+    "/v1/media_files/{id}/file": {
+      "get": {
+        "description": "",
+        "operationId": "em38",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1media_files~1{id}~1file/get"
+        }
+      }
+    },
+    "/v1/system/ping": {
+      "get": {
+        "description": "",
+        "operationId": "em27",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      }
+    },
+    "/v1/system/roles": {
+      "get": {
+        "description": "",
+        "operationId": "em28",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.resource.SystemResource$RolesView",
+                  "properties": {
+                    "permissionLevels": {
+                      "type": "object"
+                    },
+                    "roleLevels": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      }
+    },
+    "/v1/system_messages": {
+      "get": {
+        "description": "",
+        "operationId": "em29",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "valid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1system_messages/get"
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em31",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.SystemMessage"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1system_messages/post"
+        }
+      }
+    },
+    "/v1/system_messages/{id}": {
+      "delete": {
+        "description": "",
+        "operationId": "em30",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1system_messages~1{id}/delete"
+        }
+      },
+      "get": {
+        "description": "",
+        "operationId": "em32",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1system_messages~1{id}/get"
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em33",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.SystemMessage"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1system_messages~1{id}/put"
+        }
+      }
+    },
+    "/v1/users": {
+      "get": {
+        "description": "",
+        "operationId": "em16",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1users/get"
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em18",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.User"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1users/post"
+        }
+      }
+    },
+    "/v1/users/profile": {
+      "get": {
+        "description": "",
+        "operationId": "em20",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.resource.UserProfileView",
+                  "properties": {
+                    "rolePermissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "object",
+                      "title": "se.devscout.scoutapi.auth.Role",
+                      "properties": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1users~1profile/get"
+        }
+      }
+    },
+    "/v1/users/{id}": {
+      "delete": {
+        "description": "",
+        "operationId": "em17",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1users~1{id}/delete"
+        }
+      },
+      "get": {
+        "description": "",
+        "operationId": "em19",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1users~1{id}/get"
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em21",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.User"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1users~1{id}/put"
+        }
+      }
+    },
+    "/v2/activities": {
+      "get": {
+        "description": "",
+        "operationId": "em40",
+        "parameters": [
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "text",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "featured",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "categories",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ages",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "participants",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "durations",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "my_favourites",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "x-parameter-constraints": {
+                "$ref": "#/components/x-endpoint-constraints/~1v2~1activities/get/x-parameter-constraints/my_favourites"
+              }
+            }
+          },
+          {
+            "name": "ratings_count_min",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "ratings_average_min",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "random",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "favourites",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v2~1activities/get"
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em42",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.Activity"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v2~1activities/post"
+        }
+      }
+    },
+    "/v2/activities/{id}": {
+      "delete": {
+        "description": "",
+        "operationId": "em41",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v2~1activities~1{id}/delete"
+        }
+      },
+      "get": {
+        "description": "",
+        "operationId": "em43",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v2~1activities~1{id}/get"
+        }
+      },
+      "patch": {
+        "description": "",
+        "operationId": "em48",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.Activity"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v2~1activities~1{id}/patch"
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em47",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.Activity"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v2~1activities~1{id}/put"
+        }
+      }
+    },
+    "/v2/activities/{id}/rating": {
+      "delete": {
+        "description": "",
+        "operationId": "em46",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v2~1activities~1{id}~1rating/delete"
+        }
+      },
+      "get": {
+        "description": "",
+        "operationId": "em44",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v2~1activities~1{id}~1rating/get"
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em45",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v2~1activities~1{id}~1rating/post"
+        }
+      }
+    },
+    "/v2/tags": {
+      "get": {
+        "description": "",
+        "operationId": "em22",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "min_activities_count",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v2~1tags/get"
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em24",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.Tag"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v2~1tags/post"
+        }
+      }
+    },
+    "/v2/tags/{id}": {
+      "delete": {
+        "description": "",
+        "operationId": "em23",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v2~1tags~1{id}/delete"
+        }
+      },
+      "get": {
+        "description": "",
+        "operationId": "em25",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v2~1tags~1{id}/get"
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em26",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "se.devscout.scoutapi.model.Tag"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v2~1tags~1{id}/put"
+        }
+      }
+    }
+  },
+  "components": {
+    "x-endpoint-constraints": {
+      "/v1/activities": {
+        "get": {
+          "global-reads": {
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            },
+            "g8": {
+              "name": "COMMA_COINER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g8"
+              }
+            },
+            "g9": {
+              "name": "favouritesCount",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g9"
+              }
+            },
+            "g10": {
+              "name": "COMMA_SPLITTER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g10"
+              }
+            }
+          },
+          "x-parameter-constraints": {
+            "my_favourites": [
+              "(= |{my_favourites}| null)"
+            ]
+          }
+        },
+        "post": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g7": {
+              "name": "category_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g7"
+              }
+            },
+            "g12": {
+              "name": "activity_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g12"
+              }
+            },
+            "g13": {
+              "name": "mediaitem_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g13"
+              }
+            }
+          }
+        }
+      },
+      "/v1/activities/{id}": {
+        "delete": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g11": {
+              "name": "activity_edit",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g11"
+              }
+            }
+          }
+        },
+        "get": {
+          "global-reads": {
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            }
+          }
+        },
+        "patch": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g7": {
+              "name": "category_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g7"
+              }
+            },
+            "g11": {
+              "name": "activity_edit",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g11"
+              }
+            },
+            "g13": {
+              "name": "mediaitem_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g13"
+              }
+            }
+          }
+        },
+        "put": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g7": {
+              "name": "category_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g7"
+              }
+            },
+            "g11": {
+              "name": "activity_edit",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g11"
+              }
+            },
+            "g13": {
+              "name": "mediaitem_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g13"
+              }
+            }
+          }
+        }
+      },
+      "/v1/activities/{id}/rating": {
+        "delete": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g2": {
+              "name": "rating_set_own",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            }
+          }
+        },
+        "get": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g2": {
+              "name": "rating_set_own",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            }
+          }
+        },
+        "post": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g2": {
+              "name": "rating_set_own",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            }
+          }
+        }
+      },
+      "/v1/categories": {
+        "get": {
+          "global-reads": {
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            }
+          }
+        },
+        "post": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g7": {
+              "name": "category_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g7"
+              }
+            }
+          }
+        }
+      },
+      "/v1/categories/{id}": {
+        "delete": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g6": {
+              "name": "category_edit",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g6"
+              }
+            }
+          }
+        },
+        "get": {
+          "global-reads": {
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            }
+          }
+        },
+        "put": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g6": {
+              "name": "category_edit",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g6"
+              }
+            }
+          }
+        }
+      },
+      "/v1/favourites": {
+        "get": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g2": {
+              "name": "rating_set_own",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            }
+          }
+        },
+        "post": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g2": {
+              "name": "rating_set_own",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            }
+          }
+        }
+      },
+      "/v1/media_files": {
+        "get": {
+          "global-reads": {
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            }
+          }
+        },
+        "post": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g13": {
+              "name": "mediaitem_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g13"
+              }
+            },
+            "g21": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g21"
+              }
+            }
+          },
+          "global-writes": {
+            "g22": {
+              "name": "RESIZED_FILE_NAME_PATTERN",
+              "assigned-values": [
+                "staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(\"^(.*)\\\\.(\\\\w+)_(\\\\d+).(\\\\w+)$\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g22"
+              }
+            },
+            "g23": {
+              "name": "LOGGER",
+              "assigned-values": [
+                "staticinvoke <org.slf4j.LoggerFactory: org.slf4j.Logger getLogger(java.lang.Class)>(class \"Lse/devscout/scoutapi/util/MediaFileUtils;\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g23"
+              }
+            }
+          }
+        }
+      },
+      "/v1/media_files/{id}": {
+        "delete": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g19": {
+              "name": "CONFLICT",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g19"
+              }
+            },
+            "g20": {
+              "name": "mediaitem_edit",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g20"
+              }
+            }
+          }
+        },
+        "get": {
+          "global-reads": {
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            }
+          }
+        },
+        "put": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g20": {
+              "name": "mediaitem_edit",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g20"
+              }
+            }
+          }
+        }
+      },
+      "/v1/media_files/{id}/file": {
+        "get": {
+          "global-reads": {
+            "g24": {
+              "name": "KEY_ANTIALIASING",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g24"
+              }
+            },
+            "g25": {
+              "name": "VALUE_ANTIALIAS_ON",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g25"
+              }
+            },
+            "g26": {
+              "name": "VALUE_RENDER_QUALITY",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g26"
+              }
+            },
+            "g27": {
+              "name": "Src",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g27"
+              }
+            },
+            "g28": {
+              "name": "VALUE_INTERPOLATION_BICUBIC",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g28"
+              }
+            },
+            "g29": {
+              "name": "KEY_RENDERING",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g29"
+              }
+            },
+            "g30": {
+              "name": "KEY_INTERPOLATION",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g30"
+              }
+            }
+          },
+          "global-writes": {
+            "g22": {
+              "name": "RESIZED_FILE_NAME_PATTERN",
+              "assigned-values": [
+                "staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(\"^(.*)\\\\.(\\\\w+)_(\\\\d+).(\\\\w+)$\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g22"
+              }
+            },
+            "g23": {
+              "name": "LOGGER",
+              "assigned-values": [
+                "staticinvoke <org.slf4j.LoggerFactory: org.slf4j.Logger getLogger(java.lang.Class)>(class \"Lse/devscout/scoutapi/util/MediaFileUtils;\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g23"
+              }
+            }
+          }
+        }
+      },
+      "/v1/system_messages": {
+        "get": {
+          "global-reads": {
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            },
+            "g17": {
+              "name": "$SwitchMap$se$devscout$scoutapi$resource$ValidityInterval",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g17"
+              }
+            }
+          }
+        },
+        "post": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g18": {
+              "name": "system_message_manage",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g18"
+              }
+            }
+          }
+        }
+      },
+      "/v1/system_messages/{id}": {
+        "delete": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g18": {
+              "name": "system_message_manage",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g18"
+              }
+            }
+          }
+        },
+        "get": {
+          "global-reads": {
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            }
+          }
+        },
+        "put": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g18": {
+              "name": "system_message_manage",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g18"
+              }
+            }
+          }
+        }
+      },
+      "/v1/users": {
+        "get": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            }
+          }
+        },
+        "post": {
+          "valid-path-conditions": [
+            "( {non_EPP#0}.<se.devscout.scoutapi.auth.AuthResult: se.devscout.scoutapi.model.User getUser()>().<se.devscout.scoutapi.model.User: int getAuthorizationLevel()>() >= {non_EPP#2}.<se.devscout.scoutapi.model.User: int getAuthorizationLevel()>() )"
+          ],
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g15": {
+              "name": "auth_user_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g15"
+              }
+            }
+          }
+        }
+      },
+      "/v1/users/profile": {
+        "get": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g16": {
+              "name": "limited_user",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g16"
+              }
+            }
+          }
+        }
+      },
+      "/v1/users/{id}": {
+        "delete": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g14": {
+              "name": "auth_user_edit",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g14"
+              }
+            }
+          }
+        },
+        "get": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            },
+            "g14": {
+              "name": "auth_user_edit",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g14"
+              }
+            }
+          }
+        },
+        "put": {
+          "valid-path-conditions": [
+            "( {non_EPP#0}.<se.devscout.scoutapi.auth.AuthResult: se.devscout.scoutapi.model.User getUser()>().<se.devscout.scoutapi.model.User: int getAuthorizationLevel()>() >= {non_EPP#3}.<se.devscout.scoutapi.model.User: int getAuthorizationLevel()>() )"
+          ],
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g14": {
+              "name": "auth_user_edit",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g14"
+              }
+            }
+          }
+        }
+      },
+      "/v2/activities": {
+        "get": {
+          "global-reads": {
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            },
+            "g9": {
+              "name": "favouritesCount",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g9"
+              }
+            },
+            "g10": {
+              "name": "COMMA_SPLITTER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g10"
+              }
+            }
+          },
+          "x-parameter-constraints": {
+            "my_favourites": [
+              "(= |{my_favourites}| null)"
+            ]
+          }
+        },
+        "post": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g7": {
+              "name": "category_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g7"
+              }
+            },
+            "g12": {
+              "name": "activity_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g12"
+              }
+            },
+            "g13": {
+              "name": "mediaitem_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g13"
+              }
+            }
+          }
+        }
+      },
+      "/v2/activities/{id}": {
+        "delete": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g11": {
+              "name": "activity_edit",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g11"
+              }
+            }
+          }
+        },
+        "get": {
+          "global-reads": {
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            }
+          }
+        },
+        "patch": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g7": {
+              "name": "category_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g7"
+              }
+            },
+            "g11": {
+              "name": "activity_edit",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g11"
+              }
+            },
+            "g13": {
+              "name": "mediaitem_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g13"
+              }
+            }
+          }
+        },
+        "put": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g7": {
+              "name": "category_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g7"
+              }
+            },
+            "g11": {
+              "name": "activity_edit",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g11"
+              }
+            },
+            "g13": {
+              "name": "mediaitem_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g13"
+              }
+            }
+          }
+        }
+      },
+      "/v2/activities/{id}/rating": {
+        "delete": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g2": {
+              "name": "rating_set_own",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            }
+          }
+        },
+        "get": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g2": {
+              "name": "rating_set_own",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            }
+          }
+        },
+        "post": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g2": {
+              "name": "rating_set_own",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            }
+          }
+        }
+      },
+      "/v2/tags": {
+        "get": {
+          "global-reads": {
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            }
+          }
+        },
+        "post": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g7": {
+              "name": "category_create",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g7"
+              }
+            }
+          }
+        }
+      },
+      "/v2/tags/{id}": {
+        "delete": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g6": {
+              "name": "category_edit",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g6"
+              }
+            }
+          }
+        },
+        "get": {
+          "global-reads": {
+            "g3": {
+              "name": "OBJECT_MAPPER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "DEFAULT_WRITER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            }
+          }
+        },
+        "put": {
+          "global-reads": {
+            "g0": {
+              "name": "API",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "FORBIDDEN",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g6": {
+              "name": "category_edit",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g6"
+              }
+            }
+          }
+        }
+      }
+    },
+    "x-endpoint-interdependence": {},
+    "x-global-variables-info": {
+      "g0": {
+        "name": "API",
+        "id": "g0",
+        "defining-class": "se.devscout.scoutapi.model.IdentityType"
+      },
+      "g1": {
+        "name": "FORBIDDEN",
+        "id": "g1",
+        "defining-class": "javax.ws.rs.core.Response$Status"
+      },
+      "g2": {
+        "name": "rating_set_own",
+        "id": "g2",
+        "defining-class": "se.devscout.scoutapi.auth.Permission"
+      },
+      "g3": {
+        "name": "OBJECT_MAPPER",
+        "id": "g3",
+        "defining-class": "se.devscout.scoutapi.resource.AbstractResource",
+        "locations-of-static-assignments": [
+          "line 33, se.devscout.scoutapi.resource.AbstractResource"
+        ]
+      },
+      "g4": {
+        "name": "DEFAULT_WRITER",
+        "id": "g4",
+        "defining-class": "se.devscout.scoutapi.resource.AbstractResource",
+        "locations-of-static-assignments": [
+          "line 34, se.devscout.scoutapi.resource.AbstractResource"
+        ]
+      },
+      "g5": {
+        "name": "LOGGER",
+        "id": "g5",
+        "defining-class": "se.devscout.scoutapi.resource.AbstractResource",
+        "locations-of-static-assignments": [
+          "line 35, se.devscout.scoutapi.resource.AbstractResource"
+        ]
+      },
+      "g6": {
+        "name": "category_edit",
+        "id": "g6",
+        "defining-class": "se.devscout.scoutapi.auth.Permission"
+      },
+      "g7": {
+        "name": "category_create",
+        "id": "g7",
+        "defining-class": "se.devscout.scoutapi.auth.Permission"
+      },
+      "g8": {
+        "name": "COMMA_COINER",
+        "id": "g8",
+        "defining-class": "se.devscout.scoutapi.resource.v1.ActivityResourceV1",
+        "locations-of-static-assignments": [
+          "line 29, se.devscout.scoutapi.resource.v1.ActivityResourceV1"
+        ]
+      },
+      "g9": {
+        "name": "favouritesCount",
+        "id": "g9",
+        "defining-class": "se.devscout.scoutapi.dao.ActivityDao$SortOrder"
+      },
+      "g10": {
+        "name": "COMMA_SPLITTER",
+        "id": "g10",
+        "defining-class": "se.devscout.scoutapi.resource.ActivityResource",
+        "locations-of-static-assignments": [
+          "line 19, se.devscout.scoutapi.resource.ActivityResource"
+        ]
+      },
+      "g11": {
+        "name": "activity_edit",
+        "id": "g11",
+        "defining-class": "se.devscout.scoutapi.auth.Permission"
+      },
+      "g12": {
+        "name": "activity_create",
+        "id": "g12",
+        "defining-class": "se.devscout.scoutapi.auth.Permission"
+      },
+      "g13": {
+        "name": "mediaitem_create",
+        "id": "g13",
+        "defining-class": "se.devscout.scoutapi.auth.Permission"
+      },
+      "g14": {
+        "name": "auth_user_edit",
+        "id": "g14",
+        "defining-class": "se.devscout.scoutapi.auth.Permission"
+      },
+      "g15": {
+        "name": "auth_user_create",
+        "id": "g15",
+        "defining-class": "se.devscout.scoutapi.auth.Permission"
+      },
+      "g16": {
+        "name": "limited_user",
+        "id": "g16",
+        "defining-class": "se.devscout.scoutapi.auth.Role"
+      },
+      "g17": {
+        "name": "$SwitchMap$se$devscout$scoutapi$resource$ValidityInterval",
+        "id": "g17",
+        "defining-class": "se.devscout.scoutapi.resource.SystemMessageResource$1",
+        "locations-of-static-assignments": [
+          "line 46, se.devscout.scoutapi.resource.SystemMessageResource$1"
+        ]
+      },
+      "g18": {
+        "name": "system_message_manage",
+        "id": "g18",
+        "defining-class": "se.devscout.scoutapi.auth.Permission"
+      },
+      "g19": {
+        "name": "CONFLICT",
+        "id": "g19",
+        "defining-class": "javax.ws.rs.core.Response$Status"
+      },
+      "g20": {
+        "name": "mediaitem_edit",
+        "id": "g20",
+        "defining-class": "se.devscout.scoutapi.auth.Permission"
+      },
+      "g21": {
+        "name": "LOGGER",
+        "id": "g21",
+        "defining-class": "se.devscout.scoutapi.resource.MediaFileResource",
+        "locations-of-static-assignments": [
+          "line 47, se.devscout.scoutapi.resource.MediaFileResource"
+        ]
+      },
+      "g22": {
+        "name": "RESIZED_FILE_NAME_PATTERN",
+        "id": "g22",
+        "defining-class": "se.devscout.scoutapi.util.MediaFileUtils",
+        "locations-of-static-assignments": [
+          "line 41, se.devscout.scoutapi.util.MediaFileUtils"
+        ]
+      },
+      "g23": {
+        "name": "LOGGER",
+        "id": "g23",
+        "defining-class": "se.devscout.scoutapi.util.MediaFileUtils",
+        "locations-of-static-assignments": [
+          "line 42, se.devscout.scoutapi.util.MediaFileUtils"
+        ]
+      },
+      "g24": {
+        "name": "KEY_ANTIALIASING",
+        "id": "g24",
+        "defining-class": "java.awt.RenderingHints"
+      },
+      "g25": {
+        "name": "VALUE_ANTIALIAS_ON",
+        "id": "g25",
+        "defining-class": "java.awt.RenderingHints"
+      },
+      "g26": {
+        "name": "VALUE_RENDER_QUALITY",
+        "id": "g26",
+        "defining-class": "java.awt.RenderingHints"
+      },
+      "g27": {
+        "name": "Src",
+        "id": "g27",
+        "defining-class": "java.awt.AlphaComposite"
+      },
+      "g28": {
+        "name": "VALUE_INTERPOLATION_BICUBIC",
+        "id": "g28",
+        "defining-class": "java.awt.RenderingHints"
+      },
+      "g29": {
+        "name": "KEY_RENDERING",
+        "id": "g29",
+        "defining-class": "java.awt.RenderingHints"
+      },
+      "g30": {
+        "name": "KEY_INTERPOLATION",
+        "id": "g30",
+        "defining-class": "java.awt.RenderingHints"
+      }
+    }
+  }
+}

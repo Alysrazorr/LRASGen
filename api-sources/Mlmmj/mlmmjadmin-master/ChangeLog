@@ -1,0 +1,160 @@
+# 3.3.1
+
+- tools/upgrade_mlmmjadmin.sh: do not install web.py since it's shipped
+  internally.
+
+# 3.3.0
+
+- New URI:
+    - `/api/<mail>/owners`: used to get, add, remove, reset mailing list owners.
+    - `/api/<mail>/moderators`: used to get, add, remove, reset mailing list moderators.
+
+# 3.2.2
+
+- tools/upgrade_mlmmjadmin.sh: mark Ubuntu 24.04 as supported release.
+
+# 3.2.1
+    - tools/upgrade_mlmmjadmin.sh: Install uwsgi and plugins from yum repo
+      instead of pip on CentOS Stream / Rocky 8.
+
+# 3.2.0
+    - [SQL backends] Fixed: not set `forwardings.is_maillist=1` while creating
+      mailing list.
+
+# 3.1.9
+    - tools/upgrade_mlmmjadmin.sh: mark CentOS Stream / Rocky 9 as supported release.
+
+# 3.1.8
+    - tools/upgrade_mlmmjadmin.sh: mark Debian 12 as supported release.
+
+# 3.1.7
+    - Fixed: incorrect import order which causes tools/*.py failed.
+
+# 3.1.6
+    - Ship Python module web.py (github.com/webpy/webpy, public domain).
+    - OpenBSD: Fix incorrect shell path in rc script.
+
+# 3.1.5
+    - Fixed: do not force moderation while access is set to moderators only.
+      Thanks to Gavin for the report.
+
+# 3.1.4
+    - tools/upgrade_mlmmjadmin.sh: mark Ubuntu 22.04 as supported release.
+
+# 3.1.3
+    - tools/upgrade_mlmmjadmin.sh: mark Debian 11 as supported release.
+
+# 3.1.2
+    - tools/maillist_admin.py: don't call `remove_subscribers()` for backends.
+
+# 3.1.1
+    - tools/maillist_admin.py: don't call `add_subscribers()` for backends.
+    - tools/upgrade_mlmmjadmin.sh: Fix incorrect variable and port path for
+      FreeBSD. Thanks @CiaranOMara for the contribution. #17
+
+# 3.1:
+    - tools/sync_profiles_to_db.py: Sync mailing list profiles to SQL/LDAP.
+      Currently only owners and moderators are synced.
+    - backends/bk_iredmail_*.py: Sync mailing list profiles to SQL/LDAP.
+      Currently only owners and moderators are synced.
+
+# 3.0.7:
+    - Fixed: not correctly verify http auth token for each request.
+      Thanks @TerjeBr for the report (#14) and patch (#15).
+
+# 3.0.6
+    - Fixed: tools/maillist_admin.py: not handle duplicate moderators.
+    - Fixed: tools/upgrade_mlmmjadmin.sh: not handle uwsgi plugin name on CentOS 8.
+
+# 3.0.5
+    - Fixed: not correctly update systemd service file on CentOS 8.
+
+# 3.0.4
+    - Fixed: not correctly handle str <-> bytes convert while updating LDAP
+      account.
+
+# 3.0.3
+    - Fixed: can not update mailing list profile for OpenLDAP backend.
+
+# 3.0.2
+    - Fixed: can not create new mailing list for OpenLDAP backend.
+
+# 3.0.1
+    - Fixed: not install required package `python3-devel` on CentOS 7, it's
+      used for compiling python module `python-ldap`.
+
+# 3.0
+    - mlmmjadmin-3.0 now works with ONLY Python-3.5+.
+      Python-2 is end-of-life after Jan 1st 2020, time to move to Python 3.
+    - Simplify log format.
+    - Fixed: incorrect syslog id.
+
+# 2.1:
+    - Fixed: don't return error if mailing list directory doesn't exist.
+
+# 2.0
+    - Fixed: not correctly verify whether given email address is subscribed to
+      the list.
+      Thanks napoleon.lam <napoleon.lam _at_ artwell-hk.com> for the report in
+      iRedMail forum (https://forum.iredmail.org).
+
+# 1.9
+    - Improve logging for easier troubleshooting.
+
+# 1.8
+
+    - Fixed: Not sort list of subscribers.
+    - Simplify openbsd rc script. It now works on OpenBSD 6.4.
+    - Fix incorrect permission of mlmmjadmin installation directory while
+      upgrading.
+
+# 1.7
+
+    - Fixed: Don't always set header `Reply-To:` (leave it to MUA).
+
+# 1.6
+
+    - Fixed: not always create file `control/footer_text` if
+      `control/footer_html` is not empty.
+
+# 1.5
+    - Fixed issues:
+        - If footer html is not empty, always create footer plain text.
+
+# 1.4
+
+* Fixed issues:
+    - bk_none: not exclude non-directory paths while getting all mailing lists.
+    - LDAP backend: Not properly handle error while removing account if account
+      doesn't exist.
+
+# 1.3
+
+* Fixed issues:
+    - Cannot start if there's a space between plugin names in uwsgi config
+      file. This fixes startup issue on Ubuntu 12.04.
+    - Cannot start if /var/vmail/mlmmj is (or is under) a local or remote mount
+      point.
+
+# 1.2
+
+* Fixed issues:
+    - Better Python 2.6 support (RHEL/CentOS 6).
+
+# 1.1
+
+* Improvements:
+    - Add header 'List-Subscribe'.
+    - tools/maillist_admin.py:
+        - `add_subscribers`: add new members to the mailing list.
+        - `remove_subscribers`: remove existing members from mailing list.
+    - Parameter renamed: maxmailsize -> max_message_size.
+    - Use 'uwsgi' (instead of 'mlmmjadmin') as syslog id.
+    - Change default port number to 7790 instead of 7779.
+
+* Fixed issues:
+    - backends/bk_iredmail_sql.py, cannot query existing mailing lists.
+
+# 1.0
+
+- Initial release.

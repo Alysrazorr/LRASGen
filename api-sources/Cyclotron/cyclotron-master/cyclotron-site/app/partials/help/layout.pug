@@ -1,0 +1,119 @@
+h3 Layout
+
+h4 Grid Layout
+p.
+    The primary layout scheme for Dashboards is a grid layout.  This means that a Dashboard page is divided into a fixed
+    number of rows and columns, which automatically scale up and down with the browser resolution.  Widgets are given a 
+    corresponding number of rows and columns, and they are resized accordingly to match the grid.  In general, this allows 
+    the Dashboard to be viewed at different browser resolutions and aspect ratios.  
+
+h5 Widgets
+p Each Widget in the Dashboard can be assigned a
+    em  gridHeight
+    |  and 
+    em  gridWidth
+    | , which correspond to the number of rows and columns that the Widget spans.  
+    | For example, a 2x2 Page can fit four 1x1 Widgets.  But it could also 
+    | fit one 2x1 and two 1x1 Widgets.  It's possible to split rows and columns&mdash;e.g. 
+    em gridWidth
+    |  of 1.5 to span one and a half columns.  Care must be taken to ensure the Widgets align as expected.
+
+p Widgets are sized according to their 
+    em gridHeight 
+    | and 
+    em gridWidth 
+    | properties, then the 
+    a(href='http://masonry.desandro.com/') Masonry
+    |  library is used to push the Widgets together.  The order of the Widgets in the Dashboard matters, in that Masonry 
+    | will not rearrange the Widgets to fit, but rather it only removes empty vertical space.  The Widgets are placed in order from the top left, 
+    | wrapping as needed based on the number of columns.
+
+h5 Mobile Devices
+p.
+    Special consideration is given to mobile devices in landscape or portrait mode.  This overrides the normal grid settings
+    with either a 2x1 or 1x2 layout.  Widgets are also overridden to display in a 1x1 resolution.
+
+h5 Scrolling Dashboards
+p It's possible to provide more Widgets than will fit on the screen at once.  Dashboards can be scrolled to view additional 
+    |widgets.  The Grid Layout can still be used if the Page is longer than the browser&mdash;the Grid Height remains fixed 
+    | to the browser height.  However unless a Dashboard is designed for full-screen use, it may be desirable to specify fixed 
+    | heights for Widgets.  See the section on 
+    strong Absolute Layout
+    |  below for more information.
+
+p If needed, the ability to vertically scroll a Page can be forcibly disabled by setting the
+    em  scrolling
+    |  property to "false" in the Page's layout section.  However this should not be needed if the Widgets on a Page do not
+    |  extend below the bottom of the browser.
+
+p The default settings are for Pages to be 2x2 and Widgets to be 1x1.
+
+p Here is a JSON example:
+
+pre.code
+    | {
+    |    "name": "myDashboard",
+    |    "theme": "dark",
+    |    "pages": [
+    |         {
+    |             "layout": {
+    |                 "gridColumns": 3,
+    |                 "gridRows": 2,
+    |                 "gutter": 40
+    |             },
+    |             "widgets": [{
+    |                     "gridHeight": 1,
+    |                     "gridWidth": 1,
+    |                     "widget": "clock"
+    |                 }, {
+    |                     "gridHeight": 2,
+    |                     "gridWidth": 2,
+    |                     "widget": "table"
+    |                 },
+    |                 {
+    |                     "gridHeight": 1,
+    |                     "gridWidth": 1,
+    |                     "widget": "clock"
+    |                 }
+    |             ]
+    |         }
+    |    ]
+    | }
+
+p 
+    | The example above hardcodes the dashboard to have three columns and two rows. The Widgets each specify a
+    | gridWidth and gridHeight, which fits them neatly into the grid.  The default gutter size was also increased.
+
+
+h4 Properties
+property-table(properties='config.dashboard.properties.pages.properties.layout.properties')
+
+
+h4 Absolute Layout
+
+p It is also possible to define absolute sizes for all or some Widgets.  The Widgets have 
+    em height 
+    | and 
+    em width 
+    | properties which take CSS-compatible dimensions, e.g. "20%", "200px", "5rem".  
+    | This may be useful for displaying fixed-height or non-scalable content, however this prevents
+    | Widgets from automatically scaling with the Dashboard.
+
+p Absolute sizing can be combined with the Grid Layout by defining only one property of each.  For example,
+    | setting the 
+    em  height
+    |  property and the 
+    em  gridWidth
+    |  property together will create a fixed-height but fluid-width Widget.
+
+h5 Combining Absolutely-Sized Widgets with Grid Layout
+
+p It's possible to mix Widgets with absolute sizes in a grid layout, by using the 
+    em  gridWidthAdjustment
+    |  and/or
+    em  gridHeightAdjustment
+    |  properties.  These can be set to negative values to indicate the number of pixels to remove from the page height or width before calculating the grid sizes.
+
+p For example, to add a 150px header onto a dashboard with a 10px gutter, the 
+    em  gridHeightAdjustment
+    |  would be set to -160.  Then the remaining Widgets would be sized-to-fit as if the page height was actually 160 pixels shorter. 

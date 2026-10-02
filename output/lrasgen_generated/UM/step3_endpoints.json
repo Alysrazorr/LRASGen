@@ -1,0 +1,249 @@
+{
+  "task_id": "user-management",
+  "api_name": "user-management",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/login",
+      "http_method": "POST",
+      "method_name": "login",
+      "summary": "User login",
+      "description": "Authenticates a user with the provided username and password and returns the user's details.",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\LoginRestController.java"
+    },
+    {
+      "endpoint_path": "/users/rbac/roles",
+      "http_method": "GET",
+      "method_name": "getRolePresentationList",
+      "summary": "Get all roles",
+      "description": "Retrieves a list of all roles with their permissions.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\RBACRestController.java"
+    },
+    {
+      "endpoint_path": "/users/rbac/roles",
+      "http_method": "POST",
+      "method_name": "createRole",
+      "summary": "Create a new role",
+      "description": "Creates a new role with the provided role name.",
+      "line_number": 23,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\RBACRestController.java"
+    },
+    {
+      "endpoint_path": "/users/rbac/roles/{roleId}",
+      "http_method": "GET",
+      "method_name": "getRoleById",
+      "summary": "Get role by ID",
+      "description": "Retrieves a role by its unique identifier.",
+      "line_number": 28,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\RBACRestController.java"
+    },
+    {
+      "endpoint_path": "/users/rbac/roles/{roleId}",
+      "http_method": "DELETE",
+      "method_name": "deleteRoleById",
+      "summary": "Delete role by ID",
+      "description": "Deletes a role by its unique identifier.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\RBACRestController.java"
+    },
+    {
+      "endpoint_path": "/users/rbac/permissions",
+      "http_method": "GET",
+      "method_name": "getPermissionPresentationList",
+      "summary": "Get all permissions",
+      "description": "Retrieves a list of all permissions.",
+      "line_number": 40,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\RBACRestController.java"
+    },
+    {
+      "endpoint_path": "/users/rbac/permissions/{permissionKey}",
+      "http_method": "GET",
+      "method_name": "getPermissionByKey",
+      "summary": "Get permission by key",
+      "description": "Retrieves a permission by its unique key.",
+      "line_number": 49,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\RBACRestController.java"
+    },
+    {
+      "endpoint_path": "/users/rbac/permissions",
+      "http_method": "POST",
+      "method_name": "createPermission",
+      "summary": "Create a new permission",
+      "description": "Creates a new permission with the provided details.",
+      "line_number": 55,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\RBACRestController.java"
+    },
+    {
+      "endpoint_path": "/users/rbac/permissions",
+      "http_method": "PUT",
+      "method_name": "updatePermission",
+      "summary": "Update a permission",
+      "description": "Updates an existing permission with the provided details.",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\RBACRestController.java"
+    },
+    {
+      "endpoint_path": "/users/rbac/permissions/{permissionKey}",
+      "http_method": "DELETE",
+      "method_name": "deletePermissionByKey",
+      "summary": "Delete permission by key",
+      "description": "Deletes a permission by its unique key.",
+      "line_number": 65,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\RBACRestController.java"
+    },
+    {
+      "endpoint_path": "/users/rbac/roles/{roleId}/permissions/{permissionKey}",
+      "http_method": "POST",
+      "method_name": "addPermissionOnRole",
+      "summary": "Add permission to role",
+      "description": "Associates a permission with a role.",
+      "line_number": 72,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\RBACRestController.java"
+    },
+    {
+      "endpoint_path": "/users/rbac/roles/{roleId}/permissions/{permissionKey}",
+      "http_method": "DELETE",
+      "method_name": "removePermissionOnRole",
+      "summary": "Remove permission from role",
+      "description": "Removes a permission association from a role.",
+      "line_number": 77,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\RBACRestController.java"
+    },
+    {
+      "endpoint_path": "/users/rbac/salt",
+      "http_method": "GET",
+      "method_name": "generateSalt",
+      "summary": "Generate salt",
+      "description": "Generates a random salt of length 32.",
+      "line_number": 82,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\RBACRestController.java"
+    },
+    {
+      "endpoint_path": "/users/register",
+      "http_method": "POST",
+      "method_name": "registerNewUserAccount",
+      "summary": "Register a new user account",
+      "description": "Registers a new user account with the provided registration data. Only some user information is required. Returns the created user details with HTTP status 201 (Created).",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\RegisterRestController.java"
+    },
+    {
+      "endpoint_path": "/users",
+      "http_method": "GET",
+      "method_name": "getUserPresentationList",
+      "summary": "Get list of users",
+      "description": "Retrieves a list of all users in presentation format.",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\UserRestController.java"
+    },
+    {
+      "endpoint_path": "/users",
+      "http_method": "POST",
+      "method_name": "createUser",
+      "summary": "Create a new user",
+      "description": "Creates a new user with the provided details.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\UserRestController.java"
+    },
+    {
+      "endpoint_path": "/users/{id}",
+      "http_method": "GET",
+      "method_name": "getUserById",
+      "summary": "Get user by ID",
+      "description": "Retrieves a user by their unique identifier.",
+      "line_number": 23,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\UserRestController.java"
+    },
+    {
+      "endpoint_path": "/users/{id}",
+      "http_method": "PUT",
+      "method_name": "updateUser",
+      "summary": "Update user",
+      "description": "Updates an existing user with the provided details.",
+      "line_number": 28,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\UserRestController.java"
+    },
+    {
+      "endpoint_path": "/users/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteById",
+      "summary": "Delete user",
+      "description": "Deletes a user by their unique identifier.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\UserRestController.java"
+    },
+    {
+      "endpoint_path": "/users/{id}/roles/{roleId}",
+      "http_method": "POST",
+      "method_name": "addRole",
+      "summary": "Add role to user",
+      "description": "Adds a role to a user.",
+      "line_number": 39,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\UserRestController.java"
+    },
+    {
+      "endpoint_path": "/users/{id}/roles/{roleId}",
+      "http_method": "DELETE",
+      "method_name": "removeRole",
+      "summary": "Remove role from user",
+      "description": "Removes a role from a user.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\UM\\user-management\\src\\main\\java\\com\\giassi\\microservice\\demo2\\rest\\UserRestController.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 8110,
+  "tokens": {
+    "prompt_tokens": 108131,
+    "completion_tokens": 7030,
+    "total_tokens": 115161,
+    "calls": 12,
+    "elapsed_s": 73.391,
+    "prompt_cost_usd": 0.013896,
+    "completion_cost_usd": 0.004969,
+    "total_cost_usd": 0.018864,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 34935,
+        "completion_tokens": 1485,
+        "total_tokens": 36420,
+        "calls": 4,
+        "elapsed_s": 8.106092,
+        "prompt_cost_usd": 0.000699,
+        "completion_cost_usd": 0.000891,
+        "total_cost_usd": 0.00159
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 34013,
+        "completion_tokens": 4240,
+        "total_tokens": 38253,
+        "calls": 4,
+        "elapsed_s": 47.157,
+        "prompt_cost_usd": 0.003401,
+        "completion_cost_usd": 0.00212,
+        "total_cost_usd": 0.005521
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 39183,
+        "completion_tokens": 1305,
+        "total_tokens": 40488,
+        "calls": 4,
+        "elapsed_s": 18.128,
+        "prompt_cost_usd": 0.009796,
+        "completion_cost_usd": 0.001958,
+        "total_cost_usd": 0.011753
+      }
+    ]
+  }
+}

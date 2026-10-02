@@ -1,0 +1,2418 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "market API",
+    "description": "LRASGen-generated specification for market (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/customer/contacts": {
+      "get": {
+        "operationId": "getContacts",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Contacts of the authenticated user returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ContactsDTO": {
+                      "type": "string",
+                      "description": "{'phone': 'string', 'address': 'string', 'links': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication is required to access this endpoint."
+          },
+          "500": {
+            "description": "Internal server error - an unexpected error occurred while processing the request."
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateContacts",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Contacts updated successfully. Returns the updated contacts with a link to the shopping cart.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ContactsDTO": {
+                      "type": "string",
+                      "description": "{'phone': 'string', 'address': 'string', 'links': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Validation error: the request body ContactsDTO failed validation (e.g., phone or address is empty, exceeds size limits, or does not match the required pattern)."
+          },
+          "401": {
+            "description": "Unauthorized: the user is not authenticated or lacks the required ROLE_USER authority."
+          },
+          "500": {
+            "description": "Internal server error: an unexpected exception occurred while processing the request."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone": {
+                    "type": "string",
+                    "description": "Contact phone number."
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "Contact address."
+                  }
+                },
+                "required": [
+                  "phone",
+                  "address"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/cart": {
+      "delete": {
+        "operationId": "deleteCart",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Cart cleared successfully; returns the cleared cart.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CartDTO": {
+                      "type": "string",
+                      "description": "{'user': 'string', 'totalItems': 'integer', 'productsCost': 'double', 'deliveryCost': 'integer', 'deliveryIncluded': 'boolean', 'totalCost': 'double', 'cartItems': 'array of CartItemDTO'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized: authentication is required (endpoint is secured with @Secured({\"ROLE_USER\"}))."
+          },
+          "500": {
+            "description": "Internal server error: an unexpected exception occurred while processing the request."
+          }
+        }
+      },
+      "get": {
+        "operationId": "getCart",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Cart retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CartDTO": {
+                      "type": "string",
+                      "description": "{'user': 'string', 'totalItems': 'integer', 'productsCost': 'double', 'deliveryCost': 'integer', 'deliveryIncluded': 'boolean', 'totalCost': 'double', 'cartItems': 'array of CartItemDTO', 'links': 'array of Link'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication required"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateCart",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Updated cart returned after adding the product.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CartDTO": {
+                      "type": "string",
+                      "description": "{'user': 'string', 'totalItems': 'integer', 'productsCost': 'double', 'deliveryCost': 'integer', 'deliveryIncluded': 'boolean', 'totalCost': 'double', 'cartItems': 'array of CartItemDTO', 'links': 'array of Link'}"
+                    },
+                    "CartItemDTO": {
+                      "type": "string",
+                      "description": "{'productId': 'long', 'quantity': 'integer', 'links': 'array of Link'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified product does not exist."
+          },
+          "406": {
+            "description": "Request body validation failed (e.g., productId or quantity not positive)."
+          },
+          "401": {
+            "description": "Authentication is required or the user is not authorized (missing ROLE_USER)."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "productId": {
+                    "type": "integer",
+                    "description": "The ID of the product to add."
+                  },
+                  "quantity": {
+                    "type": "integer",
+                    "description": "The quantity of the product to add."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer": {
+      "get": {
+        "operationId": "getCustomer",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the authenticated customer's account information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserDTO": {
+                      "type": "string",
+                      "description": "{'email': 'string', 'password': 'string', 'name': 'string', 'phone': 'string', 'address': 'string', 'links': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication is required or the provided credentials are invalid."
+          },
+          "500": {
+            "description": "Internal server error - an unexpected error occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/customer/orders": {
+      "get": {
+        "operationId": "getOrders",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "List of orders for the authenticated customer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "OrderDTO": {
+                      "type": "string",
+                      "description": "{'userAccount': 'string', 'id': 'long', 'billNumber': 'integer', 'dateCreated': 'date', 'productsCost': 'double', 'deliveryCost': 'integer', 'deliveryIncluded': 'boolean', 'totalCost': 'double', 'payed': 'boolean', 'executed': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication is required"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/customer/cart/pay": {
+      "post": {
+        "operationId": "createPay",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Order created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "OrderDTO": {
+                      "type": "string",
+                      "description": "{'userAccount': 'string', 'id': 'long', 'billNumber': 'integer', 'dateCreated': 'date', 'productsCost': 'double', 'deliveryCost': 'integer', 'deliveryIncluded': 'boolean', 'totalCost': 'double', 'payed': 'boolean', 'executed': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Cart is empty"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ccNumber": {
+                    "type": "string",
+                    "description": "Credit card data used to pay for the order"
+                  }
+                },
+                "required": [
+                  "ccNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/cart/delivery": {
+      "put": {
+        "operationId": "updateDelivery",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "included",
+            "in": "query",
+            "required": false,
+            "description": "Whether delivery is included in the cart",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether delivery is included in the cart"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated cart returned after setting the delivery option.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CartDTO": {
+                      "type": "string",
+                      "description": "{'user': 'string', 'totalItems': 'integer', 'productsCost': 'double', 'deliveryCost': 'integer', 'deliveryIncluded': 'boolean', 'totalCost': 'double', 'cartItems': 'array of CartItemDTO'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication is required (secured with ROLE_USER)."
+          },
+          "406": {
+            "description": "Not Acceptable - validation error or custom not valid exception."
+          },
+          "500": {
+            "description": "Internal Server Error - unexpected exception."
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "operationId": "createRegister",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Newly created customer account, already authenticated. Returns the UserDTO representation of the created account with links to the shopping cart and contact management.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserDTO": {
+                      "type": "string",
+                      "description": "{'email': 'string', 'password': 'string', 'name': 'string', 'phone': 'string', 'address': 'string', 'links': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Validation error or email already exists. Returned when the request body fails validation (e.g., invalid email, password, name, phone, address) or when an account with the specified email already exists."
+          },
+          "500": {
+            "description": "Internal server error. Returned when an unexpected exception occurs during processing."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "New customer registration data"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "New customer registration data"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "New customer registration data"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "New customer registration data"
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "New customer registration data"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password",
+                  "name",
+                  "phone",
+                  "address"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin": {
+      "get": {
+        "operationId": "getAdmin",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the admin index view (admin/index)."
+          }
+        }
+      }
+    },
+    "/products/{productId}": {
+      "get": {
+        "operationId": "getProducts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "description": "product with the specified id",
+            "schema": {
+              "type": "integer",
+              "description": "product with the specified id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product found and returned as ProductDTO with a self link.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProductDTO": {
+                      "type": "string",
+                      "description": "{'productId': 'long', 'distillery': 'string', 'name': 'string', 'price': 'double', 'age': 'integer', 'volume': 'integer', 'alcohol': 'float', 'description': 'string', 'available': 'boolean', 'links': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product with the specified id does not exist."
+          }
+        }
+      }
+    },
+    "/admin/index": {
+      "get": {
+        "operationId": "getIndex",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the admin index view (admin/index)."
+          }
+        }
+      }
+    },
+    "/customer/orders/{orderId}": {
+      "get": {
+        "operationId": "getOrders",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the order to retrieve",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the order to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order of the specified customer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "OrderDTO": {
+                      "type": "string",
+                      "description": "{'userAccount': 'string', 'id': 'long', 'billNumber': 'integer', 'dateCreated': 'date', 'productsCost': 'double', 'deliveryCost': 'integer', 'deliveryIncluded': 'boolean', 'totalCost': 'double', 'payed': 'boolean', 'executed': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Order with the specified id doesn't exist"
+          },
+          "401": {
+            "description": "Unauthorized access"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "operationId": "getProducts",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a collection of all existing products, sorted by id, each with a self link.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Collection<ProductDTO>": {
+                      "type": "string",
+                      "description": "{'productId': 'long', 'distillery': 'string', 'name': 'string', 'price': 'double', 'age': 'integer', 'volume': 'integer', 'alcohol': 'float', 'description': 'string', 'available': 'boolean', 'links': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the product service call fails and the exception is not handled by the controller."
+          }
+        }
+      }
+    },
+    "/admin/distilleries": {
+      "get": {
+        "operationId": "getDistilleries",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the admin/distilleries view with a model attribute 'distilleries' containing a list of DistilleryDTO objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "distilleries": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'region': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - returned when the user is not authenticated or lacks the required roles (ROLE_STAFF or ROLE_ADMIN) as enforced by @Secured."
+          },
+          "403": {
+            "description": "Forbidden - returned when the user is authenticated but does not have the required roles (ROLE_STAFF or ROLE_ADMIN) as enforced by @Secured."
+          },
+          "500": {
+            "description": "Internal Server Error - returned if an unexpected exception occurs during processing, such as a failure in the service layer."
+          }
+        }
+      }
+    },
+    "/admin/distilleries/new": {
+      "get": {
+        "operationId": "getNew",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the new distillery form view with the list of regions and an empty Distillery object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "regions": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'subtitle': 'string', 'description': 'string', 'color': 'string'}"
+                    },
+                    "distillery": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'region': 'Region', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createNew",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "302": {
+            "description": "Redirect to /admin/distilleries after successfully creating a new distillery."
+          },
+          "200": {
+            "description": "Return the new distillery form page with validation errors when the submitted DistilleryDTO fails validation."
+          }
+        }
+      }
+    },
+    "/admin/distilleries/{distilleryId}/edit": {
+      "post": {
+        "operationId": "createEdit",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "distilleryId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the distillery to edit",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the distillery to edit"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect to /admin/distilleries after successfully updating the distillery."
+          },
+          "200": {
+            "description": "Returns the edit distillery view (admin/distilleries/edit) when the submitted DistilleryDTO fails validation (bindingResult.hasErrors())."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Distillery ID (not used in update)"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Distillery title"
+                  },
+                  "region": {
+                    "type": "string",
+                    "description": "Region name"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Distillery description"
+                  }
+                },
+                "required": [
+                  "id",
+                  "title",
+                  "region",
+                  "description"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getEdit",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "distilleryId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the distillery to edit",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the distillery to edit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the edit distillery page (view 'admin/distilleries/edit') with the model attributes 'regions' (list of RegionDTO) and 'distillery' (DistilleryDTO).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RegionDTO": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'subtitle': 'string', 'description': 'string', 'color': 'string'}"
+                    },
+                    "DistilleryDTO": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'region': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the distillery with the specified id does not exist. The service call distilleryService.findById(distilleryId) throws UnknownEntityException, which is handled by SpringExceptionHandler returning the exception message."
+          },
+          "500": {
+            "description": "Returned when an unexpected error occurs during processing, such as a failure in the service layer or data access. The exception is handled by SpringExceptionHandler's generic Exception handler."
+          }
+        }
+      }
+    },
+    "/admin/products/new": {
+      "get": {
+        "operationId": "getNew",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Renders the new product creation page with the list of distilleries and an empty product DTO.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Model": {
+                      "type": "string",
+                      "description": "{'distilleries': 'array<DistilleryDTO>', 'product': 'ProductDTO'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createNew",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "302": {
+            "description": "Redirect to /admin/products/new when the submitted ProductDTO fails validation (bindingResult.hasErrors())."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "productId": {
+                    "type": "integer",
+                    "description": "Product data to create, validated with @Valid"
+                  },
+                  "distillery": {
+                    "type": "string",
+                    "description": "Product data to create, validated with @Valid"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Product data to create, validated with @Valid"
+                  },
+                  "price": {
+                    "type": "number",
+                    "description": "Product data to create, validated with @Valid"
+                  },
+                  "age": {
+                    "type": "integer",
+                    "description": "Product data to create, validated with @Valid"
+                  },
+                  "volume": {
+                    "type": "integer",
+                    "description": "Product data to create, validated with @Valid"
+                  },
+                  "alcohol": {
+                    "type": "number",
+                    "description": "Product data to create, validated with @Valid"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Product data to create, validated with @Valid"
+                  },
+                  "available": {
+                    "type": "boolean",
+                    "description": "Product data to create, validated with @Valid"
+                  }
+                },
+                "required": [
+                  "productId",
+                  "distillery",
+                  "name",
+                  "price",
+                  "age",
+                  "volume",
+                  "alcohol",
+                  "description",
+                  "available"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/orders/{orderId}": {
+      "post": {
+        "operationId": "createOrders",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the order whose execution status is being updated",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the order whose execution status is being updated"
+            }
+          },
+          {
+            "name": "executed",
+            "in": "query",
+            "required": false,
+            "description": "New execution status for the order",
+            "schema": {
+              "type": "boolean",
+              "description": "New execution status for the order"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect to /admin/orders after successfully updating the order execution status."
+          },
+          "500": {
+            "description": "Internal server error if the order service fails to update the status (e.g., order not found or database error)."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/admin/products/{productId}/edit": {
+      "get": {
+        "operationId": "getEdit",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the product to edit",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the product to edit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the product edit page (admin/products/edit) with the product and distilleries data when the product exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProductDTO": {
+                      "type": "string",
+                      "description": "{'productId': 'long', 'distillery': 'string', 'name': 'string', 'price': 'double', 'age': 'integer', 'volume': 'integer', 'alcohol': 'float', 'description': 'string', 'available': 'boolean'}"
+                    },
+                    "DistilleryDTO": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'region': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "302": {
+            "description": "Redirects to /admin/products when the product with the given productId does not exist."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createEdit",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the product to update",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the product to update"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect to /admin/products on successful update"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "productId": {
+                    "type": "integer",
+                    "description": "Product ID (not used in update)"
+                  },
+                  "distillery": {
+                    "type": "string",
+                    "description": "Distillery title"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Product name"
+                  },
+                  "price": {
+                    "type": "number",
+                    "description": "Product price"
+                  },
+                  "age": {
+                    "type": "integer",
+                    "description": "Product age"
+                  },
+                  "volume": {
+                    "type": "integer",
+                    "description": "Product volume"
+                  },
+                  "alcohol": {
+                    "type": "number",
+                    "description": "Alcohol content"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Product description"
+                  },
+                  "available": {
+                    "type": "boolean",
+                    "description": "Availability status"
+                  }
+                },
+                "required": [
+                  "productId",
+                  "distillery",
+                  "name",
+                  "price",
+                  "age",
+                  "volume",
+                  "alcohol",
+                  "description",
+                  "available",
+                  "productId"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/orders": {
+      "get": {
+        "operationId": "getOrders",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination (bound from SortingValuesDTO)",
+            "schema": {
+              "type": "integer",
+              "description": "Page number for pagination (bound from SortingValuesDTO)"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Page size for pagination (bound from SortingValuesDTO)",
+            "schema": {
+              "type": "integer",
+              "description": "Page size for pagination (bound from SortingValuesDTO)"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Field to sort by (bound from SortingValuesDTO)",
+            "schema": {
+              "type": "string",
+              "description": "Field to sort by (bound from SortingValuesDTO)"
+            }
+          },
+          {
+            "name": "direct",
+            "in": "query",
+            "required": false,
+            "description": "Sort direction (bound from SortingValuesDTO)",
+            "schema": {
+              "type": "string",
+              "description": "Sort direction (bound from SortingValuesDTO)"
+            }
+          },
+          {
+            "name": "executed",
+            "in": "query",
+            "required": false,
+            "description": "Filter orders by execution status",
+            "schema": {
+              "type": "string",
+              "description": "Filter orders by execution status",
+              "enum": [
+                "all",
+                "true",
+                "false"
+              ]
+            }
+          },
+          {
+            "name": "created",
+            "in": "query",
+            "required": false,
+            "description": "Filter orders by creation date range",
+            "schema": {
+              "type": "string",
+              "description": "Filter orders by creation date range",
+              "enum": [
+                "all",
+                "1",
+                "7",
+                "30"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the admin orders page (view name 'admin/orders') with model attributes containing the paginated and sorted orders, ordered products by order id, products by id, contacts by account email, bills by order id, and current filter values.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Model": {
+                      "type": "string",
+                      "description": "{'page': 'Page<OrderDTO>', 'beginIndex': 'integer', 'endIndex': 'integer', 'currentIndex': 'integer', 'indexesList': 'array<integer>', 'pageSizeOptions': 'map<integer,string>', 'sortOptions': 'map<string,string>', 'directOptions': 'map<string,string>', 'currentPageSize': 'integer', 'currentSort': 'string', 'currentDirection': 'string', 'executedOptions': 'map<string,string>', 'createdOptions': 'map<string,string>', 'orderedProductsByOrderId': 'map<long,array<OrderedProductDTO>>', 'productsById': 'map<long,ProductDTO>', 'contactsByAccount': 'map<string,ContactsDTO>', 'billsByOrderId': 'map<long,BillDTO>', 'currentExecuted': 'string', 'currentCreated': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates to OrderService.fetchFiltered and does not catch any exception it may throw."
+          }
+        }
+      }
+    },
+    "/admin/products": {
+      "get": {
+        "operationId": "getProducts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "description": "Sorting and pagination values bound from query string fields (page, size, sort, direct)",
+            "schema": {
+              "type": "integer",
+              "description": "Sorting and pagination values bound from query string fields (page, size, sort, direct)"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": true,
+            "description": "Sorting and pagination values bound from query string fields (page, size, sort, direct)",
+            "schema": {
+              "type": "integer",
+              "description": "Sorting and pagination values bound from query string fields (page, size, sort, direct)"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": true,
+            "description": "Sorting and pagination values bound from query string fields (page, size, sort, direct)",
+            "schema": {
+              "type": "string",
+              "description": "Sorting and pagination values bound from query string fields (page, size, sort, direct)"
+            }
+          },
+          {
+            "name": "direct",
+            "in": "query",
+            "required": true,
+            "description": "Sorting and pagination values bound from query string fields (page, size, sort, direct)",
+            "schema": {
+              "type": "string",
+              "description": "Sorting and pagination values bound from query string fields (page, size, sort, direct)"
+            }
+          },
+          {
+            "name": "dist",
+            "in": "query",
+            "required": false,
+            "description": "Distillery id filter; 0 means all distilleries",
+            "schema": {
+              "type": "integer",
+              "description": "Distillery id filter; 0 means all distilleries"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the admin products page (view name 'admin/products') with the paged and sorted product list, the list of distilleries, and a mapping from distillery title to region name. If a distillery filter is provided, the products are limited to that distillery and the current distillery title is added to the model.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProductDTO": {
+                      "type": "string",
+                      "description": "{'productId': 'long', 'distillery': 'string', 'name': 'string', 'price': 'double', 'age': 'integer', 'volume': 'integer', 'alcohol': 'float', 'description': 'string', 'available': 'boolean'}"
+                    },
+                    "DistilleryDTO": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'region': 'string', 'description': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if an unexpected exception occurs while processing the request (e.g., during product or distillery lookup)."
+          }
+        }
+      }
+    },
+    "/admin/regions/new": {
+      "get": {
+        "operationId": "getNew",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the HTML view 'admin/regions/new' with a new RegionDTO model attribute.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RegionDTO": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'subtitle': 'string', 'description': 'string', 'color': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createNew",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "302": {
+            "description": "Redirect to /admin/regions after successfully creating a new region."
+          },
+          "200": {
+            "description": "Return the new region form page (admin/regions/new) when validation errors occur."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Region identifier"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Region name; must not be empty and must match the pattern excluding #$%^&*()'"
+                  },
+                  "subtitle": {
+                    "type": "string",
+                    "description": "Region subtitle; must match the pattern excluding #$%^*()'"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Region description"
+                  },
+                  "color": {
+                    "type": "string",
+                    "description": "Region color; must match the pattern allowing letters, digits, hyphens and excluding #$%^&*()'"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "subtitle",
+                  "description",
+                  "color"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/products/{productId}/delete": {
+      "post": {
+        "operationId": "createDelete",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the product to delete",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the product to delete"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect to /admin/products after successful deletion."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/admin/regions": {
+      "get": {
+        "operationId": "getRegions",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the admin/regions view with a list of all regions sorted by id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "regions": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'subtitle': 'string', 'description': 'string', 'color': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - returned when the user is not authenticated."
+          },
+          "403": {
+            "description": "Forbidden - returned when the user is authenticated but lacks ROLE_STAFF or ROLE_ADMIN."
+          },
+          "500": {
+            "description": "Internal server error - returned when an unexpected exception occurs."
+          }
+        }
+      }
+    },
+    "/admin/regions/{regionId}/edit": {
+      "get": {
+        "operationId": "getEdit",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "regionId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the region to edit",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the region to edit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the edit region page with the region data for the specified regionId.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RegionDTO": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'subtitle': 'string', 'description': 'string', 'color': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Region with the specified regionId does not exist."
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the request."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createEdit",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "regionId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the region to update",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the region to update"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect to /admin/regions after successfully updating the region."
+          },
+          "200": {
+            "description": "Return the edit region form page (admin/regions/edit) when the submitted RegionDTO has validation errors.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RegionDTO": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'subtitle': 'string', 'description': 'string', 'color': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Region with the specified regionId does not exist. Thrown by regionService.update when the region is not found."
+          },
+          "500": {
+            "description": "Internal server error when regionService.update fails unexpectedly."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Region ID"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Region name"
+                  },
+                  "subtitle": {
+                    "type": "string",
+                    "description": "Region subtitle"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Region description"
+                  },
+                  "color": {
+                    "type": "string",
+                    "description": "Region color"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "subtitle",
+                  "description",
+                  "color"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/regions/{regionId}/delete": {
+      "post": {
+        "operationId": "createDelete",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "regionId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the region to delete",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the region to delete"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect to /admin/regions after successfully deleting the region."
+          },
+          "404": {
+            "description": "Region with the specified ID does not exist."
+          },
+          "500": {
+            "description": "Internal server error if regionService.delete throws an unexpected exception."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/admin/distilleries/{distilleryId}/delete": {
+      "post": {
+        "operationId": "createDelete",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "distilleryId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the distillery to delete",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the distillery to delete"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect to /admin/distilleries after successfully deleting the distillery."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/admin/storage": {
+      "post": {
+        "operationId": "createStorage",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "302": {
+            "description": "Redirect to /admin/storage after processing the availability update (or immediately if the required parameters are missing)."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getStorage",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination (from SortingValuesDTO)",
+            "schema": {
+              "type": "integer",
+              "description": "Page number for pagination (from SortingValuesDTO)"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Page size for pagination (from SortingValuesDTO)",
+            "schema": {
+              "type": "integer",
+              "description": "Page size for pagination (from SortingValuesDTO)"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Field to sort by (from SortingValuesDTO)",
+            "schema": {
+              "type": "string",
+              "description": "Field to sort by (from SortingValuesDTO)"
+            }
+          },
+          {
+            "name": "direct",
+            "in": "query",
+            "required": false,
+            "description": "Sort direction (from SortingValuesDTO)",
+            "schema": {
+              "type": "string",
+              "description": "Sort direction (from SortingValuesDTO)"
+            }
+          },
+          {
+            "name": "available",
+            "in": "query",
+            "required": false,
+            "description": "Filter products by availability",
+            "schema": {
+              "type": "string",
+              "description": "Filter products by availability",
+              "enum": [
+                "all",
+                "true",
+                "false"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the storage view page with the paged and sorted list of products, along with pagination, sorting, and availability filter data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "StoragePageModel": {
+                      "type": "string",
+                      "description": "{'page': 'Page<ProductDTO>', 'beginIndex': 'integer', 'endIndex': 'integer', 'currentIndex': 'integer', 'indexesList': 'array<integer>', 'pageSizeOptions': 'map<integer,string>', 'sortOptions': 'map<string,string>', 'directOptions': 'map<string,string>', 'currentPageSize': 'integer', 'currentSort': 'string', 'currentDirection': 'string', 'availableOptions': 'map<string,string>', 'currentlyAvailable': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cart": {
+      "get": {
+        "operationId": "getCart",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "user",
+            "in": "query",
+            "required": false,
+            "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute.",
+            "schema": {
+              "type": "string",
+              "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute."
+            }
+          },
+          {
+            "name": "totalItems",
+            "in": "query",
+            "required": false,
+            "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute.",
+            "schema": {
+              "type": "integer",
+              "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute."
+            }
+          },
+          {
+            "name": "productsCost",
+            "in": "query",
+            "required": false,
+            "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute.",
+            "schema": {
+              "type": "number",
+              "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute."
+            }
+          },
+          {
+            "name": "deliveryCost",
+            "in": "query",
+            "required": false,
+            "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute.",
+            "schema": {
+              "type": "integer",
+              "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute."
+            }
+          },
+          {
+            "name": "deliveryIncluded",
+            "in": "query",
+            "required": false,
+            "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute.",
+            "schema": {
+              "type": "boolean",
+              "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute."
+            }
+          },
+          {
+            "name": "totalCost",
+            "in": "query",
+            "required": false,
+            "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute.",
+            "schema": {
+              "type": "number",
+              "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute."
+            }
+          },
+          {
+            "name": "cartItems",
+            "in": "query",
+            "required": false,
+            "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute.",
+            "schema": {
+              "type": "string",
+              "description": "The cart stored in the session under the attribute name 'cart', bound via @ModelAttribute."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the cart view page with the cart model, products map, and delivery cost.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CartDTO": {
+                      "type": "string",
+                      "description": "{'user': 'string', 'totalItems': 'integer', 'productsCost': 'double', 'deliveryCost': 'integer', 'deliveryIncluded': 'boolean', 'totalCost': 'double', 'cartItems': 'array of CartItemDTO'}"
+                    },
+                    "CartItemDTO": {
+                      "type": "string",
+                      "description": "{'productId': 'long', 'quantity': 'integer'}"
+                    },
+                    "ProductDTO": {
+                      "type": "string",
+                      "description": "{'productId': 'long', 'distillery': 'string', 'name': 'string', 'price': 'double', 'age': 'integer', 'volume': 'integer', 'alcohol': 'float', 'description': 'string', 'available': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCart",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the cart view page when validation errors occur or when an unknown entity is encountered while adding to an authorized cart.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CartDTO": {
+                      "type": "string",
+                      "description": "{'user': 'string', 'totalItems': 'integer', 'productsCost': 'double', 'deliveryCost': 'integer', 'deliveryIncluded': 'boolean', 'totalCost': 'double', 'cartItems': 'array'}"
+                    },
+                    "ProductDTO": {
+                      "type": "string",
+                      "description": "{'productId': 'long', 'distillery': 'string', 'name': 'string', 'price': 'double', 'age': 'integer', 'volume': 'integer', 'alcohol': 'float', 'description': 'string', 'available': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "302": {
+            "description": "Redirects to /cart after successfully updating the cart (for both authorized and guest users)."
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateCart",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the updated cart as JSON. If the request body has validation errors, the current cart is returned. If the user is not authorized, the guest cart is updated and returned. If the user is authorized, the item is added to the user's cart and the updated cart is returned. If an UnknownEntityException occurs, the current cart is returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CartDTO": {
+                      "type": "string",
+                      "description": "{'user': 'string', 'totalItems': 'integer', 'productsCost': 'double', 'deliveryCost': 'integer', 'deliveryIncluded': 'boolean', 'totalCost': 'double', 'cartItems': 'array of CartItemDTO'}"
+                    },
+                    "CartItemDTO": {
+                      "type": "string",
+                      "description": "{'productId': 'long', 'quantity': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "productId": {
+                    "type": "integer",
+                    "description": "Product identifier"
+                  },
+                  "quantity": {
+                    "type": "integer",
+                    "description": "Quantity of the product"
+                  }
+                },
+                "required": [
+                  "productId",
+                  "quantity"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cart/clear": {
+      "post": {
+        "operationId": "createClear",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "302": {
+            "description": "Redirect to /cart after clearing the cart. For authorized users, the cart is cleared via cartService.clearCart and the session cart attribute is updated. For anonymous users, the session cart is cleared and updated. No response body is returned."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "type": "string",
+                    "description": "The session cart DTO bound from the session attribute 'cart' via @ModelAttribute."
+                  },
+                  "totalItems": {
+                    "type": "integer",
+                    "description": "The session cart DTO bound from the session attribute 'cart' via @ModelAttribute."
+                  },
+                  "productsCost": {
+                    "type": "number",
+                    "description": "The session cart DTO bound from the session attribute 'cart' via @ModelAttribute."
+                  },
+                  "deliveryCost": {
+                    "type": "integer",
+                    "description": "The session cart DTO bound from the session attribute 'cart' via @ModelAttribute."
+                  },
+                  "deliveryIncluded": {
+                    "type": "boolean",
+                    "description": "The session cart DTO bound from the session attribute 'cart' via @ModelAttribute."
+                  },
+                  "totalCost": {
+                    "type": "number",
+                    "description": "The session cart DTO bound from the session attribute 'cart' via @ModelAttribute."
+                  },
+                  "cartItems": {
+                    "type": "string",
+                    "description": "The session cart DTO bound from the session attribute 'cart' via @ModelAttribute."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cart/delivery/{delivery}": {
+      "put": {
+        "operationId": "updateDelivery",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "delivery",
+            "in": "path",
+            "required": true,
+            "description": "Delivery option flag parsed with Boolean.parseBoolean; true means delivery included, any other value means not included",
+            "schema": {
+              "type": "string",
+              "description": "Delivery option flag parsed with Boolean.parseBoolean; true means delivery included, any other value means not included"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cart updated with the new delivery option. Returns the updated cart as JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CartDTO": {
+                      "type": "string",
+                      "description": "{'user': 'string', 'totalItems': 'integer', 'productsCost': 'double', 'deliveryCost': 'integer', 'deliveryIncluded': 'boolean', 'totalCost': 'double', 'cartItems': 'array of CartItemDTO'}"
+                    },
+                    "CartItemDTO": {
+                      "type": "string",
+                      "description": "{'productId': 'long', 'quantity': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if an unexpected exception occurs while processing the request."
+          }
+        }
+      }
+    },
+    "/checkout/details": {
+      "get": {
+        "operationId": "getDetails",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "302": {
+            "description": "Redirect to /checkout/payment when the cart does not include delivery."
+          },
+          "200": {
+            "description": "Render the checkout details page with the user's contacts.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ContactsDTO": {
+                      "type": "string",
+                      "description": "{'phone': 'string', 'address': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createDetails",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "changeContacts",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating whether contacts change was requested; value 'changeRequested' triggers update",
+            "schema": {
+              "type": "string",
+              "description": "Flag indicating whether contacts change was requested; value 'changeRequested' triggers update"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect to /checkout/payment when changeContacts is not 'changeRequested' or after successfully updating contacts."
+          },
+          "200": {
+            "description": "Return the checkout/details view when validation errors occur (bindingResult.hasErrors())."
+          },
+          "500": {
+            "description": "Internal server error if an unexpected exception occurs during contacts update or retrieval."
+          }
+        }
+      }
+    },
+    "/checkout/payment": {
+      "get": {
+        "operationId": "getPayment",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the checkout payment page with the user's account name, contacts, delivery cost, products in the cart, and an empty credit card form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PaymentViewModel": {
+                      "type": "string",
+                      "description": "{'productsById': 'map<long, ProductDTO>', 'userName': 'string', 'userContacts': 'ContactsDTO', 'deliveryCost': 'integer', 'creditCard': 'CreditCardDTO'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "302": {
+            "description": "Redirects to the checkout details page when the authenticated user account cannot be found."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPayment",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "302": {
+            "description": "Redirect to /checkout/confirmation after successfully creating the order and updating the cart attributes."
+          },
+          "200": {
+            "description": "Return the checkout/payment view when the credit card validation fails (bindingResult has errors).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CreditCardDTO": {
+                      "type": "string",
+                      "description": "{'ccNumber': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ccNumber": {
+                    "type": "string",
+                    "description": "Credit card number"
+                  }
+                },
+                "required": [
+                  "ccNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/checkout/confirmation": {
+      "get": {
+        "operationId": "getConfirmation",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the checkout confirmation view (checkout/confirmation) with the user account and contacts model attributes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserDTO": {
+                      "type": "string",
+                      "description": "{'email': 'string', 'password': 'string', 'name': 'string', 'phone': 'string', 'address': 'string'}"
+                    },
+                    "ContactsDTO": {
+                      "type": "string",
+                      "description": "{'phone': 'string', 'address': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "302": {
+            "description": "Redirects to /checkout/details when the authenticated user account cannot be found."
+          }
+        }
+      }
+    },
+    "/customer/new": {
+      "get": {
+        "operationId": "getNew",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the registration page view (customer/new) with an empty UserDTO model attribute.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserDTO": {
+                      "type": "string",
+                      "description": "{'email': 'string', 'password': 'string', 'name': 'string', 'phone': 'string', 'address': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createNew",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "302": {
+            "description": "Redirect to the root path '/' after successful registration, authentication, and cart merge."
+          },
+          "200": {
+            "description": "Return the registration page (customer/new) when validation errors occur, email already exists, or authentication fails after account creation."
+          },
+          "406": {
+            "description": "Returned by SpringExceptionHandler when EmailExistsException is thrown (email already exists).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ValidationErrorDTO": {
+                      "type": "string",
+                      "description": "{'fieldErrors': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "User registration data bound from the form/query fields; validated with @Valid"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "User registration data bound from the form/query fields; validated with @Valid"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "User registration data bound from the form/query fields; validated with @Valid"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "User registration data bound from the form/query fields; validated with @Valid"
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "User registration data bound from the form/query fields; validated with @Valid"
+                  },
+                  "user": {
+                    "type": "string",
+                    "description": "Cart data bound from the session attribute 'cart' via @ModelAttribute"
+                  },
+                  "totalItems": {
+                    "type": "integer",
+                    "description": "Cart data bound from the session attribute 'cart' via @ModelAttribute"
+                  },
+                  "productsCost": {
+                    "type": "number",
+                    "description": "Cart data bound from the session attribute 'cart' via @ModelAttribute"
+                  },
+                  "deliveryCost": {
+                    "type": "integer",
+                    "description": "Cart data bound from the session attribute 'cart' via @ModelAttribute"
+                  },
+                  "deliveryIncluded": {
+                    "type": "boolean",
+                    "description": "Cart data bound from the session attribute 'cart' via @ModelAttribute"
+                  },
+                  "totalCost": {
+                    "type": "number",
+                    "description": "Cart data bound from the session attribute 'cart' via @ModelAttribute"
+                  },
+                  "cartItems": {
+                    "type": "string",
+                    "description": "Cart data bound from the session attribute 'cart' via @ModelAttribute"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password",
+                  "name",
+                  "phone",
+                  "address"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "operationId": "get",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Renders the index view with the list of all regions and a null selected region.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Model": {
+                      "type": "string",
+                      "description": "{'regions': 'array<RegionDTO>', 'selectedRegion': 'Region'}"
+                    },
+                    "RegionDTO": {
+                      "type": "string",
+                      "description": "{'id': 'integer', 'name': 'string', 'subtitle': 'string', 'description': 'string', 'color': 'string'}"
+                    },
+                    "Region": {
+                      "type": "string",
+                      "description": "{'id': 'integer', 'name': 'string', 'subtitle': 'string', 'description': 'string', 'color': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "get": {
+        "operationId": "getLogin",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the login page view (login.html)."
+          }
+        }
+      }
+    },
+    "/index": {
+      "get": {
+        "operationId": "getIndex",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the index view with the list of all regions and a null selected region.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Model": {
+                      "type": "string",
+                      "description": "{'regions': 'array<RegionDTO>', 'selectedRegion': 'Region'}"
+                    },
+                    "RegionDTO": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'subtitle': 'string', 'description': 'string', 'color': 'string'}"
+                    },
+                    "Region": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'subtitle': 'string', 'description': 'string', 'color': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest-api": {
+      "get": {
+        "operationId": "getRestApi",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the REST description page (view name 'rest')."
+          }
+        }
+      }
+    },
+    "/inside": {
+      "get": {
+        "operationId": "getInside",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the 'inside' view (implementation description page)."
+          }
+        }
+      }
+    },
+    "/regions/{regionId}": {
+      "get": {
+        "operationId": "getRegions",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "regionId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the region whose products are displayed",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the region whose products are displayed"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Page number for pagination"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Number of products per page",
+            "schema": {
+              "type": "integer",
+              "description": "Number of products per page"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Field to sort products by",
+            "schema": {
+              "type": "string",
+              "description": "Field to sort products by",
+              "enum": [
+                "price",
+                "distillery.title",
+                "age"
+              ]
+            }
+          },
+          {
+            "name": "direct",
+            "in": "query",
+            "required": false,
+            "description": "Sort direction",
+            "schema": {
+              "type": "string",
+              "description": "Sort direction",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            }
+          },
+          {
+            "name": "dist",
+            "in": "query",
+            "required": false,
+            "description": "Distillery ID to filter products by; 0 means no distillery filter",
+            "schema": {
+              "type": "integer",
+              "description": "Distillery ID to filter products by; 0 means no distillery filter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the region products page (view name 'regions') with model attributes: page (paged products), beginIndex, endIndex, currentIndex, indexesList, pageSizeOptions, sortOptions, directOptions, currentPageSize, currentSort, currentDirection, distilleries, regions, selectedRegion, and optionally currentDistilleryTitle.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Model": {
+                      "type": "string",
+                      "description": "{'page': 'Page<ProductDTO>', 'beginIndex': 'integer', 'endIndex': 'integer', 'currentIndex': 'integer', 'indexesList': 'List<integer>', 'pageSizeOptions': 'Map<integer,string>', 'sortOptions': 'Map<string,string>', 'directOptions': 'Map<string,string>', 'currentPageSize': 'integer', 'currentSort': 'string', 'currentDirection': 'string', 'distilleries': 'List<DistilleryDTO>', 'regions': 'List<RegionDTO>', 'selectedRegion': 'RegionDTO', 'currentDistilleryTitle': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Region not found. Thrown by regionService.findOne(regionId) when the region does not exist."
+          },
+          "500": {
+            "description": "Internal server error. Thrown when an unexpected exception occurs during processing."
+          }
+        }
+      }
+    }
+  }
+}

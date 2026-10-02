@@ -1,0 +1,2100 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "info": {
+    "title": "REST API",
+    "version": "",
+    "description": "REST API"
+  },
+  "paths": {
+    "/login": {
+      "post": {
+        "description": "",
+        "operationId": "em20",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.giassi.microservice.demo2.rest.users.dtos.UserDTO",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "username": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "surname": {
+                      "type": "string"
+                    },
+                    "gender": {
+                      "type": "string"
+                    },
+                    "birthDate": {
+                      "type": "object",
+                      "title": "java.time.LocalDate",
+                      "properties": {
+                        "year": {
+                          "type": "integer"
+                        },
+                        "month": {
+                          "type": "integer"
+                        },
+                        "day": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "note": {
+                      "type": "string"
+                    },
+                    "creationDt": {
+                      "type": "object",
+                      "title": "java.time.LocalDateTime",
+                      "properties": {
+                        "date": {
+                          "type": "object",
+                          "title": "java.time.LocalDate",
+                          "properties": {
+                            "year": {
+                              "type": "integer"
+                            },
+                            "month": {
+                              "type": "integer"
+                            },
+                            "day": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "time": {
+                          "type": "object",
+                          "title": "java.time.LocalTime",
+                          "properties": {
+                            "hour": {
+                              "type": "integer"
+                            },
+                            "minute": {
+                              "type": "integer"
+                            },
+                            "second": {
+                              "type": "integer"
+                            },
+                            "nano": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "updatedDt": {
+                      "type": "object",
+                      "title": "java.time.LocalDateTime",
+                      "properties": {
+                        "date": {
+                          "type": "object",
+                          "title": "java.time.LocalDate",
+                          "properties": {
+                            "year": {
+                              "type": "integer"
+                            },
+                            "month": {
+                              "type": "integer"
+                            },
+                            "day": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "time": {
+                          "type": "object",
+                          "title": "java.time.LocalTime",
+                          "properties": {
+                            "hour": {
+                              "type": "integer"
+                            },
+                            "minute": {
+                              "type": "integer"
+                            },
+                            "second": {
+                              "type": "integer"
+                            },
+                            "nano": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "loginDt": {
+                      "type": "object",
+                      "title": "java.time.LocalDateTime",
+                      "properties": {
+                        "date": {
+                          "type": "object",
+                          "title": "java.time.LocalDate",
+                          "properties": {
+                            "year": {
+                              "type": "integer"
+                            },
+                            "month": {
+                              "type": "integer"
+                            },
+                            "day": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "time": {
+                          "type": "object",
+                          "title": "java.time.LocalTime",
+                          "properties": {
+                            "hour": {
+                              "type": "integer"
+                            },
+                            "minute": {
+                              "type": "integer"
+                            },
+                            "second": {
+                              "type": "integer"
+                            },
+                            "nano": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "secured": {
+                      "type": "boolean"
+                    },
+                    "contactDTO": {
+                      "type": "object",
+                      "title": "com.giassi.microservice.demo2.rest.users.dtos.ContactDTO",
+                      "properties": {
+                        "email": {
+                          "type": "string"
+                        },
+                        "phone": {
+                          "type": "string"
+                        },
+                        "skype": {
+                          "type": "string"
+                        },
+                        "facebook": {
+                          "type": "string"
+                        },
+                        "linkedin": {
+                          "type": "string"
+                        },
+                        "website": {
+                          "type": "string"
+                        },
+                        "contactNote": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "addressDTO": {
+                      "type": "object",
+                      "title": "com.giassi.microservice.demo2.rest.users.dtos.AddressDTO",
+                      "properties": {
+                        "address": {
+                          "type": "string"
+                        },
+                        "address2": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        },
+                        "zipCode": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "roles": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "permissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 2
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1login/post"
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "description": "",
+        "operationId": "em0",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.giassi.microservice.demo2.rest.users.dtos.UserListDTO",
+                  "properties": {
+                    "userList": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em1",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "CREATED"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "address": {
+                    "type": "string"
+                  },
+                  "address2": {
+                    "type": "string"
+                  },
+                  "birthDate": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "contactNote": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "facebook": {
+                    "type": "string"
+                  },
+                  "gender": {
+                    "type": "string"
+                  },
+                  "linkedin": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "note": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "secured": {
+                    "type": "boolean"
+                  },
+                  "skype": {
+                    "type": "string"
+                  },
+                  "surname": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "website": {
+                    "type": "string"
+                  },
+                  "zipCode": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 21
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users/post"
+        }
+      }
+    },
+    "/users/rbac/permissions": {
+      "get": {
+        "description": "",
+        "operationId": "em12",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em14",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "CREATED",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.giassi.microservice.demo2.rest.users.dtos.PermissionDTO",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "permission": {
+                      "type": "string"
+                    },
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "integer"
+                  },
+                  "note": {
+                    "type": "string"
+                  },
+                  "permission": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 4
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1rbac~1permissions/post"
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em15",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "CREATED",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.giassi.microservice.demo2.rest.users.dtos.PermissionDTO",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "permission": {
+                      "type": "string"
+                    },
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "integer"
+                  },
+                  "note": {
+                    "type": "string"
+                  },
+                  "permission": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 4
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1rbac~1permissions/put"
+        }
+      }
+    },
+    "/users/rbac/permissions/{permissionKey}": {
+      "delete": {
+        "description": "",
+        "operationId": "em16",
+        "parameters": [
+          {
+            "name": "permissionKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1rbac~1permissions~1{permissionKey}/delete"
+        }
+      },
+      "get": {
+        "description": "",
+        "operationId": "em13",
+        "parameters": [
+          {
+            "name": "permissionKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.giassi.microservice.demo2.rest.users.dtos.PermissionDTO",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "permission": {
+                      "type": "string"
+                    },
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1rbac~1permissions~1{permissionKey}/get"
+        }
+      }
+    },
+    "/users/rbac/roles": {
+      "get": {
+        "description": "",
+        "operationId": "em8",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em9",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "CREATED"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1rbac~1roles/post"
+        }
+      }
+    },
+    "/users/rbac/roles/{roleId}": {
+      "delete": {
+        "description": "",
+        "operationId": "em11",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1rbac~1roles~1{roleId}/delete"
+        }
+      },
+      "get": {
+        "description": "",
+        "operationId": "em10",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.giassi.microservice.demo2.rest.users.dtos.RoleDTO",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "role": {
+                      "type": "string"
+                    },
+                    "permissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1rbac~1roles~1{roleId}/get"
+        }
+      }
+    },
+    "/users/rbac/roles/{roleId}/permissions/{permissionKey}": {
+      "delete": {
+        "description": "",
+        "operationId": "em18",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "permissionKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1rbac~1roles~1{roleId}~1permissions~1{permissionKey}/delete"
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em17",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "permissionKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "CREATED"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1rbac~1roles~1{roleId}~1permissions~1{permissionKey}/post"
+        }
+      }
+    },
+    "/users/rbac/salt": {
+      "get": {
+        "description": "",
+        "operationId": "em19",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "CREATED",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1rbac~1salt/get"
+        }
+      }
+    },
+    "/users/register": {
+      "post": {
+        "description": "",
+        "operationId": "em7",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "CREATED"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "gender": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "surname": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 6
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1register/post"
+        }
+      }
+    },
+    "/users/{id}": {
+      "delete": {
+        "description": "",
+        "operationId": "em4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1{id}/delete"
+        }
+      },
+      "get": {
+        "description": "",
+        "operationId": "em2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.giassi.microservice.demo2.rest.users.dtos.UserDTO",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "username": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "surname": {
+                      "type": "string"
+                    },
+                    "gender": {
+                      "type": "string"
+                    },
+                    "birthDate": {
+                      "type": "object",
+                      "title": "java.time.LocalDate",
+                      "properties": {
+                        "year": {
+                          "type": "integer"
+                        },
+                        "month": {
+                          "type": "integer"
+                        },
+                        "day": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "note": {
+                      "type": "string"
+                    },
+                    "creationDt": {
+                      "type": "object",
+                      "title": "java.time.LocalDateTime",
+                      "properties": {
+                        "date": {
+                          "type": "object",
+                          "title": "java.time.LocalDate",
+                          "properties": {
+                            "year": {
+                              "type": "integer"
+                            },
+                            "month": {
+                              "type": "integer"
+                            },
+                            "day": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "time": {
+                          "type": "object",
+                          "title": "java.time.LocalTime",
+                          "properties": {
+                            "hour": {
+                              "type": "integer"
+                            },
+                            "minute": {
+                              "type": "integer"
+                            },
+                            "second": {
+                              "type": "integer"
+                            },
+                            "nano": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "updatedDt": {
+                      "type": "object",
+                      "title": "java.time.LocalDateTime",
+                      "properties": {
+                        "date": {
+                          "type": "object",
+                          "title": "java.time.LocalDate",
+                          "properties": {
+                            "year": {
+                              "type": "integer"
+                            },
+                            "month": {
+                              "type": "integer"
+                            },
+                            "day": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "time": {
+                          "type": "object",
+                          "title": "java.time.LocalTime",
+                          "properties": {
+                            "hour": {
+                              "type": "integer"
+                            },
+                            "minute": {
+                              "type": "integer"
+                            },
+                            "second": {
+                              "type": "integer"
+                            },
+                            "nano": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "loginDt": {
+                      "type": "object",
+                      "title": "java.time.LocalDateTime",
+                      "properties": {
+                        "date": {
+                          "type": "object",
+                          "title": "java.time.LocalDate",
+                          "properties": {
+                            "year": {
+                              "type": "integer"
+                            },
+                            "month": {
+                              "type": "integer"
+                            },
+                            "day": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "time": {
+                          "type": "object",
+                          "title": "java.time.LocalTime",
+                          "properties": {
+                            "hour": {
+                              "type": "integer"
+                            },
+                            "minute": {
+                              "type": "integer"
+                            },
+                            "second": {
+                              "type": "integer"
+                            },
+                            "nano": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "secured": {
+                      "type": "boolean"
+                    },
+                    "contactDTO": {
+                      "type": "object",
+                      "title": "com.giassi.microservice.demo2.rest.users.dtos.ContactDTO",
+                      "properties": {
+                        "email": {
+                          "type": "string"
+                        },
+                        "phone": {
+                          "type": "string"
+                        },
+                        "skype": {
+                          "type": "string"
+                        },
+                        "facebook": {
+                          "type": "string"
+                        },
+                        "linkedin": {
+                          "type": "string"
+                        },
+                        "website": {
+                          "type": "string"
+                        },
+                        "contactNote": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "addressDTO": {
+                      "type": "object",
+                      "title": "com.giassi.microservice.demo2.rest.users.dtos.AddressDTO",
+                      "properties": {
+                        "address": {
+                          "type": "string"
+                        },
+                        "address2": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        },
+                        "zipCode": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "roles": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "permissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1{id}/get"
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "CREATED"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "address": {
+                    "type": "string"
+                  },
+                  "address2": {
+                    "type": "string"
+                  },
+                  "birthDate": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "contactNote": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "facebook": {
+                    "type": "string"
+                  },
+                  "gender": {
+                    "type": "string"
+                  },
+                  "linkedin": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "note": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "secured": {
+                    "type": "boolean"
+                  },
+                  "skype": {
+                    "type": "string"
+                  },
+                  "surname": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "website": {
+                    "type": "string"
+                  },
+                  "zipCode": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 21
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1{id}/put"
+        }
+      }
+    },
+    "/users/{id}/roles/{roleId}": {
+      "delete": {
+        "description": "",
+        "operationId": "em6",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1{id}~1roles~1{roleId}/delete"
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em5",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "CREATED"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1users~1{id}~1roles~1{roleId}/post"
+        }
+      }
+    }
+  },
+  "components": {
+    "x-endpoint-constraints": {
+      "/login": {
+        "post": {
+          "valid-path-conditions": [
+            "( this.<com.giassi.microservice.demo2.rest.users.services.UserService: com.giassi.microservice.demo2.rest.users.repositories.UserRepository userRepository>.<com.giassi.microservice.demo2.rest.users.repositories.UserRepository: com.giassi.microservice.demo2.rest.users.entities.User findByUsername(java.lang.String)>({non_EPP#0}.<com.giassi.microservice.demo2.rest.users.dtos.requests.LoginRequestDTO: java.lang.String getUsername()>()).<com.giassi.microservice.demo2.rest.users.entities.User: boolean isEnabled()>() != 0 ) && ( this.<com.giassi.microservice.demo2.rest.users.services.UserService: com.giassi.microservice.demo2.rest.users.repositories.UserRepository userRepository>.<com.giassi.microservice.demo2.rest.users.repositories.UserRepository: com.giassi.microservice.demo2.rest.users.entities.User findByUsername(java.lang.String)>({non_EPP#0}.<com.giassi.microservice.demo2.rest.users.dtos.requests.LoginRequestDTO: java.lang.String getUsername()>()) != null )"
+          ],
+          "global-reads": {
+            "g3": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            }
+          },
+          "global-writes": {
+            "g6": {
+              "name": "RANDOM",
+              "assigned-values": [
+                "new java.security.SecureRandom()"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g6"
+              }
+            }
+          }
+        }
+      },
+      "/users": {
+        "post": {
+          "valid-path-conditions": [
+            "( this.<com.giassi.microservice.demo2.rest.users.services.UserService: com.giassi.microservice.demo2.rest.users.repositories.UserRepository userRepository>.<com.giassi.microservice.demo2.rest.users.repositories.UserRepository: com.giassi.microservice.demo2.rest.users.entities.User findByEmail(java.lang.String)>({non_EPP#0}.<com.giassi.microservice.demo2.rest.users.dtos.requests.CreateOrUpdateUserDTO: java.lang.String getEmail()>()) == null )",
+            "( this.<com.giassi.microservice.demo2.rest.users.services.UserService: com.giassi.microservice.demo2.rest.users.repositories.UserRepository userRepository>.<com.giassi.microservice.demo2.rest.users.repositories.UserRepository: com.giassi.microservice.demo2.rest.users.entities.User findByUsername(java.lang.String)>({non_EPP#0}.<com.giassi.microservice.demo2.rest.users.dtos.requests.CreateOrUpdateUserDTO: java.lang.String getUsername()>()) == null )",
+            "( this.<com.giassi.microservice.demo2.rest.users.services.validation.EmailValidator: java.util.regex.Pattern pattern>.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>({non_EPP#0}.<com.giassi.microservice.demo2.rest.users.dtos.requests.CreateOrUpdateUserDTO: java.lang.String getEmail()>()).<java.util.regex.Matcher: boolean matches()>() != 0 )",
+            "( this.<com.giassi.microservice.demo2.rest.users.services.validation.PasswordValidator: java.util.regex.Pattern pattern>.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>({non_EPP#0}.<com.giassi.microservice.demo2.rest.users.dtos.requests.CreateOrUpdateUserDTO: java.lang.String getPassword()>()).<java.util.regex.Matcher: boolean matches()>() != 0 )",
+            "( this.<com.giassi.microservice.demo2.rest.users.services.validation.PhoneValidator: java.util.regex.Pattern pattern>.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>({non_EPP#0}.<com.giassi.microservice.demo2.rest.users.dtos.requests.CreateOrUpdateUserDTO: java.lang.String getPhone()>()).<java.util.regex.Matcher: boolean matches()>() != 0 )",
+            "( {non_EPP#0}.<com.giassi.microservice.demo2.rest.users.dtos.requests.CreateOrUpdateUserDTO: java.lang.String getPhone()>().<java.lang.String: int length()>() <= <com.giassi.microservice.demo2.rest.users.services.validation.PhoneValidator: int MAX_PHONE_LENGTH> )"
+          ],
+          "global-reads": {
+            "g0": {
+              "name": "FEMALE",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "MALE",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g2": {
+              "name": "CREATED",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g3": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "MAX_PHONE_LENGTH",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            }
+          },
+          "global-writes": {
+            "g0": {
+              "name": "FEMALE",
+              "assigned-values": [
+                "new com.giassi.microservice.demo2.rest.users.entities.Gender(\"FEMALE\", 1, 2)"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "MALE",
+              "assigned-values": [
+                "new com.giassi.microservice.demo2.rest.users.entities.Gender(\"MALE\", 0, 1)"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g5": {
+              "name": "$VALUES",
+              "assigned-values": [
+                "newarray (com.giassi.microservice.demo2.rest.users.entities.Gender)[2]"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            },
+            "g6": {
+              "name": "RANDOM",
+              "assigned-values": [
+                "new java.security.SecureRandom()"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g6"
+              }
+            }
+          }
+        }
+      },
+      "/users/rbac/permissions": {
+        "post": {
+          "valid-path-conditions": [
+            "( this.<com.giassi.microservice.demo2.rest.users.services.PermissionService: com.giassi.microservice.demo2.rest.users.repositories.PermissionRepository permissionRepository>.<com.giassi.microservice.demo2.rest.users.repositories.PermissionRepository: java.util.Optional findByPermission(java.lang.String)>({non_EPP#0}.<com.giassi.microservice.demo2.rest.users.dtos.PermissionDTO: java.lang.String getPermission()>()).<java.util.Optional: boolean isPresent()>() == 0 )"
+          ],
+          "global-reads": {
+            "g2": {
+              "name": "CREATED",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g9": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g9"
+              }
+            }
+          }
+        },
+        "put": {
+          "valid-path-conditions": [
+            "( this.<com.giassi.microservice.demo2.rest.users.services.PermissionService: com.giassi.microservice.demo2.rest.users.repositories.PermissionRepository permissionRepository>.<com.giassi.microservice.demo2.rest.users.repositories.PermissionRepository: java.util.Optional findById(java.lang.Object)>({non_EPP#0}.<com.giassi.microservice.demo2.rest.users.dtos.PermissionDTO: java.lang.Long getId()>()).<java.util.Optional: boolean isPresent()>() != 0 )"
+          ],
+          "global-reads": {
+            "g2": {
+              "name": "CREATED",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g9": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g9"
+              }
+            }
+          }
+        }
+      },
+      "/users/rbac/permissions/{permissionKey}": {
+        "delete": {
+          "valid-path-conditions": [
+            "( (this.<com.giassi.microservice.demo2.rest.users.services.PermissionService: com.giassi.microservice.demo2.rest.users.repositories.PermissionRepository permissionRepository>.<com.giassi.microservice.demo2.rest.users.repositories.PermissionRepository: java.lang.Long countPermissionUsage(java.lang.Long)>(((com.giassi.microservice.demo2.rest.users.entities.Permission) this.<com.giassi.microservice.demo2.rest.users.services.PermissionService: com.giassi.microservice.demo2.rest.users.repositories.PermissionRepository permissionRepository>.<com.giassi.microservice.demo2.rest.users.repositories.PermissionRepository: java.util.Optional findByPermission(java.lang.String)>({permissionKey}).<java.util.Optional: java.lang.Object get()>()).<com.giassi.microservice.demo2.rest.users.entities.Permission: java.lang.Long getId()>()).<java.lang.Long: long longValue()>() cmp 0L) <= 0 ) && ( this.<com.giassi.microservice.demo2.rest.users.services.PermissionService: com.giassi.microservice.demo2.rest.users.repositories.PermissionRepository permissionRepository>.<com.giassi.microservice.demo2.rest.users.repositories.PermissionRepository: java.util.Optional findByPermission(java.lang.String)>({permissionKey}).<java.util.Optional: boolean isPresent()>() != 0 )"
+          ],
+          "global-reads": {
+            "g9": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g9"
+              }
+            }
+          }
+        },
+        "get": {
+          "valid-path-conditions": [
+            "( this.<com.giassi.microservice.demo2.rest.users.services.PermissionService: com.giassi.microservice.demo2.rest.users.repositories.PermissionRepository permissionRepository>.<com.giassi.microservice.demo2.rest.users.repositories.PermissionRepository: java.util.Optional findByPermission(java.lang.String)>({permissionKey}).<java.util.Optional: boolean isPresent()>() != 0 )"
+          ]
+        }
+      },
+      "/users/rbac/roles": {
+        "post": {
+          "valid-path-conditions": [
+            "( this.<com.giassi.microservice.demo2.rest.users.services.RoleService: com.giassi.microservice.demo2.rest.users.repositories.RoleRepository roleRepository>.<com.giassi.microservice.demo2.rest.users.repositories.RoleRepository: java.util.Optional findByRole(java.lang.String)>({non_EPP#0}).<java.util.Optional: boolean isPresent()>() == 0 )"
+          ],
+          "global-reads": {
+            "g2": {
+              "name": "CREATED",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g8": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g8"
+              }
+            }
+          },
+          "global-writes": {
+            "g8": {
+              "name": "log",
+              "assigned-values": [
+                "staticinvoke <org.slf4j.LoggerFactory: org.slf4j.Logger getLogger(java.lang.Class)>(class \"Lcom/giassi/microservice/demo2/rest/users/services/RoleService;\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g8"
+              }
+            }
+          }
+        }
+      },
+      "/users/rbac/roles/{roleId}": {
+        "delete": {
+          "valid-path-conditions": [
+            "( this.<com.giassi.microservice.demo2.rest.users.services.RoleService: com.giassi.microservice.demo2.rest.users.repositories.RoleRepository roleRepository>.<com.giassi.microservice.demo2.rest.users.repositories.RoleRepository: java.util.Optional findById(java.lang.Object)>({roleId}).<java.util.Optional: boolean isPresent()>() != 0 ) && ( (this.<com.giassi.microservice.demo2.rest.users.services.RoleService: com.giassi.microservice.demo2.rest.users.repositories.RoleRepository roleRepository>.<com.giassi.microservice.demo2.rest.users.repositories.RoleRepository: java.lang.Long countRoleUsage(java.lang.Long)>({roleId}).<java.lang.Long: long longValue()>() cmp 0L) <= 0 )"
+          ],
+          "global-reads": {
+            "g8": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g8"
+              }
+            }
+          }
+        },
+        "get": {
+          "valid-path-conditions": [
+            "( this.<com.giassi.microservice.demo2.rest.users.services.RoleService: com.giassi.microservice.demo2.rest.users.repositories.RoleRepository roleRepository>.<com.giassi.microservice.demo2.rest.users.repositories.RoleRepository: java.util.Optional findById(java.lang.Object)>({roleId}).<java.util.Optional: boolean isPresent()>() != 0 )"
+          ]
+        }
+      },
+      "/users/rbac/roles/{roleId}/permissions/{permissionKey}": {
+        "delete": {
+          "valid-path-conditions": [
+            "( this.<com.giassi.microservice.demo2.rest.users.services.RoleService: com.giassi.microservice.demo2.rest.users.repositories.PermissionRepository permissionRepository>.<com.giassi.microservice.demo2.rest.users.repositories.PermissionRepository: java.util.Optional findByPermission(java.lang.String)>({permissionKey}).<java.util.Optional: boolean isPresent()>() != 0 )",
+            "( this.<com.giassi.microservice.demo2.rest.users.services.RoleService: com.giassi.microservice.demo2.rest.users.repositories.RoleRepository roleRepository>.<com.giassi.microservice.demo2.rest.users.repositories.RoleRepository: java.util.Optional findById(java.lang.Object)>({roleId}).<java.util.Optional: boolean isPresent()>() != 0 )"
+          ],
+          "global-reads": {
+            "g7": {
+              "name": "OK",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g7"
+              }
+            },
+            "g8": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g8"
+              }
+            }
+          },
+          "global-writes": {
+            "g8": {
+              "name": "log",
+              "assigned-values": [
+                "staticinvoke <org.slf4j.LoggerFactory: org.slf4j.Logger getLogger(java.lang.Class)>(class \"Lcom/giassi/microservice/demo2/rest/users/services/RoleService;\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g8"
+              }
+            }
+          }
+        },
+        "post": {
+          "valid-path-conditions": [
+            "( this.<com.giassi.microservice.demo2.rest.users.services.RoleService: com.giassi.microservice.demo2.rest.users.repositories.RoleRepository roleRepository>.<com.giassi.microservice.demo2.rest.users.repositories.RoleRepository: java.util.Optional findById(java.lang.Object)>({roleId}).<java.util.Optional: boolean isPresent()>() != 0 )"
+          ],
+          "global-reads": {
+            "g2": {
+              "name": "CREATED",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g8": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g8"
+              }
+            }
+          },
+          "global-writes": {
+            "g8": {
+              "name": "log",
+              "assigned-values": [
+                "staticinvoke <org.slf4j.LoggerFactory: org.slf4j.Logger getLogger(java.lang.Class)>(class \"Lcom/giassi/microservice/demo2/rest/users/services/RoleService;\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g8"
+              }
+            }
+          }
+        }
+      },
+      "/users/rbac/salt": {
+        "get": {
+          "global-reads": {
+            "g2": {
+              "name": "CREATED",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g6": {
+              "name": "RANDOM",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g6"
+              }
+            }
+          },
+          "global-writes": {
+            "g6": {
+              "name": "RANDOM",
+              "assigned-values": [
+                "new java.security.SecureRandom()"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g6"
+              }
+            }
+          }
+        }
+      },
+      "/users/register": {
+        "post": {
+          "valid-path-conditions": [
+            "( this.<com.giassi.microservice.demo2.rest.users.services.UserService: com.giassi.microservice.demo2.rest.users.repositories.UserRepository userRepository>.<com.giassi.microservice.demo2.rest.users.repositories.UserRepository: com.giassi.microservice.demo2.rest.users.entities.User findByEmail(java.lang.String)>({non_EPP#0}.<com.giassi.microservice.demo2.rest.users.dtos.requests.RegisterUserAccountDTO: java.lang.String getEmail()>()) == null )",
+            "( this.<com.giassi.microservice.demo2.rest.users.services.UserService: com.giassi.microservice.demo2.rest.users.repositories.UserRepository userRepository>.<com.giassi.microservice.demo2.rest.users.repositories.UserRepository: com.giassi.microservice.demo2.rest.users.entities.User findByUsername(java.lang.String)>({non_EPP#0}.<com.giassi.microservice.demo2.rest.users.dtos.requests.RegisterUserAccountDTO: java.lang.String getUsername()>()) == null )",
+            "( this.<com.giassi.microservice.demo2.rest.users.services.validation.EmailValidator: java.util.regex.Pattern pattern>.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>({non_EPP#0}.<com.giassi.microservice.demo2.rest.users.dtos.requests.RegisterUserAccountDTO: java.lang.String getEmail()>()).<java.util.regex.Matcher: boolean matches()>() != 0 )",
+            "( this.<com.giassi.microservice.demo2.rest.users.services.validation.PasswordValidator: java.util.regex.Pattern pattern>.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>({non_EPP#0}.<com.giassi.microservice.demo2.rest.users.dtos.requests.RegisterUserAccountDTO: java.lang.String getPassword()>()).<java.util.regex.Matcher: boolean matches()>() != 0 )"
+          ],
+          "global-reads": {
+            "g0": {
+              "name": "FEMALE",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "MALE",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g2": {
+              "name": "CREATED",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g3": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            }
+          },
+          "global-writes": {
+            "g0": {
+              "name": "FEMALE",
+              "assigned-values": [
+                "new com.giassi.microservice.demo2.rest.users.entities.Gender(\"FEMALE\", 1, 2)"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "MALE",
+              "assigned-values": [
+                "new com.giassi.microservice.demo2.rest.users.entities.Gender(\"MALE\", 0, 1)"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g5": {
+              "name": "$VALUES",
+              "assigned-values": [
+                "newarray (com.giassi.microservice.demo2.rest.users.entities.Gender)[2]"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            },
+            "g6": {
+              "name": "RANDOM",
+              "assigned-values": [
+                "new java.security.SecureRandom()"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g6"
+              }
+            }
+          }
+        }
+      },
+      "/users/{id}": {
+        "delete": {
+          "valid-path-conditions": [
+            "( ((com.giassi.microservice.demo2.rest.users.entities.User) this.<com.giassi.microservice.demo2.rest.users.services.UserService: com.giassi.microservice.demo2.rest.users.repositories.UserRepository userRepository>.<com.giassi.microservice.demo2.rest.users.repositories.UserRepository: java.util.Optional findById(java.lang.Object)>({id}).<java.util.Optional: java.lang.Object get()>()).<com.giassi.microservice.demo2.rest.users.entities.User: boolean isSecured()>() == 0 ) && ( this.<com.giassi.microservice.demo2.rest.users.services.UserService: com.giassi.microservice.demo2.rest.users.repositories.UserRepository userRepository>.<com.giassi.microservice.demo2.rest.users.repositories.UserRepository: java.util.Optional findById(java.lang.Object)>({id}).<java.util.Optional: boolean isPresent()>() != 0 )"
+          ],
+          "global-reads": {
+            "g3": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            }
+          }
+        },
+        "get": {
+          "valid-path-conditions": [
+            "( this.<com.giassi.microservice.demo2.rest.users.services.UserService: com.giassi.microservice.demo2.rest.users.repositories.UserRepository userRepository>.<com.giassi.microservice.demo2.rest.users.repositories.UserRepository: java.util.Optional findById(java.lang.Object)>({id}).<java.util.Optional: boolean isPresent()>() != 0 )"
+          ]
+        },
+        "put": {
+          "valid-path-conditions": [
+            "( this.<com.giassi.microservice.demo2.rest.users.services.UserService: com.giassi.microservice.demo2.rest.users.repositories.UserRepository userRepository>.<com.giassi.microservice.demo2.rest.users.repositories.UserRepository: java.util.Optional findById(java.lang.Object)>({id}).<java.util.Optional: boolean isPresent()>() != 0 )",
+            "( this.<com.giassi.microservice.demo2.rest.users.services.validation.EmailValidator: java.util.regex.Pattern pattern>.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>({non_EPP#1}.<com.giassi.microservice.demo2.rest.users.dtos.requests.CreateOrUpdateUserDTO: java.lang.String getEmail()>()).<java.util.regex.Matcher: boolean matches()>() != 0 )",
+            "( this.<com.giassi.microservice.demo2.rest.users.services.validation.PasswordValidator: java.util.regex.Pattern pattern>.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>({non_EPP#1}.<com.giassi.microservice.demo2.rest.users.dtos.requests.CreateOrUpdateUserDTO: java.lang.String getPassword()>()).<java.util.regex.Matcher: boolean matches()>() != 0 )",
+            "( this.<com.giassi.microservice.demo2.rest.users.services.validation.PhoneValidator: java.util.regex.Pattern pattern>.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>({non_EPP#1}.<com.giassi.microservice.demo2.rest.users.dtos.requests.CreateOrUpdateUserDTO: java.lang.String getPhone()>()).<java.util.regex.Matcher: boolean matches()>() != 0 )",
+            "( {non_EPP#1}.<com.giassi.microservice.demo2.rest.users.dtos.requests.CreateOrUpdateUserDTO: java.lang.String getPhone()>().<java.lang.String: int length()>() <= <com.giassi.microservice.demo2.rest.users.services.validation.PhoneValidator: int MAX_PHONE_LENGTH> )"
+          ],
+          "global-reads": {
+            "g0": {
+              "name": "FEMALE",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "MALE",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g2": {
+              "name": "CREATED",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g3": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "MAX_PHONE_LENGTH",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            }
+          },
+          "global-writes": {
+            "g0": {
+              "name": "FEMALE",
+              "assigned-values": [
+                "new com.giassi.microservice.demo2.rest.users.entities.Gender(\"FEMALE\", 1, 2)"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "MALE",
+              "assigned-values": [
+                "new com.giassi.microservice.demo2.rest.users.entities.Gender(\"MALE\", 0, 1)"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g5": {
+              "name": "$VALUES",
+              "assigned-values": [
+                "newarray (com.giassi.microservice.demo2.rest.users.entities.Gender)[2]"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            },
+            "g6": {
+              "name": "RANDOM",
+              "assigned-values": [
+                "new java.security.SecureRandom()"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g6"
+              }
+            }
+          }
+        }
+      },
+      "/users/{id}/roles/{roleId}": {
+        "delete": {
+          "valid-path-conditions": [
+            "( this.<com.giassi.microservice.demo2.rest.users.services.UserService: com.giassi.microservice.demo2.rest.users.repositories.RoleRepository roleRepository>.<com.giassi.microservice.demo2.rest.users.repositories.RoleRepository: java.util.Optional findById(java.lang.Object)>({roleId}).<java.util.Optional: boolean isPresent()>() != 0 )",
+            "( this.<com.giassi.microservice.demo2.rest.users.services.UserService: com.giassi.microservice.demo2.rest.users.repositories.UserRepository userRepository>.<com.giassi.microservice.demo2.rest.users.repositories.UserRepository: java.util.Optional findById(java.lang.Object)>({id}).<java.util.Optional: boolean isPresent()>() != 0 )"
+          ],
+          "global-reads": {
+            "g3": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g7": {
+              "name": "OK",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g7"
+              }
+            }
+          }
+        },
+        "post": {
+          "valid-path-conditions": [
+            "( this.<com.giassi.microservice.demo2.rest.users.services.UserService: com.giassi.microservice.demo2.rest.users.repositories.RoleRepository roleRepository>.<com.giassi.microservice.demo2.rest.users.repositories.RoleRepository: java.util.Optional findById(java.lang.Object)>({roleId}).<java.util.Optional: boolean isPresent()>() != 0 )",
+            "( this.<com.giassi.microservice.demo2.rest.users.services.UserService: com.giassi.microservice.demo2.rest.users.repositories.UserRepository userRepository>.<com.giassi.microservice.demo2.rest.users.repositories.UserRepository: java.util.Optional findById(java.lang.Object)>({id}).<java.util.Optional: boolean isPresent()>() != 0 )"
+          ],
+          "global-reads": {
+            "g2": {
+              "name": "CREATED",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g3": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            }
+          }
+        }
+      }
+    },
+    "x-endpoint-interdependence": {
+      "g0": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g0"
+        },
+        "read-by": {
+          "em1": {
+            "$ref": "#/paths/~1users/post"
+          },
+          "em3": {
+            "$ref": "#/paths/~1users~1{id}/put"
+          },
+          "em7": {
+            "$ref": "#/paths/~1users~1register/post"
+          }
+        },
+        "written-by": {
+          "em1": {
+            "$ref": "#/paths/~1users/post"
+          },
+          "em3": {
+            "$ref": "#/paths/~1users~1{id}/put"
+          },
+          "em7": {
+            "$ref": "#/paths/~1users~1register/post"
+          }
+        }
+      },
+      "g1": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g1"
+        },
+        "read-by": {
+          "em1": {
+            "$ref": "#/paths/~1users/post"
+          },
+          "em3": {
+            "$ref": "#/paths/~1users~1{id}/put"
+          },
+          "em7": {
+            "$ref": "#/paths/~1users~1register/post"
+          }
+        },
+        "written-by": {
+          "em1": {
+            "$ref": "#/paths/~1users/post"
+          },
+          "em3": {
+            "$ref": "#/paths/~1users~1{id}/put"
+          },
+          "em7": {
+            "$ref": "#/paths/~1users~1register/post"
+          }
+        }
+      },
+      "g6": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g6"
+        },
+        "read-by": {
+          "em19": {
+            "$ref": "#/paths/~1users~1rbac~1salt/get"
+          }
+        },
+        "written-by": {
+          "em1": {
+            "$ref": "#/paths/~1users/post"
+          },
+          "em20": {
+            "$ref": "#/paths/~1login/post"
+          },
+          "em3": {
+            "$ref": "#/paths/~1users~1{id}/put"
+          },
+          "em7": {
+            "$ref": "#/paths/~1users~1register/post"
+          },
+          "em19": {
+            "$ref": "#/paths/~1users~1rbac~1salt/get"
+          }
+        }
+      },
+      "g8": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g8"
+        },
+        "read-by": {
+          "em9": {
+            "$ref": "#/paths/~1users~1rbac~1roles/post"
+          },
+          "em18": {
+            "$ref": "#/paths/~1users~1rbac~1roles~1{roleId}~1permissions~1{permissionKey}/delete"
+          },
+          "em17": {
+            "$ref": "#/paths/~1users~1rbac~1roles~1{roleId}~1permissions~1{permissionKey}/post"
+          },
+          "em11": {
+            "$ref": "#/paths/~1users~1rbac~1roles~1{roleId}/delete"
+          }
+        },
+        "written-by": {
+          "em9": {
+            "$ref": "#/paths/~1users~1rbac~1roles/post"
+          },
+          "em18": {
+            "$ref": "#/paths/~1users~1rbac~1roles~1{roleId}~1permissions~1{permissionKey}/delete"
+          },
+          "em17": {
+            "$ref": "#/paths/~1users~1rbac~1roles~1{roleId}~1permissions~1{permissionKey}/post"
+          }
+        }
+      }
+    },
+    "x-global-variables-info": {
+      "g0": {
+        "name": "FEMALE",
+        "id": "g0",
+        "defining-class": "com.giassi.microservice.demo2.rest.users.entities.Gender",
+        "locations-of-static-assignments": [
+          "line 7, com.giassi.microservice.demo2.rest.users.entities.Gender"
+        ]
+      },
+      "g1": {
+        "name": "MALE",
+        "id": "g1",
+        "defining-class": "com.giassi.microservice.demo2.rest.users.entities.Gender",
+        "locations-of-static-assignments": [
+          "line 7, com.giassi.microservice.demo2.rest.users.entities.Gender"
+        ]
+      },
+      "g2": {
+        "name": "CREATED",
+        "id": "g2",
+        "defining-class": "org.springframework.http.HttpStatus"
+      },
+      "g3": {
+        "name": "log",
+        "id": "g3",
+        "defining-class": "com.giassi.microservice.demo2.rest.users.services.UserService",
+        "locations-of-static-assignments": [
+          "line 28, com.giassi.microservice.demo2.rest.users.services.UserService"
+        ]
+      },
+      "g4": {
+        "name": "MAX_PHONE_LENGTH",
+        "id": "g4",
+        "defining-class": "com.giassi.microservice.demo2.rest.users.services.validation.PhoneValidator",
+        "locations-of-static-assignments": [
+          "line 13, com.giassi.microservice.demo2.rest.users.services.validation.PhoneValidator"
+        ]
+      },
+      "g5": {
+        "name": "$VALUES",
+        "id": "g5",
+        "defining-class": "com.giassi.microservice.demo2.rest.users.entities.Gender",
+        "locations-of-static-assignments": [
+          "line 5, com.giassi.microservice.demo2.rest.users.entities.Gender"
+        ]
+      },
+      "g6": {
+        "name": "RANDOM",
+        "id": "g6",
+        "defining-class": "com.giassi.microservice.demo2.rest.users.services.EncryptionService",
+        "locations-of-static-assignments": [
+          "line 29, com.giassi.microservice.demo2.rest.users.services.EncryptionService"
+        ]
+      },
+      "g7": {
+        "name": "OK",
+        "id": "g7",
+        "defining-class": "org.springframework.http.HttpStatus"
+      },
+      "g8": {
+        "name": "log",
+        "id": "g8",
+        "defining-class": "com.giassi.microservice.demo2.rest.users.services.RoleService",
+        "locations-of-static-assignments": [
+          "line 17, com.giassi.microservice.demo2.rest.users.services.RoleService"
+        ]
+      },
+      "g9": {
+        "name": "log",
+        "id": "g9",
+        "defining-class": "com.giassi.microservice.demo2.rest.users.services.PermissionService",
+        "locations-of-static-assignments": [
+          "line 18, com.giassi.microservice.demo2.rest.users.services.PermissionService"
+        ]
+      }
+    }
+  }
+}

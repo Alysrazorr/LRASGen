@@ -1,0 +1,3483 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "src API",
+    "description": "LRASGen-generated specification for src (koa).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/status": {
+      "get": {
+        "operationId": "getStatus",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Status information returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "TemplateResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'template': {'serverUrl': 'string', 'lastSync': 'date', 'userEmail': 'string', 'userId': 'string', 'status': 'string'}}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "An error occurred while retrieving status information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/list/object/folder": {
+      "get": {
+        "operationId": "getFolder",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to list. For this endpoint, the value is 'folder'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to list. For this endpoint, the value is 'folder'."
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Search term to filter folders by name.",
+            "schema": {
+              "type": "string",
+              "description": "Search term to filter folders by name."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of folders. The response body is a ListResponse object containing an array of FolderResponse objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ListResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'array<FolderResponse>'}"
+                    },
+                    "FolderResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'name': 'string', 'revisionDate': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked or the user is not logged in, or when the object type is unknown.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/send/list": {
+      "get": {
+        "operationId": "getList",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successfully returns the list of sends. The response body is a Response object with success=true and data being a ListResponse containing an array of SendResponse objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'ListResponse'}"
+                    },
+                    "ListResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'SendResponse[]'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when the vault is locked or the user is not logged in. The errorIfLocked method calls processResponse with a Response.error, which sets the HTTP status to 400. The response body is a Response object with success=false and a message indicating the error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'any'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/list/object/organization": {
+      "get": {
+        "operationId": "getOrganization",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to list. For this endpoint, the value is 'organization'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to list. For this endpoint, the value is 'organization'.",
+              "enum": [
+                "organization"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returns a list of organizations the user is a member of. The response body is a Response object with success=true and data being a ListResponse containing OrganizationResponse objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'ListResponse'}"
+                    },
+                    "ListResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'OrganizationResponse[]'}"
+                    },
+                    "OrganizationResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'name': 'string', 'status': 'OrganizationUserStatusType', 'type': 'OrganizationUserType', 'enabled': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked (errorIfLocked returns true) or when no user is found (listOrganizations returns Response.badRequest('No user found.')).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'any'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/list/object/collection": {
+      "get": {
+        "operationId": "getCollection",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to list. For this endpoint, the value is 'collection'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to list. For this endpoint, the value is 'collection'."
+            }
+          },
+          {
+            "name": "organizationid",
+            "in": "query",
+            "required": false,
+            "description": "Organization ID to filter collections by.",
+            "schema": {
+              "type": "string",
+              "description": "Organization ID to filter collections by."
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Search term to filter collections by name.",
+            "schema": {
+              "type": "string",
+              "description": "Search term to filter collections by name."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of collections. The response body is a ListResponse object containing an array of CollectionResponse objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ListResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'array<CollectionResponse>'}"
+                    },
+                    "CollectionResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'organizationId': 'string', 'name': 'string', 'externalId': 'string', 'readOnly': 'boolean', 'hidePasswords': 'boolean', 'manage': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the object parameter is not 'collections' (e.g., unknown object) or when the user is not logged in or the vault is locked.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/list/object/org-member": {
+      "get": {
+        "operationId": "getOrgMember",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to list. For this endpoint it is 'org-member'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to list. For this endpoint it is 'org-member'.",
+              "enum": [
+                "org-member"
+              ]
+            }
+          },
+          {
+            "name": "organizationid",
+            "in": "query",
+            "required": false,
+            "description": "The organization ID. Required for listing organization members.",
+            "schema": {
+              "type": "string",
+              "description": "The organization ID. Required for listing organization members.",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Search term to filter organization members by name or email.",
+            "schema": {
+              "type": "string",
+              "description": "Search term to filter organization members by name or email."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of organization members. Returns a ListResponse containing OrganizationUserResponse objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ListResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'array'}"
+                    },
+                    "OrganizationUserResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'email': 'string', 'name': 'string', 'status': 'integer', 'type': 'integer', 'twoFactorEnabled': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the `organizationid` option is missing or empty, when it is not a valid GUID, or when no active user is found."
+          }
+        }
+      }
+    },
+    "/list/object/send": {
+      "get": {
+        "operationId": "getSend",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Search term to filter sends by name",
+            "schema": {
+              "type": "string",
+              "description": "Search term to filter sends by name"
+            }
+          },
+          {
+            "name": "organizationid",
+            "in": "query",
+            "required": false,
+            "description": "Organization ID to filter sends",
+            "schema": {
+              "type": "string",
+              "description": "Organization ID to filter sends"
+            }
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "description": "Organization ID to filter sends (camelCase alias)",
+            "schema": {
+              "type": "string",
+              "description": "Organization ID to filter sends (camelCase alias)"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of sends. The response body is a Response object with success=true and data containing a ListResponse of SendResponse objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'ListResponse'}"
+                    },
+                    "ListResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'SendResponse[]'}"
+                    },
+                    "SendResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'accessId': 'string', 'name': 'string', 'notes': 'string', 'type': 'integer', 'file': 'object', 'text': 'object', 'key': 'string', 'maxAccessCount': 'integer', 'accessCount': 'integer', 'password': 'string', 'disabled': 'boolean', 'revisionDate': 'date', 'expirationDate': 'date', 'deletionDate': 'date', 'hideEmail': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked or the user is not logged in. The response body is a Response object with success=false and a message indicating the error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'any'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/list/object/org-collection": {
+      "get": {
+        "operationId": "getOrgCollection",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to list; for this endpoint it is 'org-collection' as declared in the route pattern /list/object/:object.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to list; for this endpoint it is 'org-collection' as declared in the route pattern /list/object/:object."
+            }
+          },
+          {
+            "name": "organizationid",
+            "in": "query",
+            "required": false,
+            "description": "Organization identifier required by listOrganizationCollections; the handler returns a bad request if it is null or empty.",
+            "schema": {
+              "type": "string",
+              "description": "Organization identifier required by listOrganizationCollections; the handler returns a bad request if it is null or empty."
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Optional search term used to filter the organization collections by name.",
+            "schema": {
+              "type": "string",
+              "description": "Optional search term used to filter the organization collections by name."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of organization collections. The response body is a Response object with success=true and data being a ListResponse containing an array of CollectionResponse objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'ListResponse'}"
+                    },
+                    "ListResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'CollectionResponse[]'}"
+                    },
+                    "CollectionResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'organizationId': 'string', 'name': 'string', 'externalId': 'string', 'readOnly': 'boolean', 'hidePasswords': 'boolean', 'manage': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the `organizationid` option is missing or empty, or when it is not a valid GUID, or when no user is found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'any'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/list/object/item": {
+      "get": {
+        "operationId": "getItem",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to list. For this endpoint, the value is 'item'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to list. For this endpoint, the value is 'item'.",
+              "enum": [
+                "item"
+              ]
+            }
+          },
+          {
+            "name": "organizationid",
+            "in": "query",
+            "required": false,
+            "description": "Filter items by organization ID. Can be a GUID, 'null', or 'notnull'.",
+            "schema": {
+              "type": "string",
+              "description": "Filter items by organization ID. Can be a GUID, 'null', or 'notnull'."
+            }
+          },
+          {
+            "name": "collectionid",
+            "in": "query",
+            "required": false,
+            "description": "Filter items by collection ID. Can be a GUID, 'null', or 'notnull'.",
+            "schema": {
+              "type": "string",
+              "description": "Filter items by collection ID. Can be a GUID, 'null', or 'notnull'."
+            }
+          },
+          {
+            "name": "folderid",
+            "in": "query",
+            "required": false,
+            "description": "Filter items by folder ID. Can be a GUID, 'null', or 'notnull'.",
+            "schema": {
+              "type": "string",
+              "description": "Filter items by folder ID. Can be a GUID, 'null', or 'notnull'."
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Search term to filter items by name or other fields.",
+            "schema": {
+              "type": "string",
+              "description": "Search term to filter items by name or other fields."
+            }
+          },
+          {
+            "name": "url",
+            "in": "query",
+            "required": false,
+            "description": "Filter items by URL.",
+            "schema": {
+              "type": "string",
+              "description": "Filter items by URL."
+            }
+          },
+          {
+            "name": "trash",
+            "in": "query",
+            "required": false,
+            "description": "Include items in the trash. Defaults to false.",
+            "schema": {
+              "type": "boolean",
+              "description": "Include items in the trash. Defaults to false."
+            }
+          },
+          {
+            "name": "archived",
+            "in": "query",
+            "required": false,
+            "description": "Include archived items. Defaults to false.",
+            "schema": {
+              "type": "boolean",
+              "description": "Include archived items. Defaults to false."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved a list of items. The response body is a Response object with success=true and data being a ListResponse containing an array of CipherResponse objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'ListResponse'}"
+                    },
+                    "ListResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'CipherResponse[]'}"
+                    },
+                    "CipherResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'organizationId': 'string', 'folderId': 'string', 'type': 'integer', 'name': 'string', 'notes': 'string', 'favorite': 'boolean', 'login': 'LoginResponse', 'card': 'CardResponse', 'identity': 'IdentityResponse', 'secureNote': 'SecureNoteResponse', 'collectionIds': 'string[]', 'revisionDate': 'date', 'creationDate': 'date', 'deletedDate': 'date', 'archivedDate': 'date', 'attachments': 'AttachmentResponse[]', 'passwordHistory': 'PasswordHistoryResponse[]', 'fields': 'FieldResponse[]', 'reprompt': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked or the user is not logged in, or when the object type is unknown.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'any'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/generate": {
+      "get": {
+        "operationId": "getGenerate",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "uppercase",
+            "in": "query",
+            "required": false,
+            "description": "Include uppercase characters in the generated password.",
+            "schema": {
+              "type": "boolean",
+              "description": "Include uppercase characters in the generated password."
+            }
+          },
+          {
+            "name": "lowercase",
+            "in": "query",
+            "required": false,
+            "description": "Include lowercase characters in the generated password.",
+            "schema": {
+              "type": "boolean",
+              "description": "Include lowercase characters in the generated password."
+            }
+          },
+          {
+            "name": "number",
+            "in": "query",
+            "required": false,
+            "description": "Include numeric characters in the generated password.",
+            "schema": {
+              "type": "boolean",
+              "description": "Include numeric characters in the generated password."
+            }
+          },
+          {
+            "name": "special",
+            "in": "query",
+            "required": false,
+            "description": "Include special characters in the generated password.",
+            "schema": {
+              "type": "boolean",
+              "description": "Include special characters in the generated password."
+            }
+          },
+          {
+            "name": "length",
+            "in": "query",
+            "required": false,
+            "description": "Length of the generated password.",
+            "schema": {
+              "type": "integer",
+              "description": "Length of the generated password.",
+              "minimum": 5.0
+            }
+          },
+          {
+            "name": "passphrase",
+            "in": "query",
+            "required": false,
+            "description": "Generate a passphrase instead of a password.",
+            "schema": {
+              "type": "boolean",
+              "description": "Generate a passphrase instead of a password."
+            }
+          },
+          {
+            "name": "separator",
+            "in": "query",
+            "required": false,
+            "description": "Word separator for passphrase generation.",
+            "schema": {
+              "type": "string",
+              "description": "Word separator for passphrase generation."
+            }
+          },
+          {
+            "name": "words",
+            "in": "query",
+            "required": false,
+            "description": "Number of words in the generated passphrase.",
+            "schema": {
+              "type": "integer",
+              "description": "Number of words in the generated passphrase.",
+              "minimum": 3.0
+            }
+          },
+          {
+            "name": "capitalize",
+            "in": "query",
+            "required": false,
+            "description": "Capitalize words in the generated passphrase.",
+            "schema": {
+              "type": "boolean",
+              "description": "Capitalize words in the generated passphrase."
+            }
+          },
+          {
+            "name": "includeNumber",
+            "in": "query",
+            "required": false,
+            "description": "Include a number in the generated passphrase.",
+            "schema": {
+              "type": "boolean",
+              "description": "Include a number in the generated passphrase."
+            }
+          },
+          {
+            "name": "minNumber",
+            "in": "query",
+            "required": false,
+            "description": "Minimum number of numeric characters in the generated password.",
+            "schema": {
+              "type": "integer",
+              "description": "Minimum number of numeric characters in the generated password."
+            }
+          },
+          {
+            "name": "minSpecial",
+            "in": "query",
+            "required": false,
+            "description": "Minimum number of special characters in the generated password.",
+            "schema": {
+              "type": "integer",
+              "description": "Minimum number of special characters in the generated password."
+            }
+          },
+          {
+            "name": "ambiguous",
+            "in": "query",
+            "required": false,
+            "description": "Allow ambiguous characters in the generated password.",
+            "schema": {
+              "type": "boolean",
+              "description": "Allow ambiguous characters in the generated password."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully generated a password or passphrase. The response body is a Response object with success=true and data containing a StringResponse.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'StringResponse'}"
+                    },
+                    "StringResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the command response is not successful (e.g., password generation fails or policy enforcement error). The response body is a Response object with success=false and a message.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'any'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sync": {
+      "post": {
+        "operationId": "createSync",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "last",
+            "in": "query",
+            "required": false,
+            "description": "Return the last sync date instead of performing a sync",
+            "schema": {
+              "type": "boolean",
+              "description": "Return the last sync date instead of performing a sync"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "description": "Force a full sync",
+            "schema": {
+              "type": "boolean",
+              "description": "Force a full sync"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Syncing complete.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "MessageResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'title': 'string', 'message': 'string', 'raw': 'string', 'noColor': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Syncing failed: <error message>",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lock": {
+      "post": {
+        "operationId": "createLock",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Vault locked successfully. Returns a MessageResponse with title 'Your vault is locked.' and message null.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "MessageResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'title': 'string', 'message': 'string', 'raw': 'string', 'noColor': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error response when the lock operation fails. The response body is a Response object with success=false and a message describing the error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/confirm/org-member/{id}": {
+      "post": {
+        "operationId": "createOrgMember",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to confirm, e.g., 'org-member'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to confirm, e.g., 'org-member'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the object to confirm.",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the object to confirm."
+            }
+          },
+          {
+            "name": "organizationid",
+            "in": "query",
+            "required": false,
+            "description": "The organization ID required for confirming an organization member.",
+            "schema": {
+              "type": "string",
+              "description": "The organization ID required for confirming an organization member."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully confirmed the organization member. Returns a success response with no data."
+          },
+          "400": {
+            "description": "Bad request. Returned when the object is not 'org-member', when the organization ID is missing or invalid, when the member ID is not a valid GUID, when the member status is not 'Accepted' (e.g., already confirmed, revoked, invited, or otherwise invalid), or when the organization key or member cannot be found."
+          },
+          "500": {
+            "description": "Internal server error. Returned when an unexpected error occurs during the confirmation process, such as a failure in the API service call or encryption."
+          }
+        }
+      }
+    },
+    "/unlock": {
+      "post": {
+        "operationId": "createUnlock",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "passwordFile",
+            "in": "query",
+            "required": false,
+            "description": "Path to a file containing the master password. Explicitly deleted from the query before processing, so it is never accepted via this endpoint.",
+            "schema": {
+              "type": "string",
+              "description": "Path to a file containing the master password. Explicitly deleted from the query before processing, so it is never accepted via this endpoint."
+            }
+          },
+          {
+            "name": "passwordEnv",
+            "in": "query",
+            "required": false,
+            "description": "Name of an environment variable containing the master password. Explicitly deleted from the query before processing, so it is never accepted via this endpoint.",
+            "schema": {
+              "type": "string",
+              "description": "Name of an environment variable containing the master password. Explicitly deleted from the query before processing, so it is never accepted via this endpoint."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vault unlocked successfully. Returns a MessageResponse containing the session key and instructions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "MessageResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'title': 'string', 'message': 'string', 'raw': 'string', 'noColor': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the master password is required but not provided (e.g., non-interactive mode without password file or environment variable), or when the unlock service fails (e.g., incorrect password).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string",
+                    "description": "Master password used to unlock the vault. If not provided, the unlock command falls back to password file, environment variable, or interactive prompt."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/restore/item/{id}": {
+      "post": {
+        "operationId": "createItem",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to restore. The route pattern is /restore/:object/:id, so object is a path parameter. The handler passes it to restoreCommand.run(ctx.params.object, ctx.params.id).",
+            "schema": {
+              "type": "string",
+              "description": "The object type to restore. The route pattern is /restore/:object/:id, so object is a path parameter. The handler passes it to restoreCommand.run(ctx.params.object, ctx.params.id)."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the object to restore. The route pattern is /restore/:object/:id, so id is a path parameter. The handler passes it to restoreCommand.run(ctx.params.object, ctx.params.id).",
+            "schema": {
+              "type": "string",
+              "description": "The id of the object to restore. The route pattern is /restore/:object/:id, so id is a path parameter. The handler passes it to restoreCommand.run(ctx.params.object, ctx.params.id)."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully restored the item from trash or archive."
+          },
+          "400": {
+            "description": "Bad request. Returned when the object is not 'item', the cipher is not in trash, or the user lacks permission to restore."
+          },
+          "404": {
+            "description": "Not found. Returned when the cipher with the given id does not exist."
+          }
+        }
+      }
+    },
+    "/send/{id}/remove-password": {
+      "post": {
+        "operationId": "createRemovePassword",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the send to remove the password from",
+            "schema": {
+              "type": "string",
+              "description": "The id of the send to remove the password from"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully removed the password from the send. Returns a success response with no data."
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked or the user is not logged in, or when the send removal fails."
+          }
+        }
+      }
+    },
+    "/move/{id}/{organizationId}": {
+      "post": {
+        "operationId": "createMove",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the cipher to move to an organization.",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the cipher to move to an organization."
+            }
+          },
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the organization to move the cipher to.",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the organization to move the cipher to."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully moved the item to the organization. Returns the updated cipher.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CipherResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'organizationId': 'string', 'folderId': 'string', 'type': 'integer', 'name': 'string', 'notes': 'string', 'favorite': 'boolean', 'login': 'object', 'card': 'object', 'identity': 'object', 'secureNote': 'object', 'fields': 'array', 'attachments': 'array', 'revisionDate': 'date', 'creationDate': 'date', 'deletedDate': 'date', 'passwordHistory': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the request body is missing or empty, when the request data cannot be parsed, when no collection IDs are provided, when the item already belongs to an organization, or when the user lacks permission to add items to a collection."
+          },
+          "404": {
+            "description": "Not found. Returned when the cipher with the given id does not exist."
+          },
+          "500": {
+            "description": "Internal server error. Returned when an unexpected error occurs while sharing the cipher with the server."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string",
+                    "description": "An array of collection IDs to which the cipher should be assigned."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/send": {
+      "post": {
+        "operationId": "createSend",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "description": "The query string parameters passed to SendCreateCommand.run as the second argument (ctx.request.query).",
+            "schema": {
+              "type": "object",
+              "description": "The query string parameters passed to SendCreateCommand.run as the second argument (ctx.request.query)."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully created a send. The response body contains the created send object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SendResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'accessId': 'string', 'type': 'integer', 'name': 'string', 'notes': 'string', 'text': 'object', 'file': 'object', 'key': 'string', 'maxAccessCount': 'integer', 'accessCount': 'integer', 'password': 'string', 'disabled': 'boolean', 'hideEmail': 'boolean', 'revisionDate': 'date', 'expirationDate': 'date', 'deletionDate': 'date', 'accessUrl': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the request body is missing or invalid, or when the send creation fails due to validation or other errors.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "object",
+                    "description": "The request body passed to SendCreateCommand.run as the first argument. It is the parsed JSON body of the POST request."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/attachment": {
+      "post": {
+        "operationId": "createAttachment",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "itemid",
+            "in": "query",
+            "required": false,
+            "description": "The id of the item to attach the file to. Required by createAttachment; also accepted as itemId.",
+            "schema": {
+              "type": "string",
+              "description": "The id of the item to attach the file to. Required by createAttachment; also accepted as itemId."
+            }
+          },
+          {
+            "name": "organizationid",
+            "in": "query",
+            "required": false,
+            "description": "The organization id option, accepted as organizationid or organizationId.",
+            "schema": {
+              "type": "string",
+              "description": "The organization id option, accepted as organizationid or organizationId."
+            }
+          },
+          {
+            "name": "file",
+            "in": "query",
+            "required": false,
+            "description": "The file path option, used only when not in serve mode.",
+            "schema": {
+              "type": "string",
+              "description": "The file path option, used only when not in serve mode."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attachment created successfully. Returns the updated cipher with the new attachment.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CipherResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'organizationId': 'string', 'folderId': 'string', 'type': 'integer', 'name': 'string', 'notes': 'string', 'favorite': 'boolean', 'login': 'LoginResponse', 'card': 'CardResponse', 'identity': 'IdentityResponse', 'secureNote': 'SecureNoteResponse', 'fields': 'FieldResponse[]', 'attachments': 'AttachmentResponse[]', 'revisionDate': 'date', 'creationDate': 'date', 'deletedDate': 'date', 'passwordHistory': 'PasswordHistoryResponse[]', 'collectionIds': 'string[]'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the request is invalid, such as missing required options, file not found, or file buffer/name not provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found. Returned when the specified item does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when an unexpected error occurs during attachment creation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/item": {
+      "post": {
+        "operationId": "createItem",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to create. For this endpoint, it is 'item'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to create. For this endpoint, it is 'item'.",
+              "enum": [
+                "item"
+              ]
+            }
+          },
+          {
+            "name": "cmdOptions",
+            "in": "query",
+            "required": false,
+            "description": "Command options passed as query parameters.",
+            "schema": {
+              "type": "object",
+              "description": "Command options passed as query parameters."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully created the object. The response body contains the created object wrapped in a Response object with success=true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'BaseResponse'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the request body is missing or invalid, when the object type is unknown, or when the command returns an error (e.g., restricted item type, premium required, etc.). The response body contains a Response object with success=false and an error message.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'BaseResponse'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "requestJson": {
+                    "type": "string",
+                    "description": "The JSON representation of the item to create."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/folder": {
+      "post": {
+        "operationId": "createFolder",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to create; for this route it is the literal 'folder'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to create; for this route it is the literal 'folder'."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Folder created successfully. Returns the created folder object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "FolderResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'name': 'string', 'revisionDate': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the request body is missing or invalid, or when the object type is unknown.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "requestJson": {
+                    "type": "string",
+                    "description": "The folder data to create, parsed from the request body."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/send/{id}": {
+      "put": {
+        "operationId": "updateSend",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "Object type from the route path; for this endpoint it is 'send'.",
+            "schema": {
+              "type": "string",
+              "description": "Object type from the route path; for this endpoint it is 'send'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the send object to edit.",
+            "schema": {
+              "type": "string",
+              "description": "The id of the send object to edit."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully edited a send. Returns the updated send object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SendResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'accessId': 'string', 'type': 'integer', 'name': 'string', 'notes': 'string', 'text': 'object', 'file': 'object', 'key': 'string', 'maxAccessCount': 'integer', 'accessCount': 'integer', 'password': 'string', 'disabled': 'boolean', 'hideEmail': 'boolean', 'revisionDate': 'date', 'deletionDate': 'date', 'expirationDate': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked, the user is not logged in, or the send edit command fails (e.g., invalid request data, send not found, or other validation errors).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "object",
+                    "description": "The request body containing the send edit data; the handler sets body.id to the path id before passing it to SendEditCommand."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getSend",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type in the route path. For this endpoint, it must be 'send' to invoke the send get command.",
+            "schema": {
+              "type": "string",
+              "description": "The object type in the route path. For this endpoint, it must be 'send' to invoke the send get command."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The identifier of the send object to retrieve.",
+            "schema": {
+              "type": "string",
+              "description": "The identifier of the send object to retrieve."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved a Send object. The response body contains the Send data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'SendResponse'}"
+                    },
+                    "SendResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'accessId': 'string', 'type': 'integer', 'name': 'string', 'notes': 'string', 'text': 'object', 'file': 'object', 'key': 'string', 'maxAccessCount': 'integer', 'accessCount': 'integer', 'password': 'string', 'disabled': 'boolean', 'revisionDate': 'date', 'expirationDate': 'date', 'deletionDate': 'date', 'hideEmail': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked, the user is not logged in, or the Send object is not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteSend",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type in the route path. For this endpoint the route is /object/:object/:id and the handler checks if it equals \"send\" to dispatch to sendDeleteCommand; otherwise it dispatches to deleteCommand.",
+            "schema": {
+              "type": "string",
+              "description": "The object type in the route path. For this endpoint the route is /object/:object/:id and the handler checks if it equals \"send\" to dispatch to sendDeleteCommand; otherwise it dispatches to deleteCommand."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the object to delete. Passed to sendDeleteCommand.run(ctx.params.id) when object is \"send\", otherwise to deleteCommand.run(ctx.params.object, ctx.params.id, ctx.request.query).",
+            "schema": {
+              "type": "string",
+              "description": "The id of the object to delete. Passed to sendDeleteCommand.run(ctx.params.id) when object is \"send\", otherwise to deleteCommand.run(ctx.params.object, ctx.params.id, ctx.request.query)."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted the send. The response body is a Response object with success=true and no data."
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked or the user is not logged in (errorIfLocked), or when the send deletion fails (e.g., send not found, permission denied). The response body is a Response object with success=false and a message.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/org-collection": {
+      "post": {
+        "operationId": "createOrgCollection",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to create; for this route it is 'org-collection'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to create; for this route it is 'org-collection'.",
+              "enum": [
+                "org-collection"
+              ]
+            }
+          },
+          {
+            "name": "organizationid",
+            "in": "query",
+            "required": false,
+            "description": "The organization ID; required by createOrganizationCollection and must match the request body organizationId.",
+            "schema": {
+              "type": "string",
+              "description": "The organization ID; required by createOrganizationCollection and must match the request body organizationId."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully created an organization collection. Returns the created collection with groups and users.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "OrganizationCollectionResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'organizationId': 'string', 'name': 'string', 'externalId': 'string', 'groups': 'array', 'users': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the organization ID is missing or invalid, when the organization ID in the request does not match the option, when the collection name is missing, when the request JSON is missing or cannot be parsed, or when the object is unknown."
+          },
+          "500": {
+            "description": "Internal server error. Returned when an unexpected error occurs while creating the organization collection, such as a missing organization encryption key or a failure in the API call."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "requestJson": {
+                    "type": "string",
+                    "description": "The organization collection request body containing organizationId, name, externalId, groups, and users."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/item/{id}": {
+      "put": {
+        "operationId": "updateItem",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type from the route path, e.g. 'item' or 'send'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type from the route path, e.g. 'item' or 'send'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The object id from the route path.",
+            "schema": {
+              "type": "string",
+              "description": "The object id from the route path."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully edited the object. Returns the updated object (item, folder, org-collection, or send).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CipherResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'organizationId': 'string', 'folderId': 'string', 'type': 'integer', 'name': 'string', 'notes': 'string', 'favorite': 'boolean', 'login': 'object', 'card': 'object', 'identity': 'object', 'secureNote': 'object', 'collectionIds': 'array', 'revisionDate': 'date', 'creationDate': 'date', 'deletedDate': 'date', 'attachments': 'array', 'passwordHistory': 'array'}"
+                    },
+                    "FolderResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'name': 'string', 'revisionDate': 'date'}"
+                    },
+                    "OrganizationCollectionResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'organizationId': 'string', 'name': 'string', 'externalId': 'string', 'groups': 'array', 'users': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked, the request data is invalid, the object is unknown, required options are missing, the id is not a GUID, the organization id does not match, the collection name is empty, or the item is deleted/restricted by policy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found. Returned when the requested object does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "object",
+                    "description": "The request body containing the object data to update."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getItem",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to retrieve. For this route, it is the path segment after /object/ and before the id. The handler checks if it equals 'send' to route to sendGetCommand, otherwise it passes it to getCommand.run.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to retrieve. For this route, it is the path segment after /object/ and before the id. The handler checks if it equals 'send' to route to sendGetCommand, otherwise it passes it to getCommand.run."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The identifier of the object to retrieve. For send objects, it is passed to sendGetCommand.run; for other objects, it is passed to getCommand.run along with query options.",
+            "schema": {
+              "type": "string",
+              "description": "The identifier of the object to retrieve. For send objects, it is passed to sendGetCommand.run; for other objects, it is passed to getCommand.run along with query options."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the item. The response body is a Response object with success=true and data containing a CipherResponse.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'CipherResponse'}"
+                    },
+                    "CipherResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'organizationId': 'string', 'folderId': 'string', 'type': 'integer', 'name': 'string', 'notes': 'string', 'favorite': 'boolean', 'login': 'LoginResponse', 'card': 'CardResponse', 'identity': 'IdentityResponse', 'secureNote': 'SecureNoteResponse', 'fields': 'FieldResponse[]', 'attachments': 'AttachmentResponse[]', 'revisionDate': 'date', 'creationDate': 'date', 'deletedDate': 'date', 'passwordHistory': 'PasswordHistoryResponse[]', 'collectionIds': 'string[]', 'archivedDate': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked or the user is not logged in (errorIfLocked), or when the command returns an error (e.g., unknown object, restricted item type, multiple results, not found, etc.). The response body is a Response object with success=false and a message.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'any'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteItem",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to delete; for this route it is matched against 'send' or passed to the delete command.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to delete; for this route it is matched against 'send' or passed to the delete command."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The identifier of the object to delete.",
+            "schema": {
+              "type": "string",
+              "description": "The identifier of the object to delete."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted the item (soft delete or permanent delete)."
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked, the user is not logged in, the item is not found, the user lacks permission to delete the item, or the item type is restricted by organizational policy."
+          }
+        }
+      }
+    },
+    "/object/folder/{id}": {
+      "put": {
+        "operationId": "updateFolder",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type from the route pattern /object/:object/:id. For this endpoint it is 'folder'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type from the route pattern /object/:object/:id. For this endpoint it is 'folder'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the folder to edit, from the route pattern /object/:object/:id.",
+            "schema": {
+              "type": "string",
+              "description": "The id of the folder to edit, from the route pattern /object/:object/:id."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully edited the folder. Returns the updated folder object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "FolderResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'name': 'string', 'revisionDate': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the request body is missing or empty, when the encoded request data cannot be parsed, when the object is unknown, or when the vault is locked or the user is not logged in.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found. Returned when the folder with the specified id does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "requestJson": {
+                    "type": "string",
+                    "description": "The request body containing the folder data to update. Passed as ctx.request.body to editCommand.run and then to editFolder as req."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getFolder",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to retrieve. For this route pattern it is the literal 'folder'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to retrieve. For this route pattern it is the literal 'folder'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id or search term of the folder to retrieve.",
+            "schema": {
+              "type": "string",
+              "description": "The id or search term of the folder to retrieve."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the folder. Returns a Response object with success=true and data being a FolderResponse.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "FolderResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'name': 'string', 'revisionDate': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked or the user is not logged in (errorIfLocked), or when the folder is not found (Response.notFound() returns a Response with success=false, which processResponse maps to HTTP 400).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteFolder",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type from the route path; for this endpoint it is 'folder'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type from the route path; for this endpoint it is 'folder'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The folder id from the route path.",
+            "schema": {
+              "type": "string",
+              "description": "The folder id from the route path."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted the folder. The response body is a Response object with success=true and no data."
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked, the user is not logged in, the folder is not found, or an error occurs during deletion.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/username/{id}": {
+      "get": {
+        "operationId": "getUsername",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to retrieve. For this endpoint, the value is 'username'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to retrieve. For this endpoint, the value is 'username'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The identifier of the item to retrieve the username from. It is converted to lowercase.",
+            "schema": {
+              "type": "string",
+              "description": "The identifier of the item to retrieve the username from. It is converted to lowercase."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the username for the login item. Returns a StringResponse containing the username.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "StringResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the item is not a login, or when the username is not available, or when the vault is locked or the user is not logged in.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found. Returned when the item is not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/item-collections/{id}": {
+      "put": {
+        "operationId": "updateItemCollections",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type, e.g., 'item-collections'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type, e.g., 'item-collections'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the object to edit.",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the object to edit."
+            }
+          },
+          {
+            "name": "cmdOptions",
+            "in": "query",
+            "required": false,
+            "description": "Command options passed as query parameters.",
+            "schema": {
+              "type": "object",
+              "description": "Command options passed as query parameters."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully edited the item's collections. Returns the updated cipher with its new collection assignments.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CipherResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'organizationId': 'string', 'folderId': 'string', 'type': 'integer', 'name': 'string', 'notes': 'string', 'favorite': 'boolean', 'login': 'LoginResponse', 'card': 'object', 'identity': 'object', 'secureNote': 'object', 'fields': 'array', 'attachments': 'array', 'revisionDate': 'date', 'creationDate': 'date', 'deletedDate': 'date', 'passwordHistory': 'array', 'collectionIds': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the item does not belong to an organization (\"Item does not belong to an organization. Consider moving it first.\"), when the request JSON is missing or empty (\"`requestJson` was not provided.\"), when the encoded request data cannot be parsed (\"Error parsing the encoded request data.\"), or when the object is unknown (\"Unknown object.\")."
+          },
+          "404": {
+            "description": "Not found. Returned when the cipher with the given id does not exist."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "requestJson": {
+                    "type": "string",
+                    "description": "The request body containing the edit data."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/org-collection/{id}": {
+      "put": {
+        "operationId": "updateOrgCollection",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type from the route path; for this endpoint it is 'org-collection'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type from the route path; for this endpoint it is 'org-collection'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The collection id from the route path.",
+            "schema": {
+              "type": "string",
+              "description": "The collection id from the route path."
+            }
+          },
+          {
+            "name": "organizationid",
+            "in": "query",
+            "required": false,
+            "description": "Organization id required for editing an organization collection.",
+            "schema": {
+              "type": "string",
+              "description": "Organization id required for editing an organization collection."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully edited an organization collection. Returns the updated organization collection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "OrganizationCollectionResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'organizationId': 'string', 'name': 'string', 'externalId': 'string', 'groups': 'SelectionReadOnly[]', 'users': 'SelectionReadOnly[]'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the object is unknown, the organization ID is missing or invalid, the collection ID is not a GUID, the organization ID does not match the request body, or the collection name is missing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "organizationId": {
+                    "type": "string",
+                    "description": "Organization id in the request body; must match the organizationid query option."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Collection name; must be non-empty after trimming."
+                  },
+                  "externalId": {
+                    "type": "string",
+                    "description": "External id for the collection."
+                  },
+                  "groups": {
+                    "type": "string",
+                    "description": "Group access selections for the collection."
+                  },
+                  "users": {
+                    "type": "string",
+                    "description": "User access selections for the collection."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getOrgCollection",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type; must be 'send' to use the send get command, otherwise passed to getCommand.run",
+            "schema": {
+              "type": "string",
+              "description": "The object type; must be 'send' to use the send get command, otherwise passed to getCommand.run"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the object to retrieve",
+            "schema": {
+              "type": "string",
+              "description": "The id of the object to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the organization collection. The response body is a Response object with success=true and data containing an OrganizationCollectionResponse.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "OrganizationCollectionResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'organizationId': 'string', 'name': 'string', 'externalId': 'string', 'readOnly': 'boolean', 'hidePasswords': 'boolean', 'manage': 'boolean', 'groups': 'array', 'users': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the `organizationid` option is missing or empty, when the `id` is not a GUID, when the `organizationid` is not a GUID, or when the organization key is not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteOrgCollection",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to delete. For this endpoint, it is 'org-collection'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to delete. For this endpoint, it is 'org-collection'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the organization collection to delete.",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the organization collection to delete."
+            }
+          },
+          {
+            "name": "organizationid",
+            "in": "query",
+            "required": false,
+            "description": "The organization ID. Required for deleting an organization collection.",
+            "schema": {
+              "type": "string",
+              "description": "The organization ID. Required for deleting an organization collection."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted the organization collection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Possible reasons: missing or invalid organizationId, invalid collection id, or error from the delete operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/password/{id}": {
+      "get": {
+        "operationId": "getPassword",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to retrieve. For this endpoint, it is 'password'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to retrieve. For this endpoint, it is 'password'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The identifier of the item to retrieve the password from.",
+            "schema": {
+              "type": "string",
+              "description": "The identifier of the item to retrieve the password from."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the password for the login item. The response body contains a StringResponse object with the password.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "StringResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked, the user is not logged in, the item is not a login, or no password is available for the login.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found. Returned when the item with the specified ID does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/uri/{id}": {
+      "get": {
+        "operationId": "getUri",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to retrieve. For this route, the value is 'uri'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to retrieve. For this route, the value is 'uri'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The identifier of the item to retrieve the URI from.",
+            "schema": {
+              "type": "string",
+              "description": "The identifier of the item to retrieve the URI from."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the URI of a login item. Returns a StringResponse containing the URI.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "StringResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the object is not a login, or when the item is not found, or when the item type is restricted by organizational policy, or when no URI is available for the login."
+          }
+        }
+      }
+    },
+    "/object/notes/{id}": {
+      "get": {
+        "operationId": "getNotes",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to retrieve; for this endpoint it is 'notes'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to retrieve; for this endpoint it is 'notes'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the item whose notes are retrieved.",
+            "schema": {
+              "type": "string",
+              "description": "The id of the item whose notes are retrieved."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the notes for the item.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "StringResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Possible reasons: unknown object, not a login, no notes available, or vault is locked.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found. The item was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/totp/{id}": {
+      "get": {
+        "operationId": "getTotp",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to retrieve. For this endpoint, it is 'totp'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to retrieve. For this endpoint, it is 'totp'.",
+              "enum": [
+                "totp"
+              ]
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The identifier of the item to retrieve the TOTP for.",
+            "schema": {
+              "type": "string",
+              "description": "The identifier of the item to retrieve the TOTP for."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the TOTP code for the login item. Returns a StringResponse containing the TOTP code.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "StringResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the object is not a login, or when premium status is required but not available.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found. Returned when the cipher is not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/exposed/{id}": {
+      "get": {
+        "operationId": "getExposed",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type; for this endpoint it must be 'exposed' to retrieve the exposed password count.",
+            "schema": {
+              "type": "string",
+              "description": "The object type; for this endpoint it must be 'exposed' to retrieve the exposed password count."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The item identifier (GUID or search term) used to locate the cipher whose password is checked for exposure.",
+            "schema": {
+              "type": "string",
+              "description": "The item identifier (GUID or search term) used to locate the cipher whose password is checked for exposure."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the number of times the password has been exposed in data breaches.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "StringResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked, the user is not logged in, the item is not found, the item is not a login, no password is available, or an error occurs while checking the password."
+          }
+        }
+      }
+    },
+    "/object/attachment/{id}": {
+      "get": {
+        "operationId": "getAttachment",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type; must be 'attachment' for this route to match.",
+            "schema": {
+              "type": "string",
+              "description": "The object type; must be 'attachment' for this route to match."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The attachment identifier or filename fragment used to locate the attachment.",
+            "schema": {
+              "type": "string",
+              "description": "The attachment identifier or filename fragment used to locate the attachment."
+            }
+          },
+          {
+            "name": "itemid",
+            "in": "query",
+            "required": false,
+            "description": "The id of the item that owns the attachment.",
+            "schema": {
+              "type": "string",
+              "description": "The id of the item that owns the attachment."
+            }
+          },
+          {
+            "name": "output",
+            "in": "query",
+            "required": false,
+            "description": "Output file path for the downloaded attachment.",
+            "schema": {
+              "type": "string",
+              "description": "Output file path for the downloaded attachment."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attachment file downloaded successfully. Returns the decrypted attachment as a binary file with Content-Type application/octet-stream, Content-Length header, and Content-Disposition attachment with the file name.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "FileResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'Buffer', 'fileName': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked or the user is not logged in (errorIfLocked), when the --itemid option is missing, when the item is not found, when no attachments are available for the item, when the attachment is not found, when multiple attachments match the search, when premium status is required but not available, or when the attachment download fails with a non-200 HTTP status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'any'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteAttachment",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type in the route path. For this endpoint the route is /object/:object/:id, so object is a path parameter. The handler dispatches on ctx.params.object; for the attachment case the value is 'attachment'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type in the route path. For this endpoint the route is /object/:object/:id, so object is a path parameter. The handler dispatches on ctx.params.object; for the attachment case the value is 'attachment'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the object to delete. For attachment deletion, this is the attachment id passed to deleteCommand.run(ctx.params.object, ctx.params.id, ctx.request.query).",
+            "schema": {
+              "type": "string",
+              "description": "The id of the object to delete. For attachment deletion, this is the attachment id passed to deleteCommand.run(ctx.params.object, ctx.params.id, ctx.request.query)."
+            }
+          },
+          {
+            "name": "itemid",
+            "in": "query",
+            "required": false,
+            "description": "The item id that owns the attachment. Read from cmdOptions in DeleteCommand.deleteAttachment via options.itemId; the Options class reads passedOptions?.itemid || passedOptions?.itemId. Required because the handler returns badRequest if itemId is null or empty.",
+            "schema": {
+              "type": "string",
+              "description": "The item id that owns the attachment. Read from cmdOptions in DeleteCommand.deleteAttachment via options.itemId; the Options class reads passedOptions?.itemid || passedOptions?.itemId. Required because the handler returns badRequest if itemId is null or empty."
+            }
+          },
+          {
+            "name": "permanent",
+            "in": "query",
+            "required": false,
+            "description": "Whether to permanently delete rather than soft delete. Parsed by CliUtils.convertBooleanOption; defaults to false when absent.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether to permanently delete rather than soft delete. Parsed by CliUtils.convertBooleanOption; defaults to false when absent."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted the attachment. The response body is a Response object with success=true and no data."
+          },
+          "400": {
+            "description": "Bad request. Returned when the `itemid` option is missing, when the item is not found, when the item has no attachments, when the attachment id is not found, or when premium status is required but not available.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when an unexpected error occurs during attachment deletion.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/collection/{id}": {
+      "get": {
+        "operationId": "getCollection",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to retrieve. For this endpoint, the value is 'collection'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to retrieve. For this endpoint, the value is 'collection'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the collection to retrieve.",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the collection to retrieve."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the collection. The response body is a Response object with success=true and data containing a CollectionResponse.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CollectionResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'organizationId': 'string', 'name': 'string', 'externalId': 'string', 'readOnly': 'boolean', 'hidePasswords': 'boolean', 'manage': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the object is not 'collection' (unknown object), or when the collection is not found (Response.notFound() returns a 400 with message 'Not found.').",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when an unexpected error occurs during processing, such as a failure in the underlying service call.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/organization/{id}": {
+      "get": {
+        "operationId": "getOrganization",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to retrieve. For this endpoint, the value is 'organization'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to retrieve. For this endpoint, the value is 'organization'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The identifier of the organization to retrieve. Can be a GUID or a search string.",
+            "schema": {
+              "type": "string",
+              "description": "The identifier of the organization to retrieve. Can be a GUID or a search string."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the organization. The response body is a Response object with success=true and data containing an OrganizationResponse.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'OrganizationResponse'}"
+                    },
+                    "OrganizationResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'id': 'string', 'name': 'string', 'status': 'OrganizationUserStatusType', 'type': 'OrganizationUserType', 'enabled': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked, the user is not logged in, no user is found, or the object is unknown.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'any'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found. Returned when the organization with the given id does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'any'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/template/{id}": {
+      "get": {
+        "operationId": "getTemplate",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to retrieve; for the template endpoint this is the literal 'template'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to retrieve; for the template endpoint this is the literal 'template'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The template identifier, e.g. 'item', 'folder', 'collection', 'item-collections', 'org-collection', 'item.field', 'item.login', 'item.login.uri', 'item.card', 'item.identity', 'item.securenote', 'item.bankaccount', 'item.driverslicense', 'item.passport'.",
+            "schema": {
+              "type": "string",
+              "description": "The template identifier, e.g. 'item', 'folder', 'collection', 'item-collections', 'org-collection', 'item.field', 'item.login', 'item.login.uri', 'item.card', 'item.identity', 'item.securenote', 'item.bankaccount', 'item.driverslicense', 'item.passport'."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the template for the specified object. The response body contains a TemplateResponse object with the template data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "TemplateResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'template': 'any'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the object is not a valid template object, or when the requested template is not available (e.g., bank account, driver's license, or passport item types when the feature flag is disabled, or send templates which should be accessed via the send command).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'number', 'data': 'any'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found. Returned when the requested template object is not recognized.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'number', 'data': 'any'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/fingerprint/{id}": {
+      "get": {
+        "operationId": "getFingerprint",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The fingerprint identifier; either 'me' for the active user or a GUID of another user.",
+            "schema": {
+              "type": "string",
+              "description": "The fingerprint identifier; either 'me' for the active user or a GUID of another user."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the fingerprint for the specified user or the active user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "StringResponse": {
+                      "type": "string",
+                      "description": "{'object': 'string', 'data': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the vault is locked or the user is not logged in.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found. Returned when the fingerprint could not be retrieved (e.g., invalid user ID or no public key).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Response": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string', 'errorCode': 'integer', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/archive/item/{id}": {
+      "post": {
+        "operationId": "createItem",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "object",
+            "in": "path",
+            "required": false,
+            "description": "The object type to archive. Must be 'item'.",
+            "schema": {
+              "type": "string",
+              "description": "The object type to archive. Must be 'item'."
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the item to archive.",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the item to archive."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully archived the item. Returns a success response with no data."
+          },
+          "400": {
+            "description": "Bad request. Returned when the object is not 'item' (e.g., unknown object) or when the vault is locked or user is not logged in."
+          },
+          "404": {
+            "description": "Not found. Returned when the cipher with the given id does not exist."
+          }
+        }
+      }
+    }
+  }
+}

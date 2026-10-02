@@ -1,0 +1,861 @@
+{
+  "task_id": "microcks",
+  "api_name": "microcks",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/tests",
+      "http_method": "POST",
+      "method_name": "launchTestCandidate",
+      "summary": "Launch an AsyncAPI test",
+      "description": "Accepts an AsyncTestSpecification and launches an ASYNC_API_SCHEMA test on the specified endpoint. Returns 202 Accepted if the runner type is ASYNC_API_SCHEMA, otherwise returns 204 No Content.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\minions\\async\\src\\main\\java\\io\\github\\microcks\\minion\\async\\TestResource.java"
+    },
+    {
+      "endpoint_path": "/api/keycloak/config",
+      "http_method": "GET",
+      "method_name": "getKeycloakConfig",
+      "summary": "Retrieve the Keycloak server configuration for the Microcks instance.",
+      "description": "Retrieve the Keycloak server configuration for the Microcks instance.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\minions\\async\\src\\main\\java\\io\\github\\microcks\\minion\\async\\client\\MicrocksAPIConnector.java"
+    },
+    {
+      "endpoint_path": "/api/services",
+      "http_method": "GET",
+      "method_name": "listServices",
+      "summary": "Retrieve a list of services from Microcks APIs.",
+      "description": "Retrieve a list of services from Microcks APIs.",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\minions\\async\\src\\main\\java\\io\\github\\microcks\\minion\\async\\client\\MicrocksAPIConnector.java"
+    },
+    {
+      "endpoint_path": "/api/services/{id}",
+      "http_method": "GET",
+      "method_name": "getService",
+      "summary": "Retrieve the complete ServiceView for a Service that may contain messages definitions.",
+      "description": "Retrieve the complete ServiceView for a Service that may contain messages definitions.",
+      "line_number": 39,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\minions\\async\\src\\main\\java\\io\\github\\microcks\\minion\\async\\client\\MicrocksAPIConnector.java"
+    },
+    {
+      "endpoint_path": "/api/resources/service/{id}",
+      "http_method": "GET",
+      "method_name": "getResources",
+      "summary": "Retrieve the list of contract resources for a Service.",
+      "description": "Retrieve the list of contract resources for a Service.",
+      "line_number": 50,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\minions\\async\\src\\main\\java\\io\\github\\microcks\\minion\\async\\client\\MicrocksAPIConnector.java"
+    },
+    {
+      "endpoint_path": "/api/tests/{id}/testCaseResult",
+      "http_method": "POST",
+      "method_name": "reportTestCaseResult",
+      "summary": "Report a TestCaseResult associated to a TestResult.",
+      "description": "Report a TestCaseResult associated to a TestResult.",
+      "line_number": 61,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\minions\\async\\src\\main\\java\\io\\github\\microcks\\minion\\async\\client\\MicrocksAPIConnector.java"
+    },
+    {
+      "endpoint_path": "/api/copilot/samples/{id}",
+      "http_method": "GET",
+      "method_name": "getSamplesSuggestions",
+      "summary": "Get AI sample suggestions for a service operation",
+      "description": "Retrieves a service by id (or name:version), finds the matching contract resource based on service type, and either synchronously generates sample exchanges for a specific operation (when operationName is provided) or launches an asynchronous generation task for all operations (returning a taskId).",
+      "line_number": 55,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\AICopilotController.java"
+    },
+    {
+      "endpoint_path": "/api/copilot/samples/task/{id}/status",
+      "http_method": "GET",
+      "method_name": "getGenerationTaskStatus",
+      "summary": "Get status of an async sample generation task",
+      "description": "Retrieves the status of a previously launched asynchronous sample generation task using its taskId. Returns PENDING, SUCCESS, FAILURE or NOT_FOUND.",
+      "line_number": 110,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\AICopilotController.java"
+    },
+    {
+      "endpoint_path": "/api/copilot/samples/{id}",
+      "http_method": "POST",
+      "method_name": "addSamplesSuggestions",
+      "summary": "Add AI sample suggestions to a service operation",
+      "description": "Adds a list of AI-generated sample exchanges to a specific operation of a service. Returns 201 CREATED on success or 403 FORBIDDEN if unauthorized.",
+      "line_number": 133,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\AICopilotController.java"
+    },
+    {
+      "endpoint_path": "/api/copilot/samples/{id}/cleanup",
+      "http_method": "POST",
+      "method_name": "removeExchanges",
+      "summary": "Remove AI sample exchanges from a service",
+      "description": "Removes a selection of AI-generated sample exchanges from multiple operations of a service. Returns 204 NO_CONTENT on success or 403 FORBIDDEN if unauthorized.",
+      "line_number": 147,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\AICopilotController.java"
+    },
+    {
+      "endpoint_path": "/api/copilot/samples/{id}/export",
+      "http_method": "POST",
+      "method_name": "exportExchanges",
+      "summary": "Export a selection of AI sample exchanges",
+      "description": "Generates an export of a selection of AI sample exchanges for a service in the requested format (default APIExamples) and returns it as a downloadable JSON attachment.",
+      "line_number": 159,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\AICopilotController.java"
+    },
+    {
+      "endpoint_path": "/api/documentation/{name}/{resourceType}",
+      "http_method": "GET",
+      "method_name": "getDocumentationByResourceName",
+      "summary": "Get documentation by resource name",
+      "description": "Retrieves documentation for a resource identified by its name and resource type. For ASYNC_API_SPEC resource type, it looks up the main artifact resource by name and returns the appropriate AsyncAPI template (v2 or v3). For other resource types, it returns the corresponding template (e.g., redoc.html for OpenAPI/Swagger).",
+      "line_number": 28,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\DocumentationController.java"
+    },
+    {
+      "endpoint_path": "/api/documentation/id/{id}/{resourceType}",
+      "http_method": "GET",
+      "method_name": "getDocumentationByResourceId",
+      "summary": "Get documentation by resource ID",
+      "description": "Retrieves documentation for a resource identified by its ID and resource type. For ASYNC_API_SPEC resource type, it looks up the resource by ID and returns the appropriate AsyncAPI template (v2 or v3). For other resource types, it returns the corresponding template (e.g., redoc.html for OpenAPI/Swagger).",
+      "line_number": 50,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\DocumentationController.java"
+    },
+    {
+      "endpoint_path": "/dynarest/{service}/{version}/{resource}",
+      "http_method": "POST",
+      "method_name": "createResource",
+      "summary": "Create a new resource",
+      "description": "Creates a new generic resource for the specified service and version. The request body must be valid JSON. Returns the created resource with its ID and a 201 status code.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\DynamicMockRestController.java"
+    },
+    {
+      "endpoint_path": "/dynarest/{service}/{version}/{resource}",
+      "http_method": "GET",
+      "method_name": "findResources",
+      "summary": "Find resources",
+      "description": "Retrieves a list of generic resources for the specified service and version. Supports pagination and optional JSON query filtering. Returns a JSON array of resources.",
+      "line_number": 76,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\DynamicMockRestController.java"
+    },
+    {
+      "endpoint_path": "/dynarest/{service}/{version}/{resource}/{resourceId}",
+      "http_method": "GET",
+      "method_name": "getResource",
+      "summary": "Get a resource",
+      "description": "Retrieves a single generic resource by its ID for the specified service and version. Returns the resource or a 404 if not found.",
+      "line_number": 116,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\DynamicMockRestController.java"
+    },
+    {
+      "endpoint_path": "/dynarest/{service}/{version}/{resource}/{resourceId}",
+      "http_method": "PUT",
+      "method_name": "updateResource",
+      "summary": "Update a resource",
+      "description": "Updates an existing generic resource with the provided JSON body. Returns the updated resource or a 404 if not found.",
+      "line_number": 154,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\DynamicMockRestController.java"
+    },
+    {
+      "endpoint_path": "/dynarest/{service}/{version}/{resource}/{resourceId}",
+      "http_method": "DELETE",
+      "method_name": "deleteResource",
+      "summary": "Delete a resource",
+      "description": "Deletes a generic resource by its ID for the specified service and version. Returns a 204 No Content on success.",
+      "line_number": 198,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\DynamicMockRestController.java"
+    },
+    {
+      "endpoint_path": "/api/export",
+      "http_method": "GET",
+      "method_name": "exportRepository",
+      "summary": "Export repository",
+      "description": "Extracting export for serviceIds",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ExportController.java"
+    },
+    {
+      "endpoint_path": "/api/features/config",
+      "http_method": "GET",
+      "method_name": "getConfig",
+      "summary": "Get features configuration",
+      "description": "Returns the features configuration map loaded from features.properties files.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\FeaturesConfigController.java"
+    },
+    {
+      "endpoint_path": "/api/genericresources/service/{serviceId}",
+      "http_method": "GET",
+      "method_name": "listResources",
+      "summary": "List generic resources for a service",
+      "description": "Lists generic resources for the given service ID with pagination support (page and size query parameters). Each returned resource has its ID appended to the payload document.",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\GenericResourceController.java"
+    },
+    {
+      "endpoint_path": "/api/genericresources/service/{serviceId}/count",
+      "http_method": "GET",
+      "method_name": "countResources",
+      "summary": "Count generic resources for a service",
+      "description": "Returns the number of generic resources associated with the given service ID as a map with a 'counter' key.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\GenericResourceController.java"
+    },
+    {
+      "endpoint_path": "/graphql/{service}/{version}/**",
+      "http_method": "GET",
+      "method_name": "execute",
+      "summary": "Execute GraphQL mock request",
+      "description": "Servicing GraphQL mock response for service [{}, {}]. Handles GraphQL introspection queries and regular GraphQL selection queries (QUERY or MUTATION).",
+      "line_number": 57,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\GraphQLController.java"
+    },
+    {
+      "endpoint_path": "/graphql/{service}/{version}/**",
+      "http_method": "POST",
+      "method_name": "execute",
+      "summary": "Execute GraphQL mock request",
+      "description": "Servicing GraphQL mock response for service [{}, {}]. Handles GraphQL introspection queries and regular GraphQL selection queries (QUERY or MUTATION).",
+      "line_number": 57,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\GraphQLController.java"
+    },
+    {
+      "endpoint_path": "/api/health",
+      "http_method": "GET",
+      "method_name": "health",
+      "summary": "Health check endpoint",
+      "description": "Performs a health check by querying MongoDB via ImportJobRepository. Returns HTTP 200 OK if the query succeeds, or HTTP 503 SERVICE_UNAVAILABLE if an exception occurs.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\HealthController.java"
+    },
+    {
+      "endpoint_path": "/api/import",
+      "http_method": "POST",
+      "method_name": "importRepository",
+      "summary": "Import repository",
+      "description": "Import new services and resources definitions from a JSON file.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ImportController.java"
+    },
+    {
+      "endpoint_path": "/api/jobs",
+      "http_method": "GET",
+      "method_name": "listJobs",
+      "summary": "List jobs",
+      "description": "Get a paginated list of import jobs, optionally filtered by name.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java"
+    },
+    {
+      "endpoint_path": "/api/jobs/search",
+      "http_method": "GET",
+      "method_name": "searchJobs",
+      "summary": "Search jobs",
+      "description": "Search import jobs by name and/or labels.",
+      "line_number": 46,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java"
+    },
+    {
+      "endpoint_path": "/api/jobs/count",
+      "http_method": "GET",
+      "method_name": "countJobs",
+      "summary": "Count jobs",
+      "description": "Count the total number of import jobs.",
+      "line_number": 71,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java"
+    },
+    {
+      "endpoint_path": "/api/jobs",
+      "http_method": "POST",
+      "method_name": "createJob",
+      "summary": "Create a job",
+      "description": "Create a new import job.",
+      "line_number": 78,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java"
+    },
+    {
+      "endpoint_path": "/api/jobs/{id}",
+      "http_method": "GET",
+      "method_name": "getJob",
+      "summary": "Get a job",
+      "description": "Retrieve an import job by its identifier.",
+      "line_number": 94,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java"
+    },
+    {
+      "endpoint_path": "/api/jobs/{id}",
+      "http_method": "POST",
+      "method_name": "saveJob",
+      "summary": "Save a job",
+      "description": "Save an existing import job.",
+      "line_number": 100,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java"
+    },
+    {
+      "endpoint_path": "/api/jobs/{id}/activate",
+      "http_method": "PUT",
+      "method_name": "activateJob",
+      "summary": "Activate a job",
+      "description": "Activate an import job.",
+      "line_number": 112,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java"
+    },
+    {
+      "endpoint_path": "/api/jobs/{id}/start",
+      "http_method": "PUT",
+      "method_name": "startJob",
+      "summary": "Start a job",
+      "description": "Start an import job.",
+      "line_number": 125,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java"
+    },
+    {
+      "endpoint_path": "/api/jobs/{id}/stop",
+      "http_method": "PUT",
+      "method_name": "stopJob",
+      "summary": "Stop a job",
+      "description": "Stop an import job.",
+      "line_number": 139,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java"
+    },
+    {
+      "endpoint_path": "/api/jobs/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteJob",
+      "summary": "Delete a job",
+      "description": "Delete an import job by its identifier.",
+      "line_number": 152,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\JobController.java"
+    },
+    {
+      "endpoint_path": "/mcp/{service}/{version}/sse",
+      "http_method": "GET",
+      "method_name": "handleSSE",
+      "summary": "Handle the initialization of a SSE connection for the MCP protocol.",
+      "description": "Handle the initialization of a SSE connection for the MCP protocol.",
+      "line_number": 62,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\McpController.java"
+    },
+    {
+      "endpoint_path": "/mcp/{service}/{version}/message",
+      "http_method": "POST",
+      "method_name": "handleMessage",
+      "summary": "Handle a MCP message request.",
+      "description": "Handle a MCP message request.",
+      "line_number": 96,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\McpController.java"
+    },
+    {
+      "endpoint_path": "/mcp/{service}/{version}",
+      "http_method": "POST",
+      "method_name": "handleHttpStreamable",
+      "summary": "Reserved for future usage when HTTP Streamable transport specification will be frozen and implemented.",
+      "description": "Reserved for future usage when HTTP Streamable transport specification will be frozen and implemented.",
+      "line_number": 126,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\McpController.java"
+    },
+    {
+      "endpoint_path": "/api/metrics/invocations/global",
+      "http_method": "GET",
+      "method_name": "getInvocationStatGlobal",
+      "summary": "Get global invocation statistics for a day",
+      "description": "Flushes statistics to database and returns aggregated daily invocation statistics for the specified day (defaults to today).",
+      "line_number": 41,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\MetricsController.java"
+    },
+    {
+      "endpoint_path": "/api/metrics/invocations/top",
+      "http_method": "GET",
+      "method_name": "getInvocationTopStats",
+      "summary": "Get top invocation statistics",
+      "description": "Flushes statistics to database and returns the top N invocation statistics for the specified day (defaults to today, limit defaults to 20).",
+      "line_number": 53,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\MetricsController.java"
+    },
+    {
+      "endpoint_path": "/api/metrics/invocations/{service}/{version}",
+      "http_method": "GET",
+      "method_name": "getInvocationStatForService",
+      "summary": "Get invocation statistics for a service",
+      "description": "Flushes statistics to database and returns daily invocation statistics for the given service name and version on the specified day (defaults to today).",
+      "line_number": 66,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\MetricsController.java"
+    },
+    {
+      "endpoint_path": "/api/metrics/invocations/global/latest",
+      "http_method": "GET",
+      "method_name": "getLatestInvocationStatGlobal",
+      "summary": "Get latest global invocation statistics",
+      "description": "Flushes statistics to database and returns a map of daily invocation counts for the last N days (limit defaults to 20).",
+      "line_number": 82,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\MetricsController.java"
+    },
+    {
+      "endpoint_path": "/api/metrics/conformance/aggregate",
+      "http_method": "GET",
+      "method_name": "getAggregatedTestCoverageMetrics",
+      "summary": "Get aggregated test conformance metrics",
+      "description": "Computes and returns aggregated test conformance metric values.",
+      "line_number": 99,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\MetricsController.java"
+    },
+    {
+      "endpoint_path": "/api/metrics/conformance/service/{serviceId}",
+      "http_method": "GET",
+      "method_name": "getTestConformanceMetric",
+      "summary": "Get test conformance metric for a service",
+      "description": "Retrieves the test conformance metric for the service with the given id.",
+      "line_number": 106,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\MetricsController.java"
+    },
+    {
+      "endpoint_path": "/api/metrics/tests/latest",
+      "http_method": "GET",
+      "method_name": "getLatestTestResults",
+      "summary": "Get latest test results",
+      "description": "Returns a list of test result summaries for tests run within the last N days (limit defaults to 7).",
+      "line_number": 113,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\MetricsController.java"
+    },
+    {
+      "endpoint_path": "/api/resources/{name}",
+      "http_method": "GET",
+      "method_name": "getResourceByName",
+      "summary": "Get resource by name",
+      "description": "Retrieves a resource by its name. Returns the main artifact resource if multiple resources share the same name.",
+      "line_number": 40,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ResourceController.java"
+    },
+    {
+      "endpoint_path": "/api/resources/id/{id}",
+      "http_method": "GET",
+      "method_name": "getResourceById",
+      "summary": "Get resource by ID",
+      "description": "Retrieves a resource by its unique identifier.",
+      "line_number": 53,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ResourceController.java"
+    },
+    {
+      "endpoint_path": "/api/resources/service/{serviceId}",
+      "http_method": "GET",
+      "method_name": "getServiceResources",
+      "summary": "Get resources for a service",
+      "description": "Retrieves all resources associated with a given service ID.",
+      "line_number": 62,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ResourceController.java"
+    },
+    {
+      "endpoint_path": "/api/resources/{serviceId}/{resourceType}",
+      "http_method": "GET",
+      "method_name": "getServiceResource",
+      "summary": "Get service resource by type",
+      "description": "Generates a Swagger 2.0 or OpenAPI 3.0 specification for a GENERIC_REST service based on the specified resource type.",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ResourceController.java"
+    },
+    {
+      "endpoint_path": "/rest/{service}/{version}/**",
+      "http_method": "HEAD",
+      "method_name": "execute",
+      "summary": "Execute REST mock invocation",
+      "description": "Servicing mock response for service on uri with verb HEAD",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java"
+    },
+    {
+      "endpoint_path": "/rest/{service}/{version}/**",
+      "http_method": "OPTIONS",
+      "method_name": "execute",
+      "summary": "Execute REST mock invocation",
+      "description": "Servicing mock response for service on uri with verb OPTIONS",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java"
+    },
+    {
+      "endpoint_path": "/rest/{service}/{version}/**",
+      "http_method": "GET",
+      "method_name": "execute",
+      "summary": "Execute REST mock invocation",
+      "description": "Servicing mock response for service on uri with verb GET",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java"
+    },
+    {
+      "endpoint_path": "/rest/{service}/{version}/**",
+      "http_method": "POST",
+      "method_name": "execute",
+      "summary": "Execute REST mock invocation",
+      "description": "Servicing mock response for service on uri with verb POST",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java"
+    },
+    {
+      "endpoint_path": "/rest/{service}/{version}/**",
+      "http_method": "PUT",
+      "method_name": "execute",
+      "summary": "Execute REST mock invocation",
+      "description": "Servicing mock response for service on uri with verb PUT",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java"
+    },
+    {
+      "endpoint_path": "/rest/{service}/{version}/**",
+      "http_method": "PATCH",
+      "method_name": "execute",
+      "summary": "Execute REST mock invocation",
+      "description": "Servicing mock response for service on uri with verb PATCH",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java"
+    },
+    {
+      "endpoint_path": "/rest/{service}/{version}/**",
+      "http_method": "DELETE",
+      "method_name": "execute",
+      "summary": "Execute REST mock invocation",
+      "description": "Servicing mock response for service on uri with verb DELETE",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java"
+    },
+    {
+      "endpoint_path": "/rest-valid/{service}/{version}/**",
+      "http_method": "HEAD",
+      "method_name": "validateAndExecute",
+      "summary": "Validate and execute REST mock invocation",
+      "description": "Servicing mock response for service on uri with verb HEAD, validating request payload against OpenAPI/Swagger schema",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java"
+    },
+    {
+      "endpoint_path": "/rest-valid/{service}/{version}/**",
+      "http_method": "OPTIONS",
+      "method_name": "validateAndExecute",
+      "summary": "Validate and execute REST mock invocation",
+      "description": "Servicing mock response for service on uri with verb OPTIONS, validating request payload against OpenAPI/Swagger schema",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java"
+    },
+    {
+      "endpoint_path": "/rest-valid/{service}/{version}/**",
+      "http_method": "GET",
+      "method_name": "validateAndExecute",
+      "summary": "Validate and execute REST mock invocation",
+      "description": "Servicing mock response for service on uri with verb GET, validating request payload against OpenAPI/Swagger schema",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java"
+    },
+    {
+      "endpoint_path": "/rest-valid/{service}/{version}/**",
+      "http_method": "POST",
+      "method_name": "validateAndExecute",
+      "summary": "Validate and execute REST mock invocation",
+      "description": "Servicing mock response for service on uri with verb POST, validating request payload against OpenAPI/Swagger schema",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java"
+    },
+    {
+      "endpoint_path": "/rest-valid/{service}/{version}/**",
+      "http_method": "PUT",
+      "method_name": "validateAndExecute",
+      "summary": "Validate and execute REST mock invocation",
+      "description": "Servicing mock response for service on uri with verb PUT, validating request payload against OpenAPI/Swagger schema",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java"
+    },
+    {
+      "endpoint_path": "/rest-valid/{service}/{version}/**",
+      "http_method": "PATCH",
+      "method_name": "validateAndExecute",
+      "summary": "Validate and execute REST mock invocation",
+      "description": "Servicing mock response for service on uri with verb PATCH, validating request payload against OpenAPI/Swagger schema",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java"
+    },
+    {
+      "endpoint_path": "/rest-valid/{service}/{version}/**",
+      "http_method": "DELETE",
+      "method_name": "validateAndExecute",
+      "summary": "Validate and execute REST mock invocation",
+      "description": "Servicing mock response for service on uri with verb DELETE, validating request payload against OpenAPI/Swagger schema",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\RestController.java"
+    },
+    {
+      "endpoint_path": "/api/secrets",
+      "http_method": "GET",
+      "method_name": "listSecrets",
+      "summary": "List secrets",
+      "description": "Getting secrets list for page {} and size {}. Non-admin users get filtered sensitive data.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SecretController.java"
+    },
+    {
+      "endpoint_path": "/api/secrets/search",
+      "http_method": "GET",
+      "method_name": "searchSecrets",
+      "summary": "Search secrets",
+      "description": "Searching secrets corresponding to {}",
+      "line_number": 45,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SecretController.java"
+    },
+    {
+      "endpoint_path": "/api/secrets/count",
+      "http_method": "GET",
+      "method_name": "countSecrets",
+      "summary": "Count secrets",
+      "description": "Counting secrets...",
+      "line_number": 51,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SecretController.java"
+    },
+    {
+      "endpoint_path": "/api/secrets",
+      "http_method": "POST",
+      "method_name": "createSecret",
+      "summary": "Create secret",
+      "description": "Creating new secret: {}",
+      "line_number": 58,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SecretController.java"
+    },
+    {
+      "endpoint_path": "/api/secrets/{id}",
+      "http_method": "GET",
+      "method_name": "getSecret",
+      "summary": "Get secret",
+      "description": "Getting secret with id {}. Non-admin users get filtered sensitive data.",
+      "line_number": 64,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SecretController.java"
+    },
+    {
+      "endpoint_path": "/api/secrets/{id}",
+      "http_method": "PUT",
+      "method_name": "saveSecret",
+      "summary": "Save secret",
+      "description": "Saving existing secret: {}",
+      "line_number": 78,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SecretController.java"
+    },
+    {
+      "endpoint_path": "/api/secrets/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteService",
+      "summary": "Delete secret",
+      "description": "Removing secret with id {}",
+      "line_number": 84,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SecretController.java"
+    },
+    {
+      "endpoint_path": "/api/services/search",
+      "http_method": "GET",
+      "method_name": "searchServices",
+      "summary": "Search services",
+      "description": "Search services by name and/or labels. Query parameters: 'name' for name matching, and 'labels.<key>=<value>' for label filtering.",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java"
+    },
+    {
+      "endpoint_path": "/api/services/count",
+      "http_method": "GET",
+      "method_name": "countServices",
+      "summary": "Count services",
+      "description": "Get the total count of services.",
+      "line_number": 71,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java"
+    },
+    {
+      "endpoint_path": "/api/services/map",
+      "http_method": "GET",
+      "method_name": "getServicesMap",
+      "summary": "Get services map by type",
+      "description": "Get a map of service counts grouped by service type.",
+      "line_number": 79,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java"
+    },
+    {
+      "endpoint_path": "/api/services/labels",
+      "http_method": "GET",
+      "method_name": "getServicesLabels",
+      "summary": "Get services labels",
+      "description": "Retrieve all available labels and their values from services.",
+      "line_number": 90,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java"
+    },
+    {
+      "endpoint_path": "/api/services/generic",
+      "http_method": "POST",
+      "method_name": "createGenericResourceService",
+      "summary": "Create generic resource service",
+      "description": "Create a new generic resource service with CRUD operations for the specified resource. Returns 201 Created on success or 409 Conflict if the service already exists.",
+      "line_number": 131,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java"
+    },
+    {
+      "endpoint_path": "/api/services/generic/event",
+      "http_method": "POST",
+      "method_name": "createGenericEventService",
+      "summary": "Create generic event service",
+      "description": "Create a new generic event service with a SUBSCRIBE operation for the specified event. Returns 201 Created on success or 409 Conflict if the service already exists.",
+      "line_number": 146,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java"
+    },
+    {
+      "endpoint_path": "/api/services/{id}/metadata",
+      "http_method": "PUT",
+      "method_name": "updateMetadata",
+      "summary": "Update service metadata",
+      "description": "Update the metadata (annotations and labels) of a service. Returns 200 OK on success or 403 Forbidden if not authorized.",
+      "line_number": 161,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java"
+    },
+    {
+      "endpoint_path": "/api/services/{id}/operation",
+      "http_method": "PUT",
+      "method_name": "overrideServiceOperation",
+      "summary": "Override service operation",
+      "description": "Override the dispatcher, dispatcher rules, default delay, and parameter constraints of a service operation. Returns 200 OK on success or 403 Forbidden if not authorized.",
+      "line_number": 173,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java"
+    },
+    {
+      "endpoint_path": "/api/services/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteService",
+      "summary": "Delete service",
+      "description": "Delete a service and all its associated resources, tests, and messages. Returns 200 OK on success or 403 Forbidden if not authorized.",
+      "line_number": 189,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\ServiceController.java"
+    },
+    {
+      "endpoint_path": "/soap/{service}/{version}/**",
+      "http_method": "POST",
+      "method_name": "execute",
+      "summary": "Execute a SOAP mock request",
+      "description": "Handles incoming SOAP requests, finds the matching service and operation, applies dispatching logic, and returns the appropriate mock response. Supports validation, delays, proxying, and invocation statistics.",
+      "line_number": 70,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\SoapController.java"
+    },
+    {
+      "endpoint_path": "/api/tests/service/{serviceId}",
+      "http_method": "GET",
+      "method_name": "listTestsByService",
+      "summary": "List tests for a service",
+      "description": "Retrieves a paginated list of test results for the specified service ID, sorted by test number in descending order.",
+      "line_number": 43,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\TestController.java"
+    },
+    {
+      "endpoint_path": "/api/tests/service/{serviceId}/count",
+      "http_method": "GET",
+      "method_name": "countTestsByService",
+      "summary": "Count tests for a service",
+      "description": "Returns the total number of test results associated with the specified service ID.",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\TestController.java"
+    },
+    {
+      "endpoint_path": "/api/tests/{id}",
+      "http_method": "GET",
+      "method_name": "getTestResult",
+      "summary": "Get test result by ID",
+      "description": "Retrieves the test result corresponding to the specified test result ID.",
+      "line_number": 86,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\TestController.java"
+    },
+    {
+      "endpoint_path": "/api/tests/{id}/messages/{testCaseId}",
+      "http_method": "GET",
+      "method_name": "getMessagesForTestCase",
+      "summary": "Get messages for a test case",
+      "description": "Retrieves the request/response message pairs associated with a specific test case within a test result.",
+      "line_number": 92,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\TestController.java"
+    },
+    {
+      "endpoint_path": "/api/tests/{id}/events/{testCaseId}",
+      "http_method": "GET",
+      "method_name": "getEventMessagesForTestCase",
+      "summary": "Get event messages for a test case",
+      "description": "Retrieves the unidirectional event messages associated with a specific test case within a test result.",
+      "line_number": 104,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\TestController.java"
+    },
+    {
+      "endpoint_path": "/api/artifact/download",
+      "http_method": "POST",
+      "method_name": "importArtifact",
+      "summary": "Import artifact from remote URL",
+      "description": "Downloads a remote artifact from the provided URL (optionally using a secret for authentication) and imports its service definitions into the Microcks repository. Returns the imported service name and version on success.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\UploadArtifactController.java"
+    },
+    {
+      "endpoint_path": "/api/artifact/upload",
+      "http_method": "POST",
+      "method_name": "importArtifact",
+      "summary": "Import artifact from uploaded file",
+      "description": "Saves the uploaded multipart file to a local temporary file and imports its service definitions into the Microcks repository. Returns the imported service name and version on success.",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\UploadArtifactController.java"
+    },
+    {
+      "endpoint_path": "/api/version/info",
+      "http_method": "GET",
+      "method_name": "getConfig",
+      "summary": "Get version information",
+      "description": "Returns the version ID and build timestamp of the application.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Microcks\\microcks\\webapp\\src\\main\\java\\io\\github\\microcks\\web\\VersionInfoController.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 40831,
+  "tokens": {
+    "prompt_tokens": 5734499,
+    "completion_tokens": 36670,
+    "total_tokens": 5771169,
+    "calls": 69,
+    "elapsed_s": 362.566,
+    "prompt_cost_usd": 0.732524,
+    "completion_cost_usd": 0.024871,
+    "total_cost_usd": 0.757395,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 1874448,
+        "completion_tokens": 7140,
+        "total_tokens": 1881588,
+        "calls": 23,
+        "elapsed_s": 40.683691,
+        "prompt_cost_usd": 0.037489,
+        "completion_cost_usd": 0.004284,
+        "total_cost_usd": 0.041773
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 1799845,
+        "completion_tokens": 23708,
+        "total_tokens": 1823553,
+        "calls": 23,
+        "elapsed_s": 229.428,
+        "prompt_cost_usd": 0.179984,
+        "completion_cost_usd": 0.011854,
+        "total_cost_usd": 0.191838
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 2060206,
+        "completion_tokens": 5822,
+        "total_tokens": 2066028,
+        "calls": 23,
+        "elapsed_s": 92.454,
+        "prompt_cost_usd": 0.515051,
+        "completion_cost_usd": 0.008733,
+        "total_cost_usd": 0.523784
+      }
+    ]
+  }
+}

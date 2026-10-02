@@ -1,0 +1,104 @@
+import { Component, OnInit } from "@angular/core";
+import { firstValueFrom, map } from "rxjs";
+
+import { UserDecryptionOptionsServiceAbstraction } from "@bitwarden/auth/common";
+import { ApiService } from "@bitwarden/common/abstractions/api.service";
+import { AccountService } from "@bitwarden/common/auth/abstractions/account.service";
+import { getUserId } from "@bitwarden/common/auth/services/account.service";
+import { FeatureFlag } from "@bitwarden/common/enums/feature-flag.enum";
+import { DeviceTrustServiceAbstraction } from "@bitwarden/common/key-management/device-trust/abstractions/device-trust.service.abstraction";
+import { KeyConnectorService } from "@bitwarden/common/key-management/key-connector/abstractions/key-connector.service";
+import { ConfigService } from "@bitwarden/common/platform/abstractions/config/config.service";
+import { DialogService } from "@bitwarden/components";
+
+import { ChangeKdfModule } from "../../../key-management/change-kdf/change-kdf.module";
+import { KeyRotationComponent } from "../../../key-management/key-rotation/key-rotation.component";
+import { SharedModule } from "../../../shared";
+
+import { ApiKeyComponent } from "./api-key.component";
+
+// FIXME(https://bitwarden.atlassian.net/browse/CL-764): Migrate to OnPush
+// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
+@Component({
+  templateUrl: "security-keys.component.html",
+  imports: [SharedModule, ChangeKdfModule, KeyRotationComponent],
+})
+export class SecurityKeysComponent implements OnInit {
+  showChangeKdf = true;
+  showKeyRotation = true;
+  readonly sdkKeyRotationFlag$ = this.configService.getFeatureFlag$(FeatureFlag.SdkKeyRotation);
+
+  constructor(
+    private userDecryptionOptionsService: UserDecryptionOptionsServiceAbstraction,
+    private accountService: AccountService,
+    private apiService: ApiService,
+    private dialogService: DialogService,
+    private configService: ConfigService,
+    private keyConnectorService: KeyConnectorService,
+    private deviceTrustService: DeviceTrustServiceAbstraction,
+  ) {}
+
+  async ngOnInit() {
+    const userId = await firstValueFrom(this.accountService.activeAccount$.pipe(getUserId));
+    const hasMasterPassword = await firstValueFrom(
+      this.userDecryptionOptionsService.hasMasterPasswordById$(userId),
+    );
+    const usesKeyConnector = await this.keyConnectorService.getUsesKeyConnector(userId);
+    const hasManagingOrganization = usesKeyConnector
+      ? (await this.keyConnectorService.getManagingOrganization(userId)) != null
+      : false;
+    const hasTdeKeys = await firstValueFrom(
+      this.deviceTrustService.supportsDeviceTrustByUserId$(userId),
+    );
+
+    this.showChangeKdf = hasMasterPassword;
+    this.showKeyRotation = hasMasterPassword || hasManagingOrganization || hasTdeKeys;
+  }
+
+  async viewUserApiKey() {
+    const entityId = await firstValueFrom(
+      this.accountService.activeAccount$.pipe(map((a) => a?.id)),
+    );
+
+    if (!entityId) {
+      throw new Error("Active account not found");
+    }
+
+    await ApiKeyComponent.open(this.dialogService, {
+      data: {
+        keyType: "user",
+        entityId: entityId,
+        postKey: this.apiService.postUserApiKey.bind(this.apiService),
+        scope: "api",
+        grantType: "client_credentials",
+        apiKeyTitle: "apiKey",
+        apiKeyWarning: "userApiKeyWarning",
+        apiKeyDescription: "userApiKeyDesc",
+      },
+    });
+  }
+
+  async rotateUserApiKey() {
+    const entityId = await firstValueFrom(
+      this.accountService.activeAccount$.pipe(map((a) => a?.id)),
+    );
+
+    if (!entityId) {
+      throw new Error("Active account not found");
+    }
+
+    await ApiKeyComponent.open(this.dialogService, {
+      data: {
+        keyType: "user",
+        isRotation: true,
+        entityId: entityId,
+        postKey: this.apiService.postUserRotateApiKey.bind(this.apiService),
+        scope: "api",
+        grantType: "client_credentials",
+        apiKeyTitle: "apiKey",
+        apiKeyWarning: "userApiKeyWarning",
+        apiKeyDescription: "apiKeyRotateDesc",
+      },
+    });
+  }
+}

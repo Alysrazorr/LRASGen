@@ -1,0 +1,375 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "reservations-api API",
+    "description": "LRASGen-generated specification for reservations-api (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/reservation": {
+      "get": {
+        "operationId": "getReservation",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a list of all reservations available.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List<ReservationResponse>": {
+                      "type": "string",
+                      "description": "{'uuid': 'string', 'reservationFor': 'string', 'reservationFrom': 'date-time', 'reservationTo': 'date-time'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the service call fails and the exception is not handled by the controller."
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateReservation",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Reservation updated successfully. Returns the updated reservation details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ReservationResponse": {
+                      "type": "string",
+                      "description": "{'uuid': 'string', 'reservationFor': 'string', 'reservationFrom': 'datetime', 'reservationTo': 'datetime'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request body failed validation (e.g., missing required fields, blank strings, or invalid date format)."
+          },
+          "422": {
+            "description": "Unprocessable Entity. The reservation could not be updated due to a business rule violation."
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred while processing the request."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "uuid": {
+                    "type": "string",
+                    "description": "Update reservation when valid information provided."
+                  },
+                  "reservationFor": {
+                    "type": "string",
+                    "description": "Update reservation when valid information provided."
+                  },
+                  "reservationFrom": {
+                    "type": "string",
+                    "description": "Update reservation when valid information provided."
+                  },
+                  "reservationTo": {
+                    "type": "string",
+                    "description": "Update reservation when valid information provided."
+                  }
+                },
+                "required": [
+                  "uuid",
+                  "reservationFor",
+                  "reservationFrom",
+                  "reservationTo"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createReservation",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Reservation created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ReservationResponse": {
+                      "type": "string",
+                      "description": "{'uuid': 'string', 'reservationFor': 'string', 'reservationFrom': 'date', 'reservationTo': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - validation error on request body or path variable"
+          },
+          "422": {
+            "description": "Unprocessable Entity - reservation business exception"
+          },
+          "409": {
+            "description": "Conflict - duplicate user exception"
+          },
+          "500": {
+            "description": "Internal Server Error - unexpected server error"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "reservationFor": {
+                    "type": "string",
+                    "description": "Username or identifier the reservation is for."
+                  },
+                  "reservationFrom": {
+                    "type": "string",
+                    "description": "Start date and time of the reservation."
+                  },
+                  "reservationTo": {
+                    "type": "string",
+                    "description": "End date and time of the reservation."
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "description": "Creation date and time of the reservation."
+                  }
+                },
+                "required": [
+                  "reservationFor",
+                  "reservationFrom",
+                  "reservationTo",
+                  "createdAt"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reservation/{username}": {
+      "get": {
+        "operationId": "getReservation",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "Username of the user whose reservations are to be retrieved.",
+            "schema": {
+              "type": "string",
+              "description": "Username of the user whose reservations are to be retrieved."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved reservations for the specified username.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ReservationResponse": {
+                      "type": "string",
+                      "description": "{'uuid': 'string', 'reservationFor': 'string', 'reservationFrom': 'date', 'reservationTo': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. The username path variable is blank or invalid."
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/api/reservation/{reservationUuid}": {
+      "delete": {
+        "operationId": "deleteReservation",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "reservationUuid",
+            "in": "path",
+            "required": true,
+            "description": "Delete reservation when valid UUID provided.",
+            "schema": {
+              "type": "string",
+              "description": "Delete reservation when valid UUID provided."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reservation deleted successfully. No response body is returned."
+          },
+          "400": {
+            "description": "Bad Request. The reservationUuid path variable is blank or invalid, triggering a ConstraintViolationException."
+          },
+          "422": {
+            "description": "Unprocessable Entity. The reservation could not be deleted, typically because it does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred while processing the deletion request."
+          }
+        }
+      }
+    },
+    "/api/user/register": {
+      "post": {
+        "operationId": "createRegister",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "User registered successfully; returns an access token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AuthResponse": {
+                      "type": "string",
+                      "description": "{'accessToken': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Username or email already exists."
+          },
+          "400": {
+            "description": "Invalid request body (validation failure or malformed Base64 password)."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "User registration request containing username, email, and password."
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "User registration request containing username, email, and password."
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "User registration request containing username, email, and password."
+                  }
+                },
+                "required": [
+                  "username",
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "operationId": "createLogin",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successful login, returns an access token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AuthResponse": {
+                      "type": "string",
+                      "description": "{'accessToken': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request body is missing or invalid (e.g., blank username or password)."
+          },
+          "401": {
+            "description": "Unauthorized. Authentication failed due to invalid credentials."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "Login request containing username and password"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Login request containing username and password"
+                  }
+                },
+                "required": [
+                  "username",
+                  "password"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

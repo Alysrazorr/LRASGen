@@ -1,0 +1,884 @@
+{
+  "task_id": "nestjs-realworld-example-app-master",
+  "api_name": "nestjs-realworld-example-app-master",
+  "framework": "nestjs",
+  "endpoints": [
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "AppController.root",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\app.controller.ts",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the string 'Hello World!'",
+          "data_schema": [
+            {
+              "name": "string",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/articles/{slug}/comments",
+      "http_method": "POST",
+      "method_name": "ArticleController.createComment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\article\\article.controller.ts",
+      "parameters": [
+        {
+          "name": "slug",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The slug of the article to add a comment to",
+          "_depth": 0
+        },
+        {
+          "name": "comment",
+          "type": "CreateCommentDto",
+          "require": "false",
+          "position": "body",
+          "description": "The comment data",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "The comment has been successfully created.",
+          "data_schema": [
+            {
+              "name": "ArticleRO",
+              "schema": {
+                "article": "ArticleEntity"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/articles/feed",
+      "http_method": "GET",
+      "method_name": "ArticleController.getFeed",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\article\\article.controller.ts",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "User ID extracted from the authenticated user via @User('id') decorator",
+          "_depth": 0
+        },
+        {
+          "name": "query",
+          "type": "object",
+          "require": "false",
+          "position": "query",
+          "description": "Query parameters for filtering and pagination (e.g., limit, offset)",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Return article feed.",
+          "data_schema": [
+            {
+              "name": "ArticlesRO",
+              "schema": {
+                "articles": "ArticleEntity[]",
+                "articlesCount": "number"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/articles/{slug}/comments/{id}",
+      "http_method": "DELETE",
+      "method_name": "ArticleController.deleteComment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\article\\article.controller.ts",
+      "parameters": [
+        {
+          "name": "slug",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Slug of the article whose comment is to be deleted",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the comment to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "The article has been successfully deleted.",
+          "data_schema": [
+            {
+              "name": "ArticleRO",
+              "schema": {
+                "article": "ArticleEntity"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/articles/{slug}",
+      "http_method": "PUT",
+      "method_name": "ArticleController.update",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\article\\article.controller.ts",
+      "parameters": [
+        {
+          "name": "slug",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Article slug from the path parameter",
+          "_depth": 0
+        },
+        {
+          "name": "article",
+          "type": "CreateArticleDto",
+          "require": "false",
+          "position": "body",
+          "description": "Article data to update",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "The article has been successfully updated.",
+          "data_schema": [
+            {
+              "name": "ArticleRO",
+              "schema": {
+                "article": "ArticleEntity"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/articles/{slug}/comments",
+      "http_method": "GET",
+      "method_name": "ArticleController.findComments",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\article\\article.controller.ts",
+      "parameters": [
+        {
+          "name": "slug",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Slug of the article whose comments are to be retrieved",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Return comments of the article.",
+          "data_schema": [
+            {
+              "name": "CommentsRO",
+              "schema": {
+                "comments": "Comment[]"
+              }
+            },
+            {
+              "name": "Comment",
+              "schema": {
+                "id": "integer",
+                "body": "string",
+                "article": "ArticleEntity"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/articles",
+      "http_method": "POST",
+      "method_name": "ArticleController.create",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\article\\article.controller.ts",
+      "parameters": [
+        {
+          "name": "userId",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "ID of the user creating the article, extracted from the authenticated user via @User('id')",
+          "_depth": 0
+        },
+        {
+          "name": "article",
+          "type": "CreateArticleDto",
+          "require": "false",
+          "position": "body",
+          "description": "Article data to create",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "The article has been successfully created.",
+          "data_schema": [
+            {
+              "name": "ArticleEntity",
+              "schema": {
+                "id": "number",
+                "slug": "string",
+                "title": "string",
+                "description": "string",
+                "body": "string",
+                "created": "Date",
+                "updated": "Date",
+                "tagList": "string[]",
+                "author": "UserEntity",
+                "comments": "Comment[]",
+                "favoriteCount": "number"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/articles",
+      "http_method": "GET",
+      "method_name": "ArticleController.findAll",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\article\\article.controller.ts",
+      "parameters": [
+        {
+          "name": "query",
+          "type": "object",
+          "require": "false",
+          "position": "query",
+          "description": "Query parameters for filtering articles. The service checks for 'tag', 'author', 'favorited', 'limit', and 'offset' keys.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Return all articles.",
+          "data_schema": [
+            {
+              "name": "ArticlesRO",
+              "schema": {
+                "articles": "ArticleEntity[]",
+                "articlesCount": "number"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/articles/{slug}",
+      "http_method": "GET",
+      "method_name": "ArticleController.findOne",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\article\\article.controller.ts",
+      "parameters": [
+        {
+          "name": "slug",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The slug of the article to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Return the article with the given slug.",
+          "data_schema": [
+            {
+              "name": "ArticleRO",
+              "schema": {
+                "article": "ArticleEntity"
+              }
+            },
+            {
+              "name": "ArticleEntity",
+              "schema": {
+                "id": "number",
+                "slug": "string",
+                "title": "string",
+                "description": "string",
+                "body": "string",
+                "created": "Date",
+                "updated": "Date",
+                "tagList": "string[]",
+                "author": "UserEntity",
+                "comments": "Comment[]",
+                "favoriteCount": "number"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/articles/{slug}",
+      "http_method": "DELETE",
+      "method_name": "ArticleController.delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\article\\article.controller.ts",
+      "parameters": [
+        {
+          "name": "slug",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Slug of the article to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "The article has been successfully deleted.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/articles/{slug}/favorite",
+      "http_method": "POST",
+      "method_name": "ArticleController.favorite",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\article\\article.controller.ts",
+      "parameters": [
+        {
+          "name": "slug",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Article slug",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "The article has been successfully favorited.",
+          "data_schema": [
+            {
+              "name": "ArticleRO",
+              "schema": {
+                "article": "ArticleEntity"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/articles/{slug}/favorite",
+      "http_method": "DELETE",
+      "method_name": "ArticleController.unFavorite",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\article\\article.controller.ts",
+      "parameters": [
+        {
+          "name": "slug",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Slug of the article to unfavorite",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "The article has been successfully unfavorited.",
+          "data_schema": [
+            {
+              "name": "ArticleRO",
+              "schema": {
+                "article": "ArticleEntity"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/profiles/{username}/follow",
+      "http_method": "POST",
+      "method_name": "ProfileController.follow",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\profile\\profile.controller.ts",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Username of the profile to follow, taken from the path parameter.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Profile followed successfully",
+          "data_schema": [
+            {
+              "name": "ProfileRO",
+              "schema": {
+                "profile": {
+                  "username": "string",
+                  "bio": "string",
+                  "image": "string",
+                  "following": "boolean"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Follower email and username not provided.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/tags",
+      "http_method": "GET",
+      "method_name": "TagController.findAll",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\tag\\tag.controller.ts",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns an array of all tags.",
+          "data_schema": [
+            {
+              "name": "TagEntity[]",
+              "schema": {
+                "id": "number",
+                "tag": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/profiles/{username}",
+      "http_method": "GET",
+      "method_name": "ProfileController.getProfile",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\profile\\profile.controller.ts",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Username of the profile to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Profile retrieved successfully",
+          "data_schema": [
+            {
+              "name": "ProfileRO",
+              "schema": {
+                "profile": {
+                  "username": "string",
+                  "bio": "string",
+                  "image": "string",
+                  "following": "boolean"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/profiles/{username}/follow",
+      "http_method": "DELETE",
+      "method_name": "ProfileController.unFollow",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\profile\\profile.controller.ts",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Username of the profile to unfollow",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully unfollowed the user. Returns the profile of the unfollowed user with following set to false.",
+          "data_schema": [
+            {
+              "name": "ProfileRO",
+              "schema": {
+                "profile": {
+                  "username": "string",
+                  "bio": "string",
+                  "image": "string",
+                  "following": "boolean"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. FollowerId or username not provided, or FollowerId and FollowingId cannot be equal.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An error occurred while processing the request, such as a database error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/users",
+      "http_method": "POST",
+      "method_name": "create",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\user\\user.controller.ts",
+      "parameters": [
+        {
+          "name": "user",
+          "type": "CreateUserDto",
+          "require": "false",
+          "position": "body",
+          "description": "User data for creating a new user",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "User created successfully",
+          "data_schema": [
+            {
+              "name": "UserRO",
+              "schema": {
+                "user": {
+                  "id": "number",
+                  "username": "string",
+                  "email": "string",
+                  "bio": "string",
+                  "token": "string",
+                  "image": "string"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Input data validation failed",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/user",
+      "http_method": "GET",
+      "method_name": "findMe",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\user\\user.controller.ts",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the authenticated user's profile information.",
+          "data_schema": [
+            {
+              "name": "UserRO",
+              "schema": {
+                "user": {
+                  "id": "number",
+                  "username": "string",
+                  "email": "string",
+                  "bio": "string",
+                  "token": "string",
+                  "image": "string"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/users/{slug}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\user\\user.controller.ts",
+      "parameters": [
+        {
+          "name": "slug",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The slug parameter extracted from the path via @Param() and passed to userService.delete(params.slug).",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Deletes the user with the given email (passed as slug) and returns the result of the delete operation.",
+          "data_schema": [
+            {
+              "name": "DeleteResult",
+              "schema": {
+                "raw": "object",
+                "affected": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/user",
+      "http_method": "PUT",
+      "method_name": "update",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\user\\user.controller.ts",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "User ID extracted from the authenticated user via @User('id') decorator",
+          "_depth": 0
+        },
+        {
+          "name": "user",
+          "type": "UpdateUserDto",
+          "require": "false",
+          "position": "body",
+          "description": "User update data from request body",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "User updated successfully",
+          "data_schema": [
+            {
+              "name": "UserEntity",
+              "schema": {
+                "id": "number",
+                "username": "string",
+                "email": "string",
+                "bio": "string",
+                "image": "string",
+                "password": "string",
+                "favorites": "ArticleEntity[]",
+                "articles": "ArticleEntity[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/users/login",
+      "http_method": "POST",
+      "method_name": "login",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Realworld\\nestjs-realworld-example-app-master\\src\\user\\user.controller.ts",
+      "parameters": [
+        {
+          "name": "user",
+          "type": "LoginUserDto",
+          "require": "false",
+          "position": "body",
+          "description": "Login credentials containing email and password",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "User login successful, returns user data with JWT token",
+          "data_schema": [
+            {
+              "name": "UserRO",
+              "schema": {
+                "user": {
+                  "email": "string",
+                  "token": "string",
+                  "username": "string",
+                  "bio": "string",
+                  "image": "string"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "User not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 7909,
+  "tokens": {
+    "prompt_tokens": 527612,
+    "completion_tokens": 34459,
+    "total_tokens": 562071,
+    "calls": 126,
+    "elapsed_s": 687.454,
+    "prompt_cost_usd": 0.067798,
+    "completion_cost_usd": 0.022593,
+    "total_cost_usd": 0.090392,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 171665,
+        "completion_tokens": 4099,
+        "total_tokens": 175764,
+        "calls": 42,
+        "elapsed_s": 59.121099,
+        "prompt_cost_usd": 0.003433,
+        "completion_cost_usd": 0.002459,
+        "total_cost_usd": 0.005893
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 164146,
+        "completion_tokens": 25406,
+        "total_tokens": 189552,
+        "calls": 42,
+        "elapsed_s": 483.002,
+        "prompt_cost_usd": 0.016415,
+        "completion_cost_usd": 0.012703,
+        "total_cost_usd": 0.029118
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 191801,
+        "completion_tokens": 4954,
+        "total_tokens": 196755,
+        "calls": 42,
+        "elapsed_s": 145.331,
+        "prompt_cost_usd": 0.04795,
+        "completion_cost_usd": 0.007431,
+        "total_cost_usd": 0.055381
+      }
+    ]
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "task_id": "gravitee-api-management",
+  "api_name": "gravitee-api-management",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/openapi.yaml",
+      "http_method": "GET",
+      "method_name": "getOpenApi",
+      "summary": "Get the OpenAPI specification",
+      "description": "Returns the management-openapi-v4.yaml OpenAPI specification file as application/yaml.",
+      "line_number": 13,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\OpenAPIResource.java"
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans",
+      "http_method": "GET",
+      "method_name": "getApiPlans",
+      "summary": "List API plans",
+      "description": "Retrieves the list of plans for the specified API, optionally filtered by status and security type.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java"
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans",
+      "http_method": "POST",
+      "method_name": "createApiPlan",
+      "summary": "Create an API plan",
+      "description": "Creates a new plan for the specified API.",
+      "line_number": 71,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java"
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans/{plan}",
+      "http_method": "GET",
+      "method_name": "getApiPlan",
+      "summary": "Get an API plan",
+      "description": "Retrieves a specific plan for the specified API.",
+      "line_number": 84,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java"
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans/{plan}",
+      "http_method": "PUT",
+      "method_name": "updateApiPlan",
+      "summary": "Update an API plan",
+      "description": "Updates a specific plan for the specified API.",
+      "line_number": 105,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java"
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans/{plan}",
+      "http_method": "DELETE",
+      "method_name": "deleteApiPlan",
+      "summary": "Delete an API plan",
+      "description": "Deletes a specific plan for the specified API.",
+      "line_number": 129,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java"
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans/{plan}/_close",
+      "http_method": "POST",
+      "method_name": "closeApiPlan",
+      "summary": "Close an API plan",
+      "description": "Closes a specific plan for the specified API.",
+      "line_number": 143,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java"
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans/{plan}/_publish",
+      "http_method": "POST",
+      "method_name": "publishApiPlan",
+      "summary": "Publish an API plan",
+      "description": "Publishes a specific plan for the specified API.",
+      "line_number": 157,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java"
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/plans/{plan}/_deprecate",
+      "http_method": "POST",
+      "method_name": "deprecateApiPlan",
+      "summary": "Deprecate an API plan",
+      "description": "Deprecates a specific plan for the specified API.",
+      "line_number": 171,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiPlansResource.java"
+    },
+    {
+      "endpoint_path": "/apis/{apiId}",
+      "http_method": "GET",
+      "method_name": "getApiById",
+      "summary": "Get the API",
+      "description": "Get the API by its ID. Returns the API entity, with sensitive data filtered if the user lacks API_DEFINITION read permission.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiResource.java"
+    },
+    {
+      "endpoint_path": "/apis/{apiId}",
+      "http_method": "PUT",
+      "method_name": "updateApi",
+      "summary": "Update the API",
+      "description": "Update the API identified by apiId with the provided UpdateApiEntity payload.",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiResource.java"
+    },
+    {
+      "endpoint_path": "/apis/{apiId}",
+      "http_method": "DELETE",
+      "method_name": "deleteApi",
+      "summary": "Delete the API",
+      "description": "Delete the API identified by apiId. Optionally close its plans.",
+      "line_number": 92,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiResource.java"
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/deployments",
+      "http_method": "POST",
+      "method_name": "deployApi",
+      "summary": "Deploy the API",
+      "description": "Deploy the API identified by apiId using the provided deployment entity.",
+      "line_number": 100,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiResource.java"
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/_start",
+      "http_method": "POST",
+      "method_name": "startAPI",
+      "summary": "Start the API",
+      "description": "Start the API identified by apiId after checking its lifecycle state.",
+      "line_number": 119,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiResource.java"
+    },
+    {
+      "endpoint_path": "/apis/{apiId}/_stop",
+      "http_method": "POST",
+      "method_name": "stopAPI",
+      "summary": "Stop the API",
+      "description": "Stop the API identified by apiId after checking its lifecycle state.",
+      "line_number": 133,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\api\\ApiResource.java"
+    },
+    {
+      "endpoint_path": "/endpoints",
+      "http_method": "GET",
+      "method_name": "getEndpoints",
+      "summary": "List all endpoint plugins",
+      "description": "Returns the set of all endpoint connector plugins available.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EndpointsResource.java"
+    },
+    {
+      "endpoint_path": "/endpoints/{endpointId}",
+      "http_method": "GET",
+      "method_name": "getEntrypoint",
+      "summary": "Get an endpoint plugin by id",
+      "description": "Returns the endpoint connector plugin identified by endpointId.",
+      "line_number": 29,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EndpointsResource.java"
+    },
+    {
+      "endpoint_path": "/endpoints/{endpointId}/schema",
+      "http_method": "GET",
+      "method_name": "getEntrypointSchema",
+      "summary": "Get the schema of an endpoint plugin",
+      "description": "Checks that the endpoint exists and returns its configuration schema.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EndpointsResource.java"
+    },
+    {
+      "endpoint_path": "/endpoints/{endpointId}/documentation",
+      "http_method": "GET",
+      "method_name": "getEntrypointDoc",
+      "summary": "Get the documentation of an endpoint plugin",
+      "description": "Checks that the endpoint exists and returns its documentation as plain text.",
+      "line_number": 45,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EndpointsResource.java"
+    },
+    {
+      "endpoint_path": "/entrypoints",
+      "http_method": "GET",
+      "method_name": "getEntrypoints",
+      "summary": "Get all entrypoints",
+      "description": "Returns the list of all entrypoint connector plugins.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EntrypointsResource.java"
+    },
+    {
+      "endpoint_path": "/entrypoints/{entrypointId}",
+      "http_method": "GET",
+      "method_name": "getEntrypoint",
+      "summary": "Get an entrypoint",
+      "description": "Returns the entrypoint connector plugin identified by entrypointId.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EntrypointsResource.java"
+    },
+    {
+      "endpoint_path": "/entrypoints/{entrypointId}/schema",
+      "http_method": "GET",
+      "method_name": "getEntrypointSchema",
+      "summary": "Get entrypoint schema",
+      "description": "Returns the JSON schema of the entrypoint connector plugin identified by entrypointId.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EntrypointsResource.java"
+    },
+    {
+      "endpoint_path": "/entrypoints/{entrypointId}/documentation",
+      "http_method": "GET",
+      "method_name": "getEntrypointDoc",
+      "summary": "Get entrypoint documentation",
+      "description": "Returns the documentation of the entrypoint connector plugin identified by entrypointId.",
+      "line_number": 48,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EntrypointsResource.java"
+    },
+    {
+      "endpoint_path": "/entrypoints/{entrypointId}/subscriptionSchema",
+      "http_method": "GET",
+      "method_name": "getEntrypointSubscriptionSchema",
+      "summary": "Get entrypoint subscription schema",
+      "description": "Returns the subscription schema of the entrypoint connector plugin identified by entrypointId.",
+      "line_number": 58,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\connector\\EntrypointsResource.java"
+    },
+    {
+      "endpoint_path": "/environments/{envId}",
+      "http_method": "GET",
+      "method_name": "getEnvironment",
+      "summary": "Get the environment",
+      "description": "Retrieves the environment identified by its ID.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\installation\\EnvironmentResource.java"
+    },
+    {
+      "endpoint_path": "/environments/{envId}/apis",
+      "http_method": "POST",
+      "method_name": "createApi",
+      "summary": "Create an API",
+      "description": "Creates a new API in the environment.",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\installation\\EnvironmentResource.java"
+    },
+    {
+      "endpoint_path": "/organizations/{orgId}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get an organization",
+      "description": "Returns the organization identified by the given organization id.",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\installation\\OrganizationResource.java"
+    },
+    {
+      "endpoint_path": "/organizations/{orgId}/environments",
+      "http_method": "GET",
+      "method_name": "getEnvironments",
+      "summary": "List environments of an organization",
+      "description": "Returns the collection of environments the authenticated user can access within the given organization.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gravitee\\gravitee-api-management\\gravitee-apim-rest-api-management-v4-rest\\src\\main\\java\\io\\gravitee\\rest\\api\\management\\v4\\rest\\resource\\installation\\OrganizationResource.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 14243,
+  "tokens": {
+    "prompt_tokens": 278560,
+    "completion_tokens": 13852,
+    "total_tokens": 292412,
+    "calls": 21,
+    "elapsed_s": 128.29,
+    "prompt_cost_usd": 0.035231,
+    "completion_cost_usd": 0.009632,
+    "total_cost_usd": 0.044864,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 93058,
+        "completion_tokens": 2486,
+        "total_tokens": 95544,
+        "calls": 7,
+        "elapsed_s": 14.191058,
+        "prompt_cost_usd": 0.001861,
+        "completion_cost_usd": 0.001492,
+        "total_cost_usd": 0.003353
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 86702,
+        "completion_tokens": 8909,
+        "total_tokens": 95611,
+        "calls": 7,
+        "elapsed_s": 83.873,
+        "prompt_cost_usd": 0.00867,
+        "completion_cost_usd": 0.004455,
+        "total_cost_usd": 0.013125
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 98800,
+        "completion_tokens": 2457,
+        "total_tokens": 101257,
+        "calls": 7,
+        "elapsed_s": 30.226,
+        "prompt_cost_usd": 0.0247,
+        "completion_cost_usd": 0.003685,
+        "total_cost_usd": 0.028386
+      }
+    ]
+  }
+}

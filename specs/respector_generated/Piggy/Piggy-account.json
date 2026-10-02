@@ -1,0 +1,635 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "info": {
+    "title": "REST API",
+    "version": "",
+    "description": "REST API"
+  },
+  "paths": {
+    "/": {
+      "post": {
+        "description": "",
+        "operationId": "em3",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.piggymetrics.account.domain.Account",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "lastSeen": {
+                      "type": "object",
+                      "title": "java.util.Date",
+                      "properties": {
+                        "fastTime": {
+                          "type": "integer"
+                        },
+                        "cdate": {
+                          "type": "object",
+                          "title": "sun.util.calendar.BaseCalendar$Date",
+                          "properties": {
+                            "cachedYear": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateJan1": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateNextJan1": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "incomes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "expenses": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "saving": {
+                      "type": "object",
+                      "title": "com.piggymetrics.account.domain.Saving",
+                      "properties": {
+                        "amount": {
+                          "type": "object",
+                          "title": "java.math.BigDecimal",
+                          "properties": {
+                            "intVal": {
+                              "type": "object",
+                              "title": "java.math.BigInteger",
+                              "properties": {
+                                "signum": {
+                                  "type": "integer"
+                                },
+                                "mag": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "bitCountPlusOne": {
+                                  "type": "integer"
+                                },
+                                "bitLengthPlusOne": {
+                                  "type": "integer"
+                                },
+                                "lowestSetBitPlusTwo": {
+                                  "type": "integer"
+                                },
+                                "firstNonzeroIntNumPlusTwo": {
+                                  "type": "integer"
+                                }
+                              }
+                            },
+                            "scale": {
+                              "type": "integer"
+                            },
+                            "precision": {
+                              "type": "integer"
+                            },
+                            "stringCache": {
+                              "type": "string"
+                            },
+                            "intCompact": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "currency": {
+                          "type": "object",
+                          "title": "com.piggymetrics.account.domain.Currency",
+                          "properties": {}
+                        },
+                        "interest": {
+                          "type": "object",
+                          "title": "java.math.BigDecimal",
+                          "properties": {
+                            "intVal": {
+                              "type": "object",
+                              "title": "java.math.BigInteger",
+                              "properties": {
+                                "signum": {
+                                  "type": "integer"
+                                },
+                                "mag": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "bitCountPlusOne": {
+                                  "type": "integer"
+                                },
+                                "bitLengthPlusOne": {
+                                  "type": "integer"
+                                },
+                                "lowestSetBitPlusTwo": {
+                                  "type": "integer"
+                                },
+                                "firstNonzeroIntNumPlusTwo": {
+                                  "type": "integer"
+                                }
+                              }
+                            },
+                            "scale": {
+                              "type": "integer"
+                            },
+                            "precision": {
+                              "type": "integer"
+                            },
+                            "stringCache": {
+                              "type": "string"
+                            },
+                            "intCompact": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "deposit": {
+                          "type": "boolean"
+                        },
+                        "capitalization": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 2
+              }
+            }
+          }
+        }
+      }
+    },
+    "/current": {
+      "get": {
+        "description": "",
+        "operationId": "em1",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.piggymetrics.account.domain.Account",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "lastSeen": {
+                      "type": "object",
+                      "title": "java.util.Date",
+                      "properties": {
+                        "fastTime": {
+                          "type": "integer"
+                        },
+                        "cdate": {
+                          "type": "object",
+                          "title": "sun.util.calendar.BaseCalendar$Date",
+                          "properties": {
+                            "cachedYear": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateJan1": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateNextJan1": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "incomes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "expenses": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "saving": {
+                      "type": "object",
+                      "title": "com.piggymetrics.account.domain.Saving",
+                      "properties": {
+                        "amount": {
+                          "type": "object",
+                          "title": "java.math.BigDecimal",
+                          "properties": {
+                            "intVal": {
+                              "type": "object",
+                              "title": "java.math.BigInteger",
+                              "properties": {
+                                "signum": {
+                                  "type": "integer"
+                                },
+                                "mag": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "bitCountPlusOne": {
+                                  "type": "integer"
+                                },
+                                "bitLengthPlusOne": {
+                                  "type": "integer"
+                                },
+                                "lowestSetBitPlusTwo": {
+                                  "type": "integer"
+                                },
+                                "firstNonzeroIntNumPlusTwo": {
+                                  "type": "integer"
+                                }
+                              }
+                            },
+                            "scale": {
+                              "type": "integer"
+                            },
+                            "precision": {
+                              "type": "integer"
+                            },
+                            "stringCache": {
+                              "type": "string"
+                            },
+                            "intCompact": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "currency": {
+                          "type": "object",
+                          "title": "com.piggymetrics.account.domain.Currency",
+                          "properties": {}
+                        },
+                        "interest": {
+                          "type": "object",
+                          "title": "java.math.BigDecimal",
+                          "properties": {
+                            "intVal": {
+                              "type": "object",
+                              "title": "java.math.BigInteger",
+                              "properties": {
+                                "signum": {
+                                  "type": "integer"
+                                },
+                                "mag": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "bitCountPlusOne": {
+                                  "type": "integer"
+                                },
+                                "bitLengthPlusOne": {
+                                  "type": "integer"
+                                },
+                                "lowestSetBitPlusTwo": {
+                                  "type": "integer"
+                                },
+                                "firstNonzeroIntNumPlusTwo": {
+                                  "type": "integer"
+                                }
+                              }
+                            },
+                            "scale": {
+                              "type": "integer"
+                            },
+                            "precision": {
+                              "type": "integer"
+                            },
+                            "stringCache": {
+                              "type": "string"
+                            },
+                            "intCompact": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "deposit": {
+                          "type": "boolean"
+                        },
+                        "capitalization": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em2",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "expenses": {
+                    "type": "string"
+                  },
+                  "incomes": {
+                    "type": "string"
+                  },
+                  "lastSeen": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "note": {
+                    "type": "string"
+                  },
+                  "saving": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 6
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1current/put"
+        }
+      }
+    },
+    "/{name}": {
+      "get": {
+        "description": "",
+        "operationId": "em0",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.piggymetrics.account.domain.Account",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "lastSeen": {
+                      "type": "object",
+                      "title": "java.util.Date",
+                      "properties": {
+                        "fastTime": {
+                          "type": "integer"
+                        },
+                        "cdate": {
+                          "type": "object",
+                          "title": "sun.util.calendar.BaseCalendar$Date",
+                          "properties": {
+                            "cachedYear": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateJan1": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateNextJan1": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "incomes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "expenses": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "saving": {
+                      "type": "object",
+                      "title": "com.piggymetrics.account.domain.Saving",
+                      "properties": {
+                        "amount": {
+                          "type": "object",
+                          "title": "java.math.BigDecimal",
+                          "properties": {
+                            "intVal": {
+                              "type": "object",
+                              "title": "java.math.BigInteger",
+                              "properties": {
+                                "signum": {
+                                  "type": "integer"
+                                },
+                                "mag": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "bitCountPlusOne": {
+                                  "type": "integer"
+                                },
+                                "bitLengthPlusOne": {
+                                  "type": "integer"
+                                },
+                                "lowestSetBitPlusTwo": {
+                                  "type": "integer"
+                                },
+                                "firstNonzeroIntNumPlusTwo": {
+                                  "type": "integer"
+                                }
+                              }
+                            },
+                            "scale": {
+                              "type": "integer"
+                            },
+                            "precision": {
+                              "type": "integer"
+                            },
+                            "stringCache": {
+                              "type": "string"
+                            },
+                            "intCompact": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "currency": {
+                          "type": "object",
+                          "title": "com.piggymetrics.account.domain.Currency",
+                          "properties": {}
+                        },
+                        "interest": {
+                          "type": "object",
+                          "title": "java.math.BigDecimal",
+                          "properties": {
+                            "intVal": {
+                              "type": "object",
+                              "title": "java.math.BigInteger",
+                              "properties": {
+                                "signum": {
+                                  "type": "integer"
+                                },
+                                "mag": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "bitCountPlusOne": {
+                                  "type": "integer"
+                                },
+                                "bitLengthPlusOne": {
+                                  "type": "integer"
+                                },
+                                "lowestSetBitPlusTwo": {
+                                  "type": "integer"
+                                },
+                                "firstNonzeroIntNumPlusTwo": {
+                                  "type": "integer"
+                                }
+                              }
+                            },
+                            "scale": {
+                              "type": "integer"
+                            },
+                            "precision": {
+                              "type": "integer"
+                            },
+                            "stringCache": {
+                              "type": "string"
+                            },
+                            "intCompact": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "deposit": {
+                          "type": "boolean"
+                        },
+                        "capitalization": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "x-endpoint-constraints": {
+      "/current": {
+        "put": {
+          "global-reads": {
+            "g0": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            }
+          }
+        }
+      }
+    },
+    "x-endpoint-interdependence": {},
+    "x-global-variables-info": {
+      "g0": {
+        "name": "LOGGER",
+        "id": "g0",
+        "defining-class": "com.piggymetrics.account.client.StatisticsServiceClientFallback",
+        "locations-of-static-assignments": [
+          "line 13, com.piggymetrics.account.client.StatisticsServiceClientFallback"
+        ]
+      }
+    }
+  }
+}

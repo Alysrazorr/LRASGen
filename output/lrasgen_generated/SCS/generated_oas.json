@@ -1,0 +1,605 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "scs API",
+    "description": "LRASGen-generated specification for scs (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/pat/{txt}": {
+      "get": {
+        "operationId": "getPat",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "txt",
+            "in": "path",
+            "required": true,
+            "description": "Path variable txt from the endpoint GET /api/pat/{txt}",
+            "schema": {
+              "type": "string",
+              "description": "Path variable txt from the endpoint GET /api/pat/{txt}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the result of Regex.subject(txt) as a plain string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'result': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if Regex.subject(txt) throws an uncaught exception."
+          }
+        }
+      }
+    },
+    "/api/cookie/{name}/{val}/{site}": {
+      "get": {
+        "operationId": "getCookie",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "The cookie name, bound from the {name} path variable.",
+            "schema": {
+              "type": "string",
+              "description": "The cookie name, bound from the {name} path variable."
+            }
+          },
+          {
+            "name": "val",
+            "in": "path",
+            "required": true,
+            "description": "The cookie value, bound from the {val} path variable.",
+            "schema": {
+              "type": "string",
+              "description": "The cookie value, bound from the {val} path variable."
+            }
+          },
+          {
+            "name": "site",
+            "in": "path",
+            "required": true,
+            "description": "The cookie site, bound from the {site} path variable.",
+            "schema": {
+              "type": "string",
+              "description": "The cookie site, bound from the {site} path variable."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the result of Cookie.subject(name, val, site) as a plain string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'result': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error returned when Cookie.subject(name, val, site) throws an uncaught exception."
+          }
+        }
+      }
+    },
+    "/api/dateparse/{dayname}/{monthname}": {
+      "get": {
+        "operationId": "getDateparse",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dayname",
+            "in": "path",
+            "required": true,
+            "description": "Day name path variable",
+            "schema": {
+              "type": "string",
+              "description": "Day name path variable"
+            }
+          },
+          {
+            "name": "monthname",
+            "in": "path",
+            "required": true,
+            "description": "Month name path variable",
+            "schema": {
+              "type": "string",
+              "description": "Month name path variable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the result of DateParse.subject(dayname, monthname) as a plain string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'result': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error returned when DateParse.subject(dayname, monthname) throws an uncaught exception."
+          }
+        }
+      }
+    },
+    "/api/pat/{txt}/{pat}": {
+      "get": {
+        "operationId": "getPat",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "txt",
+            "in": "path",
+            "required": true,
+            "description": "The text to search in",
+            "schema": {
+              "type": "string",
+              "description": "The text to search in"
+            }
+          },
+          {
+            "name": "pat",
+            "in": "path",
+            "required": true,
+            "description": "The pattern to search for",
+            "schema": {
+              "type": "string",
+              "description": "The pattern to search for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the result of Pat.subject(txt, pat) as a string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "string",
+                      "description": "{'result': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if Pat.subject throws an uncaught exception."
+          }
+        }
+      }
+    },
+    "/api/costfuns/{i}/{s}": {
+      "get": {
+        "operationId": "getCostfuns",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "i",
+            "in": "path",
+            "required": true,
+            "description": "Integer path parameter i",
+            "schema": {
+              "type": "integer",
+              "description": "Integer path parameter i"
+            }
+          },
+          {
+            "name": "s",
+            "in": "path",
+            "required": true,
+            "description": "String path parameter s",
+            "schema": {
+              "type": "string",
+              "description": "String path parameter s"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the result of the costfuns operation as a string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "string",
+                      "description": "{'result': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the delegated Costfuns.subject call throws an uncaught exception."
+          }
+        }
+      }
+    },
+    "/api/notypevar/{i}/{s}": {
+      "get": {
+        "operationId": "getNotypevar",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "i",
+            "in": "path",
+            "required": true,
+            "description": "Path variable i",
+            "schema": {
+              "type": "integer",
+              "description": "Path variable i"
+            }
+          },
+          {
+            "name": "s",
+            "in": "path",
+            "required": true,
+            "description": "Path variable s",
+            "schema": {
+              "type": "string",
+              "description": "Path variable s"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the result of NotyPevar.subject(i, s) as a plain string in the response body.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "string",
+                      "description": "{'result': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error returned when NotyPevar.subject(i, s) throws an uncaught exception."
+          }
+        }
+      }
+    },
+    "/api/text2txt/{word1}/{word2}/{word3}": {
+      "get": {
+        "operationId": "getText2txt",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "word1",
+            "in": "path",
+            "required": true,
+            "description": "First word parameter for text2txt endpoint",
+            "schema": {
+              "type": "string",
+              "description": "First word parameter for text2txt endpoint"
+            }
+          },
+          {
+            "name": "word2",
+            "in": "path",
+            "required": true,
+            "description": "Second word parameter for text2txt endpoint",
+            "schema": {
+              "type": "string",
+              "description": "Second word parameter for text2txt endpoint"
+            }
+          },
+          {
+            "name": "word3",
+            "in": "path",
+            "required": true,
+            "description": "Third word parameter for text2txt endpoint",
+            "schema": {
+              "type": "string",
+              "description": "Third word parameter for text2txt endpoint"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the result of Text2Txt.subject(word1, word2, word3) as a plain string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "string",
+                      "description": "{'result': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error returned when Text2Txt.subject(word1, word2, word3) throws an uncaught exception."
+          }
+        }
+      }
+    },
+    "/api/filesuffix/{directory}/{file}": {
+      "get": {
+        "operationId": "getFilesuffix",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "directory",
+            "in": "path",
+            "required": true,
+            "description": "The directory path",
+            "schema": {
+              "type": "string",
+              "description": "The directory path"
+            }
+          },
+          {
+            "name": "file",
+            "in": "path",
+            "required": true,
+            "description": "The file name",
+            "schema": {
+              "type": "string",
+              "description": "The file name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the result of FileSuffix.subject(directory, file) as a plain string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'result': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if FileSuffix.subject throws an uncaught exception."
+          }
+        }
+      }
+    },
+    "/api/calc/{op}/{arg1}/{arg2}": {
+      "get": {
+        "operationId": "getCalc",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "op",
+            "in": "path",
+            "required": true,
+            "description": "The operation to perform",
+            "schema": {
+              "type": "string",
+              "description": "The operation to perform"
+            }
+          },
+          {
+            "name": "arg1",
+            "in": "path",
+            "required": true,
+            "description": "The first argument for the operation",
+            "schema": {
+              "type": "number",
+              "description": "The first argument for the operation"
+            }
+          },
+          {
+            "name": "arg2",
+            "in": "path",
+            "required": true,
+            "description": "The second argument for the operation",
+            "schema": {
+              "type": "number",
+              "description": "The second argument for the operation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the result of the calculation as a string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'result': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if an exception occurs during the calculation."
+          }
+        }
+      }
+    },
+    "/api/ordered4/{w}/{x}/{z}/{y}": {
+      "get": {
+        "operationId": "getOrdered4",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "w",
+            "in": "path",
+            "required": true,
+            "description": "First path variable of the ordered4 endpoint",
+            "schema": {
+              "type": "string",
+              "description": "First path variable of the ordered4 endpoint"
+            }
+          },
+          {
+            "name": "x",
+            "in": "path",
+            "required": true,
+            "description": "Second path variable of the ordered4 endpoint",
+            "schema": {
+              "type": "string",
+              "description": "Second path variable of the ordered4 endpoint"
+            }
+          },
+          {
+            "name": "z",
+            "in": "path",
+            "required": true,
+            "description": "Third path variable of the ordered4 endpoint",
+            "schema": {
+              "type": "string",
+              "description": "Third path variable of the ordered4 endpoint"
+            }
+          },
+          {
+            "name": "y",
+            "in": "path",
+            "required": true,
+            "description": "Fourth path variable of the ordered4 endpoint",
+            "schema": {
+              "type": "string",
+              "description": "Fourth path variable of the ordered4 endpoint"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the result of Ordered4.subject(w, x, z, y) as a string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "string",
+                      "description": "{'result': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if Ordered4.subject throws an unhandled exception."
+          }
+        }
+      }
+    },
+    "/api/title/{sex}/{title}": {
+      "get": {
+        "operationId": "getTitle",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "sex",
+            "in": "path",
+            "required": true,
+            "description": "The sex parameter from the path",
+            "schema": {
+              "type": "string",
+              "description": "The sex parameter from the path"
+            }
+          },
+          {
+            "name": "title",
+            "in": "path",
+            "required": true,
+            "description": "The title parameter from the path",
+            "schema": {
+              "type": "string",
+              "description": "The title parameter from the path"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the result of Title.subject(sex, title) as a string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if Title.subject throws an uncaught exception."
+          }
+        }
+      }
+    }
+  }
+}

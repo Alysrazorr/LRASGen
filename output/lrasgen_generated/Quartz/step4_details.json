@@ -1,0 +1,463 @@
+{
+  "task_id": "quartz-manager",
+  "api_name": "quartz-manager",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/scheduler/stop",
+      "http_method": "GET",
+      "method_name": "stop",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Quartz\\quartz-manager\\quartz-manager-parent\\quartz-manager-starter-api\\src\\main\\java\\it\\fabioformosa\\quartzmanager\\api\\controllers\\SchedulerController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Got stopped successfully",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/scheduler/pause",
+      "http_method": "GET",
+      "method_name": "pause",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Quartz\\quartz-manager\\quartz-manager-parent\\quartz-manager-starter-api\\src\\main\\java\\it\\fabioformosa\\quartzmanager\\api\\controllers\\SchedulerController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Got paused successfully",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/scheduler",
+      "http_method": "GET",
+      "method_name": "getScheduler",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Quartz\\quartz-manager\\quartz-manager-parent\\quartz-manager-starter-api\\src\\main\\java\\it\\fabioformosa\\quartzmanager\\api\\controllers\\SchedulerController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Return the scheduler config",
+          "data_schema": [
+            {
+              "name": "SchedulerDTO",
+              "schema": {
+                "name": "string",
+                "instanceId": "string",
+                "status": "SchedulerStatus",
+                "triggerKeys": "Set<TriggerKey>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/quartz-manager/jobs",
+      "http_method": "GET",
+      "method_name": "listJobs",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Quartz\\quartz-manager\\quartz-manager-parent\\quartz-manager-starter-api\\src\\main\\java\\it\\fabioformosa\\quartzmanager\\api\\controllers\\JobController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Return a list of qualified java classes",
+          "data_schema": [
+            {
+              "name": "List<String>",
+              "schema": {
+                "items": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/scheduler/run",
+      "http_method": "GET",
+      "method_name": "run",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Quartz\\quartz-manager\\quartz-manager-parent\\quartz-manager-starter-api\\src\\main\\java\\it\\fabioformosa\\quartzmanager\\api\\controllers\\SchedulerController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Got started successfully",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/scheduler/resume",
+      "http_method": "GET",
+      "method_name": "resume",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Quartz\\quartz-manager\\quartz-manager-parent\\quartz-manager-starter-api\\src\\main\\java\\it\\fabioformosa\\quartzmanager\\api\\controllers\\SchedulerController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Got resumed successfully",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/quartz-manager/triggers",
+      "http_method": "GET",
+      "method_name": "listTriggers",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Quartz\\quartz-manager\\quartz-manager-parent\\quartz-manager-starter-api\\src\\main\\java\\it\\fabioformosa\\quartzmanager\\api\\controllers\\TriggerController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Got the trigger list",
+          "data_schema": [
+            {
+              "name": "TriggerKeyDTO",
+              "schema": {
+                "name": "string",
+                "group": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/quartz-manager/simple-triggers/{name}",
+      "http_method": "GET",
+      "method_name": "getSimpleTrigger",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Quartz\\quartz-manager\\quartz-manager-parent\\quartz-manager-starter-api\\src\\main\\java\\it\\fabioformosa\\quartzmanager\\api\\controllers\\SimpleTriggerController.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the simple trigger to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Got the trigger by its name",
+          "data_schema": [
+            {
+              "name": "SimpleTriggerDTO",
+              "schema": {
+                "triggerKeyDTO": "TriggerKeyDTO",
+                "priority": "integer",
+                "startTime": "date",
+                "description": "string",
+                "endTime": "date",
+                "finalFireTime": "date",
+                "misfireInstruction": "integer",
+                "nextFireTime": "date",
+                "jobKeyDTO": "JobKeyDTO",
+                "jobDetailDTO": "JobDetailDTO",
+                "mayFireAgain": "boolean",
+                "repeatCount": "integer",
+                "repeatInterval": "long",
+                "timesTriggered": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Trigger not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/quartz-manager/simple-triggers/{name}",
+      "http_method": "POST",
+      "method_name": "postSimpleTrigger",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Quartz\\quartz-manager\\quartz-manager-parent\\quartz-manager-starter-api\\src\\main\\java\\it\\fabioformosa\\quartzmanager\\api\\controllers\\SimpleTriggerController.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the simple trigger",
+          "_depth": 0
+        },
+        {
+          "name": "repeatCount",
+          "type": "Integer",
+          "_class_name": "SimpleTriggerInputDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The simple trigger configuration"
+        },
+        {
+          "name": "repeatInterval",
+          "type": "Long",
+          "_class_name": "SimpleTriggerInputDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The simple trigger configuration"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Scheduled a new simple trigger",
+          "data_schema": [
+            {
+              "name": "SimpleTriggerDTO",
+              "schema": {
+                "triggerKeyDTO": "TriggerKeyDTO",
+                "priority": "integer",
+                "startTime": "date",
+                "description": "string",
+                "endTime": "date",
+                "finalFireTime": "date",
+                "misfireInstruction": "integer",
+                "nextFireTime": "date",
+                "jobKeyDTO": "JobKeyDTO",
+                "jobDetailDTO": "JobDetailDTO",
+                "mayFireAgain": "boolean",
+                "repeatCount": "integer",
+                "repeatInterval": "long",
+                "timesTriggered": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid trigger configuration",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/quartz-manager/simple-triggers/{name}",
+      "http_method": "PUT",
+      "method_name": "rescheduleSimpleTrigger",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Quartz\\quartz-manager\\quartz-manager-parent\\quartz-manager-starter-api\\src\\main\\java\\it\\fabioformosa\\quartzmanager\\api\\controllers\\SimpleTriggerController.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the simple trigger to reschedule",
+          "_depth": 0
+        },
+        {
+          "name": "repeatCount",
+          "type": "Integer",
+          "_class_name": "SimpleTriggerInputDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new configuration for the simple trigger"
+        },
+        {
+          "name": "repeatInterval",
+          "type": "Long",
+          "_class_name": "SimpleTriggerInputDTO",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The new configuration for the simple trigger"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Rescheduled a simple trigger",
+          "data_schema": [
+            {
+              "name": "TriggerDTO",
+              "schema": {
+                "triggerKeyDTO": "TriggerKeyDTO",
+                "priority": "integer",
+                "startTime": "date",
+                "description": "string",
+                "endTime": "date",
+                "finalFireTime": "date",
+                "misfireInstruction": "integer",
+                "nextFireTime": "date",
+                "jobKeyDTO": "JobKeyDTO",
+                "jobDetailDTO": "JobDetailDTO",
+                "mayFireAgain": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid trigger configuration",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/session/invalidate",
+      "http_method": "GET",
+      "method_name": "invalidateSession",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Quartz\\quartz-manager\\quartz-manager-parent\\quartz-manager-web-showcase\\src\\main\\java\\it\\fabioformosa\\quartzmanager\\controllers\\SessionController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content - the current session is invalidated successfully.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "healthCheck",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Quartz\\quartz-manager\\quartz-manager-parent\\quartz-manager-web-showcase\\src\\main\\java\\it\\fabioformosa\\quartzmanager\\controllers\\HealthCheckController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Health check successful, returns the string 'OK'.",
+          "data_schema": [
+            {
+              "name": "String",
+              "schema": {
+                "value": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/whoami",
+      "http_method": "GET",
+      "method_name": "getLoggedUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Quartz\\quartz-manager\\quartz-manager-parent\\quartz-manager-starter-security\\src\\main\\java\\it\\fabioformosa\\quartzmanager\\api\\security\\controllers\\UserController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the authenticated principal object when a security context and authentication are present.",
+          "data_schema": [
+            {
+              "name": "Object",
+              "schema": {
+                "principal": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Returned when the security context is null or no authentication is present.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/session/refresh",
+      "http_method": "GET",
+      "method_name": "refreshSession",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Quartz\\quartz-manager\\quartz-manager-parent\\quartz-manager-web-showcase\\src\\main\\java\\it\\fabioformosa\\quartzmanager\\controllers\\SessionController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Session refreshed successfully. The response has no body.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 4658,
+  "tokens": {
+    "prompt_tokens": 274877,
+    "completion_tokens": 11047,
+    "total_tokens": 285924,
+    "calls": 84,
+    "elapsed_s": 328.344,
+    "prompt_cost_usd": 0.034631,
+    "completion_cost_usd": 0.007786,
+    "total_cost_usd": 0.042417,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 92188,
+        "completion_tokens": 1730,
+        "total_tokens": 93918,
+        "calls": 28,
+        "elapsed_s": 35.56583,
+        "prompt_cost_usd": 0.001844,
+        "completion_cost_usd": 0.001038,
+        "total_cost_usd": 0.002882
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 85901,
+        "completion_tokens": 7228,
+        "total_tokens": 93129,
+        "calls": 28,
+        "elapsed_s": 209.461,
+        "prompt_cost_usd": 0.00859,
+        "completion_cost_usd": 0.003614,
+        "total_cost_usd": 0.012204
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 96788,
+        "completion_tokens": 2089,
+        "total_tokens": 98877,
+        "calls": 28,
+        "elapsed_s": 83.317,
+        "prompt_cost_usd": 0.024197,
+        "completion_cost_usd": 0.003134,
+        "total_cost_usd": 0.027331
+      }
+    ]
+  }
+}

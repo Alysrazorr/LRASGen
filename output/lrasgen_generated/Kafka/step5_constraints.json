@@ -1,0 +1,4392 @@
+{
+  "task_id": "kafka-rest",
+  "api_name": "kafka-rest",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/brokers",
+      "http_method": "GET",
+      "method_name": "list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\BrokersResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of broker IDs.",
+          "data_schema": [
+            {
+              "name": "BrokerList",
+              "schema": {
+                "brokers": "array of integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to BrokerManager.listLocalBrokers() and does not catch failures, so any exception from that call results in a 500 response.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}",
+      "http_method": "DELETE",
+      "method_name": "deleteGroup",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java",
+      "parameters": [
+        {
+          "name": "group",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the consumer group",
+          "_depth": 0
+        },
+        {
+          "name": "instance",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Unique ID of the consumer instance",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Consumer instance deleted successfully. No content returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Consumer instance not found. The specified group or instance does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected error occurred while deleting the consumer instance.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/subscription",
+      "http_method": "GET",
+      "method_name": "subscription",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java",
+      "parameters": [
+        {
+          "name": "group",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the consumer group",
+          "_depth": 0
+        },
+        {
+          "name": "instance",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Unique ID of the consumer instance",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the current subscription of the consumer instance.",
+          "data_schema": [
+            {
+              "name": "ConsumerSubscriptionResponse",
+              "schema": {
+                "topics": "array of string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Consumer instance not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/offsets",
+      "http_method": "GET",
+      "method_name": "committedOffsets",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java",
+      "parameters": [
+        {
+          "name": "group",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the consumer group",
+          "_depth": 0
+        },
+        {
+          "name": "instance",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Unique ID of the consumer instance",
+          "_depth": 0
+        },
+        {
+          "name": "partitions",
+          "type": "List",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the list of partitions to get committed offsets for"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The committed offsets for the requested partitions are returned.",
+          "data_schema": [
+            {
+              "name": "ConsumerCommittedResponse",
+              "schema": {
+                "offsets": "array of TopicPartitionOffsetMetadata"
+              }
+            },
+            {
+              "name": "TopicPartitionOffsetMetadata",
+              "schema": {
+                "topic": "string",
+                "partition": "integer",
+                "offset": "long",
+                "metadata": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Consumer instance not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/subscription",
+      "http_method": "POST",
+      "method_name": "subscribe",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java",
+      "parameters": [
+        {
+          "name": "group",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the consumer group",
+          "_depth": 0
+        },
+        {
+          "name": "instance",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Unique consumer instance ID",
+          "_depth": 0
+        },
+        {
+          "name": "topics",
+          "type": "List",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Subscription record containing topics or topic_pattern"
+        },
+        {
+          "name": "topicPattern",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Subscription record containing topics or topic_pattern"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Subscription successful. No content returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Conflict. The consumer is already subscribed to other topics or an illegal state occurred.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/offsets",
+      "http_method": "POST",
+      "method_name": "commitOffsets",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java",
+      "parameters": [
+        {
+          "name": "group",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the consumer group",
+          "_depth": 0
+        },
+        {
+          "name": "instance",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Unique consumer instance ID",
+          "_depth": 0
+        },
+        {
+          "name": "async",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Whether to commit offsets asynchronously",
+          "_depth": 0
+        },
+        {
+          "name": "offsets",
+          "type": "List",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "List of offsets to commit"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Offsets committed successfully. The response body contains the committed offsets.",
+          "data_schema": [
+            {
+              "name": "CommitOffsetsResponse",
+              "schema": {
+                "offsets": "array of Offset"
+              }
+            },
+            {
+              "name": "Offset",
+              "schema": {
+                "topic": "string",
+                "partition": "integer",
+                "consumed": "long",
+                "committed": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Consumer instance not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Illegal state: the consumer is already subscribed to other topics or another illegal state occurred.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected error occurred while committing offsets.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/positions/beginning",
+      "http_method": "POST",
+      "method_name": "seekToBeginning",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java",
+      "parameters": [
+        {
+          "name": "group",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the consumer group",
+          "_depth": 0
+        },
+        {
+          "name": "instance",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Unique ID of the consumer instance",
+          "_depth": 0
+        },
+        {
+          "name": "partitions",
+          "type": "List",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body containing the list of partitions to seek to beginning"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The consumer positions were successfully set to the beginning of the partitions.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Consumer instance not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Illegal state: <message>",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/subscription",
+      "http_method": "DELETE",
+      "method_name": "unsubscribe",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java",
+      "parameters": [
+        {
+          "name": "group",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the consumer group",
+          "_depth": 0
+        },
+        {
+          "name": "instance",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Unique consumer instance ID",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Consumer unsubscribed successfully. No content returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Consumer instance not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumers/{group}",
+      "http_method": "POST",
+      "method_name": "createGroup",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java",
+      "parameters": [
+        {
+          "name": "group",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the consumer group",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Consumer instance configuration"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Consumer instance configuration"
+        },
+        {
+          "name": "autoOffsetReset",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Consumer instance configuration"
+        },
+        {
+          "name": "autoCommitEnable",
+          "type": "String",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Consumer instance configuration"
+        },
+        {
+          "name": "responseMinBytes",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Consumer instance configuration"
+        },
+        {
+          "name": "requestWaitMs",
+          "type": "Integer",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Consumer instance configuration"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Consumer instance created successfully. Returns the instance ID and base URI.",
+          "data_schema": [
+            {
+              "name": "CreateConsumerInstanceResponse",
+              "schema": {
+                "instance_id": "string",
+                "base_uri": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 409,
+          "description": "Consumer with specified consumer ID already exists in the specified consumer group.",
+          "data_schema": null
+        },
+        {
+          "status_code": 422,
+          "description": "Invalid consumer configuration. The configuration does not abide by the constraints.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. This can occur if an invalid embedded format is provided or if the consumer creation fails unexpectedly.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/records",
+      "http_method": "GET",
+      "method_name": "readRecordBinary",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java",
+      "parameters": [
+        {
+          "name": "group",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the consumer group",
+          "_depth": 0
+        },
+        {
+          "name": "instance",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Unique consumer instance ID",
+          "_depth": 0
+        },
+        {
+          "name": "timeout",
+          "type": "long",
+          "require": "false",
+          "position": "query",
+          "description": "Maximum time in milliseconds to wait for records",
+          "_depth": 0
+        },
+        {
+          "name": "max_bytes",
+          "type": "long",
+          "require": "false",
+          "position": "query",
+          "description": "Maximum number of bytes to return",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of consumer records in binary format. Each record contains topic, key (base64-encoded), value (base64-encoded), partition, and offset.",
+          "data_schema": [
+            {
+              "name": "BinaryConsumerRecord",
+              "schema": {
+                "topic": "string",
+                "key": "string",
+                "value": "string",
+                "partition": "integer",
+                "offset": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Consumer instance not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 406,
+          "description": "The requested embedded data format does not match the deserializer for this consumer instance.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. This can occur if an unexpected exception is thrown during the read operation, such as a serialization error or a Kafka error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/assignments",
+      "http_method": "GET",
+      "method_name": "assignment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java",
+      "parameters": [
+        {
+          "name": "group",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Consumer group name",
+          "_depth": 0
+        },
+        {
+          "name": "instance",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Consumer instance ID",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The assignment of the consumer instance is returned.",
+          "data_schema": [
+            {
+              "name": "ConsumerAssignmentResponse",
+              "schema": {
+                "partitions": "array of TopicPartition"
+              }
+            },
+            {
+              "name": "TopicPartition",
+              "schema": {
+                "topic": "string",
+                "partition": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Consumer instance not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/positions",
+      "http_method": "POST",
+      "method_name": "seekToOffset",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java",
+      "parameters": [
+        {
+          "name": "group",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the consumer group",
+          "_depth": 0
+        },
+        {
+          "name": "instance",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Unique ID of the consumer instance",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "ConsumerSeekRequest",
+          "require": "false",
+          "position": "body",
+          "description": "Offsets and timestamps to seek to",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. The consumer's position was successfully set to the specified offsets.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The consumer instance does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Conflict. The consumer is in an illegal state (e.g., already subscribed to topics).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/positions/end",
+      "http_method": "POST",
+      "method_name": "seekToEnd",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java",
+      "parameters": [
+        {
+          "name": "group",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the consumer group",
+          "_depth": 0
+        },
+        {
+          "name": "instance",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Unique consumer instance ID",
+          "_depth": 0
+        },
+        {
+          "name": "partitions",
+          "type": "List",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Request body specifying the partitions to seek to the end"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response with no content. The consumer's position is moved to the end of the requested partitions.",
+          "data_schema": []
+        },
+        {
+          "status_code": 409,
+          "description": "Conflict. The consumer is in an illegal state (e.g., not subscribed or assigned) and cannot seek to end.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Consumer instance not found.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/topics/{topic}/partitions",
+      "http_method": "GET",
+      "method_name": "list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\PartitionsResource.java",
+      "parameters": [
+        {
+          "name": "topic",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The topic name from the path parameter {topic}.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of partitions for the given topic.",
+          "data_schema": [
+            {
+              "name": "List<GetPartitionResponse>",
+              "schema": {
+                "partition": "integer",
+                "leader": "integer",
+                "replicas": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Topic not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/topics/{topic}/partitions/{partition}",
+      "http_method": "GET",
+      "method_name": "getPartition",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\PartitionsResource.java",
+      "parameters": [
+        {
+          "name": "topic",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The topic name.",
+          "_depth": 0
+        },
+        {
+          "name": "partition",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The partition ID.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the partition with the given partition ID for the given topic.",
+          "data_schema": [
+            {
+              "name": "GetPartitionResponse",
+              "schema": {
+                "partition": "integer",
+                "leader": "integer",
+                "replicas": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Partition not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\RootResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns an empty JSON object.",
+          "data_schema": [
+            {
+              "name": "Map<String, String>",
+              "schema": {
+                "additionalProperties": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/topics/{topic}/partitions/{partition}/offsets",
+      "http_method": "GET",
+      "method_name": "getOffsets",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\PartitionsResource.java",
+      "parameters": [
+        {
+          "name": "topic",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The topic name.",
+          "_depth": 0
+        },
+        {
+          "name": "partition",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The partition ID.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a summary with beginning and end offsets for the given topic and partition.",
+          "data_schema": [
+            {
+              "name": "TopicPartitionOffsetResponse",
+              "schema": {
+                "beginning_offset": "long",
+                "end_offset": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Partition not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/topics/{topic}/partitions/{partition}",
+      "http_method": "POST",
+      "method_name": "produceBinary",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ProduceToPartitionAction.java",
+      "parameters": [
+        {
+          "name": "topic",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The topic to produce the record to.",
+          "_depth": 0
+        },
+        {
+          "name": "partition",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The partition to produce the record to.",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "ProduceRequest",
+          "require": "false",
+          "position": "body",
+          "description": "The produce request containing the records to produce.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing the produce result offsets and schema IDs.",
+          "data_schema": [
+            {
+              "name": "ProduceResponse",
+              "schema": {
+                "offsets": "array of PartitionOffset",
+                "key_schema_id": "integer",
+                "value_schema_id": "integer"
+              }
+            },
+            {
+              "name": "PartitionOffset",
+              "schema": {
+                "partition": "integer",
+                "offset": "long",
+                "error_code": "integer",
+                "error": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. Authentication error occurred while producing.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Authorization error occurred while producing.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected non-Kafka exception occurred.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/assignments",
+      "http_method": "POST",
+      "method_name": "assign",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java",
+      "parameters": [
+        {
+          "name": "group",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the consumer group",
+          "_depth": 0
+        },
+        {
+          "name": "instance",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Unique consumer instance ID",
+          "_depth": 0
+        },
+        {
+          "name": "partitions",
+          "type": "List",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "List of partitions to assign to the consumer"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The consumer assignments were successfully retrieved or the assignment request was processed. The endpoint returns no response body on success.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Consumer instance not found. This occurs when the specified consumer group or instance does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Illegal state. This occurs when the consumer is in an invalid state for the assignment operation.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. This occurs when an unexpected error happens during the assignment operation.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/",
+      "http_method": "POST",
+      "method_name": "post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\RootResource.java",
+      "parameters": [
+        {
+          "name": "request",
+          "type": "Map<String, String>",
+          "require": "false",
+          "position": "body",
+          "description": "Request body map of string keys to string values, validated with @Valid",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response. Returns an empty JSON object.",
+          "data_schema": [
+            {
+              "name": "Map<String, String>",
+              "schema": {}
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/topics",
+      "http_method": "GET",
+      "method_name": "list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\TopicsResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List of topic names",
+          "data_schema": [
+            {
+              "name": "List<String>",
+              "schema": {
+                "items": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/topics/{topic}",
+      "http_method": "POST",
+      "method_name": "produceBinary",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ProduceToTopicAction.java",
+      "parameters": [
+        {
+          "name": "topic",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The topic to produce the record to.",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "ProduceRequest",
+          "require": "false",
+          "position": "body",
+          "description": "The produce request containing the records to produce.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing offsets for produced records and optional schema IDs.",
+          "data_schema": [
+            {
+              "name": "ProduceResponse",
+              "schema": {
+                "offsets": "array of PartitionOffset",
+                "key_schema_id": "integer",
+                "value_schema_id": "integer"
+              }
+            },
+            {
+              "name": "PartitionOffset",
+              "schema": {
+                "partition": "integer",
+                "offset": "long",
+                "error_code": "integer",
+                "error": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. Authentication error occurred while producing records.",
+          "data_schema": [
+            {
+              "name": "ProduceResponse",
+              "schema": {
+                "offsets": "array of PartitionOffset",
+                "key_schema_id": "integer",
+                "value_schema_id": "integer"
+              }
+            },
+            {
+              "name": "PartitionOffset",
+              "schema": {
+                "partition": "integer",
+                "offset": "long",
+                "error_code": "integer",
+                "error": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Authorization error occurred while producing records.",
+          "data_schema": [
+            {
+              "name": "ProduceResponse",
+              "schema": {
+                "offsets": "array of PartitionOffset",
+                "key_schema_id": "integer",
+                "value_schema_id": "integer"
+              }
+            },
+            {
+              "name": "PartitionOffset",
+              "schema": {
+                "partition": "integer",
+                "offset": "long",
+                "error_code": "integer",
+                "error": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected non-Kafka exception occurred during production.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/acls",
+      "http_method": "POST",
+      "method_name": "createAcl",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\AclsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The Kafka cluster ID.",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "CreateAclRequest",
+          "require": "false",
+          "position": "body",
+          "description": "The ACL creation request.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "ACL created successfully. The response includes a Location header pointing to the created ACL.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when resource_type is ANY or UNKNOWN, pattern_type is ANY, MATCH, or UNKNOWN, operation is ANY or UNKNOWN, or permission is ANY or UNKNOWN.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when the asynchronous ACL creation fails.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/broker-configs:alter",
+      "http_method": "POST",
+      "method_name": "alterClusterConfigBatch",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\AlterClusterConfigBatchAction.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The cluster ID",
+          "_depth": 0
+        },
+        {
+          "name": "config_type",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The type of config to alter",
+          "enum": [
+            "BROKER"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "AlterClusterConfigBatchRequest",
+          "require": "false",
+          "position": "body",
+          "description": "The batch alter request containing the config changes",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. The cluster configs were successfully altered.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/configs:alter",
+      "http_method": "POST",
+      "method_name": "alterTopicConfigBatch",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\AlterTopicConfigBatchAction.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The cluster ID",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The topic name",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "AlterTopicConfigBatchRequest",
+          "require": "false",
+          "position": "body",
+          "description": "The alter topic config batch request",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "The topic configs were successfully altered. No content is returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while altering the topic configs.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/{brokerId}/configs:alter",
+      "http_method": "POST",
+      "method_name": "alterBrokerConfigBatch",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\AlterBrokerConfigBatchAction.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "brokerId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the broker.",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "AlterBrokerConfigBatchRequest",
+          "require": "false",
+          "position": "body",
+          "description": "The request body containing the config alterations.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "The broker configs were altered successfully. No content is returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "The broker config alteration failed due to an internal server error.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/topics/{topic}",
+      "http_method": "GET",
+      "method_name": "getTopic",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\TopicsResource.java",
+      "parameters": [
+        {
+          "name": "topic",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the topic to retrieve.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The topic exists and the response contains the topic details including name, configs, and partitions.",
+          "data_schema": [
+            {
+              "name": "GetTopicResponse",
+              "schema": {
+                "name": "string",
+                "configs": "map<string, string>",
+                "partitions": "array<GetPartitionResponse>"
+              }
+            },
+            {
+              "name": "GetPartitionResponse",
+              "schema": {
+                "partition": "integer",
+                "leader": "integer",
+                "replicas": "array<Replica>"
+              }
+            },
+            {
+              "name": "Replica",
+              "schema": {
+                "broker": "integer",
+                "leader": "boolean",
+                "in_sync": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Topic not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the asynchronous operation fails unexpectedly.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/acls",
+      "http_method": "GET",
+      "method_name": "searchAcls",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\AclsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The cluster ID.",
+          "_depth": 0
+        },
+        {
+          "name": "resource_type",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The resource type.",
+          "enum": [
+            "UNKNOWN",
+            "ANY",
+            "TOPIC",
+            "GROUP",
+            "CLUSTER",
+            "TRANSACTIONAL_ID",
+            "DELEGATION_TOKEN"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "resource_name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The resource name.",
+          "_depth": 0
+        },
+        {
+          "name": "pattern_type",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The pattern type.",
+          "enum": [
+            "UNKNOWN",
+            "ANY",
+            "MATCH",
+            "LITERAL",
+            "PREFIXED"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "principal",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The principal.",
+          "_depth": 0
+        },
+        {
+          "name": "host",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The host.",
+          "_depth": 0
+        },
+        {
+          "name": "operation",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The operation.",
+          "enum": [
+            "UNKNOWN",
+            "ANY",
+            "ALL",
+            "READ",
+            "WRITE",
+            "CREATE",
+            "DELETE",
+            "ALTER",
+            "DESCRIBE",
+            "CLUSTER_ACTION",
+            "DESCRIBE_CONFIGS",
+            "ALTER_CONFIGS",
+            "IDEMPOTENT_WRITE"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "permission",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The permission.",
+          "enum": [
+            "UNKNOWN",
+            "ANY",
+            "DENY",
+            "ALLOW"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The list of ACLs matching the search criteria.",
+          "data_schema": [
+            {
+              "name": "SearchAclsResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "data": "array"
+              }
+            },
+            {
+              "name": "AclData",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "cluster_id": "string",
+                "resource_type": "string",
+                "resource_name": "string",
+                "pattern_type": "string",
+                "principal": "string",
+                "host": "string",
+                "operation": "string",
+                "permission": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The request parameters are invalid (e.g., resource_type, pattern_type, operation, or permission is ANY/UNKNOWN).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/{brokerId}/configs",
+      "http_method": "GET",
+      "method_name": "listBrokerConfigs",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\BrokerConfigsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "brokerId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the broker.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of broker configs is returned.",
+          "data_schema": [
+            {
+              "name": "ListBrokerConfigsResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "next": "string"
+                },
+                "data": [
+                  {
+                    "kind": "string",
+                    "metadata": {
+                      "self": "string",
+                      "resource_name": "string"
+                    },
+                    "cluster_id": "string",
+                    "broker_id": "integer",
+                    "name": "string",
+                    "value": "string",
+                    "is_default": "boolean",
+                    "is_read_only": "boolean",
+                    "is_sensitive": "boolean",
+                    "source": "string",
+                    "synonyms": [
+                      {
+                        "name": "string",
+                        "value": "string",
+                        "source": "string"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates the request to BrokerConfigManager and does not catch failures, so any exception from that call results in a 500 response.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/{brokerId}/configs/{name}",
+      "http_method": "PUT",
+      "method_name": "updateBrokerConfig",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\BrokerConfigsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "brokerId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the broker.",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the config.",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "UpdateBrokerConfigRequest",
+          "require": "false",
+          "position": "body",
+          "description": "The request body containing the new value for the config.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Broker config updated successfully. No content returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "The broker config with the given name was not found.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while updating the broker config.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/{brokerId}/configs/{name}",
+      "http_method": "GET",
+      "method_name": "getBrokerConfig",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\BrokerConfigsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the Kafka cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "brokerId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the broker whose configuration is being retrieved.",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the broker configuration to retrieve.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The broker config was successfully retrieved.",
+          "data_schema": [
+            {
+              "name": "GetBrokerConfigResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": "Resource.Metadata",
+                "cluster_id": "string",
+                "broker_id": "integer",
+                "name": "string",
+                "value": "string",
+                "is_default": "boolean",
+                "is_read_only": "boolean",
+                "is_sensitive": "boolean",
+                "source": "ConfigSource",
+                "synonyms": "array<ConfigSynonymData>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The broker config was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while retrieving the broker config.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/acls",
+      "http_method": "DELETE",
+      "method_name": "deleteAcls",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\AclsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The Kafka cluster ID.",
+          "_depth": 0
+        },
+        {
+          "name": "resource_type",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The ACL resource type.",
+          "enum": [
+            "UNKNOWN",
+            "ANY",
+            "TOPIC",
+            "GROUP",
+            "CLUSTER",
+            "TRANSACTIONAL_ID",
+            "DELEGATION_TOKEN"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "resource_name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The ACL resource name.",
+          "_depth": 0
+        },
+        {
+          "name": "pattern_type",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The ACL pattern type.",
+          "enum": [
+            "UNKNOWN",
+            "ANY",
+            "MATCH",
+            "LITERAL",
+            "PREFIXED"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "principal",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The ACL principal.",
+          "_depth": 0
+        },
+        {
+          "name": "host",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The ACL host.",
+          "_depth": 0
+        },
+        {
+          "name": "operation",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The ACL operation.",
+          "enum": [
+            "UNKNOWN",
+            "ANY",
+            "ALL",
+            "READ",
+            "WRITE",
+            "CREATE",
+            "DELETE",
+            "ALTER",
+            "DESCRIBE",
+            "CLUSTER_ACTION",
+            "DESCRIBE_CONFIGS",
+            "ALTER_CONFIGS",
+            "IDEMPOTENT_WRITE"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "permission",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The ACL permission.",
+          "enum": [
+            "UNKNOWN",
+            "ANY",
+            "DENY",
+            "ALLOW"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The ACLs matching the delete criteria were deleted and returned.",
+          "data_schema": [
+            {
+              "name": "DeleteAclsResponse",
+              "schema": {
+                "data": "array of AclData"
+              }
+            },
+            {
+              "name": "AclData",
+              "schema": {
+                "kind": "string",
+                "metadata": "Resource.Metadata",
+                "cluster_id": "string",
+                "resource_type": "string",
+                "resource_name": "string",
+                "pattern_type": "string",
+                "principal": "string",
+                "host": "string",
+                "operation": "string",
+                "permission": "string"
+              }
+            },
+            {
+              "name": "Resource.Metadata",
+              "schema": {
+                "self": "string",
+                "resource_name": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when resource_type, pattern_type, operation, or permission is UNKNOWN.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when the asynchronous ACL deletion fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/{brokerId}/configs/{name}",
+      "http_method": "DELETE",
+      "method_name": "resetBrokerConfig",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\BrokerConfigsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "brokerId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the broker.",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the broker configuration to reset.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. The broker config was successfully reset to its default value.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The specified broker config does not exist.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while processing the request.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/{brokerId}",
+      "http_method": "GET",
+      "method_name": "getBroker",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\BrokersResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the cluster to which the broker belongs.",
+          "_depth": 0
+        },
+        {
+          "name": "brokerId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the broker to retrieve.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The broker was successfully retrieved.",
+          "data_schema": [
+            {
+              "name": "BrokerData",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "cluster_id": "string",
+                "broker_id": "integer",
+                "host": "string",
+                "port": "integer",
+                "rack": "string",
+                "configs": "object",
+                "partition_replicas": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The broker with the given ID was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers",
+      "http_method": "GET",
+      "method_name": "listBrokers",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\BrokersResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the cluster whose brokers are to be listed.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of Kafka brokers in the cluster.",
+          "data_schema": [
+            {
+              "name": "ListBrokersResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "data": "array"
+              }
+            },
+            {
+              "name": "Metadata",
+              "schema": {
+                "self": "string",
+                "next": "string"
+              }
+            },
+            {
+              "name": "BrokerData",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "cluster_id": "string",
+                "broker_id": "integer",
+                "host": "string",
+                "port": "integer",
+                "rack": "string",
+                "configs": "object",
+                "partition_replicas": "object"
+              }
+            },
+            {
+              "name": "Resource.Metadata",
+              "schema": {
+                "self": "string",
+                "resource_name": "string"
+              }
+            },
+            {
+              "name": "Resource.Relationship",
+              "schema": {
+                "related": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The broker manager call fails and the exception is propagated.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/broker-configs",
+      "http_method": "GET",
+      "method_name": "listClusterConfigs",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ClusterConfigsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the Kafka cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "config_type",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The type of cluster config.",
+          "enum": [
+            "BROKER"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The list of cluster configs was successfully returned.",
+          "data_schema": [
+            {
+              "name": "ListClusterConfigsResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "data": "array"
+              }
+            },
+            {
+              "name": "Metadata",
+              "schema": {
+                "self": "string",
+                "next": "string"
+              }
+            },
+            {
+              "name": "ClusterConfigData",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "cluster_id": "string",
+                "config_type": "string",
+                "name": "string",
+                "value": "string",
+                "is_default": "boolean",
+                "is_read_only": "boolean",
+                "is_sensitive": "boolean",
+                "source": "string",
+                "synonyms": "array"
+              }
+            },
+            {
+              "name": "Resource.Metadata",
+              "schema": {
+                "self": "string",
+                "resource_name": "string"
+              }
+            },
+            {
+              "name": "ConfigSynonymData",
+              "schema": {
+                "name": "string",
+                "value": "string",
+                "source": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The request was handed off to ClusterConfigManager and the future completed exceptionally, and the exception was not caught by the handler.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/broker-configs/{name}",
+      "http_method": "DELETE",
+      "method_name": "deleteClusterConfig",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ClusterConfigsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The cluster ID",
+          "_depth": 0
+        },
+        {
+          "name": "config_type",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The type of config",
+          "enum": [
+            "BROKER"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the config",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. The cluster config was successfully deleted.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The cluster config with the specified name does not exist.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while processing the request.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/broker-configs/{name}",
+      "http_method": "GET",
+      "method_name": "getClusterConfig",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ClusterConfigsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "config_type",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The type of the cluster config.",
+          "enum": [
+            "BROKER"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the cluster config.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the cluster config with the given name.",
+          "data_schema": [
+            {
+              "name": "ClusterConfigData",
+              "schema": {
+                "kind": "string",
+                "metadata": "Resource.Metadata",
+                "cluster_id": "string",
+                "config_type": "ClusterConfig.Type",
+                "name": "string",
+                "value": "string",
+                "is_default": "boolean",
+                "is_read_only": "boolean",
+                "is_sensitive": "boolean",
+                "source": "ConfigSource",
+                "synonyms": "array of ConfigSynonymData"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The cluster config with the given name was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/broker-configs/{name}",
+      "http_method": "PUT",
+      "method_name": "upsertClusterConfig",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ClusterConfigsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "config_type",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The type of config. Possible values: BROKER.",
+          "enum": [
+            "BROKER"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the config.",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "UpdateClusterConfigRequest",
+          "require": "false",
+          "position": "body",
+          "description": "The request body containing the new config value.",
+          "_depth": 0
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The new value of the config.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "The cluster config was successfully updated or created.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while processing the request.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters",
+      "http_method": "GET",
+      "method_name": "listClusters",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ClustersResource.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing a list of Kafka clusters.",
+          "data_schema": [
+            {
+              "name": "ListClustersResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "next": "string"
+                },
+                "data": [
+                  {
+                    "kind": "string",
+                    "metadata": {
+                      "self": "string",
+                      "resource_name": "string"
+                    },
+                    "cluster_id": "string",
+                    "controller": {
+                      "related": "string"
+                    },
+                    "acls": {
+                      "related": "string"
+                    },
+                    "brokers": {
+                      "related": "string"
+                    },
+                    "broker_configs": {
+                      "related": "string"
+                    },
+                    "consumer_groups": {
+                      "related": "string"
+                    },
+                    "topics": {
+                      "related": "string"
+                    },
+                    "partition_reassignments": {
+                      "related": "string"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to ClusterManager.listClusters() and does not catch any exceptions; if the future completes exceptionally, the exception is propagated and results in a 500 response.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}",
+      "http_method": "GET",
+      "method_name": "getCluster",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ClustersResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the cluster to retrieve.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The cluster with the given clusterId was found and returned.",
+          "data_schema": [
+            {
+              "name": "ClusterData",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "resource_name": "string"
+                },
+                "cluster_id": "string",
+                "controller": {
+                  "related": "string"
+                },
+                "acls": {
+                  "related": "string"
+                },
+                "brokers": {
+                  "related": "string"
+                },
+                "broker_configs": {
+                  "related": "string"
+                },
+                "consumer_groups": {
+                  "related": "string"
+                },
+                "topics": {
+                  "related": "string"
+                },
+                "partition_reassignments": {
+                  "related": "string"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The cluster with the given clusterId was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}/consumers/{consumerId}/assignments",
+      "http_method": "GET",
+      "method_name": "listConsumerAssignments",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumerAssignmentsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the Kafka cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "consumerGroupId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the consumer group.",
+          "_depth": 0
+        },
+        {
+          "name": "consumerId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the consumer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The list of consumer assignments for the specified consumer.",
+          "data_schema": [
+            {
+              "name": "ListConsumerAssignmentsResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "next": "string"
+                },
+                "data": [
+                  {
+                    "kind": "string",
+                    "metadata": {
+                      "self": "string",
+                      "resource_name": "string"
+                    },
+                    "cluster_id": "string",
+                    "consumer_group_id": "string",
+                    "consumer_id": "string",
+                    "topic_name": "string",
+                    "partition_id": "integer",
+                    "partition": {
+                      "related": "string"
+                    },
+                    "lag": {
+                      "related": "string"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The request failed due to an unexpected error while processing the consumer assignments.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}/lag-summary",
+      "http_method": "GET",
+      "method_name": "getConsumerGroupLagSummary",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumerGroupLagSummariesResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The Kafka cluster ID.",
+          "_depth": 0
+        },
+        {
+          "name": "consumerGroupId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The consumer group ID.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The consumer group lag summary was successfully retrieved.",
+          "data_schema": [
+            {
+              "name": "ConsumerGroupLagSummaryData",
+              "schema": {
+                "kind": "string",
+                "metadata": "Metadata",
+                "cluster_id": "string",
+                "consumer_group_id": "string",
+                "max_lag": "long",
+                "total_lag": "long",
+                "max_lag_consumer_id": "string",
+                "max_lag_consumer": "Relationship",
+                "max_lag_client_id": "string",
+                "max_lag_instance_id": "string",
+                "max_lag_topic_name": "string",
+                "max_lag_partition_id": "integer",
+                "max_lag_partition": "Relationship"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The consumer group lag summary was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while retrieving the consumer group lag summary.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}/consumers/{consumerId}/assignments/{topicName}/partitions/{partitionId}",
+      "http_method": "GET",
+      "method_name": "getConsumerAssignment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumerAssignmentsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the Kafka cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "consumerGroupId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the consumer group.",
+          "_depth": 0
+        },
+        {
+          "name": "consumerId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the consumer.",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the topic.",
+          "_depth": 0
+        },
+        {
+          "name": "partitionId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the partition.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The consumer assignment was successfully retrieved.",
+          "data_schema": [
+            {
+              "name": "GetConsumerAssignmentResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "cluster_id": "string",
+                "consumer_group_id": "string",
+                "consumer_id": "string",
+                "topic_name": "string",
+                "partition_id": "integer",
+                "partition": "object",
+                "lag": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The consumer assignment was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}",
+      "http_method": "GET",
+      "method_name": "getConsumerGroup",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumerGroupsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the Kafka cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "consumerGroupId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the consumer group.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The consumer group was successfully retrieved.",
+          "data_schema": [
+            {
+              "name": "GetConsumerGroupResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "resource_name": "string"
+                },
+                "cluster_id": "string",
+                "consumer_group_id": "string",
+                "is_simple": "boolean",
+                "partition_assignor": "string",
+                "state": "string",
+                "coordinator": {
+                  "related": "string"
+                },
+                "consumers": {
+                  "related": "string"
+                },
+                "lag_summary": {
+                  "related": "string"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The consumer group was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups",
+      "http_method": "GET",
+      "method_name": "listConsumerGroups",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumerGroupsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the Kafka cluster.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of consumer groups in the cluster.",
+          "data_schema": [
+            {
+              "name": "ListConsumerGroupsResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "data": "array"
+              }
+            },
+            {
+              "name": "ConsumerGroupDataList",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "data": "array"
+              }
+            },
+            {
+              "name": "ConsumerGroupData",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "cluster_id": "string",
+                "consumer_group_id": "string",
+                "is_simple": "boolean",
+                "partition_assignor": "string",
+                "state": "string",
+                "coordinator": "object",
+                "consumers": "object",
+                "lag_summary": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates the work to ConsumerGroupManager and does not catch failures.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}/lags",
+      "http_method": "GET",
+      "method_name": "listConsumerLags",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumerLagsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the Kafka cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "consumerGroupId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the consumer group.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The list of consumer lags for the given consumer group.",
+          "data_schema": [
+            {
+              "name": "ListConsumerLagsResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "data": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Consumer lags not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}/lags/{topicName}/partitions/{partitionId}",
+      "http_method": "GET",
+      "method_name": "getConsumerLag",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumerLagsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the Kafka cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "consumerGroupId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the consumer group.",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the topic.",
+          "_depth": 0
+        },
+        {
+          "name": "partitionId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the partition.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The consumer lag for the specified topic and partition.",
+          "data_schema": [
+            {
+              "name": "GetConsumerLagResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "cluster_id": "string",
+                "consumer_group_id": "string",
+                "topic_name": "string",
+                "partition_id": "integer",
+                "consumer_id": "string",
+                "instance_id": "string",
+                "client_id": "string",
+                "current_offset": "long",
+                "log_end_offset": "long",
+                "lag": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The consumer lag was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while retrieving the consumer lag.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}/consumers",
+      "http_method": "GET",
+      "method_name": "listConsumers",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumersResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the Kafka cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "consumerGroupId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the consumer group.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The list of consumers in the consumer group is returned successfully.",
+          "data_schema": [
+            {
+              "name": "ListConsumersResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "next": "string"
+                },
+                "data": [
+                  {
+                    "kind": "string",
+                    "metadata": {
+                      "self": "string",
+                      "resource_name": "string"
+                    },
+                    "cluster_id": "string",
+                    "consumer_group_id": "string",
+                    "consumer_id": "string",
+                    "instance_id": "string",
+                    "client_id": "string",
+                    "assignments": {
+                      "related": "string"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The server encountered an unexpected condition that prevented it from fulfilling the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/partitions/{partitionId}/reassignment",
+      "http_method": "GET",
+      "method_name": "getReassignment",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\GetReassignmentAction.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The Kafka cluster ID.",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The Kafka topic name.",
+          "_depth": 0
+        },
+        {
+          "name": "partitionId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The Kafka partition ID.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The reassignment for the specified partition is returned successfully.",
+          "data_schema": [
+            {
+              "name": "GetReassignmentResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "resource_name": "string"
+                },
+                "cluster_id": "string",
+                "topic_name": "string",
+                "partition_id": "integer",
+                "adding_replicas": "array of integers",
+                "removing_replicas": "array of integers",
+                "replicas": {
+                  "related": "string"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The specified partition reassignment was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}/consumers/{consumerId}",
+      "http_method": "GET",
+      "method_name": "getConsumer",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumersResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the Kafka cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "consumerGroupId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the consumer group.",
+          "_depth": 0
+        },
+        {
+          "name": "consumerId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the consumer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The consumer was successfully retrieved.",
+          "data_schema": [
+            {
+              "name": "GetConsumerResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "resource_name": "string"
+                },
+                "cluster_id": "string",
+                "consumer_group_id": "string",
+                "consumer_id": "string",
+                "instance_id": "string",
+                "client_id": "string",
+                "assignments": {
+                  "related": "string"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The consumer was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "The server encountered an unexpected condition that prevented it from fulfilling the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/-/configs",
+      "http_method": "GET",
+      "method_name": "listTopicConfigs",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ListAllTopicsConfigsAction.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the Kafka cluster.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The list of configs for all topics in the cluster.",
+          "data_schema": [
+            {
+              "name": "ListTopicConfigsResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "next": "string"
+                },
+                "data": [
+                  {
+                    "kind": "string",
+                    "metadata": {
+                      "self": "string",
+                      "resource_name": "string"
+                    },
+                    "cluster_id": "string",
+                    "topic_name": "string",
+                    "name": "string",
+                    "value": "string",
+                    "is_default": "boolean",
+                    "is_read_only": "boolean",
+                    "is_sensitive": "boolean",
+                    "source": "string",
+                    "synonyms": [
+                      {
+                        "name": "string",
+                        "value": "string",
+                        "source": "string"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/-/partitions/-/reassignment",
+      "http_method": "GET",
+      "method_name": "listReassignments",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ListAllReassignmentsAction.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The Kafka cluster ID.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The list of reassignments for all topics and partitions in the cluster.",
+          "data_schema": [
+            {
+              "name": "ListAllReassignmentsResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "data": "array"
+              }
+            },
+            {
+              "name": "ReassignmentData",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "cluster_id": "string",
+                "topic_name": "string",
+                "partition_id": "integer",
+                "adding_replicas": "array",
+                "removing_replicas": "array",
+                "replicas": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to ReassignmentManager.listReassignments and does not catch failures, so any exception from that call results in a 500 response.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/-/configs",
+      "http_method": "GET",
+      "method_name": "listBrokersConfigs",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ListAllBrokersConfigsAction.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the cluster to list broker configs for.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of all broker configs for all brokers in the cluster.",
+          "data_schema": [
+            {
+              "name": "ListBrokerConfigsResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "next": "string"
+                },
+                "data": [
+                  {
+                    "kind": "string",
+                    "metadata": {
+                      "self": "string",
+                      "resource_name": "string"
+                    },
+                    "cluster_id": "string",
+                    "broker_id": "integer",
+                    "name": "string",
+                    "value": "string",
+                    "is_default": "boolean",
+                    "is_read_only": "boolean",
+                    "is_sensitive": "boolean",
+                    "source": "string",
+                    "synonyms": [
+                      {
+                        "name": "string",
+                        "value": "string",
+                        "source": "string"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to BrokerManager and BrokerConfigManager; any failure in those calls is not caught and results in a 500 response.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/partitions",
+      "http_method": "GET",
+      "method_name": "listPartitions",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\PartitionsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the cluster to which the topic belongs.",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the topic whose partitions are to be listed.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of partitions for the given topic.",
+          "data_schema": [
+            {
+              "name": "ListPartitionsResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "next": "string"
+                },
+                "data": [
+                  {
+                    "kind": "string",
+                    "metadata": {
+                      "self": "string",
+                      "resource_name": "string"
+                    },
+                    "cluster_id": "string",
+                    "topic_name": "string",
+                    "partition_id": "integer",
+                    "leader": {
+                      "related": "string"
+                    },
+                    "replicas": {
+                      "related": "string"
+                    },
+                    "reassignment": {
+                      "related": "string"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The request could not be completed due to an unexpected condition.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/partitions/{partitionId}",
+      "http_method": "GET",
+      "method_name": "getPartition",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\PartitionsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The cluster ID",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The topic name",
+          "_depth": 0
+        },
+        {
+          "name": "partitionId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The partition ID",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The partition was successfully retrieved.",
+          "data_schema": [
+            {
+              "name": "GetPartitionResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "resource_name": "string"
+                },
+                "cluster_id": "string",
+                "topic_name": "string",
+                "partition_id": "integer",
+                "leader": {
+                  "related": "string"
+                },
+                "replicas": {
+                  "related": "string"
+                },
+                "reassignment": {
+                  "related": "string"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The partition was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "The server encountered an internal error while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/partitions/{partitionId}/replicas/{brokerId}",
+      "http_method": "GET",
+      "method_name": "getReplica",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ReplicasResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The cluster ID",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The topic name",
+          "_depth": 0
+        },
+        {
+          "name": "partitionId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The partition ID",
+          "_depth": 0
+        },
+        {
+          "name": "brokerId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The broker ID",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The replica was successfully retrieved.",
+          "data_schema": [
+            {
+              "name": "GetReplicaResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": "Resource.Metadata",
+                "cluster_id": "string",
+                "topic_name": "string",
+                "partition_id": "integer",
+                "broker_id": "integer",
+                "is_leader": "boolean",
+                "is_in_sync": "boolean",
+                "broker": "Resource.Relationship"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The replica was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "The replica manager failed to retrieve the replica.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/partitions/{partitionId}/replicas",
+      "http_method": "GET",
+      "method_name": "listReplicas",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ReplicasResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the Kafka cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the topic.",
+          "_depth": 0
+        },
+        {
+          "name": "partitionId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The partition ID.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing a list of replicas for the specified partition.",
+          "data_schema": [
+            {
+              "name": "ListReplicasResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "next": "string"
+                },
+                "data": [
+                  {
+                    "kind": "string",
+                    "metadata": {
+                      "self": "string",
+                      "resource_name": "string"
+                    },
+                    "cluster_id": "string",
+                    "topic_name": "string",
+                    "partition_id": "integer",
+                    "broker_id": "integer",
+                    "is_leader": "boolean",
+                    "is_in_sync": "boolean",
+                    "broker": {
+                      "related": "string"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates the entire operation to ReplicaManager.listReplicas and does not catch any exceptions; if the future completes exceptionally, the exception is propagated to the client.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/configs/{name}",
+      "http_method": "DELETE",
+      "method_name": "resetTopicConfig",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicConfigsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The Kafka cluster ID.",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The topic name.",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The configuration parameter name.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. The topic configuration was successfully reset to its default value.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The specified cluster, topic, or configuration does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/partitions/-/reassignment",
+      "http_method": "GET",
+      "method_name": "listReassignmentsByTopic",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\SearchReassignmentsByTopicAction.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The Kafka cluster ID.",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The Kafka topic name.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The list of reassignments for the given topic is returned.",
+          "data_schema": [
+            {
+              "name": "SearchReassignmentsByTopicResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "next": "string"
+                },
+                "data": [
+                  {
+                    "kind": "string",
+                    "metadata": {
+                      "self": "string",
+                      "resource_name": "string"
+                    },
+                    "cluster_id": "string",
+                    "topic_name": "string",
+                    "partition_id": "integer",
+                    "adding_replicas": [
+                      "integer"
+                    ],
+                    "removing_replicas": [
+                      "integer"
+                    ],
+                    "replicas": {
+                      "related": "string"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "The server encountered an unexpected condition that prevented it from fulfilling the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/configs/{name}",
+      "http_method": "PUT",
+      "method_name": "updateTopicConfig",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicConfigsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The cluster ID",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The topic name",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The config name",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "UpdateTopicConfigRequest",
+          "require": "false",
+          "position": "body",
+          "description": "The update topic config request",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. The topic configuration was successfully updated.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The specified cluster, topic, or configuration does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/records",
+      "http_method": "POST",
+      "method_name": "produce",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ProduceAction.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The Kafka cluster ID.",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the topic to produce records to.",
+          "_depth": 0
+        },
+        {
+          "name": "requests",
+          "type": "JsonStream<ProduceRequest>",
+          "require": "false",
+          "position": "body",
+          "description": "A stream of produce requests. Each request contains the record data to produce.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful produce response containing metadata about the produced record.",
+          "data_schema": [
+            {
+              "name": "ProduceResponse",
+              "schema": {
+                "error_code": "integer",
+                "cluster_id": "string",
+                "topic_name": "string",
+                "partition_id": "integer",
+                "offset": "long",
+                "timestamp": "string (ISO-8601 instant, optional)",
+                "key": "ProduceResponseData (optional)",
+                "value": "ProduceResponseData (optional)"
+              }
+            },
+            {
+              "name": "ProduceResponseData",
+              "schema": {
+                "type": "string (EmbeddedFormat, optional)",
+                "subject": "string (optional)",
+                "schema_id": "integer (optional)",
+                "schema_version": "integer (optional)",
+                "size": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the request payload is invalid, contains illegal arguments, or fails JSON processing.",
+          "data_schema": null
+        },
+        {
+          "status_code": 422,
+          "description": "Unprocessable Entity. Returned when message serialization fails or the payload is invalid.",
+          "data_schema": null
+        },
+        {
+          "status_code": 429,
+          "description": "Too Many Requests. Returned when the produce request rate limit is exceeded.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when an unexpected error occurs during produce processing.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/{brokerId}/partition-replicas",
+      "http_method": "GET",
+      "method_name": "searchReplicasByBroker",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\SearchReplicasByBrokerAction.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the Kafka cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "brokerId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the broker.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The list of partition replicas belonging to the specified broker is returned successfully.",
+          "data_schema": [
+            {
+              "name": "ReplicaDataList",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "data": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The request could not be completed due to an unexpected condition.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/configs/{name}",
+      "http_method": "GET",
+      "method_name": "getTopicConfig",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicConfigsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The cluster ID",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The topic name",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The config name",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The topic config was successfully retrieved.",
+          "data_schema": [
+            {
+              "name": "GetTopicConfigResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": "Resource.Metadata",
+                "cluster_id": "string",
+                "topic_name": "string",
+                "name": "string",
+                "value": "string",
+                "is_default": "boolean",
+                "is_read_only": "boolean",
+                "is_sensitive": "boolean",
+                "source": "ConfigSource",
+                "synonyms": "array of ConfigSynonymData"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The topic config with the given name was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/configs",
+      "http_method": "GET",
+      "method_name": "listTopicConfigs",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicConfigsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the cluster to which the topic belongs.",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the topic whose configs are to be listed.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the list of topic configs for the specified topic.",
+          "data_schema": [
+            {
+              "name": "ListTopicConfigsResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "next": "string"
+                },
+                "data": [
+                  {
+                    "kind": "string",
+                    "metadata": {
+                      "self": "string",
+                      "resource_name": "string"
+                    },
+                    "cluster_id": "string",
+                    "topic_name": "string",
+                    "name": "string",
+                    "value": "string",
+                    "is_default": "boolean",
+                    "is_read_only": "boolean",
+                    "is_sensitive": "boolean",
+                    "source": "string",
+                    "synonyms": [
+                      {
+                        "name": "string",
+                        "value": "string",
+                        "source": "string"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The request was handed off to TopicConfigManager.listTopicConfigs and no exception handling is present in the handler.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics",
+      "http_method": "GET",
+      "method_name": "listTopics",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the Kafka cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "includeAuthorizedOperations",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether to include authorized operations in the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the list of Kafka topics belonging to the cluster.",
+          "data_schema": [
+            {
+              "name": "ListTopicsResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "next": "string"
+                },
+                "data": [
+                  {
+                    "kind": "string",
+                    "metadata": {
+                      "self": "string",
+                      "resource_name": "string"
+                    },
+                    "cluster_id": "string",
+                    "topic_name": "string",
+                    "is_internal": "boolean",
+                    "replication_factor": "integer",
+                    "partitions_count": "integer",
+                    "partitions": {
+                      "related": "string"
+                    },
+                    "configs": {
+                      "related": "string"
+                    },
+                    "partition_reassignments": {
+                      "related": "string"
+                    },
+                    "authorized_operations": [
+                      "string"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to TopicManager.listTopics and does not catch failures, so any exception from that call results in a 500 response.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}",
+      "http_method": "DELETE",
+      "method_name": "deleteTopic",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The Kafka cluster ID.",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The topic name.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. The topic was successfully deleted.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. The request to delete the topic failed.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}",
+      "http_method": "GET",
+      "method_name": "getTopic",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the cluster the topic belongs to.",
+          "_depth": 0
+        },
+        {
+          "name": "topicName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the topic to retrieve.",
+          "_depth": 0
+        },
+        {
+          "name": "include_authorized_operations",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether to include authorized operations in the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The topic was found and returned successfully.",
+          "data_schema": [
+            {
+              "name": "GetTopicResponse",
+              "schema": {
+                "kind": "string",
+                "metadata": "object",
+                "cluster_id": "string",
+                "topic_name": "string",
+                "is_internal": "boolean",
+                "replication_factor": "integer",
+                "partitions_count": "integer",
+                "partitions": "object",
+                "configs": "object",
+                "partition_reassignments": "object",
+                "authorized_operations": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The topic with the given name was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics",
+      "http_method": "POST",
+      "method_name": "createTopic",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicsResource.java",
+      "parameters": [
+        {
+          "name": "clusterId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the Kafka cluster.",
+          "_depth": 0
+        },
+        {
+          "name": "request",
+          "type": "CreateTopicRequest",
+          "require": "false",
+          "position": "body",
+          "description": "The request body containing the topic creation details.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Topic created successfully. The response body contains the created topic data.",
+          "data_schema": [
+            {
+              "name": "TopicData",
+              "schema": {
+                "kind": "string",
+                "metadata": {
+                  "self": "string",
+                  "resource_name": "string"
+                },
+                "cluster_id": "string",
+                "topic_name": "string",
+                "is_internal": "boolean",
+                "replication_factor": "integer",
+                "partitions_count": "integer",
+                "partitions": {
+                  "related": "string"
+                },
+                "configs": {
+                  "related": "string"
+                },
+                "partition_reassignments": {
+                  "related": "string"
+                },
+                "authorized_operations": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The request could not be completed due to an unexpected condition.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 27,
+    "step2_ms": 1089,
+    "step3_ms": 40852,
+    "step4_ms": 17933,
+    "step5_ms": 0,
+    "total_ms": 59909
+  }
+}

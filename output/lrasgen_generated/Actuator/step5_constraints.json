@@ -1,0 +1,129 @@
+{
+  "task_id": "spring-actuator-demo",
+  "api_name": "spring-actuator-demo",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "sayHello",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Actuator\\spring-actuator-demo\\src\\main\\java\\com\\example\\actuatordemo\\controller\\SampleController.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The name to greet",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a greeting string: 'Hello ' + name + '!!', where name defaults to 'Guest' if not provided.",
+          "data_schema": [
+            {
+              "name": "greeting",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/slowApi",
+      "http_method": "GET",
+      "method_name": "timeConsumingAPI",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Actuator\\spring-actuator-demo\\src\\main\\java\\com\\example\\actuatordemo\\controller\\SampleController.java",
+      "parameters": [
+        {
+          "name": "delay",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Delay in seconds before returning the result; if 0, a random delay between 0 and 9 seconds is used.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the string 'Result' after sleeping for the specified delay (or a random delay between 0 and 9 seconds if delay is 0).",
+          "data_schema": [
+            {
+              "name": "result",
+              "schema": {
+                "result": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 1,
+    "step2_ms": 3,
+    "step3_ms": 2145,
+    "step4_ms": 2883,
+    "step5_ms": 0,
+    "total_ms": 5034
+  }
+}

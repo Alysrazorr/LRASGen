@@ -1,0 +1,226 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "rest-faults-master API",
+    "description": "LRASGen-generated specification for rest-faults-master (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/k": {
+      "get": {
+        "operationId": "getK",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "FooDto": {
+                      "type": "string",
+                      "description": "{'i': 'integer', 'b': 'boolean', 's': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateK",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successful response with no body. The PUT /api/k endpoint returns void, so Spring Boot responds with 200 OK and an empty body."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "i": {
+                    "type": "integer",
+                    "description": "Request body containing FooDto fields i, b, and s"
+                  },
+                  "b": {
+                    "type": "boolean",
+                    "description": "Request body containing FooDto fields i, b, and s"
+                  },
+                  "s": {
+                    "type": "string",
+                    "description": "Request body containing FooDto fields i, b, and s"
+                  }
+                },
+                "required": [
+                  "i",
+                  "b",
+                  "s"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/y": {
+      "post": {
+        "operationId": "createY",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Created. The endpoint returns a 201 Created response with a Location header pointing to /api/doesNotExist. The response body is empty."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "i": {
+                    "type": "integer",
+                    "description": "Request body bound from JSON to FooDto"
+                  },
+                  "b": {
+                    "type": "boolean",
+                    "description": "Request body bound from JSON to FooDto"
+                  },
+                  "s": {
+                    "type": "string",
+                    "description": "Request body bound from JSON to FooDto"
+                  }
+                },
+                "required": [
+                  "i",
+                  "b",
+                  "s"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteY",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "The DELETE /api/y endpoint returns a successful response with no body. The handler method deleteY() is declared void and performs no operations, so Spring Boot returns HTTP 200 OK with an empty response body."
+          }
+        }
+      },
+      "get": {
+        "operationId": "getY",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Created - returns the FooDto object with i=42, s='FOO', b=null",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "FooDto": {
+                      "type": "string",
+                      "description": "{'i': 'integer', 'b': 'boolean', 's': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/z": {
+      "get": {
+        "operationId": "getZ",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the current value of the integer field z as a plain integer.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "int": {
+                      "type": "string",
+                      "description": "{'value': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateZ",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Success. The request was processed and the method returns void, so the response has an empty body."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "delta": {
+                    "type": "integer",
+                    "description": "Delta value to add to z"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/x": {
+      "get": {
+        "operationId": "getX",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    }
+  }
+}

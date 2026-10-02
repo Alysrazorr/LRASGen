@@ -1,0 +1,114 @@
+{
+  "task_id": "ur-codebin-api",
+  "api_name": "Ur-Codebin-API",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/paste/{paste_id}",
+      "http_method": "GET",
+      "method_name": "getCodePasteFromId",
+      "summary": "Retrieve a code paste by its ID",
+      "description": "Fetches a code paste using the provided paste ID. If the paste is not found, a PasteNotFoundException is thrown.",
+      "line_number": 32,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Ur-Codebin\\Ur-Codebin-API\\src\\main\\java\\com\\urcodebin\\api\\controllers\\CodePasteController.java"
+    },
+    {
+      "endpoint_path": "/api/paste/{paste_id}",
+      "http_method": "DELETE",
+      "method_name": "deleteCodePasteWithId",
+      "summary": "Delete a code paste by its ID",
+      "description": "Deletes a code paste identified by the given paste ID. If the paste does not exist, a PasteNotFoundException is thrown.",
+      "line_number": 41,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Ur-Codebin\\Ur-Codebin-API\\src\\main\\java\\com\\urcodebin\\api\\controllers\\CodePasteController.java"
+    },
+    {
+      "endpoint_path": "/api/paste/public",
+      "http_method": "GET",
+      "method_name": "getListOfPublicPastesWith",
+      "summary": "List public code pastes with optional filters",
+      "description": "Returns a list of public code pastes filtered by title, syntax, and limit. The limit must be between 1 and 20.",
+      "line_number": 50,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Ur-Codebin\\Ur-Codebin-API\\src\\main\\java\\com\\urcodebin\\api\\controllers\\CodePasteController.java"
+    },
+    {
+      "endpoint_path": "/api/paste",
+      "http_method": "POST",
+      "method_name": "postNewCodePasteWith",
+      "summary": "Create a new code paste",
+      "description": "Creates a new code paste from the request body. Validates that source code is not empty and the title length is between 1 and 50 characters.",
+      "line_number": 69,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Ur-Codebin\\Ur-Codebin-API\\src\\main\\java\\com\\urcodebin\\api\\controllers\\CodePasteController.java"
+    },
+    {
+      "endpoint_path": "/api/account/{account_id}",
+      "http_method": "GET",
+      "method_name": "getUserAccountById",
+      "summary": "Get user account by ID",
+      "description": "Retrieves a user account by its unique account ID. Throws UserAccountNotFoundException if no account with the given ID exists.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Ur-Codebin\\Ur-Codebin-API\\src\\main\\java\\com\\urcodebin\\api\\controllers\\UserAccountController.java"
+    },
+    {
+      "endpoint_path": "/api/account/signup",
+      "http_method": "POST",
+      "method_name": "signupForNewAccount",
+      "summary": "Sign up for a new account",
+      "description": "Creates a new user account. Validates email format, checks if username or email is already taken, and throws appropriate exceptions (IllegalArgumentException, AccountInformationTakenException) on failure.",
+      "line_number": 28,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Ur-Codebin\\Ur-Codebin-API\\src\\main\\java\\com\\urcodebin\\api\\controllers\\UserAccountController.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 4772,
+  "tokens": {
+    "prompt_tokens": 29893,
+    "completion_tokens": 3479,
+    "total_tokens": 33372,
+    "calls": 6,
+    "elapsed_s": 50.558,
+    "prompt_cost_usd": 0.003814,
+    "completion_cost_usd": 0.002317,
+    "total_cost_usd": 0.006131,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 9782,
+        "completion_tokens": 577,
+        "total_tokens": 10359,
+        "calls": 2,
+        "elapsed_s": 4.769745,
+        "prompt_cost_usd": 0.000196,
+        "completion_cost_usd": 0.000346,
+        "total_cost_usd": 0.000542
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 9398,
+        "completion_tokens": 2382,
+        "total_tokens": 11780,
+        "calls": 2,
+        "elapsed_s": 36.373,
+        "prompt_cost_usd": 0.00094,
+        "completion_cost_usd": 0.001191,
+        "total_cost_usd": 0.002131
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 10713,
+        "completion_tokens": 520,
+        "total_tokens": 11233,
+        "calls": 2,
+        "elapsed_s": 9.415,
+        "prompt_cost_usd": 0.002678,
+        "completion_cost_usd": 0.00078,
+        "total_cost_usd": 0.003458
+      }
+    ]
+  }
+}

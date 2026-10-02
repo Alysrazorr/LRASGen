@@ -1,0 +1,1832 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "spring-petclinic-rest-master API",
+    "description": "LRASGen-generated specification for spring-petclinic-rest-master (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/owners/{ownerId}": {
+      "delete": {
+        "operationId": "deleteOwners",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "ownerId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the owner.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the owner.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content. Owner successfully deleted."
+          },
+          "404": {
+            "description": "Owner not found."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getOwners",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "ownerId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pet owner.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pet owner.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owner details found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "OwnerDto": {
+                      "type": "string",
+                      "description": "{'firstName': 'string', 'lastName': 'string', 'address': 'string', 'city': 'string', 'telephone': 'string', 'id': 'integer', 'pets': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Owner not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetail": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'string', 'schemaValidationErrors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateOwners",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "ownerId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pet owner.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pet owner.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Update successful. The pet owner's details were updated."
+          },
+          "404": {
+            "description": "Owner not found."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string",
+                    "description": "The first name of the pet owner."
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "description": "The last name of the pet owner."
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "The postal address of the pet owner."
+                  },
+                  "city": {
+                    "type": "string",
+                    "description": "The city of the pet owner."
+                  },
+                  "telephone": {
+                    "type": "string",
+                    "description": "The telephone number of the pet owner."
+                  }
+                },
+                "required": [
+                  "firstName",
+                  "lastName",
+                  "address",
+                  "city",
+                  "telephone"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owners": {
+      "post": {
+        "operationId": "createOwners",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "The pet owner was successfully added.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "OwnerDto": {
+                      "type": "string",
+                      "description": "{'firstName': 'string', 'lastName': 'string', 'address': 'string', 'city': 'string', 'telephone': 'string', 'id': 'integer', 'pets': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetailDto": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'string', 'schemaValidationErrors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetailDto": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'string', 'schemaValidationErrors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string",
+                    "description": "The pet owner"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "description": "The pet owner"
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "The pet owner"
+                  },
+                  "city": {
+                    "type": "string",
+                    "description": "The pet owner"
+                  },
+                  "telephone": {
+                    "type": "string",
+                    "description": "The pet owner"
+                  }
+                },
+                "required": [
+                  "firstName",
+                  "lastName",
+                  "address",
+                  "city",
+                  "telephone"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getOwners",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "lastName",
+            "in": "query",
+            "required": false,
+            "description": "Last name.",
+            "schema": {
+              "type": "string",
+              "description": "Last name."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owner details found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "OwnerDto": {
+                      "type": "string",
+                      "description": "{'firstName': 'string', 'lastName': 'string', 'address': 'string', 'city': 'string', 'telephone': 'string', 'id': 'integer', 'pets': 'array<PetDto>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No owners found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/api/pets/{petId}": {
+      "get": {
+        "operationId": "getPets",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pet.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pet.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pet details found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PetDto": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'birthDate': 'date', 'type': 'PetTypeDto', 'id': 'integer', 'ownerId': 'integer', 'visits': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pet not found."
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deletePets",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pet.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pet.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pet deleted successfully. No content returned."
+          },
+          "404": {
+            "description": "Pet not found."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updatePets",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pet.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pet.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pet updated successfully. No content returned."
+          },
+          "404": {
+            "description": "Pet not found."
+          },
+          "500": {
+            "description": "Server error."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The pet"
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "The pet"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "The pet"
+                  },
+                  "visits": {
+                    "type": "string",
+                    "description": "The pet"
+                  }
+                },
+                "required": [
+                  "name",
+                  "birthDate",
+                  "id",
+                  "visits"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owners/{ownerId}/pets/{petId}": {
+      "get": {
+        "operationId": "getPets",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "ownerId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pet owner.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pet owner.",
+              "minimum": 0.0
+            }
+          },
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pet.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pet.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pet details found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Pet": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'birthDate': 'date', 'type': {'name': 'string', 'id': 'integer'}, 'id': 'integer', 'ownerId': 'integer', 'visits': [{'date': 'date', 'description': 'string', 'id': 'integer', 'petId': 'integer'}]}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Owner or pet not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetail": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'date-time', 'schemaValidationErrors': [{'message': 'string'}]}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updatePets",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "ownerId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pet owner.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pet owner.",
+              "minimum": 0.0
+            }
+          },
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pet.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pet.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Update successful."
+          },
+          "404": {
+            "description": "Pet not found for this owner."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The type of the pet."
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "The date of birth of the pet."
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "The type of the pet."
+                  }
+                },
+                "required": [
+                  "name",
+                  "birthDate",
+                  "name",
+                  "id"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owners/{ownerId}/pets": {
+      "post": {
+        "operationId": "createPets",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "ownerId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pet owner.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pet owner.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The pet was successfully added.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Pet": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'birthDate': 'date', 'type': 'PetType', 'id': 'integer', 'ownerId': 'integer', 'visits': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetail": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'date-time', 'schemaValidationErrors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pet or Owner not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetail": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'date-time', 'schemaValidationErrors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetail": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'date-time', 'schemaValidationErrors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The details of the new pet."
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "The details of the new pet."
+                  }
+                },
+                "required": [
+                  "name",
+                  "birthDate"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owners/{ownerId}/pets/{petId}/visits": {
+      "post": {
+        "operationId": "createVisits",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "ownerId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pet owner.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pet owner.",
+              "minimum": 0.0
+            }
+          },
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pet.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pet.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The vet visit was successfully added.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Visit": {
+                      "type": "string",
+                      "description": "{'date': 'date', 'description': 'string', 'id': 'integer', 'petId': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pet not found for this owner."
+          },
+          "500": {
+            "description": "Server error."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "description": "The details of the new vet visit."
+                  }
+                },
+                "required": [
+                  "description"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/pets": {
+      "get": {
+        "operationId": "getPets",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Pet types found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PetDto": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'birthDate': 'date', 'type': 'PetTypeDto', 'id': 'integer', 'ownerId': 'integer', 'visits': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pet not found."
+          }
+        }
+      }
+    },
+    "/api/pettypes/{petTypeId}": {
+      "get": {
+        "operationId": "getPettypes",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "petTypeId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pet type.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pet type.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pet type details found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PetTypeDto": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'id': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pet Type not found."
+          }
+        }
+      },
+      "put": {
+        "operationId": "updatePettypes",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "petTypeId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pet type.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pet type.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pet type updated successfully. No content returned."
+          },
+          "404": {
+            "description": "Pet Type not found."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The pet type"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "The pet type"
+                  }
+                },
+                "required": [
+                  "name",
+                  "id"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deletePettypes",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "petTypeId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the pet type.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the pet type.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pet type deleted successfully. No content returned."
+          },
+          "404": {
+            "description": "Pet type not found."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/pettypes": {
+      "post": {
+        "operationId": "createPettypes",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Pet type created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PetType": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'id': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - requires VET_ADMIN role."
+          },
+          "500": {
+            "description": "Server error."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The pet type"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getPettypes",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Pet types found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PetTypeDto": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'id': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pet Type not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetailDto": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'string', 'schemaValidationErrors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetailDto": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'string', 'schemaValidationErrors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "operationId": "get",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "302": {
+            "description": "Redirect to Swagger UI at the servlet context path + '/swagger-ui/index.html'"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/specialties": {
+      "get": {
+        "operationId": "getSpecialties",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Specialties found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Specialty": {
+                      "type": "string",
+                      "description": "{'id': 'integer', 'name': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Specialty not found."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createSpecialties",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Specialty created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Specialty": {
+                      "type": "string",
+                      "description": "{'id': 'integer', 'name': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. The request requires VET_ADMIN role."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "The specialty"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The specialty"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/specialties/{specialtyId}": {
+      "get": {
+        "operationId": "getSpecialties",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "specialtyId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the speciality.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the speciality.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Specialty details found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SpecialtyDto": {
+                      "type": "string",
+                      "description": "{'id': 'integer', 'name': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Specialty not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetailDto": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'string', 'schemaValidationErrors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteSpecialties",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "specialtyId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the specialty.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the specialty.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Specialty deleted successfully. No content returned."
+          },
+          "404": {
+            "description": "Specialty not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetail": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'string', 'schemaValidationErrors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateSpecialties",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "specialtyId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the specialty.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the specialty.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Specialty updated successfully. No content returned."
+          },
+          "404": {
+            "description": "Specialty not found."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "The pet"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The pet"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/vets": {
+      "get": {
+        "operationId": "getVets",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Vets found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "VetDto": {
+                      "type": "string",
+                      "description": "{'firstName': 'string', 'lastName': 'string', 'specialties': 'array<SpecialtyDto>', 'id': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. Returned when the list of vets is empty."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createVets",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Vet created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "VetDto": {
+                      "type": "string",
+                      "description": "{'firstName': 'string', 'lastName': 'string', 'specialties': 'array<SpecialtyDto>', 'id': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetailDto": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'string', 'schemaValidationErrors': 'array<ValidationMessageDto>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string",
+                    "description": "The vet"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "description": "The vet"
+                  },
+                  "specialties": {
+                    "type": "string",
+                    "description": "The vet"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "The vet"
+                  }
+                },
+                "required": [
+                  "firstName",
+                  "lastName",
+                  "specialties",
+                  "id"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/vets/{vetId}": {
+      "get": {
+        "operationId": "getVets",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "vetId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the vet.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the vet.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vet details found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "VetDto": {
+                      "type": "string",
+                      "description": "{'firstName': 'string', 'lastName': 'string', 'specialties': 'array<SpecialtyDto>', 'id': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Vet not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetailDto": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'string', 'schemaValidationErrors': 'array<ValidationMessageDto>'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateVets",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "vetId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the vet.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the vet.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Vet updated successfully. No content returned."
+          },
+          "404": {
+            "description": "Vet not found."
+          },
+          "500": {
+            "description": "Server error."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string",
+                    "description": "The vet"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "description": "The vet"
+                  },
+                  "specialties": {
+                    "type": "string",
+                    "description": "The vet"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "The vet"
+                  }
+                },
+                "required": [
+                  "firstName",
+                  "lastName",
+                  "specialties",
+                  "id"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteVets",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "vetId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the vet.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the vet.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Vet deleted successfully. No content returned."
+          },
+          "404": {
+            "description": "Vet not found."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "post": {
+        "operationId": "createUsers",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "User created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "User": {
+                      "type": "string",
+                      "description": "{'username': 'string', 'password': 'string', 'enabled': 'boolean', 'roles': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. The request requires ADMIN role."
+          },
+          "500": {
+            "description": "Server error."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "The user"
+                  },
+                  "roles": {
+                    "type": "string",
+                    "description": "The user"
+                  }
+                },
+                "required": [
+                  "username",
+                  "roles"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/visits": {
+      "get": {
+        "operationId": "getVisits",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "visits found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "VisitDto": {
+                      "type": "string",
+                      "description": "{'date': 'date', 'description': 'string', 'id': 'integer', 'petId': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Visit not found."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createVisits",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Visit created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Visit": {
+                      "type": "string",
+                      "description": "{'date': 'date', 'description': 'string', 'id': 'integer', 'petId': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Validation errors on the request body.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetail": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'date-time', 'schemaValidationErrors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetail": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'date-time', 'schemaValidationErrors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "description": "The visit"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "The visit"
+                  },
+                  "petId": {
+                    "type": "integer",
+                    "description": "The visit"
+                  }
+                },
+                "required": [
+                  "description",
+                  "id",
+                  "petId"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/visits/{visitId}": {
+      "delete": {
+        "operationId": "deleteVisits",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "visitId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the visit.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the visit.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Visit deleted successfully. No content returned."
+          },
+          "404": {
+            "description": "Visit not found."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getVisits",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "visitId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the visit.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the visit.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Visit details found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "VisitDto": {
+                      "type": "string",
+                      "description": "{'date': 'date', 'description': 'string', 'id': 'integer', 'petId': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Visit not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProblemDetailDto": {
+                      "type": "string",
+                      "description": "{'type': 'string', 'title': 'string', 'status': 'integer', 'detail': 'string', 'timestamp': 'date-time', 'schemaValidationErrors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateVisits",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "visitId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the visit.",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the visit.",
+              "minimum": 0.0
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Visit updated successfully. No content returned."
+          },
+          "404": {
+            "description": "Visit not found."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "description": "The description for the visit."
+                  },
+                  "date": {
+                    "type": "string",
+                    "description": "The date of the visit."
+                  }
+                },
+                "required": [
+                  "description"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

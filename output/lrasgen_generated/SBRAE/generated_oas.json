@@ -1,0 +1,512 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "spring-rest-example API",
+    "description": "LRASGen-generated specification for spring-rest-example (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/project/{code}": {
+      "delete": {
+        "operationId": "deleteProject",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "code로 프로젝트 삭제, code는 6자리 영문과 숫자조합",
+            "schema": {
+              "type": "string",
+              "description": "code로 프로젝트 삭제, code는 6자리 영문과 숫자조합",
+              "minLength": 6,
+              "maxLength": 6
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project deleted successfully"
+          },
+          "400": {
+            "description": "Invalid code format (code length less than 6 or empty)"
+          },
+          "404": {
+            "description": "Project not found with the given code"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getProject",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "code로 프로젝트 조회 (6자리 영문과 숫자조합)",
+            "schema": {
+              "type": "string",
+              "description": "code로 프로젝트 조회 (6자리 영문과 숫자조합)",
+              "minLength": 6,
+              "maxLength": 6
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project found and returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Project": {
+                      "type": "string",
+                      "description": "{'idx': 'long', 'code': 'string', 'title': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request due to invalid code format (code length less than 6 or empty)"
+          },
+          "404": {
+            "description": "Project not found for the given code"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateProject",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "code로 project 변경, code는 6자리 영문과 숫자조합",
+            "schema": {
+              "type": "string",
+              "description": "code로 project 변경, code는 6자리 영문과 숫자조합",
+              "minLength": 6,
+              "maxLength": 6
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project updated successfully"
+          },
+          "400": {
+            "description": "Bad request: code length is less than 6 or empty"
+          },
+          "404": {
+            "description": "Project not found with the given code"
+          },
+          "500": {
+            "description": "Internal server error: project update failed"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "idx": {
+                    "type": "integer",
+                    "description": "project 업데이트, title 필요"
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "project 업데이트, title 필요"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "project 업데이트, title 필요"
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "description": "project 업데이트, title 필요"
+                  },
+                  "last_update_time": {
+                    "type": "string",
+                    "description": "project 업데이트, title 필요"
+                  }
+                },
+                "required": [
+                  "code",
+                  "title"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/problem/{code}": {
+      "delete": {
+        "operationId": "deleteProblem",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "code는 6자리 영문과 숫자조합",
+            "schema": {
+              "type": "string",
+              "description": "code는 6자리 영문과 숫자조합",
+              "minLength": 6,
+              "maxLength": 6
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Problems deleted successfully. Returns an empty response body."
+          },
+          "400": {
+            "description": "Invalid code format. The code must be at least 6 characters long and not empty."
+          }
+        }
+      },
+      "get": {
+        "operationId": "getProblem",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "code는 6자리 영문과 숫자조합 (6-character alphanumeric code)",
+            "schema": {
+              "type": "string",
+              "description": "code는 6자리 영문과 숫자조합 (6-character alphanumeric code)",
+              "minLength": 6,
+              "maxLength": 6
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved problems matching the given code. Returns a collection of Problem objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Collection<Problem>": {
+                      "type": "string",
+                      "description": "{'idx': 'long', 'title': 'string', 'project': 'Project', 'subProblems': 'Set<subProblem>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. The provided code is invalid (length less than 6 or empty)."
+          },
+          "501": {
+            "description": "Not Implemented. No problems found for the given code."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProblem",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "code는 6자리 영문과 숫자조합",
+            "schema": {
+              "type": "string",
+              "description": "code는 6자리 영문과 숫자조합",
+              "minLength": 6
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Problem created successfully. Location header contains the URI of the created problem."
+          },
+          "400": {
+            "description": "Bad Request. Returned when the code is invalid (length < 6 or empty) or when problemService.saveProblem returns false (e.g., invalid title).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ErrorResponse": {
+                      "type": "string",
+                      "description": "{'result': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. Returned when no project exists with the provided code.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CustomizeErrorDetail": {
+                      "type": "string",
+                      "description": "{'timestamp': 'date', 'message': 'string', 'details': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "idx": {
+                    "type": "integer",
+                    "description": "문제 생성, problem parameter는 사용 X"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "문제 생성, problem parameter는 사용 X"
+                  },
+                  "subProblems": {
+                    "type": "string",
+                    "description": "문제 생성, problem parameter는 사용 X"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/project": {
+      "post": {
+        "operationId": "createProject",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Project created successfully. The Location header contains the URI of the created project."
+          },
+          "400": {
+            "description": "Bad Request. Returned when the title length is less than 5 characters (DataFormatException) or when the project service returns a result other than '1'.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "string",
+                      "description": "{'result': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "idx": {
+                    "type": "integer",
+                    "description": "Project object containing the title for the new project; code is auto-generated"
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "Project object containing the title for the new project; code is auto-generated"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Project object containing the title for the new project; code is auto-generated"
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "description": "Project object containing the title for the new project; code is auto-generated"
+                  },
+                  "last_update_time": {
+                    "type": "string",
+                    "description": "Project object containing the title for the new project; code is auto-generated"
+                  }
+                },
+                "required": [
+                  "code",
+                  "title"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/problem/{code}/all": {
+      "delete": {
+        "operationId": "deleteAll",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "code는 6자리 영문과 숫자조합",
+            "schema": {
+              "type": "string",
+              "description": "code는 6자리 영문과 숫자조합",
+              "minLength": 6
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All problems and subproblems with the given code were successfully deleted."
+          },
+          "400": {
+            "description": "Bad Request. The provided code is invalid (length less than 6 or empty).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CustomizeErrorDetail": {
+                      "type": "string",
+                      "description": "{'timestamp': 'date', 'message': 'string', 'details': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. No problem exists with the given code.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CustomizeErrorDetail": {
+                      "type": "string",
+                      "description": "{'timestamp': 'date', 'message': 'string', 'details': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/subproblem": {
+      "post": {
+        "operationId": "createSubproblem",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Subproblem created successfully. The Location header contains the URI of the newly created subproblem."
+          },
+          "400": {
+            "description": "Bad Request. The content is empty or its length is less than 10 characters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CustomizeErrorDetail": {
+                      "type": "string",
+                      "description": "{'timestamp': 'date', 'message': 'string', 'details': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. No problem exists with the provided pro_idx.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CustomizeErrorDetail": {
+                      "type": "string",
+                      "description": "{'timestamp': 'date', 'message': 'string', 'details': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The subproblem could not be saved."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pro_idx": {
+                    "type": "integer",
+                    "description": "Index of the parent problem to which the sub-problem belongs"
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "Content of the sub-problem; must be longer than 10 characters"
+                  }
+                },
+                "required": [
+                  "pro_idx",
+                  "content"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

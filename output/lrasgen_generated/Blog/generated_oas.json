@@ -1,0 +1,4033 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "blogapi API",
+    "description": "LRASGen-generated specification for blogapi (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/auth/signup": {
+      "post": {
+        "operationId": "createSignup",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "User registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Username is already taken or Email is already taken"
+          },
+          "500": {
+            "description": "User role not set"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string",
+                    "description": "User registration details"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "description": "User registration details"
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "User registration details"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "User registration details"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "User registration details"
+                  }
+                },
+                "required": [
+                  "firstName",
+                  "lastName",
+                  "username",
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/categories": {
+      "get": {
+        "operationId": "getCategories",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Page number for pagination"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Number of items per page",
+            "schema": {
+              "type": "integer",
+              "description": "Number of items per page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved a paginated list of categories.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PagedResponse<Category>": {
+                      "type": "string",
+                      "description": "{'content': 'array<Category>', 'page': 'integer', 'size': 'integer', 'totalElements': 'long', 'totalPages': 'integer', 'last': 'boolean'}"
+                    },
+                    "Category": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'posts': 'array<Post>', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCategories",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Category created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Category": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'posts': 'array', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - validation error or malformed request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ExceptionResponse": {
+                      "type": "string",
+                      "description": "{'messages': 'array', 'status': 'string', 'code': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - user does not have required role",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - unexpected server error"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Category object to be added"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Category object to be added"
+                  },
+                  "posts": {
+                    "type": "string",
+                    "description": "Category object to be added"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/albums": {
+      "get": {
+        "operationId": "getAlbums",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Page number for pagination"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Page size for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Page size for pagination"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved a paginated list of albums.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PagedResponse<AlbumResponse>": {
+                      "type": "string",
+                      "description": "{'content': 'array<AlbumResponse>', 'page': 'integer', 'size': 'integer', 'totalElements': 'long', 'totalPages': 'integer', 'last': 'boolean'}"
+                    },
+                    "AlbumResponse": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'user': 'User', 'photo': 'array<Photo>', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. The page number or size is invalid (e.g., negative or exceeds maximum allowed size)."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAlbums",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Album created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Album": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'user': 'User', 'photo': 'List<Photo>', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'Instant', 'updatedAt': 'Instant'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - validation errors or invalid page/size parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ExceptionResponse": {
+                      "type": "string",
+                      "description": "{'messages': 'List<string>', 'status': 'string', 'code': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - user does not have required role",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - unexpected error during album creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Album request payload containing album details"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Album request payload containing album details"
+                  },
+                  "photo": {
+                    "type": "string",
+                    "description": "Album request payload containing album details"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/albums/{id}": {
+      "get": {
+        "operationId": "getAlbums",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the album to retrieve",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the album to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Album retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Album": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'user': 'User', 'photo': 'List<Photo>', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Album not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteAlbums",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the album to delete",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the album to delete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Album deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication is required"
+          },
+          "403": {
+            "description": "Forbidden - user does not have permission to delete this album"
+          },
+          "404": {
+            "description": "Album not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateAlbums",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the album to update",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the album to update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Album updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AlbumResponse": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'user': 'User', 'photo': 'List<Photo>', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input or page/size validation failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - User does not have permission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found - Album not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Unexpected server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "The album data to update"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "The album data to update"
+                  },
+                  "photo": {
+                    "type": "string",
+                    "description": "The album data to update"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/signin": {
+      "post": {
+        "operationId": "createSignin",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Authentication successful; returns a JWT access token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "JwtAuthenticationResponse": {
+                      "type": "string",
+                      "description": "{'accessToken': 'string', 'tokenType': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed due to invalid username/email or password."
+          },
+          "400": {
+            "description": "Bad request; request body validation failed (e.g., missing usernameOrEmail or password)."
+          },
+          "500": {
+            "description": "Internal server error; an unexpected error occurred during authentication or token generation."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "usernameOrEmail": {
+                    "type": "string",
+                    "description": "Username or email of the user"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Password of the user"
+                  }
+                },
+                "required": [
+                  "usernameOrEmail",
+                  "password"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/albums/{id}/photos": {
+      "get": {
+        "operationId": "getPhotos",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the album whose photos are to be retrieved",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the album whose photos are to be retrieved"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Page number for pagination"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Number of items per page for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Number of items per page for pagination"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved a paginated list of photos for the specified album.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PagedResponse<PhotoResponse>": {
+                      "type": "string",
+                      "description": "{'content': 'array of PhotoResponse', 'page': 'integer', 'size': 'integer', 'totalElements': 'long', 'totalPages': 'integer', 'last': 'boolean'}"
+                    },
+                    "PhotoResponse": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'url': 'string', 'thumbnailUrl': 'string', 'albumId': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request parameters are invalid (e.g., page or size is negative, or size exceeds the maximum allowed)."
+          },
+          "404": {
+            "description": "Not Found. The album with the specified ID does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/api/posts/{postId}/comments/{id}": {
+      "get": {
+        "operationId": "getComments",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the post that owns the comment",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the post that owns the comment"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the comment to retrieve",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the comment to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comment retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Comment": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'email': 'string', 'body': 'string', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Comment not found"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateComments",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the post that owns the comment",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the post that owns the comment"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the comment to update",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the comment to update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comment updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Comment": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'email': 'string', 'body': 'string', 'createdAt': 'date', 'updatedAt': 'date', 'createdBy': 'long', 'updatedBy': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - validation errors or invalid request body"
+          },
+          "401": {
+            "description": "Unauthorized - authentication required"
+          },
+          "403": {
+            "description": "Forbidden - user does not have permission to update this comment"
+          },
+          "404": {
+            "description": "Not Found - post or comment not found"
+          },
+          "500": {
+            "description": "Internal Server Error - unexpected server error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string",
+                    "description": "Comment body"
+                  }
+                },
+                "required": [
+                  "body"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteComments",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the post that owns the comment",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the post that owns the comment"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the comment to delete",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the comment to delete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comment deleted successfully. Returns an ApiResponse with success=true and a message.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the service returns an ApiResponse with success=false (e.g., comment does not belong to the user or post).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Returned when the request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. Returned when the authenticated user does not have the required role (USER or ADMIN)."
+          },
+          "404": {
+            "description": "Not Found. Returned when the post or comment with the given IDs does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error. Returned when an unexpected error occurs during the hand-off to the service."
+          }
+        }
+      }
+    },
+    "/api/categories/{id}": {
+      "get": {
+        "operationId": "getCategories",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the category to retrieve",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the category to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category found and returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Category": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'posts': 'array', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Category not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteCategories",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the category to delete",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the category to delete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - user is not authenticated or does not have permission to delete the category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Category not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateCategories",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the category to update",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the category to update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Category": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'posts': 'array', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - user is not authorized to update this category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - validation errors or malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ExceptionResponse": {
+                      "type": "string",
+                      "description": "{'messages': 'array', 'status': 'string', 'code': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - unexpected server error"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "The updated category object"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The updated category object"
+                  },
+                  "posts": {
+                    "type": "string",
+                    "description": "The updated category object"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/posts/{postId}/comments": {
+      "get": {
+        "operationId": "getComments",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the post whose comments are being retrieved",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the post whose comments are being retrieved"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Page number for pagination"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Number of comments per page",
+            "schema": {
+              "type": "integer",
+              "description": "Number of comments per page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved paginated comments for the post.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PagedResponse<Comment>": {
+                      "type": "string",
+                      "description": "{'content': 'array<Comment>', 'page': 'integer', 'size': 'integer', 'totalElements': 'long', 'totalPages': 'integer', 'last': 'boolean'}"
+                    },
+                    "Comment": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'email': 'string', 'body': 'string', 'createdAt': 'date', 'updatedAt': 'date', 'createdBy': 'long', 'updatedBy': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createComments",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the post to which the comment is added",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the post to which the comment is added"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Comment created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Comment": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'email': 'string', 'body': 'string', 'createdAt': 'date', 'updatedAt': 'date', 'createdBy': 'long', 'updatedBy': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - validation error or invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ExceptionResponse": {
+                      "type": "string",
+                      "description": "{'messages': 'array', 'status': 'string', 'code': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - insufficient permissions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found - post not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - unexpected server error"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string",
+                    "description": "Comment request payload containing the comment body"
+                  }
+                },
+                "required": [
+                  "body"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/photos": {
+      "get": {
+        "operationId": "getPhotos",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Page number for pagination"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Number of items per page",
+            "schema": {
+              "type": "integer",
+              "description": "Number of items per page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved a paginated list of photos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PagedResponse<PhotoResponse>": {
+                      "type": "string",
+                      "description": "{'content': 'array<PhotoResponse>', 'page': 'integer', 'size': 'integer', 'totalElements': 'long', 'totalPages': 'integer', 'last': 'boolean'}"
+                    },
+                    "PhotoResponse": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'url': 'string', 'thumbnailUrl': 'string', 'albumId': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPhotos",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Photo added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PhotoResponse": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'url': 'string', 'thumbnailUrl': 'string', 'albumId': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - validation error or malformed request body"
+          },
+          "401": {
+            "description": "Unauthorized - authentication required"
+          },
+          "403": {
+            "description": "Forbidden - user does not have required role"
+          },
+          "500": {
+            "description": "Internal Server Error - unexpected error during photo creation"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Photo request payload containing title, url, thumbnailUrl and albumId"
+                  },
+                  "url": {
+                    "type": "string",
+                    "description": "Photo request payload containing title, url, thumbnailUrl and albumId"
+                  },
+                  "thumbnailUrl": {
+                    "type": "string",
+                    "description": "Photo request payload containing title, url, thumbnailUrl and albumId"
+                  },
+                  "albumId": {
+                    "type": "integer",
+                    "description": "Photo request payload containing title, url, thumbnailUrl and albumId"
+                  }
+                },
+                "required": [
+                  "title",
+                  "url",
+                  "thumbnailUrl",
+                  "albumId"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/photos/{id}": {
+      "get": {
+        "operationId": "getPhotos",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the photo to retrieve",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the photo to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Photo retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PhotoResponse": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'url': 'string', 'thumbnailUrl': 'string', 'albumId': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Photo not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updatePhotos",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the photo to update",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the photo to update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Photo updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PhotoResponse": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'url': 'string', 'thumbnailUrl': 'string', 'albumId': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - validation errors or malformed request body"
+          },
+          "401": {
+            "description": "Unauthorized - authentication required"
+          },
+          "403": {
+            "description": "Forbidden - user does not have permission to update this photo"
+          },
+          "404": {
+            "description": "Not Found - photo or album not found"
+          },
+          "500": {
+            "description": "Internal Server Error - unexpected error during photo update"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "The title of the photo"
+                  },
+                  "url": {
+                    "type": "string",
+                    "description": "The URL of the photo"
+                  },
+                  "thumbnailUrl": {
+                    "type": "string",
+                    "description": "The thumbnail URL of the photo"
+                  },
+                  "albumId": {
+                    "type": "integer",
+                    "description": "The ID of the album the photo belongs to"
+                  }
+                },
+                "required": [
+                  "title",
+                  "url",
+                  "thumbnailUrl",
+                  "albumId"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deletePhotos",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the photo to delete",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the photo to delete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Photo deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication is required"
+          },
+          "403": {
+            "description": "Forbidden - user does not have permission to delete this photo"
+          },
+          "404": {
+            "description": "Photo not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/posts": {
+      "get": {
+        "operationId": "getPosts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Page number for pagination"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Number of items per page",
+            "schema": {
+              "type": "integer",
+              "description": "Number of items per page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved a paginated list of posts.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PagedResponse<Post>": {
+                      "type": "string",
+                      "description": "{'content': 'array<Post>', 'page': 'integer', 'size': 'integer', 'totalElements': 'long', 'totalPages': 'integer', 'last': 'boolean'}"
+                    },
+                    "Post": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'body': 'string', 'user': 'User', 'category': 'Category', 'tags': 'array<Tag>', 'createdAt': 'date', 'updatedAt': 'date', 'createdBy': 'long', 'updatedBy': 'long'}"
+                    },
+                    "User": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'firstName': 'string', 'lastName': 'string', 'username': 'string', 'email': 'string', 'phone': 'string', 'website': 'string', 'address': 'Address', 'company': 'Company', 'roles': 'array<Role>', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    },
+                    "Category": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'createdAt': 'date', 'updatedAt': 'date', 'createdBy': 'long', 'updatedBy': 'long'}"
+                    },
+                    "Tag": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'createdAt': 'date', 'updatedAt': 'date', 'createdBy': 'long', 'updatedBy': 'long'}"
+                    },
+                    "Address": {
+                      "type": "string",
+                      "description": "{'street': 'string', 'suite': 'string', 'city': 'string', 'zipcode': 'string', 'geo': 'Geo'}"
+                    },
+                    "Geo": {
+                      "type": "string",
+                      "description": "{'lat': 'string', 'lng': 'string'}"
+                    },
+                    "Company": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'catchPhrase': 'string', 'bs': 'string'}"
+                    },
+                    "Role": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. The handler delegates entirely to PostService.getAllPosts; any unhandled exception from that call results in a 500 response."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPosts",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Post created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PostResponse": {
+                      "type": "string",
+                      "description": "{'title': 'string', 'body': 'string', 'category': 'string', 'tags': 'array of string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - validation errors or malformed JSON"
+          },
+          "401": {
+            "description": "Unauthorized - authentication required"
+          },
+          "403": {
+            "description": "Forbidden - user does not have required role"
+          },
+          "404": {
+            "description": "Not Found - referenced category not found"
+          },
+          "500": {
+            "description": "Internal Server Error - unexpected error during post creation"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Post creation request body containing title, body, categoryId and tags"
+                  },
+                  "body": {
+                    "type": "string",
+                    "description": "Post creation request body containing title, body, categoryId and tags"
+                  },
+                  "categoryId": {
+                    "type": "integer",
+                    "description": "Post creation request body containing title, body, categoryId and tags"
+                  },
+                  "tags": {
+                    "type": "string",
+                    "description": "Post creation request body containing title, body, categoryId and tags"
+                  }
+                },
+                "required": [
+                  "title",
+                  "body",
+                  "categoryId",
+                  "tags"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/posts/{id}": {
+      "get": {
+        "operationId": "getPosts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the post to retrieve",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the post to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Post": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'body': 'string', 'user': 'User', 'category': 'Category', 'comments': 'List<Comment>', 'tags': 'List<Tag>', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Post not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deletePosts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the post to delete",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the post to delete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication is required"
+          },
+          "403": {
+            "description": "Forbidden - user does not have permission to delete this post"
+          },
+          "404": {
+            "description": "Post not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updatePosts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the post to update",
+            "schema": {
+              "type": "integer",
+              "description": "ID of the post to update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Post": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'body': 'string', 'user': 'User', 'category': 'Category', 'comments': 'List<Comment>', 'tags': 'List<Tag>', 'createdAt': 'Instant', 'updatedAt': 'Instant', 'createdBy': 'long', 'updatedBy': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - validation errors or malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ExceptionResponse": {
+                      "type": "string",
+                      "description": "{'messages': 'List<string>', 'status': 'string', 'code': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - user does not have permission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found - post not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Updated post data"
+                  },
+                  "body": {
+                    "type": "string",
+                    "description": "Updated post data"
+                  },
+                  "categoryId": {
+                    "type": "integer",
+                    "description": "Updated post data"
+                  },
+                  "tags": {
+                    "type": "string",
+                    "description": "Updated post data"
+                  }
+                },
+                "required": [
+                  "title",
+                  "body",
+                  "categoryId",
+                  "tags"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/posts/category/{id}": {
+      "get": {
+        "operationId": "getCategory",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Page number for pagination"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Number of items per page",
+            "schema": {
+              "type": "integer",
+              "description": "Number of items per page"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Category ID",
+            "schema": {
+              "type": "integer",
+              "description": "Category ID"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a paged list of posts belonging to the specified category.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PagedResponse<Post>": {
+                      "type": "string",
+                      "description": "{'content': 'array<Post>', 'page': 'integer', 'size': 'integer', 'totalElements': 'long', 'totalPages': 'integer', 'last': 'boolean'}"
+                    },
+                    "Post": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'body': 'string', 'user': 'User', 'category': 'Category', 'tags': 'array<Tag>', 'createdAt': 'date', 'updatedAt': 'date', 'createdBy': 'long', 'updatedBy': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when a request parameter has the wrong type (e.g., page or size is not an integer, or id is not a long)."
+          },
+          "500": {
+            "description": "Internal server error. Returned when the service call postService.getPostsByCategory(id, page, size) fails and no handler catches the failure."
+          }
+        }
+      }
+    },
+    "/api/posts/tag/{id}": {
+      "get": {
+        "operationId": "getTag",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Page number for pagination"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Number of items per page",
+            "schema": {
+              "type": "integer",
+              "description": "Number of items per page"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Tag ID to filter posts by",
+            "schema": {
+              "type": "integer",
+              "description": "Tag ID to filter posts by"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a paginated list of posts filtered by the given tag id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PagedResponse<Post>": {
+                      "type": "string",
+                      "description": "{'content': 'array<Post>', 'page': 'integer', 'size': 'integer', 'totalElements': 'long', 'totalPages': 'integer', 'last': 'boolean'}"
+                    },
+                    "Post": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'body': 'string', 'user': 'User', 'category': 'Category', 'tags': 'array<Tag>', 'createdAt': 'date', 'updatedAt': 'date', 'createdBy': 'long', 'updatedBy': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when the path variable 'id' cannot be converted to Long (MethodArgumentTypeMismatchException)."
+          },
+          "500": {
+            "description": "Returned when the service call postService.getPostsByTag(id, page, size) throws an unhandled exception."
+          }
+        }
+      }
+    },
+    "/api/tags": {
+      "get": {
+        "operationId": "getTags",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Page number for pagination"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Number of items per page",
+            "schema": {
+              "type": "integer",
+              "description": "Number of items per page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved a paginated list of tags.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PagedResponse<Tag>": {
+                      "type": "string",
+                      "description": "{'content': 'array<Tag>', 'page': 'integer', 'size': 'integer', 'totalElements': 'long', 'totalPages': 'integer', 'last': 'boolean'}"
+                    },
+                    "Tag": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTags",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Tag created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Tag": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body or validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ExceptionResponse": {
+                      "type": "string",
+                      "description": "{'messages': 'array', 'status': 'string', 'code': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - user does not have required role",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "The tag object to create, sent as the request body and validated with @Valid"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The tag object to create, sent as the request body and validated with @Valid"
+                  },
+                  "posts": {
+                    "type": "string",
+                    "description": "The tag object to create, sent as the request body and validated with @Valid"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tags/{id}": {
+      "get": {
+        "operationId": "getTags",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the tag to retrieve",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the tag to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Tag": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Tag not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteTags",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the tag to delete",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the tag to delete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag deleted successfully. Returns an ApiResponse object indicating success and a message.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication is required to access this endpoint."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have the required role (USER or ADMIN) to delete the tag."
+          },
+          "404": {
+            "description": "Not Found. The tag with the specified id does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred while processing the request."
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateTags",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the tag to update",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the tag to update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Tag": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'name': 'string', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - validation errors in request body or invalid path variable type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ExceptionResponse": {
+                      "type": "string",
+                      "description": "{'messages': 'array', 'status': 'string', 'code': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - user does not have required role or permission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found - tag with given id does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - unexpected server error"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "The updated tag object"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The updated tag object"
+                  },
+                  "posts": {
+                    "type": "string",
+                    "description": "The updated tag object"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/todos/{id}": {
+      "get": {
+        "operationId": "getTodos",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the todo to retrieve",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the todo to retrieve"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Todo retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Todo": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'completed': 'boolean', 'createdAt': 'date', 'updatedAt': 'date', 'createdBy': 'long', 'updatedBy': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication is required"
+          },
+          "403": {
+            "description": "Forbidden - user does not have the required role"
+          },
+          "404": {
+            "description": "Todo not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateTodos",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the todo to update",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the todo to update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Todo updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Todo": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'completed': 'boolean', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - validation error on request body or invalid path variable type"
+          },
+          "401": {
+            "description": "Unauthorized - authentication required"
+          },
+          "403": {
+            "description": "Forbidden - user does not have permission to update this todo"
+          },
+          "404": {
+            "description": "Not Found - todo with given id does not exist"
+          },
+          "500": {
+            "description": "Internal Server Error - unexpected error during todo update"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "The updated todo object"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "The updated todo object"
+                  },
+                  "completed": {
+                    "type": "boolean",
+                    "description": "The updated todo object"
+                  }
+                },
+                "required": [
+                  "title"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteTodos",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the todo item to delete",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the todo item to delete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Todo deleted successfully. Returns an ApiResponse with success=true and a message.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication is required to access this endpoint."
+          },
+          "403": {
+            "description": "Forbidden - the authenticated user does not have the required role (ROLE_USER) or does not own the todo."
+          },
+          "404": {
+            "description": "Not Found - the todo with the specified id does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error - an unexpected error occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/api/todos": {
+      "get": {
+        "operationId": "getTodos",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Page number for pagination"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Number of items per page",
+            "schema": {
+              "type": "integer",
+              "description": "Number of items per page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved a paginated list of todos for the current user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PagedResponse<Todo>": {
+                      "type": "string",
+                      "description": "{'content': 'array<Todo>', 'page': 'integer', 'size': 'integer', 'totalElements': 'long', 'totalPages': 'integer', 'last': 'boolean'}"
+                    },
+                    "Todo": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'completed': 'boolean', 'createdAt': 'date', 'updatedAt': 'date', 'createdBy': 'long', 'updatedBy': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication is required to access this endpoint."
+          },
+          "403": {
+            "description": "Forbidden - the authenticated user does not have the required role (USER)."
+          },
+          "500": {
+            "description": "Internal Server Error - an unexpected error occurred while processing the request."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTodos",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "Todo created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Todo": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'completed': 'boolean', 'createdAt': 'date', 'updatedAt': 'date', 'createdBy': 'long', 'updatedBy': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - validation error or malformed JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ExceptionResponse": {
+                      "type": "string",
+                      "description": "{'messages': 'array', 'status': 'string', 'code': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - insufficient permissions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "The todo object to create, sent as the request body and validated with @Valid."
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "The todo object to create, sent as the request body and validated with @Valid."
+                  },
+                  "completed": {
+                    "type": "boolean",
+                    "description": "The todo object to create, sent as the request body and validated with @Valid."
+                  }
+                },
+                "required": [
+                  "title"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/todos/{id}/complete": {
+      "put": {
+        "operationId": "updateComplete",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the todo item to mark as complete",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the todo item to mark as complete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Todo completed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Todo": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'completed': 'boolean', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication is required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - user does not have permission to complete this todo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Todo not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/todos/{id}/unComplete": {
+      "put": {
+        "operationId": "updateUncomplete",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the todo item to mark as incomplete",
+            "schema": {
+              "type": "integer",
+              "description": "The ID of the todo item to mark as incomplete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Todo successfully marked as uncompleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Todo": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'completed': 'boolean', 'createdAt': 'date', 'updatedAt': 'date', 'createdBy': 'long', 'updatedBy': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication is required"
+          },
+          "403": {
+            "description": "Forbidden - user does not have the required role"
+          },
+          "404": {
+            "description": "Todo not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/users/me": {
+      "get": {
+        "operationId": "getMe",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the current authenticated user's summary information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserSummary": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'username': 'string', 'firstName': 'string', 'lastName': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication is required to access this endpoint."
+          },
+          "403": {
+            "description": "Forbidden - the authenticated user does not have the required role (USER)."
+          },
+          "500": {
+            "description": "Internal server error - an unexpected error occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/api/users/checkUsernameAvailability": {
+      "get": {
+        "operationId": "getCheckusernameavailability",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": false,
+            "description": "Username to check availability for",
+            "schema": {
+              "type": "string",
+              "description": "Username to check availability for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns availability of the username.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserIdentityAvailability": {
+                      "type": "string",
+                      "description": "{'available': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/checkEmailAvailability": {
+      "get": {
+        "operationId": "getCheckemailavailability",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "description": "Email address to check availability for",
+            "schema": {
+              "type": "string",
+              "description": "Email address to check availability for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns whether the given email is available, wrapped in a UserIdentityAvailability object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserIdentityAvailability": {
+                      "type": "string",
+                      "description": "{'available': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if the userService.checkEmailAvailability call fails and the exception is not handled by the handler."
+          }
+        }
+      }
+    },
+    "/api/users/{username}/profile": {
+      "get": {
+        "operationId": "getProfile",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "Username of the user whose profile is requested",
+            "schema": {
+              "type": "string",
+              "description": "Username of the user whose profile is requested"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User profile retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserProfile": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'username': 'string', 'firstName': 'string', 'lastName': 'string', 'joinedAt': 'Instant', 'email': 'string', 'address': 'Address', 'phone': 'string', 'website': 'string', 'company': 'Company', 'postCount': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{username}/albums": {
+      "get": {
+        "operationId": "getAlbums",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "Username of the user whose albums are to be retrieved",
+            "schema": {
+              "type": "string",
+              "description": "Username of the user whose albums are to be retrieved"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Page number for pagination"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Number of items per page",
+            "schema": {
+              "type": "integer",
+              "description": "Number of items per page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the paginated list of albums for the specified user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PagedResponse<Album>": {
+                      "type": "string",
+                      "description": "{'content': 'array<Album>', 'page': 'integer', 'size': 'integer', 'totalElements': 'long', 'totalPages': 'integer', 'last': 'boolean'}"
+                    },
+                    "Album": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'user': 'User', 'photo': 'array<Photo>', 'createdBy': 'long', 'updatedBy': 'long', 'createdAt': 'date', 'updatedAt': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{username}": {
+      "delete": {
+        "operationId": "deleteUsers",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "Username of the user to delete",
+            "schema": {
+              "type": "string",
+              "description": "Username of the user to delete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication is required to access this resource"
+          },
+          "403": {
+            "description": "Forbidden - the authenticated user does not have permission to delete this user"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateUsers",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "The username of the user to update, extracted from the URL path.",
+            "schema": {
+              "type": "string",
+              "description": "The username of the user to update, extracted from the URL path."
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "User": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'firstName': 'string', 'lastName': 'string', 'username': 'string', 'password': 'string', 'email': 'string', 'address': 'Address', 'phone': 'string', 'website': 'string', 'roles': 'List<Role>', 'company': 'Company', 'createdAt': 'Instant', 'updatedAt': 'Instant'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - validation errors or malformed request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ExceptionResponse": {
+                      "type": "string",
+                      "description": "{'messages': 'List<string>', 'status': 'string', 'code': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - user does not have permission to update this user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found - user not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - unexpected error during user update",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "The updated user object sent in the request body, validated with @Valid."
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "description": "The updated user object sent in the request body, validated with @Valid."
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "description": "The updated user object sent in the request body, validated with @Valid."
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "The updated user object sent in the request body, validated with @Valid."
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "The updated user object sent in the request body, validated with @Valid."
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "The updated user object sent in the request body, validated with @Valid."
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "The updated user object sent in the request body, validated with @Valid."
+                  },
+                  "website": {
+                    "type": "string",
+                    "description": "The updated user object sent in the request body, validated with @Valid."
+                  },
+                  "roles": {
+                    "type": "string",
+                    "description": "The updated user object sent in the request body, validated with @Valid."
+                  },
+                  "todos": {
+                    "type": "string",
+                    "description": "The updated user object sent in the request body, validated with @Valid."
+                  },
+                  "albums": {
+                    "type": "string",
+                    "description": "The updated user object sent in the request body, validated with @Valid."
+                  },
+                  "posts": {
+                    "type": "string",
+                    "description": "The updated user object sent in the request body, validated with @Valid."
+                  },
+                  "comments": {
+                    "type": "string",
+                    "description": "The updated user object sent in the request body, validated with @Valid."
+                  }
+                },
+                "required": [
+                  "firstName",
+                  "lastName",
+                  "username",
+                  "password",
+                  "email"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{username}/posts": {
+      "get": {
+        "operationId": "getPosts",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "Username of the user whose posts are requested",
+            "schema": {
+              "type": "string",
+              "description": "Username of the user whose posts are requested"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Page number for pagination"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Page size for pagination",
+            "schema": {
+              "type": "integer",
+              "description": "Page size for pagination"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved a paginated list of posts created by the specified user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PagedResponse<Post>": {
+                      "type": "string",
+                      "description": "{'content': 'array<Post>', 'page': 'integer', 'size': 'integer', 'totalElements': 'long', 'totalPages': 'integer', 'last': 'boolean'}"
+                    },
+                    "Post": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'title': 'string', 'body': 'string', 'user': 'User', 'category': 'Category', 'tags': 'array<Tag>', 'createdAt': 'date', 'updatedAt': 'date', 'createdBy': 'long', 'updatedBy': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified username does not exist."
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "post": {
+        "operationId": "createUsers",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "201": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "User": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'firstName': 'string', 'lastName': 'string', 'username': 'string', 'password': 'string', 'email': 'string', 'address': 'Address', 'phone': 'string', 'website': 'string', 'roles': 'List<Role>', 'todos': 'List<Todo>', 'albums': 'List<Album>', 'posts': 'List<Post>', 'comments': 'List<Comment>', 'company': 'Company', 'createdAt': 'Instant', 'updatedAt': 'Instant', 'createdBy': 'long', 'updatedBy': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - validation errors or malformed request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ExceptionResponse": {
+                      "type": "string",
+                      "description": "{'messages': 'List<string>', 'status': 'string', 'code': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - user does not have ADMIN role",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - unexpected error during user creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "User object to be added"
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "description": "User object to be added"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "description": "User object to be added"
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "User object to be added"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "User object to be added"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "User object to be added"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "User object to be added"
+                  },
+                  "website": {
+                    "type": "string",
+                    "description": "User object to be added"
+                  },
+                  "roles": {
+                    "type": "string",
+                    "description": "User object to be added"
+                  },
+                  "todos": {
+                    "type": "string",
+                    "description": "User object to be added"
+                  },
+                  "albums": {
+                    "type": "string",
+                    "description": "User object to be added"
+                  },
+                  "posts": {
+                    "type": "string",
+                    "description": "User object to be added"
+                  },
+                  "comments": {
+                    "type": "string",
+                    "description": "User object to be added"
+                  }
+                },
+                "required": [
+                  "firstName",
+                  "lastName",
+                  "username",
+                  "password",
+                  "email"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{username}/giveAdmin": {
+      "put": {
+        "operationId": "updateGiveadmin",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "Username of the user to grant admin role",
+            "schema": {
+              "type": "string",
+              "description": "Username of the user to grant admin role"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Admin role granted successfully. Returns an ApiResponse indicating success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Returned when the request is not authenticated (e.g., missing or invalid JWT)."
+          },
+          "403": {
+            "description": "Forbidden. Returned when the authenticated user does not have the ADMIN role."
+          },
+          "404": {
+            "description": "Not Found. Returned when the specified username does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error. Returned when an unexpected error occurs during processing."
+          }
+        }
+      }
+    },
+    "/api/users/{username}/takeAdmin": {
+      "put": {
+        "operationId": "updateTakeadmin",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "Username of the user to grant admin role to",
+            "schema": {
+              "type": "string",
+              "description": "Username of the user to grant admin role to"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Admin role removed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication is required"
+          },
+          "403": {
+            "description": "Forbidden - user does not have ADMIN role"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/users/setOrUpdateInfo": {
+      "put": {
+        "operationId": "updateSetorupdateinfo",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "User profile information updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserProfile": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'username': 'string', 'firstName': 'string', 'lastName': 'string', 'joinedAt': 'date', 'email': 'string', 'address': 'Address', 'phone': 'string', 'website': 'string', 'company': 'Company', 'postCount': 'long'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input data or validation failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ExceptionResponse": {
+                      "type": "string",
+                      "description": "{'messages': 'array', 'status': 'string', 'code': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Authentication is required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - User does not have permission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ApiResponse": {
+                      "type": "string",
+                      "description": "{'success': 'boolean', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Unexpected server error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "street": {
+                    "type": "string",
+                    "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+                  },
+                  "suite": {
+                    "type": "string",
+                    "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+                  },
+                  "city": {
+                    "type": "string",
+                    "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+                  },
+                  "zipcode": {
+                    "type": "string",
+                    "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+                  },
+                  "companyName": {
+                    "type": "string",
+                    "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+                  },
+                  "catchPhrase": {
+                    "type": "string",
+                    "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+                  },
+                  "bs": {
+                    "type": "string",
+                    "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+                  },
+                  "website": {
+                    "type": "string",
+                    "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+                  },
+                  "lat": {
+                    "type": "string",
+                    "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+                  },
+                  "lng": {
+                    "type": "string",
+                    "description": "Request body containing the user's address, company, website, phone and geo information to set or update."
+                  }
+                },
+                "required": [
+                  "street",
+                  "suite",
+                  "city",
+                  "zipcode",
+                  "companyName",
+                  "catchPhrase",
+                  "bs",
+                  "website",
+                  "phone",
+                  "lat",
+                  "lng"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

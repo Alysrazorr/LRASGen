@@ -1,0 +1,3152 @@
+{
+  "task_id": "proxyprint-kitchen",
+  "api_name": "proxyprint-kitchen",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/admin/seed",
+      "http_method": "POST",
+      "method_name": "seed",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\admin\\AdminController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Seeding completed successfully. Returns a JSON object with a 'message' property set to 'seeding completed'.",
+          "data_schema": [
+            {
+              "name": "SeedResponse",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "index",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\DefaultController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with a greeting message.",
+          "data_schema": [
+            {
+              "name": "GreetingResponse",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/*",
+      "http_method": "OPTIONS",
+      "method_name": "handleOptions",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\DefaultController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content - the OPTIONS request is handled and an empty response with status 204 is returned.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/printshops",
+      "http_method": "GET",
+      "method_name": "getPrinShopsList",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\admin\\AdminController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object containing a 'prinshops' property with a JSON-encoded list of all printshops and a 'success' property set to true.",
+          "data_schema": [
+            {
+              "name": "AdminPrintShopsResponse",
+              "schema": {
+                "prinshops": "string",
+                "success": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Access denied. The endpoint is secured with @Secured({\"ROLE_ADMIN\"}) and requires the ROLE_ADMIN authority; requests without it are rejected by Spring Security.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/secured",
+      "http_method": "GET",
+      "method_name": "secured",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\DefaultController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with a message indicating the user is authenticated.",
+          "data_schema": [
+            {
+              "name": "SecuredResponse",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized - The request lacks valid authentication credentials for the secured endpoint.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/register",
+      "http_method": "POST",
+      "method_name": "newAdmin",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\admin\\AdminController.java",
+      "parameters": [
+        {
+          "name": "email",
+          "type": "String",
+          "_class_name": "Admin",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Admin entity to register"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Admin registered successfully. Returns the saved Admin entity.",
+          "data_schema": [
+            {
+              "name": "Admin",
+              "schema": {
+                "id": "long",
+                "username": "string",
+                "password": "string",
+                "roles": "array",
+                "email": "string",
+                "balance": "Money"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/admin/useed",
+      "http_method": "POST",
+      "method_name": "useed",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\admin\\AdminController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Consumers seeding completed successfully. Returns a JSON object with a message property.",
+          "data_schema": [
+            {
+              "name": "SeedResponse",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/login",
+      "http_method": "POST",
+      "method_name": "login",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\DefaultController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Login attempt processed. Returns a JSON object with a 'success' boolean indicating whether authentication succeeded. On success, also includes a 'user' object with the authenticated user's data. If the Ngrok tunnel is available and the user is a Consumer, an 'externalURL' string is also included.",
+          "data_schema": [
+            {
+              "name": "LoginResponse",
+              "schema": {
+                "success": "boolean",
+                "user": "object",
+                "externalURL": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/info",
+      "http_method": "GET",
+      "method_name": "getConsumerInfo",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the consumer's personal information if the authenticated user exists, otherwise success is false.",
+          "data_schema": [
+            {
+              "name": "ConsumerInfoResponse",
+              "schema": {
+                "consumer": "Consumer",
+                "success": "boolean"
+              }
+            },
+            {
+              "name": "Consumer",
+              "schema": {
+                "id": "long",
+                "username": "string",
+                "name": "string",
+                "email": "string",
+                "latitude": "string",
+                "longitude": "string",
+                "printingSchemas": "Set<PrintingSchema>",
+                "notifications": "List<Notification>",
+                "balance": "Money",
+                "roles": "Collection<GrantedAuthority>"
+              }
+            },
+            {
+              "name": "Money",
+              "schema": {
+                "currency": "string",
+                "integerPart": "integer",
+                "fractionalPart": "integer"
+              }
+            },
+            {
+              "name": "Notification",
+              "schema": {
+                "id": "long",
+                "message": "string",
+                "timestamp": "date",
+                "readStatus": "boolean"
+              }
+            },
+            {
+              "name": "PrintingSchema",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "paperSpecs": "string",
+                "bindingSpecs": "string",
+                "coverSpecs": "string",
+                "deleted": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/register",
+      "http_method": "POST",
+      "method_name": "addUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Consumer registration successful. Returns the created consumer object and success=true.",
+          "data_schema": [
+            {
+              "name": "RegistrationResponse",
+              "schema": {
+                "consumer": "Consumer",
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/{username}/notifications",
+      "http_method": "DELETE",
+      "method_name": "deleteAllNotifications",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The username of the consumer whose notifications should be removed.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns success/insuccess. This method allows consumers to remove all notifications.",
+          "data_schema": [
+            {
+              "name": "DeleteAllNotificationsResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/info/update",
+      "http_method": "PUT",
+      "method_name": "updateConsumerInfo",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object indicating whether the consumer information update was successful. The response contains a 'success' boolean property.",
+          "data_schema": [
+            {
+              "name": "UpdateConsumerInfoResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/{username}/notifications",
+      "http_method": "PUT",
+      "method_name": "readAllNotifications",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The username of the consumer whose notifications should be marked as read.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns success/insuccess. Marks all notifications as read for the given consumer and returns a JSON object with a success property set to true.",
+          "data_schema": [
+            {
+              "name": "NotificationReadResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/requests/cancel/{id}",
+      "http_method": "DELETE",
+      "method_name": "cancelRequests",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pending print request to cancel.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns success/insuccess. The request is cancelled and the consumer is refunded if the request is pending; otherwise success is false.",
+          "data_schema": [
+            {
+              "name": "CancelRequestResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/satisfied",
+      "http_method": "GET",
+      "method_name": "getPrintShopSatisfiedRequests",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the history of satisfied requests from a consumer. If the consumer is not found, returns success=false. Otherwise returns success=true with a list of satisfied requests, each containing the print request and the print shop name.",
+          "data_schema": [
+            {
+              "name": "SatisfiedRequestsResponse",
+              "schema": {
+                "satisfiedrequests": "array",
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/balance",
+      "http_method": "GET",
+      "method_name": "getConsumerBalance",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the consumer's balance and success flag when the consumer is found.",
+          "data_schema": [
+            {
+              "name": "ConsumerBalanceResponse",
+              "schema": {
+                "balance": {
+                  "currency": "string",
+                  "integerPart": "integer",
+                  "fractionalPart": "integer"
+                },
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/requests",
+      "http_method": "GET",
+      "method_name": "getRequests",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\ConsumerController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the consumer's pending print requests. If the consumer is not found, returns success=false. Otherwise returns success=true with the list of pending print requests.",
+          "data_schema": [
+            {
+              "name": "PendingRequestsResponse",
+              "schema": {
+                "printrequests": "array",
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/paypal/ipn/consumer/{consumerID}",
+      "http_method": "POST",
+      "method_name": "consumerLoadUpConfirmation",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PayPalController.java",
+      "parameters": [
+        {
+          "name": "consumerID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the consumer whose load up is being confirmed.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The IPN message is processed. If the consumer exists and the payment status is 'Completed', the consumer's balance is updated and a success notification is sent. If the payment status is not 'Completed', a failure notification is sent. If the consumer does not exist, no action is taken. In all cases, the method returns void and the HTTP response has an empty body with status 200.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/{consumerID}/printingschemas",
+      "http_method": "GET",
+      "method_name": "getConsumerPrintingSchemas",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintingSchemaController.java",
+      "parameters": [
+        {
+          "name": "consumerID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "the id of the consumer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with success=true and the set of printing schemas belonging to the consumer, or success=false if the consumer has no printing schemas.",
+          "data_schema": [
+            {
+              "name": "PrintingSchemaResponse",
+              "schema": {
+                "success": "boolean",
+                "pschemas": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/paypal/ipn/{printRequestID}",
+      "http_method": "POST",
+      "method_name": "someRequestPaymentConfirmationFromPaylPal",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PayPalController.java",
+      "parameters": [
+        {
+          "name": "printRequestID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print request whose payment is being confirmed by PayPal.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The IPN notification is processed. The method returns void, so the response body is empty. This occurs when the IPN is verified and the payment is successfully confirmed (print request status updated to PENDING, PayPal sale ID set, and notification sent), or when the IPN is not verified or the payment status is not 'Completed', or when the print request is not found, or when the consumer is not valid, or when required IPN fields are missing. In all these cases, the method completes without throwing an exception and returns HTTP 200 with an empty body.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/{consumerID}/printingschemas",
+      "http_method": "POST",
+      "method_name": "addNewConsumerPrintingSchema",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintingSchemaController.java",
+      "parameters": [
+        {
+          "name": "consumerID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "the id of the consumer.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "long",
+          "_class_name": "PrintingSchema",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "the PrintingSchema created by the consumer."
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "PrintingSchema",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "the PrintingSchema created by the consumer."
+        },
+        {
+          "name": "paperSpecs",
+          "type": "String",
+          "_class_name": "PrintingSchema",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "the PrintingSchema created by the consumer."
+        },
+        {
+          "name": "bindingSpecs",
+          "type": "String",
+          "_class_name": "PrintingSchema",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "the PrintingSchema created by the consumer."
+        },
+        {
+          "name": "coverSpecs",
+          "type": "String",
+          "_class_name": "PrintingSchema",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "the PrintingSchema created by the consumer."
+        },
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "_class_name": "PrintingSchema",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "the PrintingSchema created by the consumer."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully added a new PrintingSchema to the consumer's collection. Returns a JSON object with success=true and the id of the added PrintingSchema.",
+          "data_schema": [
+            {
+              "name": "AddPrintingSchemaResponse",
+              "schema": {
+                "success": "boolean",
+                "id": "long"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/{consumerID}/printingschemas/{printingSchemaID}",
+      "http_method": "DELETE",
+      "method_name": "deleteConsumerPrintingSchema",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintingSchemaController.java",
+      "parameters": [
+        {
+          "name": "consumerID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "the id of the consumer.",
+          "_depth": 0
+        },
+        {
+          "name": "printingSchemaID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "the id of the printing schema to delete.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully deleted the printing schema. Returns a JSON object with 'success' set to true.",
+          "data_schema": [
+            {
+              "name": "DeleteResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printdocument/{id}",
+      "http_method": "GET",
+      "method_name": "getDocument",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintRequestController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print request whose documents are to be retrieved.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the documents of the print request when the print request exists, or a failure response when the print request does not exist.",
+          "data_schema": [
+            {
+              "name": "PrintRequestDocumentsResponse",
+              "schema": {
+                "success": "boolean",
+                "documents": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/{consumerID}/printingschemas/{printingSchemaID}",
+      "http_method": "PUT",
+      "method_name": "editConsumerPrintingSchema",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintingSchemaController.java",
+      "parameters": [
+        {
+          "name": "consumerID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "the id of the consumer.",
+          "_depth": 0
+        },
+        {
+          "name": "printingSchemaID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "the PrintingSchema id.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "long",
+          "_class_name": "PrintingSchema",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "the PrintingSchema with the new values to apply."
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "PrintingSchema",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "the PrintingSchema with the new values to apply."
+        },
+        {
+          "name": "paperSpecs",
+          "type": "String",
+          "_class_name": "PrintingSchema",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "the PrintingSchema with the new values to apply."
+        },
+        {
+          "name": "bindingSpecs",
+          "type": "String",
+          "_class_name": "PrintingSchema",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "the PrintingSchema with the new values to apply."
+        },
+        {
+          "name": "coverSpecs",
+          "type": "String",
+          "_class_name": "PrintingSchema",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "the PrintingSchema with the new values to apply."
+        },
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "_class_name": "PrintingSchema",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "the PrintingSchema with the new values to apply."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully edited the printing schema. Returns a JSON object with a 'success' property set to true.",
+          "data_schema": [
+            {
+              "name": "EditResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the printing schema could not be saved (res is null). Returns a JSON object with a 'success' property set to false.",
+          "data_schema": [
+            {
+              "name": "EditResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/printrequest/{printRequestID}/submit",
+      "http_method": "POST",
+      "method_name": "finishAndSubmitPrintRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintRequestController.java",
+      "parameters": [
+        {
+          "name": "printRequestID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print request to submit",
+          "_depth": 0
+        },
+        {
+          "name": "printshopID",
+          "type": "long",
+          "require": "false",
+          "position": "body",
+          "description": "The ID of the print shop to which the print request is submitted",
+          "_depth": 0
+        },
+        {
+          "name": "budget",
+          "type": "double",
+          "require": "false",
+          "position": "body",
+          "description": "The budget/cost for the print request",
+          "_depth": 0
+        },
+        {
+          "name": "paymentMethod",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The payment method to use (e.g., PROXYPRINT_PAYMENT or PAYPAL_PAYMENT)",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Print request submitted successfully. Returns success=true.",
+          "data_schema": [
+            {
+              "name": "SubmitPrintRequestResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/budget",
+      "http_method": "POST",
+      "method_name": "calcBudgetForPrintRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintRequestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully calculated budgets for the print request. Returns a JSON object with success flag, budgets map, and print request ID.",
+          "data_schema": [
+            {
+              "name": "BudgetResponse",
+              "schema": {
+                "success": "boolean",
+                "budgets": "object",
+                "printRequestID": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. The request lacks valid authentication credentials for the protected endpoint.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The authenticated user does not have the required ROLE_USER authority.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected condition occurred while processing the request.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printdocument",
+      "http_method": "POST",
+      "method_name": "printDocument",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintRequestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully created a print request and processed the submitted files. Returns a JSON object with success=true and the generated printRequestID.",
+          "data_schema": [
+            {
+              "name": "PrintDocumentResponse",
+              "schema": {
+                "success": "boolean",
+                "printRequestID": "long"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/{id}/notify",
+      "http_method": "POST",
+      "method_name": "greeting",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\notifications\\NotificationsController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The consumer id used to look up the consumer whose username receives the notification.",
+          "_depth": 0
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The notification message read from the request parameter and sent to the consumer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Notification sent successfully. The method returns void, so the response body is empty.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printdocument/{id}/budget",
+      "http_method": "POST",
+      "method_name": "calcBudgetForPrintRecipe",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\consumer\\PrintRequestController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print request for which budgets are calculated.",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "array",
+          "require": "false",
+          "position": "body",
+          "description": "A JSON array of print shop IDs (as numbers) for which budgets should be calculated.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully calculated budgets for the given print request and printshops. Returns a JSON object with 'success' set to true, 'budgets' mapping printshop IDs to budget strings, and 'printRequestID'.",
+          "data_schema": [
+            {
+              "name": "BudgetResponse",
+              "schema": {
+                "success": "boolean",
+                "budgets": "object",
+                "printRequestID": "long"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/subscribe",
+      "http_method": "GET",
+      "method_name": "subscribe",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\notifications\\NotificationsController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Username of the consumer subscribing to SSE notifications.",
+          "_depth": 0
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Password of the consumer subscribing to SSE notifications.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Subscription successful. Returns an SseEmitter for the consumer's SSE subscription.",
+          "data_schema": [
+            {
+              "name": "SseEmitter",
+              "schema": {
+                "timeout": "long"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Consumer not found. Returned when no consumer exists with the provided username.",
+          "data_schema": []
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. Returned when the provided password does not match the consumer's password.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/consumer/notifications",
+      "http_method": "GET",
+      "method_name": "getConsumerNotifications",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\notifications\\NotificationsController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the list of notifications for the authenticated consumer.",
+          "data_schema": [
+            {
+              "name": "List<Notification>",
+              "schema": {
+                "id": "long",
+                "message": "string",
+                "timestamp": "date",
+                "read": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/notifications/{notificationId}",
+      "http_method": "DELETE",
+      "method_name": "deleteNotification",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\notifications\\NotificationsController.java",
+      "parameters": [
+        {
+          "name": "notificationId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the notification to delete.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Notification deleted successfully. Returns a JSON object with a success property set to true.",
+          "data_schema": [
+            {
+              "name": "DeleteNotificationResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/documents/{id}",
+      "http_method": "GET",
+      "method_name": "getEmployees",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\EmployeeController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The id of the document to retrieve.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the requested document as a PDF file.",
+          "data_schema": [
+            {
+              "name": "FileSystemResource",
+              "schema": {
+                "file": "binary"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Document not found.",
+          "data_schema": []
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized: the document does not belong to the employee's print shop.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/notifications/{notificationId}",
+      "http_method": "PUT",
+      "method_name": "readNotification",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\notifications\\NotificationsController.java",
+      "parameters": [
+        {
+          "name": "notificationId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the notification to mark as read.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns success.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{printShopID}/employees",
+      "http_method": "GET",
+      "method_name": "getEmployees",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ManagerController.java",
+      "parameters": [
+        {
+          "name": "printShopID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the printshop whose employees are to be listed.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with a list of employees for the given printshop. If the printshop exists, the response contains 'employees' (array of Employee objects) and 'success' set to true. If the printshop does not exist, the response contains only 'success' set to false.",
+          "data_schema": [
+            {
+              "name": "EmployeeListResponse",
+              "schema": {
+                "employees": "array",
+                "success": "boolean"
+              }
+            },
+            {
+              "name": "Employee",
+              "schema": {
+                "id": "long",
+                "username": "string",
+                "password": "string",
+                "name": "string",
+                "printShop": "object",
+                "roles": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{printShopID}/employees",
+      "http_method": "PUT",
+      "method_name": "editEmployee",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ManagerController.java",
+      "parameters": [
+        {
+          "name": "printShopID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the printshop whose employee is being edited.",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "Employee",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The employee data to update, parsed from the request body as JSON. Must contain name, username, and password."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Employee edited successfully. Returns a JSON object with success=true.",
+          "data_schema": [
+            {
+              "name": "EditEmployeeSuccessResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{printShopID}/employees",
+      "http_method": "POST",
+      "method_name": "addEmployee",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ManagerController.java",
+      "parameters": [
+        {
+          "name": "printShopID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print shop to which the employee will be added.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Employee added successfully. Returns success=true and the new employee's id.",
+          "data_schema": [
+            {
+              "name": "AddEmployeeSuccessResponse",
+              "schema": {
+                "success": "boolean",
+                "id": "long"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{printShopID}/employees/{employeeID}",
+      "http_method": "DELETE",
+      "method_name": "deleteEmployee",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ManagerController.java",
+      "parameters": [
+        {
+          "name": "printShopID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print shop.",
+          "_depth": 0
+        },
+        {
+          "name": "employeeID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the employee to delete.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Employee deleted successfully. Returns a JSON object with success set to true.",
+          "data_schema": [
+            {
+              "name": "DeleteEmployeeResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/stats",
+      "http_method": "GET",
+      "method_name": "getPrintShopStatistics",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ManagerController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns statistics for the manager's printshop. The response is a JSON object with success=true and fields: nPendingRequests, nInProgressRequests, nFinished, nEmployees, pshopProfit. If the manager or printshop is not found, returns success=false.",
+          "data_schema": [
+            {
+              "name": "PrintShopStatistics",
+              "schema": {
+                "nPendingRequests": "integer",
+                "nInProgressRequests": "integer",
+                "nFinished": "integer",
+                "nEmployees": "integer",
+                "pshopProfit": "string",
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshop",
+      "http_method": "GET",
+      "method_name": "getManagerPrintShop",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ManagerController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the manager's printshop information on success, or a failure flag if the manager has no printshop.",
+          "data_schema": [
+            {
+              "name": "ManagerPrintShopResponse",
+              "schema": {
+                "printshop": "object",
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/papers",
+      "http_method": "PUT",
+      "method_name": "editPaperItem",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "Identifier of the print shop whose price table is being edited.",
+          "_depth": 0
+        },
+        {
+          "name": "DEFAULT",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+        },
+        {
+          "name": "A4Simplex",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+        },
+        {
+          "name": "A4Duplex",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+        },
+        {
+          "name": "A3Simplex",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+        },
+        {
+          "name": "A3Duplex",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+        },
+        {
+          "name": "infLim",
+          "type": "int",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+        },
+        {
+          "name": "supLim",
+          "type": "int",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+        },
+        {
+          "name": "colors",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+        },
+        {
+          "name": "priceA4SIMPLEX",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+        },
+        {
+          "name": "priceA4DUPLEX",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+        },
+        {
+          "name": "priceA3SIMPLEX",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+        },
+        {
+          "name": "priceA3DUPLEX",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item containing the paper price entry to insert or update in the print shop's price table."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with a 'success' property set to true when the print shop exists and the paper item is edited successfully.",
+          "data_schema": [
+            {
+              "name": "JsonObject",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/papers",
+      "http_method": "POST",
+      "method_name": "addNewPaperItem",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "Identifier of the print shop whose price table receives the new paper item.",
+          "_depth": 0
+        },
+        {
+          "name": "DEFAULT",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item to insert into the print shop price table."
+        },
+        {
+          "name": "A4Simplex",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item to insert into the print shop price table."
+        },
+        {
+          "name": "A4Duplex",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item to insert into the print shop price table."
+        },
+        {
+          "name": "A3Simplex",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item to insert into the print shop price table."
+        },
+        {
+          "name": "A3Duplex",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item to insert into the print shop price table."
+        },
+        {
+          "name": "infLim",
+          "type": "int",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item to insert into the print shop price table."
+        },
+        {
+          "name": "supLim",
+          "type": "int",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item to insert into the print shop price table."
+        },
+        {
+          "name": "colors",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item to insert into the print shop price table."
+        },
+        {
+          "name": "priceA4SIMPLEX",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item to insert into the print shop price table."
+        },
+        {
+          "name": "priceA4DUPLEX",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item to insert into the print shop price table."
+        },
+        {
+          "name": "priceA3SIMPLEX",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item to insert into the print shop price table."
+        },
+        {
+          "name": "priceA3DUPLEX",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Paper table item to insert into the print shop price table."
+        },
+        {
+          "name": "infLim",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "Lower bound of the page range for the paper price.",
+          "_depth": 0
+        },
+        {
+          "name": "supLim",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "Upper bound of the page range for the paper price.",
+          "_depth": 0
+        },
+        {
+          "name": "colors",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Color mode of the paper item.",
+          "enum": [
+            "BW",
+            "GREY_TONES",
+            "COLOR"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "priceA4SIMPLEX",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Price for A4 simplex printing; default sentinel is '-'.",
+          "_depth": 0
+        },
+        {
+          "name": "priceA4DUPLEX",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Price for A4 duplex printing; default sentinel is '-'.",
+          "_depth": 0
+        },
+        {
+          "name": "priceA3SIMPLEX",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Price for A3 simplex printing; default sentinel is '-'.",
+          "_depth": 0
+        },
+        {
+          "name": "priceA3DUPLEX",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Price for A3 duplex printing; default sentinel is '-'.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with a 'success' boolean property. If the print shop with the given id exists, the paper table item is inserted into its price table and saved, and 'success' is true. If no print shop is found, 'success' is false.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/deletepaper",
+      "http_method": "POST",
+      "method_name": "deletePaperItem",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print shop whose price table will have a paper item deleted.",
+          "_depth": 0
+        },
+        {
+          "name": "DEFAULT",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+        },
+        {
+          "name": "A4Simplex",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+        },
+        {
+          "name": "A4Duplex",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+        },
+        {
+          "name": "A3Simplex",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+        },
+        {
+          "name": "A3Duplex",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+        },
+        {
+          "name": "infLim",
+          "type": "int",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+        },
+        {
+          "name": "supLim",
+          "type": "int",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+        },
+        {
+          "name": "colors",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+        },
+        {
+          "name": "priceA4SIMPLEX",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+        },
+        {
+          "name": "priceA4DUPLEX",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+        },
+        {
+          "name": "priceA3SIMPLEX",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+        },
+        {
+          "name": "priceA3DUPLEX",
+          "type": "String",
+          "_class_name": "PaperTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The paper table item specifying which paper price entries to remove from the print shop's price table."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with a 'success' property set to true when the print shop is found and the paper items are deleted.",
+          "data_schema": [
+            {
+              "name": "DeletePaperResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/rings",
+      "http_method": "POST",
+      "method_name": "addNewRingsItem",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "Identifier of the print shop whose price table will receive the new rings item.",
+          "_depth": 0
+        },
+        {
+          "name": "ringType",
+          "type": "String",
+          "_class_name": "RingTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Rings table item containing the ring type, lower and upper thickness limits, and price to add to the print shop's price table."
+        },
+        {
+          "name": "infLim",
+          "type": "int",
+          "_class_name": "RingTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Rings table item containing the ring type, lower and upper thickness limits, and price to add to the print shop's price table."
+        },
+        {
+          "name": "supLim",
+          "type": "int",
+          "_class_name": "RingTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Rings table item containing the ring type, lower and upper thickness limits, and price to add to the print shop's price table."
+        },
+        {
+          "name": "price",
+          "type": "String",
+          "_class_name": "RingTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Rings table item containing the ring type, lower and upper thickness limits, and price to add to the print shop's price table."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with a 'success' boolean property. If the print shop with the given id exists, the rings item is added to the price table and 'success' is true. If the print shop does not exist, 'success' is false.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/rings",
+      "http_method": "PUT",
+      "method_name": "editRingsItem",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print shop whose price table will be edited.",
+          "_depth": 0
+        },
+        {
+          "name": "ringType",
+          "type": "String",
+          "_class_name": "RingTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The rings price table item to edit, containing ring type, lower and upper limits, and price."
+        },
+        {
+          "name": "infLim",
+          "type": "int",
+          "_class_name": "RingTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The rings price table item to edit, containing ring type, lower and upper limits, and price."
+        },
+        {
+          "name": "supLim",
+          "type": "int",
+          "_class_name": "RingTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The rings price table item to edit, containing ring type, lower and upper limits, and price."
+        },
+        {
+          "name": "price",
+          "type": "String",
+          "_class_name": "RingTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The rings price table item to edit, containing ring type, lower and upper limits, and price."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with a 'success' boolean property. If the print shop with the given id exists, the rings item is added/updated in the price table and 'success' is true. If the print shop does not exist, 'success' is false.",
+          "data_schema": [
+            {
+              "name": "JsonObject",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/covers",
+      "http_method": "POST",
+      "method_name": "addNewCoverItem",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print shop whose price table will receive the new cover item.",
+          "_depth": 0
+        },
+        {
+          "name": "DEFAULT",
+          "type": "String",
+          "_class_name": "CoverTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Cover table item containing cover type and A4/A3 prices to add to the print shop price table."
+        },
+        {
+          "name": "coverType",
+          "type": "String",
+          "_class_name": "CoverTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Cover table item containing cover type and A4/A3 prices to add to the print shop price table."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with a 'success' boolean property. If the print shop exists, the cover items are added to the price table and 'success' is true; otherwise 'success' is false.",
+          "data_schema": [
+            {
+              "name": "SuccessResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/deletering",
+      "http_method": "POST",
+      "method_name": "deleteRingItem",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print shop whose price table will have a ring item deleted.",
+          "_depth": 0
+        },
+        {
+          "name": "ringType",
+          "type": "String",
+          "_class_name": "RingTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ring table item to delete, containing ringType, infLim, supLim, and price."
+        },
+        {
+          "name": "infLim",
+          "type": "int",
+          "_class_name": "RingTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ring table item to delete, containing ringType, infLim, supLim, and price."
+        },
+        {
+          "name": "supLim",
+          "type": "int",
+          "_class_name": "RingTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ring table item to delete, containing ringType, infLim, supLim, and price."
+        },
+        {
+          "name": "price",
+          "type": "String",
+          "_class_name": "RingTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The ring table item to delete, containing ringType, infLim, supLim, and price."
+        },
+        {
+          "name": "ringType",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The type of ring. Possible values are PLASTIC, SPIRAL, WIRE, STEELMAT, STAPLING, BINDING.",
+          "enum": [
+            "PLASTIC",
+            "SPIRAL",
+            "WIRE",
+            "STEELMAT",
+            "STAPLING",
+            "BINDING"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "infLim",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "The lower limit of the ring thickness range in millimeters.",
+          "_depth": 0
+        },
+        {
+          "name": "supLim",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "The upper limit of the ring thickness range in millimeters.",
+          "_depth": 0
+        },
+        {
+          "name": "price",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The price of the ring item.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with a 'success' boolean property. If the print shop exists, 'success' is true; otherwise, 'success' is false.",
+          "data_schema": [
+            {
+              "name": "JsonObject",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/covers",
+      "http_method": "PUT",
+      "method_name": "editCoverItem",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print shop whose cover price table item is to be edited.",
+          "_depth": 0
+        },
+        {
+          "name": "DEFAULT",
+          "type": "String",
+          "_class_name": "CoverTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The cover table item containing the cover type and prices for A4 and A3 formats."
+        },
+        {
+          "name": "coverType",
+          "type": "String",
+          "_class_name": "CoverTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The cover table item containing the cover type and prices for A4 and A3 formats."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with a 'success' boolean property. On success (print shop found), 'success' is true; if the print shop is not found, 'success' is false. The HTTP status is 200 in both cases.",
+          "data_schema": [
+            {
+              "name": "JsonObject",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable/deletecover",
+      "http_method": "POST",
+      "method_name": "deleteCoverItem",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print shop whose price table will be modified.",
+          "_depth": 0
+        },
+        {
+          "name": "DEFAULT",
+          "type": "String",
+          "_class_name": "CoverTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The cover table item to delete from the price table."
+        },
+        {
+          "name": "coverType",
+          "type": "String",
+          "_class_name": "CoverTableItem",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The cover table item to delete from the price table."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with a 'success' boolean property. If the print shop exists, 'success' is true and the cover items are removed from the price table. If the print shop does not exist, 'success' is false.",
+          "data_schema": [
+            {
+              "name": "DeleteCoverResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{printShopID}/pricetable/editstapling",
+      "http_method": "PUT",
+      "method_name": "editStaplingPrice",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PriceTableController.java",
+      "parameters": [
+        {
+          "name": "printShopID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print shop whose stapling price is to be edited.",
+          "_depth": 0
+        },
+        {
+          "name": "newStaplingPrice",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The new stapling price as a string, parsed to a float and stored under the key \"BINDING,STAPLING,0,0\".",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with a success property set to true when the print shop exists and the stapling price is updated.",
+          "data_schema": [
+            {
+              "name": "StaplingPriceEditResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{id}/pricetable",
+      "http_method": "GET",
+      "method_name": "getPrintShopPriceTable",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the printshop whose price table is returned.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a pricetable of a specific printshop. The response is a JSON object containing a success flag and, if successful, the printcopy, rings, stapling, and covers data.",
+          "data_schema": [
+            {
+              "name": "PriceTableResponse",
+              "schema": {
+                "success": "boolean",
+                "printcopy": "object",
+                "rings": "object",
+                "stapling": "number",
+                "covers": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/nearest",
+      "http_method": "GET",
+      "method_name": "getNearestPrintShops",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java",
+      "parameters": [
+        {
+          "name": "latitude",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Latitude of the reference location used to compute distances to printshops.",
+          "_depth": 0
+        },
+        {
+          "name": "longitude",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Longitude of the reference location used to compute distances to printshops.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object containing a success flag and, if latitude and longitude parameters are provided, a map of printshops keyed by distance.",
+          "data_schema": [
+            {
+              "name": "NearestPrintShopsResponse",
+              "schema": {
+                "success": "boolean",
+                "printshops": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/requests/{id}",
+      "http_method": "POST",
+      "method_name": "changeStatusPrintShopRequests",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print request whose status is to be changed.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the new status of the print request after a successful status change.",
+          "data_schema": [
+            {
+              "name": "ChangeStatusResponse",
+              "schema": {
+                "success": "boolean",
+                "newStatus": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when PayPalRESTException is thrown during PayPal payout processing.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/requests/{id}",
+      "http_method": "GET",
+      "method_name": "getPrintShopRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print request to retrieve.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the corresponding print request from a printshop. The response is a JSON object with a 'success' boolean and, when successful, a 'printrequest' object containing the print request details.",
+          "data_schema": [
+            {
+              "name": "PrintShopRequestResponse",
+              "schema": {
+                "success": "boolean",
+                "printrequest": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/requests",
+      "http_method": "GET",
+      "method_name": "getPrintShopRequests",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the pending and in progress requests from a printshop. If the employee has no associated printshop, returns success=false. Otherwise returns success=true and the list of print requests.",
+          "data_schema": [
+            {
+              "name": "PrintShopRequestsResponse",
+              "schema": {
+                "success": "boolean",
+                "printrequest": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/satisfied",
+      "http_method": "GET",
+      "method_name": "getPrintShopSatisfiedRequests",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the satisfied requests from a printshop. The response is a JSON object with a 'success' boolean and a 'satisfiedrequests' array containing the list of print requests with status FINISHED.",
+          "data_schema": [
+            {
+              "name": "SatisfiedRequestsResponse",
+              "schema": {
+                "success": "boolean",
+                "satisfiedrequests": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/history",
+      "http_method": "GET",
+      "method_name": "getPrintShopHistoryRequests",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the history of requests from a printshop. On success, the response contains a JSON object with a 'historyrequests' array and a 'success' boolean set to true. If the employee has no associated printshop, the response contains only a 'success' boolean set to false.",
+          "data_schema": [
+            {
+              "name": "HistoryResponse",
+              "schema": {
+                "historyrequests": "array",
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/requests/cancel/{id}",
+      "http_method": "POST",
+      "method_name": "cancelPrintShopRequests",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the print request to cancel.",
+          "_depth": 0
+        },
+        {
+          "name": "motive",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The reason for cancelling the print request.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object indicating success or failure of the cancellation. On success, the print request is removed from the printshop and consumer, a notification is sent, and the response contains {\"success\": true}. On failure (printshop not found, print request not found, or status not PENDING), the response contains {\"success\": false}.",
+          "data_schema": [
+            {
+              "name": "CancelResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{id}",
+      "http_method": "GET",
+      "method_name": "getPrintShop",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the printshop to retrieve.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the printshop info as JSON.",
+          "data_schema": [
+            {
+              "name": "PrintShop",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "address": "string",
+                "latitude": "double",
+                "longitude": "double",
+                "nif": "string",
+                "logo": "string",
+                "avgRating": "float",
+                "priceTable": "map<string,float>",
+                "balance": "Money"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Printshop not found.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops",
+      "http_method": "GET",
+      "method_name": "getPrintShops",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\PrintShopController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON array of all printshops.",
+          "data_schema": [
+            {
+              "name": "PrintShopList",
+              "schema": {
+                "id": "long",
+                "name": "string",
+                "address": "string",
+                "latitude": "double",
+                "longitude": "double",
+                "nif": "string",
+                "logo": "string",
+                "avgRating": "float",
+                "priceTable": "map<string,float>",
+                "balance": "Money"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/request/accept/{id}",
+      "http_method": "POST",
+      "method_name": "acceptRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\RegisterRequestController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the register request to accept.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with a 'success' property. If the register request with the given id does not exist, returns {\"success\": false}. If the request exists and the manager and printshop are successfully created, returns {\"success\": true}. If the manager or printshop creation fails, returns {\"success\": true} (due to a bug in the code).",
+          "data_schema": [
+            {
+              "name": "JsonResponse",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/request/register",
+      "http_method": "POST",
+      "method_name": "registerRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\RegisterRequestController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "_class_name": "RegisterRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The register request object containing manager and printshop registration details."
+        },
+        {
+          "name": "managerName",
+          "type": "String",
+          "_class_name": "RegisterRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The register request object containing manager and printshop registration details."
+        },
+        {
+          "name": "managerUsername",
+          "type": "String",
+          "_class_name": "RegisterRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The register request object containing manager and printshop registration details."
+        },
+        {
+          "name": "managerEmail",
+          "type": "String",
+          "_class_name": "RegisterRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The register request object containing manager and printshop registration details."
+        },
+        {
+          "name": "managerPassword",
+          "type": "String",
+          "_class_name": "RegisterRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The register request object containing manager and printshop registration details."
+        },
+        {
+          "name": "pShopAddress",
+          "type": "String",
+          "_class_name": "RegisterRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The register request object containing manager and printshop registration details."
+        },
+        {
+          "name": "pShopLatitude",
+          "type": "Double",
+          "_class_name": "RegisterRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The register request object containing manager and printshop registration details."
+        },
+        {
+          "name": "pShopLongitude",
+          "type": "Double",
+          "_class_name": "RegisterRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The register request object containing manager and printshop registration details."
+        },
+        {
+          "name": "pShopNIF",
+          "type": "String",
+          "_class_name": "RegisterRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The register request object containing manager and printshop registration details."
+        },
+        {
+          "name": "pShopName",
+          "type": "String",
+          "_class_name": "RegisterRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The register request object containing manager and printshop registration details."
+        },
+        {
+          "name": "accepted",
+          "type": "boolean",
+          "_class_name": "RegisterRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The register request object containing manager and printshop registration details."
+        },
+        {
+          "name": "pShopDateRequest",
+          "type": "String",
+          "_class_name": "RegisterRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The register request object containing manager and printshop registration details."
+        },
+        {
+          "name": "pShopDateRequestAccepted",
+          "type": "String",
+          "_class_name": "RegisterRequest",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The register request object containing manager and printshop registration details."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the saved RegisterRequest object.",
+          "data_schema": [
+            {
+              "name": "RegisterRequest",
+              "schema": {
+                "id": "long",
+                "managerName": "string",
+                "managerUsername": "string",
+                "managerEmail": "string",
+                "managerPassword": "string",
+                "pShopAddress": "string",
+                "pShopLatitude": "double",
+                "pShopLongitude": "double",
+                "pShopNIF": "string",
+                "pShopName": "string",
+                "pShopDateRequest": "string",
+                "pShopDateRequestAccepted": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/requests/pending",
+      "http_method": "GET",
+      "method_name": "acceptRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\RegisterRequestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of pending register requests.",
+          "data_schema": [
+            {
+              "name": "List<RegisterRequest>",
+              "schema": {
+                "id": "long",
+                "managerName": "string",
+                "managerUsername": "string",
+                "managerEmail": "string",
+                "managerPassword": "string",
+                "pShopAddress": "string",
+                "pShopLatitude": "double",
+                "pShopLongitude": "double",
+                "pShopNIF": "string",
+                "pShopName": "string",
+                "pShopDateRequest": "string",
+                "pShopDateRequestAccepted": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/request/reject/{printRequestID}",
+      "http_method": "POST",
+      "method_name": "rejectRequest",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\RegisterRequestController.java",
+      "parameters": [
+        {
+          "name": "printRequestID",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the register request to reject.",
+          "_depth": 0
+        },
+        {
+          "name": "motive",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The reason for rejecting the register request.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a JSON object with a 'success' property set to false when the register request with the given ID does not exist.",
+          "data_schema": [
+            {
+              "name": "JsonObject",
+              "schema": {
+                "success": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{id}/reviews",
+      "http_method": "GET",
+      "method_name": "getPrintShopReviews",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ReviewController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the printshop whose reviews are to be retrieved.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns all printshop reviews as a JSON array of review objects.",
+          "data_schema": [
+            {
+              "name": "ReviewList",
+              "schema": {
+                "id": "long",
+                "description": "string",
+                "rating": "integer",
+                "username": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Printshop not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{id}/reviews",
+      "http_method": "POST",
+      "method_name": "addPrintShopReview",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ReviewController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the printshop to add the review to",
+          "_depth": 0
+        },
+        {
+          "name": "params",
+          "type": "Map<String, String>",
+          "require": "false",
+          "position": "body",
+          "description": "Request body map containing the review text and rating",
+          "_depth": 0
+        },
+        {
+          "name": "review",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The review text",
+          "_depth": 0
+        },
+        {
+          "name": "rating",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "The rating value for the review",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Review added successfully. Returns the created review as JSON.",
+          "data_schema": [
+            {
+              "name": "Review",
+              "schema": {
+                "id": "long",
+                "description": "string",
+                "rating": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Printshop not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{printShopId}/reviews/{reviewId}",
+      "http_method": "PUT",
+      "method_name": "editPrintShopReview",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ReviewController.java",
+      "parameters": [
+        {
+          "name": "printShopId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the printshop whose review is being edited",
+          "_depth": 0
+        },
+        {
+          "name": "reviewId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the review to edit",
+          "_depth": 0
+        },
+        {
+          "name": "review",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Updated review text",
+          "_depth": 0
+        },
+        {
+          "name": "rating",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Updated rating value",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Review edited successfully. Returns the updated review as JSON.",
+          "data_schema": [
+            {
+              "name": "Review",
+              "schema": {
+                "id": "long",
+                "description": "string",
+                "rating": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Print shop not found or review not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized: the review does not belong to the authenticated user.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/printshops/{printShopId}/reviews/{reviewId}",
+      "http_method": "DELETE",
+      "method_name": "deletePrintShopReview",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\ProxyPrint\\proxyprint-kitchen\\src\\main\\java\\io\\github\\proxyprint\\kitchen\\controllers\\printshops\\ReviewController.java",
+      "parameters": [
+        {
+          "name": "printShopId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the printshop whose review is to be deleted",
+          "_depth": 0
+        },
+        {
+          "name": "reviewId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the review to delete",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Review deleted successfully. Returns the deleted review as JSON.",
+          "data_schema": [
+            {
+              "name": "Review",
+              "schema": {
+                "id": "long",
+                "description": "string",
+                "rating": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Print shop not found or review not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized: the review does not belong to the authenticated user.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 29425,
+  "tokens": {
+    "prompt_tokens": 9435781,
+    "completion_tokens": 80009,
+    "total_tokens": 9515790,
+    "calls": 408,
+    "elapsed_s": 2938.357,
+    "prompt_cost_usd": 1.208987,
+    "completion_cost_usd": 0.054722,
+    "total_cost_usd": 1.263708,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 3078458,
+        "completion_tokens": 15473,
+        "total_tokens": 3093931,
+        "calls": 136,
+        "elapsed_s": 272.7797099999999,
+        "prompt_cost_usd": 0.061569,
+        "completion_cost_usd": 0.009284,
+        "total_cost_usd": 0.070853
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 2946084,
+        "completion_tokens": 51367,
+        "total_tokens": 2997451,
+        "calls": 136,
+        "elapsed_s": 1993.12,
+        "prompt_cost_usd": 0.294608,
+        "completion_cost_usd": 0.025684,
+        "total_cost_usd": 0.320292
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 3411239,
+        "completion_tokens": 13169,
+        "total_tokens": 3424408,
+        "calls": 136,
+        "elapsed_s": 672.457,
+        "prompt_cost_usd": 0.85281,
+        "completion_cost_usd": 0.019754,
+        "total_cost_usd": 0.872563
+      }
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "spring-actuator-demo API",
+    "description": "LRASGen-generated specification for spring-actuator-demo (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "get",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "The name to greet",
+            "schema": {
+              "type": "string",
+              "description": "The name to greet"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a greeting string: 'Hello ' + name + '!!', where name defaults to 'Guest' if not provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "greeting": {
+                      "type": "string",
+                      "description": "{'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/slowApi": {
+      "get": {
+        "operationId": "getSlowapi",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "delay",
+            "in": "query",
+            "required": false,
+            "description": "Delay in seconds before returning the result; if 0, a random delay between 0 and 9 seconds is used.",
+            "schema": {
+              "type": "integer",
+              "description": "Delay in seconds before returning the result; if 0, a random delay between 0 and 9 seconds is used."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the string 'Result' after sleeping for the specified delay (or a random delay between 0 and 9 seconds if delay is 0).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "string",
+                      "description": "{'result': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

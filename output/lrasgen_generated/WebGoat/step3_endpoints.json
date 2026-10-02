@@ -1,0 +1,1712 @@
+{
+  "task_id": "webgoat",
+  "api_name": "webgoat",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/attack",
+      "http_method": "GET",
+      "method_name": "attack",
+      "summary": "Entry point for WebGoat, redirects to the first lesson found within the course.",
+      "description": "Entry point for WebGoat, redirects to the first lesson found within the course.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\HammerHead.java"
+    },
+    {
+      "endpoint_path": "/attack",
+      "http_method": "POST",
+      "method_name": "attack",
+      "summary": "Entry point for WebGoat, redirects to the first lesson found within the course.",
+      "description": "Entry point for WebGoat, redirects to the first lesson found within the course.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\HammerHead.java"
+    },
+    {
+      "endpoint_path": "/WebWolf",
+      "http_method": "GET",
+      "method_name": "openWebWolf",
+      "summary": "Redirect to WebWolf home page",
+      "description": "Redirects the client to the WebWolf application home page using the configured webwolf.url property.",
+      "line_number": 7,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\WebWolfRedirect.java"
+    },
+    {
+      "endpoint_path": "/*.lesson",
+      "http_method": "GET",
+      "method_name": "lessonPage",
+      "summary": "Retrieve lesson page",
+      "description": "Handles GET requests to paths ending with '.lesson', extracts the lesson name from the URL, and returns a ModelAndView for the lesson content.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\controller\\StartLesson.java"
+    },
+    {
+      "endpoint_path": "/welcome.mvc",
+      "http_method": "GET",
+      "method_name": "welcome",
+      "summary": "Welcome endpoint",
+      "description": "Sets the 'welcomed' session attribute if not already set, then forwards the request to /attack?start=true, skipping the welcome page.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\controller\\Welcome.java"
+    },
+    {
+      "endpoint_path": "/service/reportcard.mvc",
+      "http_method": "GET",
+      "method_name": "reportCard",
+      "summary": "Generate report card",
+      "description": "Endpoint which generates the report card for the current user to show the stats on the solved lessons.",
+      "line_number": 25,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\report\\ReportCardController.java"
+    },
+    {
+      "endpoint_path": "/environment/server-directory",
+      "http_method": "GET",
+      "method_name": "homeDirectory",
+      "summary": "Get the server directory property",
+      "description": "Returns the value of the 'webgoat.server.directory' property from the application environment.",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\service\\EnvironmentService.java"
+    },
+    {
+      "endpoint_path": "/service/hint.mvc",
+      "http_method": "GET",
+      "method_name": "getHints",
+      "summary": "Returns hints for current lesson",
+      "description": "Returns a list of all hints for the current lesson as JSON.",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\service\\HintService.java"
+    },
+    {
+      "endpoint_path": "/service/debug/labels.mvc",
+      "http_method": "GET",
+      "method_name": "checkDebuggingStatus",
+      "summary": "Check label debugging status",
+      "description": "Checks if debugging of labels is enabled or disabled and returns the current status as JSON.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\service\\LabelDebugService.java"
+    },
+    {
+      "endpoint_path": "/service/labels.mvc",
+      "http_method": "GET",
+      "method_name": "fetchLabels",
+      "summary": "Fetch all labels",
+      "description": "Returns a map of all the labels from messages and plugin messages as JSON.",
+      "line_number": 19,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\service\\LabelService.java"
+    },
+    {
+      "endpoint_path": "/service/lessoninfo.mvc/{lesson}",
+      "http_method": "GET",
+      "method_name": "getLessonInfo",
+      "summary": "Get lesson info",
+      "description": "Returns the LessonInfoModel for the given lesson name, containing the lesson title and flags indicating whether source, solution, and plan are available.",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\service\\LessonInfoService.java"
+    },
+    {
+      "endpoint_path": "/service/lessonmenu.mvc",
+      "http_method": "GET",
+      "method_name": "showLeftNav",
+      "summary": "Returns the lesson menu used to build the left navigation.",
+      "description": "Returns a list of LessonMenuItem objects representing categories and lessons, filtered by excludeCategories and excludeLessons, and annotated with completion status from the user's progress.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\service\\LessonMenuService.java"
+    },
+    {
+      "endpoint_path": "/service/lessonoverview.mvc/{lesson}",
+      "http_method": "GET",
+      "method_name": "lessonOverview",
+      "summary": "Fetch lesson overview",
+      "description": "Endpoint for fetching the complete lesson overview which informs the user about whether all the assignments are solved. Used as the last page of the lesson to generate a lesson overview. Returns a list of assignments with their solved status.",
+      "line_number": 21,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\service\\LessonProgressService.java"
+    },
+    {
+      "endpoint_path": "/service/restartlesson.mvc/{lesson}",
+      "http_method": "GET",
+      "method_name": "restartLesson",
+      "summary": "Restart a lesson for the current user",
+      "description": "Resets the user's progress for the specified lesson, cleans and migrates the lesson database schema, and re-initializes all initializable lessons for the user.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\service\\RestartLessonService.java"
+    },
+    {
+      "endpoint_path": "/service/enable-security.mvc",
+      "http_method": "GET",
+      "method_name": "applySecurity",
+      "summary": "Apply security settings",
+      "description": "Endpoint mapped via @RequestMapping without an explicit HTTP method; it accepts GET requests. Currently disabled and returns the message 'Not working...'.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\service\\SessionService.java"
+    },
+    {
+      "endpoint_path": "/registration",
+      "http_method": "GET",
+      "method_name": "showForm",
+      "summary": "Show registration form",
+      "description": "Displays the registration form for creating a new user account.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\users\\RegistrationController.java"
+    },
+    {
+      "endpoint_path": "/register.mvc",
+      "http_method": "POST",
+      "method_name": "registration",
+      "summary": "Register a new user",
+      "description": "Validates the submitted user form, creates a new user account, logs the user in, and redirects to the attack page.",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\users\\RegistrationController.java"
+    },
+    {
+      "endpoint_path": "/login-oauth.mvc",
+      "http_method": "GET",
+      "method_name": "registrationOAUTH",
+      "summary": "Register OAuth user",
+      "description": "Registers an OAuth-authenticated user in the database with a random password and redirects to the welcome page.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\users\\RegistrationController.java"
+    },
+    {
+      "endpoint_path": "/scoreboard-data",
+      "http_method": "GET",
+      "method_name": "getRankings",
+      "summary": "Get scoreboard rankings",
+      "description": "Returns a list of rankings for all users (excluding those with usernames starting with 'csrf-'), sorted by the number of challenges solved in descending order. Each ranking includes the username and a list of solved challenge titles.",
+      "line_number": 21,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\users\\Scoreboard.java"
+    },
+    {
+      "endpoint_path": "/auth-bypass/verify-account",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Verify account security questions",
+      "description": "Verifies the user's account by checking submitted security question answers. If the user likely cheated, returns a failure with a cheating feedback message. Otherwise, if the account verification succeeds, stores the verified user ID in the session and returns success; otherwise returns failure.",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\authbypass\\VerifyAccount.java"
+    },
+    {
+      "endpoint_path": "/BypassRestrictions/FieldRestrictions",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Bypass client-side field restrictions",
+      "description": "Handles POST requests to /BypassRestrictions/FieldRestrictions. Accepts parameters select, radio, checkbox, shortInput, and readOnlyInput. Returns a failed AttackResult if select is 'option1' or 'option2', if radio is 'option1' or 'option2', if checkbox is 'on' or 'off', if shortInput length is <= 5, or if readOnlyInput equals 'change'. Otherwise returns a successful AttackResult.",
+      "line_number": 6,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\bypassrestrictions\\BypassRestrictionsFieldRestrictions.java"
+    },
+    {
+      "endpoint_path": "/BypassRestrictions/frontendValidation",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Bypass frontend validation assignment endpoint",
+      "description": "Handles the BypassRestrictions frontend validation assignment. Accepts seven string fields and an integer error parameter. Returns failure if error > 0 or if any field matches its corresponding regex (indicating the client-side validation was not bypassed). Returns success only when all fields fail to match their regexes, meaning the frontend validation was bypassed.",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\bypassrestrictions\\BypassRestrictionsFrontendValidation.java"
+    },
+    {
+      "endpoint_path": "/challenge/flag/{flagNumber}",
+      "http_method": "POST",
+      "method_name": "postFlag",
+      "summary": "Submit a flag for a challenge",
+      "description": "Accepts a flag number as a path variable and a flag value as a request parameter, then checks whether the submitted flag matches the expected flag for that challenge. Returns a success AttackResult if correct, otherwise a failed AttackResult.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\challenges\\FlagController.java"
+    },
+    {
+      "endpoint_path": "/challenge/1",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit challenge 1 credentials",
+      "description": "Accepts username and password parameters. The password must be 'admin' and match the PINCODE-derived password. Returns success with flag if correct, otherwise failure.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\challenges\\challenge1\\Assignment1.java"
+    },
+    {
+      "endpoint_path": "/challenge/logo",
+      "http_method": "GET",
+      "method_name": "logo",
+      "summary": "Returns the WebGoat logo image with an embedded pincode",
+      "description": "Handles GET requests to /challenge/logo, reads the webgoat2.png image from the classpath, embeds the 4-digit PINCODE into specific byte positions (81216-81219), and returns the modified PNG image.",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\challenges\\challenge1\\ImageServlet.java"
+    },
+    {
+      "endpoint_path": "/challenge/logo",
+      "http_method": "POST",
+      "method_name": "logo",
+      "summary": "Returns the WebGoat logo image with an embedded pincode",
+      "description": "Handles POST requests to /challenge/logo, reads the webgoat2.png image from the classpath, embeds the 4-digit PINCODE into specific byte positions (81216-81219), and returns the modified PNG image.",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\challenges\\challenge1\\ImageServlet.java"
+    },
+    {
+      "endpoint_path": "/challenge/5",
+      "http_method": "POST",
+      "method_name": "login",
+      "summary": "Challenge 5 login endpoint",
+      "description": "Authenticates a user for challenge 5. Requires non-empty username_login and password_login parameters. Only accepts username 'Larry'. Constructs a SQL query by concatenating user input directly into the query string, making it vulnerable to SQL injection. If the query returns a result, the challenge is solved and the flag is returned; otherwise, a failure message is returned.",
+      "line_number": 13,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\challenges\\challenge5\\Assignment5.java"
+    },
+    {
+      "endpoint_path": "/challenge/7/reset-password/{link}",
+      "http_method": "GET",
+      "method_name": "resetPassword",
+      "summary": "Reset password using a link",
+      "description": "Accepts a password reset link and if it matches the admin password reset link, returns a success message with the flag; otherwise returns 418 I'm a teapot.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\challenges\\challenge7\\Assignment7.java"
+    },
+    {
+      "endpoint_path": "/challenge/7",
+      "http_method": "POST",
+      "method_name": "sendPasswordResetLink",
+      "summary": "Send password reset link",
+      "description": "Accepts an email address, extracts the username, generates a password reset link, and sends it via email through WebWolf.",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\challenges\\challenge7\\Assignment7.java"
+    },
+    {
+      "endpoint_path": "/challenge/7/.git",
+      "http_method": "GET",
+      "method_name": "git",
+      "summary": "Download git repository archive",
+      "description": "Returns a zip file containing the git repository for challenge 7.",
+      "line_number": 78,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\challenges\\challenge7\\Assignment7.java"
+    },
+    {
+      "endpoint_path": "/challenge/8/vote/{stars}",
+      "http_method": "GET",
+      "method_name": "vote",
+      "summary": "Vote for a star rating",
+      "description": "Simple implementation of VERB Based Authentication. If the request method is GET, returns an error message indicating login is required. Otherwise, increments the vote count for the given star rating and returns a response with an X-FlagController header containing the flag.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\challenges\\challenge8\\Assignment8.java"
+    },
+    {
+      "endpoint_path": "/challenge/8/votes",
+      "http_method": "GET",
+      "method_name": "getVotes",
+      "summary": "Get all votes",
+      "description": "Returns a map of star ratings to their vote counts.",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\challenges\\challenge8\\Assignment8.java"
+    },
+    {
+      "endpoint_path": "/challenge/8/votes/average",
+      "http_method": "GET",
+      "method_name": "average",
+      "summary": "Get average vote",
+      "description": "Calculates and returns the average star rating based on all votes.",
+      "line_number": 55,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\challenges\\challenge8\\Assignment8.java"
+    },
+    {
+      "endpoint_path": "/challenge/8/notUsed",
+      "http_method": "GET",
+      "method_name": "notUsed",
+      "summary": "Unused endpoint",
+      "description": "Throws an IllegalStateException; should never be called.",
+      "line_number": 66,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\challenges\\challenge8\\Assignment8.java"
+    },
+    {
+      "endpoint_path": "/ChromeDevTools/dummy",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Validate success message for Chrome DevTools lesson",
+      "description": "Accepts a successMessage request parameter and compares it to the value stored in the lesson session under 'randValue'. If they match, returns a success AttackResult with feedback 'xss-dom-message-success'; otherwise returns a failed AttackResult with feedback 'xss-dom-message-failure'.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\chromedevtools\\NetworkDummy.java"
+    },
+    {
+      "endpoint_path": "/ChromeDevTools/network",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Complete the Chrome DevTools network assignment",
+      "description": "Compares the network_num and number request parameters; returns success if they match, otherwise failure.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\chromedevtools\\NetworkLesson.java"
+    },
+    {
+      "endpoint_path": "/cia/quiz",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit CIA quiz answers",
+      "description": "Accepts four quiz answers as request parameters, compares each against the predefined solutions, and returns a success or failure AttackResult.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\cia\\CIAQuiz.java"
+    },
+    {
+      "endpoint_path": "/cia/quiz",
+      "http_method": "GET",
+      "method_name": "getResults",
+      "summary": "Get CIA quiz results",
+      "description": "Returns a boolean array indicating which quiz questions were answered correctly in the last submission.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\cia\\CIAQuiz.java"
+    },
+    {
+      "endpoint_path": "/clientSideFiltering/attack1",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit answer for Client-Side Filtering assignment",
+      "description": "Accepts a request parameter 'answer' and checks whether it equals '450000'. Returns a success AttackResult with feedback 'assignment.solved' if correct, otherwise a failed AttackResult with feedback 'ClientSideFiltering.incorrect'.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\clientsidefiltering\\ClientSideFilteringAssignment.java"
+    },
+    {
+      "endpoint_path": "/clientSideFiltering/getItForFree",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit a checkout code to complete the Client Side Filtering (free) assignment",
+      "description": "Accepts a checkoutCode request parameter. If the code equals the hardcoded SUPER_COUPON_CODE ('get_it_for_free'), returns a successful AttackResult; otherwise returns a failed AttackResult.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\clientsidefiltering\\ClientSideFilteringFreeAssignment.java"
+    },
+    {
+      "endpoint_path": "/clientSideFiltering/salaries",
+      "http_method": "GET",
+      "method_name": "invoke",
+      "summary": "Retrieve employee salary data",
+      "description": "Reads employees.xml from the WebGoat home directory, evaluates an XPath expression to extract UserID, FirstName, LastName, SSN, and Salary for each employee, and returns the results as a JSON list of maps.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\clientsidefiltering\\Salaries.java"
+    },
+    {
+      "endpoint_path": "/clientSideFiltering/challenge-store/coupons/{code}",
+      "http_method": "GET",
+      "method_name": "getDiscountCode",
+      "summary": "Get discount code",
+      "description": "Returns the checkout code and discount for the given coupon code. If the code matches the super coupon code, returns a 100% discount code.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\clientsidefiltering\\ShopEndpoint.java"
+    },
+    {
+      "endpoint_path": "/clientSideFiltering/challenge-store/coupons",
+      "http_method": "GET",
+      "method_name": "all",
+      "summary": "List all coupons",
+      "description": "Returns all available checkout codes including the super coupon code with 100% discount.",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\clientsidefiltering\\ShopEndpoint.java"
+    },
+    {
+      "endpoint_path": "/crypto/encoding/basic",
+      "http_method": "GET",
+      "method_name": "getBasicAuth",
+      "summary": "Get Basic Authorization header",
+      "description": "Returns the Basic Authorization header value for the current user. If no basicAuth value is stored in the session, a random secret from HashingAssignment.SECRETS is chosen as the password, the Basic auth string is generated via Base64 encoding of 'username:password', stored in the session, and returned as 'Authorization: Basic <value>'.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\cryptography\\EncodingAssignment.java"
+    },
+    {
+      "endpoint_path": "/crypto/encoding/basic-auth",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit Basic Auth credentials",
+      "description": "Validates the submitted username and password by comparing the Base64-encoded 'username:password' against the basicAuth value stored in the session. Returns success if they match, otherwise failure.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\cryptography\\EncodingAssignment.java"
+    },
+    {
+      "endpoint_path": "/crypto/hashing/md5",
+      "http_method": "GET",
+      "method_name": "getMd5",
+      "summary": "Get MD5 hash of a secret",
+      "description": "Returns the MD5 hash of a randomly selected secret from a predefined list. The secret is stored in the session for later verification.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\cryptography\\HashingAssignment.java"
+    },
+    {
+      "endpoint_path": "/crypto/hashing/sha256",
+      "http_method": "GET",
+      "method_name": "getSha256",
+      "summary": "Get SHA-256 hash of a secret",
+      "description": "Returns the SHA-256 hash of a randomly selected secret from a predefined list. The secret is stored in the session for later verification.",
+      "line_number": 28,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\cryptography\\HashingAssignment.java"
+    },
+    {
+      "endpoint_path": "/crypto/hashing",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit answers for hashing assignment",
+      "description": "Accepts two password answers, compares them with the secrets stored in the session, and returns an AttackResult indicating success, partial success, or failure.",
+      "line_number": 41,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\cryptography\\HashingAssignment.java"
+    },
+    {
+      "endpoint_path": "/crypto/secure/defaults",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Complete secure defaults assignment",
+      "description": "Checks if the provided secret file name is 'default_secret' and the SHA-256 hash of the provided secret text matches the expected hash. Returns success or failure feedback accordingly.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\cryptography\\SecureDefaultsAssignment.java"
+    },
+    {
+      "endpoint_path": "/crypto/signing/getprivate",
+      "http_method": "GET",
+      "method_name": "getPrivateKey",
+      "summary": "Get the RSA private key in PEM format",
+      "description": "Returns the private key stored in the session, generating a new RSA key pair if none exists. The private key is returned in PEM format.",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\cryptography\\SigningAssignment.java"
+    },
+    {
+      "endpoint_path": "/crypto/signing/verify",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Verify a signature against the modulus",
+      "description": "Validates that the provided modulus matches the public key's modulus and verifies the signature over the modulus using the public key. Returns success if both checks pass.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\cryptography\\SigningAssignment.java"
+    },
+    {
+      "endpoint_path": "/crypto/encoding/xor",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "XOR encoding assignment endpoint",
+      "description": "Handles the XOR encoding assignment. Accepts a request parameter 'answer_pwd1' and checks if it equals 'databasepassword'. Returns a success AttackResult if correct, otherwise a failed AttackResult.",
+      "line_number": 7,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\cryptography\\XOREncodingAssignment.java"
+    },
+    {
+      "endpoint_path": "/csrf/confirm-flag-1",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Confirm CSRF flag 1",
+      "description": "Confirms the CSRF flag value by comparing the provided confirmFlagVal with the value stored in the lesson session under the key 'csrf-get-success'. Returns a success AttackResult with feedback and output if the values match, otherwise returns a failed AttackResult.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\csrf\\CSRFConfirmFlag1.java"
+    },
+    {
+      "endpoint_path": "/csrf/feedback/message",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit CSRF feedback message",
+      "description": "Accepts a plain text feedback body, validates CSRF conditions (JSESSIONID cookie present, Content-Type text/plain, and Referer/Host mismatch), and returns a success flag if the CSRF attack is correctly performed.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\csrf\\CSRFFeedback.java"
+    },
+    {
+      "endpoint_path": "/csrf/feedback",
+      "http_method": "POST",
+      "method_name": "flag",
+      "summary": "Confirm CSRF feedback flag",
+      "description": "Accepts a confirmFlagVal request parameter and compares it with the stored CSRF feedback flag in the lesson session to determine if the assignment is solved.",
+      "line_number": 43,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\csrf\\CSRFFeedback.java"
+    },
+    {
+      "endpoint_path": "/csrf/basic-get-flag",
+      "http_method": "POST",
+      "method_name": "invoke",
+      "summary": "CSRF basic get flag endpoint",
+      "description": "Handles POST requests to /csrf/basic-get-flag. Reads the 'host' and 'referer' headers and the 'csrf' parameter. If the referer header is missing (NULL), it returns a success response with a random flag, using the 'csrf-get-null-referer.success' message when the csrf parameter equals 'true', otherwise the 'csrf-get-other-referer.success' message. If the referer's host matches the request host, it returns success=false with the message 'Appears the request came from the original host' and a null flag. Otherwise, it returns a success response with a random flag and the 'csrf-get-other-referer.success' message.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\csrf\\CSRFGetFlag.java"
+    },
+    {
+      "endpoint_path": "/csrf/login",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "CSRF login assignment endpoint",
+      "description": "Handles POST requests to /csrf/login. Uses the @CurrentUsername annotation to inject the current authenticated user's username. If the username starts with \"csrf\", returns a successful AttackResult with feedback \"csrf-login-success\"; otherwise returns a failed AttackResult with feedback \"csrf-login-failed\" and the username as a feedback argument.",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\csrf\\CSRFLogin.java"
+    },
+    {
+      "endpoint_path": "/csrf/review",
+      "http_method": "GET",
+      "method_name": "retrieveReviews",
+      "summary": "Retrieve all reviews",
+      "description": "Returns a collection of reviews for the current user combined with predefined reviews.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\csrf\\ForgedReviews.java"
+    },
+    {
+      "endpoint_path": "/csrf/review",
+      "http_method": "POST",
+      "method_name": "createNewReview",
+      "summary": "Create a new review",
+      "description": "Creates a new review with the provided text, stars, and validation token. Checks for CSRF token and referer header.",
+      "line_number": 58,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\csrf\\ForgedReviews.java"
+    },
+    {
+      "endpoint_path": "/InsecureDeserialization/task",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Insecure deserialization assignment endpoint",
+      "description": "Accepts a Base64-encoded serialized token, decodes it, and deserializes it via ObjectInputStream. If the deserialized object is a VulnerableTaskHolder whose readObject executes a task action (sleep/ping) taking between 3 and 7 seconds, the assignment is marked as solved. Returns failure feedback for wrong object types, invalid versions, or expired objects.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\deserialization\\InsecureDeserializationTask.java"
+    },
+    {
+      "endpoint_path": "/HijackSession/login",
+      "http_method": "POST",
+      "method_name": "login",
+      "summary": "Login endpoint for the HijackSession assignment",
+      "description": "Authenticates a user via username/password or an existing hijack_cookie session ID. If no cookie is present, authenticates with credentials and sets a new hijack_cookie. If a cookie is present, authenticates using the cookie value as the session ID. Returns success if authenticated, otherwise failure.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\hijacksession\\HijackSessionAssignment.java"
+    },
+    {
+      "endpoint_path": "/HtmlTampering/task",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Complete the HTML tampering assignment",
+      "description": "Handles the HTML tampering task by accepting QTY and Total request parameters. It checks whether the quantity multiplied by the price (2999.99) exceeds the provided total by more than 1, returning a success result if the client-side price was tampered with, otherwise a failure result.",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\htmltampering\\HtmlTamperingTask.java"
+    },
+    {
+      "endpoint_path": "/HttpBasics/attack1",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit the HTTP Basics attack1 assignment",
+      "description": "Accepts a 'person' request parameter. If the person value is not blank, returns a success AttackResult with the reversed person string as feedback; otherwise returns a failed AttackResult with an empty feedback message.",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\httpbasics\\HttpBasicsLesson.java"
+    },
+    {
+      "endpoint_path": "/HttpBasics/attack2",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Complete the HTTP Basics quiz",
+      "description": "Handles POST requests to /HttpBasics/attack2. Accepts request parameters 'answer', 'magic_answer', and 'magic_num'. Returns success if 'answer' equals 'POST' (case-insensitive) and 'magic_answer' equals 'magic_num'; otherwise returns a failure result with appropriate feedback.",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\httpbasics\\HttpBasicsQuiz.java"
+    },
+    {
+      "endpoint_path": "/HttpProxies/intercept-request",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Intercept request (POST)",
+      "description": "Handles POST requests to /HttpProxies/intercept-request. POST requests always fail with feedback 'http-proxies.intercept.failure'.",
+      "line_number": 6,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\httpproxies\\HttpBasicsInterceptRequest.java"
+    },
+    {
+      "endpoint_path": "/HttpProxies/intercept-request",
+      "http_method": "GET",
+      "method_name": "completed",
+      "summary": "Intercept request (GET)",
+      "description": "Handles GET requests to /HttpProxies/intercept-request. Succeeds if header 'x-request-intercepted' is true and parameter 'changeMe' equals 'Requests are tampered easily' (case-insensitive); otherwise fails.",
+      "line_number": 6,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\httpproxies\\HttpBasicsInterceptRequest.java"
+    },
+    {
+      "endpoint_path": "/IDOR/diff-attributes",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit attributes for IDOR diff-attributes assignment",
+      "description": "Accepts a comma-separated list of attributes and checks whether the combination includes 'userid' and 'role' to determine if the IDOR diff-attributes assignment is solved.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\idor\\IDORDiffAttributes.java"
+    },
+    {
+      "endpoint_path": "/IDOR/profile/{userId}",
+      "http_method": "PUT",
+      "method_name": "completed",
+      "summary": "Edit another user's profile (IDOR vulnerability)",
+      "description": "Accepts a user ID path variable and a JSON body containing a UserProfile. It retrieves the authenticated user ID from the session, then checks if the submitted profile's userId differs from the authenticated user ID. If so, it updates the profile with the submitted color and role, stores it in the session, and returns success or failure based on the role and color values. This endpoint demonstrates an Insecure Direct Object Reference (IDOR) vulnerability because it does not properly verify that the authenticated user is authorized to edit the specified profile.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\idor\\IDOREditOtherProfile.java"
+    },
+    {
+      "endpoint_path": "/IDOR/login",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "IDOR login endpoint",
+      "description": "Authenticates a user for the IDOR lesson. Only the user 'tom' with password 'cat' is allowed to log in successfully; other users or incorrect passwords result in failure. On success, stores the authenticated username and user ID in the lesson session.",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\idor\\IDORLogin.java"
+    },
+    {
+      "endpoint_path": "/IDOR/profile/{userId}",
+      "http_method": "GET",
+      "method_name": "completed",
+      "summary": "View another user's profile by ID",
+      "description": "Retrieves the profile of a user specified by the userId path variable. The endpoint checks that the session is authenticated as 'tom' and that the requested userId differs from the authenticated user's ID. It then returns the profile if the userId corresponds to '2342388', otherwise returns a failure message.",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\idor\\IDORViewOtherProfile.java"
+    },
+    {
+      "endpoint_path": "/IDOR/own",
+      "http_method": "GET",
+      "method_name": "invoke",
+      "summary": "View own profile",
+      "description": "Returns the profile details of the authenticated user if authenticated as 'tom'.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\idor\\IDORViewOwnProfile.java"
+    },
+    {
+      "endpoint_path": "/IDOR/profile",
+      "http_method": "GET",
+      "method_name": "invoke",
+      "summary": "View own profile",
+      "description": "Returns the profile details of the authenticated user if authenticated as 'tom'.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\idor\\IDORViewOwnProfile.java"
+    },
+    {
+      "endpoint_path": "/IDOR/profile/alt-path",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "View own profile via alternate URL path",
+      "description": "Handles POST requests to /IDOR/profile/alt-path. Accepts a 'url' request parameter and checks if the authenticated user is 'tom'. If so, it parses the URL to verify it matches the pattern WebGoat/IDOR/profile/{authUserId} and returns the user's profile information. Otherwise, it returns a failure message.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\idor\\IDORViewOwnProfileAltUrl.java"
+    },
+    {
+      "endpoint_path": "/InsecureLogin/task",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Complete the InsecureLogin assignment",
+      "description": "Accepts username and password request parameters. If username equals 'CaptainJack' and password equals 'BlackPearl', returns a successful AttackResult; otherwise returns a failed AttackResult.",
+      "line_number": 6,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\insecurelogin\\InsecureLoginTask.java"
+    },
+    {
+      "endpoint_path": "/InsecureLogin/login",
+      "http_method": "POST",
+      "method_name": "login",
+      "summary": "InsecureLogin login endpoint",
+      "description": "Empty endpoint that exists only so the client-side JavaScript can call an existing endpoint. Returns HTTP 202 Accepted.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\insecurelogin\\InsecureLoginTask.java"
+    },
+    {
+      "endpoint_path": "/JWT/decode",
+      "http_method": "POST",
+      "method_name": "decode",
+      "summary": "Decode JWT assignment endpoint",
+      "description": "Handles POST requests to /JWT/decode. Accepts the request parameter 'jwt-encode-user' and returns a success AttackResult if the value equals 'user', otherwise a failed AttackResult.",
+      "line_number": 6,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\JWTDecodeEndpoint.java"
+    },
+    {
+      "endpoint_path": "/JWT/quiz",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit JWT quiz answers",
+      "description": "Accepts two quiz answers as request parameters and checks if they contain the correct solutions. Returns success if both answers are correct, otherwise failure.",
+      "line_number": 9,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\JWTQuiz.java"
+    },
+    {
+      "endpoint_path": "/JWT/quiz",
+      "http_method": "GET",
+      "method_name": "getResults",
+      "summary": "Get JWT quiz results",
+      "description": "Returns an array of booleans indicating which quiz questions were answered correctly in the last submission.",
+      "line_number": 32,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\JWTQuiz.java"
+    },
+    {
+      "endpoint_path": "/JWT/refresh/login",
+      "http_method": "POST",
+      "method_name": "follow",
+      "summary": "Login endpoint for JWT refresh lesson",
+      "description": "Accepts JSON with user and password. If user is Jerry and password matches PASSWORD, returns new access and refresh tokens.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\JWTRefreshEndpoint.java"
+    },
+    {
+      "endpoint_path": "/JWT/refresh/checkout",
+      "http_method": "POST",
+      "method_name": "checkout",
+      "summary": "Checkout endpoint for JWT refresh lesson",
+      "description": "Validates JWT from Authorization header. If user is Tom, returns success; if alg is none, returns specific feedback. Otherwise returns failure.",
+      "line_number": 50,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\JWTRefreshEndpoint.java"
+    },
+    {
+      "endpoint_path": "/JWT/refresh/newToken",
+      "http_method": "POST",
+      "method_name": "newToken",
+      "summary": "Refresh token endpoint for JWT refresh lesson",
+      "description": "Validates JWT and refresh token. If refresh token is valid, issues new tokens and invalidates the old refresh token.",
+      "line_number": 73,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\JWTRefreshEndpoint.java"
+    },
+    {
+      "endpoint_path": "/JWT/secret/gettoken",
+      "http_method": "GET",
+      "method_name": "getSecretToken",
+      "summary": "Generate a JWT token signed with a secret key",
+      "description": "Returns a JWT token built with issuer 'WebGoat Token Builder', audience 'webgoat.org', issued at current time, expiring in 60 seconds, subject 'tom@webgoat.org', and claims username=Tom, Email=tom@webgoat.org, Role=[Manager, Project Administrator]. The token is signed using HS256 with a randomly selected secret from a predefined list.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\JWTSecretKeyEndpoint.java"
+    },
+    {
+      "endpoint_path": "/JWT/secret",
+      "http_method": "POST",
+      "method_name": "login",
+      "summary": "Validate a JWT token for the JWT secret key lesson",
+      "description": "Parses the provided JWT token using the secret key. Checks that the token contains all expected claims (iss, iat, exp, aud, sub, username, Email, Role). If the username claim equals 'WebGoat' (case-insensitive), the lesson is marked as solved; otherwise, it returns a failure with feedback. If parsing fails, returns an invalid token error.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\JWTSecretKeyEndpoint.java"
+    },
+    {
+      "endpoint_path": "/JWT/votings/login",
+      "http_method": "GET",
+      "method_name": "login",
+      "summary": "Login endpoint for JWT voting",
+      "description": "Authenticates a user by checking if the provided username is in the valid users list. If valid, it creates a JWT token with admin=false and the username, sets it as a cookie named 'access_token', and returns HTTP 200. If invalid, it clears the cookie and returns HTTP 401.",
+      "line_number": 63,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\JWTVotesEndpoint.java"
+    },
+    {
+      "endpoint_path": "/JWT/votings",
+      "http_method": "GET",
+      "method_name": "getVotes",
+      "summary": "Retrieve list of votes",
+      "description": "Returns a list of votes sorted by average rating in descending order. The response is serialized using Jackson views: if no valid access token is provided or the user is not valid, the GuestView is used; otherwise, the UserView is used, which includes additional fields like numberOfVotes, votingAllowed, and average.",
+      "line_number": 86,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\JWTVotesEndpoint.java"
+    },
+    {
+      "endpoint_path": "/JWT/votings/{title}",
+      "http_method": "POST",
+      "method_name": "vote",
+      "summary": "Cast a vote for a specific title",
+      "description": "Increments the number of votes for the vote with the given title. Requires a valid JWT access token with a valid user. If the token is missing or invalid, returns HTTP 401. If the user is not valid, returns HTTP 401. If successful, returns HTTP 202 Accepted.",
+      "line_number": 113,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\JWTVotesEndpoint.java"
+    },
+    {
+      "endpoint_path": "/JWT/votings",
+      "http_method": "POST",
+      "method_name": "resetVotes",
+      "summary": "Reset all votes (admin only)",
+      "description": "Resets all votes to their initial state. Requires a valid JWT access token with admin claim set to true. If the token is missing or invalid, returns a failure message. If the user is not admin, returns a failure message indicating admin only. If successful, resets all votes and returns success.",
+      "line_number": 136,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\JWTVotesEndpoint.java"
+    },
+    {
+      "endpoint_path": "/JWT/jku/follow/{user}",
+      "http_method": "POST",
+      "method_name": "follow",
+      "summary": "Follow a user",
+      "description": "Follows the specified user. If the user is 'Jerry', returns a message indicating following yourself is redundant; otherwise returns a message that you are now following Tom.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\claimmisuse\\JWTHeaderJKUEndpoint.java"
+    },
+    {
+      "endpoint_path": "/JWT/jku/delete",
+      "http_method": "POST",
+      "method_name": "resetVotes",
+      "summary": "Delete votes using JWT token",
+      "description": "Verifies a JWT token using the JKU header to fetch the public key, then checks the username claim. If the username is 'Jerry', returns a failure; if 'Tom', returns success; otherwise returns a failure indicating the user is not Tom.",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\claimmisuse\\JWTHeaderJKUEndpoint.java"
+    },
+    {
+      "endpoint_path": "/JWT/kid/follow/{user}",
+      "http_method": "POST",
+      "method_name": "follow",
+      "summary": "Follow a user",
+      "description": "Follows the specified user. If the user is 'Jerry', returns a message that following yourself is redundant; otherwise returns that you are now following Tom.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\claimmisuse\\JWTHeaderKIDEndpoint.java"
+    },
+    {
+      "endpoint_path": "/JWT/kid/delete",
+      "http_method": "POST",
+      "method_name": "resetVotes",
+      "summary": "Reset votes using JWT token",
+      "description": "Parses the provided JWT token using a signing key resolver that looks up the key by the 'kid' header from the database. If the token is valid and the username claim is 'Tom', the assignment is marked as solved. If the username is 'Jerry', it fails with a specific feedback. Otherwise, it fails with a different feedback.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\jwt\\claimmisuse\\JWTHeaderKIDEndpoint.java"
+    },
+    {
+      "endpoint_path": "/lesson-template/sample-attack",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Sample attack endpoint",
+      "description": "Handles POST requests to /lesson-template/sample-attack. Checks if param1 equals the secret value 'secr37Value' and returns success or failure accordingly.",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\lessontemplate\\SampleAttack.java"
+    },
+    {
+      "endpoint_path": "/lesson-template/shop/{user}",
+      "http_method": "GET",
+      "method_name": "getItemsInBasket",
+      "summary": "Get items in basket",
+      "description": "Returns a list of items in the basket for the specified user.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\lessontemplate\\SampleAttack.java"
+    },
+    {
+      "endpoint_path": "/LogSpoofing/log-bleeding",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Log bleeding assignment endpoint",
+      "description": "Accepts username and password parameters. Returns success if username is 'Admin' and password matches the randomly generated password logged at startup; otherwise returns failure. Empty username or password results in a failure with an output message.",
+      "line_number": 21,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\logging\\LogBleedingTask.java"
+    },
+    {
+      "endpoint_path": "/LogSpoofing/log-spoofing",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit log spoofing assignment",
+      "description": "Handles the LogSpoofing lesson assignment. Accepts username and password request parameters. If username is empty, returns a failed result. Otherwise replaces newline characters with <br/> and rejects usernames containing <p> or <div>. Returns success if the <br/> tag appears before the string 'admin' in the username, otherwise returns failure.",
+      "line_number": 6,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\logging\\LogSpoofingTask.java"
+    },
+    {
+      "endpoint_path": "/access-control/hidden-menu",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit hidden menu selections for the Missing Function Access Control hidden menus lesson",
+      "description": "Accepts two hidden menu values (hiddenMenu1 and hiddenMenu2). Returns success if hiddenMenu1 is 'Users' and hiddenMenu2 is 'Config'; returns a 'close' failure if hiddenMenu1 is 'Config' and hiddenMenu2 is 'Users'; otherwise returns a generic failure. Produces application/json.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\missingac\\MissingFunctionACHiddenMenus.java"
+    },
+    {
+      "endpoint_path": "/access-control/users",
+      "http_method": "GET",
+      "method_name": "listUsers",
+      "summary": "List users (HTML view)",
+      "description": "Returns a ModelAndView rendering the list_users view with all users and their display representations.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\missingac\\MissingFunctionACUsers.java"
+    },
+    {
+      "endpoint_path": "/access-control/users-admin-fix",
+      "http_method": "GET",
+      "method_name": "usersFixed",
+      "summary": "List users (admin only, fixed)",
+      "description": "Returns a JSON list of DisplayUser objects for all users using the admin password salt, but only if the current user is an admin; otherwise returns 403 Forbidden.",
+      "line_number": 40,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\missingac\\MissingFunctionACUsers.java"
+    },
+    {
+      "endpoint_path": "/access-control/users",
+      "http_method": "POST",
+      "method_name": "addUser",
+      "summary": "Add a new user",
+      "description": "Accepts a JSON User object and saves it to the repository, returning the saved user. Returns null on error.",
+      "line_number": 55,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\missingac\\MissingFunctionACUsers.java"
+    },
+    {
+      "endpoint_path": "/access-control/users-admin-fix",
+      "http_method": "POST",
+      "method_name": "addUser",
+      "summary": "Add a new user (admin fix path)",
+      "description": "Accepts a JSON User object and saves it to the repository, returning the saved user. Returns null on error.",
+      "line_number": 55,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\missingac\\MissingFunctionACUsers.java"
+    },
+    {
+      "endpoint_path": "/access-control/user-hash",
+      "http_method": "POST",
+      "method_name": "simple",
+      "summary": "Submit a user hash for the missing function access control lesson",
+      "description": "Accepts a userHash parameter, computes the expected hash for the user 'Jerry' using the simple password salt, and returns success if the supplied hash matches; otherwise returns failure.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\missingac\\MissingFunctionACYourHash.java"
+    },
+    {
+      "endpoint_path": "/access-control/user-hash-fix",
+      "http_method": "POST",
+      "method_name": "admin",
+      "summary": "Verify admin user hash",
+      "description": "Accepts a userHash parameter and compares it against the hash generated for the admin user 'Jerry' using the admin password salt. Returns success if the hash matches, otherwise returns a failure feedback.",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\missingac\\MissingFunctionACYourHashAdmin.java"
+    },
+    {
+      "endpoint_path": "/PasswordReset/questions",
+      "http_method": "POST",
+      "method_name": "passwordReset",
+      "summary": "Password reset security question check",
+      "description": "Accepts form-encoded parameters 'username' and 'securityQuestion'. Returns failure if username is 'webgoat', failure with unknown-user feedback if the username is not in the known colors map, success if the provided security question answer matches the stored color for the user, otherwise failure.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\passwordreset\\QuestionsAssignment.java"
+    },
+    {
+      "endpoint_path": "/PasswordReset/reset/login",
+      "http_method": "POST",
+      "method_name": "login",
+      "summary": "Login with password reset credentials",
+      "description": "Handles login attempts for the password reset lesson. If the email matches Tom's email, it checks the provided password against the stored password for the current user. If the password matches the default Tom password, it fails with a specific feedback; if it matches the user's stored password, it succeeds. Otherwise, it fails with a generic feedback.",
+      "line_number": 51,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\passwordreset\\ResetLinkAssignment.java"
+    },
+    {
+      "endpoint_path": "/PasswordReset/reset/reset-password/{link}",
+      "http_method": "GET",
+      "method_name": "resetPassword",
+      "summary": "Display password reset form",
+      "description": "Displays the password reset form if the provided reset link is valid (exists in the resetLinks list). If the link is invalid, it shows a 'password link not found' page.",
+      "line_number": 65,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\passwordreset\\ResetLinkAssignment.java"
+    },
+    {
+      "endpoint_path": "/PasswordReset/reset/change-password",
+      "http_method": "POST",
+      "method_name": "changePassword",
+      "summary": "Change password using reset link",
+      "description": "Processes the password change form. Validates the password field, checks if the reset link is valid, and if the link belongs to Tom, updates the user's password for Tom. Returns the appropriate view (success, password reset form with errors, or link not found).",
+      "line_number": 80,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\passwordreset\\ResetLinkAssignment.java"
+    },
+    {
+      "endpoint_path": "/PasswordReset/ForgotPassword/create-password-reset-link",
+      "http_method": "POST",
+      "method_name": "sendPasswordResetLink",
+      "summary": "Send a password reset link to the provided email",
+      "description": "Generates a password reset link (UUID), stores it, and either sends an email to the user or, if the email is Tom's and the Host header points to WebWolf, stores the reset link for the current user and simulates clicking the link.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\passwordreset\\ResetLinkAssignmentForgotPassword.java"
+    },
+    {
+      "endpoint_path": "/PasswordReset/SecurityQuestions",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit a security question answer",
+      "description": "Accepts a security question as a request parameter, checks if it is a known question, increments the count of tried questions, and returns an AttackResult indicating success or providing feedback.",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\passwordreset\\SecurityQuestionAssignment.java"
+    },
+    {
+      "endpoint_path": "/PasswordReset/simple-mail",
+      "http_method": "POST",
+      "method_name": "login",
+      "summary": "Login with email and password for password reset simple mail assignment",
+      "description": "Handles POST requests to /PasswordReset/simple-mail with form-encoded email and password parameters. Extracts the username from the email and checks if it matches the current WebGoat username and if the reversed username equals the provided password. Returns success if both conditions are met, otherwise returns a failure message.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\passwordreset\\SimpleMailAssignment.java"
+    },
+    {
+      "endpoint_path": "/PasswordReset/simple-mail/reset",
+      "http_method": "POST",
+      "method_name": "resetPassword",
+      "summary": "Reset password by sending an email with a new password",
+      "description": "Handles POST requests to /PasswordReset/simple-mail/reset with a form-encoded emailReset parameter. Extracts the username from the email and sends a password reset email containing the reversed username as the new password, provided the username matches the current WebGoat username.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\passwordreset\\SimpleMailAssignment.java"
+    },
+    {
+      "endpoint_path": "/PathTraversal/profile-upload",
+      "http_method": "POST",
+      "method_name": "uploadFileHandler",
+      "summary": "Upload a profile file",
+      "description": "Handles file upload for the PathTraversal lesson. Accepts a multipart file and an optional full name, then delegates to ProfileUploadBase.execute for processing.",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\pathtraversal\\ProfileUpload.java"
+    },
+    {
+      "endpoint_path": "/PathTraversal/profile-picture",
+      "http_method": "GET",
+      "method_name": "getProfilePicture",
+      "summary": "Retrieve the profile picture",
+      "description": "Returns the profile picture for the current user as a base64-encoded JPEG image.",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\pathtraversal\\ProfileUpload.java"
+    },
+    {
+      "endpoint_path": "/PathTraversal/profile-upload-fix",
+      "http_method": "POST",
+      "method_name": "uploadFileHandler",
+      "summary": "Upload a profile picture with path traversal fix",
+      "description": "Handles file upload for the path traversal lesson with a fix that removes '../' sequences from the provided full name. Accepts a multipart file and an optional full name, then delegates to the base class for processing.",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\pathtraversal\\ProfileUploadFix.java"
+    },
+    {
+      "endpoint_path": "/PathTraversal/profile-picture-fix",
+      "http_method": "GET",
+      "method_name": "getProfilePicture",
+      "summary": "Retrieve the profile picture for the current user",
+      "description": "Returns the profile picture (as base64 encoded JPEG) for the authenticated user in the path traversal lesson.",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\pathtraversal\\ProfileUploadFix.java"
+    },
+    {
+      "endpoint_path": "/PathTraversal/profile-upload-remove-user-input",
+      "http_method": "POST",
+      "method_name": "uploadFileHandler",
+      "summary": "Upload a profile picture file for the path traversal lesson (remove user input variant)",
+      "description": "Handles multipart file uploads for the PathTraversal lesson. The uploaded file is passed to ProfileUploadBase.execute along with its original filename and the current username. The base class writes the file into a per-user upload directory and checks whether a path traversal attempt was made by comparing canonical paths.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\pathtraversal\\ProfileUploadRemoveUserInput.java"
+    },
+    {
+      "endpoint_path": "/PathTraversal/random",
+      "http_method": "POST",
+      "method_name": "execute",
+      "summary": "Submit the secret answer for the path traversal assignment",
+      "description": "Accepts a 'secret' request parameter and the current username. If the SHA-512 hex digest of the username matches the provided secret (case-insensitive), the assignment is marked as solved; otherwise it fails.",
+      "line_number": 57,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\pathtraversal\\ProfileUploadRetrieval.java"
+    },
+    {
+      "endpoint_path": "/PathTraversal/random-picture",
+      "http_method": "GET",
+      "method_name": "getProfilePicture",
+      "summary": "Retrieve a random cat picture or a specific picture by id",
+      "description": "Returns a cat picture from the cats directory. The 'id' query parameter selects a specific picture; if omitted, a random picture (1-10) is chosen. The query string is validated to reject '..' or '/' characters. If the resolved file is 'path-traversal-secret.jpg', its raw bytes are returned. If the file exists, its Base64-encoded content is returned with a Location header. If not found, a 404 is returned with a list of files in the parent directory.",
+      "line_number": 69,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\pathtraversal\\ProfileUploadRetrieval.java"
+    },
+    {
+      "endpoint_path": "/PathTraversal/zip-slip",
+      "http_method": "POST",
+      "method_name": "uploadFileHandler",
+      "summary": "Upload a zip file for the Zip Slip path traversal lesson",
+      "description": "Accepts a multipart zip file upload, validates the file extension, and processes the zip contents to check for path traversal (Zip Slip) vulnerability. Returns an AttackResult indicating whether the lesson was solved.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\pathtraversal\\ProfileZipSlip.java"
+    },
+    {
+      "endpoint_path": "/PathTraversal/zip-slip",
+      "http_method": "GET",
+      "method_name": "getProfilePicture",
+      "summary": "Retrieve the current user's profile picture",
+      "description": "Returns the profile picture for the authenticated user as a JPEG image. Delegates to the parent class implementation.",
+      "line_number": 66,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\pathtraversal\\ProfileZipSlip.java"
+    },
+    {
+      "endpoint_path": "/PathTraversal/zip-slip/profile-image/{username}",
+      "http_method": "GET",
+      "method_name": "getProfileImage",
+      "summary": "Get profile image for a specific username",
+      "description": "This endpoint always returns a 404 Not Found response. It is likely a placeholder or decoy endpoint.",
+      "line_number": 72,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\pathtraversal\\ProfileZipSlip.java"
+    },
+    {
+      "endpoint_path": "/SecurePasswords/assignment",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Evaluate password strength for Secure Passwords assignment",
+      "description": "Accepts a password request parameter, measures its strength using zxcvbn, builds an HTML output with length, estimated guesses, score, cracking time, warnings and suggestions, and returns success if the score is 4 or failure otherwise.",
+      "line_number": 6,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\securepasswords\\SecurePasswordsAssignment.java"
+    },
+    {
+      "endpoint_path": "/SpoofCookie/login",
+      "http_method": "POST",
+      "method_name": "login",
+      "summary": "Login endpoint for SpoofCookie assignment",
+      "description": "Handles login requests. If no spoof_auth cookie is present, performs credential-based login and sets a cookie on success. If the cookie is present, performs cookie-based login. Returns an AttackResult indicating success or failure.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\spoofcookie\\SpoofCookieAssignment.java"
+    },
+    {
+      "endpoint_path": "/SpoofCookie/cleanup",
+      "http_method": "GET",
+      "method_name": "cleanup",
+      "summary": "Cleanup endpoint for SpoofCookie assignment",
+      "description": "Clears the spoof_auth cookie by setting its max age to 0 and adding it to the response.",
+      "line_number": 46,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\spoofcookie\\SpoofCookieAssignment.java"
+    },
+    {
+      "endpoint_path": "/SqlInjectionAdvanced/challenge",
+      "http_method": "PUT",
+      "method_name": "registerNewUser",
+      "summary": "Register a new user for the SQL injection challenge",
+      "description": "Registers a new user with the provided username, email, and password. The method checks for existing users and inserts a new user if none exists. It is vulnerable to SQL injection as it concatenates user input directly into a SQL query.",
+      "line_number": 21,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\advanced\\SqlInjectionChallenge.java"
+    },
+    {
+      "endpoint_path": "/SqlInjectionAdvanced/challenge_Login",
+      "http_method": "POST",
+      "method_name": "login",
+      "summary": "SQL Injection Challenge Login",
+      "description": "Authenticates a user against the sql_challenge_users table using the provided username and password. Returns success only if the username is 'tom' and the credentials match a row in the database.",
+      "line_number": 21,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\advanced\\SqlInjectionChallengeLogin.java"
+    },
+    {
+      "endpoint_path": "/SqlInjectionAdvanced/attack6a",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "SQL Injection advanced lesson 6a attack endpoint",
+      "description": "Accepts a userid_6a parameter and executes a vulnerable SQL query to demonstrate SQL injection. The query is built by concatenating the user input into a SELECT statement. The endpoint checks if the result contains 'dave' and 'passW0rD' to determine success.",
+      "line_number": 28,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\advanced\\SqlInjectionLesson6a.java"
+    },
+    {
+      "endpoint_path": "/SqlInjectionAdvanced/attack6b",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit user ID for SQL injection advanced lesson 6b",
+      "description": "Accepts a user ID parameter and checks if it matches the password retrieved from the database for user 'dave'. Returns success if matched, otherwise failure.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\advanced\\SqlInjectionLesson6b.java"
+    },
+    {
+      "endpoint_path": "/SqlInjectionAdvanced/quiz",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit answers for the SQL injection advanced quiz",
+      "description": "Accepts five solution arrays (question_0_solution through question_4_solution), compares the first element of each against the predefined solutions, and returns a success or failure AttackResult. Correct answers are tracked in the guesses array.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\advanced\\SqlInjectionQuiz.java"
+    },
+    {
+      "endpoint_path": "/SqlInjectionAdvanced/quiz",
+      "http_method": "GET",
+      "method_name": "getResults",
+      "summary": "Retrieve quiz results",
+      "description": "Returns a boolean array indicating which quiz questions have been answered correctly.",
+      "line_number": 45,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\advanced\\SqlInjectionQuiz.java"
+    },
+    {
+      "endpoint_path": "/SqlInjection/attack10",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "SQL Injection Lesson 10 - Availability",
+      "description": "Handles POST requests to /SqlInjection/attack10 with a required 'action_string' request parameter. It builds a SQL query by concatenating the user-supplied action_string into a LIKE clause (SELECT * FROM access_log WHERE action LIKE '%<action>%') and executes it against the lesson database. The endpoint is vulnerable to SQL injection and is used to test whether the user can drop/remove the access_log table (availability attack). Returns an AttackResult indicating success if the access_log table no longer exists, otherwise failure with the query results or error message.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\introduction\\SqlInjectionLesson10.java"
+    },
+    {
+      "endpoint_path": "/SqlInjection/attack2",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "SQL Injection attack endpoint for lesson 2",
+      "description": "Accepts a raw SQL query parameter and executes it against the lesson database. If the first row's department column equals 'Marketing', the assignment is marked as solved and a table of results is returned; otherwise the attempt fails.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\introduction\\SqlInjectionLesson2.java"
+    },
+    {
+      "endpoint_path": "/SqlInjection/attack3",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "SQL injection lesson 3 attack endpoint",
+      "description": "Accepts a 'query' request parameter and executes it as an SQL update against the lesson database to complete SQL injection lesson 3. The lesson is completed if the department of Tobi Barnett becomes 'Sales'.",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\introduction\\SqlInjectionLesson3.java"
+    },
+    {
+      "endpoint_path": "/SqlInjection/attack4",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "SQL Injection attack endpoint",
+      "description": "Executes the provided SQL query and checks if the 'phone' column exists in the employees table. Returns success if the column exists, otherwise failure.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\introduction\\SqlInjectionLesson4.java"
+    },
+    {
+      "endpoint_path": "/SqlInjection/attack5",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "SQL injection lesson 5 attack endpoint",
+      "description": "Handles POST requests to /SqlInjection/attack5. Accepts a 'query' parameter, creates the unauthorized_user database user, and executes the supplied SQL query via injectableQuery. The lesson is marked complete if the query grants the GRANT_RIGHTS table privilege to UNAUTHORIZED_USER.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\introduction\\SqlInjectionLesson5.java"
+    },
+    {
+      "endpoint_path": "/SqlInjection/assignment5a",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "SQL Injection assignment 5a endpoint",
+      "description": "Accepts account, operator, and injection parameters, constructs a SQL query by concatenating them, and executes it against the database. Returns an AttackResult indicating success or failure based on the query results.",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\introduction\\SqlInjectionLesson5a.java"
+    },
+    {
+      "endpoint_path": "/SqlInjection/assignment5b",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "SQL injection lesson 5b endpoint",
+      "description": "Handles POST requests to /SqlInjection/assignment5b, taking userid and login_count request parameters and passing them to injectableQuery to perform a SQL query vulnerable to injection.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\introduction\\SqlInjectionLesson5b.java"
+    },
+    {
+      "endpoint_path": "/SqlInjection/attack8",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "SQL Injection attack endpoint for lesson 8",
+      "description": "Handles POST requests to /SqlInjection/attack8 with parameters 'name' and 'auth_tan'. Constructs a SQL query by concatenating user input, executes it, and returns an AttackResult indicating success or failure based on the number of returned rows.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\introduction\\SqlInjectionLesson8.java"
+    },
+    {
+      "endpoint_path": "/SqlInjection/attack9",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "SQL injection attack 9 endpoint",
+      "description": "Handles POST requests to /SqlInjection/attack9 with parameters name and auth_tan, delegating to injectableQueryIntegrity to perform an injectable SQL query that checks salary integrity.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\introduction\\SqlInjectionLesson9.java"
+    },
+    {
+      "endpoint_path": "/SqlInjectionMitigations/servers",
+      "http_method": "GET",
+      "method_name": "sort",
+      "summary": "Sort servers by column",
+      "description": "Retrieves a list of servers from the database, sorted by the specified column. The column parameter is directly concatenated into the SQL query, making it vulnerable to SQL injection.",
+      "line_number": 32,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\mitigation\\Servers.java"
+    },
+    {
+      "endpoint_path": "/SqlInjectionMitigations/attack10a",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Complete SQL injection mitigation lesson 10a",
+      "description": "Accepts seven request parameters (field1-field7) and verifies that each contains the expected SQL mitigation-related string in order: getConnection, PreparedStatement, prepareStatement, ?, ?, setString, setString. Returns success if all match, otherwise failure.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\mitigation\\SqlInjectionLesson10a.java"
+    },
+    {
+      "endpoint_path": "/SqlInjectionMitigations/attack10b",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit Java code for SQL injection mitigation lesson 10b",
+      "description": "Accepts an 'editor' request parameter containing Java code. Validates that the code sets up a connection, uses a PreparedStatement with a placeholder, calls setString, and executes the statement. Also compiles the submitted code and returns success if the code is valid and compiles without errors, otherwise returns failure with feedback or compiler errors.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\mitigation\\SqlInjectionLesson10b.java"
+    },
+    {
+      "endpoint_path": "/SqlInjectionMitigations/attack12a",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "SQL Injection Mitigation lesson 13 endpoint",
+      "description": "Handles POST requests to /SqlInjectionMitigations/attack12a. Takes an 'ip' request parameter and uses a PreparedStatement to query the 'servers' table for a matching ip and hostname 'webgoat-prd'. Returns success if a record is found, otherwise failure.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\mitigation\\SqlInjectionLesson13.java"
+    },
+    {
+      "endpoint_path": "/SqlOnlyInputValidation/attack",
+      "http_method": "POST",
+      "method_name": "attack",
+      "summary": "SQL Injection mitigation with input validation",
+      "description": "Validates that the user ID does not contain spaces, then delegates to SqlInjectionLesson6a.injectableQuery to execute the query. Returns an AttackResult indicating whether the lesson was completed.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\mitigation\\SqlOnlyInputValidation.java"
+    },
+    {
+      "endpoint_path": "/SqlOnlyInputValidationOnKeywords/attack",
+      "http_method": "POST",
+      "method_name": "attack",
+      "summary": "SQL Injection with keyword-based input validation",
+      "description": "This endpoint attempts to prevent SQL injection by removing the keywords 'FROM' and 'SELECT' (case-insensitive) from the user-supplied 'userid_sql_only_input_validation_on_keywords' parameter. If the resulting string contains a space, the request fails. Otherwise, it delegates to SqlInjectionLesson6a.injectableQuery to execute the query.",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\sqlinjection\\mitigation\\SqlOnlyInputValidationOnKeywords.java"
+    },
+    {
+      "endpoint_path": "/SSRF/task1",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "SSRF Task 1 endpoint",
+      "description": "Handles POST requests to /SSRF/task1, accepting a 'url' request parameter and returning an AttackResult by calling stealTheCheese(url).",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\ssrf\\SSRFTask1.java"
+    },
+    {
+      "endpoint_path": "/SSRF/task2",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "SSRF Task 2 endpoint",
+      "description": "Handles POST requests to /SSRF/task2 with a 'url' request parameter. It checks if the URL matches 'http://ifconfig.pro' and attempts to fetch its content. If successful, returns a success result with the fetched HTML; otherwise returns a failure result.",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\ssrf\\SSRFTask2.java"
+    },
+    {
+      "endpoint_path": "/VulnerableComponents/attack1",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Vulnerable XStream deserialization endpoint",
+      "description": "Accepts a 'payload' request parameter, sanitizes it, and deserializes it using XStream into a Contact object. If the deserialized object is not a ContactImpl, or if an exception is thrown during processing, the assignment is marked as completed. This endpoint is intentionally vulnerable to XStream deserialization attacks (CVE-2013-7285).",
+      "line_number": 6,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\vulnerablecomponents\\VulnerableComponentsLesson.java"
+    },
+    {
+      "endpoint_path": "/WebWolf/landing",
+      "http_method": "POST",
+      "method_name": "click",
+      "summary": "Submit the unique code for the WebWolf landing assignment",
+      "description": "Accepts a uniqueCode parameter and the current username. If the reversed username equals the uniqueCode, the assignment is marked as solved; otherwise a failure feedback is returned.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\webwolfintroduction\\LandingAssignment.java"
+    },
+    {
+      "endpoint_path": "/WebWolf/landing/password-reset",
+      "http_method": "GET",
+      "method_name": "openPasswordReset",
+      "summary": "Open the WebWolf password reset page",
+      "description": "Returns a ModelAndView for the WebWolf password reset page, providing the landing page URL and the reversed username as the unique code.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\webwolfintroduction\\LandingAssignment.java"
+    },
+    {
+      "endpoint_path": "/WebWolf/mail/send",
+      "http_method": "POST",
+      "method_name": "sendEmail",
+      "summary": "Send a test email via WebWolf",
+      "description": "Sends a test email through WebWolf. The email's local part (before '@') must match the current WebGoat username; otherwise a mismatch message is returned. On success, an Email object is posted to the configured WebWolf mail URL.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\webwolfintroduction\\MailAssignment.java"
+    },
+    {
+      "endpoint_path": "/WebWolf/mail",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Verify WebWolf unique code",
+      "description": "Completes the WebWolf introduction assignment by verifying that the provided unique code equals the reverse of the current username. Returns success if correct, otherwise a failure message.",
+      "line_number": 43,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\webwolfintroduction\\MailAssignment.java"
+    },
+    {
+      "endpoint_path": "/CrossSiteScripting/attack1",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Complete XSS lesson 1 assignment",
+      "description": "Handles POST requests to complete the Cross-Site Scripting lesson 1 assignment. Accepts an optional 'checkboxAttack1' request parameter; if present, returns a success result, otherwise returns a failure result with feedback.",
+      "line_number": 6,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xss\\CrossSiteScriptingLesson1.java"
+    },
+    {
+      "endpoint_path": "/CrossSiteScripting/attack5a",
+      "http_method": "GET",
+      "method_name": "completed",
+      "summary": "Reflected XSS lesson 5a endpoint",
+      "description": "Handles a shopping cart request with quantities and fields. Checks field2 against an XSS pattern and fails if matched. Computes total sale from quantities. Checks field1 against the XSS pattern; if matched, marks the lesson complete and returns success with feedback depending on whether 'console.log' is present. Otherwise returns failure with the cart output.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xss\\CrossSiteScriptingLesson5a.java"
+    },
+    {
+      "endpoint_path": "/CrossSiteScripting/attack6a",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit XSS lesson 6a answer",
+      "description": "Accepts a DOMTestRoute parameter and checks if it matches the pattern 'start.mvc#test' or 'start.mvc#test/'. Returns success if matched, otherwise failure.",
+      "line_number": 21,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xss\\CrossSiteScriptingLesson6a.java"
+    },
+    {
+      "endpoint_path": "/CrossSiteScripting/quiz",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit XSS quiz answers",
+      "description": "Accepts five quiz answers as request parameters, compares each given answer against the predefined solutions, and returns a success AttackResult if all answers are correct, otherwise a failed AttackResult.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xss\\CrossSiteScriptingQuiz.java"
+    },
+    {
+      "endpoint_path": "/CrossSiteScripting/quiz",
+      "http_method": "GET",
+      "method_name": "getResults",
+      "summary": "Get XSS quiz results",
+      "description": "Returns the boolean array indicating which quiz questions were answered correctly in the last submission.",
+      "line_number": 43,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xss\\CrossSiteScriptingQuiz.java"
+    },
+    {
+      "endpoint_path": "/CrossSiteScripting/phone-home-xss",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Completes the DOM XSS assignment by validating parameters and header.",
+      "description": "Handles POST requests to /CrossSiteScripting/phone-home-xss. It generates a random value, stores it in the lesson session, and checks if param1 equals 42, param2 equals 24, and the 'webgoat-requested-by' header equals 'dom-xss-vuln'. If all conditions are met, it returns a success AttackResult with the random value; otherwise, it returns a failed AttackResult.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xss\\DOMCrossSiteScripting.java"
+    },
+    {
+      "endpoint_path": "/CrossSiteScripting/dom-follow-up",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Verify DOM-based XSS assignment completion",
+      "description": "Accepts a successMessage request parameter and compares it with the stored randValue in the lesson session. If they match, returns a success AttackResult; otherwise returns a failure AttackResult.",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xss\\DOMCrossSiteScriptingVerifier.java"
+    },
+    {
+      "endpoint_path": "/CrossSiteScripting/attack3",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit XSS mitigation lesson 3 solution",
+      "description": "Accepts an 'editor' request parameter containing HTML/JSP code, unescapes HTML entities, parses it with Jsoup, and validates that the submitted code includes the correct JSP taglib directive for the OWASP Java Encoder Project and uses ${e:forHtml(param.first_name)} and ${e:forHtml(param.last_name)} for the first and last name table cells. Returns a success AttackResult if all checks pass, otherwise a failure result.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xss\\mitigation\\CrossSiteScriptingLesson3.java"
+    },
+    {
+      "endpoint_path": "/CrossSiteScripting/attack4",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Submit XSS mitigation lesson 4 solution",
+      "description": "Accepts the editor2 request parameter, strips HTML tags, and checks whether the submitted code contains the required AntiSamy-based sanitization pattern (Policy.getInstance(\"antisamy-slashdot.xml\"), new AntiSamy(), .scan(newComment, ...), CleanResults, MyCommentDAO.addComment(threadID, userID, ...getCleanHTML())). Returns a success AttackResult if the pattern matches, otherwise a failure result.",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xss\\mitigation\\CrossSiteScriptingLesson4.java"
+    },
+    {
+      "endpoint_path": "/CrossSiteScriptingStored/stored-xss-follow-up",
+      "http_method": "POST",
+      "method_name": "completed",
+      "summary": "Verify stored XSS follow-up",
+      "description": "Checks whether the provided successMessage matches the stored random value in the lesson session. Returns a success or failure AttackResult accordingly.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xss\\stored\\StoredCrossSiteScriptingVerifier.java"
+    },
+    {
+      "endpoint_path": "/CrossSiteScriptingStored/stored-xss",
+      "http_method": "GET",
+      "method_name": "retrieveComments",
+      "summary": "Retrieve stored comments",
+      "description": "Returns a collection of comments for the stored XSS lesson. Includes predefined comments and any comments added by the current user.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xss\\stored\\StoredXssComments.java"
+    },
+    {
+      "endpoint_path": "/CrossSiteScriptingStored/stored-xss",
+      "http_method": "POST",
+      "method_name": "createNewComment",
+      "summary": "Create a new comment",
+      "description": "Accepts a JSON comment, stores it for the current user, and checks if the comment text contains the phoneHome script to determine if the assignment is solved.",
+      "line_number": 58,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xss\\stored\\StoredXssComments.java"
+    },
+    {
+      "endpoint_path": "/xxe/blind",
+      "http_method": "POST",
+      "method_name": "addComment",
+      "summary": "Submit a comment for the blind XXE assignment",
+      "description": "Accepts a comment string (XML) and checks if it contains the secret file contents for the user. If so, the assignment is marked as solved. Otherwise, the XML is parsed and the comment is added to the user's comments. This endpoint is vulnerable to blind XXE as the XML parser is configured without disabling external entities.",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xxe\\BlindSendFileAssignment.java"
+    },
+    {
+      "endpoint_path": "/xxe/comments",
+      "http_method": "GET",
+      "method_name": "retrieveComments",
+      "summary": "Retrieve comments for the current user",
+      "description": "Returns a collection of comments visible to the authenticated user, including default comments and any user-specific comments.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xxe\\CommentsEndpoint.java"
+    },
+    {
+      "endpoint_path": "/xxe/content-type",
+      "http_method": "POST",
+      "method_name": "createNewUser",
+      "summary": "Create a new user comment via JSON or XML",
+      "description": "Accepts a comment string and Content-Type header. If Content-Type is application/json, parses JSON and adds comment. If Content-Type contains application/xml, parses XML (potentially vulnerable to XXE) and checks if the comment text contains certain directory names to mark the assignment as solved.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xxe\\ContentTypeAssignment.java"
+    },
+    {
+      "endpoint_path": "/xxe/simple",
+      "http_method": "POST",
+      "method_name": "createNewComment",
+      "summary": "Create a new comment via XML",
+      "description": "Parses the posted XML comment, adds it to the comments cache, and checks whether the XXE solution was achieved by looking for system directory names in the comment text.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xxe\\SimpleXXE.java"
+    },
+    {
+      "endpoint_path": "/xxe/sampledtd",
+      "http_method": "GET",
+      "method_name": "getSampleDTDFile",
+      "summary": "Get sample DTD file",
+      "description": "Returns a sample DTD file used for the XXE lesson, containing external entity definitions.",
+      "line_number": 57,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\lessons\\xxe\\SimpleXXE.java"
+    },
+    {
+      "endpoint_path": "/file-server-location",
+      "http_method": "GET",
+      "method_name": "getFileLocation",
+      "summary": "Get file server location",
+      "description": "Returns the configured file server location as plain text.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\webwolf\\FileServer.java"
+    },
+    {
+      "endpoint_path": "/fileupload",
+      "http_method": "POST",
+      "method_name": "importFile",
+      "summary": "Upload a file",
+      "description": "Uploads a file to the user's directory and redirects to the files page.",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\webwolf\\FileServer.java"
+    },
+    {
+      "endpoint_path": "/files",
+      "http_method": "GET",
+      "method_name": "getFiles",
+      "summary": "List uploaded files",
+      "description": "Lists all files uploaded by the current user.",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\webwolf\\FileServer.java"
+    },
+    {
+      "endpoint_path": "/jwt",
+      "http_method": "GET",
+      "method_name": "jwt",
+      "summary": "Display JWT page",
+      "description": "Returns the jwt view for the JWT lesson page.",
+      "line_number": 5,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\webwolf\\jwt\\JWTController.java"
+    },
+    {
+      "endpoint_path": "/jwt/decode",
+      "http_method": "POST",
+      "method_name": "decode",
+      "summary": "Decode a JWT token",
+      "description": "Accepts form data containing a token and secretKey, then decodes the JWT token and validates its signature.",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\webwolf\\jwt\\JWTController.java"
+    },
+    {
+      "endpoint_path": "/jwt/encode",
+      "http_method": "POST",
+      "method_name": "encode",
+      "summary": "Encode a JWT token",
+      "description": "Accepts form data containing header, payload, and secretKey, then encodes and optionally signs a JWT token.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\webwolf\\jwt\\JWTController.java"
+    },
+    {
+      "endpoint_path": "/mail",
+      "http_method": "GET",
+      "method_name": "mail",
+      "summary": "Retrieve mailbox emails for the authenticated user",
+      "description": "Returns a ModelAndView for the mailbox view, populating it with the list of emails for the authenticated user (or 'anonymous' if not authenticated), ordered by time descending. Adds 'total' and 'emails' attributes if emails exist, and sets the view name to 'mailbox'.",
+      "line_number": 10,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\webwolf\\mailbox\\MailboxController.java"
+    },
+    {
+      "endpoint_path": "/mail",
+      "http_method": "POST",
+      "method_name": "sendEmail",
+      "summary": "Send an email",
+      "description": "Saves the provided Email object to the mailbox repository. Responds with HTTP 201 Created.",
+      "line_number": 23,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\webwolf\\mailbox\\MailboxController.java"
+    },
+    {
+      "endpoint_path": "/mail",
+      "http_method": "DELETE",
+      "method_name": "deleteAllMail",
+      "summary": "Delete all emails",
+      "description": "Deletes all emails from the mailbox repository. Responds with HTTP 202 Accepted.",
+      "line_number": 29,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\webwolf\\mailbox\\MailboxController.java"
+    },
+    {
+      "endpoint_path": "/landing/**",
+      "http_method": "POST",
+      "method_name": "ok",
+      "summary": "Handle landing page requests",
+      "description": "Handles incoming requests to the landing page for any path under /landing/ and returns an empty 200 OK response.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\webwolf\\requests\\LandingPage.java"
+    },
+    {
+      "endpoint_path": "/landing/**",
+      "http_method": "GET",
+      "method_name": "ok",
+      "summary": "Handle landing page requests",
+      "description": "Handles incoming requests to the landing page for any path under /landing/ and returns an empty 200 OK response.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\webwolf\\requests\\LandingPage.java"
+    },
+    {
+      "endpoint_path": "/landing/**",
+      "http_method": "DELETE",
+      "method_name": "ok",
+      "summary": "Handle landing page requests",
+      "description": "Handles incoming requests to the landing page for any path under /landing/ and returns an empty 200 OK response.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\webwolf\\requests\\LandingPage.java"
+    },
+    {
+      "endpoint_path": "/landing/**",
+      "http_method": "PATCH",
+      "method_name": "ok",
+      "summary": "Handle landing page requests",
+      "description": "Handles incoming requests to the landing page for any path under /landing/ and returns an empty 200 OK response.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\webwolf\\requests\\LandingPage.java"
+    },
+    {
+      "endpoint_path": "/landing/**",
+      "http_method": "PUT",
+      "method_name": "ok",
+      "summary": "Handle landing page requests",
+      "description": "Handles incoming requests to the landing page for any path under /landing/ and returns an empty 200 OK response.",
+      "line_number": 14,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\webwolf\\requests\\LandingPage.java"
+    },
+    {
+      "endpoint_path": "/requests",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "List request traces",
+      "description": "Returns the 'requests' view populated with all stored HTTP traces that are allowed for the authenticated user. Traces containing '/files' are hidden unless the path contains the username; traces containing '/landing' with a 'uniqueCode' query parameter are hidden unless the query contains the reversed username.",
+      "line_number": 25,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\webwolf\\requests\\Requests.java"
+    }
+  ],
+  "errors": [
+    {
+      "entry_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\WebGoat\\webgoat\\src\\main\\java\\org\\owasp\\webgoat\\container\\lessons\\CourseConfiguration.java",
+      "error": "the model returned an empty endpoint list"
+    }
+  ],
+  "duration_ms": 157525,
+  "tokens": {
+    "prompt_tokens": 1809217,
+    "completion_tokens": 96387,
+    "total_tokens": 1905604,
+    "calls": 378,
+    "elapsed_s": 1526.478,
+    "prompt_cost_usd": 0.228805,
+    "completion_cost_usd": 0.066864,
+    "total_cost_usd": 0.295668,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 602791,
+        "completion_tokens": 18477,
+        "total_tokens": 621268,
+        "calls": 126,
+        "elapsed_s": 157.3866520000001,
+        "prompt_cost_usd": 0.012056,
+        "completion_cost_usd": 0.011086,
+        "total_cost_usd": 0.023142
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 565719,
+        "completion_tokens": 61087,
+        "total_tokens": 626806,
+        "calls": 126,
+        "elapsed_s": 1090.265,
+        "prompt_cost_usd": 0.056572,
+        "completion_cost_usd": 0.030544,
+        "total_cost_usd": 0.087115
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 640707,
+        "completion_tokens": 16823,
+        "total_tokens": 657530,
+        "calls": 126,
+        "elapsed_s": 278.826,
+        "prompt_cost_usd": 0.160177,
+        "completion_cost_usd": 0.025234,
+        "total_cost_usd": 0.185411
+      }
+    ]
+  }
+}

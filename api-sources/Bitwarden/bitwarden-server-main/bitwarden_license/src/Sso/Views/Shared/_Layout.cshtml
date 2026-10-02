@@ -1,0 +1,41 @@
+﻿@using static Bit.Core.Utilities.AssemblyHelpers;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SSO</title>
+
+    <link rel="stylesheet" href="~/assets/site.css" asp-append-version="true" />
+    @RenderSection("Head", required: false)
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                <i class="fa fa-shield" aria-hidden="true"></i>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container page-content">
+        @RenderBody()
+    </div>
+
+    <div class="container footer text-body-secondary">
+        <div class="row">
+            <div class="col">
+                &copy; @DateTime.Now.Year, Bitwarden Inc.
+            </div>
+            <div class="col text-center"></div>
+            <div class="col text-right">
+                Version @GetVersion()
+            </div>
+        </div>
+    </div>
+
+    <script src="~/assets/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

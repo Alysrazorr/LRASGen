@@ -1,0 +1,2923 @@
+{
+  "task_id": "senzing-api-server",
+  "api_name": "senzing-api-server",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "root",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\AdminServices.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A basic response indicating the server is running (heartbeat).",
+          "data_schema": [
+            {
+              "name": "SzBasicResponse",
+              "schema": {
+                "meta": "object",
+                "links": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}",
+      "http_method": "GET",
+      "method_name": "getDataSource",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\ConfigServices.java",
+      "parameters": [
+        {
+          "name": "dataSourceCode",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The data source code from the URL path.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw native Senzing JSON should be included in the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The data source was found and returned successfully.",
+          "data_schema": [
+            {
+              "name": "SzDataSourceResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzDataSourceResponseData"
+              }
+            },
+            {
+              "name": "SzDataSourceResponseData",
+              "schema": {
+                "dataSource": "SzDataSource"
+              }
+            },
+            {
+              "name": "SzDataSource",
+              "schema": {
+                "dataSourceCode": "string",
+                "dataSourceId": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The specified data source code was not recognized.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/specifications/open-api",
+      "http_method": "GET",
+      "method_name": "openApiSpecification",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\AdminServices.java",
+      "parameters": [
+        {
+          "name": "asRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "true if the specification should be directly returned and false if an instance of SzOpenApiSpecResponse should be returned.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the Open API specification as raw JSON text when asRaw=true, or as an SzOpenApiSpecResponse object when asRaw=false.",
+          "data_schema": [
+            {
+              "name": "SzOpenApiSpecResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "openApiSpec": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when an unexpected exception occurs while reading or processing the Open API specification.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/license",
+      "http_method": "GET",
+      "method_name": "license",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\AdminServices.java",
+      "parameters": [
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not to include the raw data in the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "License information returned successfully.",
+          "data_schema": [
+            {
+              "name": "SzLicenseResponse",
+              "schema": {
+                "meta": "object",
+                "links": "object",
+                "data": "object",
+                "rawData": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error occurred while retrieving license information.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/heartbeat",
+      "http_method": "GET",
+      "method_name": "heartbeat",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\AdminServices.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A heartbeat response affirming the provider is running.",
+          "data_schema": [
+            {
+              "name": "SzBasicResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/version",
+      "http_method": "GET",
+      "method_name": "version",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\AdminServices.java",
+      "parameters": [
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not to include the raw data in the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns version information, optionally with raw data.",
+          "data_schema": [
+            {
+              "name": "SzVersionResponse",
+              "schema": {
+                "meta": "object",
+                "links": "object",
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when an unexpected exception occurs.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/server-info",
+      "http_method": "GET",
+      "method_name": "getServerInfo",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\AdminServices.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns server information including concurrency, active config ID, dynamic config, read-only mode, admin enabled, web sockets message max size, and info queue configuration.",
+          "data_schema": [
+            {
+              "name": "SzServerInfoResponse",
+              "schema": {
+                "meta": "object",
+                "links": "object",
+                "data": {
+                  "concurrency": "integer",
+                  "activeConfigId": "long",
+                  "dynamicConfig": "boolean",
+                  "readOnly": "boolean",
+                  "adminEnabled": "boolean",
+                  "webSocketsMessageMaxSize": "integer",
+                  "infoQueueConfigured": "boolean"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the engine API call to get the active configuration ID fails or when an unexpected exception occurs.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data-sources",
+      "http_method": "GET",
+      "method_name": "getDataSources",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\ConfigServices.java",
+      "parameters": [
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw native Senzing JSON should be included in the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The data sources were successfully retrieved and returned in the response.",
+          "data_schema": [
+            {
+              "name": "SzDataSourcesResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzDataSourcesResponseData",
+                "rawData": "string"
+              }
+            },
+            {
+              "name": "SzDataSourcesResponseData",
+              "schema": {
+                "dataSources": "array<SzDataSource>"
+              }
+            },
+            {
+              "name": "SzDataSource",
+              "schema": {
+                "dataSourceCode": "string",
+                "dataSourceId": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/bulk-data/analyze",
+      "http_method": "POST",
+      "method_name": "analyzeBulkRecordsViaForm",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\BulkDataServices.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful analysis of the bulk data records. Returns an SzBulkDataAnalysisResponse containing the analysis results.",
+          "data_schema": [
+            {
+              "name": "SzBulkDataAnalysisResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzBulkDataAnalysis"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Thrown by the handler when the progress period is negative (via validateProgressPeriod) or when data source mappings are invalid (via prepareBulkDataMappings).",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Thrown when loading is not allowed (e.g., server in read-only mode) via prepareBulkLoadOperation.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when an unexpected exception occurs during processing.",
+          "data_schema": null
+        },
+        {
+          "status_code": 503,
+          "description": "Service unavailable. Thrown when too many prolonged operations are running.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/bulk-data/load",
+      "http_method": "POST",
+      "method_name": "loadBulkRecordsViaForm",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\BulkDataServices.java",
+      "parameters": [
+        {
+          "name": "dataSource",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The data source to assign to the loaded records unless another data source mapping supercedes this default.",
+          "_depth": 0
+        },
+        {
+          "name": "mapDataSources",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The JSON string mapping specific data sources to alternate data source names. A mapping from empty-string is used for mapping records with no data source specified.",
+          "_depth": 0
+        },
+        {
+          "name": "mapDataSource",
+          "type": "array",
+          "require": "false",
+          "position": "query",
+          "description": "The List of delimited strings that begin the delimiter, followed by the \"from\" data source then the delimiter then the target data source.",
+          "_depth": 0
+        },
+        {
+          "name": "loadId",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The optional load ID to use for loading the records.",
+          "_depth": 0
+        },
+        {
+          "name": "maxFailures",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The maximum number of failures or a negative number if no maximum.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful bulk load operation. Returns an SzBulkLoadResponse containing the load results.",
+          "data_schema": [
+            {
+              "name": "SzBulkLoadResponse",
+              "schema": {
+                "meta": "object",
+                "links": "object",
+                "result": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Loading is not allowed because the server is in read-only mode.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected error occurred during the bulk load operation.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/configs/active",
+      "http_method": "GET",
+      "method_name": "getActiveConfig",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\ConfigServices.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The active configuration is returned as an SzConfigResponse containing the raw JSON configuration data.",
+          "data_schema": [
+            {
+              "name": "SzConfigResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "rawData": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while exporting or parsing the active configuration.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/configs/template",
+      "http_method": "GET",
+      "method_name": "getTemplateConfig",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\ConfigServices.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The template configuration was successfully created and returned as an SzConfigResponse containing the raw JSON configuration.",
+          "data_schema": [
+            {
+              "name": "SzConfigResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "rawData": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while creating or saving the template configuration, or while parsing the configuration JSON.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data-sources",
+      "http_method": "POST",
+      "method_name": "addDataSources",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\ConfigServices.java",
+      "parameters": [
+        {
+          "name": "dataSource",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The list of data source codes from the query parameters.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw native Senzing JSON should be included in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "dataSourcesInBody",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The body containing data sources to add.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully added the data sources and returned the list of all configured data sources.",
+          "data_schema": [
+            {
+              "name": "SzDataSourcesResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzDataSourcesResponseData",
+                "rawData": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The request body could not be parsed as data source descriptors, or a data source already exists with a different data source ID.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Configuration changes are not allowed (admin features disabled, read-only mode, or no config manager available).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/attribute-types/{attributeCode}",
+      "http_method": "GET",
+      "method_name": "getAttributeType",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\ConfigServices.java",
+      "parameters": [
+        {
+          "name": "attributeCode",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The attribute code from the URI path identifying the attribute type.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw native Senzing JSON should be included in the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the attribute type. The response contains the attribute type data and optionally the raw native Senzing JSON if withRaw is true.",
+          "data_schema": [
+            {
+              "name": "SzAttributeTypeResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzAttributeTypeResponseData",
+                "rawData": "string"
+              }
+            },
+            {
+              "name": "SzAttributeTypeResponseData",
+              "schema": {
+                "attributeType": "SzAttributeType"
+              }
+            },
+            {
+              "name": "SzAttributeType",
+              "schema": {
+                "attributeCode": "string",
+                "attributeClass": "SzAttributeClass",
+                "featureType": "string",
+                "defaultValue": "string",
+                "internal": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The specified attribute code was not recognized. Thrown when no attribute type matches the provided attributeCode.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array of SzError"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when an unexpected exception occurs during processing, such as a failure in the native API call or JSON parsing.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array of SzError"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/attribute-types",
+      "http_method": "GET",
+      "method_name": "getAttributeTypes",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\ConfigServices.java",
+      "parameters": [
+        {
+          "name": "withInternal",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Boolean flag from the query parameter indicating if internal attribute types should be included in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "attributeClass",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The optional attribute class for filtering the attribute types to be include in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "featureType",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The optional feature type for filtering the attribute types to be include in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw native Senzing JSON should be included in the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the attribute types. The response contains a list of attribute types, optionally filtered by attribute class and feature type, and optionally including internal attribute types and raw data.",
+          "data_schema": [
+            {
+              "name": "SzAttributeTypesResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzAttributeTypesResponseData",
+                "rawData": "string"
+              }
+            },
+            {
+              "name": "SzAttributeTypesResponseData",
+              "schema": {
+                "attributeTypes": "array<SzAttributeType>"
+              }
+            },
+            {
+              "name": "SzAttributeType",
+              "schema": {
+                "attributeCode": "string",
+                "attributeClass": "string",
+                "featureType": "string",
+                "internal": "boolean",
+                "defaultValue": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the attributeClass query parameter is not a recognized attribute class.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array<SzError>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an unexpected exception occurs during processing.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array<SzError>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records/{recordId}",
+      "http_method": "DELETE",
+      "method_name": "deleteRecord",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java",
+      "parameters": [
+        {
+          "name": "dataSourceCode",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The data source code from the URI path.",
+          "_depth": 0
+        },
+        {
+          "name": "recordId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The record ID of the record being deleted.",
+          "_depth": 0
+        },
+        {
+          "name": "loadId",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The optional load ID query parameter for the record.",
+          "_depth": 0
+        },
+        {
+          "name": "withInfo",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if resolution info should be produced when loading the record (from the query parameter).",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw JSON should be included with the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The record was deleted successfully (or was not found, treated as idempotent). Returns an SzDeleteRecordResponse.",
+          "data_schema": [
+            {
+              "name": "SzDeleteRecordResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzDeleteRecordResponseData"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Loading data is not allowed because the Senzing API Server was started in read-only mode.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "The specified data source is not recognized.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while deleting the record.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records",
+      "http_method": "POST",
+      "method_name": "loadRecord",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java",
+      "parameters": [
+        {
+          "name": "dataSourceCode",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The data source code from the URI path.",
+          "_depth": 0
+        },
+        {
+          "name": "loadId",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The optional load ID query parameter for the record.",
+          "_depth": 0
+        },
+        {
+          "name": "withInfo",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if resolution info should be produced when loading the record (from the query parameter).",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw JSON should be included with the response.",
+          "_depth": 0
+        },
+        {
+          "name": "recordJsonData",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The Senzing-format JSON text describing the record.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The record was successfully loaded and the response contains the record ID and optional resolution info.",
+          "data_schema": [
+            {
+              "name": "SzLoadRecordResponse",
+              "schema": {
+                "meta": "object",
+                "links": "object",
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request: the JSON fields in the request body are invalid or do not match the path parameters.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "object",
+                "links": "object",
+                "errors": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: loading data is not allowed because the server is in read-only mode.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "object",
+                "links": "object",
+                "errors": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found: the specified data source is not recognized, or the record was not found.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "object",
+                "links": "object",
+                "errors": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error: an unexpected error occurred while processing the request.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "object",
+                "links": "object",
+                "errors": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records/{recordId}",
+      "http_method": "GET",
+      "method_name": "getRecord",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java",
+      "parameters": [
+        {
+          "name": "dataSourceCode",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The data source code from the URI path.",
+          "_depth": 0
+        },
+        {
+          "name": "recordId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The record ID of the record being requested.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw JSON should be included with the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The record was successfully retrieved and returned as an SzRecordResponse.",
+          "data_schema": [
+            {
+              "name": "SzRecordResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzRecordResponseData"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The specified record was not found.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while processing the request.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records/{recordId}",
+      "http_method": "PUT",
+      "method_name": "loadRecord",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java",
+      "parameters": [
+        {
+          "name": "dataSourceCode",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The data source code from the URI path.",
+          "_depth": 0
+        },
+        {
+          "name": "recordId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The record ID of the record being loaded.",
+          "_depth": 0
+        },
+        {
+          "name": "loadId",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The optional load ID query parameter for the record.",
+          "_depth": 0
+        },
+        {
+          "name": "withInfo",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if resolution info should be produced when loading the record (from the query parameter).",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw JSON should be included with the response.",
+          "_depth": 0
+        },
+        {
+          "name": "recordJsonData",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The Senzing-format JSON text describing the record.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The record was successfully loaded (or updated) and the response contains the record ID and optionally resolution info and raw data.",
+          "data_schema": [
+            {
+              "name": "SzLoadRecordResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzLoadRecordResponseData"
+              }
+            },
+            {
+              "name": "SzLoadRecordResponseData",
+              "schema": {
+                "recordId": "string",
+                "info": "SzResolutionInfo"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request: the JSON fields in the request body do not match the path parameters, or the JSON is invalid.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array of SzError"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: the server is in read-only mode and loading records is not allowed.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array of SzError"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found: the specified data source is not recognized, or the record was not found.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array of SzError"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error: an unexpected error occurred while processing the request.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array of SzError"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records/{recordId}/reevaluate",
+      "http_method": "POST",
+      "method_name": "reevaluateRecord",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java",
+      "parameters": [
+        {
+          "name": "dataSourceCode",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The data source code from the URI path.",
+          "_depth": 0
+        },
+        {
+          "name": "recordId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The record ID of the record being reevaluated.",
+          "_depth": 0
+        },
+        {
+          "name": "withInfo",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if resolution info should be produced when loading the record (from the query parameter).",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw JSON should be included with the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The record was reevaluated successfully. Returns an SzReevaluateResponse containing the resolution info if withInfo was requested, and optionally the raw JSON if withRaw was also requested.",
+          "data_schema": [
+            {
+              "name": "SzReevaluateResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzReevaluateResponseData"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the specified data source is not recognized (newNotFoundException is called with a message, which produces a 404; however, the code path for an unrecognized data source in reevaluateRecord uses newNotFoundException, so this is 404). Also returned when the entityId parameter is missing in reevaluateEntity (not this endpoint). For this endpoint, a bad request is not explicitly produced.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when the server is in read-only mode and loading data is not allowed (ensureLoadingIsAllowed throws ForbiddenException).",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the specified data source is not recognized (newNotFoundException with message), or when the record is not found (newPossiblyNotFoundException maps RECORD_NOT_FOUND_CODE to NotFoundException).",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an unexpected exception occurs, or when the native API returns an error code that is not a not-found error (newPossiblyNotFoundException maps other errors to InternalServerErrorException).",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/entities/{entityId}",
+      "http_method": "GET",
+      "method_name": "getEntityByEntityId",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java",
+      "parameters": [
+        {
+          "name": "entityId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The entity ID of the entity being requested.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw JSON should be included with the response.",
+          "_depth": 0
+        },
+        {
+          "name": "withRelated",
+          "type": "SzRelationshipMode",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if related entities should be included.",
+          "enum": [
+            "NONE",
+            "PARTIAL",
+            "FULL"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "forceMinimal",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if the minimal response format is requested.",
+          "_depth": 0
+        },
+        {
+          "name": "detailLevel",
+          "type": "SzDetailLevel",
+          "require": "false",
+          "position": "query",
+          "description": "The level of detail for the entity data.",
+          "enum": [
+            "MINIMAL",
+            "VERBOSE"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "featureMode",
+          "type": "SzFeatureMode",
+          "require": "false",
+          "position": "query",
+          "description": "How the features should be returned.",
+          "enum": [
+            "NONE",
+            "REPRESENTATIVE",
+            "WITH_DUPLICATES",
+            "ATTRIBUTED"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "withFeatureStats",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if feature stats should be included in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "withInternalFeatures",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if internal features should be included in the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The entity data was successfully retrieved and returned as an SzEntityResponse.",
+          "data_schema": [
+            {
+              "name": "SzEntityResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzEntityData"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The entity was not found. This occurs when the native API returns a non-zero result code indicating a data source, record ID, or entity ID was not found, or when the native JSON response is empty.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred. This occurs when the native API returns an error code that is not a not-found error, or when an unexpected exception is caught.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records/{recordId}/entity",
+      "http_method": "GET",
+      "method_name": "getEntityByRecordId",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java",
+      "parameters": [
+        {
+          "name": "dataSourceCode",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The data source code from the URI path.",
+          "_depth": 0
+        },
+        {
+          "name": "recordId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The record ID of the record for entity being requested.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw JSON should be included with the response.",
+          "_depth": 0
+        },
+        {
+          "name": "withRelated",
+          "type": "SzRelationshipMode",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if related entities should be included.",
+          "enum": [
+            "NONE",
+            "PARTIAL",
+            "FULL"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "forceMinimal",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if the minimal response format is requested.",
+          "_depth": 0
+        },
+        {
+          "name": "detailLevel",
+          "type": "SzDetailLevel",
+          "require": "false",
+          "position": "query",
+          "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE.",
+          "enum": [
+            "MINIMAL",
+            "VERBOSE"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "featureMode",
+          "type": "SzFeatureMode",
+          "require": "false",
+          "position": "query",
+          "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES.",
+          "enum": [
+            "NONE",
+            "REPRESENTATIVE",
+            "WITH_DUPLICATES",
+            "ATTRIBUTED"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "withFeatureStats",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if feature stats should be included in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "withInternalFeatures",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if internal features should be included in the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The entity data for the entity associated with the specified data source and record ID was successfully retrieved.",
+          "data_schema": [
+            {
+              "name": "SzEntityResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzEntityData"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The specified record or entity was not found. This can occur when the native API returns a non-zero result code indicating a data source, record ID, or entity ID was not found, or when the native API returns an empty JSON response.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while processing the request. This can occur when the native API returns an error code other than 'not found', or when an unexpected exception is thrown during processing.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/reevaluate-entity",
+      "http_method": "POST",
+      "method_name": "reevaluateEntity",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java",
+      "parameters": [
+        {
+          "name": "entityId",
+          "type": "Long",
+          "require": "false",
+          "position": "query",
+          "description": "The entity ID of the entity to be reevaluated.",
+          "_depth": 0
+        },
+        {
+          "name": "withInfo",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not resolution info should be included in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw JSON should be included with the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The reevaluate entity request was successful. Returns an SzReevaluateResponse containing the resolution info (if withInfo=true) and optionally the raw JSON data (if withRaw=true and withInfo=true).",
+          "data_schema": [
+            {
+              "name": "SzReevaluateResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzReevaluateResponseData"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the entityId parameter is missing, or when the specified entityId was not found (ENTITY_NOT_FOUND_CODE).",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when the server is in read-only mode and loading data is not allowed.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned when the engine API indicates a data source, record ID, or entity ID was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when an unexpected error occurs during processing.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/entities/{entityId}/how",
+      "http_method": "GET",
+      "method_name": "howEntityByEntityId",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\HowRelatedServices.java",
+      "parameters": [
+        {
+          "name": "entityId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The entity ID of the entity from the URI path.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns how the entity resolved, including the how entity result and optionally the raw native Senzing JSON.",
+          "data_schema": [
+            {
+              "name": "SzHowEntityResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "howEntityResult": "SzHowEntityResult",
+                "rawData": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The entity ID was not found. Thrown by newPossiblyNotFoundException when the engine returns an error code indicating the entity ID was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/search-entities",
+      "http_method": "POST",
+      "method_name": "searchEntitiesByPost",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java",
+      "parameters": [
+        {
+          "name": "includeOnly",
+          "type": "Set<String>",
+          "require": "false",
+          "position": "query",
+          "description": "The set of search match levels to only be included in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "forceMinimal",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if the minimal response format is requested.",
+          "_depth": 0
+        },
+        {
+          "name": "detailLevel",
+          "type": "SzDetailLevel",
+          "require": "false",
+          "position": "query",
+          "description": "The level of detail for the entity data.",
+          "_depth": 0
+        },
+        {
+          "name": "featureMode",
+          "type": "SzFeatureMode",
+          "require": "false",
+          "position": "query",
+          "description": "Indicates how the features should be returned.",
+          "_depth": 0
+        },
+        {
+          "name": "withFeatureStats",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if feature stats should be included in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "withInternalFeatures",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if internal features should be included in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "withRelationships",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if entity relationships should be included in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw JSON should be included with the response.",
+          "_depth": 0
+        },
+        {
+          "name": "attrs",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The JSON request body describing the attributes to search on.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The search results were returned successfully.",
+          "data_schema": [
+            {
+              "name": "SzAttributeSearchResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzAttributeSearchResponseData"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The request body is missing, empty, or does not parse as valid JSON; or the search criteria contains no attributes; or an includeOnly value is not recognized.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array of SzError"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected error occurred while processing the request.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array of SzError"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/virtual-entities",
+      "http_method": "GET",
+      "method_name": "getVirtualEntity",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\HowRelatedServices.java",
+      "parameters": [
+        {
+          "name": "r",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Record identifiers to include in the virtual entity. May be specified multiple times.",
+          "_depth": 0
+        },
+        {
+          "name": "records",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "A JSON array of record identifiers to include in the virtual entity.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not to include the raw native Senzing JSON in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "forceMinimal",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not to force minimal format for the response.",
+          "_depth": 0
+        },
+        {
+          "name": "detailLevel",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The level of detail for the response.",
+          "enum": [
+            "VERBOSE",
+            "MINIMAL"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "featureMode",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "How features are retrieved.",
+          "enum": [
+            "WITH_DUPLICATES",
+            "REPRESENTATIVE",
+            "ATTRIBUTED",
+            "NONE"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "withFeatureStats",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not to include feature statistics.",
+          "_depth": 0
+        },
+        {
+          "name": "withInternalFeatures",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not to include internal features.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the virtual entity for the specified records.",
+          "data_schema": [
+            {
+              "name": "SzVirtualEntityResponse",
+              "schema": {
+                "meta": "object",
+                "links": "object",
+                "resolvedEntity": "object",
+                "relatedEntities": "array",
+                "rawData": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. At least one record must be specified via the 'r' or 'records' query parameters, or the record identifiers are improperly formatted.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/entities",
+      "http_method": "GET",
+      "method_name": "searchEntitiesByGet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityDataServices.java",
+      "parameters": [
+        {
+          "name": "attrs",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The senzing JSON describing the attributes to search on.",
+          "_depth": 0
+        },
+        {
+          "name": "attr",
+          "type": "array",
+          "require": "false",
+          "position": "query",
+          "description": "The list of encoded String attributes to search on.",
+          "_depth": 0
+        },
+        {
+          "name": "includeOnly",
+          "type": "array",
+          "require": "false",
+          "position": "query",
+          "description": "The Set of search match levels to only be included in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "forceMinimal",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if the minimal response format is requested.",
+          "_depth": 0
+        },
+        {
+          "name": "detailLevel",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE.",
+          "_depth": 0
+        },
+        {
+          "name": "featureMode",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES.",
+          "_depth": 0
+        },
+        {
+          "name": "withFeatureStats",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if feature stats should be included in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "withInternalFeatures",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if internal features should be included in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "withRelationships",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating if entity relationships should be included in the response.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw JSON should be included with the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The search results were returned successfully.",
+          "data_schema": [
+            {
+              "name": "SzAttributeSearchResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzAttributeSearchResponseData"
+              }
+            },
+            {
+              "name": "SzAttributeSearchResponseData",
+              "schema": {
+                "searchResults": "array<SzAttributeSearchResult>"
+              }
+            },
+            {
+              "name": "SzAttributeSearchResult",
+              "schema": {
+                "entityId": "long",
+                "entityName": "string",
+                "matchLevel": "SzMatchLevel",
+                "matchKey": "string",
+                "matchScore": "integer",
+                "resolvedEntity": "SzResolvedEntity",
+                "relatedEntities": "array<SzRelatedEntity>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The search criteria provided via the \"attrs\" or \"attr\" parameter is invalid, missing, or improperly formatted.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records/{recordId}/entity/how",
+      "http_method": "GET",
+      "method_name": "howEntityByRecordId",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\HowRelatedServices.java",
+      "parameters": [
+        {
+          "name": "dataSourceCode",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The data source code for the record.",
+          "_depth": 0
+        },
+        {
+          "name": "recordId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The record ID for the record.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns how the entity resolved for the record.",
+          "data_schema": [
+            {
+              "name": "SzHowEntityResponse",
+              "schema": {
+                "meta": "object",
+                "links": "object",
+                "howEntityResult": "object",
+                "rawData": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "The specified record or entity was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "An internal server error occurred.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/entity-paths",
+      "http_method": "GET",
+      "method_name": "getEntityPath",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityGraphServices.java",
+      "parameters": [
+        {
+          "name": "from",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The SzEntityIdentifier for the start of the requested path.",
+          "_depth": 0
+        },
+        {
+          "name": "to",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The SzEntityIdentifier for the end of the requested path.",
+          "_depth": 0
+        },
+        {
+          "name": "maxDegrees",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The maximum number of degrees for the requested path.",
+          "min": 1,
+          "_depth": 0
+        },
+        {
+          "name": "x",
+          "type": "array",
+          "require": "false",
+          "position": "query",
+          "description": "The optional List of SzEntityIdentifier instances identifying those entities to avoid.",
+          "_depth": 0
+        },
+        {
+          "name": "avoidEntities",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The optional text describing a List of SzEntityIdentifier instances identifying those entities to avoid.",
+          "_depth": 0
+        },
+        {
+          "name": "forbidAvoided",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Flag indicating whether or not avoided entities should be strictly forbidden (true) or only avoided if possible (false).",
+          "_depth": 0
+        },
+        {
+          "name": "s",
+          "type": "array",
+          "require": "false",
+          "position": "query",
+          "description": "The List of data source codes that are legal for entities included in the path.",
+          "_depth": 0
+        },
+        {
+          "name": "forceMinimal",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the returned entities should be in the minimal format.",
+          "_depth": 0
+        },
+        {
+          "name": "detailLevel",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE.",
+          "_depth": 0
+        },
+        {
+          "name": "featureMode",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES.",
+          "_depth": 0
+        },
+        {
+          "name": "withFeatureStats",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not feature stats should be included with the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withInternalFeatures",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not internal features should be included with the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. Returns the entity path between the two specified entities.",
+          "data_schema": [
+            {
+              "name": "SzEntityPathResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzEntityPathData"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when required parameters are missing or malformed, entity identifiers are inconsistent, avoided entities are inconsistent, an unrecognized data source is specified, maxDegrees is less than 1, or the engine reports that an entity or record was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when an unexpected error occurs while processing the request or when the engine reports a system error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/entity-networks",
+      "http_method": "GET",
+      "method_name": "getEntityNetwork",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\EntityGraphServices.java",
+      "parameters": [
+        {
+          "name": "e",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The {@link List} of encoded strings describing {@link SzEntityIdentifier} instances for the network.",
+          "_depth": 0
+        },
+        {
+          "name": "entities",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The encoded {@link String} describing the the {@link SzEntityIdentifiers} instance for the network.",
+          "_depth": 0
+        },
+        {
+          "name": "maxDegrees",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The maximum degrees for finding the paths between the identified entities.",
+          "min": 0,
+          "_depth": 0
+        },
+        {
+          "name": "buildOut",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The number of related entities to build out from the found entities.",
+          "min": 0,
+          "_depth": 0
+        },
+        {
+          "name": "maxEntities",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The maximum number of build-out entities to return.",
+          "min": 0,
+          "_depth": 0
+        },
+        {
+          "name": "forceMinimal",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the returned entities should be in the minimal format.",
+          "_depth": 0
+        },
+        {
+          "name": "detailLevel",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The {@link SzDetailLevel} describing the requested level of detail for the entity data, if <code>null</code> this defaults to {@link SzDetailLevel#VERBOSE}.",
+          "enum": [
+            "VERBOSE",
+            "MINIMAL"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "featureMode",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The {@link SzFeatureMode} query parameter indicating how the features should be returned, if <code>null</code> this defaults to {@link SzFeatureMode#WITH_DUPLICATES}.",
+          "enum": [
+            "NONE",
+            "REPRESENTATIVE",
+            "WITH_DUPLICATES",
+            "ATTRIBUTED"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "withFeatureStats",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not feature stats should be included with the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withInternalFeatures",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not internal features should be included with the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the entity network data.",
+          "data_schema": [
+            {
+              "name": "SzEntityNetworkResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzEntityNetworkData"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when required parameters are missing, entity identifiers are inconsistent, or numeric parameters are negative.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an unexpected exception occurs during processing.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data-sources/{dataSourceCode}/records/{recordId}/entity/why",
+      "http_method": "GET",
+      "method_name": "whyEntityByRecordId",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\WhyServices.java",
+      "parameters": [
+        {
+          "name": "dataSourceCode",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The data source code from the URI path that in-part identifies the record that belongs to the entity.",
+          "_depth": 0
+        },
+        {
+          "name": "recordId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The record ID from the URI path that in-part identifies the record that belongs to the entity.",
+          "_depth": 0
+        },
+        {
+          "name": "forceMinimal",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the returned entities should be in the minimal format.",
+          "_depth": 0
+        },
+        {
+          "name": "detailLevel",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE.",
+          "enum": [
+            "VERBOSE",
+            "MINIMAL"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "featureMode",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES.",
+          "enum": [
+            "WITH_DUPLICATES",
+            "REPRESENTATIVE",
+            "ATTRIBUTED",
+            "NONE"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "withFeatureStats",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not feature stats should be included with the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withInternalFeatures",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not internal features should be included with the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withRelationships",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not relationships should be included in the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The why entity response containing the why results and entities.",
+          "data_schema": [
+            {
+              "name": "SzWhyEntityResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzWhyEntityResponseData"
+              }
+            },
+            {
+              "name": "SzWhyEntityResponseData",
+              "schema": {
+                "whyResults": "array",
+                "entities": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found: The specified data source code, record ID, or entity ID was not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error: An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/entities/{entityId}/why",
+      "http_method": "GET",
+      "method_name": "whyEntityByEntityId",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\WhyServices.java",
+      "parameters": [
+        {
+          "name": "entityId",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "The entity ID of the entity from the URI path.",
+          "_depth": 0
+        },
+        {
+          "name": "forceMinimal",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the returned entities should be in the minimal format.",
+          "_depth": 0
+        },
+        {
+          "name": "detailLevel",
+          "type": "SzDetailLevel",
+          "require": "false",
+          "position": "query",
+          "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE.",
+          "_depth": 0
+        },
+        {
+          "name": "featureMode",
+          "type": "SzFeatureMode",
+          "require": "false",
+          "position": "query",
+          "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES.",
+          "_depth": 0
+        },
+        {
+          "name": "withFeatureStats",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not feature stats should be included with the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withInternalFeatures",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not internal features should be included with the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withRelationships",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not relationships should be included in the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. The response is an SzWhyEntityResponse describing the why results and entities.",
+          "data_schema": [
+            {
+              "name": "SzWhyEntityResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzWhyEntityResponseData"
+              }
+            },
+            {
+              "name": "SzWhyEntityResponseData",
+              "schema": {
+                "whyResults": "array<SzWhyEntityResult>",
+                "entities": "array<SzEntityData>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The entity ID was not found (ENTITY_NOT_FOUND_CODE).",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array<SzError>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while processing the request.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array<SzError>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/why/entities",
+      "http_method": "GET",
+      "method_name": "whyEntities",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\WhyServices.java",
+      "parameters": [
+        {
+          "name": "entity1",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The encoded String describing the SzEntityIdentifier for the first subject entity.",
+          "_depth": 0
+        },
+        {
+          "name": "entity2",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The encoded String describing the SzEntityIdentifier for the second subject entity.",
+          "_depth": 0
+        },
+        {
+          "name": "forceMinimal",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the returned entities should be in the minimal format.",
+          "_depth": 0
+        },
+        {
+          "name": "detailLevel",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE.",
+          "enum": [
+            "VERBOSE",
+            "MINIMAL",
+            "SUMMARY"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "featureMode",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES.",
+          "enum": [
+            "WITH_DUPLICATES",
+            "REPRESENTATIVE",
+            "ATTRIBUTED",
+            "NONE"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "withFeatureStats",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not feature stats should be included with the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withInternalFeatures",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not internal features should be included with the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withRelationships",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not relationships should be included in the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The why-entities response describing the result of the why operation, including the why result and the entities involved.",
+          "data_schema": [
+            {
+              "name": "SzWhyEntitiesResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "data": "SzWhyEntitiesResponseData"
+              }
+            },
+            {
+              "name": "SzWhyEntitiesResponseData",
+              "schema": {
+                "whyResult": "SzWhyEntitiesResult",
+                "entities": "array<SzEntityData>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when required parameters are missing or empty, when entity identifiers are improperly formatted, when entity identifiers are inconsistent types, or when the engine reports that a data source, record ID, or entity ID was not found.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array<SzError>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an unexpected error occurs during processing or when the engine reports an error other than a not-found condition.",
+          "data_schema": [
+            {
+              "name": "SzErrorResponse",
+              "schema": {
+                "meta": "SzMeta",
+                "links": "SzLinks",
+                "errors": "array<SzError>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/why/records",
+      "http_method": "GET",
+      "method_name": "whyRecords",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Senzing\\senzing-api-server\\src\\main\\java\\com\\senzing\\api\\services\\WhyServices.java",
+      "parameters": [
+        {
+          "name": "dataSource1",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The data source code for the first subject record.",
+          "_depth": 0
+        },
+        {
+          "name": "recordId1",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The record ID for the first subject record.",
+          "_depth": 0
+        },
+        {
+          "name": "dataSource2",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The data source code for the second subject record.",
+          "_depth": 0
+        },
+        {
+          "name": "recordId2",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The record ID for the second subject record.",
+          "_depth": 0
+        },
+        {
+          "name": "forceMinimal",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the returned entities should be in the minimal format.",
+          "_depth": 0
+        },
+        {
+          "name": "detailLevel",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The level of detail for the entity data.",
+          "enum": [
+            "VERBOSE",
+            "MINIMAL"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "featureMode",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Indicates how the features should be returned.",
+          "enum": [
+            "WITH_DUPLICATES",
+            "REPRESENTATIVE",
+            "ATTRIBUTED",
+            "NONE"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "withFeatureStats",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not feature stats should be included with the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withInternalFeatures",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not internal features should be included with the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withRelationships",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not relationships should be included in the returned entities.",
+          "_depth": 0
+        },
+        {
+          "name": "withRaw",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "The why records response containing the why result and the entities.",
+          "data_schema": [
+            {
+              "name": "SzWhyRecordsResponse",
+              "schema": {
+                "meta": "object",
+                "links": "object",
+                "data": "SzWhyRecordsResponseData"
+              }
+            },
+            {
+              "name": "SzWhyRecordsResponseData",
+              "schema": {
+                "whyResult": "SzWhyRecordsResult",
+                "entities": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when a required parameter is missing or empty (dataSource1, recordId1, dataSource2, recordId2), or when the engine reports a data source not found (error code 27) or record not found (error code 33).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the engine reports an unexpected error, or when an unexpected exception occurs during processing.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 13251,
+  "tokens": {
+    "prompt_tokens": 8462266,
+    "completion_tokens": 127143,
+    "total_tokens": 8589409,
+    "calls": 204,
+    "elapsed_s": 1342.209,
+    "prompt_cost_usd": 1.079426,
+    "completion_cost_usd": 0.086414,
+    "total_cost_usd": 1.16584,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 2755182,
+        "completion_tokens": 21605,
+        "total_tokens": 2776787,
+        "calls": 68,
+        "elapsed_s": 109.593141,
+        "prompt_cost_usd": 0.055104,
+        "completion_cost_usd": 0.012963,
+        "total_cost_usd": 0.068067
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 2682996,
+        "completion_tokens": 84856,
+        "total_tokens": 2767852,
+        "calls": 68,
+        "elapsed_s": 937.098,
+        "prompt_cost_usd": 0.2683,
+        "completion_cost_usd": 0.042428,
+        "total_cost_usd": 0.310728
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 3024088,
+        "completion_tokens": 20682,
+        "total_tokens": 3044770,
+        "calls": 68,
+        "elapsed_s": 295.518,
+        "prompt_cost_usd": 0.756022,
+        "completion_cost_usd": 0.031023,
+        "total_cost_usd": 0.787045
+      }
+    ]
+  }
+}

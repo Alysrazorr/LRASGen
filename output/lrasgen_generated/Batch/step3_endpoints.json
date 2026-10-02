@@ -1,0 +1,123 @@
+{
+  "task_id": "spring-batch-rest",
+  "api_name": "spring-batch-rest",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/jobs/{jobName}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get a Spring Batch job by name",
+      "description": "",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Batch\\spring-batch-rest\\api\\src\\main\\java\\com\\github\\chrisgleissner\\springbatchrest\\api\\core\\job\\JobController.java"
+    },
+    {
+      "endpoint_path": "/jobs",
+      "http_method": "GET",
+      "method_name": "all",
+      "summary": "Get all Spring Batch jobs",
+      "description": "",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Batch\\spring-batch-rest\\api\\src\\main\\java\\com\\github\\chrisgleissner\\springbatchrest\\api\\core\\job\\JobController.java"
+    },
+    {
+      "endpoint_path": "/jobExecutions/{id}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get all Spring batch job execution by ID",
+      "description": "",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Batch\\spring-batch-rest\\api\\src\\main\\java\\com\\github\\chrisgleissner\\springbatchrest\\api\\core\\jobexecution\\JobExecutionController.java"
+    },
+    {
+      "endpoint_path": "/jobExecutions",
+      "http_method": "GET",
+      "method_name": "all",
+      "summary": "Find Spring batch job executions by job name and exit code",
+      "description": "",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Batch\\spring-batch-rest\\api\\src\\main\\java\\com\\github\\chrisgleissner\\springbatchrest\\api\\core\\jobexecution\\JobExecutionController.java"
+    },
+    {
+      "endpoint_path": "/jobExecutions",
+      "http_method": "POST",
+      "method_name": "put",
+      "summary": "Start a Spring Batch job execution",
+      "description": "",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Batch\\spring-batch-rest\\api\\src\\main\\java\\com\\github\\chrisgleissner\\springbatchrest\\api\\core\\jobexecution\\JobExecutionController.java"
+    },
+    {
+      "endpoint_path": "/jobDetails/{quartzGroupName}/{quartzJobName}",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Get a Quartz job detail by Quartz group and job name",
+      "description": "",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Batch\\spring-batch-rest\\quartz-api\\src\\main\\java\\com\\github\\chrisgleissner\\springbatchrest\\api\\quartz\\jobdetail\\JobDetailController.java"
+    },
+    {
+      "endpoint_path": "/jobDetails",
+      "http_method": "GET",
+      "method_name": "all",
+      "summary": "Get all Quartz job details",
+      "description": "",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Batch\\spring-batch-rest\\quartz-api\\src\\main\\java\\com\\github\\chrisgleissner\\springbatchrest\\api\\quartz\\jobdetail\\JobDetailController.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 4774,
+  "tokens": {
+    "prompt_tokens": 40932,
+    "completion_tokens": 2897,
+    "total_tokens": 43829,
+    "calls": 9,
+    "elapsed_s": 51.628,
+    "prompt_cost_usd": 0.005196,
+    "completion_cost_usd": 0.00192,
+    "total_cost_usd": 0.007115,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 13504,
+        "completion_tokens": 448,
+        "total_tokens": 13952,
+        "calls": 3,
+        "elapsed_s": 4.770865000000001,
+        "prompt_cost_usd": 0.00027,
+        "completion_cost_usd": 0.000269,
+        "total_cost_usd": 0.000539
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 12877,
+        "completion_tokens": 2023,
+        "total_tokens": 14900,
+        "calls": 3,
+        "elapsed_s": 35.604,
+        "prompt_cost_usd": 0.001288,
+        "completion_cost_usd": 0.001012,
+        "total_cost_usd": 0.002299
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 14551,
+        "completion_tokens": 426,
+        "total_tokens": 14977,
+        "calls": 3,
+        "elapsed_s": 11.253,
+        "prompt_cost_usd": 0.003638,
+        "completion_cost_usd": 0.000639,
+        "total_cost_usd": 0.004277
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+.number-widget(ng-controller='NumberWidget')
+
+    h1.title(ng-if='::widget.title') {{ widgetTitle() }}
+
+    .widget-body
+        .widget-loading(spinjs, ng-if='isLoading()')
+        .widget-error(ng-if='widgetContext.dataSourceError == true && !isLoading()')
+        .widget-nodata(ng-if='widgetContext.nodata && !isLoading()')
+            .fa.fa-exclamation-triangle
+            span  {{ widgetContext.nodata }}
+
+        .the-number(ng-if='!noDataOrError()', 
+            ng-repeat='number in numbers', 
+            number-count='numberCount', 
+            index='$index', auto-size='widget.autoSize',
+            is-horizontal='isHorizontal',
+            class='{{ getClass(number) }}',
+            ng-click='onClickEvent(number)')
+            span(ng-if='number.prefix') {{ number.prefix }}              
+            h1.big(title='{{ number.tooltip }}',ng-style='{color: number.color || "inherit"}') {{ number.number }}
+                i(ng-if='number.icon', title='{{ number.iconTooltip }}', class='fa {{ number.icon }}', ng-style='{color: number.iconColor || "inherit"}')
+            span(ng-if='number.suffix')  {{ number.suffix }}
+            
+
+    .widget-footer(ng-if='widget.link')
+        a.link(ng-href='{{ getUrl() }}', target='{{ linkTarget() }}')
+            i.fa.fa-external-link  
+            |  {{ widget.link }}

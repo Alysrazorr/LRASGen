@@ -1,0 +1,4787 @@
+{
+  "task_id": "pokeapi-master",
+  "api_name": "pokeapi-master",
+  "framework": "django",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/v2/berry/{id}",
+      "http_method": "GET",
+      "method_name": "BerryResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Berry detail retrieved successfully",
+          "data_schema": [
+            {
+              "name": "BerryDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "growth_time": "integer",
+                "max_harvest": "integer",
+                "natural_gift_power": "integer",
+                "size": "integer",
+                "smoothness": "integer",
+                "soil_dryness": "integer",
+                "firmness": "object",
+                "flavors": "array",
+                "item": "object",
+                "natural_gift_type": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Berry not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/characteristic/{id}",
+      "http_method": "GET",
+      "method_name": "CharacteristicResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the characteristic resource identified by the given id or name.",
+          "data_schema": [
+            {
+              "name": "CharacteristicDetail",
+              "schema": {
+                "id": "integer",
+                "gene_modulo": "integer",
+                "possible_values": "array<integer>",
+                "highest_stat": "StatSummary",
+                "descriptions": "array<CharacteristicDescription>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the lookup value does not match the id pattern or name pattern, or when no object matches the lookup.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/berry-flavor",
+      "http_method": "GET",
+      "method_name": "BerryFlavorResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of berry flavors. Each item contains the name and URL of a berry flavor.",
+          "data_schema": [
+            {
+              "name": "BerryFlavorList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/ability/{id}",
+      "http_method": "GET",
+      "method_name": "AbilityResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful retrieval of an ability resource by ID or name.",
+          "data_schema": [
+            {
+              "name": "AbilityDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "is_main_series": "boolean",
+                "generation": "object",
+                "names": "array",
+                "effect_entries": "array",
+                "effect_changes": "array",
+                "flavor_text_entries": "array",
+                "pokemon": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested ability does not exist or the lookup value is invalid.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/berry",
+      "http_method": "GET",
+      "method_name": "BerryResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of berries, each with a name and URL.",
+          "data_schema": [
+            {
+              "name": "BerrySummary",
+              "schema": {
+                "name": "string",
+                "url": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/berry-firmness/{id}",
+      "http_method": "GET",
+      "method_name": "BerryFirmnessResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the BerryFirmness detail for the given id or name.",
+          "data_schema": [
+            {
+              "name": "BerryFirmnessDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "berries": "array",
+                "names": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the lookup value does not match an existing BerryFirmness by id or name, or when the id is out of range.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/berry-firmness",
+      "http_method": "GET",
+      "method_name": "BerryFirmnessResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List of berry firmness resources",
+          "data_schema": [
+            {
+              "name": "PaginatedBerryFirmnessList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/characteristic",
+      "http_method": "GET",
+      "method_name": "CharacteristicResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of characteristics. Each item contains the characteristic's URL.",
+          "data_schema": [
+            {
+              "name": "PaginatedCharacteristicList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the requested page does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/ability",
+      "http_method": "GET",
+      "method_name": "AbilityResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of abilities, each with name and URL.",
+          "data_schema": [
+            {
+              "name": "AbilityList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array<AbilitySummary>"
+              }
+            },
+            {
+              "name": "AbilitySummary",
+              "schema": {
+                "name": "string",
+                "url": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/berry-flavor/{id}",
+      "http_method": "GET",
+      "method_name": "BerryFlavorResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful retrieval of a berry flavor resource by ID or name.",
+          "data_schema": [
+            {
+              "name": "BerryFlavorDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "berries": "array",
+                "contest_type": "object",
+                "names": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested berry flavor does not exist.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/contest-type/{id}",
+      "http_method": "GET",
+      "method_name": "ContestTypeResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Contest type detail",
+          "data_schema": [
+            {
+              "name": "ContestTypeDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "berry_flavor": "object",
+                "names": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/contest-type",
+      "http_method": "GET",
+      "method_name": "ContestTypeResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of contest types.",
+          "data_schema": [
+            {
+              "name": "ContestTypeList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/encounter-method/{id}",
+      "http_method": "GET",
+      "method_name": "EncounterMethodResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Retrieve an encounter method by ID or name.",
+          "data_schema": [
+            {
+              "name": "EncounterMethodDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "order": "integer",
+                "names": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested encounter method does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/contest-effect",
+      "http_method": "GET",
+      "method_name": "ContestEffectResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List of contest effects",
+          "data_schema": [
+            {
+              "name": "ContestEffectList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/contest-effect/{id}",
+      "http_method": "GET",
+      "method_name": "ContestEffectResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Contest effect detail",
+          "data_schema": [
+            {
+              "name": "ContestEffectDetail",
+              "schema": {
+                "id": "integer",
+                "appeal": "integer",
+                "jam": "integer",
+                "effect_entries": "array",
+                "flavor_text_entries": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/egg-group",
+      "http_method": "GET",
+      "method_name": "EggGroupResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of egg groups. Each egg group is represented by its name and URL.",
+          "data_schema": [
+            {
+              "name": "EggGroupList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array<EggGroupSummary>"
+              }
+            },
+            {
+              "name": "EggGroupSummary",
+              "schema": {
+                "name": "string",
+                "url": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/egg-group/{id}",
+      "http_method": "GET",
+      "method_name": "EggGroupResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the egg group detail.",
+          "data_schema": [
+            {
+              "name": "EggGroupDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "names": "array",
+                "pokemon_species": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested egg group does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/encounter-condition",
+      "http_method": "GET",
+      "method_name": "EncounterConditionResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of encounter conditions.",
+          "data_schema": [
+            {
+              "name": "EncounterConditionList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/encounter-condition/{id}",
+      "http_method": "GET",
+      "method_name": "EncounterConditionResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Retrieve an encounter condition by ID or name.",
+          "data_schema": [
+            {
+              "name": "EncounterConditionDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "values": "array",
+                "names": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested encounter condition does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/encounter-method",
+      "http_method": "GET",
+      "method_name": "EncounterMethodResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List encounter methods",
+          "data_schema": [
+            {
+              "name": "PaginatedEncounterMethodList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/encounter-condition-value",
+      "http_method": "GET",
+      "method_name": "EncounterConditionValueResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of encounter condition values.",
+          "data_schema": [
+            {
+              "name": "EncounterConditionValueList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/evolution-chain/{id}",
+      "http_method": "GET",
+      "method_name": "EvolutionChainResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the evolution chain.",
+          "data_schema": [
+            {
+              "name": "EvolutionChainDetail",
+              "schema": {
+                "id": "integer",
+                "baby_trigger_item": "object",
+                "chain": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The evolution chain with the specified ID does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/evolution-chain",
+      "http_method": "GET",
+      "method_name": "EvolutionChainResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of evolution chains. Each item contains the name and URL of an evolution chain.",
+          "data_schema": [
+            {
+              "name": "EvolutionChainList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/generation",
+      "http_method": "GET",
+      "method_name": "GenerationResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of generation resources. Each entry contains the name and URL of a generation.",
+          "data_schema": [
+            {
+              "name": "GenerationList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/encounter-condition-value/{id}",
+      "http_method": "GET",
+      "method_name": "EncounterConditionValueResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the EncounterConditionValue detail, including its id, name, condition summary, and localized names.",
+          "data_schema": [
+            {
+              "name": "EncounterConditionValueDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "condition": {
+                  "name": "string",
+                  "url": "string"
+                },
+                "names": [
+                  {
+                    "name": "string",
+                    "language": {
+                      "name": "string",
+                      "url": "string"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Returned when the requested encounter condition value does not exist. The NameOrIdRetrieval.get_object method raises Http404 via get_object_or_404 when the lookup matches neither an existing id nor an existing name.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/generation/{id}",
+      "http_method": "GET",
+      "method_name": "GenerationResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful retrieval of a generation resource. Returns the generation detail data including abilities, main region, moves, names, pokemon species, types, and version groups.",
+          "data_schema": [
+            {
+              "name": "GenerationDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "abilities": "array",
+                "main_region": "object",
+                "moves": "array",
+                "names": "array",
+                "pokemon_species": "array",
+                "types": "array",
+                "version_groups": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested generation does not exist. This is raised by get_object_or_404 in NameOrIdRetrieval.get_object when the lookup (by ID or name) does not match any record.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/evolution-trigger",
+      "http_method": "GET",
+      "method_name": "EvolutionTriggerResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of evolution triggers. Each item contains the name and URL of an evolution trigger.",
+          "data_schema": [
+            {
+              "name": "EvolutionTriggerList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/evolution-trigger/{id}",
+      "http_method": "GET",
+      "method_name": "EvolutionTriggerResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the evolution trigger resource.",
+          "data_schema": [
+            {
+              "name": "EvolutionTriggerDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "names": "array",
+                "pokemon_species": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested evolution trigger does not exist.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/gender/{id}",
+      "http_method": "GET",
+      "method_name": "GenderResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the details of a gender resource, including its ID, name, pokemon species details, and required-for-evolution species.",
+          "data_schema": [
+            {
+              "name": "GenderDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "pokemon_species_details": "array",
+                "required_for_evolution": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested gender resource does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/gender",
+      "http_method": "GET",
+      "method_name": "GenderResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of genders. Each item contains the gender's name and URL.",
+          "data_schema": [
+            {
+              "name": "GenderList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            },
+            {
+              "name": "GenderSummary",
+              "schema": {
+                "name": "string",
+                "url": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/growth-rate/{id}",
+      "http_method": "GET",
+      "method_name": "GrowthRateResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the growth rate resource.",
+          "data_schema": [
+            {
+              "name": "GrowthRateDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "formula": "string",
+                "descriptions": "array",
+                "levels": "array",
+                "pokemon_species": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested growth rate does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/growth-rate",
+      "http_method": "GET",
+      "method_name": "GrowthRateResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of growth rates, each with name and url.",
+          "data_schema": [
+            {
+              "name": "GrowthRateList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/item-category",
+      "http_method": "GET",
+      "method_name": "ItemCategoryResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of item categories.",
+          "data_schema": [
+            {
+              "name": "ItemCategoryList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/item/{id}",
+      "http_method": "GET",
+      "method_name": "ItemResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Item detail retrieved successfully",
+          "data_schema": [
+            {
+              "name": "ItemDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "cost": "integer",
+                "fling_power": "integer",
+                "fling_effect": "object",
+                "attributes": "array",
+                "category": "object",
+                "effect_entries": "array",
+                "flavor_text_entries": "array",
+                "game_indices": "array",
+                "names": "array",
+                "held_by_pokemon": "array",
+                "sprites": "object",
+                "baby_trigger_for": "object",
+                "machines": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/item-attribute/{id}",
+      "http_method": "GET",
+      "method_name": "ItemAttributeResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Item attribute detail",
+          "data_schema": [
+            {
+              "name": "ItemAttributeDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "descriptions": "array",
+                "items": "array",
+                "names": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/item",
+      "http_method": "GET",
+      "method_name": "ItemResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of items.",
+          "data_schema": [
+            {
+              "name": "ItemList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/item-attribute",
+      "http_method": "GET",
+      "method_name": "ItemAttributeResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of item attributes. Each item attribute is represented by its name and URL.",
+          "data_schema": [
+            {
+              "name": "PaginatedItemAttributeList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/item-category/{id}",
+      "http_method": "GET",
+      "method_name": "ItemCategoryResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the ItemCategory detail for the given id or name.",
+          "data_schema": [
+            {
+              "name": "ItemCategoryDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "items": "array",
+                "names": "array",
+                "pocket": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the lookup value does not match an existing ItemCategory by id or name, or when the lookup value does not match the id or name patterns.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/item-fling-effect",
+      "http_method": "GET",
+      "method_name": "ItemFlingEffectResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List of item fling effects",
+          "data_schema": [
+            {
+              "name": "ItemFlingEffectList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/item-fling-effect/{id}",
+      "http_method": "GET",
+      "method_name": "ItemFlingEffectResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful retrieval of an item fling effect.",
+          "data_schema": [
+            {
+              "name": "ItemFlingEffectDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "effect_entries": "array",
+                "items": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested item fling effect does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/item-pocket/{id}",
+      "http_method": "GET",
+      "method_name": "ItemPocketResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Item pocket detail retrieved successfully.",
+          "data_schema": [
+            {
+              "name": "ItemPocketDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "categories": "array",
+                "names": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Item pocket not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/item-pocket",
+      "http_method": "GET",
+      "method_name": "ItemPocketResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of item pockets.",
+          "data_schema": [
+            {
+              "name": "PaginatedItemPocketList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/language",
+      "http_method": "GET",
+      "method_name": "LanguageResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of languages.",
+          "data_schema": [
+            {
+              "name": "PaginatedLanguageList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array<LanguageSummary>"
+              }
+            },
+            {
+              "name": "LanguageSummary",
+              "schema": {
+                "name": "string",
+                "url": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/language/{id}",
+      "http_method": "GET",
+      "method_name": "LanguageResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Language detail retrieved successfully.",
+          "data_schema": [
+            {
+              "name": "LanguageDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "official": "boolean",
+                "iso639": "string",
+                "iso3166": "string",
+                "names": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested language does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/location-area/{id}",
+      "http_method": "GET",
+      "method_name": "LocationAreaResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Location area detail retrieved successfully",
+          "data_schema": [
+            {
+              "name": "LocationAreaDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "game_index": "integer",
+                "encounter_method_rates": "array",
+                "location": "object",
+                "names": "array",
+                "pokemon_encounters": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found - no LocationArea matches the given id or name",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/location/{id}",
+      "http_method": "GET",
+      "method_name": "LocationResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Location detail",
+          "data_schema": [
+            {
+              "name": "LocationDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "region": "object",
+                "names": "array",
+                "game_indices": "array",
+                "areas": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/location-area",
+      "http_method": "GET",
+      "method_name": "LocationAreaResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of location areas, each with name and URL.",
+          "data_schema": [
+            {
+              "name": "LocationAreaList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/location",
+      "http_method": "GET",
+      "method_name": "LocationResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of Location resources.",
+          "data_schema": [
+            {
+              "name": "LocationList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/machine",
+      "http_method": "GET",
+      "method_name": "MachineResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of Machine resources. Each item contains a URL to the machine detail endpoint.",
+          "data_schema": [
+            {
+              "name": "MachineListResponse",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/machine/{id}",
+      "http_method": "GET",
+      "method_name": "MachineResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Machine detail retrieved successfully.",
+          "data_schema": [
+            {
+              "name": "MachineDetail",
+              "schema": {
+                "id": "integer",
+                "item": "object",
+                "version_group": "object",
+                "move": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Machine not found. Returned when the requested machine ID does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/move",
+      "http_method": "GET",
+      "method_name": "MoveResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of move summaries. Each item contains the move's name and URL.",
+          "data_schema": [
+            {
+              "name": "MoveListResponse",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            },
+            {
+              "name": "MoveSummary",
+              "schema": {
+                "name": "string",
+                "url": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/move/{id}",
+      "http_method": "GET",
+      "method_name": "MoveResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful retrieval of a move resource by ID or name.",
+          "data_schema": [
+            {
+              "name": "MoveDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "accuracy": "integer",
+                "effect_chance": "integer",
+                "pp": "integer",
+                "priority": "integer",
+                "power": "integer",
+                "contest_combos": "object",
+                "contest_type": "object",
+                "contest_effect": "object",
+                "damage_class": "object",
+                "effect_entries": "array",
+                "effect_changes": "array",
+                "generation": "object",
+                "meta": "object",
+                "names": "array",
+                "past_values": "array",
+                "stat_changes": "array",
+                "super_contest_effect": "object",
+                "target": "object",
+                "type": "object",
+                "machines": "array",
+                "flavor_text_entries": "array",
+                "learned_by_pokemon": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested move does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/move-battle-style",
+      "http_method": "GET",
+      "method_name": "MoveBattleStyleResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of move battle styles.",
+          "data_schema": [
+            {
+              "name": "MoveBattleStyleList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/move-ailment/{id}",
+      "http_method": "GET",
+      "method_name": "MoveMetaAilmentResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response with the move meta ailment details.",
+          "data_schema": [
+            {
+              "name": "MoveMetaAilmentDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "moves": "array",
+                "names": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested move meta ailment does not exist.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/move-ailment",
+      "http_method": "GET",
+      "method_name": "MoveMetaAilmentResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of move meta ailments.",
+          "data_schema": [
+            {
+              "name": "MoveMetaAilmentList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/move-battle-style/{id}",
+      "http_method": "GET",
+      "method_name": "MoveBattleStyleResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful retrieval of a move battle style by ID or name.",
+          "data_schema": [
+            {
+              "name": "MoveBattleStyleDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "names": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested move battle style does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/move-category",
+      "http_method": "GET",
+      "method_name": "MoveMetaCategoryResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of move meta categories.",
+          "data_schema": [
+            {
+              "name": "PaginatedMoveMetaCategoryList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/move-category/{id}",
+      "http_method": "GET",
+      "method_name": "MoveMetaCategoryResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the MoveMetaCategory detail serialized by MoveMetaCategoryDetailSerializer.",
+          "data_schema": [
+            {
+              "name": "MoveMetaCategoryDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "descriptions": "array",
+                "moves": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the requested MoveMetaCategory does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/move-damage-class",
+      "http_method": "GET",
+      "method_name": "MoveDamageClassResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of move damage classes. Each item contains the name and URL of a move damage class.",
+          "data_schema": [
+            {
+              "name": "MoveDamageClassList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/move-damage-class/{id}",
+      "http_method": "GET",
+      "method_name": "MoveDamageClassResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response with the move damage class details.",
+          "data_schema": [
+            {
+              "name": "MoveDamageClassDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "descriptions": "array",
+                "moves": "array",
+                "names": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested move damage class does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/move-learn-method",
+      "http_method": "GET",
+      "method_name": "MoveLearnMethodResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "List move learn methods",
+          "data_schema": [
+            {
+              "name": "MoveLearnMethodList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/move-learn-method/{id}",
+      "http_method": "GET",
+      "method_name": "MoveLearnMethodResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Retrieve a move learn method by ID or name.",
+          "data_schema": [
+            {
+              "name": "MoveLearnMethodDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "names": "array",
+                "descriptions": "array",
+                "version_groups": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested move learn method does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/move-target",
+      "http_method": "GET",
+      "method_name": "MoveTargetResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of move targets. Each entry contains the name and URL of a move target.",
+          "data_schema": [
+            {
+              "name": "MoveTargetList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/move-target/{id}",
+      "http_method": "GET",
+      "method_name": "MoveTargetResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response with the move target details.",
+          "data_schema": [
+            {
+              "name": "MoveTargetDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "descriptions": "array",
+                "moves": "array",
+                "names": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested move target does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/nature",
+      "http_method": "GET",
+      "method_name": "NatureResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of natures. Each item contains the nature's name and URL.",
+          "data_schema": [
+            {
+              "name": "PaginatedNatureList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            },
+            {
+              "name": "NatureSummary",
+              "schema": {
+                "name": "string",
+                "url": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/nature/{id}",
+      "http_method": "GET",
+      "method_name": "NatureResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the details of a Nature resource, including its decreased and increased stats, liked and hated flavors, associated berries, pokeathlon stat changes, move battle style preferences, and localized names.",
+          "data_schema": [
+            {
+              "name": "NatureDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "decreased_stat": "object",
+                "increased_stat": "object",
+                "likes_flavor": "object",
+                "hates_flavor": "object",
+                "berries": "array",
+                "pokeathlon_stat_changes": "array",
+                "move_battle_style_preferences": "array",
+                "names": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the requested Nature resource does not exist or the lookup value does not match the expected ID or name pattern.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pal-park-area/{id}",
+      "http_method": "GET",
+      "method_name": "PalParkAreaResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the details of a Pal Park Area, including its names and the Pokémon encounters that occur there.",
+          "data_schema": [
+            {
+              "name": "PalParkAreaDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "names": "array",
+                "pokemon_encounters": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The requested Pal Park Area does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pal-park-area",
+      "http_method": "GET",
+      "method_name": "PalParkAreaResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of PalParkArea resources.",
+          "data_schema": [
+            {
+              "name": "PaginatedPalParkAreaList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokedex",
+      "http_method": "GET",
+      "method_name": "PokedexResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of Pokedex resources.",
+          "data_schema": [
+            {
+              "name": "PaginatedPokedexList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokedex/{id}",
+      "http_method": "GET",
+      "method_name": "PokedexResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the details of a single Pokedex resource, including its id, name, is_main_series flag, descriptions, names, pokemon_entries, region, and version_groups.",
+          "data_schema": [
+            {
+              "name": "PokedexDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "is_main_series": "boolean",
+                "descriptions": "array",
+                "names": "array",
+                "pokemon_entries": "array",
+                "region": "object",
+                "version_groups": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when no Pokedex matches the provided id or name.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokemon",
+      "http_method": "GET",
+      "method_name": "PokemonResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of Pokémon summaries.",
+          "data_schema": [
+            {
+              "name": "PaginatedPokemonSummaryList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokemon/{id}",
+      "http_method": "GET",
+      "method_name": "PokemonResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the Pokémon resource.",
+          "data_schema": [
+            {
+              "name": "PokemonDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "base_experience": "integer",
+                "height": "integer",
+                "is_default": "boolean",
+                "order": "integer",
+                "weight": "integer",
+                "abilities": "array",
+                "past_abilities": "array",
+                "forms": "array",
+                "game_indices": "array",
+                "held_items": "array",
+                "location_area_encounters": "string",
+                "moves": "array",
+                "species": "object",
+                "sprites": "object",
+                "cries": "object",
+                "stats": "array",
+                "types": "array",
+                "past_types": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The Pokémon with the given ID or name does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokemon-color/{id}",
+      "http_method": "GET",
+      "method_name": "PokemonColorResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful retrieval of a PokemonColor resource by ID or name.",
+          "data_schema": [
+            {
+              "name": "PokemonColorDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "names": "array",
+                "pokemon_species": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested PokemonColor does not exist, or the provided identifier is invalid.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokemon-color",
+      "http_method": "GET",
+      "method_name": "PokemonColorResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of PokemonColor resources. Each item contains the color's name and a hyperlink to its detail endpoint.",
+          "data_schema": [
+            {
+              "name": "PaginatedPokemonColorList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            },
+            {
+              "name": "PokemonColorSummary",
+              "schema": {
+                "name": "string",
+                "url": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokemon-form",
+      "http_method": "GET",
+      "method_name": "PokemonFormResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of PokemonForm resources, each with name and url.",
+          "data_schema": [
+            {
+              "name": "PokemonFormList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokemon-form/{id}",
+      "http_method": "GET",
+      "method_name": "PokemonFormResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful retrieval of a Pokemon form. Returns the serialized PokemonFormDetailSerializer data.",
+          "data_schema": [
+            {
+              "name": "PokemonFormDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "order": "integer",
+                "form_order": "integer",
+                "is_default": "boolean",
+                "is_battle_only": "boolean",
+                "is_mega": "boolean",
+                "form_name": "string",
+                "pokemon": "object",
+                "sprites": "object",
+                "version_group": "object",
+                "form_names": "array",
+                "names": "array",
+                "types": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested Pokemon form does not exist.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokemon-habitat",
+      "http_method": "GET",
+      "method_name": "PokemonHabitatResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of PokemonHabitat resources. Each item contains the habitat's name and URL.",
+          "data_schema": [
+            {
+              "name": "PaginatedPokemonHabitatList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            },
+            {
+              "name": "PokemonHabitatSummary",
+              "schema": {
+                "name": "string",
+                "url": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokemon-habitat/{id}",
+      "http_method": "GET",
+      "method_name": "PokemonHabitatResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the PokemonHabitat detail for the given id or name.",
+          "data_schema": [
+            {
+              "name": "PokemonHabitatDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "names": "array",
+                "pokemon_species": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the requested PokemonHabitat does not exist or the lookup value does not match the id or name pattern.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokemon-shape",
+      "http_method": "GET",
+      "method_name": "PokemonShapeResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of PokemonShape resources, each containing the shape's name and URL.",
+          "data_schema": [
+            {
+              "name": "PokemonShapeList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the requested PokemonShape does not exist or the lookup value does not match the id or name pattern.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokemon-shape/{id}",
+      "http_method": "GET",
+      "method_name": "PokemonShapeResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response with the details of the requested Pokémon shape.",
+          "data_schema": [
+            {
+              "name": "PokemonShapeDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "awesome_names": "array",
+                "names": "array",
+                "pokemon_species": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested Pokémon shape does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokemon-species",
+      "http_method": "GET",
+      "method_name": "PokemonSpeciesResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of Pokemon species summaries.",
+          "data_schema": [
+            {
+              "name": "PaginatedPokemonSpeciesSummaryList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokemon-species/{id}",
+      "http_method": "GET",
+      "method_name": "PokemonSpeciesResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the PokemonSpecies detail for the given id or name.",
+          "data_schema": [
+            {
+              "name": "PokemonSpeciesDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "order": "integer",
+                "gender_rate": "integer",
+                "capture_rate": "integer",
+                "base_happiness": "integer",
+                "is_baby": "boolean",
+                "is_legendary": "boolean",
+                "is_mythical": "boolean",
+                "hatch_counter": "integer",
+                "has_gender_differences": "boolean",
+                "forms_switchable": "boolean",
+                "growth_rate": "object",
+                "pokedex_numbers": "array",
+                "egg_groups": "array",
+                "color": "object",
+                "shape": "object",
+                "evolves_from_species": "object",
+                "evolution_chain": "object",
+                "habitat": "object",
+                "generation": "object",
+                "names": "array",
+                "pal_park_encounters": "array",
+                "form_descriptions": "array",
+                "flavor_text_entries": "array",
+                "genera": "array",
+                "varieties": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the requested PokemonSpecies does not exist or the lookup value does not match the id or name pattern.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokeathlon-stat",
+      "http_method": "GET",
+      "method_name": "PokeathlonStatResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of PokeathlonStat resources.",
+          "data_schema": [
+            {
+              "name": "PaginatedPokeathlonStatList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/region/{id}",
+      "http_method": "GET",
+      "method_name": "RegionResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the details of a single region, including its locations, main generation, names, pokedexes, and version groups.",
+          "data_schema": [
+            {
+              "name": "RegionDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "locations": "array",
+                "main_generation": "object",
+                "names": "array",
+                "pokedexes": "array",
+                "version_groups": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The region with the given ID or name does not exist.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokeathlon-stat/{id}",
+      "http_method": "GET",
+      "method_name": "PokeathlonStatResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful retrieval of a PokeathlonStat resource by ID or name.",
+          "data_schema": [
+            {
+              "name": "PokeathlonStatDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "affecting_natures": {
+                  "increase": [
+                    {
+                      "max_change": "integer",
+                      "nature": {
+                        "name": "string",
+                        "url": "string"
+                      }
+                    }
+                  ],
+                  "decrease": [
+                    {
+                      "max_change": "integer",
+                      "nature": {
+                        "name": "string",
+                        "url": "string"
+                      }
+                    }
+                  ]
+                },
+                "names": [
+                  {
+                    "name": "string",
+                    "language": {
+                      "name": "string",
+                      "url": "string"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested PokeathlonStat does not exist, or the lookup value is invalid.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/region",
+      "http_method": "GET",
+      "method_name": "RegionResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of regions.",
+          "data_schema": [
+            {
+              "name": "PaginatedRegionList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            },
+            {
+              "name": "RegionSummary",
+              "schema": {
+                "name": "string",
+                "url": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/stat",
+      "http_method": "GET",
+      "method_name": "StatResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of stats.",
+          "data_schema": [
+            {
+              "name": "PaginatedStatList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/stat/{id}",
+      "http_method": "GET",
+      "method_name": "StatResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful retrieval of a stat resource by ID or name.",
+          "data_schema": [
+            {
+              "name": "StatDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "game_index": "integer",
+                "is_battle_only": "boolean",
+                "affecting_moves": "object",
+                "affecting_natures": "object",
+                "characteristics": "array",
+                "move_damage_class": "object",
+                "names": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested stat does not exist, or the lookup value is invalid (e.g., does not match ID or name pattern, or ID exceeds 2147483647).",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/super-contest-effect",
+      "http_method": "GET",
+      "method_name": "SuperContestEffectResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of super contest effects. Each item contains the URL of the super contest effect resource.",
+          "data_schema": [
+            {
+              "name": "PaginatedSuperContestEffectList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/super-contest-effect/{id}",
+      "http_method": "GET",
+      "method_name": "SuperContestEffectResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Super contest effect detail",
+          "data_schema": [
+            {
+              "name": "SuperContestEffectDetail",
+              "schema": {
+                "id": "integer",
+                "appeal": "integer",
+                "flavor_text_entries": "array",
+                "moves": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/type",
+      "http_method": "GET",
+      "method_name": "TypeResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of Type resources. Each item contains the type's name and URL.",
+          "data_schema": [
+            {
+              "name": "PaginatedTypeList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/version",
+      "http_method": "GET",
+      "method_name": "VersionResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of version resources.",
+          "data_schema": [
+            {
+              "name": "PaginatedVersionList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array of VersionSummary"
+              }
+            },
+            {
+              "name": "VersionSummary",
+              "schema": {
+                "name": "string",
+                "url": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/type/{id}",
+      "http_method": "GET",
+      "method_name": "TypeResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the details of a single Type resource, including its damage relations, past damage relations, game indices, generation, move damage class, names, associated Pokémon, moves, and sprites.",
+          "data_schema": [
+            {
+              "name": "TypeDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "damage_relations": "object",
+                "past_damage_relations": "array",
+                "game_indices": "array",
+                "generation": "object",
+                "move_damage_class": "object",
+                "names": "array",
+                "pokemon": "array",
+                "moves": "array",
+                "sprites": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Returned when the requested Type resource does not exist. The lookup in NameOrIdRetrieval.get_object uses get_object_or_404, which raises Http404 if no object matches the given pk or name.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/version/{id}",
+      "http_method": "GET",
+      "method_name": "VersionResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the Version resource identified by the given id or name.",
+          "data_schema": [
+            {
+              "name": "VersionDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "names": "array",
+                "version_group": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The requested Version does not exist, or the provided id/name does not match the expected pattern.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/version-group/{id}",
+      "http_method": "GET",
+      "method_name": "VersionGroupResource.retrieve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "This parameter can be a string or an integer.",
+          "_depth": 0
+        },
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Version group detail retrieved successfully.",
+          "data_schema": [
+            {
+              "name": "VersionGroupDetail",
+              "schema": {
+                "id": "integer",
+                "name": "string",
+                "order": "integer",
+                "generation": "GenerationSummary",
+                "move_learn_methods": "array of MoveLearnMethodSummary",
+                "pokedexes": "array of PokedexSummary",
+                "regions": "array of RegionSummary",
+                "versions": "array of VersionSummary"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The version group with the given ID or name does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/version-group",
+      "http_method": "GET",
+      "method_name": "VersionGroupResource.list",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "> Only available locally and not at [pokeapi.co](https://pokeapi.co/docs/v2)\nCase-insensitive query applied on the `name` property. ",
+          "_depth": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of results to return per page.",
+          "_depth": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "The initial index from which to return the results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A paginated list of version groups. Each entry contains the version group's name and URL.",
+          "data_schema": [
+            {
+              "name": "VersionGroupList",
+              "schema": {
+                "count": "integer",
+                "next": "string",
+                "previous": "string",
+                "results": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/v2/pokemon/{pokemon_id}/encounters",
+      "http_method": "GET",
+      "method_name": "PokemonEncounterView.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Poke\\pokeapi-master\\pokemon_v2\\api.py",
+      "parameters": [
+        {
+          "name": "pokemon_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID or name of the Pokémon to retrieve encounters for.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of location areas and version details where the Pokémon can be encountered.",
+          "data_schema": [
+            {
+              "name": "PokemonEncounter",
+              "schema": {
+                "location_area": {
+                  "name": "string",
+                  "url": "string"
+                },
+                "version_details": [
+                  {
+                    "version": {
+                      "name": "string",
+                      "url": "string"
+                    },
+                    "max_chance": "integer",
+                    "encounter_details": [
+                      {
+                        "min_level": "integer",
+                        "max_level": "integer",
+                        "condition_values": [
+                          {
+                            "name": "string",
+                            "url": "string"
+                          }
+                        ],
+                        "chance": "integer",
+                        "method": {
+                          "name": "string",
+                          "url": "string"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Pokémon not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 0,
+    "step2_ms": 37,
+    "step3_ms": 23180,
+    "step4_ms": 50879,
+    "step5_ms": 0,
+    "total_ms": 74105
+  }
+}

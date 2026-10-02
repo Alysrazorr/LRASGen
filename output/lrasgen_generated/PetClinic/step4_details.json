@@ -1,0 +1,1957 @@
+{
+  "task_id": "spring-petclinic-rest-master",
+  "api_name": "spring-petclinic-rest-master",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/owners/{ownerId}",
+      "http_method": "DELETE",
+      "method_name": "deleteOwner",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\OwnerRestController.java",
+      "parameters": [
+        {
+          "name": "ownerId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the owner.",
+          "min": 0,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "No Content. Owner successfully deleted.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Owner not found.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/owners/{ownerId}",
+      "http_method": "GET",
+      "method_name": "getOwner",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\OwnerRestController.java",
+      "parameters": [
+        {
+          "name": "ownerId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pet owner.",
+          "min": 0,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Owner details found and returned.",
+          "data_schema": [
+            {
+              "name": "OwnerDto",
+              "schema": {
+                "firstName": "string",
+                "lastName": "string",
+                "address": "string",
+                "city": "string",
+                "telephone": "string",
+                "id": "integer",
+                "pets": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Owner not found.",
+          "data_schema": [
+            {
+              "name": "ProblemDetail",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "string",
+                "schemaValidationErrors": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/owners",
+      "http_method": "POST",
+      "method_name": "addOwner",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\OwnerRestController.java",
+      "parameters": [
+        {
+          "name": "firstName",
+          "type": "String",
+          "_class_name": "OwnerFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet owner"
+        },
+        {
+          "name": "lastName",
+          "type": "String",
+          "_class_name": "OwnerFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet owner"
+        },
+        {
+          "name": "address",
+          "type": "String",
+          "_class_name": "OwnerFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet owner"
+        },
+        {
+          "name": "city",
+          "type": "String",
+          "_class_name": "OwnerFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet owner"
+        },
+        {
+          "name": "telephone",
+          "type": "String",
+          "_class_name": "OwnerFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet owner"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "The pet owner was successfully added.",
+          "data_schema": [
+            {
+              "name": "OwnerDto",
+              "schema": {
+                "firstName": "string",
+                "lastName": "string",
+                "address": "string",
+                "city": "string",
+                "telephone": "string",
+                "id": "integer",
+                "pets": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request.",
+          "data_schema": [
+            {
+              "name": "ProblemDetailDto",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "string",
+                "schemaValidationErrors": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Server error.",
+          "data_schema": [
+            {
+              "name": "ProblemDetailDto",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "string",
+                "schemaValidationErrors": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/pets/{petId}",
+      "http_method": "GET",
+      "method_name": "getPet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\PetRestController.java",
+      "parameters": [
+        {
+          "name": "petId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pet.",
+          "min": 0,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Pet details found and returned.",
+          "data_schema": [
+            {
+              "name": "PetDto",
+              "schema": {
+                "name": "string",
+                "birthDate": "date",
+                "type": "PetTypeDto",
+                "id": "integer",
+                "ownerId": "integer",
+                "visits": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Pet not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/owners/{ownerId}/pets/{petId}",
+      "http_method": "GET",
+      "method_name": "getOwnersPet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\OwnerRestController.java",
+      "parameters": [
+        {
+          "name": "ownerId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pet owner.",
+          "min": 0,
+          "_depth": 0
+        },
+        {
+          "name": "petId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pet.",
+          "min": 0,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Pet details found and returned.",
+          "data_schema": [
+            {
+              "name": "Pet",
+              "schema": {
+                "name": "string",
+                "birthDate": "date",
+                "type": {
+                  "name": "string",
+                  "id": "integer"
+                },
+                "id": "integer",
+                "ownerId": "integer",
+                "visits": [
+                  {
+                    "date": "date",
+                    "description": "string",
+                    "id": "integer",
+                    "petId": "integer"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Owner or pet not found.",
+          "data_schema": [
+            {
+              "name": "ProblemDetail",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "date-time",
+                "schemaValidationErrors": [
+                  {
+                    "message": "string"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/owners",
+      "http_method": "GET",
+      "method_name": "listOwners",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\OwnerRestController.java",
+      "parameters": [
+        {
+          "name": "lastName",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Last name.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Owner details found and returned.",
+          "data_schema": [
+            {
+              "name": "OwnerDto",
+              "schema": {
+                "firstName": "string",
+                "lastName": "string",
+                "address": "string",
+                "city": "string",
+                "telephone": "string",
+                "id": "integer",
+                "pets": "array<PetDto>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "No owners found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/owners/{ownerId}/pets",
+      "http_method": "POST",
+      "method_name": "addPetToOwner",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\OwnerRestController.java",
+      "parameters": [
+        {
+          "name": "ownerId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pet owner.",
+          "min": 0,
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "PetFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The details of the new pet."
+        },
+        {
+          "name": "birthDate",
+          "type": "LocalDate",
+          "_class_name": "PetFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The details of the new pet."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "The pet was successfully added.",
+          "data_schema": [
+            {
+              "name": "Pet",
+              "schema": {
+                "name": "string",
+                "birthDate": "date",
+                "type": "PetType",
+                "id": "integer",
+                "ownerId": "integer",
+                "visits": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request.",
+          "data_schema": [
+            {
+              "name": "ProblemDetail",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "date-time",
+                "schemaValidationErrors": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Pet or Owner not found.",
+          "data_schema": [
+            {
+              "name": "ProblemDetail",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "date-time",
+                "schemaValidationErrors": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Server error.",
+          "data_schema": [
+            {
+              "name": "ProblemDetail",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "date-time",
+                "schemaValidationErrors": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/owners/{ownerId}/pets/{petId}/visits",
+      "http_method": "POST",
+      "method_name": "addVisitToOwner",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\OwnerRestController.java",
+      "parameters": [
+        {
+          "name": "ownerId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pet owner.",
+          "min": 0,
+          "_depth": 0
+        },
+        {
+          "name": "petId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pet.",
+          "min": 0,
+          "_depth": 0
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_class_name": "VisitFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The details of the new vet visit."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "The vet visit was successfully added.",
+          "data_schema": [
+            {
+              "name": "Visit",
+              "schema": {
+                "date": "date",
+                "description": "string",
+                "id": "integer",
+                "petId": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Pet not found for this owner.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/owners/{ownerId}",
+      "http_method": "PUT",
+      "method_name": "updateOwner",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\OwnerRestController.java",
+      "parameters": [
+        {
+          "name": "ownerId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pet owner.",
+          "min": 0,
+          "_depth": 0
+        },
+        {
+          "name": "firstName",
+          "type": "String",
+          "_class_name": "OwnerFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet owner details to use for the update."
+        },
+        {
+          "name": "lastName",
+          "type": "String",
+          "_class_name": "OwnerFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet owner details to use for the update."
+        },
+        {
+          "name": "address",
+          "type": "String",
+          "_class_name": "OwnerFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet owner details to use for the update."
+        },
+        {
+          "name": "city",
+          "type": "String",
+          "_class_name": "OwnerFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet owner details to use for the update."
+        },
+        {
+          "name": "telephone",
+          "type": "String",
+          "_class_name": "OwnerFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet owner details to use for the update."
+        },
+        {
+          "name": "firstName",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The first name of the pet owner.",
+          "min_length": "1",
+          "max_length": "30",
+          "_depth": 0
+        },
+        {
+          "name": "lastName",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The last name of the pet owner.",
+          "min_length": "1",
+          "max_length": "30",
+          "_depth": 0
+        },
+        {
+          "name": "address",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The postal address of the pet owner.",
+          "min_length": "1",
+          "max_length": "255",
+          "_depth": 0
+        },
+        {
+          "name": "city",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The city of the pet owner.",
+          "min_length": "1",
+          "max_length": "80",
+          "_depth": 0
+        },
+        {
+          "name": "telephone",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The telephone number of the pet owner.",
+          "min_length": "1",
+          "max_length": "20",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Update successful. The pet owner's details were updated.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Owner not found.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/owners/{ownerId}/pets/{petId}",
+      "http_method": "PUT",
+      "method_name": "updateOwnersPet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\OwnerRestController.java",
+      "parameters": [
+        {
+          "name": "ownerId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pet owner.",
+          "min": 0,
+          "_depth": 0
+        },
+        {
+          "name": "petId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pet.",
+          "min": 0,
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "PetFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet details to use for the update."
+        },
+        {
+          "name": "birthDate",
+          "type": "LocalDate",
+          "_class_name": "PetFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet details to use for the update."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The name of the pet.",
+          "max_length": "30",
+          "_depth": 0
+        },
+        {
+          "name": "birthDate",
+          "type": "LocalDate",
+          "require": "false",
+          "position": "body",
+          "description": "The date of birth of the pet.",
+          "format": "yyyy-MM-dd",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "PetTypeDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The type of the pet."
+        },
+        {
+          "name": "id",
+          "type": "Integer",
+          "_class_name": "PetTypeDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The type of the pet."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Update successful.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Pet not found for this owner.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/pets",
+      "http_method": "GET",
+      "method_name": "listPets",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\PetRestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Pet types found and returned.",
+          "data_schema": [
+            {
+              "name": "PetDto",
+              "schema": {
+                "name": "string",
+                "birthDate": "date",
+                "type": "PetTypeDto",
+                "id": "integer",
+                "ownerId": "integer",
+                "visits": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Pet not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/pettypes/{petTypeId}",
+      "http_method": "GET",
+      "method_name": "getPetType",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\PetTypeRestController.java",
+      "parameters": [
+        {
+          "name": "petTypeId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pet type.",
+          "min": 0,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Pet type details found and returned.",
+          "data_schema": [
+            {
+              "name": "PetTypeDto",
+              "schema": {
+                "name": "string",
+                "id": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Pet Type not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/pettypes",
+      "http_method": "POST",
+      "method_name": "addPetType",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\PetTypeRestController.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "PetTypeFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet type"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Pet type created successfully.",
+          "data_schema": [
+            {
+              "name": "PetType",
+              "schema": {
+                "name": "string",
+                "id": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - requires VET_ADMIN role.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/pets/{petId}",
+      "http_method": "DELETE",
+      "method_name": "deletePet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\PetRestController.java",
+      "parameters": [
+        {
+          "name": "petId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pet.",
+          "min": 0,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Pet deleted successfully. No content returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Pet not found.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/pettypes",
+      "http_method": "GET",
+      "method_name": "listPetTypes",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\PetTypeRestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Pet types found and returned.",
+          "data_schema": [
+            {
+              "name": "PetTypeDto",
+              "schema": {
+                "name": "string",
+                "id": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Pet Type not found.",
+          "data_schema": [
+            {
+              "name": "ProblemDetailDto",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "string",
+                "schemaValidationErrors": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Server error.",
+          "data_schema": [
+            {
+              "name": "ProblemDetailDto",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "string",
+                "schemaValidationErrors": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "redirectToSwagger",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\RootRestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to Swagger UI at the servlet context path + '/swagger-ui/index.html'",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/pettypes/{petTypeId}",
+      "http_method": "PUT",
+      "method_name": "updatePetType",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\PetTypeRestController.java",
+      "parameters": [
+        {
+          "name": "petTypeId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pet type.",
+          "min": 0,
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "PetTypeDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet type"
+        },
+        {
+          "name": "id",
+          "type": "Integer",
+          "_class_name": "PetTypeDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet type"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Pet type updated successfully. No content returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Pet Type not found.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/pets/{petId}",
+      "http_method": "PUT",
+      "method_name": "updatePet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\PetRestController.java",
+      "parameters": [
+        {
+          "name": "petId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pet.",
+          "min": 0,
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "PetDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet"
+        },
+        {
+          "name": "birthDate",
+          "type": "LocalDate",
+          "_class_name": "PetDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet"
+        },
+        {
+          "name": "id",
+          "type": "Integer",
+          "_class_name": "PetDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet"
+        },
+        {
+          "name": "visits",
+          "type": "List",
+          "_class_name": "PetDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Pet updated successfully. No content returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Pet not found.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Server error.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/specialties",
+      "http_method": "GET",
+      "method_name": "listSpecialties",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\SpecialtyRestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Specialties found and returned.",
+          "data_schema": [
+            {
+              "name": "Specialty",
+              "schema": {
+                "id": "integer",
+                "name": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Specialty not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/pettypes/{petTypeId}",
+      "http_method": "DELETE",
+      "method_name": "deletePetType",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\PetTypeRestController.java",
+      "parameters": [
+        {
+          "name": "petTypeId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the pet type.",
+          "min": 0,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Pet type deleted successfully. No content returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Pet type not found.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/specialties",
+      "http_method": "POST",
+      "method_name": "addSpecialty",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\SpecialtyRestController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Integer",
+          "_class_name": "SpecialtyDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The specialty"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "SpecialtyDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The specialty"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Specialty created successfully.",
+          "data_schema": [
+            {
+              "name": "Specialty",
+              "schema": {
+                "id": "integer",
+                "name": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The request requires VET_ADMIN role.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/specialties/{specialtyId}",
+      "http_method": "GET",
+      "method_name": "getSpecialty",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\SpecialtyRestController.java",
+      "parameters": [
+        {
+          "name": "specialtyId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the speciality.",
+          "min": 0,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Specialty details found and returned.",
+          "data_schema": [
+            {
+              "name": "SpecialtyDto",
+              "schema": {
+                "id": "integer",
+                "name": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Specialty not found.",
+          "data_schema": [
+            {
+              "name": "ProblemDetailDto",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "string",
+                "schemaValidationErrors": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/specialties/{specialtyId}",
+      "http_method": "DELETE",
+      "method_name": "deleteSpecialty",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\SpecialtyRestController.java",
+      "parameters": [
+        {
+          "name": "specialtyId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the specialty.",
+          "min": 0,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Specialty deleted successfully. No content returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Specialty not found.",
+          "data_schema": [
+            {
+              "name": "ProblemDetail",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "string",
+                "schemaValidationErrors": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/vets",
+      "http_method": "GET",
+      "method_name": "listVets",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\VetRestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Vets found and returned.",
+          "data_schema": [
+            {
+              "name": "VetDto",
+              "schema": {
+                "firstName": "string",
+                "lastName": "string",
+                "specialties": "array<SpecialtyDto>",
+                "id": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned when the list of vets is empty.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/specialties/{specialtyId}",
+      "http_method": "PUT",
+      "method_name": "updateSpecialty",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\SpecialtyRestController.java",
+      "parameters": [
+        {
+          "name": "specialtyId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the specialty.",
+          "min": 0,
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "Integer",
+          "_class_name": "SpecialtyDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "SpecialtyDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The pet"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Specialty updated successfully. No content returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Specialty not found.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/vets/{vetId}",
+      "http_method": "GET",
+      "method_name": "getVet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\VetRestController.java",
+      "parameters": [
+        {
+          "name": "vetId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the vet.",
+          "min": 0,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Vet details found and returned.",
+          "data_schema": [
+            {
+              "name": "VetDto",
+              "schema": {
+                "firstName": "string",
+                "lastName": "string",
+                "specialties": "array<SpecialtyDto>",
+                "id": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Vet not found.",
+          "data_schema": [
+            {
+              "name": "ProblemDetailDto",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "string",
+                "schemaValidationErrors": "array<ValidationMessageDto>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/users",
+      "http_method": "POST",
+      "method_name": "addUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\UserRestController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "String",
+          "_class_name": "UserDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The user"
+        },
+        {
+          "name": "roles",
+          "type": "List",
+          "_class_name": "UserDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The user"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "User created successfully.",
+          "data_schema": [
+            {
+              "name": "User",
+              "schema": {
+                "username": "string",
+                "password": "string",
+                "enabled": "boolean",
+                "roles": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The request requires ADMIN role.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/vets",
+      "http_method": "POST",
+      "method_name": "addVet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\VetRestController.java",
+      "parameters": [
+        {
+          "name": "firstName",
+          "type": "String",
+          "_class_name": "VetDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The vet"
+        },
+        {
+          "name": "lastName",
+          "type": "String",
+          "_class_name": "VetDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The vet"
+        },
+        {
+          "name": "specialties",
+          "type": "List",
+          "_class_name": "VetDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The vet"
+        },
+        {
+          "name": "id",
+          "type": "Integer",
+          "_class_name": "VetDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The vet"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Vet created successfully.",
+          "data_schema": [
+            {
+              "name": "VetDto",
+              "schema": {
+                "firstName": "string",
+                "lastName": "string",
+                "specialties": "array<SpecialtyDto>",
+                "id": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Server error.",
+          "data_schema": [
+            {
+              "name": "ProblemDetailDto",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "string",
+                "schemaValidationErrors": "array<ValidationMessageDto>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/vets/{vetId}",
+      "http_method": "PUT",
+      "method_name": "updateVet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\VetRestController.java",
+      "parameters": [
+        {
+          "name": "vetId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the vet.",
+          "min": 0,
+          "_depth": 0
+        },
+        {
+          "name": "firstName",
+          "type": "String",
+          "_class_name": "VetDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The vet"
+        },
+        {
+          "name": "lastName",
+          "type": "String",
+          "_class_name": "VetDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The vet"
+        },
+        {
+          "name": "specialties",
+          "type": "List",
+          "_class_name": "VetDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The vet"
+        },
+        {
+          "name": "id",
+          "type": "Integer",
+          "_class_name": "VetDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The vet"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Vet updated successfully. No content returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Vet not found.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Server error.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/vets/{vetId}",
+      "http_method": "DELETE",
+      "method_name": "deleteVet",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\VetRestController.java",
+      "parameters": [
+        {
+          "name": "vetId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the vet.",
+          "min": 0,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Vet deleted successfully. No content returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Vet not found.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/visits",
+      "http_method": "GET",
+      "method_name": "listVisits",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\VisitRestController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "visits found and returned.",
+          "data_schema": [
+            {
+              "name": "VisitDto",
+              "schema": {
+                "date": "date",
+                "description": "string",
+                "id": "integer",
+                "petId": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Visit not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/visits/{visitId}",
+      "http_method": "DELETE",
+      "method_name": "deleteVisit",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\VisitRestController.java",
+      "parameters": [
+        {
+          "name": "visitId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the visit.",
+          "min": 0,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Visit deleted successfully. No content returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Visit not found.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/visits/{visitId}",
+      "http_method": "GET",
+      "method_name": "getVisit",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\VisitRestController.java",
+      "parameters": [
+        {
+          "name": "visitId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the visit.",
+          "min": 0,
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Visit details found and returned.",
+          "data_schema": [
+            {
+              "name": "VisitDto",
+              "schema": {
+                "date": "date",
+                "description": "string",
+                "id": "integer",
+                "petId": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Visit not found.",
+          "data_schema": [
+            {
+              "name": "ProblemDetailDto",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "date-time",
+                "schemaValidationErrors": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/visits",
+      "http_method": "POST",
+      "method_name": "addVisit",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\VisitRestController.java",
+      "parameters": [
+        {
+          "name": "description",
+          "type": "String",
+          "_class_name": "VisitDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The visit"
+        },
+        {
+          "name": "id",
+          "type": "Integer",
+          "_class_name": "VisitDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The visit"
+        },
+        {
+          "name": "petId",
+          "type": "Integer",
+          "_class_name": "VisitDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The visit"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Visit created successfully.",
+          "data_schema": [
+            {
+              "name": "Visit",
+              "schema": {
+                "date": "date",
+                "description": "string",
+                "id": "integer",
+                "petId": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Validation errors on the request body.",
+          "data_schema": [
+            {
+              "name": "ProblemDetail",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "date-time",
+                "schemaValidationErrors": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Server error.",
+          "data_schema": [
+            {
+              "name": "ProblemDetail",
+              "schema": {
+                "type": "string",
+                "title": "string",
+                "status": "integer",
+                "detail": "string",
+                "timestamp": "date-time",
+                "schemaValidationErrors": "array"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/visits/{visitId}",
+      "http_method": "PUT",
+      "method_name": "updateVisit",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\PetClinic\\spring-petclinic-rest-master\\src\\main\\java\\org\\springframework\\samples\\petclinic\\rest\\controller\\VisitRestController.java",
+      "parameters": [
+        {
+          "name": "visitId",
+          "type": "integer",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the visit.",
+          "min": 0,
+          "_depth": 0
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "_class_name": "VisitFieldsDto",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The visit"
+        },
+        {
+          "name": "date",
+          "type": "LocalDate",
+          "require": "false",
+          "position": "body",
+          "description": "The date of the visit.",
+          "format": "yyyy-MM-dd",
+          "_depth": 0
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The description for the visit.",
+          "min_length": "1",
+          "max_length": "255",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Visit updated successfully. No content returned.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Visit not found.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 8211,
+  "tokens": {
+    "prompt_tokens": 4413147,
+    "completion_tokens": 48003,
+    "total_tokens": 4461150,
+    "calls": 210,
+    "elapsed_s": 615.038,
+    "prompt_cost_usd": 0.567242,
+    "completion_cost_usd": 0.032115,
+    "total_cost_usd": 0.599358,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 1426126,
+        "completion_tokens": 8374,
+        "total_tokens": 1434500,
+        "calls": 70,
+        "elapsed_s": 70.69887900000003,
+        "prompt_cost_usd": 0.028523,
+        "completion_cost_usd": 0.005024,
+        "total_cost_usd": 0.033547
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 1386908,
+        "completion_tokens": 32352,
+        "total_tokens": 1419260,
+        "calls": 70,
+        "elapsed_s": 412.705,
+        "prompt_cost_usd": 0.138691,
+        "completion_cost_usd": 0.016176,
+        "total_cost_usd": 0.154867
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 1600113,
+        "completion_tokens": 7277,
+        "total_tokens": 1607390,
+        "calls": 70,
+        "elapsed_s": 131.634,
+        "prompt_cost_usd": 0.400028,
+        "completion_cost_usd": 0.010915,
+        "total_cost_usd": 0.410944
+      }
+    ]
+  }
+}

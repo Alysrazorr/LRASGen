@@ -1,0 +1,222 @@
+{
+  "task_id": "features-service",
+  "api_name": "features-service",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/products/{productName}/configurations/{configurationName}/features",
+      "http_method": "GET",
+      "method_name": "getConfigurationActivedFeatures",
+      "summary": "Get active features of a configuration",
+      "description": "Returns a list of names of features that are active in the specified configuration of the given product.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConfigurationFeaturesResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}/configurations/{configurationName}/features/{featureName}",
+      "http_method": "POST",
+      "method_name": "addFeatureToConfiguration",
+      "summary": "Add a feature to a configuration",
+      "description": "Activates the specified feature in the given configuration. If the resulting configuration is valid, returns 201 Created with a Location header pointing to the feature. Otherwise, throws WrongProductConfigurationException with evaluation error messages.",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConfigurationFeaturesResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}/configurations/{configurationName}/features/{featureName}",
+      "http_method": "DELETE",
+      "method_name": "deleteFeature",
+      "summary": "Remove a feature from a configuration",
+      "description": "Deactivates the specified feature in the given configuration. If the resulting configuration is valid, returns 204 No Content. Otherwise, throws WrongProductConfigurationException with evaluation error messages.",
+      "line_number": 42,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConfigurationFeaturesResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}/configurations",
+      "http_method": "GET",
+      "method_name": "getConfigurationsForProduct",
+      "summary": "Get configurations for a product",
+      "description": "Returns a list of configuration names for the specified product.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConfigurationResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}/configurations/{configurationName}",
+      "http_method": "GET",
+      "method_name": "getConfigurationWithNameForProduct",
+      "summary": "Get a configuration by name for a product",
+      "description": "Returns the product configuration with the given name for the specified product.",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConfigurationResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}/configurations/{configurationName}",
+      "http_method": "POST",
+      "method_name": "addConfiguration",
+      "summary": "Add a configuration to a product",
+      "description": "Creates a new configuration with the given name for the specified product.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConfigurationResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}/configurations/{configurationName}",
+      "http_method": "DELETE",
+      "method_name": "deleteConfiguration",
+      "summary": "Delete a configuration from a product",
+      "description": "Deletes the configuration with the given name from the specified product.",
+      "line_number": 41,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConfigurationResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}/constraints/requires",
+      "http_method": "POST",
+      "method_name": "addRequiresConstraintToProduct",
+      "summary": "Add a requires constraint to a product",
+      "description": "Adds a requires constraint between a source feature and a required feature for the given product. Returns 201 Created with a Location header pointing to the newly created constraint.",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConstraintsResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}/constraints/excludes",
+      "http_method": "POST",
+      "method_name": "addExcludesConstraintToProduct",
+      "summary": "Add an excludes constraint to a product",
+      "description": "Adds an excludes constraint between a source feature and an excluded feature for the given product. Returns 201 Created with a Location header pointing to the newly created constraint.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConstraintsResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}/constraints/{constraintId}",
+      "http_method": "DELETE",
+      "method_name": "deleteConstraint",
+      "summary": "Delete a constraint from a product",
+      "description": "Deletes the constraint identified by constraintId from the given product. Returns 204 No Content on success.",
+      "line_number": 50,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsConstraintsResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}/features",
+      "http_method": "GET",
+      "method_name": "getFeaturesForProduct",
+      "summary": "Get features for a product",
+      "description": "Returns the set of features associated with the specified product.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsFeaturesResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}/features/{featureName}",
+      "http_method": "POST",
+      "method_name": "addFeatureToProduct",
+      "summary": "Add a feature to a product",
+      "description": "Creates a new feature with the given name and description for the specified product.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsFeaturesResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}/features/{featureName}",
+      "http_method": "PUT",
+      "method_name": "updateFeatureOfProduct",
+      "summary": "Update a feature of a product",
+      "description": "Updates the description of an existing feature for the specified product.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsFeaturesResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}/features/{featureName}",
+      "http_method": "DELETE",
+      "method_name": "deleteFeatureOfProduct",
+      "summary": "Delete a feature from a product",
+      "description": "Removes the specified feature from the product and from any configurations that have it active.",
+      "line_number": 41,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsFeaturesResource.java"
+    },
+    {
+      "endpoint_path": "/products",
+      "http_method": "GET",
+      "method_name": "getAllProducts",
+      "summary": "Get all products",
+      "description": "Returns a list of all product names.",
+      "line_number": 28,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}",
+      "http_method": "GET",
+      "method_name": "getProductByName",
+      "summary": "Get product by name",
+      "description": "Returns the product with the given name.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}",
+      "http_method": "DELETE",
+      "method_name": "deleteProductByName",
+      "summary": "Delete product by name",
+      "description": "Deletes the product with the given name.",
+      "line_number": 40,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsResource.java"
+    },
+    {
+      "endpoint_path": "/products/{productName}",
+      "http_method": "POST",
+      "method_name": "addProduct",
+      "summary": "Add a new product",
+      "description": "Creates a new product with the given name.",
+      "line_number": 46,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Features-Service\\features-service\\src\\main\\java\\org\\javiermf\\features\\services\\rest\\ProductsResource.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 10813,
+  "tokens": {
+    "prompt_tokens": 105269,
+    "completion_tokens": 17091,
+    "total_tokens": 122360,
+    "calls": 15,
+    "elapsed_s": 104.507,
+    "prompt_cost_usd": 0.013299,
+    "completion_cost_usd": 0.011908,
+    "total_cost_usd": 0.025208,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 34765,
+        "completion_tokens": 2792,
+        "total_tokens": 37557,
+        "calls": 5,
+        "elapsed_s": 10.804613,
+        "prompt_cost_usd": 0.000695,
+        "completion_cost_usd": 0.001675,
+        "total_cost_usd": 0.002371
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 33479,
+        "completion_tokens": 11215,
+        "total_tokens": 44694,
+        "calls": 5,
+        "elapsed_s": 67.695,
+        "prompt_cost_usd": 0.003348,
+        "completion_cost_usd": 0.005607,
+        "total_cost_usd": 0.008955
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 37025,
+        "completion_tokens": 3084,
+        "total_tokens": 40109,
+        "calls": 5,
+        "elapsed_s": 26.007,
+        "prompt_cost_usd": 0.009256,
+        "completion_cost_usd": 0.004626,
+        "total_cost_usd": 0.013882
+      }
+    ]
+  }
+}

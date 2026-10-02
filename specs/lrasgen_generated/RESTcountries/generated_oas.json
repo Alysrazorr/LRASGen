@@ -1,0 +1,1740 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "restcountries API",
+    "description": "LRASGen-generated specification for restcountries (jersey).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/v2/v1": {
+      "get": {
+        "operationId": "getV1",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the list of all countries.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CountryList": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array<string>', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array<string>', 'capital': 'string', 'altSpellings': 'array<string>', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array<double>', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array<string>', 'borders': 'array<string>', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array<string>', 'languages': 'array<string>', 'translations': {'de': 'string', 'es': 'string', 'fr': 'string', 'ja': 'string', 'it': 'string'}, 'relevance': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createV1",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "405": {
+            "description": "Method Not Allowed. The POST handler explicitly returns a Response with status METHOD_NOT_ALLOWED (405) and a JSON body containing the status code and reason phrase.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/v2/v1/all": {
+      "get": {
+        "operationId": "getAll",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the list of all countries.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Country": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array<string>', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array<string>', 'capital': 'string', 'altSpellings': 'array<string>', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array<double>', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array<string>', 'borders': 'array<string>', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array<string>', 'languages': 'array<string>', 'translations': {'de': 'string', 'es': 'string', 'fr': 'string', 'ja': 'string', 'it': 'string'}, 'relevance': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/v1/name/{name}": {
+      "get": {
+        "operationId": "getName",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Country name to search for",
+            "schema": {
+              "type": "string",
+              "description": "Country name to search for"
+            }
+          },
+          {
+            "name": "fullText",
+            "in": "query",
+            "required": false,
+            "description": "Whether to perform a full-text search instead of substring search",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether to perform a full-text search instead of substring search"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the given name (substring or full-text search depending on the fullText query parameter).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Country": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array[string]', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array[string]', 'capital': 'string', 'altSpellings': 'array[string]', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array[double]', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array[string]', 'borders': 'array[string]', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array[string]', 'languages': 'array[string]', 'translations': {'de': 'string', 'es': 'string', 'fr': 'string', 'ja': 'string', 'it': 'string'}, 'relevance': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No countries found matching the given name.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred while searching for countries by name.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/v1/alpha/{alphacode}": {
+      "get": {
+        "operationId": "getAlpha",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "alphacode",
+            "in": "path",
+            "required": true,
+            "description": "Country alpha code (2 or 3 characters)",
+            "schema": {
+              "type": "string",
+              "description": "Country alpha code (2 or 3 characters)",
+              "minLength": 2,
+              "maxLength": 3
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the country matching the given alpha code (2 or 3 letters).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Country": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array<string>', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array<string>', 'capital': 'string', 'altSpellings': 'array<string>', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array<double>', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array<string>', 'borders': 'array<string>', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array<string>', 'languages': 'array<string>', 'translations': 'CountryTranslations', 'relevance': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request: the alpha code is empty or its length is not between 2 and 3 characters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found: no country matches the given alpha code.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/v1/region/{region}": {
+      "get": {
+        "operationId": "getRegion",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "region",
+            "in": "path",
+            "required": true,
+            "description": "The region to filter countries by",
+            "schema": {
+              "type": "string",
+              "description": "The region to filter countries by"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the specified region.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CountryList": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array of string', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array of string', 'capital': 'string', 'altSpellings': 'array of string', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array of double', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array of string', 'borders': 'array of string', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array of string', 'languages': 'array of string', 'translations': {'de': 'string', 'es': 'string', 'fr': 'string', 'ja': 'string', 'it': 'string'}, 'relevance': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No countries found for the specified region.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/v1/callingcode/{callingcode}": {
+      "get": {
+        "operationId": "getCallingcode",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "callingcode",
+            "in": "path",
+            "required": true,
+            "description": "The calling code to search countries by",
+            "schema": {
+              "type": "string",
+              "description": "The calling code to search countries by"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the calling code.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Country": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array', 'capital': 'string', 'altSpellings': 'array', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array', 'borders': 'array', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array', 'languages': 'array', 'translations': 'CountryTranslations', 'relevance': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No countries found for the given calling code.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/v1/capital/{capital}": {
+      "get": {
+        "operationId": "getCapital",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "capital",
+            "in": "path",
+            "required": true,
+            "description": "The capital city name to search countries by",
+            "schema": {
+              "type": "string",
+              "description": "The capital city name to search countries by"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the capital name (case-insensitive substring match).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Country": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array<string>', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array<string>', 'capital': 'string', 'altSpellings': 'array<string>', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array<double>', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array<string>', 'borders': 'array<string>', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array<string>', 'languages': 'array<string>', 'translations': {'de': 'string', 'es': 'string', 'fr': 'string', 'ja': 'string', 'it': 'string'}, 'relevance': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No countries found for the given capital.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/v1/subregion/{subregion}": {
+      "get": {
+        "operationId": "getSubregion",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "subregion",
+            "in": "path",
+            "required": true,
+            "description": "The subregion to filter countries by",
+            "schema": {
+              "type": "string",
+              "description": "The subregion to filter countries by"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the given subregion (case-insensitive).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Country": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array<string>', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array<string>', 'capital': 'string', 'altSpellings': 'array<string>', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array<double>', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array<string>', 'borders': 'array<string>', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array<string>', 'languages': 'array<string>', 'translations': 'CountryTranslations', 'relevance': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No countries found for the given subregion.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/v1/currency/{currency}": {
+      "get": {
+        "operationId": "getCurrency",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "currency",
+            "in": "path",
+            "required": true,
+            "description": "Currency code to search countries by; must be exactly 3 characters long",
+            "schema": {
+              "type": "string",
+              "description": "Currency code to search countries by; must be exactly 3 characters long",
+              "minLength": 3,
+              "maxLength": 3
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the given currency code.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Country": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array of string', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array of string', 'capital': 'string', 'altSpellings': 'array of string', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array of double', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array of string', 'borders': 'array of string', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array of string', 'languages': 'array of string', 'translations': {'de': 'string', 'es': 'string', 'fr': 'string', 'ja': 'string', 'it': 'string'}, 'relevance': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The currency parameter is empty or its length is not exactly 3.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found. No countries match the given currency code.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. An exception occurred while retrieving countries by currency.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/v1/alpha": {
+      "get": {
+        "operationId": "getAlpha",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "codes",
+            "in": "query",
+            "required": false,
+            "description": "Semicolon-separated list of alpha codes (2 or 3 letters each) used to look up multiple countries.",
+            "schema": {
+              "type": "string",
+              "description": "Semicolon-separated list of alpha codes (2 or 3 letters each) used to look up multiple countries.",
+              "minLength": 2,
+              "maxLength": 3
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the provided alpha codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CountryList": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array<string>', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array<string>', 'capital': 'string', 'altSpellings': 'array<string>', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array<double>', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array<string>', 'borders': 'array<string>', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array<string>', 'languages': 'array<string>', 'translations': {'de': 'string', 'es': 'string', 'fr': 'string', 'ja': 'string', 'it': 'string'}, 'relevance': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The 'codes' query parameter is missing, empty, or has an invalid length (less than 2, or greater than 3 without a semicolon).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found. No countries were found for the provided alpha codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. An exception occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/v1/lang/{lang}": {
+      "get": {
+        "operationId": "getLang",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "lang",
+            "in": "path",
+            "required": true,
+            "description": "Language code to filter countries by language",
+            "schema": {
+              "type": "string",
+              "description": "Language code to filter countries by language"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the given language.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Country": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array<string>', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array<string>', 'capital': 'string', 'altSpellings': 'array<string>', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array<double>', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array<string>', 'borders': 'array<string>', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array<string>', 'languages': 'array<string>', 'translations': {'de': 'string', 'es': 'string', 'fr': 'string', 'ja': 'string', 'it': 'string'}, 'relevance': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No countries found for the given language.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2": {
+      "get": {
+        "operationId": "getV2",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated list of fields to include in the response; if omitted, all fields are returned.",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of fields to include in the response; if omitted, all fields are returned."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns all countries. If the 'fields' query parameter is provided, the response contains only the specified fields for each country; otherwise, all fields are returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Country": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array of string', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array of string', 'capital': 'string', 'altSpellings': 'array of string', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array of double', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array of string', 'borders': 'array of string', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array of Currency', 'languages': 'array of Language', 'translations': 'Translations', 'flag': 'string', 'regionalBlocs': 'array of RegionalBloc', 'cioc': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createV2",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "405": {
+            "description": "Method Not Allowed. The POST /v2 endpoint explicitly returns this status via getResponse(Response.Status.METHOD_NOT_ALLOWED).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/v2/all": {
+      "get": {
+        "operationId": "getAll",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated list of fields to include in the response; if omitted, all fields are returned.",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of fields to include in the response; if omitted, all fields are returned."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns all countries. If the 'fields' query parameter is provided, the response contains only the specified fields; otherwise, all fields are returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Country": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array of string', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array of string', 'capital': 'string', 'altSpellings': 'array of string', 'region': 'string', 'subregion': 'string', 'translations': 'object', 'population': 'integer', 'latlng': 'array of double', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array of string', 'borders': 'array of string', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array of object', 'languages': 'array of object', 'flag': 'string', 'regionalBlocs': 'array of object', 'cioc': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/alpha/{alphacode}": {
+      "get": {
+        "operationId": "getAlpha",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "alphacode",
+            "in": "path",
+            "required": true,
+            "description": "Country alpha code (2 or 3 characters)",
+            "schema": {
+              "type": "string",
+              "description": "Country alpha code (2 or 3 characters)",
+              "minLength": 2,
+              "maxLength": 3
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated list of fields to include in the response",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of fields to include in the response"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Country found and returned, optionally filtered by fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Country": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array', 'capital': 'string', 'altSpellings': 'array', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array', 'borders': 'array', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array', 'languages': 'array', 'translations': 'object', 'flag': 'string', 'regionalBlocs': 'array', 'cioc': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request: alphacode is empty or its length is less than 2 or greater than 3"
+          },
+          "404": {
+            "description": "Country not found for the given alphacode"
+          }
+        }
+      }
+    },
+    "/v2/callingcode/{callingcode}": {
+      "get": {
+        "operationId": "getCallingcode",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "callingcode",
+            "in": "path",
+            "required": true,
+            "description": "The calling code to search for.",
+            "schema": {
+              "type": "string",
+              "description": "The calling code to search for."
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "A semicolon-separated list of fields to include in the response.",
+            "schema": {
+              "type": "string",
+              "description": "A semicolon-separated list of fields to include in the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the calling code, optionally filtered by fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CountryList": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array[string]', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array[string]', 'capital': 'string', 'altSpellings': 'array[string]', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array[double]', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array[string]', 'borders': 'array[string]', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array[Currency]', 'languages': 'array[Language]', 'translations': 'Translations', 'flag': 'string', 'regionalBlocs': 'array[RegionalBloc]', 'cioc': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No countries found for the given calling code."
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/v2/alpha": {
+      "get": {
+        "operationId": "getAlpha",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "codes",
+            "in": "query",
+            "required": false,
+            "description": "Semicolon-separated list of alpha codes to look up",
+            "schema": {
+              "type": "string",
+              "description": "Semicolon-separated list of alpha codes to look up",
+              "minLength": 2
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Semicolon-separated list of fields to include in the response",
+            "schema": {
+              "type": "string",
+              "description": "Semicolon-separated list of fields to include in the response"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the provided alpha codes, optionally filtered by fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CountryList": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array', 'capital': 'string', 'altSpellings': 'array', 'region': 'string', 'subregion': 'string', 'translations': 'object', 'population': 'integer', 'latlng': 'array', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array', 'borders': 'array', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array', 'languages': 'array', 'flag': 'string', 'regionalBlocs': 'array', 'cioc': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when the 'codes' query parameter is empty, has length less than 2, or has length greater than 3 without containing a semicolon.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. Returned when no countries match the provided alpha codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. Returned when an exception occurs while retrieving countries by code list.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/currency/{currency}": {
+      "get": {
+        "operationId": "getCurrency",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "currency",
+            "in": "path",
+            "required": true,
+            "description": "Currency code to search countries by",
+            "schema": {
+              "type": "string",
+              "description": "Currency code to search countries by",
+              "minLength": 3,
+              "maxLength": 3
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Semicolon-separated list of fields to include in the response",
+            "schema": {
+              "type": "string",
+              "description": "Semicolon-separated list of fields to include in the response"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the given currency code. If the 'fields' query parameter is provided, only the specified fields are included in each country object; otherwise all fields are returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CountryList": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array of string', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array of string', 'capital': 'string', 'altSpellings': 'array of string', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array of double', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array of string', 'borders': 'array of string', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array of Currency', 'languages': 'array of Language', 'translations': 'Translations', 'flag': 'string', 'regionalBlocs': 'array of RegionalBloc', 'cioc': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when the currency path parameter is empty or its length is not exactly 3.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. Returned when no countries match the given currency code.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. Returned when an exception occurs while retrieving countries by currency.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/name/{name}": {
+      "get": {
+        "operationId": "getName",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Country name to search for",
+            "schema": {
+              "type": "string",
+              "description": "Country name to search for"
+            }
+          },
+          {
+            "name": "fullText",
+            "in": "query",
+            "required": false,
+            "description": "Whether to perform a full text search",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether to perform a full text search"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Semicolon-separated list of fields to include in the response",
+            "schema": {
+              "type": "string",
+              "description": "Semicolon-separated list of fields to include in the response"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the name (substring or full-text search). If the 'fields' query parameter is provided, only the specified fields are included in each country object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CountryList": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array of string', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array of string', 'capital': 'string', 'altSpellings': 'array of string', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array of double', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array of string', 'borders': 'array of string', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array of Currency', 'languages': 'array of Language', 'translations': 'Translations', 'flag': 'string', 'regionalBlocs': 'array of RegionalBloc', 'cioc': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No countries found matching the given name.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/capital/{capital}": {
+      "get": {
+        "operationId": "getCapital",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "capital",
+            "in": "path",
+            "required": true,
+            "description": "The capital city name to search countries by",
+            "schema": {
+              "type": "string",
+              "description": "The capital city name to search countries by"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Semicolon-separated list of fields to include in the response",
+            "schema": {
+              "type": "string",
+              "description": "Semicolon-separated list of fields to include in the response"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries whose capital contains the provided capital string (case-insensitive, accent-normalized). If the 'fields' query parameter is provided, only the specified fields are included in each country object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CountryList": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array of string', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array of string', 'capital': 'string', 'altSpellings': 'array of string', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array of number', 'demonym': 'string', 'area': 'number', 'gini': 'number', 'timezones': 'array of string', 'borders': 'array of string', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array of Currency', 'languages': 'array of Language', 'translations': 'Translations', 'flag': 'string', 'regionalBlocs': 'array of RegionalBloc', 'cioc': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No countries found with a capital matching the provided capital string."
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/v2/region/{region}": {
+      "get": {
+        "operationId": "getRegion",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "region",
+            "in": "path",
+            "required": true,
+            "description": "The region to filter countries by",
+            "schema": {
+              "type": "string",
+              "description": "The region to filter countries by"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Semicolon-separated list of fields to include in the response",
+            "schema": {
+              "type": "string",
+              "description": "Semicolon-separated list of fields to include in the response"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the specified region. If the 'fields' query parameter is provided, only the specified fields are included in the response; otherwise, all fields are returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CountryList": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array of string', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array of string', 'capital': 'string', 'altSpellings': 'array of string', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array of double', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array of string', 'borders': 'array of string', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array of Currency', 'languages': 'array of Language', 'translations': 'Translations', 'flag': 'string', 'regionalBlocs': 'array of RegionalBloc', 'cioc': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No countries found for the specified region.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contribute": {
+      "post": {
+        "operationId": "createContribute",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "400": {
+            "description": "Bad Request - returned when the contribution is null or the token is blank, or when the Stripe charge creation fails with an exception.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Accepted - returned when the Stripe charge is successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "integer",
+                    "description": "Contribution object containing amount and token for the Stripe charge"
+                  },
+                  "token": {
+                    "type": "string",
+                    "description": "Contribution object containing amount and token for the Stripe charge"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "token"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/subregion/{subregion}": {
+      "get": {
+        "operationId": "getSubregion",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "subregion",
+            "in": "path",
+            "required": true,
+            "description": "The subregion to filter countries by",
+            "schema": {
+              "type": "string",
+              "description": "The subregion to filter countries by"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated list of fields to include in the response",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of fields to include in the response"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the given subregion. If the 'fields' query parameter is provided, only the specified fields are included in each country object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CountryList": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array[string]', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array[string]', 'capital': 'string', 'altSpellings': 'array[string]', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array[double]', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array[string]', 'borders': 'array[string]', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array[Currency]', 'languages': 'array[Language]', 'translations': 'Translations', 'flag': 'string', 'regionalBlocs': 'array[RegionalBloc]', 'cioc': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when no countries are found for the given subregion.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Returned when an unexpected error occurs while retrieving countries by subregion.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/lang/{lang}": {
+      "get": {
+        "operationId": "getLang",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "lang",
+            "in": "path",
+            "required": true,
+            "description": "Language code (ISO 639-1 two-letter or ISO 639-2 three-letter) used to filter countries by language.",
+            "schema": {
+              "type": "string",
+              "description": "Language code (ISO 639-1 two-letter or ISO 639-2 three-letter) used to filter countries by language."
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Semicolon-separated list of country fields to include in the response; all other fields are excluded.",
+            "schema": {
+              "type": "string",
+              "description": "Semicolon-separated list of country fields to include in the response; all other fields are excluded."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the given language code (ISO 639-1 or ISO 639-2).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Country": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array of string', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array of string', 'capital': 'string', 'altSpellings': 'array of string', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array of double', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array of string', 'borders': 'array of string', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array of Currency', 'languages': 'array of Language', 'translations': 'Translations', 'flag': 'string', 'regionalBlocs': 'array of RegionalBloc', 'cioc': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No countries found for the given language code."
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/v2/demonym/{demonym}": {
+      "get": {
+        "operationId": "getDemonym",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "demonym",
+            "in": "path",
+            "required": true,
+            "description": "The demonym to search countries by",
+            "schema": {
+              "type": "string",
+              "description": "The demonym to search countries by"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated list of fields to include in the response",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated list of fields to include in the response"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved countries matching the demonym. Returns a list of Country objects, optionally filtered by the fields query parameter.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Country": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array[string]', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array[string]', 'capital': 'string', 'altSpellings': 'array[string]', 'region': 'string', 'subregion': 'string', 'population': 'integer', 'latlng': 'array[double]', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array[string]', 'borders': 'array[string]', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array[Currency]', 'languages': 'array[Language]', 'translations': 'Translations', 'flag': 'string', 'regionalBlocs': 'array[RegionalBloc]', 'cioc': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No countries found matching the given demonym.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/regionalbloc/{regionalbloc}": {
+      "get": {
+        "operationId": "getRegionalbloc",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "regionalbloc",
+            "in": "path",
+            "required": true,
+            "description": "Regional bloc acronym to filter countries by",
+            "schema": {
+              "type": "string",
+              "description": "Regional bloc acronym to filter countries by"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "Semicolon-separated list of fields to include in the response",
+            "schema": {
+              "type": "string",
+              "description": "Semicolon-separated list of fields to include in the response"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of countries matching the given regional bloc acronym or other acronyms. If the 'fields' query parameter is provided, only the specified fields are included in each country object; otherwise all fields are returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CountryList": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'topLevelDomain': 'array of string', 'alpha2Code': 'string', 'alpha3Code': 'string', 'callingCodes': 'array of string', 'capital': 'string', 'altSpellings': 'array of string', 'region': 'string', 'subregion': 'string', 'translations': 'object', 'population': 'integer', 'latlng': 'array of double', 'demonym': 'string', 'area': 'double', 'gini': 'double', 'timezones': 'array of string', 'borders': 'array of string', 'nativeName': 'string', 'numericCode': 'string', 'currencies': 'array of object', 'languages': 'array of object', 'flag': 'string', 'regionalBlocs': 'array of object', 'cioc': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No countries found for the given regional bloc.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ResponseEntity": {
+                      "type": "string",
+                      "description": "{'status': 'integer', 'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

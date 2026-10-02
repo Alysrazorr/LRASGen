@@ -1,0 +1,214 @@
+{
+  "task_id": "public",
+  "api_name": "Public",
+  "framework": "aspnetcore",
+  "endpoints": [
+    {
+      "endpoint_path": "/public/collections/{id}",
+      "http_method": "DELETE",
+      "method_name": "Delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\Public\\Controllers\\CollectionsController.cs",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the collection to be deleted.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK. The collection was successfully deleted.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The collection does not exist or does not belong to the current organization.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/collections",
+      "http_method": "GET",
+      "method_name": "List",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\Public\\Controllers\\CollectionsController.cs",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of your organization's collections. Collection objects listed in this call do not include information about their associated groups.",
+          "data_schema": [
+            {
+              "name": "ListResponseModel<CollectionResponseModel>",
+              "schema": {
+                "data": "array",
+                "continuationToken": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/collections/{id}",
+      "http_method": "GET",
+      "method_name": "Get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\Public\\Controllers\\CollectionsController.cs",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "Guid",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the collection to be retrieved.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Retrieves the details of an existing collection.",
+          "data_schema": [
+            {
+              "name": "CollectionResponseModel",
+              "schema": {
+                "id": "string",
+                "organizationId": "string",
+                "name": "string",
+                "externalId": "string",
+                "groups": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Collection not found or does not belong to the organization.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/public/collections/{id}",
+      "http_method": "PUT",
+      "method_name": "Put",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\Public\\Controllers\\CollectionsController.cs",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the collection to be updated.",
+          "_depth": 0
+        },
+        {
+          "name": "model",
+          "type": "CollectionUpdateRequestModel",
+          "require": "false",
+          "position": "body",
+          "description": "The request model.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the updated collection.",
+          "data_schema": [
+            {
+              "name": "CollectionResponseModel",
+              "schema": {
+                "id": "string",
+                "organizationId": "string",
+                "name": "string",
+                "externalId": "string",
+                "groups": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. The request model is invalid.",
+          "data_schema": [
+            {
+              "name": "ErrorResponseModel",
+              "schema": {
+                "message": "string",
+                "validationErrors": "object",
+                "exceptionMessage": "string",
+                "exceptionType": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The collection does not exist or belongs to another organization.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 3286,
+  "tokens": {
+    "prompt_tokens": 58285,
+    "completion_tokens": 3847,
+    "total_tokens": 62132,
+    "calls": 24,
+    "elapsed_s": 101.124,
+    "prompt_cost_usd": 0.007542,
+    "completion_cost_usd": 0.002561,
+    "total_cost_usd": 0.010102,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 18892,
+        "completion_tokens": 751,
+        "total_tokens": 19643,
+        "calls": 8,
+        "elapsed_s": 10.745587,
+        "prompt_cost_usd": 0.000378,
+        "completion_cost_usd": 0.000451,
+        "total_cost_usd": 0.000828
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 17896,
+        "completion_tokens": 2534,
+        "total_tokens": 20430,
+        "calls": 8,
+        "elapsed_s": 67.406,
+        "prompt_cost_usd": 0.00179,
+        "completion_cost_usd": 0.001267,
+        "total_cost_usd": 0.003057
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 21497,
+        "completion_tokens": 562,
+        "total_tokens": 22059,
+        "calls": 8,
+        "elapsed_s": 22.972,
+        "prompt_cost_usd": 0.005374,
+        "completion_cost_usd": 0.000843,
+        "total_cost_usd": 0.006217
+      }
+    ]
+  }
+}

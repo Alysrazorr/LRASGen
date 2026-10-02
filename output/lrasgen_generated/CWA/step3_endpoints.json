@@ -1,0 +1,105 @@
+{
+  "task_id": "cwa-verification-server",
+  "api_name": "cwa-verification-server",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/version/v1/tan",
+      "http_method": "POST",
+      "method_name": "generateTan",
+      "summary": "Generates a Tan",
+      "description": "Generates a TAN on input of Registration Token. With the TAN one can submit his Diagnosis keys",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CWA\\cwa-verification-server\\src\\main\\java\\app\\coronawarn\\verification\\controller\\ExternalTanController.java"
+    },
+    {
+      "endpoint_path": "/version/v1/testresult",
+      "http_method": "POST",
+      "method_name": "getTestState",
+      "summary": "COVID-19 test result for given RegistrationToken",
+      "description": "Gets the result of COVID-19 Test. If the RegistrationToken belongs to a TeleTan the result is always positive",
+      "line_number": 66,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CWA\\cwa-verification-server\\src\\main\\java\\app\\coronawarn\\verification\\controller\\ExternalTestStateController.java"
+    },
+    {
+      "endpoint_path": "/version/v1/registrationToken",
+      "http_method": "POST",
+      "method_name": "generateRegistrationToken",
+      "summary": "Get registration Token",
+      "description": "Get a registration token by providing a SHA-256 hasehd GUID or a teleTAN",
+      "line_number": 60,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CWA\\cwa-verification-server\\src\\main\\java\\app\\coronawarn\\verification\\controller\\ExternalTokenController.java"
+    },
+    {
+      "endpoint_path": "/version/v1/tan/verify",
+      "http_method": "POST",
+      "method_name": "verifyTan",
+      "summary": "Verify provided Tan",
+      "description": "The provided Tan is verified to be formerly issued by the verification server",
+      "line_number": 66,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CWA\\cwa-verification-server\\src\\main\\java\\app\\coronawarn\\verification\\controller\\InternalTanController.java"
+    },
+    {
+      "endpoint_path": "/version/v1/tan/teletan",
+      "http_method": "POST",
+      "method_name": "createTeleTan",
+      "summary": "Request generation of a teleTAN",
+      "description": "A teleTAN is a human readable TAN with 7 characters which is supposed to be issued via call line",
+      "line_number": 101,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\CWA\\cwa-verification-server\\src\\main\\java\\app\\coronawarn\\verification\\controller\\InternalTanController.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 8355,
+  "tokens": {
+    "prompt_tokens": 175046,
+    "completion_tokens": 3120,
+    "total_tokens": 178166,
+    "calls": 15,
+    "elapsed_s": 83.15,
+    "prompt_cost_usd": 0.022265,
+    "completion_cost_usd": 0.00213,
+    "total_cost_usd": 0.024396,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 57613,
+        "completion_tokens": 544,
+        "total_tokens": 58157,
+        "calls": 5,
+        "elapsed_s": 8.346758,
+        "prompt_cost_usd": 0.001152,
+        "completion_cost_usd": 0.000326,
+        "total_cost_usd": 0.001479
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 54969,
+        "completion_tokens": 2060,
+        "total_tokens": 57029,
+        "calls": 5,
+        "elapsed_s": 54.954,
+        "prompt_cost_usd": 0.005497,
+        "completion_cost_usd": 0.00103,
+        "total_cost_usd": 0.006527
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 62464,
+        "completion_tokens": 516,
+        "total_tokens": 62980,
+        "calls": 5,
+        "elapsed_s": 19.849,
+        "prompt_cost_usd": 0.015616,
+        "completion_cost_usd": 0.000774,
+        "total_cost_usd": 0.01639
+      }
+    ]
+  }
+}

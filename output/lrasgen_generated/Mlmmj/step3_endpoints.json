@@ -1,0 +1,177 @@
+{
+  "task_id": "mlmmjadmin-master",
+  "api_name": "mlmmjadmin-master",
+  "framework": "webpy",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/{mail}",
+      "http_method": "GET",
+      "method_name": "Profile.GET",
+      "summary": "Get mailing list profiles",
+      "description": "Get mailing list profiles. Make sure mailing list account exists in backend and mlmmj. Get specified profile parameters. If parameters are given, get values of them instead of all profile parameters.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py"
+    },
+    {
+      "endpoint_path": "/api/{mail}",
+      "http_method": "POST",
+      "method_name": "Profile.POST",
+      "summary": "Create a new mailing list account",
+      "description": "Create a new mailing list account. Create account in backend and mlmmj.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py"
+    },
+    {
+      "endpoint_path": "/api/{mail}",
+      "http_method": "DELETE",
+      "method_name": "Profile.DELETE",
+      "summary": "Delete a mailing list account",
+      "description": "Delete a mailing list account. Optional parameters (appended to URL): @archive - If set to `yes` (or no such parameter appended in URL), only account in (SQL/LDAP/...) backend will be removed (so that MTA won't accept new emails for this email address), but data on file system will be kept (by renaming the mailing list directory to `<listname>-<timestamp>`. If set to `no`, account in (SQL/LDAP/...) backend AND all data of this account on file system will be removed.",
+      "line_number": 53,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py"
+    },
+    {
+      "endpoint_path": "/api/{mail}",
+      "http_method": "PUT",
+      "method_name": "Profile.PUT",
+      "summary": "Update a mailing list account",
+      "description": "Update a mailing list account. curl -X PUT -d \"name='new name'&disable_subscription=yes\" https://<server>/api/mail",
+      "line_number": 86,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py"
+    },
+    {
+      "endpoint_path": "/api/{mail}/owners",
+      "http_method": "GET",
+      "method_name": "Owners.GET",
+      "summary": "Get owners of a mailing list",
+      "description": "Get owners of a mailing list.",
+      "line_number": 100,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py"
+    },
+    {
+      "endpoint_path": "/api/{mail}/owners",
+      "http_method": "PUT",
+      "method_name": "Owners.PUT",
+      "summary": "Update owners of a mailing list",
+      "description": "Update owners of a mailing list. Available parameters: `add_owners`: Add one or multiple owners. Multiple owners must be separated by comma. Conflict with `owners` parameter. `remove_owners`: Remove one or multiple owners. Multiple owners must be separated by comma. Conflict with `owners` parameter. `owners`: Reset owners to given list. Multiple owners must be separated by comma. Conflict with `add_owners` and `remove_owners` parameters.",
+      "line_number": 108,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py"
+    },
+    {
+      "endpoint_path": "/api/{mail}/moderators",
+      "http_method": "GET",
+      "method_name": "Moderators.GET",
+      "summary": "Get moderators of a mailing list",
+      "description": "Get moderators of a mailing list.",
+      "line_number": 144,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py"
+    },
+    {
+      "endpoint_path": "/api/{mail}/moderators",
+      "http_method": "PUT",
+      "method_name": "Moderators.PUT",
+      "summary": "Update moderators of a mailing list",
+      "description": "Update moderators of a mailing list. Available parameters: `add_moderators`: Add one or multiple moderators. Multiple moderators must be separated by comma. Conflict with `moderators` parameter. `remove_moderators`: Remove one or multiple moderators. Multiple moderators must be separated by comma. Conflict with `moderators` parameter. `moderators`: Reset moderators to given list. Multiple moderators must be separated by comma. Conflict with `add_moderators` and `remove_moderators` parameters.",
+      "line_number": 152,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\profile.py"
+    },
+    {
+      "endpoint_path": "/api/{}/subscribers",
+      "http_method": "GET",
+      "method_name": "Subscribers.get",
+      "summary": "Get subscribers of a mailing list",
+      "description": "Get subscribers of different subscription versions. If no version given, return subscribers of all subscription versions. Available HTTP query parameters: `email_only`: if present, return a list of subscribers' mail addresses, otherwise return a dict mapping subscription versions to lists of mail addresses.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\subscriber.py"
+    },
+    {
+      "endpoint_path": "/api/{}/subscribers",
+      "http_method": "POST",
+      "method_name": "Subscribers.post",
+      "summary": "Add or remove multiple subscribers",
+      "description": "Add multiple subscribers to given subscription version, or remove subscribers. Available form parameters: `add_subscribers` (comma-separated email addresses), `remove_subscribers` (comma-separated email addresses or 'ALL'), `subscription` (normal, digest or nomail), `require_confirm` (yes/no).",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\subscriber.py"
+    },
+    {
+      "endpoint_path": "/api/{}/has_subscriber/{}",
+      "http_method": "GET",
+      "method_name": "HasSubscriber.get",
+      "summary": "Check whether a subscriber is a member of a mailing list",
+      "description": "Check whether given subscriber is member of given mailing list.",
+      "line_number": 76,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\subscriber.py"
+    },
+    {
+      "endpoint_path": "/api/subscriber/{}/subscribed",
+      "http_method": "GET",
+      "method_name": "SubscribedLists.get",
+      "summary": "Get mailing lists a subscriber is subscribed to",
+      "description": "Get mailing lists which the given subscriber subscribed to. HTTP form parameters: `email_only` (yes/no), `query_all_lists` (yes/no).",
+      "line_number": 89,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\subscriber.py"
+    },
+    {
+      "endpoint_path": "/api/subscriber/{}/subscribe",
+      "http_method": "POST",
+      "method_name": "Subscribe.post",
+      "summary": "Add one subscriber to multiple mailing lists",
+      "description": "Add one subscriber to multiple mailing lists. Available form parameters: `lists` (comma-separated mailing lists), `require_confirm` (yes/no), `subscription` (normal, digest, nomail).",
+      "line_number": 137,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Mlmmj\\mlmmjadmin-master\\controllers\\subscriber.py"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 7304,
+  "tokens": {
+    "prompt_tokens": 120531,
+    "completion_tokens": 6139,
+    "total_tokens": 126670,
+    "calls": 6,
+    "elapsed_s": 57.059,
+    "prompt_cost_usd": 0.015552,
+    "completion_cost_usd": 0.004446,
+    "total_cost_usd": 0.019997,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 39419,
+        "completion_tokens": 1400,
+        "total_tokens": 40819,
+        "calls": 2,
+        "elapsed_s": 7.299641,
+        "prompt_cost_usd": 0.000788,
+        "completion_cost_usd": 0.00084,
+        "total_cost_usd": 0.001628
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 36762,
+        "completion_tokens": 3503,
+        "total_tokens": 40265,
+        "calls": 2,
+        "elapsed_s": 36.608,
+        "prompt_cost_usd": 0.003676,
+        "completion_cost_usd": 0.001752,
+        "total_cost_usd": 0.005428
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 44350,
+        "completion_tokens": 1236,
+        "total_tokens": 45586,
+        "calls": 2,
+        "elapsed_s": 13.151,
+        "prompt_cost_usd": 0.011088,
+        "completion_cost_usd": 0.001854,
+        "total_cost_usd": 0.012941
+      }
+    ]
+  }
+}

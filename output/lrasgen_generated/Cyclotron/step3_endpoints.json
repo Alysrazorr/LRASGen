@@ -1,0 +1,600 @@
+{
+  "task_id": "cyclotron-master",
+  "api_name": "cyclotron-master",
+  "framework": "express",
+  "endpoints": [
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "anonymous",
+      "summary": "Serve Swagger UI index page",
+      "description": "Returns the Swagger UI index.html with the swagger.json URL replaced to point to the local swagger.json.",
+      "line_number": 62,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\app.js"
+    },
+    {
+      "endpoint_path": "/index.html",
+      "http_method": "GET",
+      "method_name": "anonymous",
+      "summary": "Serve Swagger UI index page",
+      "description": "Returns the Swagger UI index.html with the swagger.json URL replaced to point to the local swagger.json.",
+      "line_number": 63,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\app.js"
+    },
+    {
+      "endpoint_path": "/swagger.json",
+      "http_method": "GET",
+      "method_name": "anonymous",
+      "summary": "Serve Swagger specification",
+      "description": "Returns the swagger.json specification with the basePath replaced by the configured basePath.",
+      "line_number": 64,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\app.js"
+    },
+    {
+      "endpoint_path": "/dashboards",
+      "http_method": "GET",
+      "method_name": "dashboards.get",
+      "summary": "Get all dashboards",
+      "description": "Retrieves a list of all dashboards, optionally filtered by search query.",
+      "line_number": 66,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/dashboards",
+      "http_method": "POST",
+      "method_name": "dashboards.putPostSingle",
+      "summary": "Create or update a dashboard",
+      "description": "Creates a new dashboard or updates an existing one. Requires authentication.",
+      "line_number": 67,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/dashboards/{name}",
+      "http_method": "GET",
+      "method_name": "dashboards.getSingle",
+      "summary": "Get a single dashboard",
+      "description": "Retrieves a specific dashboard by name.",
+      "line_number": 70,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/dashboards/{name}",
+      "http_method": "PUT",
+      "method_name": "dashboards.putPostSingle",
+      "summary": "Update a dashboard",
+      "description": "Updates an existing dashboard by name. Requires authentication.",
+      "line_number": 72,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/dashboards/{name}",
+      "http_method": "DELETE",
+      "method_name": "dashboards.deleteSingle",
+      "summary": "Delete a dashboard",
+      "description": "Deletes a dashboard by name. Requires authentication.",
+      "line_number": 73,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/dashboards/{name}/tags",
+      "http_method": "PUT",
+      "method_name": "dashboards.putTagsSingle",
+      "summary": "Update dashboard tags",
+      "description": "Updates the tags of a dashboard. Requires authentication.",
+      "line_number": 75,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/dashboards/{name}/revisions",
+      "http_method": "GET",
+      "method_name": "revisions.get",
+      "summary": "Get dashboard revisions",
+      "description": "Retrieves all revisions for a dashboard.",
+      "line_number": 78,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/dashboards/{name}/revisions/{rev}",
+      "http_method": "GET",
+      "method_name": "revisions.getSingle",
+      "summary": "Get a specific revision",
+      "description": "Retrieves a specific revision of a dashboard.",
+      "line_number": 81,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/dashboards/{name}/revisions/{rev}/diff/{rev2}",
+      "http_method": "GET",
+      "method_name": "revisions.diff",
+      "summary": "Diff two revisions",
+      "description": "Computes the difference between two revisions of a dashboard.",
+      "line_number": 83,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/dashboards/{name}/likes",
+      "http_method": "GET",
+      "method_name": "dashboards.getLikes",
+      "summary": "Get dashboard likes",
+      "description": "Retrieves the list of users who liked a dashboard.",
+      "line_number": 85,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/dashboards/{name}/likes",
+      "http_method": "POST",
+      "method_name": "dashboards.likeDashboard",
+      "summary": "Like a dashboard",
+      "description": "Adds the current user to the likes of a dashboard. Requires authentication.",
+      "line_number": 86,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/dashboards/{name}/likes",
+      "http_method": "DELETE",
+      "method_name": "dashboards.unlikeDashboard",
+      "summary": "Unlike a dashboard",
+      "description": "Removes the current user from the likes of a dashboard. Requires authentication.",
+      "line_number": 87,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/dashboardnames",
+      "http_method": "GET",
+      "method_name": "dashboards.getNames",
+      "summary": "Get dashboard names",
+      "description": "Retrieves a list of all dashboard names.",
+      "line_number": 90,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/tags",
+      "http_method": "GET",
+      "method_name": "tags.get",
+      "summary": "Get all tags",
+      "description": "Retrieves a list of all tags used across dashboards.",
+      "line_number": 93,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/searchhints",
+      "http_method": "GET",
+      "method_name": "tags.getSearchHints",
+      "summary": "Get search hints",
+      "description": "Retrieves tags and dashboard names for autocomplete.",
+      "line_number": 96,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/export/data",
+      "http_method": "POST",
+      "method_name": "exporter.dataAsync",
+      "summary": "Export data asynchronously",
+      "description": "Exports provided data in the specified format (json, csv, xlsx) and returns a download URL.",
+      "line_number": 99,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/export/{name}/pdf",
+      "http_method": "GET",
+      "method_name": "exporter.pdf",
+      "summary": "Export dashboard as PDF (sync)",
+      "description": "Exports a dashboard as a PDF synchronously.",
+      "line_number": 100,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/export/{name}/pdf",
+      "http_method": "POST",
+      "method_name": "exporter.pdfAsync",
+      "summary": "Export dashboard as PDF (async)",
+      "description": "Exports a dashboard as a PDF asynchronously.",
+      "line_number": 101,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/exportstatus/{key}",
+      "http_method": "GET",
+      "method_name": "exporter.status",
+      "summary": "Get export status",
+      "description": "Retrieves the status of an export job by key.",
+      "line_number": 105,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/exports/{file}",
+      "http_method": "GET",
+      "method_name": "exporter.serve",
+      "summary": "Serve exported file",
+      "description": "Serves an exported file for download.",
+      "line_number": 107,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/proxy",
+      "http_method": "POST",
+      "method_name": "proxy.proxy",
+      "summary": "Proxy HTTP request",
+      "description": "Performs a generic HTTP reverse proxy request.",
+      "line_number": 109,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/users",
+      "http_method": "GET",
+      "method_name": "users.get",
+      "summary": "Get all users",
+      "description": "Retrieves a list of all users.",
+      "line_number": 111,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/users/{name}",
+      "http_method": "GET",
+      "method_name": "users.getSingle",
+      "summary": "Get a single user",
+      "description": "Retrieves a specific user by name.",
+      "line_number": 112,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/users/login",
+      "http_method": "POST",
+      "method_name": "users.login",
+      "summary": "User login",
+      "description": "Authenticates a user and creates a session.",
+      "line_number": 114,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/users/validate",
+      "http_method": "POST",
+      "method_name": "users.validate",
+      "summary": "Validate session",
+      "description": "Validates a session key and returns the session if valid.",
+      "line_number": 116,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/users/logout",
+      "http_method": "GET",
+      "method_name": "users.logout",
+      "summary": "User logout",
+      "description": "Logs out the current user by removing the session.",
+      "line_number": 118,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/ldap/search",
+      "http_method": "GET",
+      "method_name": "ldap.search",
+      "summary": "LDAP search",
+      "description": "Searches LDAP for users and groups.",
+      "line_number": 120,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/crypto/ciphers",
+      "http_method": "GET",
+      "method_name": "crypto.ciphers",
+      "summary": "Get available ciphers",
+      "description": "Retrieves a list of supported encryption ciphers.",
+      "line_number": 122,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/crypto/encrypt",
+      "http_method": "POST",
+      "method_name": "crypto.encrypt",
+      "summary": "Encrypt a string",
+      "description": "Encrypts a string using Cyclotron's encryption key.",
+      "line_number": 123,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/statistics",
+      "http_method": "GET",
+      "method_name": "statistics.get",
+      "summary": "Get instance statistics",
+      "description": "Retrieves general statistics about the Cyclotron instance.",
+      "line_number": 135,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/pageviews",
+      "http_method": "POST",
+      "method_name": "analytics.recordPageView",
+      "summary": "Record page view",
+      "description": "Records a dashboard page view.",
+      "line_number": 137,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/pageviews/recent",
+      "http_method": "GET",
+      "method_name": "analytics.getRecentPageViews",
+      "summary": "Get recent page views",
+      "description": "Retrieves recent page view analytics records.",
+      "line_number": 138,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/datasources",
+      "http_method": "POST",
+      "method_name": "analytics.recordDataSource",
+      "summary": "Record data source execution",
+      "description": "Records a data source execution event.",
+      "line_number": 140,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/datasources/recent",
+      "http_method": "GET",
+      "method_name": "analytics.getRecentDataSources",
+      "summary": "Get recent data sources",
+      "description": "Retrieves recent data source analytics records.",
+      "line_number": 141,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/events",
+      "http_method": "POST",
+      "method_name": "analytics.recordEvent",
+      "summary": "Record event",
+      "description": "Records an analytics event.",
+      "line_number": 143,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/events/recent",
+      "http_method": "GET",
+      "method_name": "analytics.getRecentEvents",
+      "summary": "Get recent events",
+      "description": "Retrieves recent event analytics records.",
+      "line_number": 144,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/pageviewsovertime",
+      "http_method": "GET",
+      "method_name": "analytics.getPageViewsOverTime",
+      "summary": "Get page views over time",
+      "description": "Retrieves page view counts over time, grouped by resolution.",
+      "line_number": 146,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/visitsovertime",
+      "http_method": "GET",
+      "method_name": "analytics.getVisitsOverTime",
+      "summary": "Get visits over time",
+      "description": "Retrieves visit counts over time, grouped by resolution.",
+      "line_number": 147,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/uniquevisitors",
+      "http_method": "GET",
+      "method_name": "analytics.getUniqueVisitors",
+      "summary": "Get unique visitors",
+      "description": "Retrieves unique visitor statistics.",
+      "line_number": 148,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/browsers",
+      "http_method": "GET",
+      "method_name": "analytics.getBrowserStats",
+      "summary": "Get browser statistics",
+      "description": "Retrieves browser usage statistics.",
+      "line_number": 149,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/widgets",
+      "http_method": "GET",
+      "method_name": "analytics.getWidgetStats",
+      "summary": "Get widget statistics",
+      "description": "Retrieves widget usage statistics.",
+      "line_number": 150,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/datasourcesbytype",
+      "http_method": "GET",
+      "method_name": "analytics.getDataSourcesByType",
+      "summary": "Get data sources by type",
+      "description": "Retrieves data source statistics grouped by type.",
+      "line_number": 152,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/datasourcesbyname",
+      "http_method": "GET",
+      "method_name": "analytics.getDataSourcesByName",
+      "summary": "Get data sources by name",
+      "description": "Retrieves data source statistics grouped by name.",
+      "line_number": 153,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/datasourcesbyerrormessage",
+      "http_method": "GET",
+      "method_name": "analytics.getDataSourcesByErrorMessage",
+      "summary": "Get data sources by error message",
+      "description": "Retrieves failed data source statistics grouped by error message.",
+      "line_number": 154,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/pageviewsbypage",
+      "http_method": "GET",
+      "method_name": "analytics.getPageViewsByPage",
+      "summary": "Get page views by page",
+      "description": "Retrieves page view counts grouped by page number.",
+      "line_number": 156,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/topdashboards",
+      "http_method": "GET",
+      "method_name": "analytics.getTopDashboards",
+      "summary": "Get top dashboards",
+      "description": "Retrieves the most visited dashboards.",
+      "line_number": 158,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/analytics/delete",
+      "http_method": "GET",
+      "method_name": "analytics.deleteAnalyticsForDashboard",
+      "summary": "Delete analytics for dashboard",
+      "description": "Deletes analytics data for a specific dashboard. Requires admin permission.",
+      "line_number": 160,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/data",
+      "http_method": "GET",
+      "method_name": "data.get",
+      "summary": "Get all data buckets",
+      "description": "Retrieves a list of all data buckets.",
+      "line_number": 165,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/data",
+      "http_method": "POST",
+      "method_name": "data.putPostSingle",
+      "summary": "Create or update data bucket",
+      "description": "Creates or updates a data bucket.",
+      "line_number": 166,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/data/{key}",
+      "http_method": "GET",
+      "method_name": "data.getSingle",
+      "summary": "Get a single data bucket",
+      "description": "Retrieves a specific data bucket by key.",
+      "line_number": 169,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/data/{key}",
+      "http_method": "PUT",
+      "method_name": "data.putPostSingle",
+      "summary": "Update a data bucket",
+      "description": "Updates an existing data bucket by key.",
+      "line_number": 171,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/data/{key}",
+      "http_method": "DELETE",
+      "method_name": "data.deleteSingle",
+      "summary": "Delete a data bucket",
+      "description": "Deletes a data bucket by key.",
+      "line_number": 172,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/data/{key}/data",
+      "http_method": "GET",
+      "method_name": "data.getSingleData",
+      "summary": "Get data bucket data",
+      "description": "Retrieves the data of a specific data bucket.",
+      "line_number": 174,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/data/{key}/data",
+      "http_method": "PUT",
+      "method_name": "data.putData",
+      "summary": "Replace data bucket data",
+      "description": "Replaces the data of a data bucket with a new array.",
+      "line_number": 175,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/data/{key}/append",
+      "http_method": "POST",
+      "method_name": "data.appendData",
+      "summary": "Append data to bucket",
+      "description": "Appends data to a data bucket.",
+      "line_number": 176,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/data/{key}/upsert",
+      "http_method": "POST",
+      "method_name": "data.upsertData",
+      "summary": "Upsert data in bucket",
+      "description": "Upserts a single object in a data bucket.",
+      "line_number": 177,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    },
+    {
+      "endpoint_path": "/data/{key}/remove",
+      "http_method": "POST",
+      "method_name": "data.removeData",
+      "summary": "Remove data from bucket",
+      "description": "Removes objects from a data bucket by matching keys.",
+      "line_number": 178,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 12669,
+  "tokens": {
+    "prompt_tokens": 243227,
+    "completion_tokens": 23696,
+    "total_tokens": 266923,
+    "calls": 6,
+    "elapsed_s": 111.56,
+    "prompt_cost_usd": 0.031538,
+    "completion_cost_usd": 0.015788,
+    "total_cost_usd": 0.047328,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 78183,
+        "completion_tokens": 4204,
+        "total_tokens": 82387,
+        "calls": 2,
+        "elapsed_s": 12.666904,
+        "prompt_cost_usd": 0.001564,
+        "completion_cost_usd": 0.002522,
+        "total_cost_usd": 0.004086
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 75243,
+        "completion_tokens": 15971,
+        "total_tokens": 91214,
+        "calls": 2,
+        "elapsed_s": 72.096,
+        "prompt_cost_usd": 0.007524,
+        "completion_cost_usd": 0.007985,
+        "total_cost_usd": 0.01551
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 89801,
+        "completion_tokens": 3521,
+        "total_tokens": 93322,
+        "calls": 2,
+        "elapsed_s": 26.797,
+        "prompt_cost_usd": 0.02245,
+        "completion_cost_usd": 0.005281,
+        "total_cost_usd": 0.027732
+      }
+    ]
+  }
+}

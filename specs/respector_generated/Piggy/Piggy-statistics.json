@@ -1,0 +1,196 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "info": {
+    "title": "REST API",
+    "version": "",
+    "description": "REST API"
+  },
+  "paths": {
+    "/current": {
+      "get": {
+        "description": "",
+        "operationId": "em0",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      }
+    },
+    "/{accountName}": {
+      "get": {
+        "description": "",
+        "operationId": "em1",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em2",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "expenses": {
+                    "type": "string"
+                  },
+                  "incomes": {
+                    "type": "string"
+                  },
+                  "saving": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 3
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1{accountName}/put"
+        }
+      }
+    }
+  },
+  "components": {
+    "x-endpoint-constraints": {
+      "/{accountName}": {
+        "put": {
+          "global-reads": {
+            "g0": {
+              "name": "INCOMES_AMOUNT",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "ZERO",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g2": {
+              "name": "HALF_UP",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g3": {
+              "name": "SAVING_AMOUNT",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "EXPENSES_AMOUNT",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            }
+          }
+        }
+      }
+    },
+    "x-endpoint-interdependence": {},
+    "x-global-variables-info": {
+      "g0": {
+        "name": "INCOMES_AMOUNT",
+        "id": "g0",
+        "defining-class": "com.piggymetrics.statistics.domain.timeseries.StatisticMetric",
+        "locations-of-static-assignments": [
+          "line 5, com.piggymetrics.statistics.domain.timeseries.StatisticMetric"
+        ]
+      },
+      "g1": {
+        "name": "ZERO",
+        "id": "g1",
+        "defining-class": "java.math.BigDecimal"
+      },
+      "g2": {
+        "name": "HALF_UP",
+        "id": "g2",
+        "defining-class": "java.math.RoundingMode"
+      },
+      "g3": {
+        "name": "SAVING_AMOUNT",
+        "id": "g3",
+        "defining-class": "com.piggymetrics.statistics.domain.timeseries.StatisticMetric",
+        "locations-of-static-assignments": [
+          "line 5, com.piggymetrics.statistics.domain.timeseries.StatisticMetric"
+        ]
+      },
+      "g4": {
+        "name": "EXPENSES_AMOUNT",
+        "id": "g4",
+        "defining-class": "com.piggymetrics.statistics.domain.timeseries.StatisticMetric",
+        "locations-of-static-assignments": [
+          "line 5, com.piggymetrics.statistics.domain.timeseries.StatisticMetric"
+        ]
+      }
+    }
+  }
+}

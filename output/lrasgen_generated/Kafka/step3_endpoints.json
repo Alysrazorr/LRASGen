@@ -1,0 +1,681 @@
+{
+  "task_id": "kafka-rest",
+  "api_name": "kafka-rest",
+  "framework": "jersey",
+  "endpoints": [
+    {
+      "endpoint_path": "/brokers",
+      "http_method": "GET",
+      "method_name": "list",
+      "summary": "List Brokers",
+      "description": "Returns a list of Kafka brokers in the local cluster.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\BrokersResource.java"
+    },
+    {
+      "endpoint_path": "/consumers/{group}",
+      "http_method": "POST",
+      "method_name": "createGroup",
+      "summary": "Create a consumer instance",
+      "description": "Creates a new consumer instance in the specified consumer group and returns its unique instance ID and base URI.",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java"
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}",
+      "http_method": "DELETE",
+      "method_name": "deleteGroup",
+      "summary": "Delete a consumer instance",
+      "description": "Destroys the specified consumer instance in the given consumer group.",
+      "line_number": 66,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java"
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/subscription",
+      "http_method": "POST",
+      "method_name": "subscribe",
+      "summary": "Subscribe to topics",
+      "description": "Subscribes the consumer instance to the specified list of topics or topic pattern.",
+      "line_number": 73,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java"
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/subscription",
+      "http_method": "GET",
+      "method_name": "subscription",
+      "summary": "Get subscription",
+      "description": "Returns the list of topics the consumer instance is currently subscribed to.",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java"
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/subscription",
+      "http_method": "DELETE",
+      "method_name": "unsubscribe",
+      "summary": "Unsubscribe from topics",
+      "description": "Unsubscribes the consumer instance from all currently subscribed topics.",
+      "line_number": 97,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java"
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/records",
+      "http_method": "GET",
+      "method_name": "readRecordBinary",
+      "summary": "Consume records (binary)",
+      "description": "Reads records from the consumer instance using the binary embedded format.",
+      "line_number": 106,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java"
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/offsets",
+      "http_method": "POST",
+      "method_name": "commitOffsets",
+      "summary": "Commit offsets",
+      "description": "Commits the given offsets for the consumer instance, optionally asynchronously.",
+      "line_number": 196,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java"
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/offsets",
+      "http_method": "GET",
+      "method_name": "committedOffsets",
+      "summary": "Get committed offsets",
+      "description": "Returns the last committed offsets for the specified partitions of the consumer instance.",
+      "line_number": 224,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java"
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/positions/beginning",
+      "http_method": "POST",
+      "method_name": "seekToBeginning",
+      "summary": "Seek to beginning",
+      "description": "Seeks the consumer instance to the first offset for each of the given partitions.",
+      "line_number": 237,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java"
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/positions/end",
+      "http_method": "POST",
+      "method_name": "seekToEnd",
+      "summary": "Seek to end",
+      "description": "Seeks the consumer instance to the last offset for each of the given partitions.",
+      "line_number": 252,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java"
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/positions",
+      "http_method": "POST",
+      "method_name": "seekToOffset",
+      "summary": "Seek to offset",
+      "description": "Overrides the fetch offsets that the consumer instance will use on the next poll.",
+      "line_number": 267,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java"
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/assignments",
+      "http_method": "POST",
+      "method_name": "assign",
+      "summary": "Assign partitions",
+      "description": "Manually assigns a list of partitions to the consumer instance.",
+      "line_number": 282,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java"
+    },
+    {
+      "endpoint_path": "/consumers/{group}/instances/{instance}/assignments",
+      "http_method": "GET",
+      "method_name": "assignment",
+      "summary": "Get assignments",
+      "description": "Returns the set of partitions currently assigned to the consumer instance.",
+      "line_number": 297,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ConsumersResource.java"
+    },
+    {
+      "endpoint_path": "/topics/{topic}/partitions",
+      "http_method": "GET",
+      "method_name": "list",
+      "summary": "List partitions",
+      "description": "Returns the list of Kafka partitions belonging to the given topic.",
+      "line_number": 20,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\PartitionsResource.java"
+    },
+    {
+      "endpoint_path": "/topics/{topic}/partitions/{partition}",
+      "http_method": "GET",
+      "method_name": "getPartition",
+      "summary": "Get partition",
+      "description": "Returns the Kafka partition with the given partition ID.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\PartitionsResource.java"
+    },
+    {
+      "endpoint_path": "/topics/{topic}/partitions/{partition}/offsets",
+      "http_method": "GET",
+      "method_name": "getOffsets",
+      "summary": "Get partition offsets",
+      "description": "Returns a summary with beginning and end offsets for the given topic and partition.",
+      "line_number": 57,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\PartitionsResource.java"
+    },
+    {
+      "endpoint_path": "/topics/{topic}/partitions/{partition}",
+      "http_method": "POST",
+      "method_name": "produceBinary",
+      "summary": "Produce binary messages to a partition",
+      "description": "Produces binary messages to the specified partition of a topic. Consumes application/vnd.kafka.binary.v2+json.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ProduceToPartitionAction.java"
+    },
+    {
+      "endpoint_path": "/topics/{topic}",
+      "http_method": "POST",
+      "method_name": "produceBinary",
+      "summary": "Produce binary records to a topic",
+      "description": "Produces binary records to the specified topic without schema.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\ProduceToTopicAction.java"
+    },
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "get",
+      "summary": "Root resource GET endpoint",
+      "description": "Currently this just provides an endpoint that's a nop and can be used to check for liveness and can be used for tests that need to test the server setup rather than the functionality of a specific resource. Some APIs provide a listing of endpoints as their root resource; it might be nice to provide that.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/",
+      "http_method": "POST",
+      "method_name": "post",
+      "summary": "Root resource POST endpoint",
+      "description": "This version allows testing with posted entities",
+      "line_number": 21,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\RootResource.java"
+    },
+    {
+      "endpoint_path": "/topics",
+      "http_method": "GET",
+      "method_name": "list",
+      "summary": "List topics",
+      "description": "Returns a list of Kafka topic names.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\TopicsResource.java"
+    },
+    {
+      "endpoint_path": "/topics/{topic}",
+      "http_method": "GET",
+      "method_name": "getTopic",
+      "summary": "Get topic",
+      "description": "Returns information about a specific Kafka topic, including its configuration and partitions.",
+      "line_number": 42,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v2\\TopicsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/acls",
+      "http_method": "GET",
+      "method_name": "searchAcls",
+      "summary": "Search for Kafka ACLs",
+      "description": "Returns a list of Kafka ACLs that match the given search criteria. The search criteria include resource type, resource name, pattern type, principal, host, operation, and permission. All query parameters are optional with defaults. The response includes metadata with a self link and a sorted list of ACL data.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\AclsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/acls",
+      "http_method": "POST",
+      "method_name": "createAcl",
+      "summary": "Create a Kafka ACL",
+      "description": "Creates a new Kafka ACL with the specified properties. The request body must contain a valid CreateAclRequest. The response includes a Location header pointing to the created ACL and a 201 Created status.",
+      "line_number": 95,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\AclsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/acls",
+      "http_method": "DELETE",
+      "method_name": "deleteAcls",
+      "summary": "Delete Kafka ACLs",
+      "description": "Deletes and returns the list of Kafka ACLs that match the given search criteria. The search criteria include resource type, resource name, pattern type, principal, host, operation, and permission. All query parameters are required (no defaults). The response includes a sorted list of deleted ACL data.",
+      "line_number": 160,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\AclsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/{brokerId}/configs:alter",
+      "http_method": "POST",
+      "method_name": "alterBrokerConfigBatch",
+      "summary": "Alter broker config batch",
+      "description": "Atomically alters the Kafka broker configs according to the provided commands.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\AlterBrokerConfigBatchAction.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/broker-configs:alter",
+      "http_method": "POST",
+      "method_name": "alterClusterConfigBatch",
+      "summary": "Alter Cluster Config Batch",
+      "description": "Atomically alters the Kafka cluster configs according to the provided commands.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\AlterClusterConfigBatchAction.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/configs:alter",
+      "http_method": "POST",
+      "method_name": "alterTopicConfigBatch",
+      "summary": "Alter topic configs in batch",
+      "description": "Atomically alters the Kafka topic configs according to the provided commands.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\AlterTopicConfigBatchAction.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/{brokerId}/configs",
+      "http_method": "GET",
+      "method_name": "listBrokerConfigs",
+      "summary": "List Broker Configs",
+      "description": "Returns a list of Kafka broker configs for the given broker.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\BrokerConfigsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/{brokerId}/configs/{name}",
+      "http_method": "GET",
+      "method_name": "getBrokerConfig",
+      "summary": "Get Broker Config",
+      "description": "Returns the Kafka broker config with the given name.",
+      "line_number": 64,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\BrokerConfigsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/{brokerId}/configs/{name}",
+      "http_method": "PUT",
+      "method_name": "updateBrokerConfig",
+      "summary": "Update Broker Config",
+      "description": "Updates the Kafka broker config with the given name to the given new value.",
+      "line_number": 82,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\BrokerConfigsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/{brokerId}/configs/{name}",
+      "http_method": "DELETE",
+      "method_name": "resetBrokerConfig",
+      "summary": "Reset Broker Config",
+      "description": "Resets the Kafka broker config with the given name to its default value.",
+      "line_number": 101,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\BrokerConfigsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers",
+      "http_method": "GET",
+      "method_name": "listBrokers",
+      "summary": "List Brokers",
+      "description": "Returns the list of Kafka brokers belonging to the cluster with the given clusterId.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\BrokersResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/{brokerId}",
+      "http_method": "GET",
+      "method_name": "getBroker",
+      "summary": "Get Broker",
+      "description": "Returns the Kafka broker with the given brokerId belonging to the cluster with the given clusterId.",
+      "line_number": 62,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\BrokersResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/broker-configs",
+      "http_method": "GET",
+      "method_name": "listClusterConfigs",
+      "summary": "List Cluster Configs",
+      "description": "Returns the list of Kafka cluster configs for the given cluster and config type.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ClusterConfigsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/broker-configs/{name}",
+      "http_method": "GET",
+      "method_name": "getClusterConfig",
+      "summary": "Get Cluster Config",
+      "description": "Returns the Kafka cluster config with the given name.",
+      "line_number": 70,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ClusterConfigsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/broker-configs/{name}",
+      "http_method": "PUT",
+      "method_name": "upsertClusterConfig",
+      "summary": "Upsert Cluster Config",
+      "description": "Creates or updates the Kafka cluster config with the given name and value.",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ClusterConfigsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/broker-configs/{name}",
+      "http_method": "DELETE",
+      "method_name": "deleteClusterConfig",
+      "summary": "Delete Cluster Config",
+      "description": "Resets the Kafka cluster config with the given name to its default value.",
+      "line_number": 106,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ClusterConfigsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters",
+      "http_method": "GET",
+      "method_name": "listClusters",
+      "summary": "List Clusters",
+      "description": "Returns the list of Kafka clusters known.",
+      "line_number": 32,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ClustersResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}",
+      "http_method": "GET",
+      "method_name": "getCluster",
+      "summary": "Get Cluster",
+      "description": "Returns the Kafka cluster with the given clusterId.",
+      "line_number": 57,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ClustersResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}/consumers/{consumerId}/assignments",
+      "http_method": "GET",
+      "method_name": "listConsumerAssignments",
+      "summary": "List Consumer Assignments",
+      "description": "Returns the list of Kafka consumer assignments belonging to the consumer with the given consumerId.",
+      "line_number": 39,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumerAssignmentsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}/consumers/{consumerId}/assignments/{topicName}/partitions/{partitionId}",
+      "http_method": "GET",
+      "method_name": "getConsumerAssignment",
+      "summary": "Get Consumer Assignment",
+      "description": "Returns the Kafka consumer assignment with the given topicName and partitionId.",
+      "line_number": 76,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumerAssignmentsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}/lag-summary",
+      "http_method": "GET",
+      "method_name": "getConsumerGroupLagSummary",
+      "summary": "Get Consumer Group Lag Summary",
+      "description": "Returns the consumer group lag summary for the given cluster and consumer group.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumerGroupLagSummariesResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups",
+      "http_method": "GET",
+      "method_name": "listConsumerGroups",
+      "summary": "List Consumer Groups",
+      "description": "Returns the list of Kafka consumer groups belonging to the cluster with the given clusterId.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumerGroupsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}",
+      "http_method": "GET",
+      "method_name": "getConsumerGroup",
+      "summary": "Get Consumer Group",
+      "description": "Returns the Kafka consumer group with the given consumerGroupId.",
+      "line_number": 65,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumerGroupsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}/lags",
+      "http_method": "GET",
+      "method_name": "listConsumerLags",
+      "summary": "List Consumer Lags",
+      "description": "Returns the list of consumer lags for the given consumer group in the given cluster.",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumerLagsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}/lags/{topicName}/partitions/{partitionId}",
+      "http_method": "GET",
+      "method_name": "getConsumerLag",
+      "summary": "Get Consumer Lag",
+      "description": "Returns the consumer lag for the given consumer group, topic, and partition in the given cluster.",
+      "line_number": 82,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumerLagsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}/consumers",
+      "http_method": "GET",
+      "method_name": "listConsumers",
+      "summary": "List Consumers",
+      "description": "Returns the list of Kafka consumers belonging to the consumer group with the given consumerGroupId.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumersResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/consumer-groups/{consumerGroupId}/consumers/{consumerId}",
+      "http_method": "GET",
+      "method_name": "getConsumer",
+      "summary": "Get Consumer",
+      "description": "Returns the Kafka consumer with the given consumerId.",
+      "line_number": 72,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ConsumersResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/partitions/{partitionId}/reassignment",
+      "http_method": "GET",
+      "method_name": "getReassignment",
+      "summary": "Get Reassignment",
+      "description": "Returns the partition reassignment for the given cluster, topic, and partition.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\GetReassignmentAction.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/-/configs",
+      "http_method": "GET",
+      "method_name": "listBrokersConfigs",
+      "summary": "List All Brokers Configs",
+      "description": "Returns a list of Kafka broker configs for all brokers in the cluster.",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ListAllBrokersConfigsAction.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/-/partitions/-/reassignment",
+      "http_method": "GET",
+      "method_name": "listReassignments",
+      "summary": "List All Reassignments",
+      "description": "Returns a list of Kafka reassignments for all topics in the cluster.",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ListAllReassignmentsAction.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/-/configs",
+      "http_method": "GET",
+      "method_name": "listTopicConfigs",
+      "summary": "List configs for all topics",
+      "description": "Returns the list of configs for all topics in the given cluster.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ListAllTopicsConfigsAction.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/partitions",
+      "http_method": "GET",
+      "method_name": "listPartitions",
+      "summary": "List partitions",
+      "description": "Returns the list of Kafka partitions belonging to the topic with the given topicName.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\PartitionsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/partitions/{partitionId}",
+      "http_method": "GET",
+      "method_name": "getPartition",
+      "summary": "Get partition",
+      "description": "Returns the Kafka partition with the given partitionId.",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\PartitionsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/records",
+      "http_method": "POST",
+      "method_name": "produce",
+      "summary": "Produce records to a Kafka topic",
+      "description": "Produces one or more records to the specified Kafka topic. The request body is a stream of ProduceRequest objects. Each record may include a key, value, headers, partition, and timestamp. The response is a stream of ProduceResponse objects containing the partition, offset, timestamp, and serialized key/value metadata.",
+      "line_number": 57,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ProduceAction.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/partitions/{partitionId}/replicas",
+      "http_method": "GET",
+      "method_name": "listReplicas",
+      "summary": "List Replicas",
+      "description": "Returns the list of Kafka replicas belonging to the partition with the given partitionId.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ReplicasResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/partitions/{partitionId}/replicas/{brokerId}",
+      "http_method": "GET",
+      "method_name": "getReplica",
+      "summary": "Get Replica",
+      "description": "Returns the Kafka replica with the given partitionId and brokerId.",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\ReplicasResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/partitions/-/reassignment",
+      "http_method": "GET",
+      "method_name": "listReassignmentsByTopic",
+      "summary": "Search reassignments by topic",
+      "description": "Returns a list of Kafka reassignments for the given topic in the given cluster.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\SearchReassignmentsByTopicAction.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/brokers/{brokerId}/partition-replicas",
+      "http_method": "GET",
+      "method_name": "searchReplicasByBroker",
+      "summary": "Search Replicas by Broker",
+      "description": "Returns the list of Kafka partition replicas belonging to the broker with the given brokerId in the cluster with the given clusterId.",
+      "line_number": 33,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\SearchReplicasByBrokerAction.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/configs",
+      "http_method": "GET",
+      "method_name": "listTopicConfigs",
+      "summary": "List Topic Configs",
+      "description": "Returns the list of Kafka TopicConfigs belonging to the Topic with the given topicName.",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicConfigsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/configs/{name}",
+      "http_method": "GET",
+      "method_name": "getTopicConfig",
+      "summary": "Get Topic Config",
+      "description": "Returns the Kafka TopicConfig with the given name.",
+      "line_number": 68,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicConfigsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/configs/{name}",
+      "http_method": "PUT",
+      "method_name": "updateTopicConfig",
+      "summary": "Update Topic Config",
+      "description": "Updates the Kafka TopicConfig with the given name to the given newValue.",
+      "line_number": 89,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicConfigsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}/configs/{name}",
+      "http_method": "DELETE",
+      "method_name": "resetTopicConfig",
+      "summary": "Reset Topic Config",
+      "description": "Resets the Kafka TopicConfig with the given name to its default value.",
+      "line_number": 108,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicConfigsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics",
+      "http_method": "GET",
+      "method_name": "listTopics",
+      "summary": "List Topics",
+      "description": "Returns the list of Kafka topics belonging to the cluster with the given clusterId. Optionally includes authorized operations if includeAuthorizedOperations is true.",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}",
+      "http_method": "GET",
+      "method_name": "getTopic",
+      "summary": "Get Topic",
+      "description": "Returns the Kafka topic with the given topicName. Optionally includes authorized operations if include_authorized_operations is true.",
+      "line_number": 66,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics",
+      "http_method": "POST",
+      "method_name": "createTopic",
+      "summary": "Create Topic",
+      "description": "Creates a new Kafka topic with either partitions count and replication factor or explicitly specified partition-to-replicas assignments.",
+      "line_number": 86,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicsResource.java"
+    },
+    {
+      "endpoint_path": "/v3/clusters/{clusterId}/topics/{topicName}",
+      "http_method": "DELETE",
+      "method_name": "deleteTopic",
+      "summary": "Delete Topic",
+      "description": "Deletes the Kafka topic with the given topicName.",
+      "line_number": 130,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Kafka\\kafka-rest\\kafka-rest\\src\\main\\java\\io\\confluent\\kafkarest\\resources\\v3\\TopicsResource.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 40852,
+  "tokens": {
+    "prompt_tokens": 962181,
+    "completion_tokens": 40569,
+    "total_tokens": 1002750,
+    "calls": 93,
+    "elapsed_s": 435.212,
+    "prompt_cost_usd": 0.122608,
+    "completion_cost_usd": 0.028106,
+    "total_cost_usd": 0.150714,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 318920,
+        "completion_tokens": 6950,
+        "total_tokens": 325870,
+        "calls": 31,
+        "elapsed_s": 40.735688999999994,
+        "prompt_cost_usd": 0.006378,
+        "completion_cost_usd": 0.00417,
+        "total_cost_usd": 0.010548
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 297233,
+        "completion_tokens": 26492,
+        "total_tokens": 323725,
+        "calls": 31,
+        "elapsed_s": 295.969,
+        "prompt_cost_usd": 0.029723,
+        "completion_cost_usd": 0.013246,
+        "total_cost_usd": 0.042969
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 346028,
+        "completion_tokens": 7127,
+        "total_tokens": 353155,
+        "calls": 31,
+        "elapsed_s": 98.507,
+        "prompt_cost_usd": 0.086507,
+        "completion_cost_usd": 0.01069,
+        "total_cost_usd": 0.097197
+      }
+    ]
+  }
+}

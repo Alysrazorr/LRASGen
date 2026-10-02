@@ -1,0 +1,21 @@
+
+.dashboard.dashboard-page-background(ng-class='{ "has-sidebar": dashboard.sidebar.showDashboardSidebar }')
+
+    .click-cover
+
+    include dashboardSidebar
+
+    .dashboard-controls(ng-hide='dashboard.showDashboardControls == false')
+        i.fa.fa-chevron-left(ng-click='moveBack()', ng-class='{ disabled: !canMoveBack() }', title='Go to the previous page')
+        i.fa.fa-pause(ng-click='pause()', ng-show='!paused', title='Pause Dashboard page rotation')
+        i.fa.fa-play(ng-click='play()', ng-show='paused', ng-class='{ disabled: !canMoveForward() }', title='Start Dashboard page rotation')
+        a.fa.fa-download(ng-href='{{ exportUrl }}', target='_blank', title='Export the Dashboard')
+        i.fa.fa-star-o(requires-auth, ng-if='!isLiked', ng-click='toggleLike()', title='Star this Dashboard')
+        i.fa.fa-star(requires-auth, ng-if='isLiked', ng-click='toggleLike()', title='Unstar this Dashboard')    
+        i.fa.fa-chevron-right(ng-click='moveForward()', ng-class='{ disabled: !canMoveForward() }', title='Go to the next page')
+
+    .dashboard-pages
+        dashboard-page(ng-repeat='page in currentPage',
+            dashboard='dashboard', page='page', page-number='{{ currentPageIndex }}', 
+            page-overrides='dashboardOverrides.pages[currentPageIndex]')
+

@@ -1,0 +1,876 @@
+{
+  "task_id": "piggymetrics-master",
+  "api_name": "piggymetrics-master",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/users/current",
+      "http_method": "GET",
+      "method_name": "getUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\auth-service\\src\\main\\java\\com\\piggymetrics\\auth\\controller\\UserController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the authenticated principal of the current user.",
+          "data_schema": [
+            {
+              "name": "Principal",
+              "schema": {
+                "name": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/current",
+      "http_method": "GET",
+      "method_name": "getCurrentAccount",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\account-service\\src\\main\\java\\com\\piggymetrics\\account\\controller\\AccountController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the account of the currently authenticated user.",
+          "data_schema": [
+            {
+              "name": "Account",
+              "schema": {
+                "name": "string",
+                "lastSeen": "date",
+                "incomes": "array of Item",
+                "expenses": "array of Item",
+                "saving": "Saving",
+                "note": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/uaa/users",
+      "http_method": "POST",
+      "method_name": "createUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\account-service\\src\\main\\java\\com\\piggymetrics\\account\\client\\AuthServiceClient.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object containing username and password"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object containing username and password"
+        },
+        {
+          "name": "username",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Username of the user",
+          "min_length": "3",
+          "max_length": "20",
+          "_depth": 0
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Password of the user",
+          "min_length": "6",
+          "max_length": "40",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "User created successfully",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/{name}",
+      "http_method": "GET",
+      "method_name": "getAccountByName",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\account-service\\src\\main\\java\\com\\piggymetrics\\account\\controller\\AccountController.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The account name to look up, bound from the URL path variable.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the account with the given name.",
+          "data_schema": [
+            {
+              "name": "Account",
+              "schema": {
+                "name": "string",
+                "lastSeen": "date",
+                "incomes": "array<Item>",
+                "expenses": "array<Item>",
+                "saving": "Saving",
+                "note": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: the request lacks the required OAuth2 scope 'server' and the name is not 'demo'.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/statistics/{accountName}",
+      "http_method": "PUT",
+      "method_name": "updateStatistics",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\account-service\\src\\main\\java\\com\\piggymetrics\\account\\client\\StatisticsServiceClient.java",
+      "parameters": [
+        {
+          "name": "accountName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the account for which statistics are updated.",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "Account",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The account object containing the data to update statistics."
+        },
+        {
+          "name": "lastSeen",
+          "type": "Date",
+          "_class_name": "Account",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The account object containing the data to update statistics."
+        },
+        {
+          "name": "incomes",
+          "type": "List",
+          "_class_name": "Account",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The account object containing the data to update statistics."
+        },
+        {
+          "name": "expenses",
+          "type": "List",
+          "_class_name": "Account",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The account object containing the data to update statistics."
+        },
+        {
+          "name": "note",
+          "type": "String",
+          "_class_name": "Account",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The account object containing the data to update statistics."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Statistics updated successfully",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the statistics service is unavailable and the fallback is invoked",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/users",
+      "http_method": "POST",
+      "method_name": "createUser",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\auth-service\\src\\main\\java\\com\\piggymetrics\\auth\\controller\\UserController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object to create"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object to create"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "User created successfully. The createUser method returns void, so the response body is empty.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the request body fails validation (e.g., missing required fields) or when the UserService.create method throws an IllegalArgumentException.",
+          "data_schema": []
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. Returned when the request lacks valid OAuth2 authentication.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when the authenticated user does not have the required 'server' scope.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when an unexpected exception occurs during the processing of the request, such as a failure in the UserService.create method that is not an IllegalArgumentException.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/recipients/current",
+      "http_method": "GET",
+      "method_name": "getCurrentNotificationsSettings",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\notification-service\\src\\main\\java\\com\\piggymetrics\\notification\\controller\\RecipientController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the notification settings of the currently authenticated user.",
+          "data_schema": [
+            {
+              "name": "Recipient",
+              "schema": {
+                "accountName": "string",
+                "email": "string",
+                "scheduledNotifications": "map<NotificationType, NotificationSettings>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if the recipient service fails to retrieve the settings.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/accounts/{accountName}",
+      "http_method": "GET",
+      "method_name": "getAccount",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\notification-service\\src\\main\\java\\com\\piggymetrics\\notification\\client\\AccountServiceClient.java",
+      "parameters": [
+        {
+          "name": "accountName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the account to retrieve.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the account information as a JSON string.",
+          "data_schema": [
+            {
+              "name": "Account",
+              "schema": {
+                "accountName": "string",
+                "saving": "object",
+                "note": "string",
+                "lastSeen": "date",
+                "incomes": "array",
+                "expenses": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the account name is invalid or the request is malformed.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/",
+      "http_method": "POST",
+      "method_name": "createNewAccount",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\account-service\\src\\main\\java\\com\\piggymetrics\\account\\controller\\AccountController.java",
+      "parameters": [
+        {
+          "name": "username",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object containing username and password for creating a new account"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "_class_name": "User",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "User object containing username and password for creating a new account"
+        },
+        {
+          "name": "username",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Username for the new account",
+          "min_length": "3",
+          "max_length": "20",
+          "_depth": 0
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Password for the new account",
+          "min_length": "6",
+          "max_length": "40",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Account created successfully. Returns the created Account object.",
+          "data_schema": [
+            {
+              "name": "Account",
+              "schema": {
+                "name": "string",
+                "lastSeen": "date",
+                "incomes": "array",
+                "expenses": "array",
+                "saving": "Saving",
+                "note": "string"
+              }
+            },
+            {
+              "name": "Saving",
+              "schema": {
+                "amount": "number",
+                "currency": "string",
+                "interest": "number",
+                "deposit": "boolean",
+                "capitalization": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Validation of the request body failed (e.g., missing required fields, invalid lengths).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/current",
+      "http_method": "PUT",
+      "method_name": "saveCurrentAccount",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\account-service\\src\\main\\java\\com\\piggymetrics\\account\\controller\\AccountController.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "Account",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The account update payload."
+        },
+        {
+          "name": "lastSeen",
+          "type": "Date",
+          "_class_name": "Account",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The account update payload."
+        },
+        {
+          "name": "incomes",
+          "type": "List",
+          "_class_name": "Account",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The account update payload."
+        },
+        {
+          "name": "expenses",
+          "type": "List",
+          "_class_name": "Account",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The account update payload."
+        },
+        {
+          "name": "note",
+          "type": "String",
+          "_class_name": "Account",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The account update payload."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The account name.",
+          "_depth": 0
+        },
+        {
+          "name": "lastSeen",
+          "type": "Date",
+          "require": "false",
+          "position": "body",
+          "description": "The last seen timestamp.",
+          "_depth": 0
+        },
+        {
+          "name": "incomes",
+          "type": "List<Item>",
+          "require": "false",
+          "position": "body",
+          "description": "The list of income items.",
+          "_depth": 0
+        },
+        {
+          "name": "expenses",
+          "type": "List<Item>",
+          "require": "false",
+          "position": "body",
+          "description": "The list of expense items.",
+          "_depth": 0
+        },
+        {
+          "name": "amount",
+          "type": "BigDecimal",
+          "_class_name": "Saving",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The saving details."
+        },
+        {
+          "name": "interest",
+          "type": "BigDecimal",
+          "_class_name": "Saving",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The saving details."
+        },
+        {
+          "name": "deposit",
+          "type": "Boolean",
+          "_class_name": "Saving",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The saving details."
+        },
+        {
+          "name": "capitalization",
+          "type": "Boolean",
+          "_class_name": "Saving",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The saving details."
+        },
+        {
+          "name": "note",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "A note about the account.",
+          "min_length": "0",
+          "max_length": "20000",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Account successfully updated",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - validation error or illegal argument",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - failure in accountService.saveChanges",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/latest",
+      "http_method": "GET",
+      "method_name": "getRates",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\statistics-service\\src\\main\\java\\com\\piggymetrics\\statistics\\client\\ExchangeRatesClient.java",
+      "parameters": [
+        {
+          "name": "base",
+          "type": "Currency",
+          "require": "false",
+          "position": "query",
+          "description": "The base currency for which exchange rates are requested.",
+          "enum": [
+            "USD",
+            "EUR",
+            "RUB"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response containing exchange rates for the requested base currency.",
+          "data_schema": [
+            {
+              "name": "ExchangeRatesContainer",
+              "schema": {
+                "date": "date",
+                "base": "string",
+                "rates": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/recipients/current",
+      "http_method": "PUT",
+      "method_name": "saveCurrentNotificationsSettings",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\notification-service\\src\\main\\java\\com\\piggymetrics\\notification\\controller\\RecipientController.java",
+      "parameters": [
+        {
+          "name": "accountName",
+          "type": "String",
+          "_class_name": "Recipient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The recipient settings to save, validated with @Valid."
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "_class_name": "Recipient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The recipient settings to save, validated with @Valid."
+        },
+        {
+          "name": "scheduledNotifications",
+          "type": "Map",
+          "_class_name": "Recipient",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The recipient settings to save, validated with @Valid."
+        },
+        {
+          "name": "accountName",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The account name of the recipient.",
+          "_depth": 0
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The email address of the recipient, must be a valid email.",
+          "_depth": 0
+        },
+        {
+          "name": "scheduledNotifications",
+          "type": "Map<NotificationType, NotificationSettings>",
+          "require": "false",
+          "position": "body",
+          "description": "A map of notification types to their settings.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully saved or updated the current recipient's notification settings. Returns the updated Recipient object.",
+          "data_schema": [
+            {
+              "name": "Recipient",
+              "schema": {
+                "accountName": "string",
+                "email": "string",
+                "scheduledNotifications": "map<NotificationType, NotificationSettings>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. The request body is invalid (e.g., missing required fields, invalid email format, or invalid notification settings).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while processing the request.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/{accountName}",
+      "http_method": "GET",
+      "method_name": "getStatisticsByAccountName",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\statistics-service\\src\\main\\java\\com\\piggymetrics\\statistics\\controller\\StatisticsController.java",
+      "parameters": [
+        {
+          "name": "accountName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the account for which statistics are requested.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of DataPoint objects for the specified account name.",
+          "data_schema": [
+            {
+              "name": "List<DataPoint>",
+              "schema": {
+                "id": "DataPointId",
+                "incomes": "Set<ItemMetric>",
+                "expenses": "Set<ItemMetric>",
+                "statistics": "Map<StatisticMetric, BigDecimal>",
+                "rates": "Map<Currency, BigDecimal>"
+              }
+            },
+            {
+              "name": "DataPointId",
+              "schema": {
+                "account": "string",
+                "date": "date"
+              }
+            },
+            {
+              "name": "ItemMetric",
+              "schema": {
+                "title": "string",
+                "amount": "BigDecimal"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: The request does not have the required OAuth2 scope 'server' and the account name is not 'demo'.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/{accountName}",
+      "http_method": "PUT",
+      "method_name": "saveAccountStatistics",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Piggy\\piggymetrics-master\\statistics-service\\src\\main\\java\\com\\piggymetrics\\statistics\\controller\\StatisticsController.java",
+      "parameters": [
+        {
+          "name": "accountName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the account for which statistics are saved.",
+          "_depth": 0
+        },
+        {
+          "name": "incomes",
+          "type": "List",
+          "_class_name": "Account",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The account object containing incomes, expenses, and saving details."
+        },
+        {
+          "name": "expenses",
+          "type": "List",
+          "_class_name": "Account",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "The account object containing incomes, expenses, and saving details."
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Statistics saved successfully. The method returns void, so the response body is empty.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Returned when the request body fails validation (e.g., missing required fields in Account, Item, or Saving) or when an IllegalArgumentException is thrown.",
+          "data_schema": []
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. Returned when the request lacks valid OAuth2 authentication.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when the authenticated user does not have the required 'server' scope.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when an unexpected error occurs during the processing of the request.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 6680,
+  "tokens": {
+    "prompt_tokens": 236827,
+    "completion_tokens": 17259,
+    "total_tokens": 254086,
+    "calls": 84,
+    "elapsed_s": 401.813,
+    "prompt_cost_usd": 0.030372,
+    "completion_cost_usd": 0.011867,
+    "total_cost_usd": 0.042239,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 77092,
+        "completion_tokens": 3934,
+        "total_tokens": 81026,
+        "calls": 28,
+        "elapsed_s": 44.18783500000001,
+        "prompt_cost_usd": 0.001542,
+        "completion_cost_usd": 0.00236,
+        "total_cost_usd": 0.003902
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 74024,
+        "completion_tokens": 10481,
+        "total_tokens": 84505,
+        "calls": 28,
+        "elapsed_s": 262.542,
+        "prompt_cost_usd": 0.007402,
+        "completion_cost_usd": 0.005241,
+        "total_cost_usd": 0.012643
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 85711,
+        "completion_tokens": 2844,
+        "total_tokens": 88555,
+        "calls": 28,
+        "elapsed_s": 95.083,
+        "prompt_cost_usd": 0.021428,
+        "completion_cost_usd": 0.004266,
+        "total_cost_usd": 0.025694
+      }
+    ]
+  }
+}

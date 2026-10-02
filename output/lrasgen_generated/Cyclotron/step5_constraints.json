@@ -1,0 +1,3098 @@
+{
+  "task_id": "cyclotron-master",
+  "api_name": "cyclotron-master",
+  "framework": "express",
+  "endpoints": [
+    {
+      "endpoint_path": "/",
+      "http_method": "GET",
+      "method_name": "anonymous",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\app.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the Swagger UI index.html page with the Swagger spec URL replaced to point to the local swagger.json.",
+          "data_schema": [
+            {
+              "name": "SwaggerUIIndexHtml",
+              "schema": {
+                "content": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/swagger.json",
+      "http_method": "GET",
+      "method_name": "anonymous",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\app.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the Swagger JSON specification with the basePath replaced by the configured basePath.",
+          "data_schema": [
+            {
+              "name": "SwaggerSpec",
+              "schema": {
+                "swagger": "string",
+                "info": "object",
+                "host": "string",
+                "basePath": "string",
+                "tags": "array",
+                "schemes": "array",
+                "paths": "object",
+                "definitions": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dashboards/{name}",
+      "http_method": "GET",
+      "method_name": "dashboards.getSingle",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Dashboard name; lowercased before lookup",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Dashboard found and returned successfully.",
+          "data_schema": [
+            {
+              "name": "Dashboard",
+              "schema": {
+                "_id": "string",
+                "name": "string",
+                "rev": "integer",
+                "date": "date",
+                "deleted": "boolean",
+                "tags": "array",
+                "description": "string",
+                "dashboard": "object",
+                "createdBy": "object",
+                "lastUpdatedBy": "object",
+                "editors": "array",
+                "viewers": "array",
+                "likes": "array",
+                "pageViews": "integer",
+                "visits": "integer",
+                "exports": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Authentication required: this dashboard has restricted permissions.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "View Permission denied for this Dashboard.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Dashboard not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dashboards/{name}/tags",
+      "http_method": "PUT",
+      "method_name": "dashboards.putTagsSingle",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Dashboard name from the URL path; lowercased before use.",
+          "_depth": 0
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "require": "false",
+          "position": "body",
+          "description": "Array of tag strings; each tag is lowercased. The request body itself must be an array of strings.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Dashboard updated successfully with new tags; returns the updated dashboard object.",
+          "data_schema": [
+            {
+              "name": "Dashboard",
+              "schema": {
+                "name": "string",
+                "deleted": "boolean",
+                "date": "date",
+                "tags": "array",
+                "description": "string",
+                "dashboard": "object",
+                "lastUpdatedBy": "object",
+                "editors": "array",
+                "viewers": "array",
+                "rev": "integer",
+                "createdBy": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Tags must be provided as an array of strings.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Edit Permission denied for this Dashboard.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Dashboard not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error, e.g., database error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/index.html",
+      "http_method": "GET",
+      "method_name": "anonymous",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\app.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the Swagger UI index.html page with the petstore URL replaced by swagger.json.",
+          "data_schema": [
+            {
+              "name": "SwaggerIndexHtml",
+              "schema": {
+                "content": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dashboards/{name}",
+      "http_method": "DELETE",
+      "method_name": "dashboards.deleteSingle",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the dashboard to delete (case-insensitive).",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Dashboard successfully marked as deleted; returns the updated dashboard object.",
+          "data_schema": [
+            {
+              "name": "Dashboard",
+              "schema": {
+                "_id": "string",
+                "name": "string",
+                "rev": "integer",
+                "date": "date",
+                "deleted": "boolean",
+                "tags": "array",
+                "description": "string",
+                "dashboard": "object",
+                "createdBy": "object",
+                "lastUpdatedBy": "object",
+                "editors": "array",
+                "viewers": "array",
+                "likes": "array",
+                "pageViews": "integer",
+                "visits": "integer",
+                "exports": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Missing Dashboard name.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Edit Permission denied for this Dashboard.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Dashboard not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dashboards/{name}/revisions",
+      "http_method": "GET",
+      "method_name": "revisions.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns all revisions for the specified dashboard, sorted by revision number descending, with createdBy and lastUpdatedBy populated with sAMAccountName, name, and email fields.",
+          "data_schema": [
+            {
+              "name": "RevisionList",
+              "schema": {
+                "_id": "string",
+                "name": "string",
+                "rev": "integer",
+                "date": "date",
+                "deleted": "boolean",
+                "tags": "array",
+                "description": "string",
+                "createdBy": "object",
+                "lastUpdatedBy": "object",
+                "editors": "array",
+                "viewers": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Dashboard not found. Returned when the query result is undefined or null.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the database query fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dashboards",
+      "http_method": "GET",
+      "method_name": "dashboards.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Comma-separated search terms for filtering dashboards. Supports advanced terms like is:liked, is:starred, is:deleted, include:deleted, likedby:<username>, starredby:<username>, lastupdatedby:<username>, createdby:<username>, ownedby:<username>.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of dashboards (without the dashboard field) when no search query is provided, or a filtered list of dashboards when a search query is provided.",
+          "data_schema": [
+            {
+              "name": "DashboardList",
+              "schema": {
+                "_id": "string",
+                "name": "string",
+                "rev": "integer",
+                "date": "date",
+                "deleted": "boolean",
+                "tags": "array",
+                "description": "string",
+                "createdBy": "object",
+                "lastUpdatedBy": "object",
+                "editors": "array",
+                "viewers": "array",
+                "likes": "array",
+                "pageViews": "integer",
+                "visits": "integer",
+                "exports": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when a database query fails.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Dashboard not found when the query returns null or undefined.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dashboards/{name}",
+      "http_method": "PUT",
+      "method_name": "dashboards.putPostSingle",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Dashboard name from the URL path; used to identify the dashboard to update. Lowercased before use.",
+          "_depth": 0
+        },
+        {
+          "name": "dashboard",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "Dashboard object containing the dashboard definition. Must be present and must include a name. The handler guards: if (req.body == null || req.body.dashboard == null) return 400; if (req.body.dashboard.name == null || req.body.dashboard.name == '') return 400.",
+          "_depth": 0
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "require": "false",
+          "position": "body",
+          "description": "Array of tag strings for the dashboard; lowercased. Defaults to empty array if not provided.",
+          "_depth": 0
+        },
+        {
+          "name": "editors",
+          "type": "array",
+          "require": "false",
+          "position": "body",
+          "description": "Array of editor permission objects. Defaults to empty array if not provided.",
+          "_depth": 0
+        },
+        {
+          "name": "viewers",
+          "type": "array",
+          "require": "false",
+          "position": "body",
+          "description": "Array of viewer permission objects. Defaults to empty array if not provided.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "Missing Dashboard.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Edit Permission denied for this Dashboard.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error from database operation.",
+          "data_schema": null
+        },
+        {
+          "status_code": 200,
+          "description": "Dashboard updated successfully.",
+          "data_schema": [
+            {
+              "name": "Dashboard",
+              "schema": {
+                "_id": "string",
+                "name": "string",
+                "deleted": "boolean",
+                "date": "date",
+                "tags": "array",
+                "description": "string",
+                "dashboard": "object",
+                "lastUpdatedBy": "object",
+                "editors": "array",
+                "viewers": "array",
+                "rev": "integer",
+                "createdBy": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dashboards",
+      "http_method": "POST",
+      "method_name": "dashboards.putPostSingle",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "dashboard",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "Dashboard object containing the dashboard definition, name, description, tags, editors, and viewers.",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Name of the dashboard. Taken from the URL path if present, otherwise from the dashboard body.",
+          "_depth": 0
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Description of the dashboard. Defaults to an empty string if not provided.",
+          "_depth": 0
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "require": "false",
+          "position": "body",
+          "description": "Array of tags for the dashboard. Defaults to an empty array if not provided.",
+          "_depth": 0
+        },
+        {
+          "name": "editors",
+          "type": "array",
+          "require": "false",
+          "position": "body",
+          "description": "Array of editors for the dashboard. Defaults to an empty array if not provided.",
+          "_depth": 0
+        },
+        {
+          "name": "viewers",
+          "type": "array",
+          "require": "false",
+          "position": "body",
+          "description": "Array of viewers for the dashboard. Defaults to an empty array if not provided.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "Missing Dashboard.",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Authentication required: session key not provided.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Edit Permission denied for this Dashboard.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        },
+        {
+          "status_code": 200,
+          "description": "Dashboard updated or created successfully",
+          "data_schema": [
+            {
+              "name": "Dashboard",
+              "schema": {
+                "name": "string",
+                "deleted": "boolean",
+                "date": "date",
+                "tags": "array",
+                "description": "string",
+                "dashboard": "object",
+                "lastUpdatedBy": "string",
+                "editors": "array",
+                "viewers": "array",
+                "rev": "integer",
+                "createdBy": "string",
+                "_id": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dashboardnames",
+      "http_method": "GET",
+      "method_name": "dashboards.getNames",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns an array of dashboard names (strings) for all non-deleted dashboards.",
+          "data_schema": [
+            {
+              "name": "DashboardNames",
+              "schema": {
+                "names": "array of strings"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if the database query fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dashboards/{name}/likes",
+      "http_method": "GET",
+      "method_name": "dashboards.getLikes",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Dashboard name; lowercased before lookup",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the list of users who liked the dashboard.",
+          "data_schema": [
+            {
+              "name": "Likes",
+              "schema": {
+                "_id": "string",
+                "sAMAccountName": "string",
+                "name": "string",
+                "email": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Dashboard not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dashboards/{name}/likes",
+      "http_method": "POST",
+      "method_name": "dashboards.likeDashboard",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Dashboard name from the URL path, used to identify the dashboard to like.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully liked the dashboard; returns the updated likes array.",
+          "data_schema": [
+            {
+              "name": "Likes",
+              "schema": {
+                "likes": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Missing Dashboard name.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Dashboard not found.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error from database operation.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/tags",
+      "http_method": "GET",
+      "method_name": "tags.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a sorted, unique list of all tags from non-deleted dashboards.",
+          "data_schema": [
+            {
+              "name": "Tags",
+              "schema": {
+                "tags": "array of strings"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if the database query fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dashboards/{name}/revisions/{rev}/diff/{rev2}",
+      "http_method": "GET",
+      "method_name": "revisions.diff",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Dashboard name",
+          "_depth": 0
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Revision number",
+          "_depth": 0
+        },
+        {
+          "name": "rev2",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Second revision number to compare",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "HTML diff between two revisions of a dashboard, formatted with jsondiffpatch HTML formatter.",
+          "data_schema": [
+            {
+              "name": "RevisionDiffHtml",
+              "schema": {
+                "html": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Authentication required: this dashboard has restricted permissions.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "View Permission denied for this Dashboard.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Dashboard not found or revision not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error from database query failure.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dashboards/{name}/likes",
+      "http_method": "DELETE",
+      "method_name": "dashboards.unlikeDashboard",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Dashboard name; lowercased before use. The handler guards with _.isUndefined(req.params.name) and returns 400 if missing.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the updated likes array of the dashboard after removing the user's like.",
+          "data_schema": [
+            {
+              "name": "Likes",
+              "schema": {
+                "likes": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Missing Dashboard name.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Dashboard not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error from database operation.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/searchhints",
+      "http_method": "GET",
+      "method_name": "tags.getSearchHints",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a unique, sorted array of all tags and dashboard names for autocomplete.",
+          "data_schema": [
+            {
+              "name": "SearchHints",
+              "schema": {
+                "hints": "array of strings"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the database query fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/dashboards/{name}/revisions/{rev}",
+      "http_method": "GET",
+      "method_name": "revisions.getSingle",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Dashboard name (lowercased in handler)",
+          "_depth": 0
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Revision number of the dashboard",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the requested revision of the dashboard, populated with createdBy and lastUpdatedBy user fields.",
+          "data_schema": [
+            {
+              "name": "Revision",
+              "schema": {
+                "name": "string",
+                "rev": "integer",
+                "date": "date",
+                "deleted": "boolean",
+                "tags": "array",
+                "description": "string",
+                "dashboard": "object",
+                "createdBy": "object",
+                "lastUpdatedBy": "object",
+                "editors": "array",
+                "viewers": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Authentication required: this dashboard has restricted permissions.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "View Permission denied for this Dashboard.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Dashboard not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error, returned when the database query fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/export/{name}/pdf",
+      "http_method": "GET",
+      "method_name": "exporter.pdf",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Dashboard name; lowercased before lookup.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to the generated PDF report after successful export.",
+          "data_schema": []
+        },
+        {
+          "status_code": 401,
+          "description": "Authentication required: this dashboard has restricted permissions.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "View Permission denied for this Dashboard.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Dashboard not found.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error: database error or PDF export error.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/export/data",
+      "http_method": "POST",
+      "method_name": "exporter.dataAsync",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The export format. Must be one of: json, csv, xlsx.",
+          "enum": [
+            "json",
+            "csv",
+            "xlsx"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "data",
+          "type": "array",
+          "require": "false",
+          "position": "body",
+          "description": "The data to export. Must be an array of objects.",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Optional base name for the exported file. Defaults to 'data'.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "Missing body in request.",
+          "data_schema": []
+        },
+        {
+          "status_code": 201,
+          "description": "File written successfully; returns download URL.",
+          "data_schema": [
+            {
+              "name": "ExportDataResponse",
+              "schema": {
+                "url": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Error writing file.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/exportstatus/{key}",
+      "http_method": "GET",
+      "method_name": "exporter.status",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "key",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The export key used to look up the status of an export.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the status of an export, including status, png, html, pdf arrays and optionally duration/startTime/error fields.",
+          "data_schema": [
+            {
+              "name": "ExportStatus",
+              "schema": {
+                "status": "string",
+                "png": "array",
+                "html": "array",
+                "pdf": "array",
+                "startTime": "long",
+                "duration": "long",
+                "error": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Error reading export status: <error>",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/exports/{file}",
+      "http_method": "GET",
+      "method_name": "exporter.serve",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "file",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the exported file to serve. Extracted from the URL path parameter :file in the route GET /exports/:file.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Sends the requested exported file as an attachment with the correct Content-Type headers.",
+          "data_schema": [
+            {
+              "name": "ExportedFile",
+              "schema": {
+                "file": "binary"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/export/{name}/pdf",
+      "http_method": "POST",
+      "method_name": "exporter.pdfAsync",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Dashboard name used to locate the dashboard to export as PDF.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Export started asynchronously; returns a status URL for polling.",
+          "data_schema": [
+            {
+              "name": "ExportStatus",
+              "schema": {
+                "statusUrl": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Missing Dashboard name (req.params.name is undefined).",
+          "data_schema": null
+        },
+        {
+          "status_code": 401,
+          "description": "Authentication required: this dashboard has restricted permissions.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "View Permission denied for this Dashboard.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Dashboard not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Error from database query or PDF export process.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/users/{name}",
+      "http_method": "GET",
+      "method_name": "users.getSingle",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The sAMAccountName of the user to retrieve. The value is lowercased before lookup.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "User found and returned.",
+          "data_schema": [
+            {
+              "name": "User",
+              "schema": {
+                "_id": "string",
+                "name": "string",
+                "sAMAccountName": "string",
+                "email": "string",
+                "emailHash": "string",
+                "distinguishedName": "string",
+                "givenName": "string",
+                "title": "string",
+                "department": "string",
+                "division": "string",
+                "lastLogin": "date",
+                "memberOf": "array",
+                "timesLoggedIn": "integer",
+                "firstLogin": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "User not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/users",
+      "http_method": "GET",
+      "method_name": "users.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns an array of all User documents from the database.",
+          "data_schema": [
+            {
+              "name": "UserList",
+              "schema": {
+                "_id": "string",
+                "name": "string",
+                "sAMAccountName": "string",
+                "email": "string",
+                "emailHash": "string",
+                "distinguishedName": "string",
+                "givenName": "string",
+                "title": "string",
+                "department": "string",
+                "division": "string",
+                "lastLogin": "date",
+                "firstLogin": "date",
+                "timesLoggedIn": "integer",
+                "memberOf": "array",
+                "admin": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the database query fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/users/validate",
+      "http_method": "POST",
+      "method_name": "users.validate",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "key",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Session key to validate",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Session validated successfully; returns the Session object with populated user.",
+          "data_schema": [
+            {
+              "name": "Session",
+              "schema": {
+                "_id": "string",
+                "key": "string",
+                "sAMAccountName": "string",
+                "user": "object",
+                "ipAddress": "string",
+                "expiration": "date",
+                "__v": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "No session key provided.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Session invalid.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/crypto/encrypt",
+      "http_method": "POST",
+      "method_name": "crypto.encrypt",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The string value to encrypt with Cyclotron's encryption key.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Encrypted string returned as base64 text.",
+          "data_schema": [
+            {
+              "name": "EncryptedValue",
+              "schema": {
+                "encrypted": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Missing body in request.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Cyclotron-svc is not configured for encryption.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/proxy",
+      "http_method": "POST",
+      "method_name": "proxy.proxy",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Proxy request completed successfully. Returns the proxied response's status code, headers, and body.",
+          "data_schema": [
+            {
+              "name": "ProxyResponse",
+              "schema": {
+                "statusCode": "integer",
+                "headers": "object",
+                "body": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Missing body in request.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Cyclotron-svc is not configured for encryption, or an error occurred during the proxy request.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/crypto/ciphers",
+      "http_method": "GET",
+      "method_name": "crypto.ciphers",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns an array of supported cipher algorithm names.",
+          "data_schema": [
+            {
+              "name": "Ciphers",
+              "schema": {
+                "ciphers": "array of strings"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/ldap/search",
+      "http_method": "GET",
+      "method_name": "ldap.search",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Search query string used to filter LDAP entries by sAMAccountName or displayName. Must match the regex /^[^=*\\(\\)]([^=\\(\\)]*[^=*\\(\\)]+)?$/i; cannot begin or end with a wildcard.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns an array of LDAP search results, sorted by name. Each result contains LDAP attributes such as distinguishedName, name, displayName, sAMAccountName, objectCategory, description, memberOf, department, division, mail, title, and category.",
+          "data_schema": [
+            {
+              "name": "LdapSearchResult",
+              "schema": {
+                "distinguishedName": "string",
+                "name": "string",
+                "displayName": "string",
+                "sAMAccountName": "string",
+                "objectCategory": "string",
+                "description": "string",
+                "memberOf": "array",
+                "department": "string",
+                "division": "string",
+                "mail": "string",
+                "title": "string",
+                "category": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Invalid Query: the search query failed validation against the validQueryRegex.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/statistics",
+      "http_method": "GET",
+      "method_name": "statistics.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns general instance statistics including dashboards, page views, revisions, sessions, users, likes, and event counts.",
+          "data_schema": [
+            {
+              "name": "Statistics",
+              "schema": {
+                "dashboards": "object",
+                "pageViews": "object",
+                "revisions": "object",
+                "sessions": "object",
+                "users": "object",
+                "likes": "object",
+                "likeEvents": "object",
+                "unlikeEvents": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when statistics aggregation fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/users/login",
+      "http_method": "POST",
+      "method_name": "users.login",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Login successful; returns the created session object with populated user.",
+          "data_schema": [
+            {
+              "name": "Session",
+              "schema": {
+                "_id": "string",
+                "key": "string",
+                "sAMAccountName": "string",
+                "user": "object",
+                "ipAddress": "string",
+                "expiration": "date",
+                "__v": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 401,
+          "description": "Authentication failure: invalid user or password.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Authentication error or internal server error during session creation or login.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/users/logout",
+      "http_method": "GET",
+      "method_name": "users.logout",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Logout successful, returns 'OK'.",
+          "data_schema": [
+            {
+              "name": "LogoutResponse",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "No session key provided.",
+          "data_schema": []
+        },
+        {
+          "status_code": 401,
+          "description": "Session not found.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error while removing session.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/pageviews/recent",
+      "http_method": "GET",
+      "method_name": "analytics.getRecentPageViews",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "dashboard",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Dashboard ID to filter page views by",
+          "_depth": 0
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Maximum number of results to return",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the most recent page view analytics records (up to 100 by default, or the value of the 'max' query parameter). Each record is the source document of a page view.",
+          "data_schema": [
+            {
+              "name": "PageView",
+              "schema": {
+                "date": "date",
+                "ip": "string",
+                "dashboard": "object",
+                "visitId": "string",
+                "user": "object",
+                "uid": "string",
+                "page": "integer",
+                "rev": "integer",
+                "browser": "object",
+                "widgets": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the Elasticsearch search fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/events",
+      "http_method": "POST",
+      "method_name": "analytics.recordEvent",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Event recorded successfully; empty response body sent immediately.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Missing Event type.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/datasources",
+      "http_method": "POST",
+      "method_name": "analytics.recordDataSource",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "dashboard",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "Dashboard object containing at least _id; required by recordDataSource (record.dashboard == null check).",
+          "_depth": 0
+        },
+        {
+          "name": "visitId",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Visit identifier; required by recordDataSource (record.visitId == null check).",
+          "_depth": 0
+        },
+        {
+          "name": "dataSourceName",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Data source name; required by recordDataSource (record.dataSourceName == null check).",
+          "_depth": 0
+        },
+        {
+          "name": "dataSourceType",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Data source type; required by recordDataSource (record.dataSourceType == null check).",
+          "_depth": 0
+        },
+        {
+          "name": "success",
+          "type": "boolean",
+          "require": "false",
+          "position": "body",
+          "description": "Whether the data source execution succeeded; required by recordDataSource (record.success == null check).",
+          "_depth": 0
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "require": "false",
+          "position": "body",
+          "description": "Execution duration; required by recordDataSource (record.duration == null check).",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK - the request was accepted and the data source execution was recorded asynchronously; no response body is sent.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - missing Dashboard name, Visit ID, Data Source Name or Type, success, or duration in the request body.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/datasources/recent",
+      "http_method": "GET",
+      "method_name": "analytics.getRecentDataSources",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the 100 most-recent Data Source analytics records, optionally filtered by dashboard ID.",
+          "data_schema": [
+            {
+              "name": "DataSourceAnalyticsRecord",
+              "schema": {
+                "_id": "string",
+                "dashboard": "object",
+                "visitId": "string",
+                "dataSourceName": "string",
+                "dataSourceType": "string",
+                "success": "boolean",
+                "duration": "number",
+                "date": "date",
+                "details": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the Elasticsearch query fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/pageviews",
+      "http_method": "POST",
+      "method_name": "analytics.recordPageView",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "dashboard",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "Dashboard object; must not be null. The handler checks `record.dashboard == null` and returns 400 if missing.",
+          "_depth": 0
+        },
+        {
+          "name": "visitId",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Visit ID; must not be null. The handler checks `record.visitId == null` and returns 400 if missing.",
+          "_depth": 0
+        },
+        {
+          "name": "user",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "User object; either user or uid must be provided. The handler checks `record.user == null && record.uid == null` and returns 400 if both are missing.",
+          "_depth": 0
+        },
+        {
+          "name": "uid",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Anonymous user ID; either user or uid must be provided. The handler checks `record.user == null && record.uid == null` and returns 400 if both are missing.",
+          "_depth": 0
+        },
+        {
+          "name": "page",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "Page number; must not be null. The handler checks `record.page == null` and returns 400 if missing.",
+          "_depth": 0
+        },
+        {
+          "name": "rev",
+          "type": "integer",
+          "require": "false",
+          "position": "body",
+          "description": "Revision number; must not be null. The handler checks `record.rev == null` and returns 400 if missing.",
+          "_depth": 0
+        },
+        {
+          "name": "browser",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "Browser object containing name and version. The handler accesses `record.browser.name` and `record.browser.version` without null checks.",
+          "_depth": 0
+        },
+        {
+          "name": "widgets",
+          "type": "array",
+          "require": "false",
+          "position": "body",
+          "description": "Array of widget names. The handler checks `if (!_.isEmpty(record.widgets))` before mapping.",
+          "_depth": 0
+        },
+        {
+          "name": "exporting",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "If true, indicates an export operation. The handler checks `if (req.query.exporting == 'true')`.",
+          "_depth": 0
+        },
+        {
+          "name": "newVisit",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "If true, indicates a new visit. The handler checks `if (req.query.newVisit == 'true')`.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Page view recorded successfully. The handler sends an empty 200 OK response immediately after validation passes.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Missing Dashboard name in request body.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/events/recent",
+      "http_method": "GET",
+      "method_name": "analytics.getRecentEvents",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "dashboard",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Dashboard ID to filter recent events by.",
+          "_depth": 0
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Event type to filter recent events by.",
+          "_depth": 0
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Maximum number of recent events to return.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the 100 most-recent Event analytics records, optionally filtered by event type.",
+          "data_schema": [
+            {
+              "name": "EventAnalytics",
+              "schema": {
+                "eventType": "string",
+                "visitId": "string",
+                "user": "object",
+                "uid": "string",
+                "date": "date",
+                "details": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the database query fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/uniquevisitors",
+      "http_method": "GET",
+      "method_name": "analytics.getUniqueVisitors",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "startDate",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Start date for filtering analytics data. Parsed with moment().utc().",
+          "_depth": 0
+        },
+        {
+          "name": "endDate",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "End date for filtering analytics data. Parsed with moment().utc().",
+          "_depth": 0
+        },
+        {
+          "name": "dashboard",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Dashboard ID to filter analytics data.",
+          "_depth": 0
+        },
+        {
+          "name": "resolution",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Time resolution for grouping data. Defaults to 'minute'.",
+          "enum": [
+            "day",
+            "hour",
+            "minute"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Maximum number of unique visitors to return. Defaults to 100 if not provided or 0.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of unique visitors (both authenticated and anonymous) sorted by page views in descending order. Each entry contains either user information (for authenticated users) or uid/ip (for anonymous users), along with the page view count.",
+          "data_schema": [
+            {
+              "name": "UniqueVisitors",
+              "schema": {
+                "user": "object",
+                "uid": "string",
+                "ip": "string",
+                "pageViews": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an error occurs during the aggregation queries or population of user data.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/visitsovertime",
+      "http_method": "GET",
+      "method_name": "analytics.getVisitsOverTime",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "startDate",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Start date for the analytics time range. If omitted, defaults to 1 day ago.",
+          "format": "ISO 8601 date-time",
+          "_depth": 0
+        },
+        {
+          "name": "endDate",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "End date for the analytics time range. If omitted, defaults to now.",
+          "format": "ISO 8601 date-time",
+          "_depth": 0
+        },
+        {
+          "name": "dashboard",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Dashboard ID to filter analytics by a specific dashboard.",
+          "_depth": 0
+        },
+        {
+          "name": "resolution",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Time resolution for grouping visits over time.",
+          "enum": [
+            "day",
+            "hour",
+            "minute"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns an array of visit counts over time, grouped by the specified resolution (minute, hour, or day). Each element contains a date string and the number of distinct visits in that time bucket.",
+          "data_schema": [
+            {
+              "name": "VisitsOverTime",
+              "schema": {
+                "date": "string",
+                "visits": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid resolution parameter. Only 'day', 'hour', or 'minute' are allowed.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error, typically from Elasticsearch query failure.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/browsers",
+      "http_method": "GET",
+      "method_name": "analytics.getBrowserStats",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "startDate",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Start date for filtering analytics data. If not provided, defaults to 1 day ago.",
+          "format": "ISO 8601",
+          "_depth": 0
+        },
+        {
+          "name": "endDate",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "End date for filtering analytics data. If not provided, defaults to current time.",
+          "format": "ISO 8601",
+          "_depth": 0
+        },
+        {
+          "name": "dashboard",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Dashboard ID to filter analytics data. If not provided, all dashboards are included.",
+          "_depth": 0
+        },
+        {
+          "name": "resolution",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Time resolution for grouping data. Defaults to 'minute' if not provided.",
+          "enum": [
+            "day",
+            "hour",
+            "minute"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Maximum number of results to return. If not provided or 0, returns all results.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns browser statistics aggregated from page view analytics. Each entry contains browser name, version, page view count, and a combined nameVersion string. Results are sorted by pageViews descending and limited by the max query parameter (default 10000).",
+          "data_schema": [
+            {
+              "name": "BrowserStats",
+              "schema": {
+                "name": "string",
+                "version": "string",
+                "pageViews": "integer",
+                "nameVersion": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the Elasticsearch search request fails or rejects.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/pageviewsovertime",
+      "http_method": "GET",
+      "method_name": "analytics.getPageViewsOverTime",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "startDate",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Start date for the analytics time range. Parsed with moment().utc().",
+          "format": "ISO 8601 date-time",
+          "_depth": 0
+        },
+        {
+          "name": "endDate",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "End date for the analytics time range. Parsed with moment().utc().",
+          "format": "ISO 8601 date-time",
+          "_depth": 0
+        },
+        {
+          "name": "dashboard",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Dashboard ID to filter analytics by.",
+          "_depth": 0
+        },
+        {
+          "name": "resolution",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Time resolution for grouping results. Defaults to 'minute'.",
+          "enum": [
+            "day",
+            "hour",
+            "minute"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns an array of page view counts over time, grouped by the requested resolution (minute, hour, or day). Each element contains a date string and the number of page views for that time bucket.",
+          "data_schema": [
+            {
+              "name": "PageViewsOverTime",
+              "schema": {
+                "date": "string",
+                "pageViews": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid resolution parameter. Only 'day', 'hour', or 'minute' are accepted.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the Elasticsearch query fails or another unexpected error occurs.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/datasourcesbytype",
+      "http_method": "GET",
+      "method_name": "analytics.getDataSourcesByType",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns an array of data source statistics grouped by data source type. Each element contains the data source type, count, average duration, success count, and success rate.",
+          "data_schema": [
+            {
+              "name": "DataSourceTypeStats",
+              "schema": {
+                "dataSourceType": "string",
+                "count": "integer",
+                "avgDuration": "number",
+                "successCount": "integer",
+                "successRate": "number"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned if the MongoDB aggregation fails or if populating the dashboard references fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/widgets",
+      "http_method": "GET",
+      "method_name": "analytics.getWidgetStats",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "startDate",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Start date for filtering analytics data; parsed with moment.utc() and adjusted to the start of the resolution period. Defaults to 1 day ago when not provided.",
+          "_depth": 0
+        },
+        {
+          "name": "endDate",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "End date for filtering analytics data; parsed with moment.utc() and adjusted to the end of the resolution period. Defaults to the current time when not provided.",
+          "_depth": 0
+        },
+        {
+          "name": "dashboard",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Dashboard ID used to filter analytics data. When omitted, data for all dashboards is returned.",
+          "_depth": 0
+        },
+        {
+          "name": "resolution",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Time resolution used to adjust start/end dates. Defaults to 'minute' when not provided.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns widget statistics as an array of objects, each containing the widget name and its view count.",
+          "data_schema": [
+            {
+              "name": "WidgetStats",
+              "schema": {
+                "widget": "string",
+                "widgetViews": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the Elasticsearch aggregation query fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/datasourcesbyerrormessage",
+      "http_method": "GET",
+      "method_name": "analytics.getDataSourcesByErrorMessage",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns an array of failed Data Source statistics grouped by error message. Each item contains the error message, the number of occurrences, and the average duration.",
+          "data_schema": [
+            {
+              "name": "DataSourceErrorMessageStats",
+              "schema": {
+                "errorMessage": "string",
+                "count": "integer",
+                "avgDuration": "number"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the Elasticsearch aggregation query fails or when populating the dashboard data fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/datasourcesbyname",
+      "http_method": "GET",
+      "method_name": "analytics.getDataSourcesByName",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns an array of data source statistics grouped by data source type, dashboard name, and data source name. Each item includes dataSourceType, dashboardName, dataSourceName, count, avgDuration, successCount, and successRate.",
+          "data_schema": [
+            {
+              "name": "DataSourceStatistics",
+              "schema": {
+                "dataSourceType": "string",
+                "dashboardName": "string",
+                "dataSourceName": "string",
+                "count": "integer",
+                "avgDuration": "number",
+                "successCount": "integer",
+                "successRate": "number"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the Elasticsearch aggregation query fails, when populating dashboard references fails, or when an unexpected error occurs during processing.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/pageviewsbypage",
+      "http_method": "GET",
+      "method_name": "analytics.getPageViewsByPage",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "startDate",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Start date for filtering analytics data. If not provided, defaults to 1 day ago.",
+          "format": "ISO 8601",
+          "_depth": 0
+        },
+        {
+          "name": "endDate",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "End date for filtering analytics data. If not provided, defaults to current time.",
+          "format": "ISO 8601",
+          "_depth": 0
+        },
+        {
+          "name": "dashboard",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Dashboard ID to filter analytics data. If not provided, all dashboards are included.",
+          "_depth": 0
+        },
+        {
+          "name": "resolution",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Time resolution for grouping data. Defaults to 'minute' if not provided.",
+          "enum": [
+            "day",
+            "hour",
+            "minute"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Maximum number of results to return. If not provided or 0, defaults to 100.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns an array of page view statistics grouped by page number. Each element contains the page number and the number of page views for that page.",
+          "data_schema": [
+            {
+              "name": "PageViewStats",
+              "schema": {
+                "page": "integer",
+                "pageViews": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the MongoDB aggregation query fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data",
+      "http_method": "GET",
+      "method_name": "data.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns all data buckets without their data field.",
+          "data_schema": [
+            {
+              "name": "DataBucketList",
+              "schema": {
+                "key": "string",
+                "lastModifiedDate": "date",
+                "createdDate": "date",
+                "rev": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error if the database query fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data/{key}",
+      "http_method": "GET",
+      "method_name": "data.getSingle",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "key",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The key of the data bucket to retrieve.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the data bucket document matching the provided key.",
+          "data_schema": [
+            {
+              "name": "DataBucket",
+              "schema": {
+                "_id": "string",
+                "key": "string",
+                "data": "array",
+                "rev": "integer",
+                "createdDate": "date",
+                "lastModifiedDate": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Data Bucket not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error returned by the callback when the database query fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/topdashboards",
+      "http_method": "GET",
+      "method_name": "analytics.getTopDashboards",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a list of the most-visited dashboards, populated with dashboard data (excluding dashboard, editors, and viewers fields).",
+          "data_schema": [
+            {
+              "name": "Dashboard",
+              "schema": {
+                "_id": "string",
+                "name": "string",
+                "rev": "integer",
+                "date": "date",
+                "deleted": "boolean",
+                "tags": "array",
+                "description": "string",
+                "createdBy": "string",
+                "lastUpdatedBy": "string",
+                "pageViews": "integer",
+                "visits": "integer",
+                "exports": "integer",
+                "likes": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the Elasticsearch search fails or when populating the dashboard results fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data",
+      "http_method": "POST",
+      "method_name": "data.putPostSingle",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "key",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The key identifying the data bucket. Required: the handler returns 400 if req.body.key is null.",
+          "_depth": 0
+        },
+        {
+          "name": "data",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "The data payload to store in the data bucket. Required: the handler returns 400 if req.body.data is null.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "Missing key.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error from database operation.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not found.",
+          "data_schema": []
+        },
+        {
+          "status_code": 200,
+          "description": "Data bucket updated or created successfully.",
+          "data_schema": [
+            {
+              "name": "DataBucket",
+              "schema": {
+                "key": "string",
+                "lastModifiedDate": "date",
+                "data": "object",
+                "createdDate": "date",
+                "rev": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/analytics/delete",
+      "http_method": "GET",
+      "method_name": "analytics.deleteAnalyticsForDashboard",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "dashboard",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Dashboard ID for which to delete analytics data.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "OK - analytics data for the dashboard was deleted and counters were reset.",
+          "data_schema": [
+            {
+              "name": "DeleteAnalyticsResponse",
+              "schema": {
+                "response": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request - missing Dashboard ID in query parameter 'dashboard'.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden - permission denied; only admins may delete analytics.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error - error deleting analytics for dashboard.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data/{key}/data",
+      "http_method": "GET",
+      "method_name": "data.getSingleData",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "key",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The key of the data bucket whose data is to be retrieved.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the data array of the data bucket with the given key.",
+          "data_schema": [
+            {
+              "name": "DataBucketData",
+              "schema": {
+                "data": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Data Bucket not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error from database query.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data/{key}",
+      "http_method": "DELETE",
+      "method_name": "data.deleteSingle",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "key",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The key of the data bucket to delete.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Data Bucket deleted.",
+          "data_schema": [
+            {
+              "name": "DeleteResponse",
+              "schema": {
+                "message": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when deleting the data bucket.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data/{key}",
+      "http_method": "PUT",
+      "method_name": "data.putPostSingle",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "key",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The key of the data bucket to create or update.",
+          "_depth": 0
+        },
+        {
+          "name": "key",
+          "type": "string",
+          "require": "true",
+          "position": "body",
+          "description": "The key of the data bucket (used if not provided in the path).",
+          "_depth": 0
+        },
+        {
+          "name": "data",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "The data to store in the data bucket.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Data bucket created or updated successfully; returns the updated data bucket document.",
+          "data_schema": [
+            {
+              "name": "DataBucket",
+              "schema": {
+                "_id": "string",
+                "key": "string",
+                "data": "array",
+                "rev": "integer",
+                "createdDate": "date",
+                "lastModifiedDate": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Missing key or missing data in request body.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error returned by the database update callback when the operation fails.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data/{key}/append",
+      "http_method": "POST",
+      "method_name": "data.appendData",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "key",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The key of the data bucket to append data to.",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "The data to append. Can be a single value or an array of values.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "Missing data.",
+          "data_schema": null
+        },
+        {
+          "status_code": 200,
+          "description": "Data appended successfully. Returns the updated data bucket.",
+          "data_schema": [
+            {
+              "name": "DataBucket",
+              "schema": {
+                "_id": "string",
+                "key": "string",
+                "data": "array",
+                "rev": "integer",
+                "createdDate": "date",
+                "lastModifiedDate": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data/{key}/data",
+      "http_method": "PUT",
+      "method_name": "data.putData",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "key",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The key of the data bucket to replace data for.",
+          "_depth": 0
+        },
+        {
+          "name": "rev",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional revision number to check for optimistic concurrency.",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "array",
+          "require": "false",
+          "position": "body",
+          "description": "The new data array to replace the existing data bucket content.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "Missing data.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Revision number not matching (found <bucket.rev>, expecting <rev>)",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error",
+          "data_schema": null
+        },
+        {
+          "status_code": 200,
+          "description": "Data bucket updated successfully",
+          "data_schema": [
+            {
+              "name": "DataBucket",
+              "schema": {
+                "_id": "string",
+                "key": "string",
+                "data": "array",
+                "rev": "integer",
+                "createdDate": "date",
+                "lastModifiedDate": "date"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data/{key}/upsert",
+      "http_method": "POST",
+      "method_name": "data.upsertData",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [
+        {
+          "name": "key",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The key of the data bucket to upsert data into.",
+          "_depth": 0
+        },
+        {
+          "name": "data",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "The data object to upsert into the data bucket.",
+          "_depth": 0
+        },
+        {
+          "name": "keys",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "The keys used to match an existing row in the data bucket for upsert.",
+          "_depth": 0
+        },
+        {
+          "name": "rev",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Optional revision number to check for matching revision before upserting.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "Missing data.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Revision number not matching (found X, expecting Y).",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error from database query.",
+          "data_schema": null
+        },
+        {
+          "status_code": 200,
+          "description": "Data bucket updated successfully.",
+          "data_schema": [
+            {
+              "name": "DataBucket",
+              "schema": {
+                "_id": "string",
+                "key": "string",
+                "data": "array",
+                "rev": "integer",
+                "createdDate": "date",
+                "lastModifiedDate": "date"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/data/{key}/remove",
+      "http_method": "POST",
+      "method_name": "data.removeData",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Cyclotron\\cyclotron-master\\cyclotron-svc\\routes\\api.js",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 400,
+          "description": "Missing data.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found.",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Revision number not matching (found <bucket.rev>, expecting <rev>)",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error.",
+          "data_schema": null
+        },
+        {
+          "status_code": 200,
+          "description": "Data bucket after removal.",
+          "data_schema": [
+            {
+              "name": "DataBucket",
+              "schema": {
+                "_id": "string",
+                "key": "string",
+                "data": "array",
+                "rev": "integer",
+                "createdDate": "date",
+                "lastModifiedDate": "date"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 5,
+    "step2_ms": 13,
+    "step3_ms": 12669,
+    "step4_ms": 18592,
+    "step5_ms": 0,
+    "total_ms": 31284
+  }
+}

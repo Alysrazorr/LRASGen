@@ -1,0 +1,556 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "session-service API",
+    "description": "LRASGen-generated specification for session-service (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/info": {
+      "get": {
+        "operationId": "getInfo",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the implementation version of the package as a string.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string",
+                      "description": "{'version': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sessions/{source}/{type}/{id}": {
+      "delete": {
+        "operationId": "deleteSessions",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "required": true,
+            "description": "The source of the session",
+            "schema": {
+              "type": "string",
+              "description": "The source of the session"
+            }
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "description": "The type of the session",
+            "schema": {
+              "type": "string",
+              "description": "The type of the session",
+              "enum": [
+                "main_session",
+                "virtual_study",
+                "group",
+                "comparison_session",
+                "settings",
+                "custom_data",
+                "genomic_chart",
+                "custom_gene_list"
+              ]
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the session",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session deleted successfully. No response body is returned."
+          },
+          "404": {
+            "description": "Session not found."
+          },
+          "500": {
+            "description": "Internal server error if an unexpected exception occurs during session deletion."
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateSessions",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "required": true,
+            "description": "The source of the session",
+            "schema": {
+              "type": "string",
+              "description": "The source of the session"
+            }
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "description": "The type of the session",
+            "schema": {
+              "type": "string",
+              "description": "The type of the session",
+              "enum": [
+                "main_session",
+                "virtual_study",
+                "group",
+                "comparison_session",
+                "settings",
+                "custom_data",
+                "genomic_chart",
+                "custom_gene_list"
+              ]
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the session",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session updated successfully. The endpoint returns no body."
+          },
+          "400": {
+            "description": "Bad request. Returned when the session data is invalid or the session type is invalid."
+          },
+          "404": {
+            "description": "Session not found."
+          },
+          "500": {
+            "description": "Internal server error. Returned when an unexpected error occurs during session update."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "description": "The session data"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getSessions",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "required": true,
+            "description": "The source of the session",
+            "schema": {
+              "type": "string",
+              "description": "The source of the session"
+            }
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "description": "The type of the session",
+            "schema": {
+              "type": "string",
+              "description": "The type of the session",
+              "enum": [
+                "main_session",
+                "virtual_study",
+                "group",
+                "comparison_session",
+                "settings",
+                "custom_data",
+                "genomic_chart",
+                "custom_gene_list"
+              ]
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the session",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session found and returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Session": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'checksum': 'string', 'data': 'object', 'source': 'string', 'type': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid session type provided"
+          },
+          "404": {
+            "description": "Session not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/sessions/{source}/{type}/query/fetch": {
+      "post": {
+        "operationId": "createFetch",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "required": true,
+            "description": "The source of the session",
+            "schema": {
+              "type": "string",
+              "description": "The source of the session"
+            }
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "description": "The type of the session",
+            "schema": {
+              "type": "string",
+              "description": "The type of the session",
+              "enum": [
+                "main_session",
+                "virtual_study",
+                "group",
+                "comparison_session",
+                "settings",
+                "custom_data",
+                "genomic_chart",
+                "custom_gene_list"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of sessions matching the query, serialized with the Full JSON view (id, checksum, data, source, type).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Session": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'checksum': 'string', 'data': 'object', 'source': 'string', 'type': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the query is invalid (SessionQueryInvalidException) or when the type path variable cannot be converted to SessionType (MethodArgumentTypeMismatchException)."
+          },
+          "500": {
+            "description": "Internal server error. Returned when the delegated sessionService.getSessionsByQuery call fails with an unhandled exception."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "selection filter similar to mongo filter"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sessions/{source}/{type}": {
+      "post": {
+        "operationId": "createSessions",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "required": true,
+            "description": "The source of the session",
+            "schema": {
+              "type": "string",
+              "description": "The source of the session"
+            }
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "description": "The type of the session",
+            "schema": {
+              "type": "string",
+              "description": "The type of the session",
+              "enum": [
+                "main_session",
+                "virtual_study",
+                "group",
+                "comparison_session",
+                "settings",
+                "custom_data",
+                "genomic_chart",
+                "custom_gene_list"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session created successfully. Returns the created session serialized with the IdOnly JSON view, containing only the session id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Session": {
+                      "type": "string",
+                      "description": "{'id': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when the session data is invalid (SessionInvalidException) or when the {type} path variable cannot be converted to a SessionType enum value (MethodArgumentTypeMismatchException)."
+          },
+          "500": {
+            "description": "Internal Server Error. The handler delegates to sessionService.addSession and does not catch failures other than the declared exceptions, so an unexpected failure from the service call results in a 500 response."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "description": "The session data as a JSON string"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getSessions",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "required": true,
+            "description": "The source of the sessions to retrieve.",
+            "schema": {
+              "type": "string",
+              "description": "The source of the sessions to retrieve."
+            }
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "description": "The type of sessions to retrieve.",
+            "schema": {
+              "type": "string",
+              "description": "The type of sessions to retrieve.",
+              "enum": [
+                "main_session",
+                "virtual_study",
+                "group",
+                "comparison_session",
+                "settings",
+                "custom_data",
+                "genomic_chart",
+                "custom_gene_list"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of sessions matching the given source and type, serialized with the Full JSON view.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Session": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'checksum': 'string', 'data': 'object', 'source': 'string', 'type': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when the {type} path variable cannot be converted to a SessionType enum value; the response body lists the valid types."
+          },
+          "500": {
+            "description": "Internal Server Error. Returned when the delegated call to sessionService.getSessions fails and no handler catches the failure."
+          }
+        }
+      }
+    },
+    "/api/sessions/{source}/{type}/query": {
+      "get": {
+        "operationId": "getQuery",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "required": true,
+            "description": "The source of the session",
+            "schema": {
+              "type": "string",
+              "description": "The source of the session"
+            }
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "description": "The type of the session",
+            "schema": {
+              "type": "string",
+              "description": "The type of the session",
+              "enum": [
+                "main_session",
+                "virtual_study",
+                "group",
+                "comparison_session",
+                "settings",
+                "custom_data",
+                "genomic_chart",
+                "custom_gene_list"
+              ]
+            }
+          },
+          {
+            "name": "field",
+            "in": "query",
+            "required": false,
+            "description": "The field to query by",
+            "schema": {
+              "type": "string",
+              "description": "The field to query by"
+            }
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "required": false,
+            "description": "The value to match for the field",
+            "schema": {
+              "type": "string",
+              "description": "The value to match for the field"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of sessions matching the query constructed from the 'field' and 'value' request parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Session": {
+                      "type": "string",
+                      "description": "{'id': 'string', 'checksum': 'string', 'data': 'object', 'source': 'string', 'type': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when the session query is invalid (SessionQueryInvalidException) or when the 'type' path variable cannot be converted to a SessionType enum value (MethodArgumentTypeMismatchException)."
+          },
+          "500": {
+            "description": "Internal Server Error. Returned when an unexpected error occurs while processing the request, such as a failure in the session service call that is not caught by the handler."
+          }
+        }
+      }
+    }
+  }
+}

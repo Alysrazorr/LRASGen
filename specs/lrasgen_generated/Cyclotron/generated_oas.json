@@ -1,0 +1,2858 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "cyclotron-master API",
+    "description": "LRASGen-generated specification for cyclotron-master (express).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "get",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the Swagger UI index.html page with the Swagger spec URL replaced to point to the local swagger.json.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SwaggerUIIndexHtml": {
+                      "type": "string",
+                      "description": "{'content': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/swagger.json": {
+      "get": {
+        "operationId": "getSwagger.json",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the Swagger JSON specification with the basePath replaced by the configured basePath.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SwaggerSpec": {
+                      "type": "string",
+                      "description": "{'swagger': 'string', 'info': 'object', 'host': 'string', 'basePath': 'string', 'tags': 'array', 'schemes': 'array', 'paths': 'object', 'definitions': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dashboards/{name}": {
+      "get": {
+        "operationId": "getDashboards",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Dashboard name; lowercased before lookup",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard name; lowercased before lookup"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dashboard found and returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Dashboard": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'name': 'string', 'rev': 'integer', 'date': 'date', 'deleted': 'boolean', 'tags': 'array', 'description': 'string', 'dashboard': 'object', 'createdBy': 'object', 'lastUpdatedBy': 'object', 'editors': 'array', 'viewers': 'array', 'likes': 'array', 'pageViews': 'integer', 'visits': 'integer', 'exports': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required: this dashboard has restricted permissions."
+          },
+          "403": {
+            "description": "View Permission denied for this Dashboard."
+          },
+          "404": {
+            "description": "Dashboard not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteDashboards",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Name of the dashboard to delete (case-insensitive).",
+            "schema": {
+              "type": "string",
+              "description": "Name of the dashboard to delete (case-insensitive)."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dashboard successfully marked as deleted; returns the updated dashboard object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Dashboard": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'name': 'string', 'rev': 'integer', 'date': 'date', 'deleted': 'boolean', 'tags': 'array', 'description': 'string', 'dashboard': 'object', 'createdBy': 'object', 'lastUpdatedBy': 'object', 'editors': 'array', 'viewers': 'array', 'likes': 'array', 'pageViews': 'integer', 'visits': 'integer', 'exports': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing Dashboard name."
+          },
+          "403": {
+            "description": "Edit Permission denied for this Dashboard."
+          },
+          "404": {
+            "description": "Dashboard not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateDashboards",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Dashboard name from the URL path; used to identify the dashboard to update. Lowercased before use.",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard name from the URL path; used to identify the dashboard to update. Lowercased before use."
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Missing Dashboard."
+          },
+          "403": {
+            "description": "Edit Permission denied for this Dashboard."
+          },
+          "500": {
+            "description": "Internal server error from database operation."
+          },
+          "200": {
+            "description": "Dashboard updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Dashboard": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'name': 'string', 'deleted': 'boolean', 'date': 'date', 'tags': 'array', 'description': 'string', 'dashboard': 'object', 'lastUpdatedBy': 'object', 'editors': 'array', 'viewers': 'array', 'rev': 'integer', 'createdBy': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dashboard": {
+                    "type": "object",
+                    "description": "Dashboard object containing the dashboard definition. Must be present and must include a name. The handler guards: if (req.body == null || req.body.dashboard == null) return 400; if (req.body.dashboard.name == null || req.body.dashboard.name == '') return 400."
+                  },
+                  "tags": {
+                    "type": "array",
+                    "description": "Array of tag strings for the dashboard; lowercased. Defaults to empty array if not provided."
+                  },
+                  "editors": {
+                    "type": "array",
+                    "description": "Array of editor permission objects. Defaults to empty array if not provided."
+                  },
+                  "viewers": {
+                    "type": "array",
+                    "description": "Array of viewer permission objects. Defaults to empty array if not provided."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dashboards/{name}/tags": {
+      "put": {
+        "operationId": "updateTags",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Dashboard name from the URL path; lowercased before use.",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard name from the URL path; lowercased before use."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dashboard updated successfully with new tags; returns the updated dashboard object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Dashboard": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'deleted': 'boolean', 'date': 'date', 'tags': 'array', 'description': 'string', 'dashboard': 'object', 'lastUpdatedBy': 'object', 'editors': 'array', 'viewers': 'array', 'rev': 'integer', 'createdBy': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tags must be provided as an array of strings."
+          },
+          "403": {
+            "description": "Edit Permission denied for this Dashboard."
+          },
+          "404": {
+            "description": "Dashboard not found."
+          },
+          "500": {
+            "description": "Internal server error, e.g., database error."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tags": {
+                    "type": "array",
+                    "description": "Array of tag strings; each tag is lowercased. The request body itself must be an array of strings."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/index.html": {
+      "get": {
+        "operationId": "getIndex.html",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the Swagger UI index.html page with the petstore URL replaced by swagger.json.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SwaggerIndexHtml": {
+                      "type": "string",
+                      "description": "{'content': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dashboards/{name}/revisions": {
+      "get": {
+        "operationId": "getRevisions",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns all revisions for the specified dashboard, sorted by revision number descending, with createdBy and lastUpdatedBy populated with sAMAccountName, name, and email fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RevisionList": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'name': 'string', 'rev': 'integer', 'date': 'date', 'deleted': 'boolean', 'tags': 'array', 'description': 'string', 'createdBy': 'object', 'lastUpdatedBy': 'object', 'editors': 'array', 'viewers': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dashboard not found. Returned when the query result is undefined or null."
+          },
+          "500": {
+            "description": "Internal server error. Returned when the database query fails."
+          }
+        }
+      }
+    },
+    "/dashboards": {
+      "get": {
+        "operationId": "getDashboards",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "description": "Comma-separated search terms for filtering dashboards. Supports advanced terms like is:liked, is:starred, is:deleted, include:deleted, likedby:<username>, starredby:<username>, lastupdatedby:<username>, createdby:<username>, ownedby:<username>.",
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated search terms for filtering dashboards. Supports advanced terms like is:liked, is:starred, is:deleted, include:deleted, likedby:<username>, starredby:<username>, lastupdatedby:<username>, createdby:<username>, ownedby:<username>."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of dashboards (without the dashboard field) when no search query is provided, or a filtered list of dashboards when a search query is provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DashboardList": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'name': 'string', 'rev': 'integer', 'date': 'date', 'deleted': 'boolean', 'tags': 'array', 'description': 'string', 'createdBy': 'object', 'lastUpdatedBy': 'object', 'editors': 'array', 'viewers': 'array', 'likes': 'array', 'pageViews': 'integer', 'visits': 'integer', 'exports': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when a database query fails."
+          },
+          "404": {
+            "description": "Dashboard not found when the query returns null or undefined."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createDashboards",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "400": {
+            "description": "Missing Dashboard."
+          },
+          "401": {
+            "description": "Authentication required: session key not provided."
+          },
+          "403": {
+            "description": "Edit Permission denied for this Dashboard."
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "200": {
+            "description": "Dashboard updated or created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Dashboard": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'deleted': 'boolean', 'date': 'date', 'tags': 'array', 'description': 'string', 'dashboard': 'object', 'lastUpdatedBy': 'string', 'editors': 'array', 'viewers': 'array', 'rev': 'integer', 'createdBy': 'string', '_id': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dashboard": {
+                    "type": "object",
+                    "description": "Dashboard object containing the dashboard definition, name, description, tags, editors, and viewers."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the dashboard. Taken from the URL path if present, otherwise from the dashboard body."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description of the dashboard. Defaults to an empty string if not provided."
+                  },
+                  "tags": {
+                    "type": "array",
+                    "description": "Array of tags for the dashboard. Defaults to an empty array if not provided."
+                  },
+                  "editors": {
+                    "type": "array",
+                    "description": "Array of editors for the dashboard. Defaults to an empty array if not provided."
+                  },
+                  "viewers": {
+                    "type": "array",
+                    "description": "Array of viewers for the dashboard. Defaults to an empty array if not provided."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dashboardnames": {
+      "get": {
+        "operationId": "getDashboardnames",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns an array of dashboard names (strings) for all non-deleted dashboards.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DashboardNames": {
+                      "type": "string",
+                      "description": "{'names': 'array of strings'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if the database query fails."
+          }
+        }
+      }
+    },
+    "/dashboards/{name}/likes": {
+      "get": {
+        "operationId": "getLikes",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Dashboard name; lowercased before lookup",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard name; lowercased before lookup"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the list of users who liked the dashboard.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Likes": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'sAMAccountName': 'string', 'name': 'string', 'email': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dashboard not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createLikes",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Dashboard name from the URL path, used to identify the dashboard to like.",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard name from the URL path, used to identify the dashboard to like."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully liked the dashboard; returns the updated likes array.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Likes": {
+                      "type": "string",
+                      "description": "{'likes': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing Dashboard name."
+          },
+          "404": {
+            "description": "Dashboard not found."
+          },
+          "500": {
+            "description": "Internal server error from database operation."
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteLikes",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Dashboard name; lowercased before use. The handler guards with _.isUndefined(req.params.name) and returns 400 if missing.",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard name; lowercased before use. The handler guards with _.isUndefined(req.params.name) and returns 400 if missing."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the updated likes array of the dashboard after removing the user's like.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Likes": {
+                      "type": "string",
+                      "description": "{'likes': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing Dashboard name."
+          },
+          "404": {
+            "description": "Dashboard not found."
+          },
+          "500": {
+            "description": "Internal server error from database operation."
+          }
+        }
+      }
+    },
+    "/tags": {
+      "get": {
+        "operationId": "getTags",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a sorted, unique list of all tags from non-deleted dashboards.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Tags": {
+                      "type": "string",
+                      "description": "{'tags': 'array of strings'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if the database query fails."
+          }
+        }
+      }
+    },
+    "/dashboards/{name}/revisions/{rev}/diff/{rev2}": {
+      "get": {
+        "operationId": "getDiff",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Dashboard name",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard name"
+            }
+          },
+          {
+            "name": "rev",
+            "in": "path",
+            "required": true,
+            "description": "Revision number",
+            "schema": {
+              "type": "string",
+              "description": "Revision number"
+            }
+          },
+          {
+            "name": "rev2",
+            "in": "path",
+            "required": true,
+            "description": "Second revision number to compare",
+            "schema": {
+              "type": "string",
+              "description": "Second revision number to compare"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTML diff between two revisions of a dashboard, formatted with jsondiffpatch HTML formatter.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RevisionDiffHtml": {
+                      "type": "string",
+                      "description": "{'html': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required: this dashboard has restricted permissions."
+          },
+          "403": {
+            "description": "View Permission denied for this Dashboard."
+          },
+          "404": {
+            "description": "Dashboard not found or revision not found."
+          },
+          "500": {
+            "description": "Internal server error from database query failure."
+          }
+        }
+      }
+    },
+    "/searchhints": {
+      "get": {
+        "operationId": "getSearchhints",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a unique, sorted array of all tags and dashboard names for autocomplete.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SearchHints": {
+                      "type": "string",
+                      "description": "{'hints': 'array of strings'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the database query fails."
+          }
+        }
+      }
+    },
+    "/dashboards/{name}/revisions/{rev}": {
+      "get": {
+        "operationId": "getRevisions",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Dashboard name (lowercased in handler)",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard name (lowercased in handler)"
+            }
+          },
+          {
+            "name": "rev",
+            "in": "path",
+            "required": true,
+            "description": "Revision number of the dashboard",
+            "schema": {
+              "type": "string",
+              "description": "Revision number of the dashboard"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the requested revision of the dashboard, populated with createdBy and lastUpdatedBy user fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Revision": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'rev': 'integer', 'date': 'date', 'deleted': 'boolean', 'tags': 'array', 'description': 'string', 'dashboard': 'object', 'createdBy': 'object', 'lastUpdatedBy': 'object', 'editors': 'array', 'viewers': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required: this dashboard has restricted permissions."
+          },
+          "403": {
+            "description": "View Permission denied for this Dashboard."
+          },
+          "404": {
+            "description": "Dashboard not found."
+          },
+          "500": {
+            "description": "Internal server error, returned when the database query fails."
+          }
+        }
+      }
+    },
+    "/export/{name}/pdf": {
+      "get": {
+        "operationId": "getPdf",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Dashboard name; lowercased before lookup.",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard name; lowercased before lookup."
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect to the generated PDF report after successful export."
+          },
+          "401": {
+            "description": "Authentication required: this dashboard has restricted permissions."
+          },
+          "403": {
+            "description": "View Permission denied for this Dashboard."
+          },
+          "404": {
+            "description": "Dashboard not found."
+          },
+          "500": {
+            "description": "Internal server error: database error or PDF export error."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPdf",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Dashboard name used to locate the dashboard to export as PDF.",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard name used to locate the dashboard to export as PDF."
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Export started asynchronously; returns a status URL for polling.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ExportStatus": {
+                      "type": "string",
+                      "description": "{'statusUrl': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing Dashboard name (req.params.name is undefined)."
+          },
+          "401": {
+            "description": "Authentication required: this dashboard has restricted permissions."
+          },
+          "403": {
+            "description": "View Permission denied for this Dashboard."
+          },
+          "404": {
+            "description": "Dashboard not found."
+          },
+          "500": {
+            "description": "Error from database query or PDF export process."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/export/data": {
+      "post": {
+        "operationId": "createData",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "400": {
+            "description": "Missing body in request."
+          },
+          "201": {
+            "description": "File written successfully; returns download URL.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ExportDataResponse": {
+                      "type": "string",
+                      "description": "{'url': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error writing file."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "format": {
+                    "type": "string",
+                    "description": "The export format. Must be one of: json, csv, xlsx."
+                  },
+                  "data": {
+                    "type": "array",
+                    "description": "The data to export. Must be an array of objects."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Optional base name for the exported file. Defaults to 'data'."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/exportstatus/{key}": {
+      "get": {
+        "operationId": "getExportstatus",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "The export key used to look up the status of an export.",
+            "schema": {
+              "type": "string",
+              "description": "The export key used to look up the status of an export."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the status of an export, including status, png, html, pdf arrays and optionally duration/startTime/error fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ExportStatus": {
+                      "type": "string",
+                      "description": "{'status': 'string', 'png': 'array', 'html': 'array', 'pdf': 'array', 'startTime': 'long', 'duration': 'long', 'error': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error reading export status: <error>"
+          }
+        }
+      }
+    },
+    "/exports/{file}": {
+      "get": {
+        "operationId": "getExports",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "file",
+            "in": "path",
+            "required": true,
+            "description": "The name of the exported file to serve. Extracted from the URL path parameter :file in the route GET /exports/:file.",
+            "schema": {
+              "type": "string",
+              "description": "The name of the exported file to serve. Extracted from the URL path parameter :file in the route GET /exports/:file."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sends the requested exported file as an attachment with the correct Content-Type headers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ExportedFile": {
+                      "type": "string",
+                      "description": "{'file': 'binary'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{name}": {
+      "get": {
+        "operationId": "getUsers",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "The sAMAccountName of the user to retrieve. The value is lowercased before lookup.",
+            "schema": {
+              "type": "string",
+              "description": "The sAMAccountName of the user to retrieve. The value is lowercased before lookup."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "User": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'name': 'string', 'sAMAccountName': 'string', 'email': 'string', 'emailHash': 'string', 'distinguishedName': 'string', 'givenName': 'string', 'title': 'string', 'department': 'string', 'division': 'string', 'lastLogin': 'date', 'memberOf': 'array', 'timesLoggedIn': 'integer', 'firstLogin': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "operationId": "getUsers",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns an array of all User documents from the database.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserList": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'name': 'string', 'sAMAccountName': 'string', 'email': 'string', 'emailHash': 'string', 'distinguishedName': 'string', 'givenName': 'string', 'title': 'string', 'department': 'string', 'division': 'string', 'lastLogin': 'date', 'firstLogin': 'date', 'timesLoggedIn': 'integer', 'memberOf': 'array', 'admin': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when the database query fails."
+          }
+        }
+      }
+    },
+    "/users/validate": {
+      "post": {
+        "operationId": "createValidate",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Session validated successfully; returns the Session object with populated user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Session": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'key': 'string', 'sAMAccountName': 'string', 'user': 'object', 'ipAddress': 'string', 'expiration': 'date', '__v': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "No session key provided."
+          },
+          "403": {
+            "description": "Session invalid."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Session key to validate"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/crypto/encrypt": {
+      "post": {
+        "operationId": "createEncrypt",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Encrypted string returned as base64 text.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "EncryptedValue": {
+                      "type": "string",
+                      "description": "{'encrypted': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing body in request."
+          },
+          "500": {
+            "description": "Cyclotron-svc is not configured for encryption."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "description": "The string value to encrypt with Cyclotron's encryption key."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/proxy": {
+      "post": {
+        "operationId": "createProxy",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Proxy request completed successfully. Returns the proxied response's status code, headers, and body.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProxyResponse": {
+                      "type": "string",
+                      "description": "{'statusCode': 'integer', 'headers': 'object', 'body': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing body in request."
+          },
+          "500": {
+            "description": "Cyclotron-svc is not configured for encryption, or an error occurred during the proxy request."
+          }
+        }
+      }
+    },
+    "/crypto/ciphers": {
+      "get": {
+        "operationId": "getCiphers",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns an array of supported cipher algorithm names.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Ciphers": {
+                      "type": "string",
+                      "description": "{'ciphers': 'array of strings'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ldap/search": {
+      "get": {
+        "operationId": "getSearch",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "description": "Search query string used to filter LDAP entries by sAMAccountName or displayName. Must match the regex /^[^=*\\(\\)]([^=\\(\\)]*[^=*\\(\\)]+)?$/i; cannot begin or end with a wildcard.",
+            "schema": {
+              "type": "string",
+              "description": "Search query string used to filter LDAP entries by sAMAccountName or displayName. Must match the regex /^[^=*\\(\\)]([^=\\(\\)]*[^=*\\(\\)]+)?$/i; cannot begin or end with a wildcard."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returns an array of LDAP search results, sorted by name. Each result contains LDAP attributes such as distinguishedName, name, displayName, sAMAccountName, objectCategory, description, memberOf, department, division, mail, title, and category.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "LdapSearchResult": {
+                      "type": "string",
+                      "description": "{'distinguishedName': 'string', 'name': 'string', 'displayName': 'string', 'sAMAccountName': 'string', 'objectCategory': 'string', 'description': 'string', 'memberOf': 'array', 'department': 'string', 'division': 'string', 'mail': 'string', 'title': 'string', 'category': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Invalid Query: the search query failed validation against the validQueryRegex."
+          }
+        }
+      }
+    },
+    "/statistics": {
+      "get": {
+        "operationId": "getStatistics",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns general instance statistics including dashboards, page views, revisions, sessions, users, likes, and event counts.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Statistics": {
+                      "type": "string",
+                      "description": "{'dashboards': 'object', 'pageViews': 'object', 'revisions': 'object', 'sessions': 'object', 'users': 'object', 'likes': 'object', 'likeEvents': 'object', 'unlikeEvents': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when statistics aggregation fails."
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "operationId": "createLogin",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Login successful; returns the created session object with populated user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Session": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'key': 'string', 'sAMAccountName': 'string', 'user': 'object', 'ipAddress': 'string', 'expiration': 'date', '__v': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failure: invalid user or password."
+          },
+          "500": {
+            "description": "Authentication error or internal server error during session creation or login."
+          }
+        }
+      }
+    },
+    "/users/logout": {
+      "get": {
+        "operationId": "getLogout",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Logout successful, returns 'OK'.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "LogoutResponse": {
+                      "type": "string",
+                      "description": "{'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "No session key provided."
+          },
+          "401": {
+            "description": "Session not found."
+          },
+          "500": {
+            "description": "Internal server error while removing session."
+          }
+        }
+      }
+    },
+    "/analytics/pageviews/recent": {
+      "get": {
+        "operationId": "getRecent",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dashboard",
+            "in": "query",
+            "required": false,
+            "description": "Dashboard ID to filter page views by",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard ID to filter page views by"
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of results to return",
+            "schema": {
+              "type": "integer",
+              "description": "Maximum number of results to return"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the most recent page view analytics records (up to 100 by default, or the value of the 'max' query parameter). Each record is the source document of a page view.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PageView": {
+                      "type": "string",
+                      "description": "{'date': 'date', 'ip': 'string', 'dashboard': 'object', 'visitId': 'string', 'user': 'object', 'uid': 'string', 'page': 'integer', 'rev': 'integer', 'browser': 'object', 'widgets': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when the Elasticsearch search fails."
+          }
+        }
+      }
+    },
+    "/analytics/events": {
+      "post": {
+        "operationId": "createEvents",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Event recorded successfully; empty response body sent immediately."
+          },
+          "400": {
+            "description": "Missing Event type."
+          }
+        }
+      }
+    },
+    "/analytics/datasources": {
+      "post": {
+        "operationId": "createDatasources",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "OK - the request was accepted and the data source execution was recorded asynchronously; no response body is sent."
+          },
+          "400": {
+            "description": "Bad Request - missing Dashboard name, Visit ID, Data Source Name or Type, success, or duration in the request body."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dashboard": {
+                    "type": "object",
+                    "description": "Dashboard object containing at least _id; required by recordDataSource (record.dashboard == null check)."
+                  },
+                  "visitId": {
+                    "type": "string",
+                    "description": "Visit identifier; required by recordDataSource (record.visitId == null check)."
+                  },
+                  "dataSourceName": {
+                    "type": "string",
+                    "description": "Data source name; required by recordDataSource (record.dataSourceName == null check)."
+                  },
+                  "dataSourceType": {
+                    "type": "string",
+                    "description": "Data source type; required by recordDataSource (record.dataSourceType == null check)."
+                  },
+                  "success": {
+                    "type": "boolean",
+                    "description": "Whether the data source execution succeeded; required by recordDataSource (record.success == null check)."
+                  },
+                  "duration": {
+                    "type": "number",
+                    "description": "Execution duration; required by recordDataSource (record.duration == null check)."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analytics/datasources/recent": {
+      "get": {
+        "operationId": "getRecent",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns the 100 most-recent Data Source analytics records, optionally filtered by dashboard ID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DataSourceAnalyticsRecord": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'dashboard': 'object', 'visitId': 'string', 'dataSourceName': 'string', 'dataSourceType': 'string', 'success': 'boolean', 'duration': 'number', 'date': 'date', 'details': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the Elasticsearch query fails."
+          }
+        }
+      }
+    },
+    "/analytics/pageviews": {
+      "post": {
+        "operationId": "createPageviews",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "exporting",
+            "in": "query",
+            "required": false,
+            "description": "If true, indicates an export operation. The handler checks `if (req.query.exporting == 'true')`.",
+            "schema": {
+              "type": "boolean",
+              "description": "If true, indicates an export operation. The handler checks `if (req.query.exporting == 'true')`."
+            }
+          },
+          {
+            "name": "newVisit",
+            "in": "query",
+            "required": false,
+            "description": "If true, indicates a new visit. The handler checks `if (req.query.newVisit == 'true')`.",
+            "schema": {
+              "type": "boolean",
+              "description": "If true, indicates a new visit. The handler checks `if (req.query.newVisit == 'true')`."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Page view recorded successfully. The handler sends an empty 200 OK response immediately after validation passes."
+          },
+          "400": {
+            "description": "Missing Dashboard name in request body."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dashboard": {
+                    "type": "object",
+                    "description": "Dashboard object; must not be null. The handler checks `record.dashboard == null` and returns 400 if missing."
+                  },
+                  "visitId": {
+                    "type": "string",
+                    "description": "Visit ID; must not be null. The handler checks `record.visitId == null` and returns 400 if missing."
+                  },
+                  "user": {
+                    "type": "object",
+                    "description": "User object; either user or uid must be provided. The handler checks `record.user == null && record.uid == null` and returns 400 if both are missing."
+                  },
+                  "uid": {
+                    "type": "string",
+                    "description": "Anonymous user ID; either user or uid must be provided. The handler checks `record.user == null && record.uid == null` and returns 400 if both are missing."
+                  },
+                  "page": {
+                    "type": "integer",
+                    "description": "Page number; must not be null. The handler checks `record.page == null` and returns 400 if missing."
+                  },
+                  "rev": {
+                    "type": "integer",
+                    "description": "Revision number; must not be null. The handler checks `record.rev == null` and returns 400 if missing."
+                  },
+                  "browser": {
+                    "type": "object",
+                    "description": "Browser object containing name and version. The handler accesses `record.browser.name` and `record.browser.version` without null checks."
+                  },
+                  "widgets": {
+                    "type": "array",
+                    "description": "Array of widget names. The handler checks `if (!_.isEmpty(record.widgets))` before mapping."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analytics/events/recent": {
+      "get": {
+        "operationId": "getRecent",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dashboard",
+            "in": "query",
+            "required": false,
+            "description": "Dashboard ID to filter recent events by.",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard ID to filter recent events by."
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "description": "Event type to filter recent events by.",
+            "schema": {
+              "type": "string",
+              "description": "Event type to filter recent events by."
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of recent events to return.",
+            "schema": {
+              "type": "integer",
+              "description": "Maximum number of recent events to return."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the 100 most-recent Event analytics records, optionally filtered by event type.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "EventAnalytics": {
+                      "type": "string",
+                      "description": "{'eventType': 'string', 'visitId': 'string', 'user': 'object', 'uid': 'string', 'date': 'date', 'details': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the database query fails."
+          }
+        }
+      }
+    },
+    "/analytics/uniquevisitors": {
+      "get": {
+        "operationId": "getUniquevisitors",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "description": "Start date for filtering analytics data. Parsed with moment().utc().",
+            "schema": {
+              "type": "string",
+              "description": "Start date for filtering analytics data. Parsed with moment().utc()."
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "description": "End date for filtering analytics data. Parsed with moment().utc().",
+            "schema": {
+              "type": "string",
+              "description": "End date for filtering analytics data. Parsed with moment().utc()."
+            }
+          },
+          {
+            "name": "dashboard",
+            "in": "query",
+            "required": false,
+            "description": "Dashboard ID to filter analytics data.",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard ID to filter analytics data."
+            }
+          },
+          {
+            "name": "resolution",
+            "in": "query",
+            "required": false,
+            "description": "Time resolution for grouping data. Defaults to 'minute'.",
+            "schema": {
+              "type": "string",
+              "description": "Time resolution for grouping data. Defaults to 'minute'.",
+              "enum": [
+                "day",
+                "hour",
+                "minute"
+              ]
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of unique visitors to return. Defaults to 100 if not provided or 0.",
+            "schema": {
+              "type": "integer",
+              "description": "Maximum number of unique visitors to return. Defaults to 100 if not provided or 0."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of unique visitors (both authenticated and anonymous) sorted by page views in descending order. Each entry contains either user information (for authenticated users) or uid/ip (for anonymous users), along with the page view count.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UniqueVisitors": {
+                      "type": "string",
+                      "description": "{'user': 'object', 'uid': 'string', 'ip': 'string', 'pageViews': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when an error occurs during the aggregation queries or population of user data."
+          }
+        }
+      }
+    },
+    "/analytics/visitsovertime": {
+      "get": {
+        "operationId": "getVisitsovertime",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "description": "Start date for the analytics time range. If omitted, defaults to 1 day ago.",
+            "schema": {
+              "type": "string",
+              "description": "Start date for the analytics time range. If omitted, defaults to 1 day ago.",
+              "format": "ISO 8601 date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "description": "End date for the analytics time range. If omitted, defaults to now.",
+            "schema": {
+              "type": "string",
+              "description": "End date for the analytics time range. If omitted, defaults to now.",
+              "format": "ISO 8601 date-time"
+            }
+          },
+          {
+            "name": "dashboard",
+            "in": "query",
+            "required": false,
+            "description": "Dashboard ID to filter analytics by a specific dashboard.",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard ID to filter analytics by a specific dashboard."
+            }
+          },
+          {
+            "name": "resolution",
+            "in": "query",
+            "required": false,
+            "description": "Time resolution for grouping visits over time.",
+            "schema": {
+              "type": "string",
+              "description": "Time resolution for grouping visits over time.",
+              "enum": [
+                "day",
+                "hour",
+                "minute"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns an array of visit counts over time, grouped by the specified resolution (minute, hour, or day). Each element contains a date string and the number of distinct visits in that time bucket.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "VisitsOverTime": {
+                      "type": "string",
+                      "description": "{'date': 'string', 'visits': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid resolution parameter. Only 'day', 'hour', or 'minute' are allowed."
+          },
+          "500": {
+            "description": "Internal server error, typically from Elasticsearch query failure."
+          }
+        }
+      }
+    },
+    "/analytics/browsers": {
+      "get": {
+        "operationId": "getBrowsers",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "description": "Start date for filtering analytics data. If not provided, defaults to 1 day ago.",
+            "schema": {
+              "type": "string",
+              "description": "Start date for filtering analytics data. If not provided, defaults to 1 day ago.",
+              "format": "ISO 8601"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "description": "End date for filtering analytics data. If not provided, defaults to current time.",
+            "schema": {
+              "type": "string",
+              "description": "End date for filtering analytics data. If not provided, defaults to current time.",
+              "format": "ISO 8601"
+            }
+          },
+          {
+            "name": "dashboard",
+            "in": "query",
+            "required": false,
+            "description": "Dashboard ID to filter analytics data. If not provided, all dashboards are included.",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard ID to filter analytics data. If not provided, all dashboards are included."
+            }
+          },
+          {
+            "name": "resolution",
+            "in": "query",
+            "required": false,
+            "description": "Time resolution for grouping data. Defaults to 'minute' if not provided.",
+            "schema": {
+              "type": "string",
+              "description": "Time resolution for grouping data. Defaults to 'minute' if not provided.",
+              "enum": [
+                "day",
+                "hour",
+                "minute"
+              ]
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of results to return. If not provided or 0, returns all results.",
+            "schema": {
+              "type": "integer",
+              "description": "Maximum number of results to return. If not provided or 0, returns all results."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns browser statistics aggregated from page view analytics. Each entry contains browser name, version, page view count, and a combined nameVersion string. Results are sorted by pageViews descending and limited by the max query parameter (default 10000).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "BrowserStats": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'version': 'string', 'pageViews': 'integer', 'nameVersion': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when the Elasticsearch search request fails or rejects."
+          }
+        }
+      }
+    },
+    "/analytics/pageviewsovertime": {
+      "get": {
+        "operationId": "getPageviewsovertime",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "description": "Start date for the analytics time range. Parsed with moment().utc().",
+            "schema": {
+              "type": "string",
+              "description": "Start date for the analytics time range. Parsed with moment().utc().",
+              "format": "ISO 8601 date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "description": "End date for the analytics time range. Parsed with moment().utc().",
+            "schema": {
+              "type": "string",
+              "description": "End date for the analytics time range. Parsed with moment().utc().",
+              "format": "ISO 8601 date-time"
+            }
+          },
+          {
+            "name": "dashboard",
+            "in": "query",
+            "required": false,
+            "description": "Dashboard ID to filter analytics by.",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard ID to filter analytics by."
+            }
+          },
+          {
+            "name": "resolution",
+            "in": "query",
+            "required": false,
+            "description": "Time resolution for grouping results. Defaults to 'minute'.",
+            "schema": {
+              "type": "string",
+              "description": "Time resolution for grouping results. Defaults to 'minute'.",
+              "enum": [
+                "day",
+                "hour",
+                "minute"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns an array of page view counts over time, grouped by the requested resolution (minute, hour, or day). Each element contains a date string and the number of page views for that time bucket.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PageViewsOverTime": {
+                      "type": "string",
+                      "description": "{'date': 'string', 'pageViews': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid resolution parameter. Only 'day', 'hour', or 'minute' are accepted."
+          },
+          "500": {
+            "description": "Internal server error. Returned when the Elasticsearch query fails or another unexpected error occurs."
+          }
+        }
+      }
+    },
+    "/analytics/datasourcesbytype": {
+      "get": {
+        "operationId": "getDatasourcesbytype",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns an array of data source statistics grouped by data source type. Each element contains the data source type, count, average duration, success count, and success rate.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DataSourceTypeStats": {
+                      "type": "string",
+                      "description": "{'dataSourceType': 'string', 'count': 'integer', 'avgDuration': 'number', 'successCount': 'integer', 'successRate': 'number'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned if the MongoDB aggregation fails or if populating the dashboard references fails."
+          }
+        }
+      }
+    },
+    "/analytics/widgets": {
+      "get": {
+        "operationId": "getWidgets",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "description": "Start date for filtering analytics data; parsed with moment.utc() and adjusted to the start of the resolution period. Defaults to 1 day ago when not provided.",
+            "schema": {
+              "type": "string",
+              "description": "Start date for filtering analytics data; parsed with moment.utc() and adjusted to the start of the resolution period. Defaults to 1 day ago when not provided."
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "description": "End date for filtering analytics data; parsed with moment.utc() and adjusted to the end of the resolution period. Defaults to the current time when not provided.",
+            "schema": {
+              "type": "string",
+              "description": "End date for filtering analytics data; parsed with moment.utc() and adjusted to the end of the resolution period. Defaults to the current time when not provided."
+            }
+          },
+          {
+            "name": "dashboard",
+            "in": "query",
+            "required": false,
+            "description": "Dashboard ID used to filter analytics data. When omitted, data for all dashboards is returned.",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard ID used to filter analytics data. When omitted, data for all dashboards is returned."
+            }
+          },
+          {
+            "name": "resolution",
+            "in": "query",
+            "required": false,
+            "description": "Time resolution used to adjust start/end dates. Defaults to 'minute' when not provided.",
+            "schema": {
+              "type": "string",
+              "description": "Time resolution used to adjust start/end dates. Defaults to 'minute' when not provided."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns widget statistics as an array of objects, each containing the widget name and its view count.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "WidgetStats": {
+                      "type": "string",
+                      "description": "{'widget': 'string', 'widgetViews': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when the Elasticsearch aggregation query fails."
+          }
+        }
+      }
+    },
+    "/analytics/datasourcesbyerrormessage": {
+      "get": {
+        "operationId": "getDatasourcesbyerrormessage",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns an array of failed Data Source statistics grouped by error message. Each item contains the error message, the number of occurrences, and the average duration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DataSourceErrorMessageStats": {
+                      "type": "string",
+                      "description": "{'errorMessage': 'string', 'count': 'integer', 'avgDuration': 'number'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when the Elasticsearch aggregation query fails or when populating the dashboard data fails."
+          }
+        }
+      }
+    },
+    "/analytics/datasourcesbyname": {
+      "get": {
+        "operationId": "getDatasourcesbyname",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns an array of data source statistics grouped by data source type, dashboard name, and data source name. Each item includes dataSourceType, dashboardName, dataSourceName, count, avgDuration, successCount, and successRate.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DataSourceStatistics": {
+                      "type": "string",
+                      "description": "{'dataSourceType': 'string', 'dashboardName': 'string', 'dataSourceName': 'string', 'count': 'integer', 'avgDuration': 'number', 'successCount': 'integer', 'successRate': 'number'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when the Elasticsearch aggregation query fails, when populating dashboard references fails, or when an unexpected error occurs during processing."
+          }
+        }
+      }
+    },
+    "/analytics/pageviewsbypage": {
+      "get": {
+        "operationId": "getPageviewsbypage",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "description": "Start date for filtering analytics data. If not provided, defaults to 1 day ago.",
+            "schema": {
+              "type": "string",
+              "description": "Start date for filtering analytics data. If not provided, defaults to 1 day ago.",
+              "format": "ISO 8601"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "description": "End date for filtering analytics data. If not provided, defaults to current time.",
+            "schema": {
+              "type": "string",
+              "description": "End date for filtering analytics data. If not provided, defaults to current time.",
+              "format": "ISO 8601"
+            }
+          },
+          {
+            "name": "dashboard",
+            "in": "query",
+            "required": false,
+            "description": "Dashboard ID to filter analytics data. If not provided, all dashboards are included.",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard ID to filter analytics data. If not provided, all dashboards are included."
+            }
+          },
+          {
+            "name": "resolution",
+            "in": "query",
+            "required": false,
+            "description": "Time resolution for grouping data. Defaults to 'minute' if not provided.",
+            "schema": {
+              "type": "string",
+              "description": "Time resolution for grouping data. Defaults to 'minute' if not provided.",
+              "enum": [
+                "day",
+                "hour",
+                "minute"
+              ]
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of results to return. If not provided or 0, defaults to 100.",
+            "schema": {
+              "type": "integer",
+              "description": "Maximum number of results to return. If not provided or 0, defaults to 100."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns an array of page view statistics grouped by page number. Each element contains the page number and the number of page views for that page.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "PageViewStats": {
+                      "type": "string",
+                      "description": "{'page': 'integer', 'pageViews': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when the MongoDB aggregation query fails."
+          }
+        }
+      }
+    },
+    "/data": {
+      "get": {
+        "operationId": "getData",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns all data buckets without their data field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DataBucketList": {
+                      "type": "string",
+                      "description": "{'key': 'string', 'lastModifiedDate': 'date', 'createdDate': 'date', 'rev': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if the database query fails."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createData",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "400": {
+            "description": "Missing key."
+          },
+          "500": {
+            "description": "Internal server error from database operation."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "200": {
+            "description": "Data bucket updated or created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DataBucket": {
+                      "type": "string",
+                      "description": "{'key': 'string', 'lastModifiedDate': 'date', 'data': 'object', 'createdDate': 'date', 'rev': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "The key identifying the data bucket. Required: the handler returns 400 if req.body.key is null."
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "The data payload to store in the data bucket. Required: the handler returns 400 if req.body.data is null."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/{key}": {
+      "get": {
+        "operationId": "getData",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "The key of the data bucket to retrieve.",
+            "schema": {
+              "type": "string",
+              "description": "The key of the data bucket to retrieve."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the data bucket document matching the provided key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DataBucket": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'key': 'string', 'data': 'array', 'rev': 'integer', 'createdDate': 'date', 'lastModifiedDate': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data Bucket not found."
+          },
+          "500": {
+            "description": "Internal server error returned by the callback when the database query fails."
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteData",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "The key of the data bucket to delete.",
+            "schema": {
+              "type": "string",
+              "description": "The key of the data bucket to delete."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data Bucket deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DeleteResponse": {
+                      "type": "string",
+                      "description": "{'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when deleting the data bucket."
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateData",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "The key of the data bucket to create or update.",
+            "schema": {
+              "type": "string",
+              "description": "The key of the data bucket to create or update."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data bucket created or updated successfully; returns the updated data bucket document.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DataBucket": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'key': 'string', 'data': 'array', 'rev': 'integer', 'createdDate': 'date', 'lastModifiedDate': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing key or missing data in request body."
+          },
+          "500": {
+            "description": "Internal server error returned by the database update callback when the operation fails."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "The key of the data bucket (used if not provided in the path)."
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "The data to store in the data bucket."
+                  }
+                },
+                "required": [
+                  "key"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analytics/topdashboards": {
+      "get": {
+        "operationId": "getTopdashboards",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a list of the most-visited dashboards, populated with dashboard data (excluding dashboard, editors, and viewers fields).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Dashboard": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'name': 'string', 'rev': 'integer', 'date': 'date', 'deleted': 'boolean', 'tags': 'array', 'description': 'string', 'createdBy': 'string', 'lastUpdatedBy': 'string', 'pageViews': 'integer', 'visits': 'integer', 'exports': 'integer', 'likes': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when the Elasticsearch search fails or when populating the dashboard results fails."
+          }
+        }
+      }
+    },
+    "/analytics/delete": {
+      "get": {
+        "operationId": "getDelete",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dashboard",
+            "in": "query",
+            "required": false,
+            "description": "Dashboard ID for which to delete analytics data.",
+            "schema": {
+              "type": "string",
+              "description": "Dashboard ID for which to delete analytics data."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK - analytics data for the dashboard was deleted and counters were reset.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DeleteAnalyticsResponse": {
+                      "type": "string",
+                      "description": "{'response': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - missing Dashboard ID in query parameter 'dashboard'."
+          },
+          "403": {
+            "description": "Forbidden - permission denied; only admins may delete analytics."
+          },
+          "500": {
+            "description": "Internal Server Error - error deleting analytics for dashboard."
+          }
+        }
+      }
+    },
+    "/data/{key}/data": {
+      "get": {
+        "operationId": "getData",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "The key of the data bucket whose data is to be retrieved.",
+            "schema": {
+              "type": "string",
+              "description": "The key of the data bucket whose data is to be retrieved."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the data array of the data bucket with the given key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DataBucketData": {
+                      "type": "string",
+                      "description": "{'data': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data Bucket not found."
+          },
+          "500": {
+            "description": "Internal server error from database query."
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateData",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "The key of the data bucket to replace data for.",
+            "schema": {
+              "type": "string",
+              "description": "The key of the data bucket to replace data for."
+            }
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "description": "Optional revision number to check for optimistic concurrency.",
+            "schema": {
+              "type": "integer",
+              "description": "Optional revision number to check for optimistic concurrency."
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Missing data."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "409": {
+            "description": "Revision number not matching (found <bucket.rev>, expecting <rev>)"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "200": {
+            "description": "Data bucket updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DataBucket": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'key': 'string', 'data': 'array', 'rev': 'integer', 'createdDate': 'date', 'lastModifiedDate': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "array",
+                    "description": "The new data array to replace the existing data bucket content."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/{key}/append": {
+      "post": {
+        "operationId": "createAppend",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "The key of the data bucket to append data to.",
+            "schema": {
+              "type": "string",
+              "description": "The key of the data bucket to append data to."
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Missing data."
+          },
+          "200": {
+            "description": "Data appended successfully. Returns the updated data bucket.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DataBucket": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'key': 'string', 'data': 'array', 'rev': 'integer', 'createdDate': 'date', 'lastModifiedDate': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "object",
+                    "description": "The data to append. Can be a single value or an array of values."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/{key}/upsert": {
+      "post": {
+        "operationId": "createUpsert",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "The key of the data bucket to upsert data into.",
+            "schema": {
+              "type": "string",
+              "description": "The key of the data bucket to upsert data into."
+            }
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "description": "Optional revision number to check for matching revision before upserting.",
+            "schema": {
+              "type": "integer",
+              "description": "Optional revision number to check for matching revision before upserting."
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Missing data."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "409": {
+            "description": "Revision number not matching (found X, expecting Y)."
+          },
+          "500": {
+            "description": "Internal server error from database query."
+          },
+          "200": {
+            "description": "Data bucket updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DataBucket": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'key': 'string', 'data': 'array', 'rev': 'integer', 'createdDate': 'date', 'lastModifiedDate': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "The data object to upsert into the data bucket."
+                  },
+                  "keys": {
+                    "type": "object",
+                    "description": "The keys used to match an existing row in the data bucket for upsert."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/{key}/remove": {
+      "post": {
+        "operationId": "createRemove",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "400": {
+            "description": "Missing data."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "409": {
+            "description": "Revision number not matching (found <bucket.rev>, expecting <rev>)"
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "200": {
+            "description": "Data bucket after removal.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DataBucket": {
+                      "type": "string",
+                      "description": "{'_id': 'string', 'key': 'string', 'data': 'array', 'rev': 'integer', 'createdDate': 'date', 'lastModifiedDate': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,753 @@
+{
+  "task_id": "public",
+  "api_name": "Bitwarden",
+  "framework": "aspnetcore+koa",
+  "endpoints": [
+    {
+      "endpoint_path": "/public/collections/{id}",
+      "http_method": "GET",
+      "method_name": "Get",
+      "summary": "Retrieve a collection.",
+      "description": "Retrieves the details of an existing collection. You need only supply the unique collection identifier that was returned upon collection creation.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\Public\\Controllers\\CollectionsController.cs"
+    },
+    {
+      "endpoint_path": "/public/collections",
+      "http_method": "GET",
+      "method_name": "List",
+      "summary": "List all collections.",
+      "description": "Returns a list of your organization's collections. Collection objects listed in this call do not include information about their associated groups.",
+      "line_number": 56,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\Public\\Controllers\\CollectionsController.cs"
+    },
+    {
+      "endpoint_path": "/public/collections/{id}",
+      "http_method": "PUT",
+      "method_name": "Put",
+      "summary": "Update a collection.",
+      "description": "Updates the specified collection object. If a property is not provided, the value of the existing property will be reset.",
+      "line_number": 75,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\Public\\Controllers\\CollectionsController.cs"
+    },
+    {
+      "endpoint_path": "/public/collections/{id}",
+      "http_method": "DELETE",
+      "method_name": "Delete",
+      "summary": "Delete a collection.",
+      "description": "Permanently deletes a collection. This cannot be undone.",
+      "line_number": 96,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\Public\\Controllers\\CollectionsController.cs"
+    },
+    {
+      "endpoint_path": "/public/events",
+      "http_method": "GET",
+      "method_name": "List",
+      "summary": "List all events.",
+      "description": "Returns a filtered list of your organization's event logs, paged by a continuation token. If no filters are provided, it will return the last 30 days of event for the organization.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\EventsController.cs"
+    },
+    {
+      "endpoint_path": "/public/groups/{id}",
+      "http_method": "GET",
+      "method_name": "Get",
+      "summary": "Retrieve a group.",
+      "description": "Retrieves the details of an existing group. You need only supply the unique group identifier that was returned upon group creation.",
+      "line_number": 43,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs"
+    },
+    {
+      "endpoint_path": "/public/groups/{id}/member-ids",
+      "http_method": "GET",
+      "method_name": "GetMemberIds",
+      "summary": "Retrieve a groups's member ids",
+      "description": "Retrieves the unique identifiers for all members that are associated with this group. You need only supply the unique group identifier that was returned upon group creation.",
+      "line_number": 61,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs"
+    },
+    {
+      "endpoint_path": "/public/groups",
+      "http_method": "GET",
+      "method_name": "List",
+      "summary": "List all groups.",
+      "description": "Returns a list of your organization's groups. Group objects listed in this call include information about their associated collections.",
+      "line_number": 78,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs"
+    },
+    {
+      "endpoint_path": "/public/groups",
+      "http_method": "POST",
+      "method_name": "Post",
+      "summary": "Create a group.",
+      "description": "Creates a new group object.",
+      "line_number": 92,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs"
+    },
+    {
+      "endpoint_path": "/public/groups/{id}",
+      "http_method": "PUT",
+      "method_name": "Put",
+      "summary": "Update a group.",
+      "description": "Updates the specified group object. If a property is not provided, the value of the existing property will be reset.",
+      "line_number": 110,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs"
+    },
+    {
+      "endpoint_path": "/public/groups/{id}/member-ids",
+      "http_method": "PUT",
+      "method_name": "PutMemberIds",
+      "summary": "Update a group's members.",
+      "description": "Updates the specified group's member associations.",
+      "line_number": 131,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs"
+    },
+    {
+      "endpoint_path": "/public/groups/{id}",
+      "http_method": "DELETE",
+      "method_name": "Delete",
+      "summary": "Delete a group.",
+      "description": "Permanently deletes a group. This cannot be undone.",
+      "line_number": 149,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\GroupsController.cs"
+    },
+    {
+      "endpoint_path": "/public/members/{id}",
+      "http_method": "GET",
+      "method_name": "Get",
+      "summary": "Retrieve a member.",
+      "description": "Retrieves the details of an existing member of the organization. You need only supply the unique member identifier that was returned upon member creation.",
+      "line_number": 67,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/members/{id}/group-ids",
+      "http_method": "GET",
+      "method_name": "GetGroupIds",
+      "summary": "Retrieve a member's group ids",
+      "description": "Retrieves the unique identifiers for all groups that are associated with this member. You need only supply the unique member identifier that was returned upon member creation.",
+      "line_number": 86,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/members",
+      "http_method": "GET",
+      "method_name": "List",
+      "summary": "List all members.",
+      "description": "Returns a list of your organization's members. Member objects listed in this call do not include information about their associated collections.",
+      "line_number": 101,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/members",
+      "http_method": "POST",
+      "method_name": "Post",
+      "summary": "Create a member.",
+      "description": "Creates a new member object by inviting a user to the organization.",
+      "line_number": 120,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/members/{id}",
+      "http_method": "PUT",
+      "method_name": "Put",
+      "summary": "Update a member.",
+      "description": "Updates the specified member object. If a property is not provided, the value of the existing property will be reset.",
+      "line_number": 145,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/members/{id}/group-ids",
+      "http_method": "PUT",
+      "method_name": "PutGroupIds",
+      "summary": "Update a member's groups.",
+      "description": "Updates the specified member's group associations.",
+      "line_number": 172,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/members/{id}",
+      "http_method": "DELETE",
+      "method_name": "Remove",
+      "summary": "Remove a member.",
+      "description": "Permanently removes a member from the organization. This cannot be undone. The user account will still remain. The user is only removed from the organization.",
+      "line_number": 194,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/members/{id}/reinvite",
+      "http_method": "POST",
+      "method_name": "PostReinvite",
+      "summary": "Re-invite a member.",
+      "description": "Re-sends the invitation email to an organization member.",
+      "line_number": 212,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\MembersController.cs"
+    },
+    {
+      "endpoint_path": "/public/organization/import",
+      "http_method": "POST",
+      "method_name": "Import",
+      "summary": "Import members and groups.",
+      "description": "Import members and groups from an external system.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\OrganizationController.cs"
+    },
+    {
+      "endpoint_path": "/public/policies/{type}",
+      "http_method": "GET",
+      "method_name": "Get",
+      "summary": "Retrieve a policy.",
+      "description": "Retrieves the details of a policy.",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\PoliciesController.cs"
+    },
+    {
+      "endpoint_path": "/public/policies",
+      "http_method": "GET",
+      "method_name": "List",
+      "summary": "List all policies.",
+      "description": "Returns a list of your organization's policies.",
+      "line_number": 54,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\PoliciesController.cs"
+    },
+    {
+      "endpoint_path": "/public/policies/{type}",
+      "http_method": "PUT",
+      "method_name": "Put",
+      "summary": "Update a policy.",
+      "description": "Updates the specified policy. If a property is not provided, the value of the existing property will be reset.",
+      "line_number": 69,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden-server-main\\src\\Api\\AdminConsole\\Public\\Controllers\\PoliciesController.cs"
+    },
+    {
+      "endpoint_path": "/generate",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Generate a password or passphrase",
+      "description": "Runs the generate command with the request query options and returns the generated password/passphrase.",
+      "line_number": 213,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/status",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get the CLI status",
+      "description": "Runs the status command and returns server URL, last sync, user email, user id, and lock status.",
+      "line_number": 219,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/list/object/send",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "List send objects",
+      "description": "Lists send objects when the object parameter is 'send'.",
+      "line_number": 225,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/list/object/item",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "List items",
+      "description": "Lists vault items via the list command.",
+      "line_number": 225,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/list/object/folder",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "List folders",
+      "description": "Lists folders via the list command.",
+      "line_number": 225,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/list/object/collection",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "List collections",
+      "description": "Lists collections via the list command.",
+      "line_number": 225,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/list/object/org-collection",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "List organization collections",
+      "description": "Lists organization collections via the list command.",
+      "line_number": 225,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/list/object/org-member",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "List organization members",
+      "description": "Lists organization members via the list command.",
+      "line_number": 225,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/list/object/organization",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "List organizations",
+      "description": "Lists organizations via the list command.",
+      "line_number": 225,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/send/list",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "List sends",
+      "description": "Lists send objects via the send list command.",
+      "line_number": 240,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/sync",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "summary": "Sync the vault",
+      "description": "Runs the sync command with the request query options.",
+      "line_number": 249,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/lock",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "summary": "Lock the vault",
+      "description": "Runs the lock command to lock the vault.",
+      "line_number": 255,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/unlock",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "summary": "Unlock the vault",
+      "description": "Unlocks the vault using the provided password, disallowing passwordFile and passwordEnv query options.",
+      "line_number": 261,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/confirm/org-member/{id}",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "summary": "Confirm an organization member",
+      "description": "Confirms an organization member via the confirm command.",
+      "line_number": 275,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/restore/item/{id}",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "summary": "Restore an item",
+      "description": "Restores an item from trash or archive via the restore command.",
+      "line_number": 288,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/move/{id}/{organizationId}",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "summary": "Move an item to an organization",
+      "description": "Shares/moves a cipher to an organization with the given collection ids.",
+      "line_number": 301,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/attachment",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "summary": "Create an attachment",
+      "description": "Uploads a file attachment to an item using multipart form data.",
+      "line_number": 316,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/send/{id}/remove-password",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "summary": "Remove password from a send",
+      "description": "Removes the password protection from a send object.",
+      "line_number": 332,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/send",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "summary": "Create a send",
+      "description": "Creates a send object via the send create command.",
+      "line_number": 342,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/item",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "summary": "Create an item",
+      "description": "Creates a vault item via the create command.",
+      "line_number": 342,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/folder",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "summary": "Create a folder",
+      "description": "Creates a folder via the create command.",
+      "line_number": 342,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/org-collection",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "summary": "Create an organization collection",
+      "description": "Creates an organization collection via the create command.",
+      "line_number": 342,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/send/{id}",
+      "http_method": "PUT",
+      "method_name": "configureRouter",
+      "summary": "Edit a send",
+      "description": "Edits a send object via the send edit command.",
+      "line_number": 358,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/item/{id}",
+      "http_method": "PUT",
+      "method_name": "configureRouter",
+      "summary": "Edit an item",
+      "description": "Edits a vault item via the edit command.",
+      "line_number": 358,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/item-collections/{id}",
+      "http_method": "PUT",
+      "method_name": "configureRouter",
+      "summary": "Edit item collections",
+      "description": "Edits the collections of an item via the edit command.",
+      "line_number": 358,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/folder/{id}",
+      "http_method": "PUT",
+      "method_name": "configureRouter",
+      "summary": "Edit a folder",
+      "description": "Edits a folder via the edit command.",
+      "line_number": 358,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/org-collection/{id}",
+      "http_method": "PUT",
+      "method_name": "configureRouter",
+      "summary": "Edit an organization collection",
+      "description": "Edits an organization collection via the edit command.",
+      "line_number": 358,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/send/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get a send",
+      "description": "Retrieves a send object via the send get command.",
+      "line_number": 376,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/item/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get an item",
+      "description": "Retrieves a vault item via the get command.",
+      "line_number": 376,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/username/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get a username",
+      "description": "Retrieves the username of a login item.",
+      "line_number": 376,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/password/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get a password",
+      "description": "Retrieves the password of a login item.",
+      "line_number": 376,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/uri/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get a URI",
+      "description": "Retrieves the URI of a login item.",
+      "line_number": 376,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/totp/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get a TOTP",
+      "description": "Retrieves the TOTP code of a login item.",
+      "line_number": 376,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/notes/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get notes",
+      "description": "Retrieves the notes of an item.",
+      "line_number": 376,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/exposed/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get exposed count",
+      "description": "Checks how many times a password has been exposed in breaches.",
+      "line_number": 376,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/attachment/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get an attachment",
+      "description": "Downloads and decrypts an attachment of an item.",
+      "line_number": 376,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/folder/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get a folder",
+      "description": "Retrieves a folder via the get command.",
+      "line_number": 376,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/collection/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get a collection",
+      "description": "Retrieves a collection via the get command.",
+      "line_number": 376,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/org-collection/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get an organization collection",
+      "description": "Retrieves an organization collection via the get command.",
+      "line_number": 376,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/organization/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get an organization",
+      "description": "Retrieves an organization via the get command.",
+      "line_number": 376,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/template/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get a template",
+      "description": "Retrieves a template object via the get command.",
+      "line_number": 376,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/fingerprint/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "summary": "Get a fingerprint",
+      "description": "Retrieves a user's public key fingerprint.",
+      "line_number": 376,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/send/{id}",
+      "http_method": "DELETE",
+      "method_name": "configureRouter",
+      "summary": "Delete a send",
+      "description": "Deletes a send object via the send delete command.",
+      "line_number": 394,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/item/{id}",
+      "http_method": "DELETE",
+      "method_name": "configureRouter",
+      "summary": "Delete an item",
+      "description": "Deletes a vault item via the delete command.",
+      "line_number": 394,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/attachment/{id}",
+      "http_method": "DELETE",
+      "method_name": "configureRouter",
+      "summary": "Delete an attachment",
+      "description": "Deletes an attachment from an item.",
+      "line_number": 394,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/folder/{id}",
+      "http_method": "DELETE",
+      "method_name": "configureRouter",
+      "summary": "Delete a folder",
+      "description": "Deletes a folder via the delete command.",
+      "line_number": 394,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/object/org-collection/{id}",
+      "http_method": "DELETE",
+      "method_name": "configureRouter",
+      "summary": "Delete an organization collection",
+      "description": "Deletes an organization collection via the delete command.",
+      "line_number": 394,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/archive/item/{id}",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "summary": "Archive an item",
+      "description": "Archives a vault item via the archive command.",
+      "line_number": 411,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/device-approval/{organizationId}",
+      "http_method": "GET",
+      "method_name": "serveDeviceApprovals",
+      "summary": "List device approval requests for an organization",
+      "description": "Retrieves the list of pending device approval requests for the specified organization. Returns an error if the vault is locked.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/device-approval/{organizationId}/approve-all",
+      "http_method": "POST",
+      "method_name": "serveDeviceApprovals",
+      "summary": "Approve all device approval requests for an organization",
+      "description": "Approves all pending device approval requests for the specified organization. Returns an error if the vault is locked.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/device-approval/{organizationId}/approve/{requestId}",
+      "http_method": "POST",
+      "method_name": "serveDeviceApprovals",
+      "summary": "Approve a specific device approval request",
+      "description": "Approves the device approval request identified by requestId for the specified organization. Returns an error if the vault is locked.",
+      "line_number": 46,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/device-approval/{organizationId}/deny-all",
+      "http_method": "POST",
+      "method_name": "serveDeviceApprovals",
+      "summary": "Deny all device approval requests for an organization",
+      "description": "Denies all pending device approval requests for the specified organization. Returns an error if the vault is locked.",
+      "line_number": 58,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/device-approval/{organizationId}/deny/{requestId}",
+      "http_method": "POST",
+      "method_name": "serveDeviceApprovals",
+      "summary": "Deny a specific device approval request",
+      "description": "Denies the device approval request identified by requestId for the specified organization. Returns an error if the vault is locked.",
+      "line_number": 70,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 24753,
+  "tokens": {
+    "prompt_tokens": 258916,
+    "completion_tokens": 26720,
+    "total_tokens": 285636,
+    "calls": 24,
+    "elapsed_s": 232.903,
+    "prompt_cost_usd": 0.033502,
+    "completion_cost_usd": 0.017786,
+    "total_cost_usd": 0.051288,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 83922,
+        "completion_tokens": 5216,
+        "total_tokens": 89138,
+        "calls": 8,
+        "elapsed_s": 24.748647000000002,
+        "prompt_cost_usd": 0.001678,
+        "completion_cost_usd": 0.00313,
+        "total_cost_usd": 0.004808
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 79499,
+        "completion_tokens": 17600,
+        "total_tokens": 97099,
+        "calls": 8,
+        "elapsed_s": 155.246,
+        "prompt_cost_usd": 0.00795,
+        "completion_cost_usd": 0.0088,
+        "total_cost_usd": 0.01675
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 95495,
+        "completion_tokens": 3904,
+        "total_tokens": 99399,
+        "calls": 8,
+        "elapsed_s": 52.908,
+        "prompt_cost_usd": 0.023874,
+        "completion_cost_usd": 0.005856,
+        "total_cost_usd": 0.02973
+      }
+    ]
+  }
+}

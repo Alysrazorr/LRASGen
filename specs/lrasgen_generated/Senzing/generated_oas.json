@@ -1,0 +1,3167 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "senzing-api-server API",
+    "description": "LRASGen-generated specification for senzing-api-server (jersey).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "get",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "A basic response indicating the server is running (heartbeat).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzBasicResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'object', 'links': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data-sources/{dataSourceCode}": {
+      "get": {
+        "operationId": "getDataSources",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dataSourceCode",
+            "in": "path",
+            "required": true,
+            "description": "The data source code from the URL path.",
+            "schema": {
+              "type": "string",
+              "description": "The data source code from the URL path."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw native Senzing JSON should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw native Senzing JSON should be included in the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The data source was found and returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzDataSourceResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzDataSourceResponseData'}"
+                    },
+                    "SzDataSourceResponseData": {
+                      "type": "string",
+                      "description": "{'dataSource': 'SzDataSource'}"
+                    },
+                    "SzDataSource": {
+                      "type": "string",
+                      "description": "{'dataSourceCode': 'string', 'dataSourceId': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified data source code was not recognized."
+          },
+          "500": {
+            "description": "An internal server error occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/specifications/open-api": {
+      "get": {
+        "operationId": "getOpenApi",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "asRaw",
+            "in": "query",
+            "required": false,
+            "description": "true if the specification should be directly returned and false if an instance of SzOpenApiSpecResponse should be returned.",
+            "schema": {
+              "type": "boolean",
+              "description": "true if the specification should be directly returned and false if an instance of SzOpenApiSpecResponse should be returned."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the Open API specification as raw JSON text when asRaw=true, or as an SzOpenApiSpecResponse object when asRaw=false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzOpenApiSpecResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'openApiSpec': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when an unexpected exception occurs while reading or processing the Open API specification."
+          }
+        }
+      }
+    },
+    "/license": {
+      "get": {
+        "operationId": "getLicense",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not to include the raw data in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not to include the raw data in the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "License information returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzLicenseResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'object', 'links': 'object', 'data': 'object', 'rawData': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred while retrieving license information."
+          }
+        }
+      }
+    },
+    "/heartbeat": {
+      "get": {
+        "operationId": "getHeartbeat",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "A heartbeat response affirming the provider is running.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzBasicResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/version": {
+      "get": {
+        "operationId": "getVersion",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not to include the raw data in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not to include the raw data in the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns version information, optionally with raw data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzVersionResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'object', 'links': 'object', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when an unexpected exception occurs."
+          }
+        }
+      }
+    },
+    "/server-info": {
+      "get": {
+        "operationId": "getServerInfo",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns server information including concurrency, active config ID, dynamic config, read-only mode, admin enabled, web sockets message max size, and info queue configuration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzServerInfoResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'object', 'links': 'object', 'data': {'concurrency': 'integer', 'activeConfigId': 'long', 'dynamicConfig': 'boolean', 'readOnly': 'boolean', 'adminEnabled': 'boolean', 'webSocketsMessageMaxSize': 'integer', 'infoQueueConfigured': 'boolean'}}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when the engine API call to get the active configuration ID fails or when an unexpected exception occurs."
+          }
+        }
+      }
+    },
+    "/data-sources": {
+      "get": {
+        "operationId": "getDataSources",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw native Senzing JSON should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw native Senzing JSON should be included in the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The data sources were successfully retrieved and returned in the response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzDataSourcesResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzDataSourcesResponseData', 'rawData': 'string'}"
+                    },
+                    "SzDataSourcesResponseData": {
+                      "type": "string",
+                      "description": "{'dataSources': 'array<SzDataSource>'}"
+                    },
+                    "SzDataSource": {
+                      "type": "string",
+                      "description": "{'dataSourceCode': 'string', 'dataSourceId': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An internal server error occurred while processing the request."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createDataSources",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dataSource",
+            "in": "query",
+            "required": false,
+            "description": "The list of data source codes from the query parameters.",
+            "schema": {
+              "type": "string",
+              "description": "The list of data source codes from the query parameters."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw native Senzing JSON should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw native Senzing JSON should be included in the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully added the data sources and returned the list of all configured data sources.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzDataSourcesResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzDataSourcesResponseData', 'rawData': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request body could not be parsed as data source descriptors, or a data source already exists with a different data source ID."
+          },
+          "403": {
+            "description": "Forbidden. Configuration changes are not allowed (admin features disabled, read-only mode, or no config manager available)."
+          },
+          "500": {
+            "description": "Internal server error. An unexpected error occurred while processing the request."
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dataSourcesInBody": {
+                    "type": "string",
+                    "description": "The body containing data sources to add."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bulk-data/analyze": {
+      "post": {
+        "operationId": "createAnalyze",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Successful analysis of the bulk data records. Returns an SzBulkDataAnalysisResponse containing the analysis results.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzBulkDataAnalysisResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzBulkDataAnalysis'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Thrown by the handler when the progress period is negative (via validateProgressPeriod) or when data source mappings are invalid (via prepareBulkDataMappings)."
+          },
+          "403": {
+            "description": "Forbidden. Thrown when loading is not allowed (e.g., server in read-only mode) via prepareBulkLoadOperation."
+          },
+          "500": {
+            "description": "Internal server error. Thrown when an unexpected exception occurs during processing."
+          },
+          "503": {
+            "description": "Service unavailable. Thrown when too many prolonged operations are running."
+          }
+        }
+      }
+    },
+    "/bulk-data/load": {
+      "post": {
+        "operationId": "createLoad",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dataSource",
+            "in": "query",
+            "required": false,
+            "description": "The data source to assign to the loaded records unless another data source mapping supercedes this default.",
+            "schema": {
+              "type": "string",
+              "description": "The data source to assign to the loaded records unless another data source mapping supercedes this default."
+            }
+          },
+          {
+            "name": "mapDataSources",
+            "in": "query",
+            "required": false,
+            "description": "The JSON string mapping specific data sources to alternate data source names. A mapping from empty-string is used for mapping records with no data source specified.",
+            "schema": {
+              "type": "string",
+              "description": "The JSON string mapping specific data sources to alternate data source names. A mapping from empty-string is used for mapping records with no data source specified."
+            }
+          },
+          {
+            "name": "mapDataSource",
+            "in": "query",
+            "required": false,
+            "description": "The List of delimited strings that begin the delimiter, followed by the \"from\" data source then the delimiter then the target data source.",
+            "schema": {
+              "type": "array",
+              "description": "The List of delimited strings that begin the delimiter, followed by the \"from\" data source then the delimiter then the target data source."
+            }
+          },
+          {
+            "name": "loadId",
+            "in": "query",
+            "required": false,
+            "description": "The optional load ID to use for loading the records.",
+            "schema": {
+              "type": "string",
+              "description": "The optional load ID to use for loading the records."
+            }
+          },
+          {
+            "name": "maxFailures",
+            "in": "query",
+            "required": false,
+            "description": "The maximum number of failures or a negative number if no maximum.",
+            "schema": {
+              "type": "integer",
+              "description": "The maximum number of failures or a negative number if no maximum."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful bulk load operation. Returns an SzBulkLoadResponse containing the load results.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzBulkLoadResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'object', 'links': 'object', 'result': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. Loading is not allowed because the server is in read-only mode."
+          },
+          "500": {
+            "description": "Internal server error. An unexpected error occurred during the bulk load operation."
+          }
+        }
+      }
+    },
+    "/configs/active": {
+      "get": {
+        "operationId": "getActive",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "The active configuration is returned as an SzConfigResponse containing the raw JSON configuration data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzConfigResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'rawData': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An internal server error occurred while exporting or parsing the active configuration."
+          }
+        }
+      }
+    },
+    "/configs/template": {
+      "get": {
+        "operationId": "getTemplate",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "The template configuration was successfully created and returned as an SzConfigResponse containing the raw JSON configuration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzConfigResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'rawData': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An internal server error occurred while creating or saving the template configuration, or while parsing the configuration JSON."
+          }
+        }
+      }
+    },
+    "/attribute-types/{attributeCode}": {
+      "get": {
+        "operationId": "getAttributeTypes",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "attributeCode",
+            "in": "path",
+            "required": true,
+            "description": "The attribute code from the URI path identifying the attribute type.",
+            "schema": {
+              "type": "string",
+              "description": "The attribute code from the URI path identifying the attribute type."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw native Senzing JSON should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw native Senzing JSON should be included in the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the attribute type. The response contains the attribute type data and optionally the raw native Senzing JSON if withRaw is true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzAttributeTypeResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzAttributeTypeResponseData', 'rawData': 'string'}"
+                    },
+                    "SzAttributeTypeResponseData": {
+                      "type": "string",
+                      "description": "{'attributeType': 'SzAttributeType'}"
+                    },
+                    "SzAttributeType": {
+                      "type": "string",
+                      "description": "{'attributeCode': 'string', 'attributeClass': 'SzAttributeClass', 'featureType': 'string', 'defaultValue': 'string', 'internal': 'boolean'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified attribute code was not recognized. Thrown when no attribute type matches the provided attributeCode.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array of SzError'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Thrown when an unexpected exception occurs during processing, such as a failure in the native API call or JSON parsing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array of SzError'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/attribute-types": {
+      "get": {
+        "operationId": "getAttributeTypes",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "withInternal",
+            "in": "query",
+            "required": false,
+            "description": "Boolean flag from the query parameter indicating if internal attribute types should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Boolean flag from the query parameter indicating if internal attribute types should be included in the response."
+            }
+          },
+          {
+            "name": "attributeClass",
+            "in": "query",
+            "required": false,
+            "description": "The optional attribute class for filtering the attribute types to be include in the response.",
+            "schema": {
+              "type": "string",
+              "description": "The optional attribute class for filtering the attribute types to be include in the response."
+            }
+          },
+          {
+            "name": "featureType",
+            "in": "query",
+            "required": false,
+            "description": "The optional feature type for filtering the attribute types to be include in the response.",
+            "schema": {
+              "type": "string",
+              "description": "The optional feature type for filtering the attribute types to be include in the response."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw native Senzing JSON should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw native Senzing JSON should be included in the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the attribute types. The response contains a list of attribute types, optionally filtered by attribute class and feature type, and optionally including internal attribute types and raw data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzAttributeTypesResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzAttributeTypesResponseData', 'rawData': 'string'}"
+                    },
+                    "SzAttributeTypesResponseData": {
+                      "type": "string",
+                      "description": "{'attributeTypes': 'array<SzAttributeType>'}"
+                    },
+                    "SzAttributeType": {
+                      "type": "string",
+                      "description": "{'attributeCode': 'string', 'attributeClass': 'string', 'featureType': 'string', 'internal': 'boolean', 'defaultValue': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the attributeClass query parameter is not a recognized attribute class.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array<SzError>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when an unexpected exception occurs during processing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array<SzError>'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data-sources/{dataSourceCode}/records/{recordId}": {
+      "delete": {
+        "operationId": "deleteRecords",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dataSourceCode",
+            "in": "path",
+            "required": true,
+            "description": "The data source code from the URI path.",
+            "schema": {
+              "type": "string",
+              "description": "The data source code from the URI path."
+            }
+          },
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "description": "The record ID of the record being deleted.",
+            "schema": {
+              "type": "string",
+              "description": "The record ID of the record being deleted."
+            }
+          },
+          {
+            "name": "loadId",
+            "in": "query",
+            "required": false,
+            "description": "The optional load ID query parameter for the record.",
+            "schema": {
+              "type": "string",
+              "description": "The optional load ID query parameter for the record."
+            }
+          },
+          {
+            "name": "withInfo",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if resolution info should be produced when loading the record (from the query parameter).",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if resolution info should be produced when loading the record (from the query parameter)."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record was deleted successfully (or was not found, treated as idempotent). Returns an SzDeleteRecordResponse.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzDeleteRecordResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzDeleteRecordResponseData'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Loading data is not allowed because the Senzing API Server was started in read-only mode."
+          },
+          "404": {
+            "description": "The specified data source is not recognized."
+          },
+          "500": {
+            "description": "An internal server error occurred while deleting the record."
+          }
+        }
+      },
+      "get": {
+        "operationId": "getRecords",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dataSourceCode",
+            "in": "path",
+            "required": true,
+            "description": "The data source code from the URI path.",
+            "schema": {
+              "type": "string",
+              "description": "The data source code from the URI path."
+            }
+          },
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "description": "The record ID of the record being requested.",
+            "schema": {
+              "type": "string",
+              "description": "The record ID of the record being requested."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record was successfully retrieved and returned as an SzRecordResponse.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzRecordResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzRecordResponseData'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified record was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An internal server error occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateRecords",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dataSourceCode",
+            "in": "path",
+            "required": true,
+            "description": "The data source code from the URI path.",
+            "schema": {
+              "type": "string",
+              "description": "The data source code from the URI path."
+            }
+          },
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "description": "The record ID of the record being loaded.",
+            "schema": {
+              "type": "string",
+              "description": "The record ID of the record being loaded."
+            }
+          },
+          {
+            "name": "loadId",
+            "in": "query",
+            "required": false,
+            "description": "The optional load ID query parameter for the record.",
+            "schema": {
+              "type": "string",
+              "description": "The optional load ID query parameter for the record."
+            }
+          },
+          {
+            "name": "withInfo",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if resolution info should be produced when loading the record (from the query parameter).",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if resolution info should be produced when loading the record (from the query parameter)."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record was successfully loaded (or updated) and the response contains the record ID and optionally resolution info and raw data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzLoadRecordResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzLoadRecordResponseData'}"
+                    },
+                    "SzLoadRecordResponseData": {
+                      "type": "string",
+                      "description": "{'recordId': 'string', 'info': 'SzResolutionInfo'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request: the JSON fields in the request body do not match the path parameters, or the JSON is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array of SzError'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: the server is in read-only mode and loading records is not allowed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array of SzError'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found: the specified data source is not recognized, or the record was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array of SzError'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error: an unexpected error occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array of SzError'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "recordJsonData": {
+                    "type": "string",
+                    "description": "The Senzing-format JSON text describing the record."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data-sources/{dataSourceCode}/records": {
+      "post": {
+        "operationId": "createRecords",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dataSourceCode",
+            "in": "path",
+            "required": true,
+            "description": "The data source code from the URI path.",
+            "schema": {
+              "type": "string",
+              "description": "The data source code from the URI path."
+            }
+          },
+          {
+            "name": "loadId",
+            "in": "query",
+            "required": false,
+            "description": "The optional load ID query parameter for the record.",
+            "schema": {
+              "type": "string",
+              "description": "The optional load ID query parameter for the record."
+            }
+          },
+          {
+            "name": "withInfo",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if resolution info should be produced when loading the record (from the query parameter).",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if resolution info should be produced when loading the record (from the query parameter)."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record was successfully loaded and the response contains the record ID and optional resolution info.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzLoadRecordResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'object', 'links': 'object', 'data': 'object'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request: the JSON fields in the request body are invalid or do not match the path parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'object', 'links': 'object', 'errors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: loading data is not allowed because the server is in read-only mode.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'object', 'links': 'object', 'errors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found: the specified data source is not recognized, or the record was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'object', 'links': 'object', 'errors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error: an unexpected error occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'object', 'links': 'object', 'errors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "recordJsonData": {
+                    "type": "string",
+                    "description": "The Senzing-format JSON text describing the record."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data-sources/{dataSourceCode}/records/{recordId}/reevaluate": {
+      "post": {
+        "operationId": "createReevaluate",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dataSourceCode",
+            "in": "path",
+            "required": true,
+            "description": "The data source code from the URI path.",
+            "schema": {
+              "type": "string",
+              "description": "The data source code from the URI path."
+            }
+          },
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "description": "The record ID of the record being reevaluated.",
+            "schema": {
+              "type": "string",
+              "description": "The record ID of the record being reevaluated."
+            }
+          },
+          {
+            "name": "withInfo",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if resolution info should be produced when loading the record (from the query parameter).",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if resolution info should be produced when loading the record (from the query parameter)."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record was reevaluated successfully. Returns an SzReevaluateResponse containing the resolution info if withInfo was requested, and optionally the raw JSON if withRaw was also requested.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzReevaluateResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzReevaluateResponseData'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when the specified data source is not recognized (newNotFoundException is called with a message, which produces a 404; however, the code path for an unrecognized data source in reevaluateRecord uses newNotFoundException, so this is 404). Also returned when the entityId parameter is missing in reevaluateEntity (not this endpoint). For this endpoint, a bad request is not explicitly produced."
+          },
+          "403": {
+            "description": "Forbidden. Returned when the server is in read-only mode and loading data is not allowed (ensureLoadingIsAllowed throws ForbiddenException)."
+          },
+          "404": {
+            "description": "Not found. Returned when the specified data source is not recognized (newNotFoundException with message), or when the record is not found (newPossiblyNotFoundException maps RECORD_NOT_FOUND_CODE to NotFoundException)."
+          },
+          "500": {
+            "description": "Internal server error. Returned when an unexpected exception occurs, or when the native API returns an error code that is not a not-found error (newPossiblyNotFoundException maps other errors to InternalServerErrorException)."
+          }
+        }
+      }
+    },
+    "/entities/{entityId}": {
+      "get": {
+        "operationId": "getEntities",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "description": "The entity ID of the entity being requested.",
+            "schema": {
+              "type": "integer",
+              "description": "The entity ID of the entity being requested."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw JSON should be included with the response."
+            }
+          },
+          {
+            "name": "withRelated",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if related entities should be included.",
+            "schema": {
+              "type": "string",
+              "description": "Flag indicating if related entities should be included.",
+              "enum": [
+                "NONE",
+                "PARTIAL",
+                "FULL"
+              ]
+            }
+          },
+          {
+            "name": "forceMinimal",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if the minimal response format is requested.",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if the minimal response format is requested."
+            }
+          },
+          {
+            "name": "detailLevel",
+            "in": "query",
+            "required": false,
+            "description": "The level of detail for the entity data.",
+            "schema": {
+              "type": "string",
+              "description": "The level of detail for the entity data.",
+              "enum": [
+                "MINIMAL",
+                "VERBOSE"
+              ]
+            }
+          },
+          {
+            "name": "featureMode",
+            "in": "query",
+            "required": false,
+            "description": "How the features should be returned.",
+            "schema": {
+              "type": "string",
+              "description": "How the features should be returned.",
+              "enum": [
+                "NONE",
+                "REPRESENTATIVE",
+                "WITH_DUPLICATES",
+                "ATTRIBUTED"
+              ]
+            }
+          },
+          {
+            "name": "withFeatureStats",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if feature stats should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if feature stats should be included in the response."
+            }
+          },
+          {
+            "name": "withInternalFeatures",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if internal features should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if internal features should be included in the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The entity data was successfully retrieved and returned as an SzEntityResponse.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzEntityResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzEntityData'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The entity was not found. This occurs when the native API returns a non-zero result code indicating a data source, record ID, or entity ID was not found, or when the native JSON response is empty."
+          },
+          "500": {
+            "description": "An internal server error occurred. This occurs when the native API returns an error code that is not a not-found error, or when an unexpected exception is caught."
+          }
+        }
+      }
+    },
+    "/data-sources/{dataSourceCode}/records/{recordId}/entity": {
+      "get": {
+        "operationId": "getEntity",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dataSourceCode",
+            "in": "path",
+            "required": true,
+            "description": "The data source code from the URI path.",
+            "schema": {
+              "type": "string",
+              "description": "The data source code from the URI path."
+            }
+          },
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "description": "The record ID of the record for entity being requested.",
+            "schema": {
+              "type": "string",
+              "description": "The record ID of the record for entity being requested."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw JSON should be included with the response."
+            }
+          },
+          {
+            "name": "withRelated",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if related entities should be included.",
+            "schema": {
+              "type": "string",
+              "description": "Flag indicating if related entities should be included.",
+              "enum": [
+                "NONE",
+                "PARTIAL",
+                "FULL"
+              ]
+            }
+          },
+          {
+            "name": "forceMinimal",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if the minimal response format is requested.",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if the minimal response format is requested."
+            }
+          },
+          {
+            "name": "detailLevel",
+            "in": "query",
+            "required": false,
+            "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE.",
+            "schema": {
+              "type": "string",
+              "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE.",
+              "enum": [
+                "MINIMAL",
+                "VERBOSE"
+              ]
+            }
+          },
+          {
+            "name": "featureMode",
+            "in": "query",
+            "required": false,
+            "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES.",
+            "schema": {
+              "type": "string",
+              "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES.",
+              "enum": [
+                "NONE",
+                "REPRESENTATIVE",
+                "WITH_DUPLICATES",
+                "ATTRIBUTED"
+              ]
+            }
+          },
+          {
+            "name": "withFeatureStats",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if feature stats should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if feature stats should be included in the response."
+            }
+          },
+          {
+            "name": "withInternalFeatures",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if internal features should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if internal features should be included in the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The entity data for the entity associated with the specified data source and record ID was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzEntityResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzEntityData'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified record or entity was not found. This can occur when the native API returns a non-zero result code indicating a data source, record ID, or entity ID was not found, or when the native API returns an empty JSON response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An internal server error occurred while processing the request. This can occur when the native API returns an error code other than 'not found', or when an unexpected exception is thrown during processing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reevaluate-entity": {
+      "post": {
+        "operationId": "createReevaluateEntity",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "query",
+            "required": false,
+            "description": "The entity ID of the entity to be reevaluated.",
+            "schema": {
+              "type": "integer",
+              "description": "The entity ID of the entity to be reevaluated."
+            }
+          },
+          {
+            "name": "withInfo",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not resolution info should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not resolution info should be included in the response."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The reevaluate entity request was successful. Returns an SzReevaluateResponse containing the resolution info (if withInfo=true) and optionally the raw JSON data (if withRaw=true and withInfo=true).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzReevaluateResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzReevaluateResponseData'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when the entityId parameter is missing, or when the specified entityId was not found (ENTITY_NOT_FOUND_CODE)."
+          },
+          "403": {
+            "description": "Forbidden. Returned when the server is in read-only mode and loading data is not allowed."
+          },
+          "404": {
+            "description": "Not Found. Returned when the engine API indicates a data source, record ID, or entity ID was not found."
+          },
+          "500": {
+            "description": "Internal Server Error. Returned when an unexpected error occurs during processing."
+          }
+        }
+      }
+    },
+    "/entities/{entityId}/how": {
+      "get": {
+        "operationId": "getHow",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "description": "The entity ID of the entity from the URI path.",
+            "schema": {
+              "type": "integer",
+              "description": "The entity ID of the entity from the URI path."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw native Senzing JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returns how the entity resolved, including the how entity result and optionally the raw native Senzing JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzHowEntityResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'howEntityResult': 'SzHowEntityResult', 'rawData': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The entity ID was not found. Thrown by newPossiblyNotFoundException when the engine returns an error code indicating the entity ID was not found."
+          },
+          "500": {
+            "description": "An internal server error occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/search-entities": {
+      "post": {
+        "operationId": "createSearchEntities",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "includeOnly",
+            "in": "query",
+            "required": false,
+            "description": "The set of search match levels to only be included in the response.",
+            "schema": {
+              "type": "string",
+              "description": "The set of search match levels to only be included in the response."
+            }
+          },
+          {
+            "name": "forceMinimal",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if the minimal response format is requested.",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if the minimal response format is requested."
+            }
+          },
+          {
+            "name": "detailLevel",
+            "in": "query",
+            "required": false,
+            "description": "The level of detail for the entity data.",
+            "schema": {
+              "type": "string",
+              "description": "The level of detail for the entity data."
+            }
+          },
+          {
+            "name": "featureMode",
+            "in": "query",
+            "required": false,
+            "description": "Indicates how the features should be returned.",
+            "schema": {
+              "type": "string",
+              "description": "Indicates how the features should be returned."
+            }
+          },
+          {
+            "name": "withFeatureStats",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if feature stats should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if feature stats should be included in the response."
+            }
+          },
+          {
+            "name": "withInternalFeatures",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if internal features should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if internal features should be included in the response."
+            }
+          },
+          {
+            "name": "withRelationships",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if entity relationships should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if entity relationships should be included in the response."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The search results were returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzAttributeSearchResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzAttributeSearchResponseData'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request body is missing, empty, or does not parse as valid JSON; or the search criteria contains no attributes; or an includeOnly value is not recognized.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array of SzError'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. An unexpected error occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array of SzError'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "attrs": {
+                    "type": "string",
+                    "description": "The JSON request body describing the attributes to search on."
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/virtual-entities": {
+      "get": {
+        "operationId": "getVirtualEntities",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "r",
+            "in": "query",
+            "required": false,
+            "description": "Record identifiers to include in the virtual entity. May be specified multiple times.",
+            "schema": {
+              "type": "string",
+              "description": "Record identifiers to include in the virtual entity. May be specified multiple times."
+            }
+          },
+          {
+            "name": "records",
+            "in": "query",
+            "required": false,
+            "description": "A JSON array of record identifiers to include in the virtual entity.",
+            "schema": {
+              "type": "string",
+              "description": "A JSON array of record identifiers to include in the virtual entity."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not to include the raw native Senzing JSON in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not to include the raw native Senzing JSON in the response."
+            }
+          },
+          {
+            "name": "forceMinimal",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not to force minimal format for the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not to force minimal format for the response."
+            }
+          },
+          {
+            "name": "detailLevel",
+            "in": "query",
+            "required": false,
+            "description": "The level of detail for the response.",
+            "schema": {
+              "type": "string",
+              "description": "The level of detail for the response.",
+              "enum": [
+                "VERBOSE",
+                "MINIMAL"
+              ]
+            }
+          },
+          {
+            "name": "featureMode",
+            "in": "query",
+            "required": false,
+            "description": "How features are retrieved.",
+            "schema": {
+              "type": "string",
+              "description": "How features are retrieved.",
+              "enum": [
+                "WITH_DUPLICATES",
+                "REPRESENTATIVE",
+                "ATTRIBUTED",
+                "NONE"
+              ]
+            }
+          },
+          {
+            "name": "withFeatureStats",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not to include feature statistics.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not to include feature statistics."
+            }
+          },
+          {
+            "name": "withInternalFeatures",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not to include internal features.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not to include internal features."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the virtual entity for the specified records.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzVirtualEntityResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'object', 'links': 'object', 'resolvedEntity': 'object', 'relatedEntities': 'array', 'rawData': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. At least one record must be specified via the 'r' or 'records' query parameters, or the record identifiers are improperly formatted."
+          },
+          "500": {
+            "description": "Internal server error. An unexpected error occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/entities": {
+      "get": {
+        "operationId": "getEntities",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "attrs",
+            "in": "query",
+            "required": false,
+            "description": "The senzing JSON describing the attributes to search on.",
+            "schema": {
+              "type": "string",
+              "description": "The senzing JSON describing the attributes to search on."
+            }
+          },
+          {
+            "name": "attr",
+            "in": "query",
+            "required": false,
+            "description": "The list of encoded String attributes to search on.",
+            "schema": {
+              "type": "array",
+              "description": "The list of encoded String attributes to search on."
+            }
+          },
+          {
+            "name": "includeOnly",
+            "in": "query",
+            "required": false,
+            "description": "The Set of search match levels to only be included in the response.",
+            "schema": {
+              "type": "array",
+              "description": "The Set of search match levels to only be included in the response."
+            }
+          },
+          {
+            "name": "forceMinimal",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if the minimal response format is requested.",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if the minimal response format is requested."
+            }
+          },
+          {
+            "name": "detailLevel",
+            "in": "query",
+            "required": false,
+            "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE.",
+            "schema": {
+              "type": "string",
+              "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE."
+            }
+          },
+          {
+            "name": "featureMode",
+            "in": "query",
+            "required": false,
+            "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES.",
+            "schema": {
+              "type": "string",
+              "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES."
+            }
+          },
+          {
+            "name": "withFeatureStats",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if feature stats should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if feature stats should be included in the response."
+            }
+          },
+          {
+            "name": "withInternalFeatures",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if internal features should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if internal features should be included in the response."
+            }
+          },
+          {
+            "name": "withRelationships",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating if entity relationships should be included in the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating if entity relationships should be included in the response."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The search results were returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzAttributeSearchResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzAttributeSearchResponseData'}"
+                    },
+                    "SzAttributeSearchResponseData": {
+                      "type": "string",
+                      "description": "{'searchResults': 'array<SzAttributeSearchResult>'}"
+                    },
+                    "SzAttributeSearchResult": {
+                      "type": "string",
+                      "description": "{'entityId': 'long', 'entityName': 'string', 'matchLevel': 'SzMatchLevel', 'matchKey': 'string', 'matchScore': 'integer', 'resolvedEntity': 'SzResolvedEntity', 'relatedEntities': 'array<SzRelatedEntity>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The search criteria provided via the \"attrs\" or \"attr\" parameter is invalid, missing, or improperly formatted."
+          },
+          "500": {
+            "description": "Internal server error. An unexpected error occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/data-sources/{dataSourceCode}/records/{recordId}/entity/how": {
+      "get": {
+        "operationId": "getHow",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dataSourceCode",
+            "in": "path",
+            "required": true,
+            "description": "The data source code for the record.",
+            "schema": {
+              "type": "string",
+              "description": "The data source code for the record."
+            }
+          },
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "description": "The record ID for the record.",
+            "schema": {
+              "type": "string",
+              "description": "The record ID for the record."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw native Senzing JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returns how the entity resolved for the record.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzHowEntityResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'object', 'links': 'object', 'howEntityResult': 'object', 'rawData': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified record or entity was not found."
+          },
+          "500": {
+            "description": "An internal server error occurred."
+          }
+        }
+      }
+    },
+    "/entity-paths": {
+      "get": {
+        "operationId": "getEntityPaths",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "description": "The SzEntityIdentifier for the start of the requested path.",
+            "schema": {
+              "type": "string",
+              "description": "The SzEntityIdentifier for the start of the requested path."
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "description": "The SzEntityIdentifier for the end of the requested path.",
+            "schema": {
+              "type": "string",
+              "description": "The SzEntityIdentifier for the end of the requested path."
+            }
+          },
+          {
+            "name": "maxDegrees",
+            "in": "query",
+            "required": false,
+            "description": "The maximum number of degrees for the requested path.",
+            "schema": {
+              "type": "integer",
+              "description": "The maximum number of degrees for the requested path.",
+              "minimum": 1.0
+            }
+          },
+          {
+            "name": "x",
+            "in": "query",
+            "required": false,
+            "description": "The optional List of SzEntityIdentifier instances identifying those entities to avoid.",
+            "schema": {
+              "type": "array",
+              "description": "The optional List of SzEntityIdentifier instances identifying those entities to avoid."
+            }
+          },
+          {
+            "name": "avoidEntities",
+            "in": "query",
+            "required": false,
+            "description": "The optional text describing a List of SzEntityIdentifier instances identifying those entities to avoid.",
+            "schema": {
+              "type": "string",
+              "description": "The optional text describing a List of SzEntityIdentifier instances identifying those entities to avoid."
+            }
+          },
+          {
+            "name": "forbidAvoided",
+            "in": "query",
+            "required": false,
+            "description": "Flag indicating whether or not avoided entities should be strictly forbidden (true) or only avoided if possible (false).",
+            "schema": {
+              "type": "boolean",
+              "description": "Flag indicating whether or not avoided entities should be strictly forbidden (true) or only avoided if possible (false)."
+            }
+          },
+          {
+            "name": "s",
+            "in": "query",
+            "required": false,
+            "description": "The List of data source codes that are legal for entities included in the path.",
+            "schema": {
+              "type": "array",
+              "description": "The List of data source codes that are legal for entities included in the path."
+            }
+          },
+          {
+            "name": "forceMinimal",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the returned entities should be in the minimal format.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the returned entities should be in the minimal format."
+            }
+          },
+          {
+            "name": "detailLevel",
+            "in": "query",
+            "required": false,
+            "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE.",
+            "schema": {
+              "type": "string",
+              "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE."
+            }
+          },
+          {
+            "name": "featureMode",
+            "in": "query",
+            "required": false,
+            "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES.",
+            "schema": {
+              "type": "string",
+              "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES."
+            }
+          },
+          {
+            "name": "withFeatureStats",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not feature stats should be included with the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not feature stats should be included with the returned entities."
+            }
+          },
+          {
+            "name": "withInternalFeatures",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not internal features should be included with the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not internal features should be included with the returned entities."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw native Senzing JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. Returns the entity path between the two specified entities.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzEntityPathResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzEntityPathData'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when required parameters are missing or malformed, entity identifiers are inconsistent, avoided entities are inconsistent, an unrecognized data source is specified, maxDegrees is less than 1, or the engine reports that an entity or record was not found."
+          },
+          "500": {
+            "description": "Internal Server Error. Returned when an unexpected error occurs while processing the request or when the engine reports a system error."
+          }
+        }
+      }
+    },
+    "/entity-networks": {
+      "get": {
+        "operationId": "getEntityNetworks",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "e",
+            "in": "query",
+            "required": false,
+            "description": "The {@link List} of encoded strings describing {@link SzEntityIdentifier} instances for the network.",
+            "schema": {
+              "type": "string",
+              "description": "The {@link List} of encoded strings describing {@link SzEntityIdentifier} instances for the network."
+            }
+          },
+          {
+            "name": "entities",
+            "in": "query",
+            "required": false,
+            "description": "The encoded {@link String} describing the the {@link SzEntityIdentifiers} instance for the network.",
+            "schema": {
+              "type": "string",
+              "description": "The encoded {@link String} describing the the {@link SzEntityIdentifiers} instance for the network."
+            }
+          },
+          {
+            "name": "maxDegrees",
+            "in": "query",
+            "required": false,
+            "description": "The maximum degrees for finding the paths between the identified entities.",
+            "schema": {
+              "type": "integer",
+              "description": "The maximum degrees for finding the paths between the identified entities.",
+              "minimum": 0.0
+            }
+          },
+          {
+            "name": "buildOut",
+            "in": "query",
+            "required": false,
+            "description": "The number of related entities to build out from the found entities.",
+            "schema": {
+              "type": "integer",
+              "description": "The number of related entities to build out from the found entities.",
+              "minimum": 0.0
+            }
+          },
+          {
+            "name": "maxEntities",
+            "in": "query",
+            "required": false,
+            "description": "The maximum number of build-out entities to return.",
+            "schema": {
+              "type": "integer",
+              "description": "The maximum number of build-out entities to return.",
+              "minimum": 0.0
+            }
+          },
+          {
+            "name": "forceMinimal",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the returned entities should be in the minimal format.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the returned entities should be in the minimal format."
+            }
+          },
+          {
+            "name": "detailLevel",
+            "in": "query",
+            "required": false,
+            "description": "The {@link SzDetailLevel} describing the requested level of detail for the entity data, if <code>null</code> this defaults to {@link SzDetailLevel#VERBOSE}.",
+            "schema": {
+              "type": "string",
+              "description": "The {@link SzDetailLevel} describing the requested level of detail for the entity data, if <code>null</code> this defaults to {@link SzDetailLevel#VERBOSE}.",
+              "enum": [
+                "VERBOSE",
+                "MINIMAL"
+              ]
+            }
+          },
+          {
+            "name": "featureMode",
+            "in": "query",
+            "required": false,
+            "description": "The {@link SzFeatureMode} query parameter indicating how the features should be returned, if <code>null</code> this defaults to {@link SzFeatureMode#WITH_DUPLICATES}.",
+            "schema": {
+              "type": "string",
+              "description": "The {@link SzFeatureMode} query parameter indicating how the features should be returned, if <code>null</code> this defaults to {@link SzFeatureMode#WITH_DUPLICATES}.",
+              "enum": [
+                "NONE",
+                "REPRESENTATIVE",
+                "WITH_DUPLICATES",
+                "ATTRIBUTED"
+              ]
+            }
+          },
+          {
+            "name": "withFeatureStats",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not feature stats should be included with the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not feature stats should be included with the returned entities."
+            }
+          },
+          {
+            "name": "withInternalFeatures",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not internal features should be included with the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not internal features should be included with the returned entities."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw native Senzing JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the entity network data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzEntityNetworkResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzEntityNetworkData'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when required parameters are missing, entity identifiers are inconsistent, or numeric parameters are negative.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when an unexpected exception occurs during processing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data-sources/{dataSourceCode}/records/{recordId}/entity/why": {
+      "get": {
+        "operationId": "getWhy",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dataSourceCode",
+            "in": "path",
+            "required": true,
+            "description": "The data source code from the URI path that in-part identifies the record that belongs to the entity.",
+            "schema": {
+              "type": "string",
+              "description": "The data source code from the URI path that in-part identifies the record that belongs to the entity."
+            }
+          },
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "description": "The record ID from the URI path that in-part identifies the record that belongs to the entity.",
+            "schema": {
+              "type": "string",
+              "description": "The record ID from the URI path that in-part identifies the record that belongs to the entity."
+            }
+          },
+          {
+            "name": "forceMinimal",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the returned entities should be in the minimal format.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the returned entities should be in the minimal format."
+            }
+          },
+          {
+            "name": "detailLevel",
+            "in": "query",
+            "required": false,
+            "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE.",
+            "schema": {
+              "type": "string",
+              "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE.",
+              "enum": [
+                "VERBOSE",
+                "MINIMAL"
+              ]
+            }
+          },
+          {
+            "name": "featureMode",
+            "in": "query",
+            "required": false,
+            "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES.",
+            "schema": {
+              "type": "string",
+              "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES.",
+              "enum": [
+                "WITH_DUPLICATES",
+                "REPRESENTATIVE",
+                "ATTRIBUTED",
+                "NONE"
+              ]
+            }
+          },
+          {
+            "name": "withFeatureStats",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not feature stats should be included with the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not feature stats should be included with the returned entities."
+            }
+          },
+          {
+            "name": "withInternalFeatures",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not internal features should be included with the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not internal features should be included with the returned entities."
+            }
+          },
+          {
+            "name": "withRelationships",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not relationships should be included in the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not relationships should be included in the returned entities."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw native Senzing JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The why entity response containing the why results and entities.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzWhyEntityResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzWhyEntityResponseData'}"
+                    },
+                    "SzWhyEntityResponseData": {
+                      "type": "string",
+                      "description": "{'whyResults': 'array', 'entities': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found: The specified data source code, record ID, or entity ID was not found."
+          },
+          "500": {
+            "description": "Internal Server Error: An unexpected error occurred while processing the request."
+          }
+        }
+      }
+    },
+    "/entities/{entityId}/why": {
+      "get": {
+        "operationId": "getWhy",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "description": "The entity ID of the entity from the URI path.",
+            "schema": {
+              "type": "integer",
+              "description": "The entity ID of the entity from the URI path."
+            }
+          },
+          {
+            "name": "forceMinimal",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the returned entities should be in the minimal format.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the returned entities should be in the minimal format."
+            }
+          },
+          {
+            "name": "detailLevel",
+            "in": "query",
+            "required": false,
+            "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE.",
+            "schema": {
+              "type": "string",
+              "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE."
+            }
+          },
+          {
+            "name": "featureMode",
+            "in": "query",
+            "required": false,
+            "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES.",
+            "schema": {
+              "type": "string",
+              "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES."
+            }
+          },
+          {
+            "name": "withFeatureStats",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not feature stats should be included with the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not feature stats should be included with the returned entities."
+            }
+          },
+          {
+            "name": "withInternalFeatures",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not internal features should be included with the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not internal features should be included with the returned entities."
+            }
+          },
+          {
+            "name": "withRelationships",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not relationships should be included in the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not relationships should be included in the returned entities."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw native Senzing JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The response is an SzWhyEntityResponse describing the why results and entities.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzWhyEntityResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzWhyEntityResponseData'}"
+                    },
+                    "SzWhyEntityResponseData": {
+                      "type": "string",
+                      "description": "{'whyResults': 'array<SzWhyEntityResult>', 'entities': 'array<SzEntityData>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The entity ID was not found (ENTITY_NOT_FOUND_CODE).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array<SzError>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array<SzError>'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/why/entities": {
+      "get": {
+        "operationId": "getEntities",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "entity1",
+            "in": "query",
+            "required": false,
+            "description": "The encoded String describing the SzEntityIdentifier for the first subject entity.",
+            "schema": {
+              "type": "string",
+              "description": "The encoded String describing the SzEntityIdentifier for the first subject entity."
+            }
+          },
+          {
+            "name": "entity2",
+            "in": "query",
+            "required": false,
+            "description": "The encoded String describing the SzEntityIdentifier for the second subject entity.",
+            "schema": {
+              "type": "string",
+              "description": "The encoded String describing the SzEntityIdentifier for the second subject entity."
+            }
+          },
+          {
+            "name": "forceMinimal",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the returned entities should be in the minimal format.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the returned entities should be in the minimal format."
+            }
+          },
+          {
+            "name": "detailLevel",
+            "in": "query",
+            "required": false,
+            "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE.",
+            "schema": {
+              "type": "string",
+              "description": "The SzDetailLevel describing the requested level of detail for the entity data, if null this defaults to SzDetailLevel#VERBOSE.",
+              "enum": [
+                "VERBOSE",
+                "MINIMAL",
+                "SUMMARY"
+              ]
+            }
+          },
+          {
+            "name": "featureMode",
+            "in": "query",
+            "required": false,
+            "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES.",
+            "schema": {
+              "type": "string",
+              "description": "The SzFeatureMode query parameter indicating how the features should be returned, if null this defaults to SzFeatureMode#WITH_DUPLICATES.",
+              "enum": [
+                "WITH_DUPLICATES",
+                "REPRESENTATIVE",
+                "ATTRIBUTED",
+                "NONE"
+              ]
+            }
+          },
+          {
+            "name": "withFeatureStats",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not feature stats should be included with the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not feature stats should be included with the returned entities."
+            }
+          },
+          {
+            "name": "withInternalFeatures",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not internal features should be included with the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not internal features should be included with the returned entities."
+            }
+          },
+          {
+            "name": "withRelationships",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not relationships should be included in the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not relationships should be included in the returned entities."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw native Senzing JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The why-entities response describing the result of the why operation, including the why result and the entities involved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzWhyEntitiesResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'data': 'SzWhyEntitiesResponseData'}"
+                    },
+                    "SzWhyEntitiesResponseData": {
+                      "type": "string",
+                      "description": "{'whyResult': 'SzWhyEntitiesResult', 'entities': 'array<SzEntityData>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when required parameters are missing or empty, when entity identifiers are improperly formatted, when entity identifiers are inconsistent types, or when the engine reports that a data source, record ID, or entity ID was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array<SzError>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error. Returned when an unexpected error occurs during processing or when the engine reports an error other than a not-found condition.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzErrorResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'SzMeta', 'links': 'SzLinks', 'errors': 'array<SzError>'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/why/records": {
+      "get": {
+        "operationId": "getRecords",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "dataSource1",
+            "in": "query",
+            "required": false,
+            "description": "The data source code for the first subject record.",
+            "schema": {
+              "type": "string",
+              "description": "The data source code for the first subject record."
+            }
+          },
+          {
+            "name": "recordId1",
+            "in": "query",
+            "required": false,
+            "description": "The record ID for the first subject record.",
+            "schema": {
+              "type": "string",
+              "description": "The record ID for the first subject record."
+            }
+          },
+          {
+            "name": "dataSource2",
+            "in": "query",
+            "required": false,
+            "description": "The data source code for the second subject record.",
+            "schema": {
+              "type": "string",
+              "description": "The data source code for the second subject record."
+            }
+          },
+          {
+            "name": "recordId2",
+            "in": "query",
+            "required": false,
+            "description": "The record ID for the second subject record.",
+            "schema": {
+              "type": "string",
+              "description": "The record ID for the second subject record."
+            }
+          },
+          {
+            "name": "forceMinimal",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the returned entities should be in the minimal format.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the returned entities should be in the minimal format."
+            }
+          },
+          {
+            "name": "detailLevel",
+            "in": "query",
+            "required": false,
+            "description": "The level of detail for the entity data.",
+            "schema": {
+              "type": "string",
+              "description": "The level of detail for the entity data.",
+              "enum": [
+                "VERBOSE",
+                "MINIMAL"
+              ]
+            }
+          },
+          {
+            "name": "featureMode",
+            "in": "query",
+            "required": false,
+            "description": "Indicates how the features should be returned.",
+            "schema": {
+              "type": "string",
+              "description": "Indicates how the features should be returned.",
+              "enum": [
+                "WITH_DUPLICATES",
+                "REPRESENTATIVE",
+                "ATTRIBUTED",
+                "NONE"
+              ]
+            }
+          },
+          {
+            "name": "withFeatureStats",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not feature stats should be included with the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not feature stats should be included with the returned entities."
+            }
+          },
+          {
+            "name": "withInternalFeatures",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not internal features should be included with the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not internal features should be included with the returned entities."
+            }
+          },
+          {
+            "name": "withRelationships",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not relationships should be included in the returned entities.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not relationships should be included in the returned entities."
+            }
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "description": "Whether or not the raw native Senzing JSON should be included with the response.",
+            "schema": {
+              "type": "boolean",
+              "description": "Whether or not the raw native Senzing JSON should be included with the response."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The why records response containing the why result and the entities.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SzWhyRecordsResponse": {
+                      "type": "string",
+                      "description": "{'meta': 'object', 'links': 'object', 'data': 'SzWhyRecordsResponseData'}"
+                    },
+                    "SzWhyRecordsResponseData": {
+                      "type": "string",
+                      "description": "{'whyResult': 'SzWhyRecordsResult', 'entities': 'array'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when a required parameter is missing or empty (dataSource1, recordId1, dataSource2, recordId2), or when the engine reports a data source not found (error code 27) or record not found (error code 33)."
+          },
+          "500": {
+            "description": "Internal server error. Returned when the engine reports an unexpected error, or when an unexpected exception occurs during processing."
+          }
+        }
+      }
+    }
+  }
+}

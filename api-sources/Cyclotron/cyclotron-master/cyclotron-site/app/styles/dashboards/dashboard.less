@@ -1,0 +1,270 @@
+/*
+ * Copyright (c) 2013-2018 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+
+/*
+ * Standard dashboard styles, for the dashboard, pages, widgets, etc.
+ * 
+ * This files does not have themes, which are located 
+ * instead in the /styles/themes folder.
+ */
+@import "../../../vendor/lesselements/_elements.less";
+@import "../common/variables.less";
+
+.dashboard {
+    overflow: hidden;
+    @media only screen and (max-width: @phonePortraitMaxWidth) { 
+        overflow-y: auto; 
+    } 
+    @media only screen and (max-height: @phonePortraitMaxWidth) { 
+        overflow-y: auto; 
+    } 
+
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10pt;
+
+    h1,h2,h3,h4,h5,h6 {
+        font-family: 'Lato', sans-serif;
+        font-weight: 300;
+        margin: 0;
+    }
+
+    .dashboard-sidebar {
+        /* Basic styles and initial positioning to avoid initial transition */
+        /* Sidebar styling is loaded per theme */
+        * {
+            .box-sizing(border-box);
+        }
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 9001;
+
+        &.collapsed {
+            margin-left: -@sidebar-width * 1.2;
+        }
+    }
+
+    .dashboard-controls {
+        .user-select(none);
+        z-index: 999;
+        position: fixed;
+        bottom: 1rem;
+        left: 50%;
+        width: 18.5rem;
+        margin-left: -9rem;
+        .opacity(0);
+        transition: opacity 1s ease-in-out;
+        text-align: center;
+
+        a, i {
+            font-size: 2rem;
+            font-weight: 300;
+            width: 2.3rem;
+            display: inline-block;
+            margin: 10px 10px;
+            cursor: pointer;
+
+            &.disabled {
+                .opacity(.3);
+            }
+        }
+
+        &.active {
+            .opacity(1);
+        }
+    }
+
+    .click-cover {
+        position: fixed;
+        z-index: 8999;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: none;
+    }
+
+    .dashboard-pages {
+        position: relative;
+    }
+
+    .dashboard-page {
+
+        /* Style: Fullscreen */
+        &.fullscreen {
+            margin: 0px;
+
+            div { height: 100%; }
+
+            .dashboard-widget {
+                border: 0;
+            }
+        }
+
+        /* Style: Normal */
+        &.normal {
+            padding: 40px;
+            height: 100%;
+            .box-sizing(border-box);
+
+            @media only screen and (orientation:portrait) and (max-width: @phonePortraitMaxWidth) { 
+                height: auto; 
+            }             
+        }
+
+        /* Hide preloaded-pages until they are rotated into view */
+        &:not(:first-child) {
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+        }
+    }
+
+    .dashboard-widgetwrapper {
+        float: left;
+        background: none;
+
+        > .widget-control-bar {
+            position: absolute;
+            top: 0px;
+            right: 4px;
+            z-index: 1000;
+            .user-select(none);
+
+            > .widget-control {
+                display: inline-block;
+                margin-left: 0.5rem;
+                cursor: pointer;
+                opacity: 0.4;
+                &:hover {
+                    opacity: 0.7;
+                }
+
+                > i {
+                    vertical-align: top;
+                }
+
+                /* Dropdown menu has a div wrapping the <i> tag */
+                &.widget-dropdown-menu {
+                    opacity: 1;
+
+                    > i {
+                        opacity: 0.4;
+                        &:hover {
+                            opacity: 0.7; 
+                        }
+                    }
+                }
+            }
+
+            > .tooltip {
+                .tooltip-arrow {
+                    right: 1px !important;
+                }
+            }
+        }
+
+        > .dashboard-widget {
+            .box-sizing(border-box);
+            overflow: hidden;
+            height: 100%;
+
+            &:-webkit-full-screen {
+                width: 100%;
+                height: 100%;
+            }
+
+            h1.title {
+                @media only screen and (max-width: 1024px) { font-size: 1.5em; } 
+                @media only screen and (max-width: 600px) { font-size: 1.3em; } 
+                font-size: 1.8em;
+
+                &.big {
+                    font-size: 3.3em;
+                    line-height: 1.5em;
+                    @media only screen and (max-width: 1024px) { font-size: 2.5em; line-height: 1.3em; } 
+                    @media only screen and (max-width: 600px) { font-size: 2.0em; line-height: 1.3em; } 
+                }
+
+                i.fa.fa-question-circle {
+                    opacity: 0.7;
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+                
+            }
+
+            /* Style for loading spinner */
+            .widget-loading {
+                /* Center in the middle of the widget */
+                position: absolute;
+                top: 50%;
+                left: 50%;
+            }
+
+            /* Style for widget error messages */
+            .widget-error {
+                overflow: hidden;
+                text-align: center;
+                max-width: 26rem;
+                margin: auto;
+
+                .fa-exclamation {
+                    color: #A60000;
+                }
+
+                .widget-reload {
+                    cursor: pointer;
+                }
+
+                .widget-error-message {
+                    color: #666;
+                    font-size: 90%;
+                    margin: auto;
+                    margin-top: 0.5rem;
+                }
+            }
+
+            /* Style for no data message */
+            .widget-nodata {
+                position: absolute;
+                top: 45%;
+                left: 0;
+                width: 100%;
+                height: 10%;
+                text-align: center;
+            }
+        }
+    }
+
+    &.dashboard-export {
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: 1px dotted black;
+            border-radius: 0;
+            padding: 3px;
+        }
+
+        .dashboard-widgetwrapper > .dashboard-widget h1.title {
+            font-size: 20
+        }
+    }
+}

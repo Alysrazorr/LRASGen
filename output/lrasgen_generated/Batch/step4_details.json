@@ -1,0 +1,472 @@
+{
+  "task_id": "spring-batch-rest",
+  "api_name": "spring-batch-rest",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/jobs",
+      "http_method": "GET",
+      "method_name": "all",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Batch\\spring-batch-rest\\api\\src\\main\\java\\com\\github\\chrisgleissner\\springbatchrest\\api\\core\\job\\JobController.java",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a collection of all Spring Batch jobs as HAL representation.",
+          "data_schema": [
+            {
+              "name": "CollectionModel<JobResource>",
+              "schema": {
+                "_embedded": "object",
+                "_links": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when an unexpected exception occurs while retrieving jobs.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/jobs/{jobName}",
+      "http_method": "GET",
+      "method_name": "get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Batch\\spring-batch-rest\\api\\src\\main\\java\\com\\github\\chrisgleissner\\springbatchrest\\api\\core\\job\\JobController.java",
+      "parameters": [
+        {
+          "name": "jobName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Name of the Spring Batch job to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the Spring Batch job with the given name as a HAL representation.",
+          "data_schema": [
+            {
+              "name": "JobResource",
+              "schema": {
+                "job": "Job",
+                "_links": "object"
+              }
+            },
+            {
+              "name": "Job",
+              "schema": {
+                "name": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error returned when the delegated job lookup fails and the exception is handled by the controller advice.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/jobDetails",
+      "http_method": "GET",
+      "method_name": "all",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Batch\\spring-batch-rest\\quartz-api\\src\\main\\java\\com\\github\\chrisgleissner\\springbatchrest\\api\\quartz\\jobdetail\\JobDetailController.java",
+      "parameters": [
+        {
+          "name": "enabled",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Filter job details by enabled status",
+          "_depth": 0
+        },
+        {
+          "name": "springBatchJobName",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Filter job details by Spring Batch job name",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a collection of Quartz job details, optionally filtered by enabled status and Spring Batch job name.",
+          "data_schema": [
+            {
+              "name": "CollectionModel<JobDetailResource>",
+              "schema": {
+                "_embedded": "object",
+                "_links": "object"
+              }
+            },
+            {
+              "name": "JobDetailResource",
+              "schema": {
+                "jobDetail": "JobDetail",
+                "_links": "object"
+              }
+            },
+            {
+              "name": "JobDetail",
+              "schema": {
+                "quartzJobName": "string",
+                "quartzGroupName": "string",
+                "springBatchJobName": "Optional<string>",
+                "description": "string",
+                "cronExpression": "Optional<string>",
+                "nextFireTime": "LocalDateTime",
+                "previousFireTime": "LocalDateTime"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the service fails to retrieve job details.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/jobExecutions",
+      "http_method": "GET",
+      "method_name": "all",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Batch\\spring-batch-rest\\api\\src\\main\\java\\com\\github\\chrisgleissner\\springbatchrest\\api\\core\\jobexecution\\JobExecutionController.java",
+      "parameters": [
+        {
+          "name": "jobName",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Find Spring batch job executions by job name",
+          "_depth": 0
+        },
+        {
+          "name": "exitCode",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Find Spring batch job executions by exit code",
+          "_depth": 0
+        },
+        {
+          "name": "limitPerJob",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Maximum number of executions per job",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns a collection of job execution resources matching the optional jobName and exitCode filters, limited per job.",
+          "data_schema": [
+            {
+              "name": "CollectionModel<JobExecutionResource>",
+              "schema": {
+                "_embedded": "object",
+                "_links": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the job execution service fails to retrieve job executions.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/jobDetails/{quartzGroupName}/{quartzJobName}",
+      "http_method": "GET",
+      "method_name": "get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Batch\\spring-batch-rest\\quartz-api\\src\\main\\java\\com\\github\\chrisgleissner\\springbatchrest\\api\\quartz\\jobdetail\\JobDetailController.java",
+      "parameters": [
+        {
+          "name": "quartzGroupName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Quartz group name",
+          "_depth": 0
+        },
+        {
+          "name": "quartzJobName",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Quartz job name",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the Quartz job detail for the given group and job name, wrapped in a JobDetailResource with a self link.",
+          "data_schema": [
+            {
+              "name": "JobDetailResource",
+              "schema": {
+                "jobDetail": {
+                  "quartzJobName": "string",
+                  "quartzGroupName": "string",
+                  "springBatchJobName": "Optional<string>",
+                  "description": "string",
+                  "cronExpression": "Optional<string>",
+                  "nextFireTime": "LocalDateTime",
+                  "previousFireTime": "LocalDateTime"
+                },
+                "_links": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error when the job detail cannot be retrieved, such as when the job does not exist or the scheduler fails.",
+          "data_schema": [
+            {
+              "name": "ApiError",
+              "schema": {
+                "status": "string",
+                "message": "string",
+                "exception": "string",
+                "detail": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/jobExecutions/{id}",
+      "http_method": "GET",
+      "method_name": "get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Batch\\spring-batch-rest\\api\\src\\main\\java\\com\\github\\chrisgleissner\\springbatchrest\\api\\core\\jobexecution\\JobExecutionController.java",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "long",
+          "require": "true",
+          "position": "path",
+          "description": "ID of the Spring Batch job execution to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the job execution by ID.",
+          "data_schema": [
+            {
+              "name": "JobExecutionResource",
+              "schema": {
+                "jobExecution": {
+                  "id": "long",
+                  "jobId": "long",
+                  "jobName": "string",
+                  "startTime": "date",
+                  "endTime": "date",
+                  "exitCode": "string",
+                  "exitDescription": "string",
+                  "status": "string",
+                  "exceptions": "array"
+                },
+                "_links": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Job execution not found. Thrown when the job execution with the specified ID does not exist.",
+          "data_schema": [
+            {
+              "name": "ApiError",
+              "schema": {
+                "status": "string",
+                "message": "string",
+                "exception": "string",
+                "detail": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Thrown when an unexpected error occurs.",
+          "data_schema": [
+            {
+              "name": "ApiError",
+              "schema": {
+                "status": "string",
+                "message": "string",
+                "exception": "string",
+                "detail": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/jobExecutions",
+      "http_method": "POST",
+      "method_name": "put",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Batch\\spring-batch-rest\\api\\src\\main\\java\\com\\github\\chrisgleissner\\springbatchrest\\api\\core\\jobexecution\\JobExecutionController.java",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "String",
+          "_class_name": "JobConfig",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Spring Batch job configuration to launch"
+        },
+        {
+          "name": "properties",
+          "type": "Map",
+          "_class_name": "JobConfig",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Spring Batch job configuration to launch"
+        },
+        {
+          "name": "asynchronous",
+          "type": "boolean",
+          "_class_name": "JobConfig",
+          "_depth": 0,
+          "require": "true",
+          "position": "body",
+          "description": "Spring Batch job configuration to launch"
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Job execution started successfully. Returns the created JobExecutionResource.",
+          "data_schema": [
+            {
+              "name": "JobExecutionResource",
+              "schema": {
+                "jobExecution": "JobExecution"
+              }
+            },
+            {
+              "name": "JobExecution",
+              "schema": {
+                "id": "long",
+                "jobId": "long",
+                "jobName": "string",
+                "startTime": "LocalDateTime",
+                "endTime": "LocalDateTime",
+                "exitCode": "string",
+                "exitDescription": "string",
+                "status": "BatchStatus",
+                "exceptions": "Collection<string>"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Job execution failed. The exit code of the job execution is FAILED.",
+          "data_schema": [
+            {
+              "name": "JobExecutionResource",
+              "schema": {
+                "jobExecution": "JobExecution"
+              }
+            },
+            {
+              "name": "JobExecution",
+              "schema": {
+                "id": "long",
+                "jobId": "long",
+                "jobName": "string",
+                "startTime": "LocalDateTime",
+                "endTime": "LocalDateTime",
+                "exitCode": "string",
+                "exitDescription": "string",
+                "status": "BatchStatus",
+                "exceptions": "Collection<string>"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 3759,
+  "tokens": {
+    "prompt_tokens": 235304,
+    "completion_tokens": 14732,
+    "total_tokens": 250036,
+    "calls": 42,
+    "elapsed_s": 257.722,
+    "prompt_cost_usd": 0.029867,
+    "completion_cost_usd": 0.00976,
+    "total_cost_usd": 0.039627,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 77630,
+        "completion_tokens": 2278,
+        "total_tokens": 79908,
+        "calls": 14,
+        "elapsed_s": 23.815487,
+        "prompt_cost_usd": 0.001553,
+        "completion_cost_usd": 0.001367,
+        "total_cost_usd": 0.002919
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 74028,
+        "completion_tokens": 10287,
+        "total_tokens": 84315,
+        "calls": 14,
+        "elapsed_s": 177.733,
+        "prompt_cost_usd": 0.007403,
+        "completion_cost_usd": 0.005143,
+        "total_cost_usd": 0.012546
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 83646,
+        "completion_tokens": 2167,
+        "total_tokens": 85813,
+        "calls": 14,
+        "elapsed_s": 56.174,
+        "prompt_cost_usd": 0.020911,
+        "completion_cost_usd": 0.00325,
+        "total_cost_usd": 0.024162
+      }
+    ]
+  }
+}

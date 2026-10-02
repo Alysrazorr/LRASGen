@@ -1,0 +1,3445 @@
+{
+  "task_id": "src",
+  "api_name": "src",
+  "framework": "koa",
+  "endpoints": [
+    {
+      "endpoint_path": "/status",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Status information returned successfully.",
+          "data_schema": [
+            {
+              "name": "TemplateResponse",
+              "schema": {
+                "object": "string",
+                "template": {
+                  "serverUrl": "string",
+                  "lastSync": "date",
+                  "userEmail": "string",
+                  "userId": "string",
+                  "status": "string"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "An error occurred while retrieving status information.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/list/object/folder",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to list. For this endpoint, the value is 'folder'.",
+          "_depth": 0
+        },
+        {
+          "name": "search",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Search term to filter folders by name.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the list of folders. The response body is a ListResponse object containing an array of FolderResponse objects.",
+          "data_schema": [
+            {
+              "name": "ListResponse",
+              "schema": {
+                "object": "string",
+                "data": "array<FolderResponse>"
+              }
+            },
+            {
+              "name": "FolderResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "name": "string",
+                "revisionDate": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked or the user is not logged in, or when the object type is unknown.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/send/list",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns the list of sends. The response body is a Response object with success=true and data being a ListResponse containing an array of SendResponse objects.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "ListResponse"
+              }
+            },
+            {
+              "name": "ListResponse",
+              "schema": {
+                "object": "string",
+                "data": "SendResponse[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Returned when the vault is locked or the user is not logged in. The errorIfLocked method calls processResponse with a Response.error, which sets the HTTP status to 400. The response body is a Response object with success=false and a message indicating the error.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/list/object/organization",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to list. For this endpoint, the value is 'organization'.",
+          "enum": [
+            "organization"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns a list of organizations the user is a member of. The response body is a Response object with success=true and data being a ListResponse containing OrganizationResponse objects.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "ListResponse"
+              }
+            },
+            {
+              "name": "ListResponse",
+              "schema": {
+                "object": "string",
+                "data": "OrganizationResponse[]"
+              }
+            },
+            {
+              "name": "OrganizationResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "name": "string",
+                "status": "OrganizationUserStatusType",
+                "type": "OrganizationUserType",
+                "enabled": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked (errorIfLocked returns true) or when no user is found (listOrganizations returns Response.badRequest('No user found.')).",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/list/object/collection",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to list. For this endpoint, the value is 'collection'.",
+          "_depth": 0
+        },
+        {
+          "name": "organizationid",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Organization ID to filter collections by.",
+          "_depth": 0
+        },
+        {
+          "name": "search",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Search term to filter collections by name.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the list of collections. The response body is a ListResponse object containing an array of CollectionResponse objects.",
+          "data_schema": [
+            {
+              "name": "ListResponse",
+              "schema": {
+                "object": "string",
+                "data": "array<CollectionResponse>"
+              }
+            },
+            {
+              "name": "CollectionResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "organizationId": "string",
+                "name": "string",
+                "externalId": "string",
+                "readOnly": "boolean",
+                "hidePasswords": "boolean",
+                "manage": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the object parameter is not 'collections' (e.g., unknown object) or when the user is not logged in or the vault is locked.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/list/object/org-member",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to list. For this endpoint it is 'org-member'.",
+          "enum": [
+            "org-member"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "organizationid",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The organization ID. Required for listing organization members.",
+          "format": "uuid",
+          "_depth": 0
+        },
+        {
+          "name": "search",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Search term to filter organization members by name or email.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the list of organization members. Returns a ListResponse containing OrganizationUserResponse objects.",
+          "data_schema": [
+            {
+              "name": "ListResponse",
+              "schema": {
+                "object": "string",
+                "data": "array"
+              }
+            },
+            {
+              "name": "OrganizationUserResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "email": "string",
+                "name": "string",
+                "status": "integer",
+                "type": "integer",
+                "twoFactorEnabled": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the `organizationid` option is missing or empty, when it is not a valid GUID, or when no active user is found.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/list/object/send",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "search",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Search term to filter sends by name",
+          "_depth": 0
+        },
+        {
+          "name": "organizationid",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Organization ID to filter sends",
+          "_depth": 0
+        },
+        {
+          "name": "organizationId",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Organization ID to filter sends (camelCase alias)",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the list of sends. The response body is a Response object with success=true and data containing a ListResponse of SendResponse objects.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "ListResponse"
+              }
+            },
+            {
+              "name": "ListResponse",
+              "schema": {
+                "object": "string",
+                "data": "SendResponse[]"
+              }
+            },
+            {
+              "name": "SendResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "accessId": "string",
+                "name": "string",
+                "notes": "string",
+                "type": "integer",
+                "file": "object",
+                "text": "object",
+                "key": "string",
+                "maxAccessCount": "integer",
+                "accessCount": "integer",
+                "password": "string",
+                "disabled": "boolean",
+                "revisionDate": "date",
+                "expirationDate": "date",
+                "deletionDate": "date",
+                "hideEmail": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked or the user is not logged in. The response body is a Response object with success=false and a message indicating the error.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/list/object/org-collection",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to list; for this endpoint it is 'org-collection' as declared in the route pattern /list/object/:object.",
+          "_depth": 0
+        },
+        {
+          "name": "organizationid",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Organization identifier required by listOrganizationCollections; the handler returns a bad request if it is null or empty.",
+          "_depth": 0
+        },
+        {
+          "name": "search",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Optional search term used to filter the organization collections by name.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the list of organization collections. The response body is a Response object with success=true and data being a ListResponse containing an array of CollectionResponse objects.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "ListResponse"
+              }
+            },
+            {
+              "name": "ListResponse",
+              "schema": {
+                "object": "string",
+                "data": "CollectionResponse[]"
+              }
+            },
+            {
+              "name": "CollectionResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "organizationId": "string",
+                "name": "string",
+                "externalId": "string",
+                "readOnly": "boolean",
+                "hidePasswords": "boolean",
+                "manage": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the `organizationid` option is missing or empty, or when it is not a valid GUID, or when no user is found.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/list/object/item",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to list. For this endpoint, the value is 'item'.",
+          "enum": [
+            "item"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "organizationid",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Filter items by organization ID. Can be a GUID, 'null', or 'notnull'.",
+          "_depth": 0
+        },
+        {
+          "name": "collectionid",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Filter items by collection ID. Can be a GUID, 'null', or 'notnull'.",
+          "_depth": 0
+        },
+        {
+          "name": "folderid",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Filter items by folder ID. Can be a GUID, 'null', or 'notnull'.",
+          "_depth": 0
+        },
+        {
+          "name": "search",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Search term to filter items by name or other fields.",
+          "_depth": 0
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Filter items by URL.",
+          "_depth": 0
+        },
+        {
+          "name": "trash",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Include items in the trash. Defaults to false.",
+          "_depth": 0
+        },
+        {
+          "name": "archived",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Include archived items. Defaults to false.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved a list of items. The response body is a Response object with success=true and data being a ListResponse containing an array of CipherResponse objects.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "ListResponse"
+              }
+            },
+            {
+              "name": "ListResponse",
+              "schema": {
+                "object": "string",
+                "data": "CipherResponse[]"
+              }
+            },
+            {
+              "name": "CipherResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "organizationId": "string",
+                "folderId": "string",
+                "type": "integer",
+                "name": "string",
+                "notes": "string",
+                "favorite": "boolean",
+                "login": "LoginResponse",
+                "card": "CardResponse",
+                "identity": "IdentityResponse",
+                "secureNote": "SecureNoteResponse",
+                "collectionIds": "string[]",
+                "revisionDate": "date",
+                "creationDate": "date",
+                "deletedDate": "date",
+                "archivedDate": "date",
+                "attachments": "AttachmentResponse[]",
+                "passwordHistory": "PasswordHistoryResponse[]",
+                "fields": "FieldResponse[]",
+                "reprompt": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked or the user is not logged in, or when the object type is unknown.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/generate",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "uppercase",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Include uppercase characters in the generated password.",
+          "_depth": 0
+        },
+        {
+          "name": "lowercase",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Include lowercase characters in the generated password.",
+          "_depth": 0
+        },
+        {
+          "name": "number",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Include numeric characters in the generated password.",
+          "_depth": 0
+        },
+        {
+          "name": "special",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Include special characters in the generated password.",
+          "_depth": 0
+        },
+        {
+          "name": "length",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Length of the generated password.",
+          "min": 5,
+          "_depth": 0
+        },
+        {
+          "name": "passphrase",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Generate a passphrase instead of a password.",
+          "_depth": 0
+        },
+        {
+          "name": "separator",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Word separator for passphrase generation.",
+          "_depth": 0
+        },
+        {
+          "name": "words",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Number of words in the generated passphrase.",
+          "min": 3,
+          "_depth": 0
+        },
+        {
+          "name": "capitalize",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Capitalize words in the generated passphrase.",
+          "_depth": 0
+        },
+        {
+          "name": "includeNumber",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Include a number in the generated passphrase.",
+          "_depth": 0
+        },
+        {
+          "name": "minNumber",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Minimum number of numeric characters in the generated password.",
+          "_depth": 0
+        },
+        {
+          "name": "minSpecial",
+          "type": "integer",
+          "require": "false",
+          "position": "query",
+          "description": "Minimum number of special characters in the generated password.",
+          "_depth": 0
+        },
+        {
+          "name": "ambiguous",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Allow ambiguous characters in the generated password.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully generated a password or passphrase. The response body is a Response object with success=true and data containing a StringResponse.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "StringResponse"
+              }
+            },
+            {
+              "name": "StringResponse",
+              "schema": {
+                "object": "string",
+                "data": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the command response is not successful (e.g., password generation fails or policy enforcement error). The response body is a Response object with success=false and a message.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/sync",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "last",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Return the last sync date instead of performing a sync",
+          "_depth": 0
+        },
+        {
+          "name": "force",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Force a full sync",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Syncing complete.",
+          "data_schema": [
+            {
+              "name": "MessageResponse",
+              "schema": {
+                "object": "string",
+                "title": "string",
+                "message": "string",
+                "raw": "string",
+                "noColor": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Syncing failed: <error message>",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/lock",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Vault locked successfully. Returns a MessageResponse with title 'Your vault is locked.' and message null.",
+          "data_schema": [
+            {
+              "name": "MessageResponse",
+              "schema": {
+                "object": "string",
+                "title": "string",
+                "message": "string",
+                "raw": "string",
+                "noColor": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Error response when the lock operation fails. The response body is a Response object with success=false and a message describing the error.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/confirm/org-member/{id}",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to confirm, e.g., 'org-member'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the object to confirm.",
+          "_depth": 0
+        },
+        {
+          "name": "organizationid",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The organization ID required for confirming an organization member.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully confirmed the organization member. Returns a success response with no data.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the object is not 'org-member', when the organization ID is missing or invalid, when the member ID is not a valid GUID, when the member status is not 'Accepted' (e.g., already confirmed, revoked, invited, or otherwise invalid), or when the organization key or member cannot be found.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an unexpected error occurs during the confirmation process, such as a failure in the API service call or encryption.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/unlock",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "password",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Master password used to unlock the vault. If not provided, the unlock command falls back to password file, environment variable, or interactive prompt.",
+          "_depth": 0
+        },
+        {
+          "name": "passwordFile",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Path to a file containing the master password. Explicitly deleted from the query before processing, so it is never accepted via this endpoint.",
+          "_depth": 0
+        },
+        {
+          "name": "passwordEnv",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Name of an environment variable containing the master password. Explicitly deleted from the query before processing, so it is never accepted via this endpoint.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Vault unlocked successfully. Returns a MessageResponse containing the session key and instructions.",
+          "data_schema": [
+            {
+              "name": "MessageResponse",
+              "schema": {
+                "object": "string",
+                "title": "string",
+                "message": "string",
+                "raw": "string",
+                "noColor": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the master password is required but not provided (e.g., non-interactive mode without password file or environment variable), or when the unlock service fails (e.g., incorrect password).",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/restore/item/{id}",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to restore. The route pattern is /restore/:object/:id, so object is a path parameter. The handler passes it to restoreCommand.run(ctx.params.object, ctx.params.id).",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The id of the object to restore. The route pattern is /restore/:object/:id, so id is a path parameter. The handler passes it to restoreCommand.run(ctx.params.object, ctx.params.id).",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully restored the item from trash or archive.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the object is not 'item', the cipher is not in trash, or the user lacks permission to restore.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the cipher with the given id does not exist.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/send/{id}/remove-password",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The id of the send to remove the password from",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully removed the password from the send. Returns a success response with no data.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked or the user is not logged in, or when the send removal fails.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/move/{id}/{organizationId}",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the cipher to move to an organization.",
+          "_depth": 0
+        },
+        {
+          "name": "organizationId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the organization to move the cipher to.",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "string[]",
+          "require": "false",
+          "position": "body",
+          "description": "An array of collection IDs to which the cipher should be assigned.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully moved the item to the organization. Returns the updated cipher.",
+          "data_schema": [
+            {
+              "name": "CipherResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "organizationId": "string",
+                "folderId": "string",
+                "type": "integer",
+                "name": "string",
+                "notes": "string",
+                "favorite": "boolean",
+                "login": "object",
+                "card": "object",
+                "identity": "object",
+                "secureNote": "object",
+                "fields": "array",
+                "attachments": "array",
+                "revisionDate": "date",
+                "creationDate": "date",
+                "deletedDate": "date",
+                "passwordHistory": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the request body is missing or empty, when the request data cannot be parsed, when no collection IDs are provided, when the item already belongs to an organization, or when the user lacks permission to add items to a collection.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the cipher with the given id does not exist.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an unexpected error occurs while sharing the cipher with the server.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/send",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "body",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "The request body passed to SendCreateCommand.run as the first argument. It is the parsed JSON body of the POST request.",
+          "_depth": 0
+        },
+        {
+          "name": "query",
+          "type": "object",
+          "require": "false",
+          "position": "query",
+          "description": "The query string parameters passed to SendCreateCommand.run as the second argument (ctx.request.query).",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully created a send. The response body contains the created send object.",
+          "data_schema": [
+            {
+              "name": "SendResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "accessId": "string",
+                "type": "integer",
+                "name": "string",
+                "notes": "string",
+                "text": "object",
+                "file": "object",
+                "key": "string",
+                "maxAccessCount": "integer",
+                "accessCount": "integer",
+                "password": "string",
+                "disabled": "boolean",
+                "hideEmail": "boolean",
+                "revisionDate": "date",
+                "expirationDate": "date",
+                "deletionDate": "date",
+                "accessUrl": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the request body is missing or invalid, or when the send creation fails due to validation or other errors.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/attachment",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "itemid",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The id of the item to attach the file to. Required by createAttachment; also accepted as itemId.",
+          "_depth": 0
+        },
+        {
+          "name": "organizationid",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The organization id option, accepted as organizationid or organizationId.",
+          "_depth": 0
+        },
+        {
+          "name": "file",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The file path option, used only when not in serve mode.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Attachment created successfully. Returns the updated cipher with the new attachment.",
+          "data_schema": [
+            {
+              "name": "CipherResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "organizationId": "string",
+                "folderId": "string",
+                "type": "integer",
+                "name": "string",
+                "notes": "string",
+                "favorite": "boolean",
+                "login": "LoginResponse",
+                "card": "CardResponse",
+                "identity": "IdentityResponse",
+                "secureNote": "SecureNoteResponse",
+                "fields": "FieldResponse[]",
+                "attachments": "AttachmentResponse[]",
+                "revisionDate": "date",
+                "creationDate": "date",
+                "deletedDate": "date",
+                "passwordHistory": "PasswordHistoryResponse[]",
+                "collectionIds": "string[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the request is invalid, such as missing required options, file not found, or file buffer/name not provided.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the specified item does not exist.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an unexpected error occurs during attachment creation.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/item",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to create. For this endpoint, it is 'item'.",
+          "enum": [
+            "item"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "requestJson",
+          "type": "CipherExport",
+          "require": "false",
+          "position": "body",
+          "description": "The JSON representation of the item to create.",
+          "_depth": 0
+        },
+        {
+          "name": "cmdOptions",
+          "type": "object",
+          "require": "false",
+          "position": "query",
+          "description": "Command options passed as query parameters.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully created the object. The response body contains the created object wrapped in a Response object with success=true.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "BaseResponse"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the request body is missing or invalid, when the object type is unknown, or when the command returns an error (e.g., restricted item type, premium required, etc.). The response body contains a Response object with success=false and an error message.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "BaseResponse"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/folder",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to create; for this route it is the literal 'folder'.",
+          "_depth": 0
+        },
+        {
+          "name": "requestJson",
+          "type": "FolderExport",
+          "require": "false",
+          "position": "body",
+          "description": "The folder data to create, parsed from the request body.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Folder created successfully. Returns the created folder object.",
+          "data_schema": [
+            {
+              "name": "FolderResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "name": "string",
+                "revisionDate": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the request body is missing or invalid, or when the object type is unknown.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/send/{id}",
+      "http_method": "PUT",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "Object type from the route path; for this endpoint it is 'send'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The id of the send object to edit.",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "The request body containing the send edit data; the handler sets body.id to the path id before passing it to SendEditCommand.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully edited a send. Returns the updated send object.",
+          "data_schema": [
+            {
+              "name": "SendResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "accessId": "string",
+                "type": "integer",
+                "name": "string",
+                "notes": "string",
+                "text": "object",
+                "file": "object",
+                "key": "string",
+                "maxAccessCount": "integer",
+                "accessCount": "integer",
+                "password": "string",
+                "disabled": "boolean",
+                "hideEmail": "boolean",
+                "revisionDate": "date",
+                "deletionDate": "date",
+                "expirationDate": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked, the user is not logged in, or the send edit command fails (e.g., invalid request data, send not found, or other validation errors).",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/org-collection",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to create; for this route it is 'org-collection'.",
+          "enum": [
+            "org-collection"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "requestJson",
+          "type": "OrganizationCollectionRequest",
+          "require": "false",
+          "position": "body",
+          "description": "The organization collection request body containing organizationId, name, externalId, groups, and users.",
+          "_depth": 0
+        },
+        {
+          "name": "organizationid",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The organization ID; required by createOrganizationCollection and must match the request body organizationId.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully created an organization collection. Returns the created collection with groups and users.",
+          "data_schema": [
+            {
+              "name": "OrganizationCollectionResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "organizationId": "string",
+                "name": "string",
+                "externalId": "string",
+                "groups": "array",
+                "users": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the organization ID is missing or invalid, when the organization ID in the request does not match the option, when the collection name is missing, when the request JSON is missing or cannot be parsed, or when the object is unknown.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an unexpected error occurs while creating the organization collection, such as a missing organization encryption key or a failure in the API call.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/item/{id}",
+      "http_method": "PUT",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type from the route path, e.g. 'item' or 'send'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The object id from the route path.",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "The request body containing the object data to update.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully edited the object. Returns the updated object (item, folder, org-collection, or send).",
+          "data_schema": [
+            {
+              "name": "CipherResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "organizationId": "string",
+                "folderId": "string",
+                "type": "integer",
+                "name": "string",
+                "notes": "string",
+                "favorite": "boolean",
+                "login": "object",
+                "card": "object",
+                "identity": "object",
+                "secureNote": "object",
+                "collectionIds": "array",
+                "revisionDate": "date",
+                "creationDate": "date",
+                "deletedDate": "date",
+                "attachments": "array",
+                "passwordHistory": "array"
+              }
+            },
+            {
+              "name": "FolderResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "name": "string",
+                "revisionDate": "date"
+              }
+            },
+            {
+              "name": "OrganizationCollectionResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "organizationId": "string",
+                "name": "string",
+                "externalId": "string",
+                "groups": "array",
+                "users": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked, the request data is invalid, the object is unknown, required options are missing, the id is not a GUID, the organization id does not match, the collection name is empty, or the item is deleted/restricted by policy.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the requested object does not exist.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/folder/{id}",
+      "http_method": "PUT",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type from the route pattern /object/:object/:id. For this endpoint it is 'folder'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The id of the folder to edit, from the route pattern /object/:object/:id.",
+          "_depth": 0
+        },
+        {
+          "name": "requestJson",
+          "type": "FolderExport",
+          "require": "false",
+          "position": "body",
+          "description": "The request body containing the folder data to update. Passed as ctx.request.body to editCommand.run and then to editFolder as req.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully edited the folder. Returns the updated folder object.",
+          "data_schema": [
+            {
+              "name": "FolderResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "name": "string",
+                "revisionDate": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the request body is missing or empty, when the encoded request data cannot be parsed, when the object is unknown, or when the vault is locked or the user is not logged in.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the folder with the specified id does not exist.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/send/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type in the route path. For this endpoint, it must be 'send' to invoke the send get command.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the send object to retrieve.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved a Send object. The response body contains the Send data.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "SendResponse"
+              }
+            },
+            {
+              "name": "SendResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "accessId": "string",
+                "type": "integer",
+                "name": "string",
+                "notes": "string",
+                "text": "object",
+                "file": "object",
+                "key": "string",
+                "maxAccessCount": "integer",
+                "accessCount": "integer",
+                "password": "string",
+                "disabled": "boolean",
+                "revisionDate": "date",
+                "expirationDate": "date",
+                "deletionDate": "date",
+                "hideEmail": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked, the user is not logged in, or the Send object is not found.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/username/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to retrieve. For this endpoint, the value is 'username'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the item to retrieve the username from. It is converted to lowercase.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the username for the login item. Returns a StringResponse containing the username.",
+          "data_schema": [
+            {
+              "name": "StringResponse",
+              "schema": {
+                "object": "string",
+                "data": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the item is not a login, or when the username is not available, or when the vault is locked or the user is not logged in.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the item is not found.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/item-collections/{id}",
+      "http_method": "PUT",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type, e.g., 'item-collections'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the object to edit.",
+          "_depth": 0
+        },
+        {
+          "name": "requestJson",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The request body containing the edit data.",
+          "_depth": 0
+        },
+        {
+          "name": "cmdOptions",
+          "type": "object",
+          "require": "false",
+          "position": "query",
+          "description": "Command options passed as query parameters.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully edited the item's collections. Returns the updated cipher with its new collection assignments.",
+          "data_schema": [
+            {
+              "name": "CipherResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "organizationId": "string",
+                "folderId": "string",
+                "type": "integer",
+                "name": "string",
+                "notes": "string",
+                "favorite": "boolean",
+                "login": "LoginResponse",
+                "card": "object",
+                "identity": "object",
+                "secureNote": "object",
+                "fields": "array",
+                "attachments": "array",
+                "revisionDate": "date",
+                "creationDate": "date",
+                "deletedDate": "date",
+                "passwordHistory": "array",
+                "collectionIds": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the item does not belong to an organization (\"Item does not belong to an organization. Consider moving it first.\"), when the request JSON is missing or empty (\"`requestJson` was not provided.\"), when the encoded request data cannot be parsed (\"Error parsing the encoded request data.\"), or when the object is unknown (\"Unknown object.\").",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the cipher with the given id does not exist.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/item/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to retrieve. For this route, it is the path segment after /object/ and before the id. The handler checks if it equals 'send' to route to sendGetCommand, otherwise it passes it to getCommand.run.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the object to retrieve. For send objects, it is passed to sendGetCommand.run; for other objects, it is passed to getCommand.run along with query options.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the item. The response body is a Response object with success=true and data containing a CipherResponse.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "CipherResponse"
+              }
+            },
+            {
+              "name": "CipherResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "organizationId": "string",
+                "folderId": "string",
+                "type": "integer",
+                "name": "string",
+                "notes": "string",
+                "favorite": "boolean",
+                "login": "LoginResponse",
+                "card": "CardResponse",
+                "identity": "IdentityResponse",
+                "secureNote": "SecureNoteResponse",
+                "fields": "FieldResponse[]",
+                "attachments": "AttachmentResponse[]",
+                "revisionDate": "date",
+                "creationDate": "date",
+                "deletedDate": "date",
+                "passwordHistory": "PasswordHistoryResponse[]",
+                "collectionIds": "string[]",
+                "archivedDate": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked or the user is not logged in (errorIfLocked), or when the command returns an error (e.g., unknown object, restricted item type, multiple results, not found, etc.). The response body is a Response object with success=false and a message.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/org-collection/{id}",
+      "http_method": "PUT",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type from the route path; for this endpoint it is 'org-collection'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The collection id from the route path.",
+          "_depth": 0
+        },
+        {
+          "name": "organizationid",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Organization id required for editing an organization collection.",
+          "_depth": 0
+        },
+        {
+          "name": "organizationId",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Organization id in the request body; must match the organizationid query option.",
+          "_depth": 0
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Collection name; must be non-empty after trimming.",
+          "_depth": 0
+        },
+        {
+          "name": "externalId",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "External id for the collection.",
+          "_depth": 0
+        },
+        {
+          "name": "groups",
+          "type": "SelectionReadOnly[]",
+          "require": "false",
+          "position": "body",
+          "description": "Group access selections for the collection.",
+          "_depth": 0
+        },
+        {
+          "name": "users",
+          "type": "SelectionReadOnly[]",
+          "require": "false",
+          "position": "body",
+          "description": "User access selections for the collection.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully edited an organization collection. Returns the updated organization collection.",
+          "data_schema": [
+            {
+              "name": "OrganizationCollectionResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "organizationId": "string",
+                "name": "string",
+                "externalId": "string",
+                "groups": "SelectionReadOnly[]",
+                "users": "SelectionReadOnly[]"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the object is unknown, the organization ID is missing or invalid, the collection ID is not a GUID, the organization ID does not match the request body, or the collection name is missing.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/password/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to retrieve. For this endpoint, it is 'password'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the item to retrieve the password from.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the password for the login item. The response body contains a StringResponse object with the password.",
+          "data_schema": [
+            {
+              "name": "StringResponse",
+              "schema": {
+                "object": "string",
+                "data": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked, the user is not logged in, the item is not a login, or no password is available for the login.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the item with the specified ID does not exist.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/uri/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to retrieve. For this route, the value is 'uri'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the item to retrieve the URI from.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the URI of a login item. Returns a StringResponse containing the URI.",
+          "data_schema": [
+            {
+              "name": "StringResponse",
+              "schema": {
+                "object": "string",
+                "data": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the object is not a login, or when the item is not found, or when the item type is restricted by organizational policy, or when no URI is available for the login.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/notes/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to retrieve; for this endpoint it is 'notes'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The id of the item whose notes are retrieved.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the notes for the item.",
+          "data_schema": [
+            {
+              "name": "StringResponse",
+              "schema": {
+                "object": "string",
+                "data": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Possible reasons: unknown object, not a login, no notes available, or vault is locked.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The item was not found.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/totp/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to retrieve. For this endpoint, it is 'totp'.",
+          "enum": [
+            "totp"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the item to retrieve the TOTP for.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the TOTP code for the login item. Returns a StringResponse containing the TOTP code.",
+          "data_schema": [
+            {
+              "name": "StringResponse",
+              "schema": {
+                "object": "string",
+                "data": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the object is not a login, or when premium status is required but not available.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the cipher is not found.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/exposed/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type; for this endpoint it must be 'exposed' to retrieve the exposed password count.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The item identifier (GUID or search term) used to locate the cipher whose password is checked for exposure.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the number of times the password has been exposed in data breaches.",
+          "data_schema": [
+            {
+              "name": "StringResponse",
+              "schema": {
+                "object": "string",
+                "data": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked, the user is not logged in, the item is not found, the item is not a login, no password is available, or an error occurs while checking the password.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/attachment/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type; must be 'attachment' for this route to match.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The attachment identifier or filename fragment used to locate the attachment.",
+          "_depth": 0
+        },
+        {
+          "name": "itemid",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The id of the item that owns the attachment.",
+          "_depth": 0
+        },
+        {
+          "name": "output",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Output file path for the downloaded attachment.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Attachment file downloaded successfully. Returns the decrypted attachment as a binary file with Content-Type application/octet-stream, Content-Length header, and Content-Disposition attachment with the file name.",
+          "data_schema": [
+            {
+              "name": "FileResponse",
+              "schema": {
+                "object": "string",
+                "data": "Buffer",
+                "fileName": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked or the user is not logged in (errorIfLocked), when the --itemid option is missing, when the item is not found, when no attachments are available for the item, when the attachment is not found, when multiple attachments match the search, when premium status is required but not available, or when the attachment download fails with a non-200 HTTP status.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/folder/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to retrieve. For this route pattern it is the literal 'folder'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The id or search term of the folder to retrieve.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the folder. Returns a Response object with success=true and data being a FolderResponse.",
+          "data_schema": [
+            {
+              "name": "FolderResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "name": "string",
+                "revisionDate": "date"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked or the user is not logged in (errorIfLocked), or when the folder is not found (Response.notFound() returns a Response with success=false, which processResponse maps to HTTP 400).",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/collection/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to retrieve. For this endpoint, the value is 'collection'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the collection to retrieve.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the collection. The response body is a Response object with success=true and data containing a CollectionResponse.",
+          "data_schema": [
+            {
+              "name": "CollectionResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "organizationId": "string",
+                "name": "string",
+                "externalId": "string",
+                "readOnly": "boolean",
+                "hidePasswords": "boolean",
+                "manage": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the object is not 'collection' (unknown object), or when the collection is not found (Response.notFound() returns a 400 with message 'Not found.').",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an unexpected error occurs during processing, such as a failure in the underlying service call.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/organization/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to retrieve. For this endpoint, the value is 'organization'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the organization to retrieve. Can be a GUID or a search string.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the organization. The response body is a Response object with success=true and data containing an OrganizationResponse.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "OrganizationResponse"
+              }
+            },
+            {
+              "name": "OrganizationResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "name": "string",
+                "status": "OrganizationUserStatusType",
+                "type": "OrganizationUserType",
+                "enabled": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked, the user is not logged in, no user is found, or the object is unknown.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "any"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the organization with the given id does not exist.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/org-collection/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type; must be 'send' to use the send get command, otherwise passed to getCommand.run",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The id of the object to retrieve",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the organization collection. The response body is a Response object with success=true and data containing an OrganizationCollectionResponse.",
+          "data_schema": [
+            {
+              "name": "OrganizationCollectionResponse",
+              "schema": {
+                "object": "string",
+                "id": "string",
+                "organizationId": "string",
+                "name": "string",
+                "externalId": "string",
+                "readOnly": "boolean",
+                "hidePasswords": "boolean",
+                "manage": "boolean",
+                "groups": "array",
+                "users": "array"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the `organizationid` option is missing or empty, when the `id` is not a GUID, when the `organizationid` is not a GUID, or when the organization key is not found.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/template/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to retrieve; for the template endpoint this is the literal 'template'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The template identifier, e.g. 'item', 'folder', 'collection', 'item-collections', 'org-collection', 'item.field', 'item.login', 'item.login.uri', 'item.card', 'item.identity', 'item.securenote', 'item.bankaccount', 'item.driverslicense', 'item.passport'.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the template for the specified object. The response body contains a TemplateResponse object with the template data.",
+          "data_schema": [
+            {
+              "name": "TemplateResponse",
+              "schema": {
+                "object": "string",
+                "template": "any"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the object is not a valid template object, or when the requested template is not available (e.g., bank account, driver's license, or passport item types when the feature flag is disabled, or send templates which should be accessed via the send command).",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "number",
+                "data": "any"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the requested template object is not recognized.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "number",
+                "data": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/item/{id}",
+      "http_method": "DELETE",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to delete; for this route it is matched against 'send' or passed to the delete command.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the object to delete.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully deleted the item (soft delete or permanent delete).",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked, the user is not logged in, the item is not found, the user lacks permission to delete the item, or the item type is restricted by organizational policy.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/fingerprint/{id}",
+      "http_method": "GET",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The fingerprint identifier; either 'me' for the active user or a GUID of another user.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the fingerprint for the specified user or the active user.",
+          "data_schema": [
+            {
+              "name": "StringResponse",
+              "schema": {
+                "object": "string",
+                "data": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked or the user is not logged in.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the fingerprint could not be retrieved (e.g., invalid user ID or no public key).",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/send/{id}",
+      "http_method": "DELETE",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type in the route path. For this endpoint the route is /object/:object/:id and the handler checks if it equals \"send\" to dispatch to sendDeleteCommand; otherwise it dispatches to deleteCommand.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The id of the object to delete. Passed to sendDeleteCommand.run(ctx.params.id) when object is \"send\", otherwise to deleteCommand.run(ctx.params.object, ctx.params.id, ctx.request.query).",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully deleted the send. The response body is a Response object with success=true and no data.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked or the user is not logged in (errorIfLocked), or when the send deletion fails (e.g., send not found, permission denied). The response body is a Response object with success=false and a message.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/folder/{id}",
+      "http_method": "DELETE",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type from the route path; for this endpoint it is 'folder'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The folder id from the route path.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully deleted the folder. The response body is a Response object with success=true and no data.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the vault is locked, the user is not logged in, the folder is not found, or an error occurs during deletion.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/archive/item/{id}",
+      "http_method": "POST",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to archive. Must be 'item'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the item to archive.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully archived the item. Returns a success response with no data.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the object is not 'item' (e.g., unknown object) or when the vault is locked or user is not logged in.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the cipher with the given id does not exist.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/org-collection/{id}",
+      "http_method": "DELETE",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type to delete. For this endpoint, it is 'org-collection'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the organization collection to delete.",
+          "_depth": 0
+        },
+        {
+          "name": "organizationid",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The organization ID. Required for deleting an organization collection.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully deleted the organization collection.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Possible reasons: missing or invalid organizationId, invalid collection id, or error from the delete operation.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/object/attachment/{id}",
+      "http_method": "DELETE",
+      "method_name": "configureRouter",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\apps\\cli\\src\\oss-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The object type in the route path. For this endpoint the route is /object/:object/:id, so object is a path parameter. The handler dispatches on ctx.params.object; for the attachment case the value is 'attachment'.",
+          "_depth": 0
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The id of the object to delete. For attachment deletion, this is the attachment id passed to deleteCommand.run(ctx.params.object, ctx.params.id, ctx.request.query).",
+          "_depth": 0
+        },
+        {
+          "name": "itemid",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The item id that owns the attachment. Read from cmdOptions in DeleteCommand.deleteAttachment via options.itemId; the Options class reads passedOptions?.itemid || passedOptions?.itemId. Required because the handler returns badRequest if itemId is null or empty.",
+          "_depth": 0
+        },
+        {
+          "name": "permanent",
+          "type": "boolean",
+          "require": "false",
+          "position": "query",
+          "description": "Whether to permanently delete rather than soft delete. Parsed by CliUtils.convertBooleanOption; defaults to false when absent.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully deleted the attachment. The response body is a Response object with success=true and no data.",
+          "data_schema": []
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the `itemid` option is missing, when the item is not found, when the item has no attachments, when the attachment id is not found, or when premium status is required but not available.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when an unexpected error occurs during attachment deletion.",
+          "data_schema": [
+            {
+              "name": "Response",
+              "schema": {
+                "success": "boolean",
+                "message": "string",
+                "errorCode": "integer",
+                "data": "object"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 8,
+    "step2_ms": 8,
+    "step3_ms": 8422,
+    "step4_ms": 35097,
+    "step5_ms": 0,
+    "total_ms": 43542
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "task_id": "gestaohospital",
+  "api_name": "gestaohospital",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/v1/hospitais",
+      "http_method": "GET",
+      "method_name": "findAll",
+      "summary": "Retrieve all hospitals",
+      "description": "Returns a list of all hospitals as HospitalDTO objects.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}",
+      "http_method": "GET",
+      "method_name": "findById",
+      "summary": "Retrieve a hospital by ID",
+      "description": "Returns the hospital with the specified ID as a HospitalDTO.",
+      "line_number": 23,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais",
+      "http_method": "POST",
+      "method_name": "insert",
+      "summary": "Create a new hospital",
+      "description": "Inserts a new hospital based on the provided HospitalDTO.",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}",
+      "http_method": "DELETE",
+      "method_name": "deleteById",
+      "summary": "Delete a hospital by ID",
+      "description": "Deletes the hospital with the specified ID.",
+      "line_number": 53,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}",
+      "http_method": "PUT",
+      "method_name": "update",
+      "summary": "Update a hospital",
+      "description": "Updates the hospital with the specified ID using the provided HospitalDTO.",
+      "line_number": 69,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{id}/leitos",
+      "http_method": "GET",
+      "method_name": "verificaLeitosDisponiveis",
+      "summary": "Check available beds",
+      "description": "Returns the number of available beds for the hospital with the given ID.",
+      "line_number": 85,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/maisProximo",
+      "http_method": "GET",
+      "method_name": "hospitalMaisProximo",
+      "summary": "Find nearest hospital with available beds",
+      "description": "Returns the nearest hospital with available beds within the specified radius based on latitude and longitude.",
+      "line_number": 93,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{id}/transferencia/{productId}",
+      "http_method": "POST",
+      "method_name": "transferenciaProduto",
+      "summary": "Transfer product between hospitals",
+      "description": "Transfers a specified quantity of a product from another hospital to the hospital with the given ID.",
+      "line_number": 98,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\HospitalResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/proximidades",
+      "http_method": "GET",
+      "method_name": "findLocationNearHospitalBy",
+      "summary": "Find locations near a hospital",
+      "description": "Retrieves a list of locations near the hospital identified by hospital_id.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\LocationResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/hospitaisProximos",
+      "http_method": "GET",
+      "method_name": "findHospitalNearHospitalBy",
+      "summary": "Find hospitals near a hospital within a radius",
+      "description": "Retrieves a list of hospitals near the hospital identified by hospital_id, within the specified radius (raio).",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\LocationResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/pacientes",
+      "http_method": "GET",
+      "method_name": "findPatients",
+      "summary": "Find patients by hospital ID",
+      "description": "Retrieves a list of patients associated with the specified hospital ID. Returns 404 if hospital not found or no patients.",
+      "line_number": 16,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\PatientResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/pacientes/{patientId}",
+      "http_method": "GET",
+      "method_name": "findPatientById",
+      "summary": "Find patient by ID",
+      "description": "Retrieves a patient by their ID within the specified hospital. Returns 404 if not found.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\PatientResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/pacientes/checkin",
+      "http_method": "POST",
+      "method_name": "checkinPacient",
+      "summary": "Check-in a patient",
+      "description": "Checks in a patient to the specified hospital. Requires patient data in request body. Returns 404 on error.",
+      "line_number": 41,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\PatientResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/pacientes/checkout",
+      "http_method": "POST",
+      "method_name": "checkoutPacient",
+      "summary": "Check-out a patient",
+      "description": "Checks out a patient from the specified hospital. Requires patient ID in request body. Returns 404 on error.",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\PatientResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/pacientes/{patientId}",
+      "http_method": "PUT",
+      "method_name": "updatePatient",
+      "summary": "Update patient information",
+      "description": "Updates patient details (name, CPF, birth date, gender) for the specified patient ID. Returns 404 on error.",
+      "line_number": 63,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\PatientResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/estoque/{produto_id}",
+      "http_method": "GET",
+      "method_name": "findProductBy",
+      "summary": "Find product by ID",
+      "description": "Retrieves a product by its ID within a specific hospital.",
+      "line_number": 12,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\ProductResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/estoque",
+      "http_method": "GET",
+      "method_name": "findAllProductBy",
+      "summary": "Find all products by hospital",
+      "description": "Retrieves all products associated with a specific hospital.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\ProductResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/estoque",
+      "http_method": "POST",
+      "method_name": "insert",
+      "summary": "Insert a new product",
+      "description": "Creates a new product within a specific hospital.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\ProductResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/estoque/{produto_id}",
+      "http_method": "DELETE",
+      "method_name": "delete",
+      "summary": "Delete a product",
+      "description": "Deletes a product by its ID from a specific hospital.",
+      "line_number": 48,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\ProductResource.java"
+    },
+    {
+      "endpoint_path": "/v1/hospitais/{hospital_id}/estoque/{produto_id}",
+      "http_method": "PUT",
+      "method_name": "update",
+      "summary": "Update a product",
+      "description": "Updates an existing product within a specific hospital.",
+      "line_number": 63,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Gestao\\gestaohospital\\src\\main\\java\\br\\com\\codenation\\hospital\\resource\\ProductResource.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 8082,
+  "tokens": {
+    "prompt_tokens": 175096,
+    "completion_tokens": 7986,
+    "total_tokens": 183082,
+    "calls": 12,
+    "elapsed_s": 66.618,
+    "prompt_cost_usd": 0.022845,
+    "completion_cost_usd": 0.005557,
+    "total_cost_usd": 0.028403,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 55740,
+        "completion_tokens": 1685,
+        "total_tokens": 57425,
+        "calls": 4,
+        "elapsed_s": 8.076875999999999,
+        "prompt_cost_usd": 0.001115,
+        "completion_cost_usd": 0.001011,
+        "total_cost_usd": 0.002126
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 54062,
+        "completion_tokens": 4905,
+        "total_tokens": 58967,
+        "calls": 4,
+        "elapsed_s": 43.867,
+        "prompt_cost_usd": 0.005406,
+        "completion_cost_usd": 0.002452,
+        "total_cost_usd": 0.007859
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 65294,
+        "completion_tokens": 1396,
+        "total_tokens": 66690,
+        "calls": 4,
+        "elapsed_s": 14.674,
+        "prompt_cost_usd": 0.016324,
+        "completion_cost_usd": 0.002094,
+        "total_cost_usd": 0.018418
+      }
+    ]
+  }
+}

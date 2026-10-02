@@ -1,0 +1,1432 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "info": {
+    "title": "REST API",
+    "version": "",
+    "description": "REST API"
+  },
+  "paths": {
+    "/v1/hospitais": {
+      "get": {
+        "description": "",
+        "operationId": "em12",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em14",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "address": {
+                    "type": "string"
+                  },
+                  "availableBeds": {
+                    "type": "integer"
+                  },
+                  "beds": {
+                    "type": "integer"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "latitude": {
+                    "type": "string"
+                  },
+                  "longitude": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 7
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1hospitais/post"
+        }
+      }
+    },
+    "/v1/hospitais/maisProximo": {
+      "get": {
+        "description": "",
+        "operationId": "em18",
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "lon",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "raioMaximo",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "br.com.codenation.hospital.dto.HospitalDTO",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "string"
+                    },
+                    "beds": {
+                      "type": "integer"
+                    },
+                    "availableBeds": {
+                      "type": "integer"
+                    },
+                    "longitude": {
+                      "type": "string"
+                    },
+                    "latitude": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1hospitais~1maisProximo/get"
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}": {
+      "delete": {
+        "description": "",
+        "operationId": "em15",
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "operationId": "em13",
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em16",
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "address": {
+                    "type": "string"
+                  },
+                  "availableBeds": {
+                    "type": "integer"
+                  },
+                  "beds": {
+                    "type": "integer"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "latitude": {
+                    "type": "string"
+                  },
+                  "longitude": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 7
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1hospitais~1{hospital_id}/put"
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/estoque": {
+      "get": {
+        "description": "",
+        "operationId": "em1",
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "operationId": "em2",
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "description": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "productType": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "integer"
+                  }
+                },
+                "maxProperties": 5
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/estoque/{produto_id}": {
+      "delete": {
+        "description": "",
+        "operationId": "em3",
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "produto_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "operationId": "em0",
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "produto_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em4",
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "produto_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "description": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "productType": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "integer"
+                  }
+                },
+                "maxProperties": 5
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/hospitaisProximos": {
+      "get": {
+        "description": "",
+        "operationId": "em11",
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "raio",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1hospitais~1{hospital_id}~1hospitaisProximos/get"
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/pacientes": {
+      "get": {
+        "description": "",
+        "operationId": "em5",
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT_FOUND"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1hospitais~1{hospital_id}~1pacientes/get"
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/pacientes/checkin": {
+      "post": {
+        "description": "",
+        "operationId": "em7",
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "br.com.codenation.hospital.domain.Patient",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "cpf": {
+                      "type": "string"
+                    },
+                    "birthDate": {
+                      "type": "object",
+                      "title": "java.util.Date",
+                      "properties": {
+                        "fastTime": {
+                          "type": "integer"
+                        },
+                        "cdate": {
+                          "type": "object",
+                          "title": "sun.util.calendar.BaseCalendar$Date",
+                          "properties": {
+                            "cachedYear": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateJan1": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateNextJan1": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "gender": {
+                      "type": "string"
+                    },
+                    "entryDate": {
+                      "type": "object",
+                      "title": "java.util.Date",
+                      "properties": {
+                        "fastTime": {
+                          "type": "integer"
+                        },
+                        "cdate": {
+                          "type": "object",
+                          "title": "sun.util.calendar.BaseCalendar$Date",
+                          "properties": {
+                            "cachedYear": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateJan1": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateNextJan1": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "exitDate": {
+                      "type": "object",
+                      "title": "java.util.Date",
+                      "properties": {
+                        "fastTime": {
+                          "type": "integer"
+                        },
+                        "cdate": {
+                          "type": "object",
+                          "title": "sun.util.calendar.BaseCalendar$Date",
+                          "properties": {
+                            "cachedYear": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateJan1": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateNextJan1": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "active": {
+                      "type": "boolean"
+                    },
+                    "location": {
+                      "type": "object",
+                      "title": "br.com.codenation.hospital.domain.Location",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "referenceId": {
+                          "type": "string"
+                        },
+                        "locationCategory": {
+                          "type": "object",
+                          "title": "br.com.codenation.hospital.domain.LocationCategory",
+                          "properties": {
+                            "descricao": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "position": {
+                          "type": "object",
+                          "title": "org.springframework.data.mongodb.core.geo.GeoJsonPoint"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT_FOUND"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "active": {
+                    "type": "boolean"
+                  },
+                  "birthDate": {
+                    "type": "string"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  },
+                  "entryDate": {
+                    "type": "string"
+                  },
+                  "exitDate": {
+                    "type": "string"
+                  },
+                  "gender": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "location": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 9
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1hospitais~1{hospital_id}~1pacientes~1checkin/post"
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/pacientes/checkout": {
+      "post": {
+        "description": "",
+        "operationId": "em8",
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "br.com.codenation.hospital.domain.Patient",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "cpf": {
+                      "type": "string"
+                    },
+                    "birthDate": {
+                      "type": "object",
+                      "title": "java.util.Date",
+                      "properties": {
+                        "fastTime": {
+                          "type": "integer"
+                        },
+                        "cdate": {
+                          "type": "object",
+                          "title": "sun.util.calendar.BaseCalendar$Date",
+                          "properties": {
+                            "cachedYear": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateJan1": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateNextJan1": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "gender": {
+                      "type": "string"
+                    },
+                    "entryDate": {
+                      "type": "object",
+                      "title": "java.util.Date",
+                      "properties": {
+                        "fastTime": {
+                          "type": "integer"
+                        },
+                        "cdate": {
+                          "type": "object",
+                          "title": "sun.util.calendar.BaseCalendar$Date",
+                          "properties": {
+                            "cachedYear": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateJan1": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateNextJan1": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "exitDate": {
+                      "type": "object",
+                      "title": "java.util.Date",
+                      "properties": {
+                        "fastTime": {
+                          "type": "integer"
+                        },
+                        "cdate": {
+                          "type": "object",
+                          "title": "sun.util.calendar.BaseCalendar$Date",
+                          "properties": {
+                            "cachedYear": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateJan1": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateNextJan1": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "active": {
+                      "type": "boolean"
+                    },
+                    "location": {
+                      "type": "object",
+                      "title": "br.com.codenation.hospital.domain.Location",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "referenceId": {
+                          "type": "string"
+                        },
+                        "locationCategory": {
+                          "type": "object",
+                          "title": "br.com.codenation.hospital.domain.LocationCategory",
+                          "properties": {
+                            "descricao": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "position": {
+                          "type": "object",
+                          "title": "org.springframework.data.mongodb.core.geo.GeoJsonPoint"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/pacientes/{patientId}": {
+      "get": {
+        "description": "",
+        "operationId": "em6",
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "patientId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "operationId": "em9",
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "patientId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "br.com.codenation.hospital.domain.Patient",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "cpf": {
+                      "type": "string"
+                    },
+                    "birthDate": {
+                      "type": "object",
+                      "title": "java.util.Date",
+                      "properties": {
+                        "fastTime": {
+                          "type": "integer"
+                        },
+                        "cdate": {
+                          "type": "object",
+                          "title": "sun.util.calendar.BaseCalendar$Date",
+                          "properties": {
+                            "cachedYear": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateJan1": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateNextJan1": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "gender": {
+                      "type": "string"
+                    },
+                    "entryDate": {
+                      "type": "object",
+                      "title": "java.util.Date",
+                      "properties": {
+                        "fastTime": {
+                          "type": "integer"
+                        },
+                        "cdate": {
+                          "type": "object",
+                          "title": "sun.util.calendar.BaseCalendar$Date",
+                          "properties": {
+                            "cachedYear": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateJan1": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateNextJan1": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "exitDate": {
+                      "type": "object",
+                      "title": "java.util.Date",
+                      "properties": {
+                        "fastTime": {
+                          "type": "integer"
+                        },
+                        "cdate": {
+                          "type": "object",
+                          "title": "sun.util.calendar.BaseCalendar$Date",
+                          "properties": {
+                            "cachedYear": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateJan1": {
+                              "type": "integer"
+                            },
+                            "cachedFixedDateNextJan1": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "active": {
+                      "type": "boolean"
+                    },
+                    "location": {
+                      "type": "object",
+                      "title": "br.com.codenation.hospital.domain.Location",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "referenceId": {
+                          "type": "string"
+                        },
+                        "locationCategory": {
+                          "type": "object",
+                          "title": "br.com.codenation.hospital.domain.LocationCategory",
+                          "properties": {
+                            "descricao": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "position": {
+                          "type": "object",
+                          "title": "org.springframework.data.mongodb.core.geo.GeoJsonPoint"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "active": {
+                    "type": "boolean"
+                  },
+                  "birthDate": {
+                    "type": "string"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  },
+                  "entryDate": {
+                    "type": "string"
+                  },
+                  "exitDate": {
+                    "type": "string"
+                  },
+                  "gender": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "location": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 9
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/hospitais/{hospital_id}/proximidades": {
+      "get": {
+        "description": "",
+        "operationId": "em10",
+        "parameters": [
+          {
+            "name": "hospital_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1hospitais~1{hospital_id}~1proximidades/get"
+        }
+      }
+    },
+    "/v1/hospitais/{id}/leitos": {
+      "get": {
+        "description": "",
+        "operationId": "em17",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      }
+    },
+    "/v1/hospitais/{id}/transferencia/{productId}": {
+      "post": {
+        "description": "",
+        "operationId": "em19",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1v1~1hospitais~1{id}~1transferencia~1{productId}/post"
+        }
+      }
+    }
+  },
+  "components": {
+    "x-endpoint-constraints": {
+      "/v1/hospitais": {
+        "post": {
+          "global-reads": {
+            "g2": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g3": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "HOSPITAL",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            }
+          }
+        }
+      },
+      "/v1/hospitais/maisProximo": {
+        "get": {
+          "global-reads": {
+            "g1": {
+              "name": "KILOMETERS",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            }
+          }
+        }
+      },
+      "/v1/hospitais/{hospital_id}": {
+        "put": {
+          "global-reads": {
+            "g3": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            }
+          }
+        }
+      },
+      "/v1/hospitais/{hospital_id}/hospitaisProximos": {
+        "get": {
+          "global-reads": {
+            "g1": {
+              "name": "KILOMETERS",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            }
+          }
+        }
+      },
+      "/v1/hospitais/{hospital_id}/pacientes": {
+        "get": {
+          "valid-path-conditions": [
+            ""
+          ],
+          "global-reads": {
+            "g0": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            }
+          }
+        }
+      },
+      "/v1/hospitais/{hospital_id}/pacientes/checkin": {
+        "post": {
+          "valid-path-conditions": [
+            "( ((br.com.codenation.hospital.domain.Hospital) this.<br.com.codenation.hospital.services.HospitalService: br.com.codenation.hospital.repository.HospitalRepository repo>.<br.com.codenation.hospital.repository.HospitalRepository: java.util.Optional findById(java.lang.Object)>({hospital_id}).<java.util.Optional: java.lang.Object orElseThrow(java.util.function.Supplier)>(staticinvoke <br.com.codenation.hospital.services.HospitalService$lambda_findById_0__8: java.util.function.Supplier bootstrap$(java.lang.String)>({hospital_id}))).<br.com.codenation.hospital.domain.Hospital: boolean temVaga()>() != 0 )"
+          ],
+          "global-reads": {
+            "g0": {
+              "name": "LOGGER",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            }
+          }
+        }
+      },
+      "/v1/hospitais/{hospital_id}/proximidades": {
+        "get": {
+          "global-reads": {
+            "g1": {
+              "name": "KILOMETERS",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            }
+          }
+        }
+      },
+      "/v1/hospitais/{id}/transferencia/{productId}": {
+        "post": {
+          "global-reads": {
+            "g1": {
+              "name": "KILOMETERS",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            }
+          }
+        }
+      }
+    },
+    "x-endpoint-interdependence": {},
+    "x-global-variables-info": {
+      "g0": {
+        "name": "LOGGER",
+        "id": "g0",
+        "defining-class": "br.com.codenation.hospital.resource.PatientResource",
+        "locations-of-static-assignments": [
+          "line 29, br.com.codenation.hospital.resource.PatientResource"
+        ]
+      },
+      "g1": {
+        "name": "KILOMETERS",
+        "id": "g1",
+        "defining-class": "org.springframework.data.geo.Metrics"
+      },
+      "g2": {
+        "name": "LOGGER",
+        "id": "g2",
+        "defining-class": "br.com.codenation.hospital.integration.LocationIQService",
+        "locations-of-static-assignments": [
+          "line 24, br.com.codenation.hospital.integration.LocationIQService"
+        ]
+      },
+      "g3": {
+        "name": "LOGGER",
+        "id": "g3",
+        "defining-class": "br.com.codenation.hospital.resource.HospitalResource",
+        "locations-of-static-assignments": [
+          "line 27, br.com.codenation.hospital.resource.HospitalResource"
+        ]
+      },
+      "g4": {
+        "name": "HOSPITAL",
+        "id": "g4",
+        "defining-class": "br.com.codenation.hospital.domain.LocationCategory",
+        "locations-of-static-assignments": [
+          "line 4, br.com.codenation.hospital.domain.LocationCategory"
+        ]
+      }
+    }
+  }
+}

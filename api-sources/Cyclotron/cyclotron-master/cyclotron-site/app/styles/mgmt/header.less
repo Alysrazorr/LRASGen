@@ -1,0 +1,115 @@
+/*
+ * Copyright (c) 2013-2018 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+
+@import "../../../vendor/lesselements/_elements.less";
+@import "../common/variables.less";
+
+.cyclotron-header {
+
+    @header-text-color: white;
+    @header-text-contrast-color: #333;
+    @header-background-color: #414A56;
+
+    padding: 8px 19px;
+    //border-bottom: 1px solid #aaa;
+
+    color: @header-text-color;
+    background-color: @header-background-color;
+    
+    a { color: @header-text-color; }
+
+    .logo {
+        height: 32px;
+        vertical-align: top;
+        margin-right: .4rem;
+        //filter: contrast(1%) brightness(200%);
+    }
+
+    h1 { 
+        font-weight: 300;
+        font-size: 1.5rem;
+        line-height: 34px;
+        margin: 0rem;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .links { 
+        display: block;
+        float: right;
+        text-align: right;
+        line-height: 34px;
+        font-size: 1.5rem;
+
+        .user-select(none);
+
+        a {
+            color: @header-text-color;
+            padding: 0 .6rem;
+        }
+
+        i.fa-key {
+            color: @highlight-shadow-color;
+        }
+
+        .user {
+            img {
+                border-radius: 4px;
+            }
+        }
+        
+        a:not(.disabled):hover {
+            i { 
+                color: @highlight-shadow-color; 
+                .transition-duration(.25s);
+            }
+        }
+
+        a.disabled {
+            color: #999;
+        }
+
+        .dropdown-menu {
+            left: auto;
+            right: 0;
+            text-align: left;
+
+            .divider {
+                margin: auto;
+            }
+
+            li {
+                a {
+                    color: @header-text-contrast-color;
+                }
+            }
+
+            .dropdown-header {
+                text-align: left;
+                padding: 0;
+                background-color: #eee;
+                margin-bottom: .25rem;
+
+                a {
+                    &:hover {
+                        border-bottom-color: transparent;
+                        background-color: #eee;
+                    }
+                }
+            }
+        }
+    }
+}

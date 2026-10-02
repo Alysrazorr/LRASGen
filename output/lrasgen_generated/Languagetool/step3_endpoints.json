@@ -1,0 +1,177 @@
+{
+  "task_id": "languagetool",
+  "api_name": "languagetool",
+  "framework": "jdk",
+  "endpoints": [
+    {
+      "endpoint_path": "/v2/stop",
+      "http_method": "GET",
+      "method_name": "handle",
+      "summary": "Stop the server",
+      "description": "Stops the server when the server is configured as stoppable. Only available when config.isStoppable() is true.",
+      "line_number": 66,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java"
+    },
+    {
+      "endpoint_path": "/v2/healthcheck",
+      "http_method": "GET",
+      "method_name": "handle",
+      "summary": "Health check",
+      "description": "Returns 'OK' if the server is healthy and the work queue is not full. Returns HTTP 503 if there are too many parallel requests.",
+      "line_number": 74,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java"
+    },
+    {
+      "endpoint_path": "/v2/languages",
+      "http_method": "GET",
+      "method_name": "handleLanguagesRequest",
+      "summary": "List supported languages",
+      "description": "Returns a JSON array of all supported languages with their name, short code and long code.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java"
+    },
+    {
+      "endpoint_path": "/v2/maxtextlength",
+      "http_method": "GET",
+      "method_name": "handleMaxTextLengthRequest",
+      "summary": "Get maximum text length",
+      "description": "Returns the maximum allowed text length as plain text.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java"
+    },
+    {
+      "endpoint_path": "/v2/configinfo",
+      "http_method": "GET",
+      "method_name": "handleGetConfigurationInfoRequest",
+      "summary": "Get configuration info",
+      "description": "Returns configuration information for a given language, including software version, parameter limits and rules. Requires the 'language' parameter.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java"
+    },
+    {
+      "endpoint_path": "/v2/info",
+      "http_method": "GET",
+      "method_name": "handleSoftwareInfoRequest",
+      "summary": "Get software info",
+      "description": "Returns software information such as name, version, build date, commit and premium status.",
+      "line_number": 40,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java"
+    },
+    {
+      "endpoint_path": "/v2/check",
+      "http_method": "POST",
+      "method_name": "handleCheckRequest",
+      "summary": "Check text",
+      "description": "Checks the given text or data for grammar, spelling and style issues. Requires either 'text' or 'data' parameter.",
+      "line_number": 42,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java"
+    },
+    {
+      "endpoint_path": "/v2/words",
+      "http_method": "GET",
+      "method_name": "handleWordsRequest",
+      "summary": "List user dictionary words",
+      "description": "Returns a list of words in the user's personal dictionary. Requires a user id. Supports 'offset' and 'limit' parameters.",
+      "line_number": 44,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java"
+    },
+    {
+      "endpoint_path": "/v2/words/add",
+      "http_method": "POST",
+      "method_name": "handleWordAddRequest",
+      "summary": "Add word to user dictionary",
+      "description": "Adds a word to the user's personal dictionary. Requires a user id and the 'word' parameter.",
+      "line_number": 46,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java"
+    },
+    {
+      "endpoint_path": "/v2/words/delete",
+      "http_method": "POST",
+      "method_name": "handleWordDeleteRequest",
+      "summary": "Delete word from user dictionary",
+      "description": "Deletes a word from the user's personal dictionary. Requires a user id and the 'word' parameter.",
+      "line_number": 48,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java"
+    },
+    {
+      "endpoint_path": "/v2/rule/examples",
+      "http_method": "GET",
+      "method_name": "handleRuleExamplesRequest",
+      "summary": "Get rule examples",
+      "description": "Private API for internal use only. Returns correct and incorrect examples for a given rule. Requires 'lang' and 'ruleId' parameters.",
+      "line_number": 50,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java"
+    },
+    {
+      "endpoint_path": "/v2/log",
+      "http_method": "GET",
+      "method_name": "handleLogRequest",
+      "summary": "Log client message",
+      "description": "Private API for internal use only. Allows clients to report internal issues. Accepts a 'message' parameter.",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java"
+    },
+    {
+      "endpoint_path": "/v2/swagger",
+      "http_method": "GET",
+      "method_name": "handleSwaggerRequest",
+      "summary": "Get Swagger API documentation",
+      "description": "Returns the Swagger JSON documentation for the API.",
+      "line_number": 54,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Languagetool\\languagetool\\languagetool-server\\src\\main\\java\\org\\languagetool\\server\\LanguageToolHttpHandler.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 5068,
+  "tokens": {
+    "prompt_tokens": 135667,
+    "completion_tokens": 6044,
+    "total_tokens": 141711,
+    "calls": 3,
+    "elapsed_s": 52.614,
+    "prompt_cost_usd": 0.017389,
+    "completion_cost_usd": 0.00404,
+    "total_cost_usd": 0.021429,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 44062,
+        "completion_tokens": 1040,
+        "total_tokens": 45102,
+        "calls": 1,
+        "elapsed_s": 5.063557,
+        "prompt_cost_usd": 0.000881,
+        "completion_cost_usd": 0.000624,
+        "total_cost_usd": 0.001505
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 42626,
+        "completion_tokens": 4090,
+        "total_tokens": 46716,
+        "calls": 1,
+        "elapsed_s": 36.105,
+        "prompt_cost_usd": 0.004263,
+        "completion_cost_usd": 0.002045,
+        "total_cost_usd": 0.006308
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 48979,
+        "completion_tokens": 914,
+        "total_tokens": 49893,
+        "calls": 1,
+        "elapsed_s": 11.445,
+        "prompt_cost_usd": 0.012245,
+        "completion_cost_usd": 0.001371,
+        "total_cost_usd": 0.013616
+      }
+    ]
+  }
+}

@@ -1,0 +1,546 @@
+{
+  "task_id": "blogapi",
+  "api_name": "blogapi",
+  "framework": "spring-boot",
+  "endpoints": [
+    {
+      "endpoint_path": "/api/albums",
+      "http_method": "GET",
+      "method_name": "getAllAlbums",
+      "summary": "Get all albums",
+      "description": "Retrieves a paginated list of all albums. Supports optional query parameters 'page' (default 0) and 'size' (default 30). Validates page number and size.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AlbumController.java"
+    },
+    {
+      "endpoint_path": "/api/albums",
+      "http_method": "POST",
+      "method_name": "addAlbum",
+      "summary": "Add a new album",
+      "description": "Creates a new album. Requires USER role. Accepts an AlbumRequest body and the current authenticated user.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AlbumController.java"
+    },
+    {
+      "endpoint_path": "/api/albums/{id}",
+      "http_method": "GET",
+      "method_name": "getAlbum",
+      "summary": "Get album by ID",
+      "description": "Retrieves a single album by its ID.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AlbumController.java"
+    },
+    {
+      "endpoint_path": "/api/albums/{id}",
+      "http_method": "PUT",
+      "method_name": "updateAlbum",
+      "summary": "Update an album",
+      "description": "Updates an existing album by ID. Requires USER or ADMIN role. Accepts an AlbumRequest body and the current authenticated user.",
+      "line_number": 41,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AlbumController.java"
+    },
+    {
+      "endpoint_path": "/api/albums/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteAlbum",
+      "summary": "Delete an album",
+      "description": "Deletes an album by ID. Requires USER or ADMIN role. Requires the current authenticated user.",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AlbumController.java"
+    },
+    {
+      "endpoint_path": "/api/albums/{id}/photos",
+      "http_method": "GET",
+      "method_name": "getAllPhotosByAlbum",
+      "summary": "Get all photos by album",
+      "description": "Retrieves a paginated list of photos for a specific album. Supports optional query parameters 'page' (default 0) and 'size' (default 30).",
+      "line_number": 52,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AlbumController.java"
+    },
+    {
+      "endpoint_path": "/api/auth/signin",
+      "http_method": "POST",
+      "method_name": "authenticateUser",
+      "summary": "Authenticate user",
+      "description": "Authenticates a user with username/email and password, returns a JWT access token.",
+      "line_number": 24,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AuthController.java"
+    },
+    {
+      "endpoint_path": "/api/auth/signup",
+      "http_method": "POST",
+      "method_name": "registerUser",
+      "summary": "Register user",
+      "description": "Registers a new user. The first user gets both ROLE_USER and ROLE_ADMIN; subsequent users get ROLE_USER.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\AuthController.java"
+    },
+    {
+      "endpoint_path": "/api/categories",
+      "http_method": "GET",
+      "method_name": "getAllCategories",
+      "summary": "Get all categories",
+      "description": "Retrieves a paginated list of all categories. Supports optional page and size query parameters.",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CategoryController.java"
+    },
+    {
+      "endpoint_path": "/api/categories",
+      "http_method": "POST",
+      "method_name": "addCategory",
+      "summary": "Add a new category",
+      "description": "Creates a new category. Requires USER role. The request body must contain a valid Category object.",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CategoryController.java"
+    },
+    {
+      "endpoint_path": "/api/categories/{id}",
+      "http_method": "GET",
+      "method_name": "getCategory",
+      "summary": "Get a category by ID",
+      "description": "Retrieves a single category by its ID.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CategoryController.java"
+    },
+    {
+      "endpoint_path": "/api/categories/{id}",
+      "http_method": "PUT",
+      "method_name": "updateCategory",
+      "summary": "Update a category",
+      "description": "Updates an existing category by ID. Requires USER or ADMIN role. The request body must contain a valid Category object.",
+      "line_number": 28,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CategoryController.java"
+    },
+    {
+      "endpoint_path": "/api/categories/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteCategory",
+      "summary": "Delete a category",
+      "description": "Deletes a category by ID. Requires USER or ADMIN role.",
+      "line_number": 35,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CategoryController.java"
+    },
+    {
+      "endpoint_path": "/api/posts/{postId}/comments",
+      "http_method": "GET",
+      "method_name": "getAllComments",
+      "summary": "Get all comments for a post",
+      "description": "Retrieves a paginated list of comments for the specified post ID. Supports pagination via 'page' and 'size' query parameters.",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CommentController.java"
+    },
+    {
+      "endpoint_path": "/api/posts/{postId}/comments",
+      "http_method": "POST",
+      "method_name": "addComment",
+      "summary": "Add a comment to a post",
+      "description": "Creates a new comment for the specified post ID. Requires authentication with USER role. The request body must contain a valid comment body.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CommentController.java"
+    },
+    {
+      "endpoint_path": "/api/posts/{postId}/comments/{id}",
+      "http_method": "GET",
+      "method_name": "getComment",
+      "summary": "Get a specific comment",
+      "description": "Retrieves a single comment by its ID for the specified post ID.",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CommentController.java"
+    },
+    {
+      "endpoint_path": "/api/posts/{postId}/comments/{id}",
+      "http_method": "PUT",
+      "method_name": "updateComment",
+      "summary": "Update a comment",
+      "description": "Updates an existing comment identified by its ID for the specified post ID. Requires authentication with USER or ADMIN role. The request body must contain a valid comment body.",
+      "line_number": 36,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CommentController.java"
+    },
+    {
+      "endpoint_path": "/api/posts/{postId}/comments/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteComment",
+      "summary": "Delete a comment",
+      "description": "Deletes a comment identified by its ID for the specified post ID. Requires authentication with USER or ADMIN role. Returns an ApiResponse indicating success or failure.",
+      "line_number": 47,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\CommentController.java"
+    },
+    {
+      "endpoint_path": "/api/photos",
+      "http_method": "GET",
+      "method_name": "getAllPhotos",
+      "summary": "Get all photos",
+      "description": "Retrieves a paginated list of all photos. Supports optional query parameters 'page' and 'size' for pagination.",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PhotoController.java"
+    },
+    {
+      "endpoint_path": "/api/photos",
+      "http_method": "POST",
+      "method_name": "addPhoto",
+      "summary": "Add a new photo",
+      "description": "Creates a new photo. Requires authentication with USER role. The request body must contain valid photo data.",
+      "line_number": 15,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PhotoController.java"
+    },
+    {
+      "endpoint_path": "/api/photos/{id}",
+      "http_method": "GET",
+      "method_name": "getPhoto",
+      "summary": "Get a photo by ID",
+      "description": "Retrieves a single photo by its unique identifier.",
+      "line_number": 23,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PhotoController.java"
+    },
+    {
+      "endpoint_path": "/api/photos/{id}",
+      "http_method": "PUT",
+      "method_name": "updatePhoto",
+      "summary": "Update a photo",
+      "description": "Updates an existing photo. Requires authentication with USER or ADMIN role. The request body must contain valid photo data.",
+      "line_number": 30,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PhotoController.java"
+    },
+    {
+      "endpoint_path": "/api/photos/{id}",
+      "http_method": "DELETE",
+      "method_name": "deletePhoto",
+      "summary": "Delete a photo",
+      "description": "Deletes a photo by its ID. Requires authentication with USER or ADMIN role.",
+      "line_number": 39,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PhotoController.java"
+    },
+    {
+      "endpoint_path": "/api/posts",
+      "http_method": "GET",
+      "method_name": "getAllPosts",
+      "summary": "Get all posts",
+      "description": "Retrieves a paginated list of all posts. Supports optional query parameters 'page' (default 0) and 'size' (default 30).",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PostController.java"
+    },
+    {
+      "endpoint_path": "/api/posts/category/{id}",
+      "http_method": "GET",
+      "method_name": "getPostsByCategory",
+      "summary": "Get posts by category",
+      "description": "Retrieves a paginated list of posts belonging to the specified category ID. Supports optional query parameters 'page' (default 0) and 'size' (default 30).",
+      "line_number": 17,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PostController.java"
+    },
+    {
+      "endpoint_path": "/api/posts/tag/{id}",
+      "http_method": "GET",
+      "method_name": "getPostsByTag",
+      "summary": "Get posts by tag",
+      "description": "Retrieves a paginated list of posts associated with the specified tag ID. Supports optional query parameters 'page' (default 0) and 'size' (default 30).",
+      "line_number": 27,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PostController.java"
+    },
+    {
+      "endpoint_path": "/api/posts",
+      "http_method": "POST",
+      "method_name": "addPost",
+      "summary": "Add a new post",
+      "description": "Creates a new post. Requires authentication with role 'USER'. The request body must be a valid PostRequest object.",
+      "line_number": 37,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PostController.java"
+    },
+    {
+      "endpoint_path": "/api/posts/{id}",
+      "http_method": "GET",
+      "method_name": "getPost",
+      "summary": "Get a post by ID",
+      "description": "Retrieves the details of a single post by its ID.",
+      "line_number": 45,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PostController.java"
+    },
+    {
+      "endpoint_path": "/api/posts/{id}",
+      "http_method": "PUT",
+      "method_name": "updatePost",
+      "summary": "Update a post",
+      "description": "Updates an existing post identified by ID. Requires authentication with role 'USER' or 'ADMIN'. The request body must be a valid PostRequest object.",
+      "line_number": 51,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PostController.java"
+    },
+    {
+      "endpoint_path": "/api/posts/{id}",
+      "http_method": "DELETE",
+      "method_name": "deletePost",
+      "summary": "Delete a post",
+      "description": "Deletes a post identified by ID. Requires authentication with role 'USER' or 'ADMIN'.",
+      "line_number": 59,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\PostController.java"
+    },
+    {
+      "endpoint_path": "/api/tags",
+      "http_method": "GET",
+      "method_name": "getAllTags",
+      "summary": "Get all tags",
+      "description": "Retrieves a paginated list of all tags. Supports optional query parameters 'page' (default 0) and 'size' (default 30).",
+      "line_number": 8,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TagController.java"
+    },
+    {
+      "endpoint_path": "/api/tags",
+      "http_method": "POST",
+      "method_name": "addTag",
+      "summary": "Add a new tag",
+      "description": "Creates a new tag. Requires authentication with role USER. The request body must contain a valid Tag object.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TagController.java"
+    },
+    {
+      "endpoint_path": "/api/tags/{id}",
+      "http_method": "GET",
+      "method_name": "getTag",
+      "summary": "Get a tag by ID",
+      "description": "Retrieves a single tag by its unique identifier.",
+      "line_number": 26,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TagController.java"
+    },
+    {
+      "endpoint_path": "/api/tags/{id}",
+      "http_method": "PUT",
+      "method_name": "updateTag",
+      "summary": "Update a tag",
+      "description": "Updates an existing tag identified by ID. Requires authentication with role USER or ADMIN. The request body must contain a valid Tag object.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TagController.java"
+    },
+    {
+      "endpoint_path": "/api/tags/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteTag",
+      "summary": "Delete a tag",
+      "description": "Deletes a tag identified by ID. Requires authentication with role USER or ADMIN. Returns an ApiResponse indicating success or failure.",
+      "line_number": 43,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TagController.java"
+    },
+    {
+      "endpoint_path": "/api/todos",
+      "http_method": "GET",
+      "method_name": "getAllTodos",
+      "summary": "Get all todos",
+      "description": "Retrieves a paginated list of todos for the current user. Requires USER role.",
+      "line_number": 11,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TodoController.java"
+    },
+    {
+      "endpoint_path": "/api/todos",
+      "http_method": "POST",
+      "method_name": "addTodo",
+      "summary": "Add a new todo",
+      "description": "Creates a new todo for the current user. Requires USER role.",
+      "line_number": 23,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TodoController.java"
+    },
+    {
+      "endpoint_path": "/api/todos/{id}",
+      "http_method": "GET",
+      "method_name": "getTodo",
+      "summary": "Get a todo by ID",
+      "description": "Retrieves a specific todo by its ID for the current user. Requires USER role.",
+      "line_number": 31,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TodoController.java"
+    },
+    {
+      "endpoint_path": "/api/todos/{id}",
+      "http_method": "PUT",
+      "method_name": "updateTodo",
+      "summary": "Update a todo",
+      "description": "Updates an existing todo by its ID for the current user. Requires USER role.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TodoController.java"
+    },
+    {
+      "endpoint_path": "/api/todos/{id}",
+      "http_method": "DELETE",
+      "method_name": "deleteTodo",
+      "summary": "Delete a todo",
+      "description": "Deletes a todo by its ID for the current user. Requires USER role.",
+      "line_number": 46,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TodoController.java"
+    },
+    {
+      "endpoint_path": "/api/todos/{id}/complete",
+      "http_method": "PUT",
+      "method_name": "completeTodo",
+      "summary": "Mark a todo as complete",
+      "description": "Marks a specific todo as completed for the current user. Requires USER role.",
+      "line_number": 54,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TodoController.java"
+    },
+    {
+      "endpoint_path": "/api/todos/{id}/unComplete",
+      "http_method": "PUT",
+      "method_name": "unCompleteTodo",
+      "summary": "Mark a todo as incomplete",
+      "description": "Marks a specific todo as incomplete for the current user. Requires USER role.",
+      "line_number": 62,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\TodoController.java"
+    },
+    {
+      "endpoint_path": "/api/users/me",
+      "http_method": "GET",
+      "method_name": "getCurrentUser",
+      "summary": "Get current user",
+      "description": "Returns the summary of the currently authenticated user.",
+      "line_number": 18,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java"
+    },
+    {
+      "endpoint_path": "/api/users/checkUsernameAvailability",
+      "http_method": "GET",
+      "method_name": "checkUsernameAvailability",
+      "summary": "Check username availability",
+      "description": "Checks whether the given username is available.",
+      "line_number": 25,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java"
+    },
+    {
+      "endpoint_path": "/api/users/checkEmailAvailability",
+      "http_method": "GET",
+      "method_name": "checkEmailAvailability",
+      "summary": "Check email availability",
+      "description": "Checks whether the given email is available.",
+      "line_number": 32,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java"
+    },
+    {
+      "endpoint_path": "/api/users/{username}/profile",
+      "http_method": "GET",
+      "method_name": "getUSerProfile",
+      "summary": "Get user profile",
+      "description": "Returns the profile of the user with the given username.",
+      "line_number": 38,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java"
+    },
+    {
+      "endpoint_path": "/api/users/{username}/posts",
+      "http_method": "GET",
+      "method_name": "getPostsCreatedBy",
+      "summary": "Get posts by user",
+      "description": "Returns a paginated list of posts created by the user with the given username.",
+      "line_number": 45,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java"
+    },
+    {
+      "endpoint_path": "/api/users/{username}/albums",
+      "http_method": "GET",
+      "method_name": "getUserAlbums",
+      "summary": "Get albums by user",
+      "description": "Returns a paginated list of albums belonging to the user with the given username.",
+      "line_number": 54,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java"
+    },
+    {
+      "endpoint_path": "/api/users",
+      "http_method": "POST",
+      "method_name": "addUser",
+      "summary": "Add user",
+      "description": "Creates a new user. Requires ADMIN role.",
+      "line_number": 64,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java"
+    },
+    {
+      "endpoint_path": "/api/users/{username}",
+      "http_method": "PUT",
+      "method_name": "updateUser",
+      "summary": "Update user",
+      "description": "Updates the user with the given username. Requires USER or ADMIN role.",
+      "line_number": 72,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java"
+    },
+    {
+      "endpoint_path": "/api/users/{username}",
+      "http_method": "DELETE",
+      "method_name": "deleteUser",
+      "summary": "Delete user",
+      "description": "Deletes the user with the given username. Requires USER or ADMIN role.",
+      "line_number": 80,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java"
+    },
+    {
+      "endpoint_path": "/api/users/{username}/giveAdmin",
+      "http_method": "PUT",
+      "method_name": "giveAdmin",
+      "summary": "Grant admin role",
+      "description": "Grants admin role to the user with the given username. Requires ADMIN role.",
+      "line_number": 88,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java"
+    },
+    {
+      "endpoint_path": "/api/users/{username}/takeAdmin",
+      "http_method": "PUT",
+      "method_name": "takeAdmin",
+      "summary": "Revoke admin role",
+      "description": "Removes admin role from the user with the given username. Requires ADMIN role.",
+      "line_number": 95,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java"
+    },
+    {
+      "endpoint_path": "/api/users/setOrUpdateInfo",
+      "http_method": "PUT",
+      "method_name": "setAddress",
+      "summary": "Set or update user info",
+      "description": "Sets or updates the address and other info for the current user. Requires USER or ADMIN role.",
+      "line_number": 102,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Blog\\blogapi\\src\\main\\java\\com\\sopromadze\\blogapi\\controller\\UserController.java"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 22978,
+  "tokens": {
+    "prompt_tokens": 269975,
+    "completion_tokens": 16424,
+    "total_tokens": 286399,
+    "calls": 27,
+    "elapsed_s": 208.827,
+    "prompt_cost_usd": 0.034746,
+    "completion_cost_usd": 0.01089,
+    "total_cost_usd": 0.045637,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 88311,
+        "completion_tokens": 4318,
+        "total_tokens": 92629,
+        "calls": 9,
+        "elapsed_s": 22.963483,
+        "prompt_cost_usd": 0.001766,
+        "completion_cost_usd": 0.002591,
+        "total_cost_usd": 0.004357
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 82906,
+        "completion_tokens": 9860,
+        "total_tokens": 92766,
+        "calls": 9,
+        "elapsed_s": 145.315,
+        "prompt_cost_usd": 0.008291,
+        "completion_cost_usd": 0.00493,
+        "total_cost_usd": 0.013221
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 98758,
+        "completion_tokens": 2246,
+        "total_tokens": 101004,
+        "calls": 9,
+        "elapsed_s": 40.549,
+        "prompt_cost_usd": 0.024689,
+        "completion_cost_usd": 0.003369,
+        "total_cost_usd": 0.028059
+      }
+    ]
+  }
+}

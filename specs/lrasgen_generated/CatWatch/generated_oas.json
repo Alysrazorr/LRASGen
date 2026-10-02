@@ -1,0 +1,790 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "catwatch API",
+    "description": "LRASGen-generated specification for catwatch (spring-boot).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/delete": {
+      "get": {
+        "operationId": "getDelete",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "403": {
+            "description": "Forbidden. The endpoint is deactivated and throws UnsupportedOperationException, which is handled by the @ExceptionHandler method returning the exception message with HTTP 403.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/config/scoring.project": {
+      "post": {
+        "operationId": "createScoring.project",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "403": {
+            "description": "Forbidden. The endpoint is deactivated and throws UnsupportedOperationException, which is handled by the @ExceptionHandler method that returns the exception message with HTTP status 403.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "scoringProject": {
+                    "type": "string",
+                    "description": "Scoring project configuration payload"
+                  }
+                },
+                "required": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/init": {
+      "get": {
+        "operationId": "getInit",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "403": {
+            "description": "Forbidden. The endpoint is deactivated and throws UnsupportedOperationException, which is handled by the @ExceptionHandler method returning the exception message with HTTP 403 status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "{'message': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/languages": {
+      "get": {
+        "operationId": "getLanguages",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "organizations",
+            "in": "query",
+            "required": false,
+            "description": "List of github.com organizations to scan(comma seperated)",
+            "schema": {
+              "type": "string",
+              "description": "List of github.com organizations to scan(comma seperated)"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of items to retrieve. Default is 5.",
+            "schema": {
+              "type": "integer",
+              "description": "Number of items to retrieve. Default is 5."
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Offset the list of returned results by this amount. Default is zero.",
+            "schema": {
+              "type": "integer",
+              "description": "Offset the list of returned results by this amount. Default is zero."
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "description": "query paramater for search query (this can be language name prefix)",
+            "schema": {
+              "type": "string",
+              "description": "query paramater for search query (this can be language name prefix)"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of programming language used and count of projects using it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Language": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'projectsCount': 'integer', 'percentage': 'integer'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/statistics/languages": {
+      "get": {
+        "operationId": "getLanguages",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "organizations",
+            "in": "query",
+            "required": false,
+            "description": "List of github.com organizations to scan(comma seperated)",
+            "schema": {
+              "type": "string",
+              "description": "List of github.com organizations to scan(comma seperated)"
+            }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "description": "Date from which to start fetching statistics records from database(default = current date)",
+            "schema": {
+              "type": "string",
+              "description": "Date from which to start fetching statistics records from database(default = current date)",
+              "format": "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "description": "Date till which statistics records will be fetched from database(default = current date)",
+            "schema": {
+              "type": "string",
+              "description": "Date till which statistics records will be fetched from database(default = current date)",
+              "format": "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of LanguageStats objects, each containing the language name, project counts per snapshot date, and the snapshot dates.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "LanguageStats": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'project_counts': 'array<integer>', 'snapshot_dates': 'array<date>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when the date parameters are not in valid ISO 8601 format. The response body contains the error message."
+          }
+        }
+      }
+    },
+    "/statistics/contributors": {
+      "get": {
+        "operationId": "getContributors",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "organizations",
+            "in": "query",
+            "required": false,
+            "description": "List of github.com organizations to scan(comma seperated)",
+            "schema": {
+              "type": "string",
+              "description": "List of github.com organizations to scan(comma seperated)"
+            }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "description": "Date from which to start fetching statistics records from database(default = current date)",
+            "schema": {
+              "type": "string",
+              "description": "Date from which to start fetching statistics records from database(default = current date)",
+              "format": "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "description": "Date till which statistics records will be fetched from database(default = current date)",
+            "schema": {
+              "type": "string",
+              "description": "Date till which statistics records will be fetched from database(default = current date)",
+              "format": "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of ContributorStats objects, each representing a contributor's statistics over time. The list is sorted by the last organizational commits count in descending order and limited to the top 10 contributors.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ContributorStats": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'organization_name': 'array of string', 'url': 'string', 'organization_commit_counts': 'array of integer', 'personal_commit_counts': 'array of integer', 'organization_project_counts': 'array of integer', 'personal_project_counts': 'array of integer', 'snapshot_dates': 'array of date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when an IllegalArgumentException is thrown, e.g., if the date string cannot be parsed or if the contributor login ID cannot be determined."
+          }
+        }
+      }
+    },
+    "/statistics/projects": {
+      "get": {
+        "operationId": "getProjects",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "organizations",
+            "in": "query",
+            "required": false,
+            "description": "List of github.com organizations to scan(comma seperated)",
+            "schema": {
+              "type": "string",
+              "description": "List of github.com organizations to scan(comma seperated)"
+            }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "description": "Date from which to start fetching statistics records from database(default = current date)",
+            "schema": {
+              "type": "string",
+              "description": "Date from which to start fetching statistics records from database(default = current date)",
+              "format": "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "description": "Date till which statistics records will be fetched from database(default = current date)",
+            "schema": {
+              "type": "string",
+              "description": "Date till which statistics records will be fetched from database(default = current date)",
+              "format": "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of ProjectStats objects representing the top 10 projects by last score, over the selected period of time.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProjectStats": {
+                      "type": "string",
+                      "description": "{'name': 'string', 'organization_name': 'string', 'url': 'string', 'primary_language': 'string', 'description': 'string', 'commit_counts': 'array<integer>', 'fork_counts': 'array<integer>', 'contributors_counts': 'array<integer>', 'scores': 'array<integer>', 'snapshot_dates': 'array<date>'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when an IllegalArgumentException is thrown, e.g. when a date string cannot be parsed."
+          }
+        }
+      }
+    },
+    "/statistics": {
+      "get": {
+        "operationId": "getStatistics",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "organizations",
+            "in": "query",
+            "required": false,
+            "description": "List of github.com organizations to scan(comma seperated)",
+            "schema": {
+              "type": "string",
+              "description": "List of github.com organizations to scan(comma seperated)"
+            }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "description": "Date from which to start fetching statistics records from database(default = current date)",
+            "schema": {
+              "type": "string",
+              "description": "Date from which to start fetching statistics records from database(default = current date)",
+              "format": "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "description": "Date till which statistics records will be fetched from database(default = current date)",
+            "schema": {
+              "type": "string",
+              "description": "Date till which statistics records will be fetched from database(default = current date)",
+              "format": "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of Statistics over selected period of time.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Statistics": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'privateProjectCount': 'integer', 'publicProjectCount': 'integer', 'membersCount': 'integer', 'teamsCount': 'integer', 'allContributorsCount': 'integer', 'externalContributorsCount': 'integer', 'allStarsCount': 'integer', 'allForksCount': 'integer', 'allSizeCount': 'integer', 'programLanguagesCount': 'integer', 'tagsCount': 'integer', 'organizationName': 'string', 'snapshotDate': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Returned when an IllegalArgumentException is thrown, e.g. due to an invalid date format."
+          }
+        }
+      }
+    },
+    "/contributors": {
+      "get": {
+        "operationId": "getContributors",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "organizations",
+            "in": "query",
+            "required": false,
+            "description": "List of github.com organizations to scan(comma seperated)",
+            "schema": {
+              "type": "string",
+              "description": "List of github.com organizations to scan(comma seperated)"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of items to retrieve. Default is 5.",
+            "schema": {
+              "type": "integer",
+              "description": "Number of items to retrieve. Default is 5."
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Offset the list of returned results by this amount. Default is zero.",
+            "schema": {
+              "type": "integer",
+              "description": "Offset the list of returned results by this amount. Default is zero."
+            }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "description": "Date from which to start fetching records from database(default = current_date)",
+            "schema": {
+              "type": "string",
+              "description": "Date from which to start fetching records from database(default = current_date)",
+              "format": "yyyy-MM-dd'T'HH:mm:ss"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "description": "Date till which records will be fetched from database(default = current_date)",
+            "schema": {
+              "type": "string",
+              "description": "Date till which records will be fetched from database(default = current_date)",
+              "format": "yyyy-MM-dd'T'HH:mm:ss"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "required": false,
+            "description": "parameter by which result should be sorted. '-' means descending order (default is count of commit)",
+            "schema": {
+              "type": "string",
+              "description": "parameter by which result should be sorted. '-' means descending order (default is count of commit)",
+              "enum": [
+                "organizationalCommitsCount",
+                "organizationalProjectsCount",
+                "personalCommitsCount",
+                "personalProjectsCount",
+                "organizationName",
+                "name"
+              ]
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "description": "query paramater for search query (this will be contributor names prefix)",
+            "schema": {
+              "type": "string",
+              "description": "query paramater for search query (this will be contributor names prefix)"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of Contributors of selected Github organization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Contributor": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'organizationId': 'long', 'name': 'string', 'url': 'string', 'organizationalCommitsCount': 'integer', 'personalCommitsCount': 'integer', 'personalProjectsCount': 'integer', 'organizationalProjectsCount': 'integer', 'organizationName': 'string', 'snapshotDate': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "operationId": "getProjects",
+        "summary": null,
+        "description": null,
+        "parameters": [
+          {
+            "name": "organizations",
+            "in": "query",
+            "required": false,
+            "description": "List of github.com organizations to scan(comma seperated)",
+            "schema": {
+              "type": "string",
+              "description": "List of github.com organizations to scan(comma seperated)"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of items to retrieve. Default is 5.",
+            "schema": {
+              "type": "integer",
+              "description": "Number of items to retrieve. Default is 5."
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Offset the list of returned results by this amount. Default is zero.",
+            "schema": {
+              "type": "integer",
+              "description": "Offset the list of returned results by this amount. Default is zero."
+            }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "description": "Date from which to start fetching records from database(default = current_date)",
+            "schema": {
+              "type": "string",
+              "description": "Date from which to start fetching records from database(default = current_date)",
+              "format": "yyyy-MM-dd'T'HH:mm:ss"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "description": "Date till which records will be fetched from database(default = current_date)",
+            "schema": {
+              "type": "string",
+              "description": "Date till which records will be fetched from database(default = current_date)",
+              "format": "yyyy-MM-dd'T'HH:mm:ss"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "required": false,
+            "description": "parameter by which result should be sorted. '-' means descending order (count of star,count of commit, count of forks, count of contributors, score). Default is descending order of score.",
+            "schema": {
+              "type": "string",
+              "description": "parameter by which result should be sorted. '-' means descending order (count of star,count of commit, count of forks, count of contributors, score). Default is descending order of score."
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "description": "query paramater for search query (this will be project names prefix)",
+            "schema": {
+              "type": "string",
+              "description": "query paramater for search query (this will be project names prefix)"
+            }
+          },
+          {
+            "name": "language",
+            "in": "query",
+            "required": false,
+            "description": "query paramater for filtering by primary programming language",
+            "schema": {
+              "type": "string",
+              "description": "query paramater for filtering by primary programming language"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of Projects of selected Github organization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Project": {
+                      "type": "string",
+                      "description": "{'id': 'integer', 'languageList': 'array of string', 'gitHubProjectId': 'long', 'snapshotDate': 'date', 'name': 'string', 'title': 'string', 'image': 'string', 'organizationName': 'string', 'url': 'string', 'description': 'string', 'starsCount': 'integer', 'commitsCount': 'integer', 'forksCount': 'integer', 'contributorsCount': 'integer', 'externalContributorsCount': 'integer', 'score': 'integer', 'lastPushed': 'string', 'primaryLanguage': 'string', 'maintainers': 'array of string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/config": {
+      "get": {
+        "operationId": "getConfig",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a JSON object mapping each property name from application-public.properties to its resolved value from the Spring Environment.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ConfigProperties": {
+                      "type": "string",
+                      "description": "{'propertyName': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fetch": {
+      "get": {
+        "operationId": "getFetch",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "String": {
+                      "type": "string",
+                      "description": "{'value': 'string'}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/import": {
+      "post": {
+        "operationId": "createImport",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "403": {
+            "description": "Forbidden. The endpoint is deactivated and throws UnsupportedOperationException, which is handled by the @ExceptionHandler method returning the exception message with HTTP 403 status."
+          },
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "contributors": {
+                    "type": "string",
+                    "description": "Database transfer object containing contributors, projects, and statistics lists"
+                  },
+                  "projects": {
+                    "type": "string",
+                    "description": "Database transfer object containing contributors, projects, and statistics lists"
+                  },
+                  "statistics": {
+                    "type": "string",
+                    "description": "Database transfer object containing contributors, projects, and statistics lists"
+                  }
+                },
+                "required": [
+                  "contributors",
+                  "projects",
+                  "statistics"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/export": {
+      "get": {
+        "operationId": "getExport",
+        "summary": null,
+        "description": null,
+        "responses": {
+          "200": {
+            "description": "Returns a DatabaseDto containing all contributors, projects, and statistics.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DatabaseDto": {
+                      "type": "string",
+                      "description": "{'contributors': 'array of Contributor', 'projects': 'array of Project', 'statistics': 'array of Statistics'}"
+                    },
+                    "Contributor": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'organizationId': 'long', 'name': 'string', 'url': 'string', 'organizationalCommitsCount': 'integer', 'personalCommitsCount': 'integer', 'personalProjectsCount': 'integer', 'organizationalProjectsCount': 'integer', 'organizationName': 'string', 'snapshotDate': 'date'}"
+                    },
+                    "Project": {
+                      "type": "string",
+                      "description": "{'languageList': 'array of string', 'gitHubProjectId': 'long', 'snapshotDate': 'date', 'name': 'string', 'title': 'string', 'image': 'string', 'organizationName': 'string', 'url': 'string', 'description': 'string', 'starsCount': 'integer', 'commitsCount': 'integer', 'forksCount': 'integer', 'contributorsCount': 'integer', 'externalContributorsCount': 'integer', 'score': 'integer', 'lastPushed': 'string', 'primaryLanguage': 'string', 'maintainers': 'array of string'}"
+                    },
+                    "Statistics": {
+                      "type": "string",
+                      "description": "{'id': 'long', 'privateProjectCount': 'integer', 'publicProjectCount': 'integer', 'membersCount': 'integer', 'teamsCount': 'integer', 'allContributorsCount': 'integer', 'externalContributorsCount': 'integer', 'allStarsCount': 'integer', 'allForksCount': 'integer', 'allSizeCount': 'integer', 'programLanguagesCount': 'integer', 'tagsCount': 'integer', 'organizationName': 'string', 'snapshotDate': 'date'}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

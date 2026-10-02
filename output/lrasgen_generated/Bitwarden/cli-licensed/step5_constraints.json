@@ -1,0 +1,233 @@
+{
+  "task_id": "src",
+  "api_name": "src",
+  "framework": "koa",
+  "endpoints": [
+    {
+      "endpoint_path": "/device-approval/{organizationId}",
+      "http_method": "GET",
+      "method_name": "serveDeviceApprovals",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "organizationId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The organization identifier from the route path /device-approval/:organizationId",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully retrieved the list of device approval requests for the organization. The response body contains the result of the ListCommand.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to ListCommand.create(this.serviceContainer).run(...) and does not catch any failure from that call.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/device-approval/{organizationId}/deny/{requestId}",
+      "http_method": "POST",
+      "method_name": "serveDeviceApprovals",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "organizationId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The organization identifier from the route path parameter :organizationId",
+          "_depth": 0
+        },
+        {
+          "name": "requestId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The device approval request identifier from the route path parameter :requestId",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully denied the device approval request. The response is produced by DenyCommand and processed via processResponse.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to DenyCommand.create(this.serviceContainer).run(...) without catching failures, so an exception from that call results in a 500 response.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/device-approval/{organizationId}/deny-all",
+      "http_method": "POST",
+      "method_name": "serveDeviceApprovals",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "organizationId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "Organization identifier from the route path /device-approval/:organizationId/deny-all",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully denied all device approval requests for the organization. The response is produced by DenyAllCommand and processed by processResponse.",
+          "data_schema": []
+        },
+        {
+          "status_code": 401,
+          "description": "Unauthorized. Returned by errorIfLocked when the vault is locked.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when DenyAllCommand.create(...).run(...) throws an unhandled exception.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/device-approval/{organizationId}/approve/{requestId}",
+      "http_method": "POST",
+      "method_name": "serveDeviceApprovals",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "organizationId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The organization identifier from the route path /device-approval/:organizationId/approve/:requestId",
+          "_depth": 0
+        },
+        {
+          "name": "requestId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The device approval request identifier from the route path /device-approval/:organizationId/approve/:requestId",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully approved the device approval request. The response is produced by ApproveCommand and processed via processResponse.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates to ApproveCommand.create(...).run(...) without catching failures, so any exception from that call results in a 500 response.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/device-approval/{organizationId}/approve-all",
+      "http_method": "POST",
+      "method_name": "serveDeviceApprovals",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts",
+      "parameters": [
+        {
+          "name": "organizationId",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The organization identifier from the route path /device-approval/:organizationId/approve-all",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully approved all pending device approval requests for the organization. The response body is produced by ApproveAllCommand and processed via processResponse.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. The handler delegates the entire operation to ApproveAllCommand.create(this.serviceContainer).run(...) without catching failures, so any error thrown by the command results in a 500 response.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 1,
+    "step2_ms": 0,
+    "step3_ms": 2870,
+    "step4_ms": 3057,
+    "step5_ms": 0,
+    "total_ms": 5930
+  }
+}

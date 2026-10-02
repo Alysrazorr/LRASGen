@@ -1,0 +1,1228 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "info": {
+    "title": "REST API",
+    "version": "",
+    "description": "REST API"
+  },
+  "paths": {
+    "/api/auth/accountVerification/{token}": {
+      "get": {
+        "description": "",
+        "operationId": "em14",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.techie.shoppingstore.exceptions.ApiResponse",
+                  "properties": {
+                    "status": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "description": "",
+        "operationId": "em12",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.techie.shoppingstore.dto.AuthenticationResponse",
+                  "properties": {
+                    "accessToken": {
+                      "type": "string"
+                    },
+                    "username": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 2
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1auth~1login/post"
+        }
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "description": "",
+        "operationId": "em13",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.techie.shoppingstore.exceptions.ApiResponse",
+                  "properties": {
+                    "status": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "BAD_REQUEST",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.techie.shoppingstore.exceptions.ApiResponse",
+                  "properties": {
+                    "status": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "confirmPassword": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 5
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1auth~1register/post"
+        }
+      }
+    },
+    "/api/cart/add/{sku}": {
+      "post": {
+        "description": "",
+        "operationId": "em11",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1cart~1add~1{sku}/post"
+        }
+      }
+    },
+    "/api/products/ratings/delete/{ratingId}": {
+      "delete": {
+        "description": "",
+        "operationId": "em2",
+        "parameters": [
+          {
+            "name": "ratingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ratingStars",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "review",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ratingId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sku",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      }
+    },
+    "/api/products/ratings/edit": {
+      "put": {
+        "description": "",
+        "operationId": "em1",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "ratingId": {
+                    "type": "string"
+                  },
+                  "ratingStars": {
+                    "type": "string"
+                  },
+                  "review": {
+                    "type": "string"
+                  },
+                  "sku": {
+                    "type": "string"
+                  },
+                  "userName": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 5
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/products/ratings/get/{sku}": {
+      "get": {
+        "description": "",
+        "operationId": "em3",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1products~1ratings~1get~1{sku}/get"
+        }
+      }
+    },
+    "/api/products/ratings/submit": {
+      "post": {
+        "description": "",
+        "operationId": "em0",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "ratingId": {
+                    "type": "string"
+                  },
+                  "ratingStars": {
+                    "type": "string"
+                  },
+                  "review": {
+                    "type": "string"
+                  },
+                  "sku": {
+                    "type": "string"
+                  },
+                  "userName": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 5
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/store/catalog/categories": {
+      "get": {
+        "description": "",
+        "operationId": "em4",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1store~1catalog~1categories/get"
+        }
+      }
+    },
+    "/api/store/catalog/products": {
+      "get": {
+        "description": "",
+        "operationId": "em5",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1store~1catalog~1products/get"
+        }
+      }
+    },
+    "/api/store/catalog/products/category/{categoryName}": {
+      "get": {
+        "description": "",
+        "operationId": "em8",
+        "parameters": [
+          {
+            "name": "categoryName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1store~1catalog~1products~1category~1{categoryName}/get"
+        }
+      }
+    },
+    "/api/store/catalog/products/featured": {
+      "get": {
+        "description": "",
+        "operationId": "em6",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1store~1catalog~1products~1featured/get"
+        }
+      }
+    },
+    "/api/store/catalog/products/{sku}": {
+      "get": {
+        "description": "",
+        "operationId": "em7",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.techie.shoppingstore.dto.ProductDto",
+                  "properties": {
+                    "productName": {
+                      "type": "string"
+                    },
+                    "imageUrl": {
+                      "type": "string"
+                    },
+                    "sku": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "object",
+                      "title": "java.math.BigDecimal",
+                      "properties": {
+                        "intVal": {
+                          "type": "object",
+                          "title": "java.math.BigInteger",
+                          "properties": {
+                            "signum": {
+                              "type": "integer"
+                            },
+                            "mag": {
+                              "type": "array",
+                              "items": {
+                                "type": "integer"
+                              }
+                            },
+                            "bitCountPlusOne": {
+                              "type": "integer"
+                            },
+                            "bitLengthPlusOne": {
+                              "type": "integer"
+                            },
+                            "lowestSetBitPlusTwo": {
+                              "type": "integer"
+                            },
+                            "firstNonzeroIntNumPlusTwo": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "scale": {
+                          "type": "integer"
+                        },
+                        "precision": {
+                          "type": "integer"
+                        },
+                        "stringCache": {
+                          "type": "string"
+                        },
+                        "intCompact": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "manufacturer": {
+                      "type": "string"
+                    },
+                    "availability": {
+                      "type": "object",
+                      "title": "com.techie.shoppingstore.dto.ProductAvailability",
+                      "properties": {
+                        "availability": {
+                          "type": "string"
+                        },
+                        "color": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "attributeList": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "featured": {
+                      "type": "boolean"
+                    },
+                    "productRatingDtoList": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1store~1catalog~1products~1{sku}/get"
+        }
+      }
+    },
+    "/api/store/catalog/search": {
+      "post": {
+        "description": "",
+        "operationId": "em10",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.techie.shoppingstore.dto.ProductSearchResponseDto",
+                  "properties": {
+                    "products": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "minPrice": {
+                      "type": "object",
+                      "title": "java.math.BigDecimal",
+                      "properties": {
+                        "intVal": {
+                          "type": "object",
+                          "title": "java.math.BigInteger",
+                          "properties": {
+                            "signum": {
+                              "type": "integer"
+                            },
+                            "mag": {
+                              "type": "array",
+                              "items": {
+                                "type": "integer"
+                              }
+                            },
+                            "bitCountPlusOne": {
+                              "type": "integer"
+                            },
+                            "bitLengthPlusOne": {
+                              "type": "integer"
+                            },
+                            "lowestSetBitPlusTwo": {
+                              "type": "integer"
+                            },
+                            "firstNonzeroIntNumPlusTwo": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "scale": {
+                          "type": "integer"
+                        },
+                        "precision": {
+                          "type": "integer"
+                        },
+                        "stringCache": {
+                          "type": "string"
+                        },
+                        "intCompact": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "maxPrice": {
+                      "type": "object",
+                      "title": "java.math.BigDecimal",
+                      "properties": {
+                        "intVal": {
+                          "type": "object",
+                          "title": "java.math.BigInteger",
+                          "properties": {
+                            "signum": {
+                              "type": "integer"
+                            },
+                            "mag": {
+                              "type": "array",
+                              "items": {
+                                "type": "integer"
+                              }
+                            },
+                            "bitCountPlusOne": {
+                              "type": "integer"
+                            },
+                            "bitLengthPlusOne": {
+                              "type": "integer"
+                            },
+                            "lowestSetBitPlusTwo": {
+                              "type": "integer"
+                            },
+                            "firstNonzeroIntNumPlusTwo": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "scale": {
+                          "type": "integer"
+                        },
+                        "precision": {
+                          "type": "integer"
+                        },
+                        "stringCache": {
+                          "type": "string"
+                        },
+                        "intCompact": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "facetDtos": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "filters": {
+                    "type": "string"
+                  },
+                  "textQuery": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 2
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1store~1catalog~1search/post"
+        }
+      }
+    },
+    "/api/store/catalog/{categoryName}/facets/filter": {
+      "post": {
+        "description": "",
+        "operationId": "em9",
+        "parameters": [
+          {
+            "name": "categoryName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.techie.shoppingstore.dto.ProductSearchResponseDto",
+                  "properties": {
+                    "products": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "minPrice": {
+                      "type": "object",
+                      "title": "java.math.BigDecimal",
+                      "properties": {
+                        "intVal": {
+                          "type": "object",
+                          "title": "java.math.BigInteger",
+                          "properties": {
+                            "signum": {
+                              "type": "integer"
+                            },
+                            "mag": {
+                              "type": "array",
+                              "items": {
+                                "type": "integer"
+                              }
+                            },
+                            "bitCountPlusOne": {
+                              "type": "integer"
+                            },
+                            "bitLengthPlusOne": {
+                              "type": "integer"
+                            },
+                            "lowestSetBitPlusTwo": {
+                              "type": "integer"
+                            },
+                            "firstNonzeroIntNumPlusTwo": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "scale": {
+                          "type": "integer"
+                        },
+                        "precision": {
+                          "type": "integer"
+                        },
+                        "stringCache": {
+                          "type": "string"
+                        },
+                        "intCompact": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "maxPrice": {
+                      "type": "object",
+                      "title": "java.math.BigDecimal",
+                      "properties": {
+                        "intVal": {
+                          "type": "object",
+                          "title": "java.math.BigInteger",
+                          "properties": {
+                            "signum": {
+                              "type": "integer"
+                            },
+                            "mag": {
+                              "type": "array",
+                              "items": {
+                                "type": "integer"
+                              }
+                            },
+                            "bitCountPlusOne": {
+                              "type": "integer"
+                            },
+                            "bitLengthPlusOne": {
+                              "type": "integer"
+                            },
+                            "lowestSetBitPlusTwo": {
+                              "type": "integer"
+                            },
+                            "firstNonzeroIntNumPlusTwo": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "scale": {
+                          "type": "integer"
+                        },
+                        "precision": {
+                          "type": "integer"
+                        },
+                        "stringCache": {
+                          "type": "string"
+                        },
+                        "intCompact": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "facetDtos": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "filters": {
+                    "type": "string"
+                  },
+                  "textQuery": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 2
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1store~1catalog~1{categoryName}~1facets~1filter/post"
+        }
+      }
+    }
+  },
+  "components": {
+    "x-endpoint-constraints": {
+      "/api/auth/login": {
+        "post": {
+          "global-reads": {
+            "g0": {
+              "name": "OK",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            }
+          }
+        }
+      },
+      "/api/auth/register": {
+        "post": {
+          "valid-path-conditions": [
+            "( this.<com.techie.shoppingstore.service.AuthService: com.techie.shoppingstore.repository.UserRepository userRepository>.<com.techie.shoppingstore.repository.UserRepository: boolean existsByUsername(java.lang.String)>({non_EPP#0}.<com.techie.shoppingstore.dto.RegisterRequestDto: java.lang.String getUsername()>()) == 0 )"
+          ],
+          "global-reads": {
+            "g0": {
+              "name": "OK",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g8": {
+              "name": "BAD_REQUEST",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g8"
+              }
+            },
+            "g9": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g9"
+              }
+            }
+          }
+        }
+      },
+      "/api/cart/add/{sku}": {
+        "post": {
+          "global-reads": {
+            "g0": {
+              "name": "OK",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            }
+          }
+        }
+      },
+      "/api/products/ratings/get/{sku}": {
+        "get": {
+          "global-reads": {
+            "g0": {
+              "name": "OK",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            }
+          }
+        }
+      },
+      "/api/store/catalog/categories": {
+        "get": {
+          "global-reads": {
+            "g0": {
+              "name": "OK",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            }
+          }
+        }
+      },
+      "/api/store/catalog/products": {
+        "get": {
+          "global-reads": {
+            "g0": {
+              "name": "OK",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            }
+          }
+        }
+      },
+      "/api/store/catalog/products/category/{categoryName}": {
+        "get": {
+          "global-reads": {
+            "g0": {
+              "name": "OK",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            }
+          }
+        }
+      },
+      "/api/store/catalog/products/featured": {
+        "get": {
+          "global-reads": {
+            "g0": {
+              "name": "OK",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            }
+          }
+        }
+      },
+      "/api/store/catalog/products/{sku}": {
+        "get": {
+          "global-reads": {
+            "g0": {
+              "name": "OK",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            }
+          }
+        }
+      },
+      "/api/store/catalog/search": {
+        "post": {
+          "global-reads": {
+            "g2": {
+              "name": "JSON",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g3": {
+              "name": "EMPTY_PARAMS",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "AUTO",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            },
+            "g6": {
+              "name": "None",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g6"
+              }
+            },
+            "g7": {
+              "name": "DEFAULT",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g7"
+              }
+            }
+          }
+        }
+      },
+      "/api/store/catalog/{categoryName}/facets/filter": {
+        "post": {
+          "global-reads": {
+            "g2": {
+              "name": "JSON",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g3": {
+              "name": "EMPTY_PARAMS",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "log",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "AUTO",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            },
+            "g6": {
+              "name": "None",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g6"
+              }
+            },
+            "g7": {
+              "name": "DEFAULT",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g7"
+              }
+            }
+          }
+        }
+      }
+    },
+    "x-endpoint-interdependence": {},
+    "x-global-variables-info": {
+      "g0": {
+        "name": "OK",
+        "id": "g0",
+        "defining-class": "org.springframework.http.HttpStatus"
+      },
+      "g1": {
+        "name": "log",
+        "id": "g1",
+        "defining-class": "com.techie.shoppingstore.service.ProductService",
+        "locations-of-static-assignments": [
+          "line 32, com.techie.shoppingstore.service.ProductService"
+        ]
+      },
+      "g2": {
+        "name": "JSON",
+        "id": "g2",
+        "defining-class": "org.elasticsearch.common.xcontent.XContentType"
+      },
+      "g3": {
+        "name": "EMPTY_PARAMS",
+        "id": "g3",
+        "defining-class": "org.elasticsearch.common.xcontent.ToXContent"
+      },
+      "g4": {
+        "name": "log",
+        "id": "g4",
+        "defining-class": "com.techie.shoppingstore.service.SearchService",
+        "locations-of-static-assignments": [
+          "line 63, com.techie.shoppingstore.service.SearchService"
+        ]
+      },
+      "g5": {
+        "name": "AUTO",
+        "id": "g5",
+        "defining-class": "org.elasticsearch.common.unit.Fuzziness"
+      },
+      "g6": {
+        "name": "None",
+        "id": "g6",
+        "defining-class": "org.apache.lucene.search.join.ScoreMode"
+      },
+      "g7": {
+        "name": "DEFAULT",
+        "id": "g7",
+        "defining-class": "org.elasticsearch.client.RequestOptions"
+      },
+      "g8": {
+        "name": "BAD_REQUEST",
+        "id": "g8",
+        "defining-class": "org.springframework.http.HttpStatus"
+      },
+      "g9": {
+        "name": "log",
+        "id": "g9",
+        "defining-class": "com.techie.shoppingstore.service.AuthService",
+        "locations-of-static-assignments": [
+          "line 26, com.techie.shoppingstore.service.AuthService"
+        ]
+      }
+    }
+  }
+}

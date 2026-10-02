@@ -1,0 +1,105 @@
+{
+  "task_id": "src",
+  "api_name": "src",
+  "framework": "koa",
+  "endpoints": [
+    {
+      "endpoint_path": "/device-approval/{organizationId}",
+      "http_method": "GET",
+      "method_name": "serveDeviceApprovals",
+      "summary": "List device approval requests for an organization",
+      "description": "Retrieves the list of pending device approval requests for the specified organization. Returns an error if the vault is locked.",
+      "line_number": 22,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/device-approval/{organizationId}/approve-all",
+      "http_method": "POST",
+      "method_name": "serveDeviceApprovals",
+      "summary": "Approve all device approval requests for an organization",
+      "description": "Approves all pending device approval requests for the specified organization. Returns an error if the vault is locked.",
+      "line_number": 34,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/device-approval/{organizationId}/approve/{requestId}",
+      "http_method": "POST",
+      "method_name": "serveDeviceApprovals",
+      "summary": "Approve a specific device approval request",
+      "description": "Approves the device approval request identified by requestId for the specified organization. Returns an error if the vault is locked.",
+      "line_number": 46,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/device-approval/{organizationId}/deny-all",
+      "http_method": "POST",
+      "method_name": "serveDeviceApprovals",
+      "summary": "Deny all device approval requests for an organization",
+      "description": "Denies all pending device approval requests for the specified organization. Returns an error if the vault is locked.",
+      "line_number": 58,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts"
+    },
+    {
+      "endpoint_path": "/device-approval/{organizationId}/deny/{requestId}",
+      "http_method": "POST",
+      "method_name": "serveDeviceApprovals",
+      "summary": "Deny a specific device approval request",
+      "description": "Denies the device approval request identified by requestId for the specified organization. Returns an error if the vault is locked.",
+      "line_number": 70,
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Bitwarden\\bitwarden_clients-main\\bitwarden_license\\bit-cli\\src\\bit-serve-configurator.ts"
+    }
+  ],
+  "errors": [],
+  "duration_ms": 2870,
+  "tokens": {
+    "prompt_tokens": 5778,
+    "completion_tokens": 2397,
+    "total_tokens": 8175,
+    "calls": 3,
+    "elapsed_s": 27.006,
+    "prompt_cost_usd": 0.000747,
+    "completion_cost_usd": 0.001596,
+    "total_cost_usd": 0.002343,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 1873,
+        "completion_tokens": 468,
+        "total_tokens": 2341,
+        "calls": 1,
+        "elapsed_s": 2.869584,
+        "prompt_cost_usd": 3.7e-05,
+        "completion_cost_usd": 0.000281,
+        "total_cost_usd": 0.000318
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 1774,
+        "completion_tokens": 1579,
+        "total_tokens": 3353,
+        "calls": 1,
+        "elapsed_s": 18.001,
+        "prompt_cost_usd": 0.000177,
+        "completion_cost_usd": 0.00079,
+        "total_cost_usd": 0.000967
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 2131,
+        "completion_tokens": 350,
+        "total_tokens": 2481,
+        "calls": 1,
+        "elapsed_s": 6.135,
+        "prompt_cost_usd": 0.000533,
+        "completion_cost_usd": 0.000525,
+        "total_cost_usd": 0.001058
+      }
+    ]
+  }
+}

@@ -1,0 +1,1908 @@
+{
+  "task_id": "jupyter_server-main",
+  "api_name": "jupyter_server-main",
+  "framework": "tornado",
+  "endpoints": [
+    {
+      "endpoint_path": "/api",
+      "http_method": "GET",
+      "method_name": "APIVersionHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\base\\handlers.py",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the Jupyter Server version as JSON.",
+          "data_schema": [
+            {
+              "name": "VersionInfo",
+              "schema": {
+                "version": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/status",
+      "http_method": "GET",
+      "method_name": "APIStatusHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\api\\handlers.py",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successful response with API status information",
+          "data_schema": [
+            {
+              "name": "APIStatus",
+              "schema": {
+                "started": "string",
+                "last_activity": "string",
+                "kernels": "integer",
+                "connections": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: User is not authorized to read on resource: api.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/config/{section_name}",
+      "http_method": "GET",
+      "method_name": "ConfigHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\config\\handlers.py",
+      "parameters": [
+        {
+          "name": "section_name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The config section name, matched by the URL regex group (?P<section_name>\\w+).",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the config section as a JSON object.",
+          "data_schema": [
+            {
+              "name": "ConfigSection",
+              "schema": {
+                "section_name": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: User is not authorized to read the config resource.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found: Origin check failed.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error: An unhandled error occurred while retrieving the config.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/spec.yaml",
+      "http_method": "GET",
+      "method_name": "APISpecHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\api\\handlers.py",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the API specification file (api.yaml) as YAML content.",
+          "data_schema": [
+            {
+              "name": "APISpec",
+              "schema": {
+                "content": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned by the @authorized decorator when the current user is not authorized to read the api resource, or by @web.authenticated when the user is not authenticated.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned by the underlying StaticFileHandler when the requested api.yaml file does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/kernels/{kernel_id}/channels",
+      "http_method": "GET",
+      "method_name": "WebSocketChannelsHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\gateway\\handlers.py",
+      "parameters": [
+        {
+          "name": "kernel_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The kernel ID from the URL path, matched by the regex group (?P<kernel_id>\\w+-\\w+-\\w+-\\w+-\\w+) in the route /api/kernels/%s/channels.",
+          "_depth": 0
+        },
+        {
+          "name": "session_id",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Optional session ID passed as a query parameter; if provided, it is assigned to the session.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 101,
+          "description": "Switching Protocols. The WebSocket connection is established and the handler delegates to the gateway WebSocket client. The connection remains open for bidirectional message exchange.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when the user is not authenticated (current_user is None) or when the origin check fails (check_origin returns False).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/shutdown",
+      "http_method": "POST",
+      "method_name": "ShutdownHandler.post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\shutdown.py",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Server shut down successfully. The handler logs the shutdown, cleans up the server application, and stops the IOLoop. No response body is written.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned by the @authorized decorator when the user is not authorized to perform the 'write' action on the 'server' resource, or when no authenticated user is present.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/spec.yaml",
+      "http_method": "HEAD",
+      "method_name": "APISpecHandler.head",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\api\\handlers.py",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Success. Returns the API specification file (api.yaml) without a body (HEAD request). The response has no body, but the Content-Type header is set to 'text/x-yaml'.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned by the @web.authenticated decorator when the user is not authenticated, or by the @authorized decorator when the user is not authorized to read the 'api' resource.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. Returned by the underlying StaticFileHandler when the requested file 'api.yaml' does not exist.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/config/{section_name}",
+      "http_method": "PUT",
+      "method_name": "ConfigHandler.put",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\config\\handlers.py",
+      "parameters": [
+        {
+          "name": "section_name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the config section to set. Extracted from the URL path via the regex group `(?P<section_name>\\w+)`.",
+          "min_length": "1",
+          "max_length": "",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "The JSON data to set as the config section. Parsed from the request body via `self.get_json_body()`. Raises 400 if the body is not valid JSON.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Config section successfully set. No content returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid JSON in request body.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "User is not authorized to perform the action on the resource.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/me",
+      "http_method": "GET",
+      "method_name": "IdentityHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\api\\handlers.py",
+      "parameters": [
+        {
+          "name": "permissions",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "A JSON dict of {\"resource\": [\"action\",]} used to check which actions the current user is authorized to perform on each resource.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Returns the current user's identity model and the permissions checked for the requested resources.",
+          "data_schema": [
+            {
+              "name": "IdentityModel",
+              "schema": {
+                "identity": "object",
+                "permissions": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request: the 'permissions' query argument is not valid JSON, is not a JSON dict, or contains invalid resource/action entries.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: the request is not authenticated (raised by @web.authenticated or by APIHandler.get_login_url when a redirect would be attempted).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/config/{section_name}",
+      "http_method": "PATCH",
+      "method_name": "ConfigHandler.patch",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\config\\handlers.py",
+      "parameters": [
+        {
+          "name": "section_name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The config section name, matched by the URL regex group (?P<section_name>\\w+).",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "JSON body containing the new data to update the config section with, parsed via self.get_json_body().",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Update a config section by name. Returns the updated config section as JSON.",
+          "data_schema": [
+            {
+              "name": "section",
+              "schema": {
+                "": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Invalid JSON in body of request. Raised by get_json_body when the request body cannot be parsed as JSON.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "User is not authorized to write on resource: config. Raised by the @authorized decorator when the authorizer denies the request, or when the request is not authenticated.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/contents/{path}/checkpoints/{checkpoint_id}",
+      "http_method": "DELETE",
+      "method_name": "ModifyCheckpointsHandler.delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The API path of the file whose checkpoint is to be deleted.",
+          "_depth": 0
+        },
+        {
+          "name": "checkpoint_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the checkpoint to delete.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Checkpoint deleted successfully. No content returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. User is not authorized to delete the checkpoint.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Checkpoint not found. The checkpoint does not exist for the given path and checkpoint_id.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/contents/{path}/checkpoints",
+      "http_method": "GET",
+      "method_name": "CheckpointsHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The API path of the file or directory whose checkpoints are listed.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A JSON list of checkpoint models for the given path.",
+          "data_schema": [
+            {
+              "name": "CheckpointList",
+              "schema": {
+                "id": "string",
+                "last_modified": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The request is not authenticated or the user is not authorized to read the contents resource.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found. The path does not exist or is hidden and hidden files are not allowed.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while listing checkpoints.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/notebooks/{path}",
+      "http_method": "GET",
+      "method_name": "NotebooksRedirectHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The path to redirect to /api/contents",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /api/contents/{path}",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/contents/{path}",
+      "http_method": "PATCH",
+      "method_name": "ContentsHandler.patch",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The API path of the file or directory to rename, captured from the URL pattern /api/contents{path_regex}.",
+          "_depth": 0
+        },
+        {
+          "name": "model",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "JSON body containing the update model. Must include a 'path' key with the new path for the file or directory.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully renamed the file or directory. Returns the updated model.",
+          "data_schema": [
+            {
+              "name": "ContentsModel",
+              "schema": {
+                "name": "string",
+                "path": "string",
+                "type": "string",
+                "writable": "boolean",
+                "created": "string",
+                "last_modified": "string",
+                "mimetype": "string",
+                "content": "object",
+                "format": "string",
+                "size": "integer",
+                "hash": "string",
+                "hash_algorithm": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Possible causes: JSON body missing; cannot rename hidden file or directory.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Possible causes: missing model keys; unexpected None or non-None keys; error during rename operation.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/contents/{path}/checkpoints/{checkpoint_id}",
+      "http_method": "POST",
+      "method_name": "ModifyCheckpointsHandler.post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The API path of the file or directory whose checkpoint is being restored.",
+          "_depth": 0
+        },
+        {
+          "name": "checkpoint_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The identifier of the checkpoint to restore.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Checkpoint restored successfully. No content returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. User is not authorized to perform the write action on the contents resource.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Checkpoint or file not found. Raised by the contents manager when the checkpoint or path does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Raised when the contents manager fails unexpectedly during checkpoint restoration.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/contents/{path}",
+      "http_method": "DELETE",
+      "method_name": "ContentsHandler.delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The API path of the file or directory to delete, such as \"foo/bar.txt\". It is captured from the URL by the path regex group and passed to the handler method.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "File or directory deleted successfully. No content is returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Cannot delete file or directory because it is hidden and hidden files are not allowed.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Permission denied when trying to delete the file or directory.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "File or directory does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Unexpected error while deleting the file or directory.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/contents/{path}/checkpoints",
+      "http_method": "POST",
+      "method_name": "CheckpointsHandler.post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The API path of the file for which to create a checkpoint.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Checkpoint created successfully. Returns the checkpoint model and sets the Location header to the checkpoint URL.",
+          "data_schema": [
+            {
+              "name": "Checkpoint",
+              "schema": {
+                "id": "string",
+                "last_modified": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "User is not authorized to perform the action on the resource.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "The specified path does not exist or is hidden and hidden files are not allowed.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Unexpected error while creating the checkpoint.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/contents/{path}",
+      "http_method": "POST",
+      "method_name": "ContentsHandler.post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The API path of the directory in which to create the new file or directory. It is captured from the URL pattern /api/contents{path_regex} where path_regex is (?P<path>(?:(?:/[^/]+)+|/?)).",
+          "_depth": 0
+        },
+        {
+          "name": "copy_from",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "If provided, the server copies the file or directory at this path into the target path instead of creating a new untitled entity.",
+          "_depth": 0
+        },
+        {
+          "name": "ext",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "File extension to use when creating a new untitled file (e.g. '.txt'). Only used when copy_from is not provided.",
+          "_depth": 0
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The type of entity to create: 'directory', 'file', or 'notebook'. If omitted or unknown, defaults to 'file'.",
+          "enum": [
+            "directory",
+            "file",
+            "notebook"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Created: a new file or directory was created (untitled or copied) and its model is returned.",
+          "data_schema": [
+            {
+              "name": "ContentsModel",
+              "schema": {
+                "name": "string",
+                "path": "string",
+                "type": "string",
+                "writable": "boolean",
+                "created": "string",
+                "last_modified": "string",
+                "mimetype": "string",
+                "content": "object",
+                "format": "string",
+                "size": "integer",
+                "hash": "string",
+                "hash_algorithm": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request: the request is invalid, e.g. POST to an existing file, hidden file/directory access, or invalid model type.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: the user is not authorized to perform the action.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not Found: the path does not exist or is hidden.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error: an unexpected error occurred while creating the file or directory.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/contents/{path}",
+      "http_method": "GET",
+      "method_name": "ContentsHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The API path of the file or directory, such as \"foo/bar.txt\". Defaults to empty string if not provided.",
+          "_depth": 0
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The type of the file or directory. Valid values are 'directory', 'file', 'notebook'. If an unknown type is provided, it falls back to 'file'.",
+          "enum": [
+            "directory",
+            "file",
+            "notebook"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "The format of the file content. Valid values are 'text' or 'base64'. If an invalid format is provided, a 400 error is raised.",
+          "enum": [
+            "text",
+            "base64"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Whether to include the content in the response. Valid values are '0' or '1'. Defaults to '1'.",
+          "enum": [
+            "0",
+            "1"
+          ],
+          "_depth": 0
+        },
+        {
+          "name": "hash",
+          "type": "string",
+          "require": "false",
+          "position": "query",
+          "description": "Whether to include the file hash in the response. Valid values are '0' or '1'. Defaults to '0'.",
+          "enum": [
+            "0",
+            "1"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns the model for a file or directory. The model is returned as JSON with Location and Last-Modified headers.",
+          "data_schema": [
+            {
+              "name": "ContentsModel",
+              "schema": {
+                "name": "string",
+                "path": "string",
+                "type": "string",
+                "writable": "boolean",
+                "created": "string",
+                "last_modified": "string",
+                "mimetype": "string",
+                "content": "object",
+                "format": "string",
+                "hash": "string",
+                "hash_algorithm": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when the 'format' query parameter is not one of None, 'text', 'base64'; when the 'content' query parameter is not '0' or '1'; or when the 'hash' query parameter is not '0' or '1'.",
+          "data_schema": []
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned by the @authorized decorator when the user is not authorized to read the contents resource.",
+          "data_schema": []
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. Returned when the requested file or directory does not exist, or when hidden files are not allowed and the path is hidden.",
+          "data_schema": []
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Returned when the model returned by the contents manager is missing required keys or has unexpected null/non-null values for content, format, hash, or hash_algorithm.",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/contents/{path}",
+      "http_method": "PUT",
+      "method_name": "ContentsHandler.put",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The API path of the file or directory to save or create.",
+          "_depth": 0
+        },
+        {
+          "name": "model",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "JSON body containing the file model to save. If the body is missing or empty, a new untitled file is created.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "File saved successfully. Returns the saved model with no content.",
+          "data_schema": [
+            {
+              "name": "ContentsModel",
+              "schema": {
+                "name": "string",
+                "path": "string",
+                "type": "string",
+                "writable": "boolean",
+                "created": "string",
+                "last_modified": "string",
+                "mimetype": "string",
+                "content": "object",
+                "format": "string",
+                "size": "integer",
+                "hash": "string",
+                "hash_algorithm": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 201,
+          "description": "New file uploaded successfully. Returns the created model with no content.",
+          "data_schema": [
+            {
+              "name": "ContentsModel",
+              "schema": {
+                "name": "string",
+                "path": "string",
+                "type": "string",
+                "writable": "boolean",
+                "created": "string",
+                "last_modified": "string",
+                "mimetype": "string",
+                "content": "object",
+                "format": "string",
+                "size": "integer",
+                "hash": "string",
+                "hash_algorithm": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Possible causes: copy_from specified with PUT; hidden file or directory; invalid JSON body; missing file type or content; invalid format; encoding error; directory not empty; file already exists; etc.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Permission denied when accessing or modifying a file or directory.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Not found. The specified file or directory does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 409,
+          "description": "Conflict. File already exists when renaming.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. Unexpected error while saving file or running post-save hook.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/notebooks/{path}",
+      "http_method": "PUT",
+      "method_name": "NotebooksRedirectHandler.put",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The path to redirect to /api/contents",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /api/contents/{path}",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/notebooks/{path}",
+      "http_method": "PATCH",
+      "method_name": "NotebooksRedirectHandler.patch",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The path to redirect to /api/contents. Captured from the URL regex group `(?P<path>...)` in the handler registration `(r\"/api/notebooks/?(.*)\", NotebooksRedirectHandler)`.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /api/contents/{path}. The NotebooksRedirectHandler redirects all methods (GET, PUT, PATCH, POST, DELETE) to the contents API endpoint.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/notebooks/{path}",
+      "http_method": "POST",
+      "method_name": "NotebooksRedirectHandler.post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The path to redirect to /api/contents. Captured from the URL regex group `(?P<path>(?:(?:/[^/]+)+|/?))` in the handler registration `(r\"/api/notebooks/?(.*)\", NotebooksRedirectHandler)`.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /api/contents/{path}",
+          "data_schema": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/contents/{path}/trust",
+      "http_method": "POST",
+      "method_name": "TrustNotebooksHandler.post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The API path of the notebook to trust, matched by the path_regex URL pattern.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Notebook trusted successfully. The handler calls the contents manager's trust_notebook method and then sets the status to 201 and finishes with no body.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The @web.authenticated decorator redirects to login for GET/HEAD or raises 403 for other methods if the user is not authenticated. The @authorized decorator raises 403 if the authenticated user is not authorized to perform the 'write' action on the 'contents' resource.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. The handler delegates to the contents manager's trust_notebook method. If that method raises an unhandled exception, Tornado returns a 500 error.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/events/subscribe",
+      "http_method": "GET",
+      "method_name": "SubscribeWebsocket.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\events\\handlers.py",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 101,
+          "description": "Switching Protocols. The WebSocket handshake is completed and the connection is upgraded to a WebSocket. The server then pushes event messages to the client as JSON-encoded objects containing the event schema_id and data.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when the user is not authenticated (ws_authenticated decorator) or when the authorizer denies the 'execute' action on the 'events' resource (pre_get).",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/notebooks/{path}",
+      "http_method": "DELETE",
+      "method_name": "NotebooksRedirectHandler.delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\contents\\handlers.py",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The path to redirect to /api/contents. Captured from the URL regex group `(?P<path>(?:(?:/[^/]+)+|/?))` in the handler registration `(r\"/api/notebooks/?(.*)\", NotebooksRedirectHandler)`.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 302,
+          "description": "Redirect to /api/contents/{path}. The NotebooksRedirectHandler redirects all supported methods (GET, PUT, PATCH, POST, DELETE) to the corresponding /api/contents endpoint using self.redirect().",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/events",
+      "http_method": "POST",
+      "method_name": "EventHandler.post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\events\\handlers.py",
+      "parameters": [
+        {
+          "name": "schema_id",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The schema ID of the event to emit. Required field in the JSON request body; validated by validate_model.",
+          "_depth": 0
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The version of the schema. Required field in the JSON request body; must match the registered schema version.",
+          "_depth": 0
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The event data payload. Required field in the JSON request body; passed as data to event_logger.emit.",
+          "_depth": 0
+        },
+        {
+          "name": "timestamp",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "Optional timestamp for the event. Parsed with format %Y-%m-%dT%H:%M:%S%zZ; if absent, timestamp is None.",
+          "format": "%Y-%m-%dT%H:%M:%S%zZ",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Event emitted successfully. No content returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when no JSON data is provided, when required fields are missing, when the schema version is unregistered, when the timestamp cannot be parsed, or when any other exception occurs during event emission.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when the user is not authorized to perform the 'write' action on the 'events' resource.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/kernels/{kernel_id}",
+      "http_method": "GET",
+      "method_name": "KernelHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernels\\handlers.py",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Get a kernel model.",
+          "data_schema": [
+            {
+              "name": "KernelModel",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "last_activity": "string",
+                "execution_state": "string",
+                "connections": "integer",
+                "reason": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: user is not authorized to read the kernel resource.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Kernel does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error: an unhandled exception occurred while retrieving the kernel model.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/kernels",
+      "http_method": "GET",
+      "method_name": "MainKernelHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernels\\handlers.py",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A JSON list of kernel models for all running kernels.",
+          "data_schema": [
+            {
+              "name": "KernelModelList",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "last_activity": "string",
+                "execution_state": "string",
+                "connections": "integer",
+                "reason": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: the request is not authenticated or the user is not authorized to read kernels.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error: an unhandled exception occurred while listing kernels.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/kernels/{kernel_id}",
+      "http_method": "DELETE",
+      "method_name": "KernelHandler.delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernels\\handlers.py",
+      "parameters": [
+        {
+          "name": "kernel_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the kernel to remove. Extracted from the URL path via the regex pattern `(?P<kernel_id>\\w+-\\w+-\\w+-\\w+-\\w+)`.",
+          "min_length": "1",
+          "max_length": "36",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Kernel removed successfully. No content is returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The request is not authenticated or the user is not authorized to perform the action on the resource.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Kernel does not exist. Raised when the kernel_id is not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/kernels",
+      "http_method": "POST",
+      "method_name": "MainKernelHandler.post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernels\\handlers.py",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The name of the kernel to start. If not provided, the default kernel name is used.",
+          "_depth": 0
+        },
+        {
+          "name": "path",
+          "type": "string",
+          "require": "false",
+          "position": "body",
+          "description": "The path to start the kernel in. If not provided, the kernel starts in the default directory.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Kernel started successfully. Returns the kernel model and sets the Location header to the new kernel's URL.",
+          "data_schema": [
+            {
+              "name": "KernelModel",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "last_activity": "string",
+                "execution_state": "string",
+                "connections": "integer",
+                "reason": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The request is not authenticated or the user is not authorized to start a kernel.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An error occurred while starting the kernel or retrieving its model.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/kernelspecs",
+      "http_method": "GET",
+      "method_name": "MainKernelSpecHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernelspecs\\handlers.py",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns the list of kernel specs and the default kernel name.",
+          "data_schema": [
+            {
+              "name": "KernelSpecsModel",
+              "schema": {
+                "default": "string",
+                "kernelspecs": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: user is not authenticated or not authorized to read the kernelspecs resource.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/security/csp-report",
+      "http_method": "POST",
+      "method_name": "CSPReportHandler.post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\security\\handlers.py",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Logs a content security policy violation report and returns an empty response body.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned when the request is not authenticated or the user is not authorized to perform the action on the resource.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/nbconvert",
+      "http_method": "GET",
+      "method_name": "NbconvertRootHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\nbconvert\\handlers.py",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully returns a JSON object mapping exporter names to their output mimetype.",
+          "data_schema": [
+            {
+              "name": "exporters",
+              "schema": {
+                "<exporter_name>": {
+                  "output_mimetype": "string"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned by the @authorized decorator when the current user is not authorized to read the nbconvert resource, or when the request is not authenticated.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. Returned when nbconvert cannot be imported.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/kernelspecs/{kernel_name}",
+      "http_method": "GET",
+      "method_name": "KernelSpecHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernelspecs\\handlers.py",
+      "parameters": [
+        {
+          "name": "kernel_name",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The name of the kernel spec to retrieve, extracted from the URL path via the regex group (?P<kernel_name>[\\w\\.\\-%]+).",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Get a kernel spec model.",
+          "data_schema": [
+            {
+              "name": "KernelSpecModel",
+              "schema": {
+                "name": "string",
+                "spec": "object",
+                "resources": "object"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: user is not authorized to read the kernelspecs resource.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Kernel spec not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/kernels/{kernel_id}/restart",
+      "http_method": "POST",
+      "method_name": "KernelActionHandler.post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernels\\handlers.py",
+      "parameters": [
+        {
+          "name": "kernel_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The unique identifier of the kernel, matched by the regex pattern `(?P<kernel_id>\\w+-\\w+-\\w+-\\w+-\\w+)` in the URL route.",
+          "_depth": 0
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The action to perform on the kernel. Must be either 'restart' or 'interrupt'.",
+          "enum": [
+            "restart",
+            "interrupt"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Kernel interrupted successfully.",
+          "data_schema": null
+        },
+        {
+          "status_code": 200,
+          "description": "Kernel restarted successfully. Returns the kernel model.",
+          "data_schema": [
+            {
+              "name": "KernelModel",
+              "schema": {
+                "id": "string",
+                "name": "string",
+                "last_activity": "string",
+                "execution_state": "string",
+                "connections": "integer",
+                "reason": "string"
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 500,
+          "description": "Exception restarting kernel.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/kernels/{kernel_id}/interrupt",
+      "http_method": "POST",
+      "method_name": "KernelActionHandler.post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\kernels\\handlers.py",
+      "parameters": [
+        {
+          "name": "kernel_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the kernel to interrupt or restart. Extracted from the URL path via regex group `(?P<kernel_id>\\w+-\\w+-\\w+-\\w+-\\w+)`.",
+          "min_length": "1",
+          "max_length": "36",
+          "_depth": 0
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "require": "false",
+          "position": "path",
+          "description": "The action to perform on the kernel. Must be either 'interrupt' or 'restart'. Extracted from the URL path via regex group `(?P<action>restart|interrupt)`.",
+          "enum": [
+            "restart",
+            "interrupt"
+          ],
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Kernel interrupted successfully. No content returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. User is not authorized to perform the action on the resource.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Kernel does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal server error. An exception occurred while interrupting the kernel.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/sessions",
+      "http_method": "POST",
+      "method_name": "SessionRootHandler.post",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\sessions\\handlers.py",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "JSON body containing session creation parameters. The handler reads model = self.get_json_body() and raises 400 if None. Fields: path (required), type (required), name (optional), kernel (optional object with name and/or id).",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 201,
+          "description": "Session created successfully. The response body contains the session model.",
+          "data_schema": [
+            {
+              "name": "SessionModel",
+              "schema": {
+                "id": "string",
+                "path": "string",
+                "name": "string",
+                "type": "string",
+                "kernel": {
+                  "id": "string",
+                  "name": "string",
+                  "last_activity": "string",
+                  "execution_state": "string",
+                  "connections": "integer"
+                },
+                "notebook": {
+                  "path": "string",
+                  "name": "string"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad Request. Possible reasons: No JSON data provided; Missing field in JSON data: path; Missing field in JSON data: type.",
+          "data_schema": null
+        },
+        {
+          "status_code": 501,
+          "description": "Not Implemented. The specified kernel is not available.",
+          "data_schema": null
+        },
+        {
+          "status_code": 500,
+          "description": "Internal Server Error. An unexpected error occurred while creating the session.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/sessions",
+      "http_method": "GET",
+      "method_name": "SessionRootHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\sessions\\handlers.py",
+      "parameters": [],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "A list of running sessions.",
+          "data_schema": [
+            {
+              "name": "SessionList",
+              "schema": {
+                "id": "string",
+                "path": "string",
+                "name": "string",
+                "type": "string",
+                "kernel": {
+                  "id": "string",
+                  "name": "string",
+                  "last_activity": "string",
+                  "execution_state": "string",
+                  "connections": "integer"
+                },
+                "notebook": {
+                  "path": "string",
+                  "name": "string"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: User is not authorized to read on resource: sessions.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/sessions/{session_id}",
+      "http_method": "DELETE",
+      "method_name": "SessionHandler.delete",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\sessions\\handlers.py",
+      "parameters": [
+        {
+          "name": "session_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The session ID from the URL path, matched by the regex group (?P<session_id>\\w+-\\w+-\\w+-\\w+-\\w+) in the handler registration.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 204,
+          "description": "Session deleted successfully. No content returned.",
+          "data_schema": null
+        },
+        {
+          "status_code": 410,
+          "description": "Kernel deleted before session. The session's kernel was already deleted, so the session cannot be deleted normally.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. The request is not authenticated or the user is not authorized to delete the session.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Session not found. The session_id does not correspond to an existing session.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/sessions/{session_id}",
+      "http_method": "PATCH",
+      "method_name": "SessionHandler.patch",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\sessions\\handlers.py",
+      "parameters": [
+        {
+          "name": "session_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the session to patch, extracted from the URL path via the regex group `(?P<session_id>\\w+-\\w+-\\w+-\\w+-\\w+)`.",
+          "_depth": 0
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "require": "false",
+          "position": "body",
+          "description": "JSON request body containing the fields to update. The handler reads it via `self.get_json_body()` and raises HTTP 400 if it is None. Recognized fields: `path`, `name`, `type`, `kernel` (with nested `id` or `name`), and legacy `notebook` (with nested `path`).",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Successfully patched the session. Returns the updated session model.",
+          "data_schema": [
+            {
+              "name": "SessionModel",
+              "schema": {
+                "id": "string",
+                "path": "string",
+                "name": "string",
+                "type": "string",
+                "kernel": {
+                  "id": "string",
+                  "name": "string",
+                  "last_activity": "string",
+                  "execution_state": "string",
+                  "connections": "integer",
+                  "reason": "string"
+                },
+                "notebook": {
+                  "path": "string",
+                  "name": "string"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 400,
+          "description": "Bad request. Returned when no JSON data is provided, or when the specified kernel id does not exist.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Session not found. Returned when the session_id does not exist in the session database.",
+          "data_schema": null
+        },
+        {
+          "status_code": 501,
+          "description": "Not implemented. Returned when the specified kernel could not be started.",
+          "data_schema": null
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden. Returned by the @authorized decorator when the user is not authorized to perform the action.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "endpoint_path": "/api/sessions/{session_id}",
+      "http_method": "GET",
+      "method_name": "SessionHandler.get",
+      "source_file": "D:\\Researches\\LRASGen_RCR_working\\upload\\v1\\api-sources\\Jupyter\\jupyter_server-main\\jupyter_server\\services\\sessions\\handlers.py",
+      "parameters": [
+        {
+          "name": "session_id",
+          "type": "string",
+          "require": "true",
+          "position": "path",
+          "description": "The ID of the session to retrieve. Extracted from the URL path via the regex group `(?P<session_id>\\w+-\\w+-\\w+-\\w+-\\w+)` in the handler registration.",
+          "_depth": 0
+        }
+      ],
+      "responses": [
+        {
+          "status_code": 200,
+          "description": "Get the JSON model for a single session.",
+          "data_schema": [
+            {
+              "name": "SessionModel",
+              "schema": {
+                "id": "string",
+                "path": "string",
+                "name": "string",
+                "type": "string",
+                "kernel": {
+                  "id": "string",
+                  "name": "string",
+                  "last_activity": "string",
+                  "execution_state": "string",
+                  "connections": "integer",
+                  "reason": "string"
+                },
+                "notebook": {
+                  "path": "string",
+                  "name": "string"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "status_code": 403,
+          "description": "Forbidden: User is not authorized to read on resource: sessions.",
+          "data_schema": null
+        },
+        {
+          "status_code": 404,
+          "description": "Session not found.",
+          "data_schema": null
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "duration_ms": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "calls": 0,
+    "elapsed_s": 0,
+    "prompt_cost_usd": 0,
+    "completion_cost_usd": 0,
+    "total_cost_usd": 0,
+    "by_model": [
+      {
+        "name": "deepseek",
+        "model": "deepseek-v4-flash",
+        "provider": "deepseek",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gpt",
+        "model": "openai/gpt-5.4-mini",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      {
+        "name": "gemini",
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": "openrouter",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "calls": 0,
+        "elapsed_s": 0.0,
+        "prompt_cost_usd": 0.0,
+        "completion_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      }
+    ]
+  },
+  "timings": {
+    "step1_ms": 14,
+    "step2_ms": 1721,
+    "step3_ms": 41402,
+    "step4_ms": 15440,
+    "step5_ms": 0,
+    "total_ms": 58605
+  }
+}
