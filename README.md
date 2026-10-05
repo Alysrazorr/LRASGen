@@ -58,7 +58,7 @@ extraction step, so it is the shortest way to run the package. Docker Desktop (W
 macOS) or Docker Engine (Linux) is the only requirement.
 
 Download `lrasgen-v1.tar.gz` from the
-[Zenodo archive](https://doi.org/10.5281/zenodo.20727685), load it, and
+[Zenodo archive]([https://doi.org/10.5281/zenodo.20727685](https://zenodo.org/records/20733980)), load it, and
 open a shell inside the package:
 
 ```bash
